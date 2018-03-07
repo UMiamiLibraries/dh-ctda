@@ -1,0 +1,624 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>La encantadora familia Bliss</li>
+                </ul>
+            </nav>
+            <h2>La encantadora familia Bliss</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/7676.html">Francisco Morín</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Cast: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Role(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/38.html">José Amaya</a></td>
+                        <td>David</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/7321.html">Paul D&#39;Alba</a></td>
+                        <td>Sandalio</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/1585.html">Glenda Díaz-Rigau</a></td>
+                        <td>Isadora</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/6886.html">Ricardo Fernand</a></td>
+                        <td>Ricardo</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/6904.html">María Meilán</a></td>
+                        <td>Clara Luz</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/6885">Lourdes Menci</a></td>
+                        <td>Mayra</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/594.html">Teresa María Rojas</a></td>
+                        <td>Judy</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/7322">Ana Luisa San Jorge</a></td>
+                        <td>Jackie</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/7320">German Soffia</a></td>
+                        <td>Simon</td>
+                    </tr>
+                
+              </tbody></table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+          
+
+
+            
+
+
+
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              
+            
+                <a href="http://ctda.library.miami.edu/creator/5069" >Miami Dade College Wolfson Campus (5069)</a><br />
+              
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/27.html">Miami Dade College - Wolfson Campus (United States)</a></span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>March 26, 1977 - March 27, 1977</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/writtenwork/2856">La encantadora familia Bliss (Translation)</a><br />
+                <span>By <h4>Translator:</h4><a href='../creator/502.html'>Unknown translator</a></span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/13654">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/65/ea/65ea91efb72b9be15c1f3c1986fbc02c.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/39/0a/390a1c4d3eb94cb19bb9e2c6f3b675c4.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13654" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/9e/47/9e475dcfc16ee12d78ca946e852dfdb7.jpg" title="Teresa María Rojas (Judy, La Madre), German Soffia (Simon, El Hijo), and Glenda Díaz Rigau (Isadora, la Hija), in &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/49/f1/49f1738c42f0c414cec8284e9d317f8a.jpg" alt="Teresa María Rojas (Judy, La Madre), German Soffia (Simon, El Hijo), and Glenda Díaz Rigau (Isadora, la Hija), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13718" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/ad/11/ad11ca35e2e48b9f31dfb289f93141be.jpg" title="Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/b5/c1/b5c12cd5453ad5aabb0a3e8a56e1f480.jpg" alt="Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13785" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/6e/d0/6ed0a6e17d9820f14169ea9462e5cb1f.jpg" title="German Soffia (Simon, El Hijo), José Amaya (David, El Padre), Teresa María Rojas (Judy, la Madre), and Glenda Díaz-Rigau (Isadora, la Hija), in &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/09/0d/090d2c8283f796be8b092d96429f220e.jpg" alt="German Soffia (Simon, El Hijo), José Amaya (David, El Padre), Teresa María Rojas (Judy, la Madre), and Glenda Díaz-Rigau (Isadora, la Hija), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13692" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/d6/5d/d65dd9c8e95d5164bb497040d2089487.jpg" title="Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/61/09/61091e5d17d90a4853270c5ff7e774df.jpg" alt="Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13678" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/4d/a4/4da413669caa4c9f12da15b95e7919cd.jpg" title="German Soffia (Simon, El Hijo), Paul D&#39;Alba (Sandalio), Ricardo Fernand (Ricardo), Teresa María Rojas (Judy, La Madre), and Lourdes Menci (Mayra), in &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/36/82/3682bdcbdcb8953ed99191a16bccd784.jpg" alt="German Soffia (Simon, El Hijo), Paul D&#39;Alba (Sandalio), Ricardo Fernand (Ricardo), Teresa María Rojas (Judy, La Madre), and Lourdes Menci (Mayra), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13684" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/b5/75/b575e79e723944df7f592976b2e59f12.jpg" title="Glenda Díaz-Rigau (Isadora, La Hija), Paul D&#39;Alba (Sandalio) and Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/ca/46/ca4663c3f2c70db88751b9420ba355b3.jpg" alt="Glenda Díaz-Rigau (Isadora, La Hija), Paul D&#39;Alba (Sandalio) and Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13818" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/d5/52/d5523ab121ce10a3157998c1610d607c.jpg" title="Teresa María Rojas (Judy, La Madre), Paul D&#39;Alba (Sandalio), Glenda Díaz-Rigau (Isadora, La Hija), and José Amaya (David, El Padre), in &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/0f/b5/0fb5a47d26647b56d53db8bed69a6ce0.jpg" alt="Teresa María Rojas (Judy, La Madre), Paul D&#39;Alba (Sandalio), Glenda Díaz-Rigau (Isadora, La Hija), and José Amaya (David, El Padre), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13806" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/b1/e9/b1e92d591b424024cc9cd232f4b5e539.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/a0/1d/a01da88410c03278c2730fc83db042f4.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13804" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/5b/c4/5bc4adf03aad0375079db8b74f40ccc5.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/45/81/458166764ebad5cbc8c199602beed827.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/90/38/903832e798090f000a6ea3a2a590c40a.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/0d/3a/0d3aa2ac9311653cdc5b0dec9c52f339.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/43/0f/430f06d8ea49241daee85f72c3b2e471.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/7d/0f/7d0fca9e6169f8e268a3125527ed019e.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/c5/9c/c59c8d8559331f454ee926304a2f6845.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/b7/35/b735d595cc447157eb281726282ba045.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/d8/2c/d82c6591557d8a1635c1377a904e0974.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/20/d8/20d8e9868cba8e7c194876eee081ded5.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/1a/47/1a4751aee4fd3d13f9ad2760caaeab1f.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/5e/4f/5e4f978eac6994818e3af975ebd3e2b2.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/8c/3d/8c3d492663e9c9c433dbb666eb4c2404.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/6e/fe/6efe0d57bf0e475fe58cb4fb98300caa.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/30/35/3035fcd8f376a9fd9716e271a0f3b091.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/c5/3d/c53dffc2e3586d8b92e4ce417576f5dc.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/fc/ae/fcae683e51069edb14fc9f1c51360824.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/c9/a3/c9a360ad1e030da21da2fed96792e2e2.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13491" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/17/03/1703f04bfd1b4bb19aa76649329aafa9.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/81/5b/815b0ecceb4f7ef2ce691a858570c800.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13491" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/6d/d3/6dd30e142c3502476c36b0b1aa8c697b.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/c3/20/c320f8de669feb73c11ff0d40ad5e3fd.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13491" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/90/50/9050ed073a49423dbae8142ddaf31259.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                
+                
+                <img src="../media/cache/a0/38/a0382d51e1eb3ec26e400f67fca49597.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13491" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

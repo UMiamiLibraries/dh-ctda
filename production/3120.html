@@ -1,0 +1,523 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>Espíritu maligno</li>
+                </ul>
+            </nav>
+            <h2>Espíritu maligno</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/5393">Orlando Nodal</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+          
+
+
+            
+
+
+
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              
+            
+                <a href="../creator/5260.html" >unknown (5260)</a><br />
+              
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano (Cuba)</a></span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>October 4, 1957</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/writtenwork/2540">Unknown (Literary antecedent)</a><br />
+                <span>By <h4>Author / Playwright:</h4><a href='../creator/1017.html'>Unknown playwright</a></span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/13326.html">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b4/da/b4da8fb9fb362890289bb07ea9080b99.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="../media/cache/22/59/22590f04a866060058f3f86ed0b4ef41.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/23/f9/23f9fa77a4d6b2770aff7a5c08644b5e.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/03/f8/03f8e2ee88c765752d25fa5ef921a280.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/37/e4/37e4a8718bb752be0df348811a16a076.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/31/bf/31bf01c8d1582a0fe9a8441857f006c3.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/ab/1bab1e7b9362569f3cc237043618c20c.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/fb/b4/fbb454b32adebc4edde5732fdd5094e1.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/67/71672b8b603a2b2d7a4158e314c3e243.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/97/ee/97eeb265938a21e6784252bece8032fe.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f9/0a/f90a239cd57347d9eaa1437c32ded3c0.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/af/5c/af5c1218b3b3c163089b35579b996057.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/40/b3/40b3dafd855b273a6de283a9c5708f03.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/2c/4c/2c4c9b7eb6b5fbafecae7fb0939f4495.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1f/a3/1fa3c2ff118b4e214c44052c8a0db717.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/2c/23/2c23277e2a8fc7e0a9d4381e43bff162.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/45/c9/45c9ffb4028a214412ac95caa03e7162.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/92/09/92092bca74d569d240e149be041d3035.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/23/c9/23c9351a08744490a968f432004e15e9.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/3a/11/3a116de1c921daaf85170a5e23ffa219.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a6/84/a6846c44c1e386a356c4553f0865a22f.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/99/35/9935b6d40835ee616f7f0bcb01af4a2e.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/32/c3/32c3005840690f4c9e5884800e10b061.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/55/f1/55f1618d60cc85c5fc65456c3684a361.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9e/96/9e96e0716e43263b6bc2cf124554a46d.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/72/4c/724cd79909d2ac02d94a8b1bb67fc024.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2f/31/2f318a47397d43ef034361a921b1bc1a.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/14/e7/14e78a2bd6804db9fb3e0ae7f8cd4d23.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4e/26/4e26879874a785a48767ed82f5af675b.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/14/f0/14f0322360903a32ea2cd8a6f5be153d.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/ef/71ef77407eb0d2c0617ab25f39e4e645.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/51/41/5141aa05a007c6890c48f52564baec0c.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,723 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../venues.html">Venues</a></li>
+              <li>Teatro Sauto</li>
+            </ul>
+          </nav>
+          <h2>Teatro Sauto</h2>
+        </header>
+
+        <section class="main">
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          <div class="linkeditems">
+            <h3>Productions: +</h3>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1446">El día que me quieras</a>
+                
+                <br /><span>July 3, 2008 - July 5, 2008</span>
+                
+                
+                <br /><span>Directed by: Alberto Sarraín</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3325">La casa vieja</a>
+                
+                <br /><span>January 28, 2005</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3284">Morir del cuento</a>
+                
+                <br /><span>January 26, 2005</span>
+                
+                
+                <br /><span>Directed by: Alberto Sarraín</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3207">Parece blanca</a>
+                
+                <br /><span>September 22, 2002</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/2328.html">Pedro y el lobo</a>
+                
+                <br /><span>June 2, 2002</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2329.html">En un retablo viejo</a>
+                
+                <br /><span>November 17, 2001</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2339.html">La caperucita roja</a>
+                
+                <br /><span>April 1, 2001</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3322">El baile (También podría titularse El collar)</a>
+                
+                <br /><span>March 28, 2001</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/2331.html">El gorro color de cielo</a>
+                
+                <br /><span>April 2, 2000</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4950">Revoltillo</a>
+                
+                <br /><span>September 29, 1998</span>
+                
+                
+                <br /><span>Directed by: René Buch</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2338.html">El guiñol de los matamoros</a>
+                
+                <br /><span>January 22, 1998</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2337.html">Un gato con botas</a>
+                
+                <br /><span>December 8, 1995</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2336.html">¡Buenos días, primavera!</a>
+                
+                <br /><span>May 12, 1995</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2335.html">El cuento del invierno</a>
+                
+                <br /><span>February 17, 1995</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2334.html">Canción de otoño</a>
+                
+                <br /><span>November 1994</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2333.html">¡Viva el verano!</a>
+                
+                <br /><span>August 12, 1994</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4051">En blanco y negro</a>
+                
+                <br /><span>1989</span>
+                
+                
+                <br /><span>Directed by: Manolo Hernández</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4085">El Mirón en carnaval</a>
+                
+                <br /><span>1988</span>
+                
+                
+                <br /><span>Directed by: Albio Paz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4084">Trece locos de película</a>
+                
+                <br /><span>1988</span>
+                
+                
+                <br /><span>Directed by: Albio Paz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/947">La dolorosa historia del amor secreto de Don Jacinto Milanés</a>
+                
+                <br /><span>1984</span>
+                
+                
+                <br /><span>Directed by: Roberto Blanco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3289">La casa vieja</a>
+                
+                <br /><span>September 1981</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/2731.html">Abdala </a>
+                
+                <br /><span>November 1, 1959</span>
+                
+                
+                <br /><span>Directed by: Helena de Armas</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2750">La hija de las flores o Todos están locos</a>
+                
+                <br /><span>May 31, 1953</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+            </ul>
+          </div>
+        
+        
+             
+        
+          
+      
+                
+
+
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              
+              <li>
+                <h4>City:</h4>
+                <span>Matanzas, Matanzas</span>
+              </li>
+              
+              <li>
+                <h4>Country:</h4>
+                <span>Cuba</span>
+              </li>
+              
+              
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16559">View details</a>
+            <div id="digitalobjects">
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/1f/aa/1faa34ae4eceb48819b23e4a7c5e046b.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                  
+                  
+                  <img src="../media/cache/36/06/3606a85505f8806ea756fa18148f4733.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ee/47/ee479e4709a50bf4b73fe7f9387b777f.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                  
+                  
+                  <img src="../media/cache/d6/d8/d6d8383ee690d26113e36f04b0ef766b.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/82/c6/82c67a70d430e91b7b72f76ce404a9b0.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                  
+                  
+                  <img src="../media/cache/a4/50/a45064caeba92f1e52192cfa9ad2e89c.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/7c/af/7cafcf65ff1ce7e160e08f49e487dab2.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                  
+                  
+                  <img src="../media/cache/91/fe/91fe145224bd9dd497f9856d25ac6bac.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/cc/80/cc80404f35d8a092719c660632b52c21.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                  
+                  
+                  <img src="../media/cache/3a/97/3a977c5a35e1df3c09be378fc1dcbebc.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/64/c5/64c5336f57bc97a529d26514c2170399.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                  
+                  
+                  <img src="../media/cache/4f/4a/4f4a43943635e6742ead6739db4516db.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/c6/66/c666afc7b0cabaad4b610a3cd398e8f5.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                  
+                  
+                  <img src="../media/cache/be/26/be26b70f53e107ed765054a5955f084a.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/32/7e/327e05712b4c3db8e398ef36350c7a7b.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                  
+                  
+                  <img src="../media/cache/34/5b/345ba48b080ddbc383d911c93daa8640.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/f2/bdf21dc711d5274cfeb8cb25a8d77ede.jpg" title="Program for the production, &quot;La hija de las flores o Todos están locos&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/5c/96/5c96ebbb09e7dfc04597734054f9cf70.jpg" alt="Program for the production, &quot;La hija de las flores o Todos están locos&quot;" data-href="/digitalobject/302" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4b/ac/4bacbda39c85959c8fd2402edee5bbd4.jpg" title="Program for the production, &quot;La hija de las flores o Todos están locos&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/80/ec/80ec245a17c71938ce5e2288cfa1570c.jpg" alt="Program for the production, &quot;La hija de las flores o Todos están locos&quot;" data-href="/digitalobject/302" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/56/5e/565e6256bab6e957cb174ac8a075326c.jpg" title="Program for the production, &quot;Abdala&quot;, for the poems by Martí recited by N. Acevedo and for the spoken choruses,  &quot;Mi raza&quot;, &quot;No olvides al campesino&quot;, &quot;Marcha triunfal del ejército rebelde&quot;, &quot;Las carretas&quot;, &quot;Danza negra&quot;, and &quot;La historia me absolverá&quot; ">
+                  
+                  
+                  <img src="../media/cache/dd/c6/ddc6a697e7893c673ff5110f20f407d7.jpg" alt="Program for the production, &quot;Abdala&quot;, for the poems by Martí recited by N. Acevedo and for the spoken choruses,  &quot;Mi raza&quot;, &quot;No olvides al campesino&quot;, &quot;Marcha triunfal del ejército rebelde&quot;, &quot;Las carretas&quot;, &quot;Danza negra&quot;, and &quot;La historia me absolverá&quot; " data-href="/digitalobject/279" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/59/73/5973146521ac9a84ede2ce696f6716f3.jpg" title="Program for the production, &quot;Abdala&quot;, for the poems by Martí recited by N. Acevedo and for the spoken choruses,  &quot;Mi raza&quot;, &quot;No olvides al campesino&quot;, &quot;Marcha triunfal del ejército rebelde&quot;, &quot;Las carretas&quot;, &quot;Danza negra&quot;, and &quot;La historia me absolverá&quot; ">
+                  
+                  
+                  <img src="../media/cache/bc/eb/bcebbd64d8f50ce39f3564b4808b1c75.jpg" alt="Program for the production, &quot;Abdala&quot;, for the poems by Martí recited by N. Acevedo and for the spoken choruses,  &quot;Mi raza&quot;, &quot;No olvides al campesino&quot;, &quot;Marcha triunfal del ejército rebelde&quot;, &quot;Las carretas&quot;, &quot;Danza negra&quot;, and &quot;La historia me absolverá&quot; " data-href="/digitalobject/279" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/58/f3/58f3db2cc15ce1f25a8ff967375c128c.jpg" title="Program for the production, &quot;Abdala&quot;, for the poems by Martí recited by N. Acevedo and for the spoken choruses,  &quot;Mi raza&quot;, &quot;No olvides al campesino&quot;, &quot;Marcha triunfal del ejército rebelde&quot;, &quot;Las carretas&quot;, &quot;Danza negra&quot;, and &quot;La historia me absolverá&quot; ">
+                  
+                  
+                  <img src="../media/cache/3e/8f/3e8f104bf8402b9e79207d18d75640e7.jpg" alt="Program for the production, &quot;Abdala&quot;, for the poems by Martí recited by N. Acevedo and for the spoken choruses,  &quot;Mi raza&quot;, &quot;No olvides al campesino&quot;, &quot;Marcha triunfal del ejército rebelde&quot;, &quot;Las carretas&quot;, &quot;Danza negra&quot;, and &quot;La historia me absolverá&quot; " data-href="/digitalobject/279" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/95/e5/95e520acc6643c2ca15754968e391c54.jpg" title="Photograph of the production, &quot;El día que me quieras&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/7e/bd/7ebdbe95f8e1808bf67c5cef773c28e3.jpg" alt="Photograph of the production, &quot;El día que me quieras&quot;" data-href="/digitalobject/15730" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fd/5e/fd5e7f5ef6f1d89d8e187b5c6abc37a1.jpg" title="Photograph of the production, &quot;El día que me quieras&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/7d/4d/7d4da3d38f4fa8a6a4666d402c5c4b3e.jpg" alt="Photograph of the production, &quot;El día que me quieras&quot;" data-href="/digitalobject/15729" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/51/76/51763e0b9e000a9d7526fdaef34df1df.jpg" title="Photograph of the production, &quot;El día que me quieras&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/e9/86/e98663e69e46b06280911c2c10b48823.jpg" alt="Photograph of the production, &quot;El día que me quieras&quot;" data-href="/digitalobject/15728" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c0/76/c07612d7d75efb16b486ccbec502b7d7.jpg" title="Photograph of the production, &quot;El día que me quieras&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/25/de/25deb48b412bf035e3275cdbed21361c.jpg" alt="Photograph of the production, &quot;El día que me quieras&quot;" data-href="/digitalobject/15727" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/de/bf/debfea376da5221b58fb96d37b337873.jpg" title="Photograph of the production, &quot;El día que me quieras&quot;">
+                  
+                  
+                  <img src="../media/cache/96/bf/96bf6bcf0491b89fef1cab873f2cb74b.jpg" alt="Photograph of the production, &quot;El día que me quieras&quot;" data-href="/digitalobject/15726" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3e/3c/3e3c1c1442a57f17afd64c8df6d407ff.jpg" title="Photograph of the production, &quot;El día que me quieras&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/d4/65/d46574c3e0cc4005e181ef76de7cab4e.jpg" alt="Photograph of the production, &quot;El día que me quieras&quot;" data-href="/digitalobject/15725" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7d/8a/7d8a3b7add325f9bf43875887bdf65fd.jpg" title="Photograph of the production, &quot;El día que me quieras&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/86/9e/869ebe82b00f5d1ec6f2b957807ca0e5.jpg" alt="Photograph of the production, &quot;El día que me quieras&quot;" data-href="/digitalobject/15724" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9e/6d/9e6d75618be5c4fa68870afd97e8c7e4.jpg" title="Photograph of the production, &quot;El día que me quieras&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/08/3c/083c99037dd19b5cb99a669cd856498a.jpg" alt="Photograph of the production, &quot;El día que me quieras&quot;" data-href="/digitalobject/15722" />
+                  
+                </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

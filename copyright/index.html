@@ -1,0 +1,272 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en ">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+      <h2>Copyright Policy</h2>
+<p>The digital collections of the University of Miami Libraries include material from the Cuban Heritage Collection, Special Collections, the general Libraries' holdings, digital projects, and digital resources. These materials are available electronically for broad public access for non-commercial educational purposes and to promote scholarship. Some materials in these collections may be protected by the U.S. Copyright Act and/or by the copyright or neighboring-rights laws of other nations. With regard to copyright, copies of these materials are provided under the authority of Section 107 of the U.S. Copyright Act which provides for&nbsp;<a href="http://www.copyright.iupui.edu/fu_overview.htm" target="_blank">fair use</a>.</p>
+<p>If rights-related information is available in the Libraries' records, it has been included in the metadata for the digital object. For some items, it has not been possible to definitely identify the legal status. This is a common challenge in ascertaining the legal rights that may exist in museum, library, or archival collections. Legislation has been proposed to address this concern of so-called 'orphan' works. The US Copyright Office has published a comprehensive paper on the subject at&nbsp;<a href="http://www.copyright.gov/orphan" target="_blank">www.copyright.gov/orphan</a>. &nbsp;The University of Miami Libraries seek to provide information that is complete and accurate.</p>
+<p><strong>It is the user's obligation to determine and satisfy copyright or other use restrictions when reproducing materials found in the Libraries' collections</strong>. Requests for reproductions should be made to the department responsible for the collection. A request for reproduction may be denied if such work would damage the materials to be copied. The availability of reproductions is subject to the material's size, condition, and copyright restrictions.</p>
+<p>Copyright owners, persons with information about the materials presented, or individuals interested in reproductions or acquiring more information about the materials presented are encouraged to contact one of the specific areas below for each collection or resource.</p>
+<h4>Contacts:</h4>
+<p><a href="http://library.miami.edu/chc" target="_blank">Cuban Heritage Collection<br /></a><a href="mailto:chc@miami.edu">chc@miami.edu<br /></a>305-284-4900</p>
+<p><a href="http://library.miami.edu/archives" target="_blank">Special Collections</a><br /><a href="mailto:asc.library@miami.edu">asc.library@miami.edu</a><br />305-284-3247</p>
+<p><a href="http://www.library.miami.edu/universityarchives/" target="_blank">University Archives<br /></a><a href="mailto:k.tasa@miami.edu">k.tasa@miami.edu<br /></a>305-284-8129</p>
+<p><a href="http://merrick.library.miami.edu" target="_blank">Digital Initiatives<br /></a>305-284-3233</p>
+<p>Other materials: Access Services<br /><a href="mailto:richter.circulation@miami.edu">richter.circulation@miami.edu<br /></a>(305) 284-6466</p>
+<h4>Related Resources:</h4>
+<p><a href="http://www.library.miami.edu/about/copyright/usefeeschedule.pdf" target="_blank">Libraries' Use Fee Schedule</a></p>
+<p><a href="http://www.library.miami.edu/about/copyright/usefeeschedule.pdf" target="_blank"></a><a href="http://www.library.miami.edu/about/copyright/requestforphotocopies.pdf" target="_blank">Request copies from the Libraries</a></p>
+<p><a href="http://www.library.miami.edu/about/copyright/requestforphotocopies.pdf" target="_blank"></a><a href="http://www.copyright.gov/title17/92chap1.html#107" target="_blank">Fair Use</a></p>
+<p><a href="http://www.copyright.gov/title17/92chap1.html#107" target="_blank"></a><a href="http://www.copyright.gov" target="_blank">United States Copyright Office</a></p>
+<p>&nbsp;</p>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+        
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en ">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../digitalobjects.html">Digital Objects</a></li>
+              <li>Program for the production, &quot;Mi Solar&quot;</li>
+            </ul>
+          </nav>
+          <h2>Program for the production, &quot;Mi Solar&quot;</h2>
+        </header>
+
+        <section class="objectdisplay main">
+                
+                
+                <img id="largepreview" data-index="0" src="http://ctda.library.miami.edu/media/cache/fd/b5/fdb5d9c31e21a7f6743c61061c6fd461.jpg" alt='' style="display:block;float:none;" /><br />
+                
+                
+                
+                
+
+                
+
+                
+
+                <h3>Object details:</h3>
+                <dl class="objectdata">
+                
+
+                
+                
+                
+                
+                
+                  <dt>Physical object date:</dt>
+                  <dd>1987</dd>
+                  
+                
+                
+                
+              
+                
+                  <dt>Physical object type:</dt>
+                  <dd>Program</dd>
+                
+
+                
+                  <dt>Digital object format:</dt>
+                  <dd>Image</dd>
+                
+
+                  <dt>Object ID:</dt>
+                  <dd>cta0053000004</dd>
+                  
+                  <dt>Collection:</dt>
+                  <dd>Maikel Sánchez Digital Collection</dd>
+                  
+                  
+                  <dt>Rights holders:</dt>
+                  <dd>Maikel Sánchez</dd>
+                  
+                  
+                
+                  <dt>License:</dt>
+                  <dd><a href="15964.html">CC-BY-NC-ND (Attribution-Non-Commercial-No Derivatives)</a></dd>
+                
+                  
+                
+                  
+                  
+                  
+                  
+                </dl>
+
+                
+                <h3>Related items:</h3>
+                
+                
+                <h4>Creators:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="../creator/829.html">Alberto Alonso</a>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/creator/2689">Luis Alberto Alonso</a>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/creator/2558">Maikel Sánchez</a>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/creator/4803">Teatro Musical de La Habana</a>
+                  </li>
+                  
+                </ul>
+                
+
+                
+                <h4>Productions:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4534">Mi Solar (Teatro Musical de La Habana, 1987)</a>
+                  </li>
+                  
+                </ul>
+                
+
+                
+
+                
+
+                
+                
+            
+        </section>
+        
+        <aside class="thumbnails">
+            
+                <div class="data">
+                  <ul>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/29/49/29496678ac730b14a03d646d359d5e98.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi Solar&quot;" />
+                        
+                        
+                        <span>/media/cache/fd/b5/fdb5d9c31e21a7f6743c61061c6fd461.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/cd/a5/cda5081f21f6639bfdd34f10c72f2dc2.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi Solar&quot;" />
+                        
+                        
+                        <span>/media/cache/d4/23/d423ecd3f2dce709a812450ae632b979.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/a1/a3/a1a33c3d1502168622d16b8caaf474f7.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi Solar&quot;" />
+                        
+                        
+                        <span>/media/cache/0f/ba/0fbaca7b97c5df32ae084f9f597d85fe.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/17/9d/179d8901b66e1c910d1b057d70473e49.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi Solar&quot;" />
+                        
+                        
+                        <span>/media/cache/f0/49/f04971bc532c81d8c757501daba2519c.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/22/97/229700c3fb5e53093d42066ad04cde7d.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi Solar&quot;" />
+                        
+                        
+                        <span>/media/cache/8e/5d/8e5dae903369e125f38dd9569d5d4f7f.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/2e/d3/2ed31a0310756f663dcf0dd0b35c9f75.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi Solar&quot;" />
+                        
+                        
+                        <span>/media/cache/3b/78/3b785c9148187f54f562deb9a7fd6392.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/79/43/7943285c56a1d89bfb55937388b1c4c4.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi Solar&quot;" />
+                        
+                        
+                        <span>/media/cache/dd/d2/ddd22f69e4a3cea2d96e142746d2446e.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/36/5a/365a70eae29c49d7ea6d5a8a3b722697.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi Solar&quot;" />
+                        
+                        
+                        <span>/media/cache/3f/99/3f99fd9797a19f893586cc4ed91bf7ec.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/b9/b4/b9b406c6a8debd02fa0e296a1a5d383d.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi Solar&quot;" />
+                        
+                        
+                        <span>/media/cache/33/48/3348b65dd8569bbab230cc320791d73f.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/67/9f/679f66e954f8c4c0f8bdecab9279a6d5.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi Solar&quot;" />
+                        
+                        
+                        <span>/media/cache/1c/75/1c75e66279788f576738ac6b012cd4a0.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/54/3f/543f6bb7d65e6c8a61dfa6135591f41c.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi Solar&quot;" />
+                        
+                        
+                        <span>/media/cache/15/c6/15c6f6858ba339501e416adcc4c1fd3b.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/63/81/6381c3ac43f33918139306dea13ba755.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi Solar&quot;" />
+                        
+                        
+                        <span>/media/cache/64/fc/64fc0bcf221d78b2d4095436c45caa68.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/65/00/65002aee6340ad5e7ee580baab2e65d3.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi Solar&quot;" />
+                        
+                        
+                        <span>/media/cache/26/dd/26dd709d57ba6f097a16672593fd7b58.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/8b/4d/8b4d08f10f4f1d2cb9bb543995616a38.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi Solar&quot;" />
+                        
+                        
+                        <span>/media/cache/d8/c0/d8c0a2eb347085a4f1307680a013751e.jpg</span>
+                        
+                    </li>
+                
+                </ul>
+              </div>
+            
+            
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+        $(window).load(function() {
+            
+            $('.thumbnails ul li').click(function() {
+                var current = $(this);
+                var index = $('.thumbnails ul li').index(current);
+                $('#largepreview').attr('src', current.children('span').text());
+                $('#largepreview').attr('data-index', index);
+            });
+            
+            $('#largepreview').click(function() {
+              $.fancybox([
+                
+                
+                "/media/cache/3f/bb/3fbbce34b9879c47dcd9e47d10d683b2.jpg",
+                
+                
+                
+                "/media/cache/56/e6/56e6597c79a5597f11717e5da8952851.jpg",
+                
+                
+                
+                "/media/cache/ab/41/ab41c6e71e522f9c42770c7f99a1607b.jpg",
+                
+                
+                
+                "/media/cache/2e/68/2e6895ec108f4599e17aedf387d95ce6.jpg",
+                
+                
+                
+                "/media/cache/79/c9/79c9af154d9c2e00af3b8d3cc55f6f02.jpg",
+                
+                
+                
+                "/media/cache/3e/4f/3e4fb87fcc2ce50f61c4740eab3aad85.jpg",
+                
+                
+                
+                "/media/cache/73/22/73227cf71893e40f8ce4d595575f7911.jpg",
+                
+                
+                
+                "/media/cache/d0/3b/d03bb7d22186085715bcc67edacb3eb3.jpg",
+                
+                
+                
+                "/media/cache/65/25/6525d8456e4a75aeded6cd428fb4c11c.jpg",
+                
+                
+                
+                "/media/cache/d9/b9/d9b90991e8215498cb1918e8fb97ba4e.jpg",
+                
+                
+                
+                "/media/cache/5b/fc/5bfc70cf113f41acf855638ddcc6c778.jpg",
+                
+                
+                
+                "/media/cache/d5/22/d52293a3fba5ec17fb0ee5aad75f6e29.jpg",
+                
+                
+                
+                "/media/cache/74/9f/749f77f30b9f734f4218597023c8773b.jpg",
+                
+                
+                
+                "/media/cache/eb/f3/ebf36c089f4938b41e3f2f2252bc9d71.jpg",
+                
+                
+              ], {
+                'type': 'image',
+                'loop': false,
+                'index': $('#largepreview').attr('data-index')
+              });
+            });
+            
+        });
+    </script>
+
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

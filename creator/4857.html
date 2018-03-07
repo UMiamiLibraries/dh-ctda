@@ -1,0 +1,1638 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Teatro de Las Estaciones</li>
+                </ul>
+            </nav>
+            <h2>Teatro de Las Estaciones</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+                
+                    <img src="http://ctda.library.miami.edu/media/cache/9f/37/9f37ace7f7b172cbba87591cbe664a15.jpg" />
+                
+            
+
+            <p><strong>Producer</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>Information available in Spanish.</p>
+
+                </div>
+            
+
+            
+              <div class="linkeditems">
+                  <h3>Notes: +</h3>
+                  <ul>
+                  <p>Information available in Spanish.</p>
+
+                  </ul>
+              </div>              
+            
+
+            
+
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="../production/2325.html">Federico de noche</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/281.html">Sala Teatro Papalote</a></span><br />
+                    <span>January 24, 2009 - January 26, 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4371.html">Alicia- en busca del conejo blanco</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4667.html">El irrepresentable paseo de Buster Keaton</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1355.html">Sala Raquel Revuelta</a></span><br />
+                    <span>October 27, 2015 - October 28, 2015</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4674.html">Cuento de amor en un barrio barroco</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/477.html">Teatro de la Orden Tercera</a></span><br />
+                    <span>October 24, 2015 - October 25, 2015</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4814.html">Por el Monte Carulé</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>October 2015</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4916.html">Alicia en busca del conejo blanco</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/97.html">Teatro Guiñol de Camagüey</a></span><br />
+                    <span>October 10, 2014 - October 11, 2014</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4113.html">Burundanga</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/282.html">El Mejunje</a></span><br />
+                    <span>January 29, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4112.html">Burundanga</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1364.html">Centro Cultural Pelusín del Monte</a></span><br />
+                    <span>January 19, 2013 - January 20, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4110">Adonde van los ríos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1364.html">Centro Cultural Pelusín del Monte</a></span><br />
+                    <span>October 20, 2012</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3915.html">Burundanga</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span>October 2, 2012</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4911.html">Canción para estar contigo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/698.html">Teatro de Las Estaciones</a></span><br />
+                    <span>July 2012</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3840">Por el monte, Carulé</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span>March 17, 2012 - March 18, 2012</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3751.html">Por el monte Carulé</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/490.html">Byron Carlyle Theatre</a></span><br />
+                    <span>May 1, 2011</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4133">El gorro color de cielo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/254.html">Casa de Cultura Pablo Quevedo</a></span><br />
+                    <span>March 17, 2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3810.html">Por el monte, Carulé</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 20, 2009 - November 22, 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2326">Los zapaticos de rosa</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/281.html">Sala Teatro Papalote</a></span><br />
+                    <span>October 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4898.html">Por el monte carulé</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1519.html">Charleville-Mézières (unknown)</a></span><br />
+                    <span>September 19, 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4143.html">Por el monte, Carulé</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/281.html">Sala Teatro Papalote</a></span><br />
+                    <span>September 11, 2009 - September 13, 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2322.html">Una niña con alas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/624.html">Taller Editorial Vigía</a></span><br />
+                    <span>April 17, 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2325.html">Federico de noche</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/281.html">Sala Teatro Papalote</a></span><br />
+                    <span>January 24, 2009 - January 26, 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4899.html">Los zapaticos de rosa</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/281.html">Sala Teatro Papalote</a></span><br />
+                    <span>January 2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3578.html">La virgencita de bronce</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/126.html">Casa de las Américas</a></span><br />
+                    <span>October 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1593.html">El patico feo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/477.html">Teatro de la Orden Tercera</a></span><br />
+                    <span>August 26, 2006 - September 3, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4896.html">La virgencita de bronce</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1000.html">Santa Clara</a></span><br />
+                    <span>January 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/403.html">La virgencita de bronce</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/281.html">Sala Teatro Papalote</a></span><br />
+                    <span>2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/719">La caja de los juguetes</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2340.html">La caja de los juguetes</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>August 23, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2327.html">Cuento de Navidad</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/623.html">Sala de Fiestas del Hotel Tryp Península</a></span><br />
+                    <span>December 2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2328.html">Pedro y el lobo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/106.html">Teatro Sauto</a></span><br />
+                    <span>June 2, 2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/653.html">Pelusín y los pájaros</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/281.html">Sala Teatro Papalote</a></span><br />
+                    <span>2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2329.html">En un retablo viejo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/106.html">Teatro Sauto</a></span><br />
+                    <span>November 17, 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4897.html">Pelusín y los pájaros</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/872.html">Matanzas</a></span><br />
+                    <span>June 21, 2001 - June 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2339.html">La caperucita roja</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/106.html">Teatro Sauto</a></span><br />
+                    <span>April 1, 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2331.html">El gorro color de cielo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/106.html">Teatro Sauto</a></span><br />
+                    <span>April 2, 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/672">Pelusín del Monte</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/872.html">Matanzas</a></span><br />
+                    <span>May 14, 1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2338.html">El guiñol de los matamoros</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/106.html">Teatro Sauto</a></span><br />
+                    <span>January 22, 1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2332.html">La niña que riega la albahaca y el príncipe preguntón</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/261.html">Museo Farmaceútico de Matanzas</a></span><br />
+                    <span>July 17, 1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2337.html">Un gato con botas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/106.html">Teatro Sauto</a></span><br />
+                    <span>December 8, 1995</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2336.html">¡Buenos días, primavera!</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/106.html">Teatro Sauto</a></span><br />
+                    <span>May 12, 1995</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2335.html">El cuento del invierno</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/106.html">Teatro Sauto</a></span><br />
+                    <span>February 17, 1995</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2334.html">Canción de otoño</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/106.html">Teatro Sauto</a></span><br />
+                    <span>November 1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2333.html">¡Viva el verano!</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/106.html">Teatro Sauto</a></span><br />
+                    <span>August 12, 1994</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+            
+              <div class="linkeditems">
+              <h3>Awards: +</h3>
+              <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Category</th>
+                  <th>Award</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td>1996</td>
+                        <td>Best Staging</td>
+                        <td>
+                          <a href="../award/88.html">Festival Nacional de Teatro de Pequeño Formato, Santa Clara</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2006</td>
+                        <td>UNEAC Award to the Best Performance</td>
+                        <td>
+                          <a href="../award/88.html">Festival Nacional de Teatro de Pequeño Formato, Santa Clara</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2008</td>
+                        <td>Best Staging / Children&#39;s Theater</td>
+                        <td>
+                          <a href="../award/65.html">Premio Avellaneda</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2007</td>
+                        <td>Best Staging / Children&#39;s Theater</td>
+                        <td>
+                          <a href="../award/7.html">Premio Caricato</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1996</td>
+                        <td>Best Performance / Children&#39;s Theater</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/4">Premio Villanueva</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2005</td>
+                        <td>Best Show</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/4">Premio Villanueva</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2007</td>
+                        <td>Best Performance / Children&#39;s Theater</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/4">Premio Villanueva</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+                  
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1118/">Sobres cerrados, memoria abierta. Aproximación a tres espectáculos de Teatro de las Estaciones</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1222/">Travesía poética en cuatro estaciones</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/796/index.html">El Teatro de las Estaciones de Matanzas, Cuba cumple 20 años</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/923/">Una isla llamada Cuba, una isla llamada Federico</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+        
+            
+            <hr />
+            <h3>Videos</h3>
+            <ul class="videos">
+              
+              <li>
+                <figure>
+                  <a id="cta0009000034" class="fancybox">
+                    
+                    
+                      <img src="../media/cache/b3/b2/b3b24531d157835fab0c3ccc306ae893.jpg" alt="Link to video of Por el monte, Carulé Q&amp;A" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="../digitalobject/641.html">Por el monte, Carulé Q&amp;A</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0009000005" class="fancybox">
+                    
+                    
+                      <img src="../media/cache/c9/ab/c9abc8bde8819fb5fa4230e601d2db58.jpg" alt="Link to video of A Puppet for You: Puppet Workshop by Zenén Calero" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="../digitalobject/172.html">A Puppet for You: Puppet Workshop by Zenén Calero</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0009000004" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/03/24/0324ebbaf7313c173aa71a990eb6cda5.jpg" alt="Link to video of Norge Espinosa Mendoza, &quot;Puppets in Cuba, 1949-2011&quot;" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/171">Norge Espinosa Mendoza, &quot;Puppets in Cuba, 1949-2011&quot;</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0009000003" class="fancybox">
+                    
+                    
+                      <img src="../media/cache/83/08/8308697057afc25677400a44730f9a42.jpg" alt="Link to video of Por el monte, Carulé" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="../digitalobject/170.html">Por el monte, Carulé</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              </ul>
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+                <li>
+                  <h4>Website:</h4>
+                  <span><a href="http://www.teatroestaciones.cubaescena.cult.cu/paginas/index.html" target="_blank">http://www.teatroestaciones.cubaescena.cult.cu/paginas/index.html</a></span>
+                </li>
+              
+              
+              
+              
+              
+              
+              
+                <li>
+                  <h4>Office / HQ:</h4>
+                  <span><a href="http://ctda.library.miami.edu/venue/455">Matanzas, Matanzas, Cuba</a></span>
+                </li>
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/16574.html">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/23/e9/23e96c74c891203f85fe0bd41aafd0bf.jpg" title="Photograph of Rubén Darío Salazar and Teatro de Las Estaciones in France">
+                    
+                    
+                    <img src="../media/cache/35/8e/358e8a4fab6957319009715010da3a64.jpg" alt="Photograph of Rubén Darío Salazar and Teatro de Las Estaciones in France" data-href="/digitalobject/16574" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/83/d2/83d24d041137a791cccd3aecab03fa76.jpg" title="Photograph of Rubén Darío Salazar and Teatro de Las Estaciones in France">
+                    
+                    
+                    <img src="../media/cache/0a/96/0a9682114b6fd5cfc02f3cac43ea6696.jpg" alt="Photograph of Rubén Darío Salazar and Teatro de Las Estaciones in France" data-href="/digitalobject/16573" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/24/eb/24eb3c73f1dcb9e335cc4c48ed07161d.jpg" title="Photograph of Rubén Darío Salazar and Teatro de Las Estaciones in Mallorca">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ff/11/ff1185163f951e00a0a08aa6179cadd9.jpg" alt="Photograph of Rubén Darío Salazar and Teatro de Las Estaciones in Mallorca" data-href="/digitalobject/16572" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/06/3f/063f8e0740fea6e3433e0389ebb40a52.jpg" title="Photograph of Rubén Darío Salazar and Teatro de Las Estaciones in Mexico">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a2/b9/a2b9de648cd7661a9b51cbadd6bda699.jpg" alt="Photograph of Rubén Darío Salazar and Teatro de Las Estaciones in Mexico" data-href="/digitalobject/16571" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/aa/d6/aad62dbb901eb926fe6c744fab30230f.jpg" title="Photograph of Rubén Darío Salazar in Granada">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c8/84/c884f343ce1cd39f8b268fe918e6b791.jpg" alt="Photograph of Rubén Darío Salazar in Granada" data-href="/digitalobject/16570" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/7a/21/7a21380a7e353330ee22718cf512c4b5.jpg" title="Photograph of Rubén Darío Salazar and Teatro de Las Estaciones in France">
+                    
+                    
+                    <img src="../media/cache/ee/fa/eefab4b489cefece81757c253cd71d2e.jpg" alt="Photograph of Rubén Darío Salazar and Teatro de Las Estaciones in France" data-href="/digitalobject/16569" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9b/6c/9b6ce91b7d4e839ed1d3fda8de2f8348.jpg" title="Photograph of Rubén Darío Salazar and Teatro de Las Estaciones in Alicante">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fe/04/fe04b81075162d3bd96d590e088e156f.jpg" alt="Photograph of Rubén Darío Salazar and Teatro de Las Estaciones in Alicante" data-href="/digitalobject/16568" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/bf/7a/bf7a8e9e861c4b801264a555efde0a81.jpg" title="Photograph of the production, &quot;Los zapaticos de rosa&quot;">
+                    
+                    
+                    <img src="../media/cache/2c/0e/2c0ef12fad11c2583ca7526ef81318ba.jpg" alt="Photograph of the production, &quot;Los zapaticos de rosa&quot;" data-href="/digitalobject/16567" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/67/5a/675a5b15dc1bc6f068ad3bae524c34a7.jpg" title="Photograph of Carlos Pérez Peña (Special Performance) in the production, &quot;Los zapaticos de rosa&quot;">
+                    
+                    
+                    <img src="../media/cache/42/34/4234cb60ea47a4dff7734d940d4c1bf7.jpg" alt="Photograph of Carlos Pérez Peña (Special Performance) in the production, &quot;Los zapaticos de rosa&quot;" data-href="/digitalobject/16566" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/9e/ad/9eaddf241153c2ee0d4b18cfc12e1b11.jpg" title="Photograph of Yerandy Basart (Caballero 3) and Fara Madrigal (Dama 1) in the production, &quot;Los zapaticos de rosa&quot;">
+                    
+                    
+                    <img src="../media/cache/6d/94/6d94bb94934f73e1149873bf53010379.jpg" alt="Photograph of Yerandy Basart (Caballero 3) and Fara Madrigal (Dama 1) in the production, &quot;Los zapaticos de rosa&quot;" data-href="/digitalobject/16564" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/a4/7e/a47ed163157943119dfb100d7e08d5c3.jpg" title="Photograph of Yerandy Basart (Caballero 3) and Fara Madrigal (Dama 1) in the production, &quot;Los zapaticos de rosa&quot;">
+                    
+                    
+                    <img src="../media/cache/9a/84/9a840430e8377be65b12fa86531a184b.jpg" alt="Photograph of Yerandy Basart (Caballero 3) and Fara Madrigal (Dama 1) in the production, &quot;Los zapaticos de rosa&quot;" data-href="/digitalobject/16563" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b6/33/b63388514fe411e968e984b6edce01ed.jpg" title="Poster for the production, &quot;Los zapaticos de rosa&quot;">
+                    
+                    
+                    <img src="../media/cache/d2/b4/d2b4f2024621eeeb4d9829add6001c94.jpg" alt="Poster for the production, &quot;Los zapaticos de rosa&quot;" data-href="/digitalobject/16562" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/39/1c/391cb81d2f14eb14d6eb591598671402.jpg" title="Poster for the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;">
+                    
+                    
+                    <img src="../media/cache/7e/d2/7ed2d59737c9ecbd975f3862a34d2ae9.jpg" alt="Poster for the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;" data-href="/digitalobject/16561" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/29/fd/29fdde55a0d225f2a3d39ce46106d8d6.jpg" title="Photographs of Rubén Darío Salazar in the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;">
+                    
+                    
+                    <img src="../media/cache/eb/56/eb56a8d99e169085306ab1c5e4bf645e.jpg" alt="Photographs of Rubén Darío Salazar in the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;" data-href="/digitalobject/16560" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c2/a8/c2a86a422904f25f67a4af5a2e43bb86.jpg" title="Photographs of Rubén Darío Salazar in the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;">
+                    
+                    
+                    <img src="../media/cache/ff/ad/ffad886d4b1a0ad7c323280ec326df80.jpg" alt="Photographs of Rubén Darío Salazar in the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;" data-href="/digitalobject/16560" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c5/21/c52128c1d252eba365bef57cfdea30cd.jpg" title="Photographs of Rubén Darío Salazar in the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;">
+                    
+                    
+                    <img src="../media/cache/f3/ef/f3ef3c5a4e7779d030742cbfcc857cab.jpg" alt="Photographs of Rubén Darío Salazar in the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;" data-href="/digitalobject/16560" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/d7/c5/d7c561ff3f4b4ee382d9e5d4707fca52.jpg" title="Photographs of Rubén Darío Salazar in the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;">
+                    
+                    
+                    <img src="../media/cache/86/55/865504748d3542fbf3996936c987248e.jpg" alt="Photographs of Rubén Darío Salazar in the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;" data-href="/digitalobject/16560" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/6f/74/6f74c934a24e666dcae053cdcd562d54.jpg" title="Photographs of Rubén Darío Salazar in the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;">
+                    
+                    
+                    <img src="../media/cache/92/08/92083b1a3332a7fd1525c8421458a632.jpg" alt="Photographs of Rubén Darío Salazar in the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;" data-href="/digitalobject/16560" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/57/ac/57aca969875145ed0372f445ea4fb3fd.jpg" title="Photographs of Rubén Darío Salazar in the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;">
+                    
+                    
+                    <img src="../media/cache/1f/28/1f28e172dd3fa9ca8393c8acf425b135.jpg" alt="Photographs of Rubén Darío Salazar in the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;" data-href="/digitalobject/16560" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/3c/66/3c6670a35e9bcc4a0d22f511a6471795.jpg" title="Photographs of Rubén Darío Salazar in the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;">
+                    
+                    
+                    <img src="../media/cache/41/de/41de488eb940b39f1b4d9714d37dd7d4.jpg" alt="Photographs of Rubén Darío Salazar in the production, &quot;La niña que riega la albahaca y el príncipe preguntón&quot;" data-href="/digitalobject/16560" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/1f/aa/1faa34ae4eceb48819b23e4a7c5e046b.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                    
+                    
+                    <img src="../media/cache/36/06/3606a85505f8806ea756fa18148f4733.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ee/47/ee479e4709a50bf4b73fe7f9387b777f.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                    
+                    
+                    <img src="../media/cache/d6/d8/d6d8383ee690d26113e36f04b0ef766b.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/82/c6/82c67a70d430e91b7b72f76ce404a9b0.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                    
+                    
+                    <img src="../media/cache/a4/50/a45064caeba92f1e52192cfa9ad2e89c.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/7c/af/7cafcf65ff1ce7e160e08f49e487dab2.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                    
+                    
+                    <img src="../media/cache/91/fe/91fe145224bd9dd497f9856d25ac6bac.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/cc/80/cc80404f35d8a092719c660632b52c21.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                    
+                    
+                    <img src="../media/cache/3a/97/3a977c5a35e1df3c09be378fc1dcbebc.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/64/c5/64c5336f57bc97a529d26514c2170399.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                    
+                    
+                    <img src="../media/cache/4f/4a/4f4a43943635e6742ead6739db4516db.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c6/66/c666afc7b0cabaad4b610a3cd398e8f5.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                    
+                    
+                    <img src="../media/cache/be/26/be26b70f53e107ed765054a5955f084a.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/32/7e/327e05712b4c3db8e398ef36350c7a7b.jpg" title="Photographs of the production, &quot;El gorro color de cielo&quot;">
+                    
+                    
+                    <img src="../media/cache/34/5b/345ba48b080ddbc383d911c93daa8640.jpg" alt="Photographs of the production, &quot;El gorro color de cielo&quot;" data-href="/digitalobject/16559" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/0c/42/0c42491c8f9c7e41716bd68e20c50352.jpg" title="Poster for the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/b7/1b/b71b704e0d8413d88a72014abaeaebab.jpg" alt="Poster for the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16558" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/3a/48/3a48b325207071f96664f828d4013531.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/57/cf/57cf9c6eeda252a79383ea59ed6a8329.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/27/5d/275d7f420a22468a0cfd3a725a040420.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/f2/6e/f26e79492a7b894327b108b0adbac1e0.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/48/89/48894a7e171c3acd18d8392a93796ed0.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/b1/ac/b1ac9b351f967fce6f2e49e69fa3e5f4.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/1e/c5/1ec53277354086568774b8f30c8e701f.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/1e/3b/1e3b3f4e359de04c343011ef89251aba.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/04/31/04310f3b45e1fab6e7613300a5b33ccb.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/fd/4d/fd4d2768985920bcd47775e6f8ea5db4.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/eb/07/eb076fc5349c8b579cd2110e03f4327c.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/b6/40/b6409b866bf46f03d7b68bd3003bc112.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/d0/7a/d07ae299ce4e28695edc92b4b2342939.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/c7/b6/c7b685d687e576ad02236f0506193258.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/19/ca/19cae678e2eff3a96e29cc00790e15cf.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/5a/b5/5ab54920461d0aab89f67ea21a25ecd2.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/5a/8d/5a8d3b64bf13a6980faff02ed0691378.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/c2/77/c2776d7e8d86d47452337dc8efb5abbe.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/5a/02/5a02deb78bda8318fcc968ae0b56e5e2.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/cc/d7/ccd7fcf80e985783f79227c8fecd58f6.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/61/7b/617b905c80caaf932b8a594efa9031f1.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/4f/5f/4f5f5b6327ff758218902618184dddc3.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/16/7e/167e41c8ac8310aa20eb28cbcf151252.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/39/0e/390e74a77dbfb7730ecfffe27bb04526.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/be/e7/bee7d65b3ffd3e7166acd9a056946587.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/4d/dd/4ddd5a7ab55dd43a6eca69c7a47cb7c7.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/4a/79/4a79ade8913c7cf1ca9dc83e227ddf8f.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/9c/8c/9c8c23620ef203119461f104f2af81ec.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/4b/c5/4bc5c4fd9d8278e5ed33c0edf7d4950c.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/4f/ea/4feabf01a82594142fb158e8a256d806.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/98/39/9839dbcd7ec44c1eaa50a5e43b5bc852.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/ef/52/ef52f2a04ebd288c74b12dd68d5a45f6.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/7d/cd/7dcd2c177e7bc0a7834f1ede04b402e6.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/0a/b5/0ab5e727a6bbde21994f7ca2f84599c4.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/63/d4/63d4cea10a854faee378e9299e6926dd.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/6f/95/6f955eea4361c25bcd8841ee3e412500.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/39/22/3922ea50ef85c17eb12ad181593ddcde.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/75/70/75708db56142ddb09af12004affcf38b.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c6/21/c621b1831698aec544b192d881082ba6.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/28/0c/280ce67a978368a420f42a82d5bee2e7.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ce/a8/cea8f3875ac544ab6093484c3a0e860c.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                    
+                    
+                    <img src="../media/cache/58/27/5827f8217254fb559c52f78923a23618.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ee/3b/ee3b0e8e9f240a322eefa14807e1061d.jpg" title="Poster for the production, &quot;Por el monte carulé&quot;">
+                    
+                    
+                    <img src="../media/cache/a4/b1/a4b150a1be4adf91670f5ce21342f1c3.jpg" alt="Poster for the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16555" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/3c/aa/3caac793f3950ecf1fafdde0e3c099f7.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                    
+                    
+                    <img src="../media/cache/e9/c9/e9c98d281830b5261adfd2b002dc0d35.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16554" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/a9/6e/a96e892bb4756b729da693d1788bd895.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                    
+                    
+                    <img src="../media/cache/4a/be/4abe77041a04d55cc1fe05dbac1a0ea3.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16552" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/5d/1d/5d1d63adb7aa39be8b82c8cc8d4659cc.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                    
+                    
+                    <img src="../media/cache/58/f8/58f82bdd6ae1bd1e7a88809537d3b9d3.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16551" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/64/68/6468029359f4b987e110f6997a1416c0.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                    
+                    
+                    <img src="../media/cache/af/30/af3017ae83e1b35d3a52fac8e2474896.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16550" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/a1/20/a12097c2bf548f446e632faac44f0cbe.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                    
+                    
+                    <img src="../media/cache/2b/82/2b82f1465156ce6a15482cd24ace96b0.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16548" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/76/2f/762f1a15ccee799fdd0469be5fcb6af9.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                    
+                    
+                    <img src="../media/cache/b4/c9/b4c9b13be087be253c62dc5e07cf7dcd.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16553" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/a6/31/a631ec5574d8c4e0531680ecfab1fa39.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                    
+                    
+                    <img src="../media/cache/c8/95/c8951ce03bb2bb87dd1634e7b9a1d1c8.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16549" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/d2/81/d28119716d273bfb60ece558d670fba2.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                    
+                    
+                    <img src="../media/cache/5a/23/5a238b146f2e1d272d12e445637feb42.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16546" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/af/e3/afe37c8f4709eb3e25150eb4f9839a48.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                    
+                    
+                    <img src="../media/cache/be/be/bebeb952076db4680803203d5655a88b.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16547" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ba/27/ba27831e1b26d12f5bd351187751cf94.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                    
+                    
+                    <img src="../media/cache/94/8a/948a383d1b4508d495e72a0c6ee314e7.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16545" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/fe/75/fe75a70356620f5032d33ddace5740a7.jpg" title="Photograph of Rubén Darío Salazar, Fara Madrigal, Freddy Maragotto and Migdalia Seguí in the production, &quot;Pelusín y los pájaros&quot; ">
+                    
+                    
+                    <img src="../media/cache/bd/2d/bd2d50c0eed4b014c04c975fd8c35591.jpg" alt="Photograph of Rubén Darío Salazar, Fara Madrigal, Freddy Maragotto and Migdalia Seguí in the production, &quot;Pelusín y los pájaros&quot; " data-href="/digitalobject/16544" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/e9/92/e992377ce22c3cfc51b21f8f27e6cd4c.jpg" title="Photograph of Rubén Darío Salazar, Fara Madrigal, Freddy Maragotto and Migdalia Seguí in the production, &quot;Pelusín y los pájaros&quot; ">
+                    
+                    
+                    <img src="../media/cache/41/96/41969b22f47be73f29e433ab52c6b7dd.jpg" alt="Photograph of Rubén Darío Salazar, Fara Madrigal, Freddy Maragotto and Migdalia Seguí in the production, &quot;Pelusín y los pájaros&quot; " data-href="/digitalobject/16544" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/af/1d/af1debcd51fd4d05aa06bc31f9c21ceb.jpg" title="Photograph of Rubén Darío Salazar, Fara Madrigal, Freddy Maragotto and Migdalia Seguí in the production, &quot;Pelusín y los pájaros&quot; ">
+                    
+                    
+                    <img src="../media/cache/55/61/55611efac1cbb932ea0534cc8c7d5ff0.jpg" alt="Photograph of Rubén Darío Salazar, Fara Madrigal, Freddy Maragotto and Migdalia Seguí in the production, &quot;Pelusín y los pájaros&quot; " data-href="/digitalobject/16544" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/d9/16/d9167d38aaab32fd762efafefefb73f0.jpg" title="Photograph of Rubén Darío Salazar, Fara Madrigal, Freddy Maragotto and Migdalia Seguí in the production, &quot;Pelusín y los pájaros&quot; ">
+                    
+                    
+                    <img src="../media/cache/54/53/5453522e0fa8225617a4abb1e810f3a3.jpg" alt="Photograph of Rubén Darío Salazar, Fara Madrigal, Freddy Maragotto and Migdalia Seguí in the production, &quot;Pelusín y los pájaros&quot; " data-href="/digitalobject/16544" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ac/61/ac61d1096847de1c04823f464155ceaf.jpg" title="Photograph of Rubén Darío Salazar, Fara Madrigal, Freddy Maragotto and Migdalia Seguí in the production, &quot;Pelusín y los pájaros&quot; ">
+                    
+                    
+                    <img src="../media/cache/f8/cf/f8cff9296bc9330c8eaa1df98c1a7e60.jpg" alt="Photograph of Rubén Darío Salazar, Fara Madrigal, Freddy Maragotto and Migdalia Seguí in the production, &quot;Pelusín y los pájaros&quot; " data-href="/digitalobject/16544" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/32/79/3279b4cbd5cde7df53df1fe33c251427.jpg" title="Photograph of Rubén Darío Salazar, Fara Madrigal, Freddy Maragotto and Migdalia Seguí in the production, &quot;Pelusín y los pájaros&quot; ">
+                    
+                    
+                    <img src="../media/cache/f3/73/f3739127b67471e6658ea272422f9c65.jpg" alt="Photograph of Rubén Darío Salazar, Fara Madrigal, Freddy Maragotto and Migdalia Seguí in the production, &quot;Pelusín y los pájaros&quot; " data-href="/digitalobject/16544" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5b/b6/5bb6d26c139e1b71284a643250172d87.jpg" title="Poster for Teatro de Las Estaciones: 15 años">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f7/9e/f79ec544049c50950109c68b8629bb6b.jpg" alt="Poster for Teatro de Las Estaciones: 15 años" data-href="/digitalobject/16541" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/94/65/946549f72baa2a065d12aa2f382d6df0.jpg" title="Poster for the production, &quot;La Virgencita de Bronce&quot;">
+                    
+                    
+                    <img src="../media/cache/cc/2a/cc2ae76fe140551b4b1582e656b1b236.jpg" alt="Poster for the production, &quot;La Virgencita de Bronce&quot;" data-href="/digitalobject/16538" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b5/e5/b5e5244e86979c36290da92c5017e95b.jpg" title="Photograph of the production, &quot;La Virgencita de Bronce&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f4/c6/f4c6f1a64911c68c6a0bb0026b6a3163.jpg" alt="Photograph of the production, &quot;La Virgencita de Bronce&quot;" data-href="/digitalobject/16540" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/6f/d76f2b063fbb3ff3e546f5419337ed9d.jpg" title="Photograph of the production, &quot;La Virgencita de Bronce&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ce/8f/ce8fa043c8fc903f18657eba8f3975f3.jpg" alt="Photograph of the production, &quot;La Virgencita de Bronce&quot;" data-href="/digitalobject/16539" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/21/86212679d1816455b25936ca5212fee9.jpg" title="Photograph of the production, &quot;La Virgencita de Bronce&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/59/a6/59a681d25c0e03f07af5bde10dd62886.jpg" alt="Photograph of the production, &quot;La Virgencita de Bronce&quot;" data-href="/digitalobject/16537" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/35/1b3573510e1c940f3f0a943c97b950ca.jpg" title="Photograph of the production, &quot;La Virgencita de Bronce&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/55/2e/552ecd79416ad9f3984a1d4d05037b83.jpg" alt="Photograph of the production, &quot;La Virgencita de Bronce&quot;" data-href="/digitalobject/16536" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/93/ec93c7a5ca5eb26b4f4d17cb1f4a6964.jpg" title="Photograph of the production, &quot;La Virgencita de Bronce&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2b/bf/2bbf08a905c2c6753d6d56dfb9c19c37.jpg" alt="Photograph of the production, &quot;La Virgencita de Bronce&quot;" data-href="/digitalobject/16535" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b4/2b/b42b1625c4f5f572b6ec944809a102c5.jpg" title="Photograph of the production, &quot;La Virgencita de Bronce&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a4/c3/a4c38c3bf9aad8765a6a7513c4966acc.jpg" alt="Photograph of the production, &quot;La Virgencita de Bronce&quot;" data-href="/digitalobject/16534" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/91/27/91278cb53c3d1137f8ffa9af3c6175fa.jpg" title="Poster for Teatro de las Estaciones: 20 Años">
+                    
+                    
+                    <img src="../media/cache/bf/34/bf34c54e646f66a9bd0077aa936601d0.jpg" alt="Poster for Teatro de las Estaciones: 20 Años" data-href="/digitalobject/15710" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/30/e8/30e8bc27b25de96865d0eb77db7200ed.jpg" title="Invitation for the dress rehearsal, &quot;Por el monte, Carulé&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/01/b2/01b2b5f96ce3d73f987c8a555b5aedf1.jpg" alt="Invitation for the dress rehearsal, &quot;Por el monte, Carulé&quot;" data-href="/digitalobject/14605" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9a/06/9a0646ea053d6cbbe2085ec45257d355.jpg" title="Photograph of René Fernández Santana, Marybel García Garzón, Sara Miyares and Pedro Knight hijo">
+                    
+                    
+                    <img src="../media/cache/68/bf/68bfbed2f774d32c6c86132f14ac1c6b.jpg" alt="Photograph of René Fernández Santana, Marybel García Garzón, Sara Miyares and Pedro Knight hijo" data-href="/digitalobject/14589" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/27/6d/276d55ac95a58f19ea852b989d9ecf4d.jpg" title="Photograph of Cartelera with poster for the production, &quot;Burundanga&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/60/2b/602b41587cd3978c6f9103efc19b2f77.jpg" alt="Photograph of Cartelera with poster for the production, &quot;Burundanga&quot;" data-href="/digitalobject/14588" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c9/1c/c91c150a66fc62d07d96c6984dcb2cea.jpg" title="Photograph of the production, &quot;Burundanga&quot;">
+                    
+                    
+                    <img src="../media/cache/34/5c/345ce4aed57c1958312dd2204c9c5bd9.jpg" alt="Photograph of the production, &quot;Burundanga&quot;" data-href="/digitalobject/14586" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a6/18/a61831c9b4b0292c7b10add37057cec7.jpg" title="Photograph of the production, &quot;Burundanga&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b0/dd/b0dd10708c0501ba46f6d99ca9ad65dc.jpg" alt="Photograph of the production, &quot;Burundanga&quot;" data-href="/digitalobject/14585" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/29/b2/29b202f82c514d78dc2809520c02085d.jpg" title="Poster for the production, &quot;Burundanga&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/71/2b/712b5f28f7d4a29ed91fca72ffc49428.jpg" alt="Poster for the production, &quot;Burundanga&quot;" data-href="/digitalobject/14584" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c1/b7/c1b74033f37a328d208e62d9ceb77fb9.jpg" title="Marybel García Garzón (Lola), in &quot;Burundanga&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/80/67/8067d2ecd89ec865b82a32987a236834.jpg" alt="Marybel García Garzón (Lola), in &quot;Burundanga&quot;" data-href="/digitalobject/14583" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/68/9f/689fa9e5fc9ccd74e8891ce9e041d19b.jpg" title="Marybel García Garzón (Lola) and Sara Miyares (Celia), in &quot;Burundanga&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0c/09/0c09e6ac6c97cfbc475cb9a2c4665160.jpg" alt="Marybel García Garzón (Lola) and Sara Miyares (Celia), in &quot;Burundanga&quot;" data-href="/digitalobject/14582" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b3/04/b30491a616f58a869ccbab44fc3c2a46.jpg" title="Marybel García Garzón (Lola) and Sara Miyares (Celia), in &quot;Burundanga&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1e/0b/1e0bc5b6c6032f6f6f65c00662690c4b.jpg" alt="Marybel García Garzón (Lola) and Sara Miyares (Celia), in &quot;Burundanga&quot;" data-href="/digitalobject/14581" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ff/97/ff977e927f4563fc8b27a86e28fd57ec.jpg" title="Marybel García Garzón (Lola) and Sara Miyares (Celia), in &quot;Burundanga&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/59/60/596023d95c6b62846eeb52ae866cf630.jpg" alt="Marybel García Garzón (Lola) and Sara Miyares (Celia), in &quot;Burundanga&quot;" data-href="/digitalobject/14580" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1f/51/1f51185aae2c7da073c60d2a18342d87.jpg" title="Photograph of the production, &quot;Burundanga&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f7/cf/f7cff73fb746835f67c8aaf7f0b125b9.jpg" alt="Photograph of the production, &quot;Burundanga&quot;" data-href="/digitalobject/14579" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7d/cb/7dcb1ebc2d80a9ceb7c60a1ac3b1679a.jpg" title="Logo for Teatro de Las Estaciones">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f2/38/f2389966a7625e4b2b3893f1ff368a48.jpg" alt="Logo for Teatro de Las Estaciones" data-href="/digitalobject/14562" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/30/a7/30a7dd5bd75d73b4ef66479e8630b508.jpg" title="Illustration of Teatro de las Estaciones">
+                    
+                    
+                    <img src="../media/cache/b9/1a/b91a7dfe57df295eeaba5be767c7fb1c.jpg" alt="Illustration of Teatro de las Estaciones" data-href="/digitalobject/14561" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/55/e5/55e541a67be86af3aaa98fcc090d8e14.jpg" title="Christmas greetings from Teatro de las Estaciones">
+                    
+                    
+                    <img src="../media/cache/74/65/7465cb291441acf6d97f1ff50ae9ccef.jpg" alt="Christmas greetings from Teatro de las Estaciones" data-href="/digitalobject/14516" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/aa/12/aa12f922aa8f9ec0eb2b323ad8e8ed44.jpg" title="Photograph of the production, &quot;Burundanga&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b9/3d/b93d78e4ed83fc805b95985e5ff9d9e3.jpg" alt="Photograph of the production, &quot;Burundanga&quot;" data-href="/digitalobject/14373" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/67/06/67068df9b7c3e051633523333143e655.jpg" title="Photograph of the production, &quot;Burundanga&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c5/04/c504bec2604635b9886572f1cbd3ca37.jpg" alt="Photograph of the production, &quot;Burundanga&quot;" data-href="/digitalobject/14373" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1f/c3/1fc33992af06528258664d8d97ec4be7.jpg" title="Photograph of the production, &quot;Burundanga&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/83/c0/83c0714a9fdc10055bf53bffe7cd9ea9.jpg" alt="Photograph of the production, &quot;Burundanga&quot;" data-href="/digitalobject/14373" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8a/9b/8a9b80f9b77c3ea1e922dc51a5b4fa70.jpg" title="Por el monte, Carulé">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a9/53/a95386c9b7418cd28046f041100d596a.jpg" alt="Por el monte, Carulé" data-href="/digitalobject/14117" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('#cta0009000034').fancybox({
+          content: '<video id="vid-cta0009000034" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000340001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000034').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000005').fancybox({
+          content: '<video id="vid-cta0009000005" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000050001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000005').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000004').fancybox({
+          content: '<video id="vid-cta0009000004" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000040001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000004').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000003').fancybox({
+          content: '<video id="vid-cta0009000003" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000030001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000003').mediaelementplayer();
+          }
+        });
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

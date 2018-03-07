@@ -1,0 +1,638 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>Pájaros de la playa</li>
+                </ul>
+            </nav>
+            <h2>Pájaros de la playa</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/382.html">Nelda Castillo</a></td>
+                        <td>Director, Artistic/General Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Cast: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Role(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/2809.html">Lorelis Amores</a></td>
+                        <td>Actor / actress</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2807">Mariela Brito</a></td>
+                        <td>Actor / actress</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2808">Eduardo Martínez</a></td>
+                        <td>Actor / actress</td>
+                    </tr>
+                
+              </tbody></table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/899/">(Re)presentando Cuba: Pájaros de la Playa (re)visita La Habana</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+          
+
+
+            
+            <div class="linkeditems">
+                <p></p>
+                <h3>Notes: +</h3>
+                <div>
+                <p>Theater performances on Fridays, May&nbsp;25th, and June 1st, 8th, 15th y 22nd, at 7:30 p.m.</p>
+                </div>
+            </div>
+            
+
+
+
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              
+            
+                <a href="http://ctda.library.miami.edu/creator/4869" >El Ciervo Encantado (4869)</a><br />
+              
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/1393.html">Centro Hispano-Americano de Cultura (Cuba)</a></span>
+                    
+                    <span>Sala Dulce María Loynaz</span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>May 25, 2007 - June 22, 2007</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="../writtenwork/1921.html">Pájaros de la playa (Adaptation / Version)</a><br />
+                <span>By <h4>Adapter:</h4><a href='../creator/382.html'>Nelda Castillo</a></span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/15271">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0b/ac/0bac90e4a240071a6570124c0c9687b1.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/96/e6/96e61e8be8fccee2f702fdef00ad35c7.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15271" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/54/f4/54f4490924845ee8debe80f3e2f11048.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/8c/37/8c371c440e4ac5fa991aada95804aa60.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15270" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/d1/20d18c640c8fa46c6d40bd1f77695e7e.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ff/a4/ffa49e78591fab758451190644658d63.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15269" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/de/56de6a694a71647c80e67cbaa0deb36f.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/34/0e/340e40534e63ffecfc646fe4034ebe9a.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15268" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3e/c4/3ec426a1ddd1c36f2ca7add0ad2c4b20.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/20/1c/201cfe454dfa346e97121a973eb65364.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15267" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e4/1d/e41de184f825a2d37b4707a905743023.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/34/54/3454320b929f3aed479d3c5b6434c10e.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15266" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7b/56/7b56a66f4af0f5b8943e4deff7403640.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/8a/bd/8abd148a2d6342185ba894450c6ef56e.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15265" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/80/10/8010f3b534c2d8308ced5a20fbebcff5.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/00/54/005483fdf369341a6b159d8854a94d10.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15264" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/11/8e/118e95f12f4c21cb63ba6822965304ea.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="../media/cache/f9/67/f9675ee9096ef3c0352a9110633adf62.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15263" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5f/5a/5f5a9252abe6636ac0061b82c9f6a84a.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/bb/0b/bb0bcd1dfdb0d7819d4ace949d745dc2.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15262" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/41/6e/416e8eedfb76b1587f60157aae0353c9.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a1/b9/a1b9d01bf20bf13e0dfcd243526d150e.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15261" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4f/90/4f90602c1e63a3311e08d715fa5ae647.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f7/10/f7102fde14e3f33db6a7c1df0bece236.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15260" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6c/56/6c56303847f2544b225ab2bdfb2cf60c.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/7f/29/7f2966c82bd62c371627dca24f193078.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15259" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/74/66/7466904f942b3adf64ccbf8594a80f5f.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/71/a8/71a8b9bf2e66e8d3439d7c9b89162159.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15258" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/1b/8f1b8ccc08401403a3bdf14cab672a15.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/66/ed/66ed395ecb71824215cebd631bd7f43a.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15257" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f4/26/f426a45189a53507f4c6f98bfe263ca7.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="../media/cache/f0/ca/f0ca6a3eeda1483a0cd6e5e2dd5195cc.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15256" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9d/98/9d98e40807f785b8bf6e1da886ac9694.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/16/fc/16fc99477dd706702ed9e3795e04897a.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15255" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/29/58/2958593730ce4bfa9c180aa78de0add4.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ae/38/ae38a47435e8c8c75f174988ea46ac3d.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15254" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/06/6a0631e35d56bef3b7f92e82f293d247.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/4e/46/4e467539c23217f5449f0283b73ccc0b.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15253" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/72/37/723744b422a2cf5e8eb1e19e83c6f70d.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/2f/d4/2fd4c045c05f09d52e302c5db84885c0.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15252" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dc/1b/dc1b5d3bace2c8528ead90b48d3ae641.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/7a/78/7a781f3bd7c9a747bb5acee0f30a982e.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15251" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/32/ee/32ee9db3237a853fc4f2c6a0c63e8eee.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/48/3f/483ffb4146aebd56e95ce258624c35fc.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15250" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f9/c9/f9c9771970806069233a0d2dc7bdf907.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/43/1b/431b203e8a91721e84fd160b32943f9f.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15249" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

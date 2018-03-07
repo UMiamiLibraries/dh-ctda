@@ -1,0 +1,606 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../writtenworks.html">Written Works</a></li>
+              <li>Bodas de sangre</li>
+            </ul>
+          </nav>
+          <h2>Bodas de sangre
+          
+          </h2>
+        </header>
+        <section class="main">
+          <h4>Play script
+          
+          (Spanish) 
+          </h4>
+          
+          
+          
+                      
+
+            
+
+          
+          <div class="linkeditems">
+            <h3>Performances: +</h3>
+            <ul>
+              
+            </ul>
+          </div>
+          
+
+            
+
+        
+          
+      
+          
+        
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              <li>
+                <span><h4>Author / Playwright:</h4><a href='../creator/112.html'>Federico García Lorca</a></span> 
+              </li>
+
+              <li>
+                
+              </li>
+              
+              
+            </ul>
+            
+            
+          </div>
+         
+          
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16608">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/77/d7/77d7255d6c9e5bda21b2dc0e20614a8f.jpg" title="Poster for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/6f/41/6f419ec3ddc9d4a5342ed55360fd99d2.jpg" alt="Poster for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/16608" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/db/d0/dbd0403bbd05eb46c232bcd4f7a86540.jpg" title="Adria Santana (Novia), in &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="../media/cache/63/79/6379bfce886587e91d2d6910c73c8595.jpg" alt="Adria Santana (Novia), in &quot;Bodas de sangre&quot;" data-href="/digitalobject/12446" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/13/8a/138a233ba780aaf827272854b77beb4c.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="../media/cache/b8/21/b8218b48ae927d96610b40f7da9e3dfb.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/a7/23/a7236020d39f856f12a07c91029aa01e.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="../media/cache/bc/dc/bcdc1baf07a22f6e949a5ab136b4a7d5.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/27/b2/27b2a37f08e2665b1083e30a911f5964.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="../media/cache/08/d8/08d89e0918ce8c28e97a22e82ca2c0ac.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/cf/f3/cff38eb4e4ffe269ded8b75a5e2e1fc5.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="../media/cache/83/0c/830cca13aa706fec7859002c5bfbd630.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/1d/54/1d54f7b007df9add3fd4036e385b0c0c.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="../media/cache/7c/03/7c030f2c7a313df288fdee217d1e5b67.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/de/29/de293fd2d4f497b8ff80834745720ff4.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="../media/cache/c2/b5/c2b501a779e14736abd0bd8a45d75bc6.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1e/5a/1e5aabc1129eb952fbf62bd3238be707.jpg" title="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;">
+                
+                
+                <img src="../media/cache/9a/76/9a76b7f6b175beaa32b6091d6f891cc7.jpg" alt="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;" data-href="/digitalobject/16832" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/69/2069b125f788f3d856e52d4807f7a18f.jpg" title="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e1/10/e110209a94385f0de957c91671aef77a.jpg" alt="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;" data-href="/digitalobject/16832" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/69/c8/69c8c39f59fb8adb71cb28b45d081e48.jpg" title="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b6/59/b659b195f13a3c17e088d36aa55652a1.jpg" alt="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;" data-href="/digitalobject/16832" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/18/8f/188ff8a655afda3872b9ca5ab5df33b1.jpg" title="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/22/7c/227c429f0e14d2912832f4854378e61d.jpg" alt="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;" data-href="/digitalobject/16832" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cc/e4/cce4181c666fe9834f75dadd23df6874.jpg" title="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/32/dd/32dd89bf349a225cf014c889d57af247.jpg" alt="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;" data-href="/digitalobject/16832" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1d/48/1d48fa963c64c7997caf30943687da01.jpg" title="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/97/2a/972acfb3ceb8d4520133c5bb46c5aa3a.jpg" alt="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;" data-href="/digitalobject/16832" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c4/56/c456fd8419c4bb407173218a1127e79d.jpg" title="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a9/1a/a91a82a718352bdf7db119d72feb65d8.jpg" alt="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;" data-href="/digitalobject/16832" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/99/ed/99ed5f2149f64538e062a84e76e4f265.jpg" title="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b8/37/b837fd68c74df4649c1b3fa584858382.jpg" alt="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;" data-href="/digitalobject/16832" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1c/6e/1c6ee4aecc055a1f20f07700eb658fbd.jpg" title="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/3f/34/3f3475ec1c96bfe9abbf068e28e8b8ec.jpg" alt="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;" data-href="/digitalobject/16832" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/29/80/2980ea00357fdf1c664241c9282258fc.jpg" title="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/74/48/74489a2b3a77a19dd2d4f554e2c0e29c.jpg" alt="Program for the production &quot;El travieso Jimmy, Bodas de sangre, Contigo pan y cebolla&quot;" data-href="/digitalobject/16832" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2d/cd/2dcdffc589882ad9c7ed2af618dc84cd.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/69/13/6913c05a82aedb3a87cdaec714d909a4.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/14604" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5b/82/5b82b1d6e09ef23c64b973fc8f7c0ce0.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/01/c1/01c1d759736c5379830f7b9469ff45e1.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/14604" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c3/68/c368a4dc4dd5ce3604aae2eb900c8448.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ff/55/ff55f2868b295a07eeeb4fb880ab9a63.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/14604" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/46/5b/465bd2f7c8dc2db4f036d5aa79666e2f.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/fe/1e/fe1e56abcda086b77faf7c6bfc50da66.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/14604" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/18/b8/18b8bff99cfd64a1c5e55cee7139c68a.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d7/89/d789a3d2881454a459d0e4c50428f54e.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/14604" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9f/f1/9ff1b3a0f071f97b45caaf1834f708c1.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d9/32/d932ff52293f9fbbd44271dcfde8a572.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/14604" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/32/3d/323de4eef527b5093bd262199164ed3b.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/16/e0/16e00237f026457f34359bc5b21c27aa.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/14604" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3a/34/3a34fc5dff775fe43f46d0ea91895ec6.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/fa/b4/fab43ca521802f8a4685c8018a97067c.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/14604" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/18/561852e22e631581cdc427bf7ba688dd.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="../media/cache/44/26/44264e0b2f868235f38fc69fd4305a37.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/70/a4/70a4817f834065f41f92a7c11089a72a.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/fd/87/fd878e4103ff3d2e32e79d010edc0990.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2d/31/2d3136dcaea1957baff110f182c36094.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/96/0b/960baa96e99d403c52546c6e44c3ce5e.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/ff/c7ff09dfbe864020803663a84ae5d308.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5c/e0/5ce0035e0b6c4e42ccd73867ce211354.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/88/c5/88c5d014950473b47839429533deb96b.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/7f/64/7f64222bfa5b423bab528c8c8453d142.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/06/fa/06fae523aa14a140e53f2635b9478073.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/76/6f/766f6eb8ec55fc8f528bae26016b04b8.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/3a/1a3ac97a58738c39816a65c837aca6e8.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ec/51/ec51dded4c064495bee5b11e40efa26d.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/c9/6ac97b210be27ca8e6451bd02b927400.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/61/c7/61c7d58b6b00365a5c2b74e300aae9fd.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

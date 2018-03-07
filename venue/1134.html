@@ -1,0 +1,763 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../venues.html">Venues</a></li>
+              <li>Havanafama Teatro Estudio</li>
+            </ul>
+          </nav>
+          <h2>Havanafama Teatro Estudio</h2>
+        </header>
+
+        <section class="main">
+          
+          <h4>Also known as: Havanafama</h4>
+          
+
+          
+
+          
+          <div>
+<p>This is Havanafama's first space in Miami.<br /><br /><br /></p>
+</div>
+<p>&nbsp;</p>
+          
+
+          
+
+          
+
+          
+          <div class="linkeditems">
+            <h3>Productions: +</h3>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4695">Con pimienta a los ochenta</a>
+                
+                <br /><span>January 2015 - January 31, 2015</span>
+                
+                
+                <br /><span>Directed by: Juan Roca</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4417">Ha llegado a Miami El Caballero de París</a>
+                
+                <br /><span>April 18, 2014 - April 19, 2014</span>
+                
+                
+                <br /><span>Directed by: José Antonio Alonso</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4442">Las pericas</a>
+                
+                <br /><span>April 8, 2014 - April 30, 2014</span>
+                
+                
+                <br /><span>Directed by: Juan Roca</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4810">Las penas saben nadar</a>
+                
+                <br /><span>March 7, 2014 - March 8, 2014</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4808">Nos sobran los motivos</a>
+                
+                <br /><span>February 28, 2014 - March 2, 2014</span>
+                
+                
+                <br /><span>Directed by: Ibetti Pérez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4809">De esta mañana no pasa</a>
+                
+                <br /><span>February 28, 2014 - March 2, 2014</span>
+                
+                
+                <br /><span>Directed by: Omar Rouge</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4807.html">Bad</a>
+                
+                <br /><span>February 28, 2014 - March 2, 2014</span>
+                
+                
+                <br /><span>Directed by: Vivian Morales</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4805">Después de Picasso</a>
+                
+                <br /><span>February 27, 2014 - March 1, 2014</span>
+                
+                
+                <br /><span>Directed by: David Chocarro, Carolina Laursen</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4806">Una mano amiga</a>
+                
+                <br /><span>February 27, 2014 - March 1, 2014</span>
+                
+                
+                <br /><span>Directed by: Julie de Grandy</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4804">Preyunturalidad</a>
+                
+                <br /><span>February 27, 2014 - March 1, 2014</span>
+                
+                
+                <br /><span>Directed by: Dionis Rufino</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4801">Invictus</a>
+                
+                <br /><span>February 21, 2014 - February 23, 2014</span>
+                
+                
+                <br /><span>Directed by: Juan Roca</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4803">Nostradamus</a>
+                
+                <br /><span>February 21, 2014 - February 23, 2014</span>
+                
+                
+                <br /><span>Directed by: Jorge Carrigan</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4800">Buen viaje, Eminencia</a>
+                
+                <br /><span>February 20, 2014 - February 22, 2014</span>
+                
+                
+                <br /><span>Directed by: Valentín  Alvarez-Campos</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4799">Postmodernofobia</a>
+                
+                <br /><span>February 20, 2014 - February 22, 2014</span>
+                
+                
+                <br /><span>Directed by: Belkis Proenza</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4798">Monólogo para un festival</a>
+                
+                <br /><span>February 20, 2014 - February 22, 2014</span>
+                
+                
+                <br /><span>Directed by: Wilfredo Ramos</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4796">Por algo se empieza</a>
+                
+                <br /><span>February 14, 2014 - February 16, 2014</span>
+                
+                
+                <br /><span>Directed by: Angie Kosberg, José Salinas</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4792">El Zannu y el viejo Pantalones</a>
+                
+                <br /><span>February 13, 2014 - February 15, 2014</span>
+                
+                
+                <br /><span>Directed by: Luis Bejarano</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4793">El anticristo</a>
+                
+                <br /><span>February 13, 2014 - February 15, 2014</span>
+                
+                
+                <br /><span>Directed by: Magadena Hidalgo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4794">Lágrimas negras</a>
+                
+                <br /><span>February 13, 2014 - February 15, 2014</span>
+                
+                
+                <br /><span>Directed by: Juan Roca</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4811">¡Ay, mi amor!</a>
+                
+                <br /><span>February 7, 2014 - March 8, 2014</span>
+                
+                
+                <br /><span>Directed by: Carlos Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4791">Prueba de amor</a>
+                
+                <br /><span>February 7, 2014 - February 9, 2014</span>
+                
+                
+                <br /><span>Directed by: Adela Romero</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4790">Trabalicuentos</a>
+                
+                <br /><span>February 7, 2014 - February 9, 2014</span>
+                
+                
+                <br /><span>Directed by: Paul William</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4408">Llevo una semana rezando para que te mueras</a>
+                
+                <br /><span>February 7, 2014 - March 8, 2014</span>
+                
+                
+                <br /><span>Directed by: Juan Roca</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4789">La viuda del malecón</a>
+                
+                <br /><span>February 6, 2014 - February 23, 2014</span>
+                
+                
+                <br /><span>Directed by: Alejandro Galindo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4424">La Chunga</a>
+                
+                <br /><span>December 2013 - January 2014</span>
+                
+                
+                <br /><span>Directed by: Juan Roca</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4419">Home Honey I&#39;m Hi</a>
+                
+                <br /><span>August 6, 2013 - September 15, 2013</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4423">Los piratas del carajo</a>
+                
+                <br /><span>August 6, 2013 - September 15, 2013</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/4422.html">Backstage on Broadway</a>
+                
+                <br /><span>August 6, 2013 - September 15, 2013</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4420">Las impacientes Polonsky</a>
+                
+                <br /><span>August 6, 2013 - September 15, 2013</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3844">Puerto de coral</a>
+                
+                <br /><span>March 10, 2012 - March 25, 2012</span>
+                
+                
+                <br /><span>Directed by: Juan Roca</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3845">Alguien borra la ciudad</a>
+                
+                <br /><span>March 9, 2012 - March 23, 2012</span>
+                
+                
+                <br /><span>Directed by: Ariel Bouza</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2479">Luz Divina, Santera, Espiritista de una a cinco</a>
+                
+                <br /><span>July 27, 2007 - July 28, 2007</span>
+                
+                
+                <br /><span>Directed by: Juan Roca</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2515">Dile a Fragancia que yo la quiero</a>
+                
+                <br /><span>May 15, 2007</span>
+                
+                
+                <br /><span>Directed by: Juan Roca</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2517">Rezando con el enemigo</a>
+                
+                <br /><span>April 17, 2007</span>
+                
+                
+                <br /><span>Directed by: Juan Roca</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1661.html">Jinetera</a>
+                
+                <br /><span>February 18, 2007 - March 11, 2007</span>
+                
+                
+                <br /><span>Directed by: Manuel Lorenzo Abdala</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2523">La visita</a>
+                
+                <br /><span>January 16, 2007</span>
+                
+                
+                <br /><span>Directed by: Marcos Miranda</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1620">Las muchachitas de la sagüesera</a>
+                
+                <br /><span>October 13, 2006 - November 2006</span>
+                
+                
+                <br /><span>Directed by: Juan Roca</span>
+                
+              </li>
+              
+            </ul>
+          </div>
+        
+        
+             
+        
+          
+          <hr />
+          <h3>Videos</h3>
+          <ul class="videos">
+            
+            <li>
+              <figure>
+                <a id="cta0009000071" class="fancybox">
+                  
+                  
+                    <img src="http://ctda.library.miami.edu/media/cache/d0/17/d0179a46ff3757ce07ab8a12b0b42608.jpg" alt="Link to video of Apolonio" />
+                  
+                  
+                </a>
+                <figcaption>
+                  <a href="../digitalobject/14054.html">Apolonio</a>
+                </figcaption>
+              </figure>
+            </li><br />
+            
+            <li>
+              <figure>
+                <a id="cta0009000064" class="fancybox">
+                  
+                  
+                    <img src="http://ctda.library.miami.edu/media/cache/9d/00/9d00fbf634569c9638dd199807b58e46.jpg" alt="Link to video of Antes de mí, el Sahara" />
+                  
+                  
+                </a>
+                <figcaption>
+                  <a href="../digitalobject/14047.html">Antes de mí, el Sahara</a>
+                </figcaption>
+              </figure>
+            </li><br />
+            
+          </ul>
+      
+      
+                
+
+
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              <li>
+                <h4>Venue type:</h4>
+                <span>Non-profit performing space</span>
+              </li>
+              
+              
+              <li>
+                <h4>Address:</h4>
+                <span>1165 SW 6th Street</span>
+                
+              </li>
+              
+              
+              <li>
+                <h4>City:</h4>
+                <span>Miami, Florida</span>
+              </li>
+              
+              <li>
+                <h4>Country:</h4>
+                <span>United States</span>
+              </li>
+              
+              
+              <li>
+                <h4>Website:</h4>
+                <span><a href="http://www.havanafama.com/" target="_blank">http://www.havanafama.com/</a></span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('#cta0009000071').fancybox({
+content: '<video id="vid-cta0009000071" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000710001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000071').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000064').fancybox({
+content: '<video id="vid-cta0009000064" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000640001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000064').mediaelementplayer();
+          }
+        });
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

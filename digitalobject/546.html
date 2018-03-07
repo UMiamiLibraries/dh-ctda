@@ -1,0 +1,654 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en ">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../digitalobjects.html">Digital Objects</a></li>
+              <li>Festival Internacional del Monólogo I</li>
+            </ul>
+          </nav>
+          <h2>Festival Internacional del Monólogo I</h2>
+        </header>
+
+        <section class="objectdisplay main">
+                
+                
+                <img id="largepreview" data-index="0" src="../media/cache/0b/22/0b22cd32ebcc6067c0ce9d1d09a514bf.jpg" alt='' style="display:block;float:none;" /><br />
+                
+                
+                
+                
+
+                
+
+                
+
+                <h3>Object details:</h3>
+                <dl class="objectdata">
+                
+                    <dt>Physical object creator:</dt>
+                    <dd><a href="../creator/54.html">Sarraín, Alberto, August 8, 1949- (54)</a></dd>  
+                
+
+                
+                
+                
+                
+                
+                  <dt>Physical object date:</dt>
+                  <dd>May 2, 2001</dd>
+                  
+                
+                
+                
+              
+                
+                  <dt>Physical object type:</dt>
+                  <dd>Playbills</dd>
+                
+
+                
+                  <dt>Digital object format:</dt>
+                  <dd>Image</dd>
+                
+
+                  <dt>Object ID:</dt>
+                  <dd>cta0011000137</dd>
+                  
+                  <dt>Collection:</dt>
+                  <dd>Francisco (Pancho) Garcia Collection</dd>
+                  
+                  
+                  
+                
+                  <dt>License:</dt>
+                  <dd><a href="../copyright/index.html">University of Miami copyright policy</a></dd>
+                
+                  
+                
+                  
+                  
+                  
+                  
+                </dl>
+
+                
+                <h3>Related items:</h3>
+                
+                
+                <h4>Creators:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="../creator/163.html">Pancho García</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../creator/102.html">Miriam Lezcano</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../creator/1889.html">Alberto Pedro</a>
+                  </li>
+                  
+                </ul>
+                
+
+                
+                <h4>Productions:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="../production/458.html">Canto de sirenas (Koubek Center (Miami Dade College), May 2, 2001)</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/463.html">Caraquito morao (Light Box, Miami Light Project, May 4, 2001)</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/456.html">El álbum (Koubek Center (Miami Dade College), May 3, 2001)</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/454.html">Esperando a Odiseo (Florida International University Wertheim Performing Art Center, April 27, 2001)</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3005.html">Fridas (Light Box, Miami Light Project, May 1, 2001)</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3003.html">Hoy como ayer (Florida International University Wertheim Performing Art Center, April 30, 2001)</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3004.html">La legionaria (Florida International University Wertheim Performing Art Center, April 30, 2001)</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/466.html">La octava puerta (Koubek Center (Miami Dade College), May 6, 2001)</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/459.html">Las lamentaciones de Obba Yurú (Florida International University Wertheim Performing Art Center, April 29, 2001)</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3002.html">Las penas saben nadar (Florida International University Wertheim Performing Art Center, April 28, 2001)</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/462.html">Onanismo con perturbaciones nerviosas en dos niñas (Koubek Center (Miami Dade College), May 2, 2001)</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3006.html">Remolino en las aguas (Light Box, Miami Light Project, May 5, 2001)</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/455.html">Un poco de aire frío (Florida International University Wertheim Performing Art Center, April 28, 2001)</a>
+                  </li>
+                  
+                </ul>
+                
+
+                
+
+                
+                <h4>Festivals:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="../festival/403/index.html">Festival Internacional del Monólogo I (April 27, 2001 - May 6, 2001)</a>
+                  </li>
+                  
+                </ul>
+                
+
+                
+                
+            
+        </section>
+        
+        <aside class="thumbnails">
+            
+                <div class="data">
+                  <ul>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/2a/f2/2af2afab0611d87b42d7aeea36798069.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/0b/22/0b22cd32ebcc6067c0ce9d1d09a514bf.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/d0/88/d088609bf20d3743c719253e7257e2e4.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/5e/f7/5ef797d2190dcc6caa203c38d29e0946.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/a3/19/a319c824c32cf68d694b68f674701b2c.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/94/1f/941ff2780caad96e043c15c82057d80a.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/90/49/9049d0ea068c267f0cd213d956d982ff.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/3f/62/3f628aa35079c4a4b10d005093c401b9.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/2d/cf/2dcf3885ae6d92e79c28a8bbf90c5532.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/ad/38/ad38af0e7e0101aa50bc757c0d6739ad.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/11/fa/11fa4df110fea2c0ac2c68e08636543d.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/98/0f/980fd5139d48bf4eea817780fa4ff67e.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/02/67/02675ce50f053b93a0f1383e63f8069b.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/38/85/388573e654405e61850ee92f9a55f28d.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/ff/72/ff725d4dc24a5fc29c2cdc4dd08544e3.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/67/99/6799d161cede82cadfb8d94b4f372361.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/03/7a/037af957f29436a5512b243db6ea2897.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/96/cf/96cf74797a1532c8c017e8fbb4992bd7.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/0e/a7/0ea7b03392eded6f498a8b5f1b3a3b75.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/73/ed/73edcffb2a0a66afba6bbaca74cddd8e.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/9c/5a/9c5ac83f6e791bec8f77d3710d4cad2f.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/5f/cc/5fccd5836204bf6bb8308d2cff215cf8.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/0d/45/0d45f4cd85fd37910f50f064d854545c.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/71/2a/712a165c0e0bd5f05b013fcdb34f421b.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/cc/78/cc78bc9b6a492a24f0acd167681f0d53.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/89/d4/89d4c9fac84e9814eecd4460b6fde2f2.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/fe/74/fe74d3d7747da78b414ad06f62855fea.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/68/5b/685b15e2dacd9f58ed1f9943c7eedd0c.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="../media/cache/ad/a1/ada1c361bc3fbe8c12a943ba493e6a8b.jpg" width="100" height="100" alt='' title="Festival Internacional del Monólogo I" />
+                        
+                        
+                        <span>/media/cache/36/01/36017fed3a4e64caeb1f678e5360ef37.jpg</span>
+                        
+                    </li>
+                
+                </ul>
+              </div>
+            
+            
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+        $(window).load(function() {
+            
+            $('.thumbnails ul li').click(function() {
+                var current = $(this);
+                var index = $('.thumbnails ul li').index(current);
+                $('#largepreview').attr('src', current.children('span').text());
+                $('#largepreview').attr('data-index', index);
+            });
+            
+            $('#largepreview').click(function() {
+              $.fancybox([
+                
+                
+                "/media/cache/82/f3/82f36ca6199a0fdd774aaf1086cb0721.jpg",
+                
+                
+                
+                "/media/cache/36/87/36872223a35dc60ea06069276ae58c00.jpg",
+                
+                
+                
+                "/media/cache/88/a0/88a02aea085ee6477df4a0b99ccf376b.jpg",
+                
+                
+                
+                "/media/cache/8d/71/8d71ebc2ff9acd64c7c5d00bdd07c81a.jpg",
+                
+                
+                
+                "/media/cache/55/a8/55a879871c23815679c8f8a08275da4e.jpg",
+                
+                
+                
+                "/media/cache/e1/5b/e15b1a4f6a4656b125dad146a3ee6206.jpg",
+                
+                
+                
+                "/media/cache/a8/35/a835389be78488aa17ef58e7479b8565.jpg",
+                
+                
+                
+                "/media/cache/56/75/5675ce9272566c0d1014ef2f9e017f7c.jpg",
+                
+                
+                
+                "/media/cache/2f/f3/2ff3d47114443fd3fd91fc19abf8e1e7.jpg",
+                
+                
+                
+                "/media/cache/ff/5f/ff5f08c0e1c079a399b9ed92d291f139.jpg",
+                
+                
+                
+                "/media/cache/e1/e2/e1e2f18bfc0bb4f99608eb742be56b70.jpg",
+                
+                
+                
+                "/media/cache/2e/1f/2e1fad5e0cbe4c2dfa4bd94500793edc.jpg",
+                
+                
+                
+                "/media/cache/c9/27/c92725358509c5f54597adb2c3445e22.jpg",
+                
+                
+                
+                "/media/cache/e8/d7/e8d7f41052352e9e3478c81336b4e9bc.jpg",
+                
+                
+                
+                "/media/cache/36/88/368865c8c2eba311fc30dd729b2a068a.jpg",
+                
+                
+              ], {
+                'type': 'image',
+                'loop': false,
+                'index': $('#largepreview').attr('data-index')
+              });
+            });
+            
+        });
+    </script>
+
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

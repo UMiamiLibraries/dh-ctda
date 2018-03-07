@@ -1,0 +1,647 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en ">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../digitalobjects.html">Digital Objects</a></li>
+              <li>Program for the production, &quot;El alma buena de Se-Chuan&quot;</li>
+            </ul>
+          </nav>
+          <h2>Program for the production, &quot;El alma buena de Se-Chuan&quot;</h2>
+        </header>
+
+        <section class="objectdisplay main">
+                
+                
+                <img id="largepreview" data-index="0" src="http://ctda.library.miami.edu/media/cache/83/93/83939e4af6d0cb3c01b5212b94e060b2.jpg" alt='' style="display:block;float:none;" /><br />
+                
+                
+                
+                
+
+                
+
+                
+
+                <h3>Object details:</h3>
+                <dl class="objectdata">
+                
+
+                
+                
+                
+                
+                
+                
+                
+              
+                
+
+                
+                  <dt>Digital object format:</dt>
+                  <dd>Image</dd>
+                
+
+                  <dt>Object ID:</dt>
+                  <dd>cta0001000016</dd>
+                  
+                  <dt>Collection:</dt>
+                  <dd>Rogelio Díaz Cuesta Collection</dd>
+                  
+                  
+                  
+                
+                  <dt>License:</dt>
+                  <dd><a href="21.html">CC-BY-NC-ND (Attribution-Non-Commercial-No Derivatives)</a></dd>
+                
+                  
+                
+                  
+                  
+                  
+                  
+                </dl>
+
+                
+                <h3>Related items:</h3>
+                
+                
+                <h4>Creators:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/creator/184">Bertolt Brecht</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../creator/197.html">Sergio Corrieri</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../creator/486.html">Rogelio Díaz Cuesta</a>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/creator/185">Héctor García Mesa</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../creator/4800.html">Grupo Teatro Estudio</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../creator/183.html">Vicente Revuelta</a>
+                  </li>
+                  
+                </ul>
+                
+
+                
+                <h4>Productions:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="../production/3064.html">El alma buena de Se-Chuan (Palacio de Bellas Artes, June 12, 1959)</a>
+                  </li>
+                  
+                </ul>
+                
+
+                
+                <h4>Written works:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="../writtenwork/2843.html">El alma buena de Se-Chuan (Play script)</a>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2125">El alma buena de Se-Chuán (Translation)</a>
+                  </li>
+                  
+                </ul>
+                
+
+                
+
+                
+                <h4>Venues:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="../venue/559.html">Palacio de Bellas Artes (Cuba)</a>
+                  </li>
+                  
+                </ul>
+                
+                
+            
+        </section>
+        
+        <aside class="thumbnails">
+            
+                <div class="data">
+                  <ul>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/12/3e/123e4340ca4f5fd8532aea3657baf097.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/83/93/83939e4af6d0cb3c01b5212b94e060b2.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/04/ff/04ff314a52850b174bd0b953b3645074.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/9a/45/9a45ff6c748d56831211a5a237e4e007.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/af/3a/af3ac0531a81638edce0634c6711c727.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/cb/c8/cbc88f661e75276da062fc8b08a32030.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/4a/4c/4a4c7b7d2fac1a4a986f8c5e8a1e3f70.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/b2/48/b248537f9fac279b01f867c5f11c55e8.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/71/b0/71b03b46c41939bb5aba10c320411519.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/02/79/027902dd7b9ae4ed49a6a40151a80cb2.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/0c/a3/0ca35586a064b6f165e0eb8e4af03ecb.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/fc/6b/fc6be7083a32e5547b87a3261e0c6195.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ce/34/ce34f8dd0926712ea20771e3c05cdbb8.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/32/24/3224d8a51a9c59e68052e313c75bda01.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/a7/89/a789267c41ea6157b62f77dcb7387509.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/ec/26/ec26ef0475c86539655758b04f85a2b6.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ea/6e/ea6e019f2a909e652d5c27ce7116436a.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/44/78/44788e6633026787a447107c1ed8be9a.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/7a/8b/7a8b7518debe303f73a512766defa687.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/d1/8e/d18e588624d27a71efdd87256e5fe043.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/0b/ad/0bad0a8a587511e32d919d87b8918e6d.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/71/94/7194c402a4f3ce0441fae73b7dd8e21a.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/30/75/30751eced90b34fe5d732ca0d01ea2bf.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/cb/8a/cb8af7b278cd114a956a1f30e93a1286.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/cf/ac/cfac8969d633f50a6a9e6c6f3517f07f.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/f8/11/f811ae675ab35fa7603cabbace383c79.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/bf/69/bf69a65ce35c7f3ddd7ae7f7f61a7026.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/0e/2f/0e2fb5d01e8f30d7081a50b0ed386f43.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/03/3c/033cd969d281e43739167a2cd079ec0e.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/84/de/84de7d85d3cc9bb1515dbeee493a2f5b.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/43/90/43904521aff30a6671708b7982c6917f.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/34/26/34265f40a674ecc4d50e4b2b16002138.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/d3/48/d348dd37028b1cb32111b6c5e9e2b884.jpg" width="100" height="100" alt='' title="Program for the production, &quot;El alma buena de Se-Chuan&quot;" />
+                        
+                        
+                        <span>/media/cache/bb/6d/bb6db29b3c21ad37a7f62a0aede5817d.jpg</span>
+                        
+                    </li>
+                
+                </ul>
+              </div>
+            
+            
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+        $(window).load(function() {
+            
+            $('.thumbnails ul li').click(function() {
+                var current = $(this);
+                var index = $('.thumbnails ul li').index(current);
+                $('#largepreview').attr('src', current.children('span').text());
+                $('#largepreview').attr('data-index', index);
+            });
+            
+            $('#largepreview').click(function() {
+              $.fancybox([
+                
+                
+                "/media/cache/5c/d2/5cd23eea4e351caef5b6d353c4ffc160.jpg",
+                
+                
+                
+                "/media/cache/9d/c0/9dc0f6ddbb731367fbdf0b5b223adeab.jpg",
+                
+                
+                
+                "/media/cache/b5/03/b5034f088b5d5c74fc8ba0fe79748212.jpg",
+                
+                
+                
+                "/media/cache/49/7f/497f9e4aa0ffa00e953ad13b9f884343.jpg",
+                
+                
+                
+                "/media/cache/ec/eb/ecebd8016d2d70d81ca223aa68839c5c.jpg",
+                
+                
+                
+                "/media/cache/5e/e3/5ee3e5d6a1b905ff2cf47bf38f723812.jpg",
+                
+                
+                
+                "/media/cache/5e/f6/5ef61e02af3da5d514a2be62811836c1.jpg",
+                
+                
+                
+                "/media/cache/a7/f5/a7f5ca2261d4a45da26ab9b9340e60e3.jpg",
+                
+                
+                
+                "/media/cache/31/fc/31fcc2b9f0ba9c5fdc41fbbd17221d9e.jpg",
+                
+                
+                
+                "/media/cache/6b/6c/6b6c8c8af4addf8e64e5ec6a570a57ca.jpg",
+                
+                
+                
+                "/media/cache/42/ae/42aece805d2cd00807beebcfb80ed05b.jpg",
+                
+                
+                
+                "/media/cache/4f/63/4f638f0592006b9cdf05aeb817cc3790.jpg",
+                
+                
+                
+                "/media/cache/18/0d/180d50e4e13781e04898c1bb04ec79bc.jpg",
+                
+                
+                
+                "/media/cache/0f/73/0f7361ad57c84f4eebfcee9be17d4bbc.jpg",
+                
+                
+                
+                "/media/cache/2a/39/2a3956099e82fab108b2dd363e4a7e8b.jpg",
+                
+                
+                
+                "/media/cache/f0/46/f0461fd4e1184fc68f6daaf0b0e41b11.jpg",
+                
+                
+                
+                "/media/cache/33/55/3355983fb17df15f36b070fc4721806c.jpg",
+                
+                
+              ], {
+                'type': 'image',
+                'loop': false,
+                'index': $('#largepreview').attr('data-index')
+              });
+            });
+            
+        });
+    </script>
+
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

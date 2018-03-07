@@ -1,0 +1,715 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>Prometeo</li>
+                </ul>
+            </nav>
+            <h2>Prometeo</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/6876.html">José A. González</a></td>
+                        <td>Assistant to the Director</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/594.html">Teresa María Rojas</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Cast: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Role(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/38.html">José Amaya</a></td>
+                        <td>Prometeo</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/7321.html">Paul D&#39;Alba</a></td>
+                        <td>Meteo</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/6873.html">Efraín Martel</a></td>
+                        <td>Teo</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/6879">Susana Sosa</a></td>
+                        <td>La arpía</td>
+                    </tr>
+                
+              </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Design team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="../creator/6902.html">Siro Del Castillo</a></td>
+                    <td>Set designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="../creator/585.html">José González</a></td>
+                    <td>Set designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="../creator/6904.html">María Meilán</a></td>
+                    <td>Light designer</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+          
+
+
+            
+
+
+
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              
+            
+                <a href="../creator/4810.html" >Grupo Prometeo a/k/a Promethean Players, 1972- (4810)</a><br />
+              
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/27.html">Miami Dade College - Wolfson Campus (United States)</a></span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>March 20, 1979 - March 21, 1979</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="../writtenwork/1777.html">Prometeo (Play script)</a><br />
+                <span>By <h4>Author / Playwright:</h4><a href='http://ctda.library.miami.edu/creator/1583'>Tomás Fernández Travieso</a></span>
+              </li>
+              
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Bilingual%20Theater--Miami"><li>Bilingual Theater--Miami</li></a>
+                
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/13519.html">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/87/2d/872d0ef18b1c4baa44d6c9e55c338c7a.jpg" title="Manuscript for the play, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/25/7f/257fd4ade8f5b6568ebca46cd63b235f.jpg" alt="Manuscript for the play, &quot;Prometeo&quot;" data-href="/digitalobject/13519" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fb/1f/fb1f02672beb159c20d4ac69c79779a6.jpg" title="Manuscript for the play, &quot;Prometeo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/7f/f6/7ff6c464108b303bdaf8ad1dbc0c4a7a.jpg" alt="Manuscript for the play, &quot;Prometeo&quot;" data-href="/digitalobject/13519" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/57/a1/57a10f12636d08fb2f93c933a560be4f.jpg" title="Manuscript for the play, &quot;Prometeo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/3c/b3/3cb395c35c1912f42e835123fa21b4d7.jpg" alt="Manuscript for the play, &quot;Prometeo&quot;" data-href="/digitalobject/13519" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d3/5f/d35f11780557a3003a5add946deb909b.jpg" title="Manuscript for the play, &quot;Prometeo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/38/cd/38cd1c7f53a3700c248a30db41d7e857.jpg" alt="Manuscript for the play, &quot;Prometeo&quot;" data-href="/digitalobject/13519" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/58/ee/58ee03f20d019ae17356fb6ba7db7b18.jpg" title="Manuscript for the play, &quot;Prometeo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/9c/77/9c7763beb49f6c6174bc87d024676a92.jpg" alt="Manuscript for the play, &quot;Prometeo&quot;" data-href="/digitalobject/13519" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/42/ac/42ac7ed2bf6220e673126162201ff7f3.jpg" title="Manuscript for the play, &quot;Prometeo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/0c/12/0c120b8934734932bd06850227c84b91.jpg" alt="Manuscript for the play, &quot;Prometeo&quot;" data-href="/digitalobject/13519" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/39/f8/39f817013c1f574f2eef13cc3eda8f4f.jpg" title="Invitation for the production, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/3a/58/3a58215dc4fbc5d79f336f4787272ec2.jpg" alt="Invitation for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13511" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/1d/98/1d98b5d07edb6201bc92b4d9a004e9fa.jpg" title="Invitation for the production, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/ba/19/ba198e711083aa3aa185deccf92bd2e6.jpg" alt="Invitation for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13511" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/58/7c/587cd9a5b2e35a09082315b0c86a683b.jpg" title="Invitation for the production, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/a1/b2/a1b2e5849e2deee238417a40996c908f.jpg" alt="Invitation for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13511" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/5f/d6/5fd65784a5b24f1beeb5650c6f1782b1.jpg" title="Invitation for the production, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/55/db/55db450682fdc0eeff5ea46bfc884924.jpg" alt="Invitation for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13511" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/67/40/67400d684d5dcdc74981aa79f7916e60.jpg" title="Paul D&#39;Alba (Meteo), in &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/10/bf/10bf35c2b9463d8b4ebaeb931413ba03.jpg" alt="Paul D&#39;Alba (Meteo), in &quot;Prometeo&quot;" data-href="/digitalobject/13633" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/4f/88/4f887962459e1425f4a34ab00c777819.jpg" title="José Amaya (Prometeo) and Glenda Díaz Rigau, Lucía Lorenzo and  Francisco Fernández (El Coro), in &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/75/88/758883faaaea4d0a21f475e529021c43.jpg" alt="José Amaya (Prometeo) and Glenda Díaz Rigau, Lucía Lorenzo and  Francisco Fernández (El Coro), in &quot;Prometeo&quot;" data-href="/digitalobject/13645" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/11/51/115108409b40655617f1a8e4373a703e.jpg" title="José Amaya in Miami Dade College Drama Class">
+                
+                
+                <img src="../media/cache/52/82/5282fa4bbb25716081a87f4f50306fd2.jpg" alt="José Amaya in Miami Dade College Drama Class" data-href="/digitalobject/13676" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/a0/b0/a0b02bc6a9e9da712bd2e928c0d92167.jpg" title="Letter from William Stokes to Teresa María Rojas about the production, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/55/c9/55c9f0972545cfb33b99fceefb98a3ef.jpg" alt="Letter from William Stokes to Teresa María Rojas about the production, &quot;Prometeo&quot;" data-href="/digitalobject/13770" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/f3/a5/f3a54a95184928b872be753ea4ab006d.jpg" title="José Amaya (Prometeo) and Paul D&#39;Alba (Meteo), in &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/f9/23/f923b5d592beaa964484a00399e39ce5.jpg" alt="José Amaya (Prometeo) and Paul D&#39;Alba (Meteo), in &quot;Prometeo&quot;" data-href="/digitalobject/13701" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/03/20/0320bc03a4bbd4e9a1e2f9f70a50c098.jpg" title="José Amaya (Prometeo) and Paul D&#39;Alba (Meteo), in &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/15/75/1575204ba4181037ee01cc86ae462857.jpg" alt="José Amaya (Prometeo) and Paul D&#39;Alba (Meteo), in &quot;Prometeo&quot;" data-href="/digitalobject/13748" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/3c/32/3c321a4011c7322711bb63f18c65ec22.jpg" title="Cast from the production, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/fe/59/fe5934b01702c1f293597e951dba8a1e.jpg" alt="Cast from the production, &quot;Prometeo&quot;" data-href="/digitalobject/13706" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/e1/cd/e1cd4dbc27142b541a760dc03de7bfcb.jpg" title="Glenda Díaz Rigau, Lucía Lorenzo and Francisco Fernández (El Coro), in &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/08/d9/08d90dee9889da000b04a1c15272064a.jpg" alt="Glenda Díaz Rigau, Lucía Lorenzo and Francisco Fernández (El Coro), in &quot;Prometeo&quot;" data-href="/digitalobject/13738" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/fd/e6/fde6171f963689b055622b943725aa9c.jpg" title="Glenda Díaz Rigau (El Coro), in &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/bb/85/bb85848ac49488dbc953c433aa6eb95d.jpg" alt="Glenda Díaz Rigau (El Coro), in &quot;Prometeo&quot;" data-href="/digitalobject/13796" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/75/ca/75ca028348ccd2329bf4e5ac8849e484.jpg" title="Susana Sosa (La Arpía), in &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/b5/b0/b5b046015912d3990b52e2ac91cd816a.jpg" alt="Susana Sosa (La Arpía), in &quot;Prometeo&quot;" data-href="/digitalobject/13700" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/c7/7e/c77e171166b8a52274134d9ca75fe296.jpg" title="José Amaya (Prometeo) and Paul D&#39;Alba (Meteo), in &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/c6/65/c6657bf060072bf6e3284f1e96f3ab31.jpg" alt="José Amaya (Prometeo) and Paul D&#39;Alba (Meteo), in &quot;Prometeo&quot;" data-href="/digitalobject/13729" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/2c/6c/2c6c97e12bd3b77f57560cb7523a681c.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/37/d8/37d832e4892a24a4dd9bfca795f36b26.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13535" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/ea/40/ea40081b01f8e1a39343a326a1974e51.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/3f/84/3f843d7ba2272828a622afe0ef4fbb77.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13535" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/8e/92/8e92b29b867a6e20b08c7607c3c39913.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/46/1c/461c2d478650a5f6a6355c1fc1f0fd8b.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13535" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/f5/25/f52582514f8380352ed3430e4cf591c7.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/fb/bb/fbbb6b4e9d1415f0fc0ecaa8ac887c2a.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13535" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/bb/dd/bbdd6d3889c244aefc02739914f562f7.jpg" title="Glenda Díaz Rigau (Coro) and José Amaya (Prometeo), in a rehearsal for the production &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/36/2a/362afd834146cc50fd023239016ac3c1.jpg" alt="Glenda Díaz Rigau (Coro) and José Amaya (Prometeo), in a rehearsal for the production &quot;Prometeo&quot;" data-href="/digitalobject/13739" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/cf/df/cfdf4030e9c8d5ed7a8e0b57a198eb8f.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/82/46/8246cf4aeb6ddb62228674c84eb5d998.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13125" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/09/92/09924487122648e53904368485bab1fb.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/96/4d/964dab2898d2bb2b8b636da0d72fca84.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13125" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/e5/8e/e58e4a042674beddaa52a2c70da179b7.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/ec/10/ec10d2213dd11acbd1bc924a2e52589a.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13125" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/d7/45/d74579e05387d0a294bd47d43ada5f97.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                
+                
+                <img src="../media/cache/28/7f/287f298fccbbf8757dd39da1f3293388.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13125" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

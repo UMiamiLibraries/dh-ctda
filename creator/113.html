@@ -1,0 +1,643 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Eduardo Machado</li>
+                </ul>
+            </nav>
+            <h2>Eduardo Machado</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Director, author / playwright, translator</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>Hailing from Cuba, Eduardo Machado has been cited as one of the leading dramatic voices in his generation of Latino Writers.                                      In 1961, at the age of 9, he and his brother emigrated to the United States where he lived with extended family in Hialeah, Florida, until his parents were able to move to California.                          Machado's professional acting career began in California, becoming a member of the Screen Actor's Guild at age 20.                          In 1981 he moved to New York City,teaching playwriting at Columbia University. He was the head of the graduate playwriting program. Now, he teaches at New York University.                    Machado has directed numerous plays, including his own works and those of emerging writers. He has served as director for shows in numerous regional theaters including INTAR, Theater For a New City, The Ensemble Studio, The Mark Taper Forum, The Playwrights Collective, The Company Theater, The Cherry Lane Alternative, The Flea Theater, The Group Theater and the Inner City Cultural Center.                        In 2008, he directed "Artfuckers," a play by Michael Domitrovich that explores the culture of celebrity in the contemporary art world.</p>
+<p>More information available in Spanish; click "Espa&ntilde;ol" in the upper&nbsp;right hand&nbsp;side of the page.&nbsp;<img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI4My4xNzggMjgzLjE3OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjgzLjE3OCAyODMuMTc4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPHBhdGggZD0iTTI1NC44MTIsMTQwLjcxM2gtMjBjLTQuMTQyLDAtNy41LDMuMzU4LTcuNSw3LjV2OTEuMTg2YzAsNC44NC0zLjkzOSw4Ljc3OC04Ljc3OSw4Ljc3OEg0My43NzYgICBjLTQuODM5LDAtOC43NzUtMy45MzgtOC43NzUtOC43NzhWNjQuNjQ1YzAtNC44NDEsMy45MzYtOC43OCw4Ljc3NS04Ljc4aDk1Ljg1NWM0LjE0MiwwLDcuNS0zLjM1OCw3LjUtNy41di0yMCAgIGMwLTQuMTQyLTMuMzU4LTcuNS03LjUtNy41SDQzLjc3NmMtMjQuMTM4LDAtNDMuNzc1LDE5LjY0LTQzLjc3NSw0My43OHYxNzQuNzU1YzAsMjQuMTQsMTkuNjM4LDQzLjc3OCw0My43NzUsNDMuNzc4aDE3NC43NTYgICBjMjQuMTQsMCw0My43NzktMTkuNjM5LDQzLjc3OS00My43Nzh2LTkxLjE4NkMyNjIuMzEyLDE0NC4wNzEsMjU4Ljk1NCwxNDAuNzEzLDI1NC44MTIsMTQwLjcxM3oiIGZpbGw9IiMwMDAwMDAiLz4KCTxwYXRoIGQ9Ik0yNzUuNjc3LDBoLTc5LjU1M2MtNC4xNDIsMC03LjUsMy4zNTgtNy41LDcuNXYyMGMwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDI3LjMwNCAgIEwxMjAuNjgzLDEzNy43NDNjLTIuOTI5LDIuOTI5LTIuOTI5LDcuNjc3LDAsMTAuNjA3bDE0LjE0MiwxNC4xNDNjMS40MDcsMS40MDcsMy4zMTQsMi4xOTcsNS4zMDQsMi4xOTcgICBjMS45ODksMCwzLjg5Ny0wLjc5LDUuMzAzLTIuMTk3TDI0OC4xNzcsNTkuNzQ4djI3LjMwM2MwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDIwYzQuMTQyLDAsNy41LTMuMzU4LDcuNS03LjVWNy41ICAgQzI4My4xNzcsMy4zNTgsMjc5LjgxOSwwLDI3NS42NzcsMHoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" alt="" /></p>
+
+                </div>
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/680">Deep Song</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/698">Once Removed</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/810">Broken Eggs</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/919">The Cook</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1099">Cuba and the Night</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1100">Stevie Wants to Play the Blues</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1101">Rosario and the Gypsies</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1102">Don Juan in New York City</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1103">The Floating Island Plays</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2185">The Day You'll Love Me</a><br />  
+                    <span>Translator</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/918">Havana is Waiting</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/943">In the Eye of the Hurricane</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3923">Las damas modernas de Guanabacoa</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/3924.html">Fabiola</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1959</span>
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1945">All Eyes and Ears</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/389">Theatre Row</a></span><br />
+                    <span>April 30, 2008 - May 22, 2008</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1946">They Still Mambo in Havana</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/8.html">Flea Theatre</a></span><br />
+                    <span>1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1196">Noche de ronda</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/791/">Longing for Cuba with Laughter</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1273/">Exiles are trampling on their own</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1270/">Para Repertorio Español, la función debe continuar</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1266/">Repertorio bajo fuego</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1265/">Cancelan anuncios de actriz que irá a Cuba</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1264/">En Miami, Inquisición a la cubana</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1262/">Actriz viajará a Cuba con grupo teatral; Martínez Casado se presentará en teatro de la Habana</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1260/">The Hospital versus the Actress, et al</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1254/">Obra teatral del exilio hacia Cuba</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/980/">Repertorio Español rompe barreras</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1274/">Stage: Repertorio Español's 'Revoltillo'</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+                <br />
+               Author: Maya  Buten (University of Miami, SPA322, 2010) (2004-07-21, 2017)
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban - American</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>1953</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>La Habana, La Habana, Cuba</span>
+                </li>
+              
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16659">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e2/72/e2721dcf5d61c043b2c8199a545e95db.jpg" title="Program for the production, Floating Islands">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f6/99/f69948b03ce9bfaebb1adcec7fab26a0.jpg" alt="Program for the production, Floating Islands" data-href="/digitalobject/16659" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4b/66/4b6618a11d23b9f1d31a5c076ac01a9f.jpg" title="Program for the production, Floating Islands">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/94/09/940944f899689aa04ac46a2ae1f710bc.jpg" alt="Program for the production, Floating Islands" data-href="/digitalobject/16659" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/69/31/693117b5a91302886540fea8235d3993.jpg" title="Program for the production, A Burning Beach">
+                    
+                    
+                    <img src="../media/cache/e0/36/e036b76c404bd9cae30c3e472830adcd.jpg" alt="Program for the production, A Burning Beach" data-href="/digitalobject/16658" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d4/5b/d45b02f7503bdb8e817139643a133bed.jpg" title="Program for the production, A Burning Beach">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/dd/28/dd28ad42df9b370ce389d3923b6313fb.jpg" alt="Program for the production, A Burning Beach" data-href="/digitalobject/16658" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9f/78/9f784ad18d7458e9df233a354cd0bdc3.jpg" title="Program for the production, A Burning Beach">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/eb/74/eb74582774a7fee54da56218210f19b7.jpg" alt="Program for the production, A Burning Beach" data-href="/digitalobject/16658" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/e3/bde3fbeb9d74ecfe9099ac05a77691dc.jpg" title="Program for the production, A Burning Beach">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/00/36/00368b1aa4353a8f86d4c153c6afbc99.jpg" alt="Program for the production, A Burning Beach" data-href="/digitalobject/16658" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f9/0c/f90c7e51fc657dfe73de3314482677f0.jpg" title="Program for the production, A Burning Beach">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/46/c9/46c9fa0086adb3c8b1a9eabdc2e140e1.jpg" alt="Program for the production, A Burning Beach" data-href="/digitalobject/16658" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4e/f0/4ef0d22e1f2035cd3cdaee81bd355ea4.jpg" title="Program for the production, A Burning Beach">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/28/00/2800536f01e527d67ae06a664466dc3c.jpg" alt="Program for the production, A Burning Beach" data-href="/digitalobject/16658" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/95/99/959901b0521daa99229fddfa35e19afe.jpg" title="Program for the production, A Burning Beach">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8e/76/8e76cdfd63447b1efda51efebdd6604b.jpg" alt="Program for the production, A Burning Beach" data-href="/digitalobject/16658" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/b3/e0b311cf8d3307a330b7bdc7ddb65a3b.jpg" title="Program for the production, A Burning Beach">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/16/3a/163a5808575f9067c59bb90f5df2e2ea.jpg" alt="Program for the production, A Burning Beach" data-href="/digitalobject/16658" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6c/47/6c4752f543a0abe36e34039b94408ec1.jpg" title="Flyer for the production, Floating Islands">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ba/53/ba53b428d405880c0b53609471ca8d05.jpg" alt="Flyer for the production, Floating Islands" data-href="/digitalobject/16657" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/58/16/5816e601b93bcb6a310cc705645517ea.jpg" title="Flyer for the production, Floating Islands">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/41/48/414846fa3ecce8b1bc6effb70c089075.jpg" alt="Flyer for the production, Floating Islands" data-href="/digitalobject/16657" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,3855 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../venues.html">Venues</a></li>
+              <li>Unknown1</li>
+            </ul>
+          </nav>
+          <h2>Unknown1</h2>
+        </header>
+
+        <section class="main">
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          <div class="linkeditems">
+            <h3>Productions: +</h3>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4587">SI Dios fuera negro</a>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4191">Candide</a>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/3881.html">Idolo de Cuba</a>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4938">El travieso Jimmy, Bodas de Sangre, Contigo pan y cebolla</a>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/4707.html">La barbacoa</a>
+                
+                
+                <br /><span>Directed by: Wilfredo Candebat</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4715.html">La permuta</a>
+                
+                
+                <br /><span>Directed by: Juan  Carlos  Tabío</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4717">El millonario y la maleta</a>
+                
+                
+                <br /><span>Directed by: Yulki Cary Córdoba</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3763">La Negra Ester</a>
+                
+                
+                <br /><span>Directed by: Andrés Pérez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4777">Yo quiero ser una Spring Breaker</a>
+                
+                <br /><span>January 1, 2015</span>
+                
+                
+                <br /><span>Directed by: Raúl Martín</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2226">La espera</a>
+                
+                <br /><span>June 25, 2009</span>
+                
+                
+                <br /><span>Directed by: Gabriel Gorcés</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2219">El Cuento de René</a>
+                
+                <br /><span>June 25, 2009</span>
+                
+                
+                <br /><span>Directed by: Larry Villanueva</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1676">La vida loca</a>
+                
+                <br /><span>September 8, 2007</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1670">Land O&#39; Fire</a>
+                
+                <br /><span>February 16, 2007 - March 3, 2007</span>
+                
+                
+                <br /><span>Directed by: Jorge Luis Cacheiro</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1463">Las Tunas</a>
+                
+                <br /><span>November 2006</span>
+                
+                
+                <br /><span>Directed by: Ernesto Parra</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1533">El arte de la fuga</a>
+                
+                <br /><span>June 29, 2006 - July 2, 2006</span>
+                
+                
+                <br /><span>Directed by: Marianela Boán</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1403">NoPassport and  Bait Writers&#39; Saloon</a>
+                
+                <br /><span>May 25, 2006</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1498">Rosa Fuentes</a>
+                
+                <br /><span>February 2006</span>
+                
+                
+                <br /><span>Directed by: Abel González Melo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1477">Una casa colonial</a>
+                
+                <br /><span>2006</span>
+                
+                
+                <br /><span>Directed by: Nicolás Dorr</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3623">Vida y muerte de Pier Paolo Pasolini</a>
+                
+                <br /><span>2006</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3581">Tigre</a>
+                
+                <br /><span>2006</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1663">Alas para un amor de trapo</a>
+                
+                <br /><span>2006</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1601">Los niños del infortunio</a>
+                
+                <br /><span>2006</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1479">Marx en el Soho</a>
+                
+                <br /><span>2006</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3579">Los herederos del tiempo</a>
+                
+                <br /><span>2006</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3585">Alas para un amor de trapo</a>
+                
+                <br /><span>2006</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1497">Trío</a>
+                
+                <br /><span>December 2005</span>
+                
+                
+                <br /><span>Directed by: Carlos Pérez Peña</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1496">Voy por cigarros</a>
+                
+                <br /><span>November 2005</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1679">No Child</a>
+                
+                <br /><span>July 13, 2005 - 2006</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1105">La fosa</a>
+                
+                <br /><span>June 4, 2005</span>
+                
+                
+                <br /><span>Directed by: Pedro Monge Rafuls</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2185">Trash</a>
+                
+                <br /><span>June 4, 2005</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/984">Los mangos de Caín</a>
+                
+                <br /><span>May 12, 2005 - May 28, 2005</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1494">En falso</a>
+                
+                <br /><span>May 2005</span>
+                
+                
+                <br /><span>Directed by: Alejandro Palomino</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1049.html">Una caja de zapatos vacía</a>
+                
+                <br /><span>March 31, 2005</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2269">The House of Bernarda Alba</a>
+                
+                <br /><span>2005</span>
+                
+                
+                <br /><span>Directed by: Jean Randich</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/402">Una casa en la frontera</a>
+                
+                <br /><span>2005</span>
+                
+                
+                <br /><span>Directed by: Daysi Martínez</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1958.html">La zorra y las uvas</a>
+                
+                <br /><span>2005</span>
+                
+                
+                <br /><span>Directed by: Pedro Ángel Vera</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1492">Ceremonias para actores desesperados</a>
+                
+                <br /><span>2005</span>
+                
+                
+                <br /><span>Directed by: Carlos Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/740">A Short Time After</a>
+                
+                <br /><span>September 23, 2004 - October 1, 2004</span>
+                
+                
+                <br /><span>Directed by: Lear DeBessonet</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3179">Muerte de amor en Verona</a>
+                
+                <br /><span>September 16, 2004 - September 27, 2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3184">La cabeza intranquila</a>
+                
+                <br /><span>September 16, 2004 - September 27, 2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3185">El traidor y el héroe</a>
+                
+                <br /><span>September 16, 2004 - September 27, 2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3186">Mono Grama</a>
+                
+                <br /><span>September 16, 2004 - September 27, 2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3187">Aye N\&#39; Fumbi (Mundo de muertos)</a>
+                
+                <br /><span>September 16, 2004 - September 27, 2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3189">El caballito enano</a>
+                
+                <br /><span>September 16, 2004 - September 27, 2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3198">Los tres del Señor Manzano</a>
+                
+                <br /><span>September 16, 2004 - September 27, 2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/723">Los tres del señor Manzano</a>
+                
+                <br /><span>2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/710">Mono Grama</a>
+                
+                <br /><span>2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3302">Las penas saben nadar</a>
+                
+                <br /><span>2004</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/713.html">Vade Retro</a>
+                
+                <br /><span>2004</span>
+                
+                
+                <br /><span>Directed by: Pedro Castro</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1174">Magnificent Waste</a>
+                
+                <br /><span>2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1562">Contigo pan y cebolla</a>
+                
+                <br /><span>2004</span>
+                
+                
+                <br /><span>Directed by: Liuba Cid</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3874.html">La Violación de Bona Cortada, de Gurney</a>
+                
+                <br /><span>2004</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/714">El caballito enano</a>
+                
+                <br /><span>2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1434">Adiós pero conmigo</a>
+                
+                <br /><span>2004</span>
+                
+                
+                <br /><span>Directed by: Carlos Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/719">La caja de los juguetes</a>
+                
+                <br /><span>2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/708">La cabeza intranquila</a>
+                
+                <br /><span>2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2047">Las Brujitas del Downtown</a>
+                
+                <br /><span>2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/808.html">Twelve Ophelias (Text with Songs)</a>
+                
+                <br /><span>November 2, 2003 - November 5, 2003</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3292">Las penas saben nadar</a>
+                
+                <br /><span>September 2003</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2050.html">Matías y el Aviador</a>
+                
+                <br /><span>2003</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/2156.html">Conozca a lorca</a>
+                
+                <br /><span>2003</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/716">Con ropa de domingo</a>
+                
+                <br /><span>2003</span>
+                
+                
+                <br /><span>Directed by: Ariel Bouza</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3261">El álbum</a>
+                
+                <br /><span>2003</span>
+                
+                
+                <br /><span>Directed by: Raúl Martín</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/703">Tíbor Galarraga</a>
+                
+                <br /><span>2003</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3170">El álbum</a>
+                
+                <br /><span>September 8, 2002</span>
+                
+                
+                <br /><span>Directed by: Raúl Martín</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1329">A Very Old Man with Enormous Wings</a>
+                
+                <br /><span>September 3, 2002 - October 19, 2002</span>
+                
+                
+                <br /><span>Directed by: Graciela Daniele</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3234">Juan Candela</a>
+                
+                <br /><span>2002</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1432">Hermanos queridos</a>
+                
+                <br /><span>2002</span>
+                
+                
+                <br /><span>Directed by: Luis Brunet</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3299.html">Pelusín y los pájaros</a>
+                
+                <br /><span>2002</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/752">La Cucarachita Martina y el Ratoncito Pérez</a>
+                
+                <br /><span>2002</span>
+                
+                
+                <br /><span>Directed by: Ariel Bouza</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/751">La calle de los fantasmas</a>
+                
+                <br /><span>2002</span>
+                
+                
+                <br /><span>Directed by: Miguel Santiesteban Domínguez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/735">Cuenteros, papalotes y piratas</a>
+                
+                <br /><span>2002</span>
+                
+                
+                <br /><span>Directed by: José Saavedra Mariño</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/651">Los músicos de Bremen</a>
+                
+                <br /><span>2002</span>
+                
+                
+                <br /><span>Directed by: Antonio Liubar García Medina</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1561">Electra</a>
+                
+                <br /><span>2002</span>
+                
+                
+                <br /><span>Directed by: José González</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1609">Sebastian</a>
+                
+                <br /><span>2002</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1532">Chorus perpetuus</a>
+                
+                <br /><span>April 20, 2001</span>
+                
+                
+                <br /><span>Directed by: Marianela Boán</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2189">La repeticion</a>
+                
+                <br /><span>February 9, 2001 - February 10, 2001</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2188">&quot;La repeticion&quot;</a>
+                
+                <br /><span>February 9, 2001 - February 10, 2001</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2153">El Oso</a>
+                
+                <br /><span>2001</span>
+                
+                
+                <br /><span>Directed by: Frank Quintana</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2160.html">El cangrejito volador</a>
+                
+                <br /><span>2001</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1488">La gaviota</a>
+                
+                <br /><span>2001</span>
+                
+                
+                <br /><span>Directed by: Carlos Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1431">El vivo al pollo</a>
+                
+                <br /><span>2001</span>
+                
+                
+                <br /><span>Directed by: Elio Enrique Mesa</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/694">Los tres pichones</a>
+                
+                <br /><span>May 27, 2000</span>
+                
+                
+                <br /><span>Directed by: Evelyn Gómez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/673">Morir del cuento</a>
+                
+                <br /><span>March 2000</span>
+                
+                
+                <br /><span>Directed by: Julio César Ramírez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/783">Fugitive Pieces ( A Play with Songs)</a>
+                
+                <br /><span>2000</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1433">El cartero de Neruda</a>
+                
+                <br /><span>2000 - 2004</span>
+                
+                
+                <br /><span>Directed by: Orietta Medina</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1666">El barrio de la Martina</a>
+                
+                <br /><span>2000&#39;s</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3264">Torch</a>
+                
+                <br /><span>2000</span>
+                
+                
+                <br /><span>Directed by: Debbie Saivetz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/255">Iphigenia Crash Land Falls on the Neon Shell That Was Once Her Heart</a>
+                
+                <br /><span>2000</span>
+                
+                
+                <br /><span>Directed by: Nick Philippou</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2163">Fifi and Lybia</a>
+                
+                <br /><span>2000</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2155">Fifi and Lybia</a>
+                
+                <br /><span>2000</span>
+                
+                
+                <br /><span>Directed by: Frank Quintana</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1067">La puerta estrecha</a>
+                
+                <br /><span>2000</span>
+                
+                
+                <br /><span>Directed by: Paco de la Zaranda</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/820">Torch</a>
+                
+                <br /><span>April 30, 1999 - May 22, 1999</span>
+                
+                
+                <br /><span>Directed by: Laurel Kelsh</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/789">Alchemy of Desire/ Dead Man&#39;s Blues (Text with Songs)</a>
+                
+                <br /><span>April 20, 1999 - May 2, 1999</span>
+                
+                
+                <br /><span>Directed by: Rebecca Brown</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1430">Don Gil de la Calzas Verdes</a>
+                
+                <br /><span>1999 - 2000</span>
+                
+                
+                <br /><span>Directed by: Berta Martínez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1382">The Boys of Mariel</a>
+                
+                <br /><span>1999</span>
+                
+                
+                <br /><span>Directed by: Bill Yule</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/831">The Archaeology of Dreams</a>
+                
+                <br /><span>1999</span>
+                
+                
+                <br /><span>Directed by: Leon Martell</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3297">Las penas saben nadar</a>
+                
+                <br /><span>1999</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2390">El mendigo y el perro muerto</a>
+                
+                <br /><span>1998</span>
+                
+                
+                <br /><span>Directed by: Vicente Revuelta</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1294">Volumen descontrolado</a>
+                
+                <br /><span>1998</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/790">Alchemy of Desire/ Dead Man&#39;s Blues (Text with Songs)</a>
+                
+                <br /><span>1998</span>
+                
+                
+                <br /><span>Directed by: Michael John Garcés</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1390">Monodrama cuarta pared II</a>
+                
+                <br /><span>1998</span>
+                
+                
+                <br /><span>Directed by: Víctor Varela</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/780">Alchemy of Desire/ Dead Man&#39;s Blues (Text with Songs)</a>
+                
+                <br /><span>November 14, 1997 - November 30, 1997</span>
+                
+                
+                <br /><span>Directed by: Wendy Knox</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4022">E-Motions  / E-Mociones</a>
+                
+                <br /><span>June 2, 1997</span>
+                
+                
+                <br /><span>Directed by: Leandro Soto</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1428">Momo</a>
+                
+                <br /><span>1997</span>
+                
+                
+                <br /><span>Directed by: Augusto Blanca Gil</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/321">To Catch the Lighting</a>
+                
+                <br /><span>1997</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1370">Mamá</a>
+                
+                <br /><span>1997</span>
+                
+                
+                <br /><span>Directed by: Rolando Tarajano</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/974">La casa vieja</a>
+                
+                <br /><span>1997</span>
+                
+                
+                <br /><span>Directed by: Julio César Ramírez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/243">Lola</a>
+                
+                <br /><span>October 9, 1996 - December 15, 1996</span>
+                
+                
+                <br /><span>Directed by: Mario Ernesto Sánchez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3600">Masigüere</a>
+                
+                <br /><span>1996</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3596">La venganza de medea</a>
+                
+                <br /><span>1996</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/797">Alchemy of Desire/ Dead Man&#39;s Blues (Text with Songs)</a>
+                
+                <br /><span>1996</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2413">¡Ay, Carmela!</a>
+                
+                <br /><span>1996</span>
+                
+                
+                <br /><span>Directed by: Nelson Dorr</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/832">Brazo Gitano (Text with Songs)</a>
+                
+                <br /><span>1996</span>
+                
+                
+                <br /><span>Directed by: María Mazor</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3601">Masigüere</a>
+                
+                <br /><span>1996</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/2152.html">Jacobo y la Sumisión</a>
+                
+                <br /><span>1995</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1834">Sarah&#39;s</a>
+                
+                <br /><span>1995</span>
+                
+                
+                <br /><span>Directed by: Mario Muñoz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1372">Las culpables</a>
+                
+                <br /><span>1995</span>
+                
+                
+                <br /><span>Directed by: Rolando Tarajano</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3597">La venganza de medea</a>
+                
+                <br /><span>1995</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1304">Mirando al tendido</a>
+                
+                <br /><span>1995</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3444">Manteca</a>
+                
+                <br /><span>1995</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2282">Momentos</a>
+                
+                <br /><span>December 9, 1994</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/2170.html">Fando and Lis</a>
+                
+                <br /><span>1994</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2169.html">Jack or the Submission</a>
+                
+                <br /><span>1994</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3442">Manteca</a>
+                
+                <br /><span>1994</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3443">Manteca</a>
+                
+                <br /><span>1994</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/2172.html">Big Al</a>
+                
+                <br /><span>1993</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2171.html">Tribute to Chilean poet Alberto Baeza</a>
+                
+                <br /><span>1993</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/805">Alchemy of Desire/  Dead Man&#39;s Blues (Text with Songs)</a>
+                
+                <br /><span>1993</span>
+                
+                
+                <br /><span>Directed by: Lisa Peterson</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1427">La verbena de la paloma</a>
+                
+                <br /><span>1993 - 1994</span>
+                
+                
+                <br /><span>Directed by: Berta Martínez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3613">La piedra de Eliot</a>
+                
+                <br /><span>1993</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3612">La celestina</a>
+                
+                <br /><span>1993</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2181">Trash</a>
+                
+                <br /><span>1993</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1901">Mango Grove</a>
+                
+                <br /><span>April 12, 1992</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1899">Me! Me! Me!</a>
+                
+                <br /><span>April 11, 1992</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/1900.html">A Bicycle Country</a>
+                
+                <br /><span>April 10, 1992</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1438">Jordán y Yo</a>
+                
+                <br /><span>1992</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/352">Los mangos de Caín</a>
+                
+                <br /><span>1992</span>
+                
+                
+                <br /><span>Directed by: Alberto Sarraín</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2173.html">The School of Wives</a>
+                
+                <br /><span>1992</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2174.html">Tribute to Cuban poet Dulce Maria Loynaz</a>
+                
+                <br /><span>1992</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1426">Lisistrata</a>
+                
+                <br /><span>1992</span>
+                
+                
+                <br /><span>Directed by: Elio Martín</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/361">Una cosa es una cosa</a>
+                
+                <br /><span>June 9, 1991</span>
+                
+                
+                <br /><span>Directed by: María Teresa Hincapie</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1898">Morphine</a>
+                
+                <br /><span>1991 - 1992</span>
+                
+                
+                <br /><span>Directed by: Ana María Simo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1423">Pequeña tragedia</a>
+                
+                <br /><span>1991</span>
+                
+                
+                <br /><span>Directed by: Pedro Álvarez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1425">Me llamo Reina</a>
+                
+                <br /><span>1991</span>
+                
+                
+                <br /><span>Directed by: Huberto Llamas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1205.html">Fabriles</a>
+                
+                <br /><span>1991</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1424">No por favor</a>
+                
+                <br /><span>1991</span>
+                
+                
+                <br /><span>Directed by: Pedro Álvarez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1614">Cortés, Leonor and Catalina</a>
+                
+                <br /><span>1991</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1908">Marriage of Convenience</a>
+                
+                <br /><span>December 1, 1990</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3273">Las penas saben nadar</a>
+                
+                <br /><span>November 2, 1990</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3685.html">Easy Money</a>
+                
+                <br /><span>July 8, 1990</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1217">Solidarios</a>
+                
+                <br /><span>July 1990</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3545">Mariana Pineda</a>
+                
+                <br /><span>1990</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/973">Los mangos de Caín</a>
+                
+                <br /><span>1990</span>
+                
+                
+                <br /><span>Directed by: Pedro Jorge Ortega</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1422">Réquiem por Yarini</a>
+                
+                <br /><span>1990</span>
+                
+                
+                <br /><span>Directed by: Huberto Llamas</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3548">Mariana Pineda</a>
+                
+                <br /><span>1990</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/2201.html">Los verdes campos del Eden</a>
+                
+                <br /><span>1990</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2200.html">Las cartas de Mozart</a>
+                
+                <br /><span>1990</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3295">Las penas saben nadar</a>
+                
+                <br /><span>1990</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3606">Transparencia</a>
+                
+                <br /><span>1990</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1421">El aborto</a>
+                
+                <br /><span>1989</span>
+                
+                
+                <br /><span>Directed by: Roberto Blanco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1436">La guerra</a>
+                
+                <br /><span>1989</span>
+                
+                
+                <br /><span>Directed by: René de la Cruz</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2149.html">Cachita</a>
+                
+                <br /><span>1989</span>
+                
+                
+                <br /><span>Directed by: María Julia Casanova</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3539">Mariana Pineda</a>
+                
+                <br /><span>1989</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/2372.html">Back to Back</a>
+                
+                <br /><span>1989</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3625">El masigüere</a>
+                
+                <br /><span>1989</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1437">Un grano de oro</a>
+                
+                <br /><span>1989 - 1990</span>
+                
+                
+                <br /><span>Directed by: René de la Cruz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2375">The Mango Orchard</a>
+                
+                <br /><span>1989</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2377">Monosodium Glutamate</a>
+                
+                <br /><span>1989</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1420">El aborto</a>
+                
+                <br /><span>1988</span>
+                
+                
+                <br /><span>Directed by: Roberto Blanco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3547">Mariana Pineda</a>
+                
+                <br /><span>1988</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1435">El hijo de Arturo Estévez</a>
+                
+                <br /><span>1988</span>
+                
+                
+                <br /><span>Directed by: René de la Cruz</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1994.html">Tango Apasoinado</a>
+                
+                <br /><span>1988</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3543">Mariana Pineda</a>
+                
+                <br /><span>1988</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1349">The Two Caballeros of Central Park West</a>
+                
+                <br /><span>1987</span>
+                
+                
+                <br /><span>Directed by: Janet L. Murphy</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1580">Los tres mosqueteros</a>
+                
+                <br /><span>1987</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1581">Don Quixote</a>
+                
+                <br /><span>1987</span>
+                
+                
+                <br /><span>Directed by: Laura Alonso</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1582">El palenque</a>
+                
+                <br /><span>1987</span>
+                
+                
+                <br /><span>Directed by: Eugenio Hernández</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1419">Mariana Pineda</a>
+                
+                <br /><span>1987</span>
+                
+                
+                <br /><span>Directed by: Roberto Blanco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/657">La visita de la vieja dama</a>
+                
+                <br /><span>1987</span>
+                
+                
+                <br /><span>Directed by: Raúl Martín</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/676">La corte del Faraón</a>
+                
+                <br /><span>October 1986</span>
+                
+                
+                <br /><span>Directed by: Armando Suárez del Villar</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2068.html">Abelardo y Eloisa</a>
+                
+                <br /><span>May 3, 1986</span>
+                
+                
+                <br /><span>Directed by: María Julia Casanova</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2391">Buscón busca un Otelo</a>
+                
+                <br /><span>April 3, 1986 - April 20, 1986</span>
+                
+                
+                <br /><span>Directed by: José Antonio Rodríguez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3610">Ejercicio para un actor</a>
+                
+                <br /><span>1986</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2053">Cordero de Dios (Agnes of God)</a>
+                
+                <br /><span>1986</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1884">Todos fuimos jóvenes</a>
+                
+                <br /><span>1986</span>
+                
+                
+                <br /><span>Directed by: Orietta Medina</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1832">Un largo lagarto verde</a>
+                
+                <br /><span>1986</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2054">Orinoco</a>
+                
+                <br /><span>1986</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1833">Luz y fuerza</a>
+                
+                <br /><span>1986</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3611">Ha llegado un inspector</a>
+                
+                <br /><span>1986</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3608">Ha llegado un inspector</a>
+                
+                <br /><span>1986</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1351">The Chronicle of Soleded</a>
+                
+                <br /><span>1986</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1346">Tatters</a>
+                
+                <br /><span>1986</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1852">El corsario y la abadesa</a>
+                
+                <br /><span>1986</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/648">La caperucita roja</a>
+                
+                <br /><span>August 24, 1985</span>
+                
+                
+                <br /><span>Directed by: Luis Brunet</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1303">Lorca o el lenguaje de amor</a>
+                
+                <br /><span>1985</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1352">Álbum</a>
+                
+                <br /><span>1985 - 1987</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3268">Morir del cuento</a>
+                
+                <br /><span>1985</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2055">Jesus, El Hijo del Hombre</a>
+                
+                <br /><span>1985</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/601">El cuento del zoológico</a>
+                
+                <br /><span>February 1984</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4714">La boda de los pequeños burgueses</a>
+                
+                <br /><span>January 11, 1984</span>
+                
+                
+                <br /><span>Directed by: Miriam Lezcano</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/435">Soul Gone Home</a>
+                
+                <br /><span>1984</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2388">El canto del cisne</a>
+                
+                <br /><span>1984</span>
+                
+                
+                <br /><span>Directed by: Vicente Revuelta</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2387">El cuento del zoológico</a>
+                
+                <br /><span>1984</span>
+                
+                
+                <br /><span>Directed by: Vicente Revuelta</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/767">La finca</a>
+                
+                <br /><span>1983</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/4937.html">Don Juan</a>
+                
+                <br /><span>1983</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/775">La marquesa de Larkspur lotion</a>
+                
+                <br /><span>1983</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2056">The Holy Terrors</a>
+                
+                <br /><span>1983</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2399">La casa de Bernarda Alba</a>
+                
+                <br /><span>1983</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/647">The Last Latin Lover</a>
+                
+                <br /><span>June 2, 1982 - June 27, 1982</span>
+                
+                
+                <br /><span>Directed by: Max Ferrá</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1544">My Fair Lady</a>
+                
+                <br /><span>1982</span>
+                
+                
+                <br /><span>Directed by: Nelson Dorr</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1921">Blood Wedding</a>
+                
+                <br /><span>1982</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/766">Un tranvia llamado deseo</a>
+                
+                <br /><span>1982</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2057">Streetcar Named Desire</a>
+                
+                <br /><span>1982</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1923">Fuenteovejuna</a>
+                
+                <br /><span>1981</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1416">Guardafrontera</a>
+                
+                <br /><span>1981</span>
+                
+                
+                <br /><span>Directed by: Octavio Cortázar</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1415">La cuadratura del circulo</a>
+                
+                <br /><span>1981</span>
+                
+                
+                <br /><span>Directed by: Fabio Alfonso</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1961">Atlantic City</a>
+                
+                <br /><span>1981</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2233">La celestina o la tragicomedia de Calisto y Melibea</a>
+                
+                <br /><span>1980</span>
+                
+                
+                <br /><span>Directed by: Herberto Dumé</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2368">Orphans</a>
+                
+                <br /><span>1980</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1439">El hambre</a>
+                
+                <br /><span>1980</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2342">Mundo</a>
+                
+                <br /><span>1980</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2346">The Ash Can and the Cobra</a>
+                
+                <br /><span>1980</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/323">The Beggar&#39;s Soap Opera</a>
+                
+                <br /><span>July 5, 1979 - July 8, 1979</span>
+                
+                
+                <br /><span>Directed by: Manuel Martín Jr.</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1414">Andoba</a>
+                
+                <br /><span>1979</span>
+                
+                
+                <br /><span>Directed by: Mario Balmaseda</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1933">Ain&#39;t Misbehavin&#39;</a>
+                
+                <br /><span>May 9, 1978 - February 21, 1982</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2058">El Viaje</a>
+                
+                <br /><span>1978</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1413">Valentín y Valentina</a>
+                
+                <br /><span>1978</span>
+                
+                
+                <br /><span>Directed by: Miriam Lezcano</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1838">Cuentos con olor de arboleda y mar</a>
+                
+                <br /><span>1977</span>
+                
+                
+                <br /><span>Directed by: Jorge Cao, Sara Larocca</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2252">Hey Fever</a>
+                
+                <br /><span>1977</span>
+                
+                
+                <br /><span>Directed by: Francisco Morín</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1412">El ingenioso criollo Don Matías Pérez</a>
+                
+                <br /><span>1977</span>
+                
+                
+                <br /><span>Directed by: René de la Cruz (Sr.)</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1411">El carrillo de Kremlin</a>
+                
+                <br /><span>1976</span>
+                
+                
+                <br /><span>Directed by: Evgueni Radomilenski</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2059">Hey Fever</a>
+                
+                <br /><span>1976</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1621">Les nonnes</a>
+                
+                <br /><span>1976</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1571">Criollos</a>
+                
+                <br /><span>1975</span>
+                
+                
+                <br /><span>Directed by: Alicia Alonso</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1523">El peine y el espejo</a>
+                
+                <br /><span>1975</span>
+                
+                
+                <br /><span>Directed by: Generoso González</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1572">Déjame amar al pájaro del amor</a>
+                
+                <br /><span>1975</span>
+                
+                
+                <br /><span>Directed by: Alicia Alonso</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1455">Madras, la nuit où...</a>
+                
+                <br /><span>July 18, 1974</span>
+                
+                
+                <br /><span>Directed by: Claude Confortes</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4716.html">Cañaveral</a>
+                
+                <br /><span>1974</span>
+                
+                
+                <br /><span>Directed by: René de la Cruz (Sr.)</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2081">Barefoot in the Park</a>
+                
+                <br /><span>1974</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1541">Madre Coraje y sus hijos</a>
+                
+                <br /><span>1974</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2394">Madre Coraje</a>
+                
+                <br /><span>1973</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1960">The Amorous Flea</a>
+                
+                <br /><span>1973</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2385">La conquista de México</a>
+                
+                <br /><span>1972</span>
+                
+                
+                <br /><span>Directed by: Vicente Revuelta</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1568">Testimonio</a>
+                
+                <br /><span>1971</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1570">Momentum</a>
+                
+                <br /><span>1971</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1569">Sikanekue</a>
+                
+                <br /><span>1971</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1540">Los juegos santos</a>
+                
+                <br /><span>November 1970</span>
+                
+                
+                <br /><span>Directed by: José (Pepe) Santos Marrero</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1925">Man of La Mancha</a>
+                
+                <br /><span>1970 - 1971</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1736">El mancebo que casó con mujer brava</a>
+                
+                <br /><span>1970</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1733">Los ángeles no son dogmáticos</a>
+                
+                <br /><span>1970</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2045">El cepillo de dientes</a>
+                
+                <br /><span>1970</span>
+                
+                
+                <br /><span>Directed by: Max Ferrá</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2077">A View From the Bridge</a>
+                
+                <br /><span>1970</span>
+                
+                
+                <br /><span>Directed by: Benjamín López</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/772">Tia Meim</a>
+                
+                <br /><span>1970</span>
+                
+                
+                <br /><span>Directed by: Nelson Dorr</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1732">Cuentos populares</a>
+                
+                <br /><span>1970</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1734">Coro hablado</a>
+                
+                <br /><span>1970</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1735">La cerca</a>
+                
+                <br /><span>1970</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2080">Los mangos de Caín</a>
+                
+                <br /><span>1970 - 1971</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3916">Dos viejos pánicos</a>
+                
+                <br /><span>1969</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1934">Un cabello sobre la almohada</a>
+                
+                <br /><span>1968</span>
+                
+                
+                <br /><span>Directed by: Oscar García</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/975">Las vacas gordas</a>
+                
+                <br /><span>1968</span>
+                
+                
+                <br /><span>Directed by: Armando Suárez del Villar</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3589">La moral de la Señora Dulska</a>
+                
+                <br /><span>September 1967</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/748.html">Vade Retro</a>
+                
+                <br /><span>1967</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1990">El apartamento</a>
+                
+                <br /><span>1965</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2312">El aniversario</a>
+                
+                <br /><span>June 20, 1964</span>
+                
+                
+                <br /><span>Directed by: Maggie Crespo</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/961.html">Los próceres</a>
+                
+                <br /><span>February 15, 1963</span>
+                
+                
+                <br /><span>Directed by: Ada Abdo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/962">La repetición</a>
+                
+                <br /><span>February 15, 1963</span>
+                
+                
+                <br /><span>Directed by: David Camps</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3692">Mundo de cristal</a>
+                
+                <br /><span>1961</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3656">La taza de café</a>
+                
+                <br /><span>December 25, 1959 - December 27, 1959</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2085">Bus Stop</a>
+                
+                <br /><span>1959</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1485">La ramera respetuosa</a>
+                
+                <br /><span>1954</span>
+                
+                
+                <br /><span>Directed by: Erik Santamaría</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2378">La voz humana</a>
+                
+                <br /><span>June 30, 1951</span>
+                
+                
+                <br /><span>Directed by: Vicente Revuelta</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1486">La ramera respetuosa</a>
+                
+                <br /><span>1948</span>
+                
+                
+                <br /><span>Directed by: Francisco Parés</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1916">Marea</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Debbie Saivetz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3536">Marx en el Soho</a>
+                
+                <br /><span>July 13</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1555">Dos viejos  pánicos</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Roberto Blanco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1552">Fuenteovejuna</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Roberto Blanco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1551">La mandrágora</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1164.html">El álbum (Instantáneas a color)</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Críspulo Torres B.</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1157">Alfonsina</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Rodolfo Graziano</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/382">El amor de Don Perlimplín con Belisa en su jardín</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Antonio Díaz-Florián, María Alice Vergueiro</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1119">La Chunga</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: William Pereira</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1109">El arquitecto y el Emperador de Asiria</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Samuel Vázquez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1100">El tango</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Manuel Gómez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1004">Mosca</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Fabio Rubiano Orjuela</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1006">Fuente Ovejuna</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Ninon Davalos Kushner</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1033">La tierra de Calibán</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Paulo Atto</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1037.html">Madame Curie</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Jorge Curí</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1042">El veneno del teatro</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Antonia San Juan</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1043.html">Vacío</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: José Sanchis Sinisterra</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1053">El bolero fue mi ruina</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Rosalba Rolón</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1056">Los cíngaros</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Mario Matallana</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1057">Las abarcas del tiempo</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: César Brie</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1059">Melodrama</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Enrique Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1060">De monstruos y prodigios:  la historia de los castrati</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Claudio Valdés Kuri</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1123">Los muchachos del barrio</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Ana Helena Chacón</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1126">La Celestina</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Agustín Iglesias</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1130">El clásico binomio</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Mauricio Kartún</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1131">Gertrude Stein, Alice Toklas y Pablo Picasso</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Antonio Abujamra, Marcio Aurelio</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1137">Viaje al centro de la tierra</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Creación Colectiva</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1139">La caja</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Hugo Hiriart</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1153">Calisto</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Miguel Seabra</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1154">Un golpe a la tristeza</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Carlos Álvarez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1097">Made in Lanús</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Abel López</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1093">Con las alas encogidas</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Guillermo Gentile</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1084">Tito</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: José G. García</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1072">La valija</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Juan Graña</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1069">Maniobras</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Roberto Avendaño, Sandra Moreno</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1068.html">Tap Dance</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Román Chalbaud</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1066">El festín de las artes</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Roberto Avendaño</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1063">El adiestramiento</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Israel Lugo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1062">Muerte súbita</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Francisco Franco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1030">Mira&#39;m, se dicen tantas cosas</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Pep Bou, Marta Carrasco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1025">La casa de Bernarda Alba</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Matjaz Pograjc</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1024">Farsa Quixotesca</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Hugo Possolo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1020">La casa de Rigoberta mira al sur</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Charo Francés, Arístides Vargas</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1018">El automóvil gris</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Claudio Valdés Kuri</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1016.html">By the Hand of the Father, A 20th Century Journey, an original theaterwork with music.</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Theresa Chávez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1013">Venice</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Omar Viale</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/774">La muerte del hombre</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/406">El circo</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Jorge Ramos Zepeda</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/399">Una caja de zapatos vacía</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Leonardo Zelig</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1527">Hamlet</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Juan Ramón Amán</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1528.html">Edipo Rey</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Juan Ramón Amán</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/393">Tudo de uma vez</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Cacá Rosset</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1534">Mundo de cristal</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Juan Ramón Amán</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1535">Permiso para casarse</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Juan Ramón Amán</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1537">Peribañez</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Juan Ramón Amán</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1538">El Comendador de Ocaña</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Juan Ramón Amán</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1652">El poder de la imagen</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Norberto Reyes</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/390">Los melindres de Melisa</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Susana Cantero</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1682">Historias sobre el camino</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Freddy Núñez Estenoz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1685">Tigre</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Atilio Caballero</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/385">Memorias del ombligo del mundo</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Juan Fernando Cerdas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/383.html">Tango varsoviano</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Alberto Félix Alberto</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/367">Vinagre de Jerez</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/235">La catedral del helado</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Osmel Poveda</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1355">The Last Guantanamera</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2420">Teresa</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1798">Piel de Elisa  xxx</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1957">S-e-x-Oh!</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1991">The Body Builder&#39;s Book of Love</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1344">The Encanto File</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Melia Bensussen</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2034">Canto subterraneo</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2037">El 23 se rompe el corojo</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2038">El cuentero</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2416">Corazón al Sur e Infamias</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Francisco Garzón Cespedes</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2341">Cualquier otro lugar menos éste</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2180">Pulpa</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2177">Ms. Tessa Triff&#39;s been Drinking!</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Frank Quintana</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2151">La mujer de Antonio</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2150">The Dinner Date</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1953">Las brujas de Salem</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1952">El pavo real</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1951">Juno</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1950">Prohibido suicidarse en Primavera</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1948">La Pareja Dispareja</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1603">Cuando Teodoro se muera</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/371">Gramasque</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Graciela Binaghi, Maureen Trotto</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1520">Allá afuera hay fresco</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1696">La empresa perdona un momento de locura</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Armando del Rosario</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1474">Tengamos el sexo en paz</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1473">Pareja abierta</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1472">El balcón de los helechos,</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/1051.html">Acerca de un chancho robado</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Willy Semler</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1107">Legionaria</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Nuria Masot</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3624.html">Había una vez</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/1539.html">La Alondra</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Miriam Lezcano</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3576">Espantapájaros</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1247">Provincianas</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2412">Los tres mosqueteros</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1185">The Loves of Bricktop</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Dianne Kirksey</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1543">Sonlar</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: René de Cárdenas</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/773">Detras de nadie</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2422">Yo no soy el rey Lear</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Susana Alonso</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1669">El ruiseñor</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1684">Restos en la noche</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/2026.html">Machos</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1047">Aura</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: C. Appleton</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/241">Adiós, Ayacucho</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Miguel Rubio</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/247">La ciudad sitiada</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Laila Ripoll</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1683">Los herederos del tiempo</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Orlando Concepción González</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1667.html">Danilo y Dorotea</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: René Fernández Santana</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1653">El Ogrito</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Miguel Santiesteban Domínguez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1579">Con Pablo</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1578">Con Silvio</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1576">Cubanísima</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1574">Canción de Rachel</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+            </ul>
+          </div>
+        
+        
+             
+        
+          
+      
+                
+
+
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              
+              <li>
+                <h4>Country:</h4>
+                <span>Unknown</span>
+              </li>
+              
+              
+            </ul>
+            
+
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

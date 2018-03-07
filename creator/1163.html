@@ -1,0 +1,712 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>René Fernández Santana</li>
+                </ul>
+            </nav>
+            <h2>René Fernández Santana</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+                
+                    <img src="http://ctda.library.miami.edu/media/cache/d3/65/d365aabc20a22a64ef6732a0f11ca72a.jpg" />
+                
+            
+
+            <p><strong>Director, artistic/general director, set designer, costume designer, puppets designer, author / playwright</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>Information available in Spanish; click "Espa&ntilde;ol" in the upper&nbsp;right hand&nbsp;side of the page.&nbsp;<img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI4My4xNzggMjgzLjE3OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjgzLjE3OCAyODMuMTc4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPHBhdGggZD0iTTI1NC44MTIsMTQwLjcxM2gtMjBjLTQuMTQyLDAtNy41LDMuMzU4LTcuNSw3LjV2OTEuMTg2YzAsNC44NC0zLjkzOSw4Ljc3OC04Ljc3OSw4Ljc3OEg0My43NzYgICBjLTQuODM5LDAtOC43NzUtMy45MzgtOC43NzUtOC43NzhWNjQuNjQ1YzAtNC44NDEsMy45MzYtOC43OCw4Ljc3NS04Ljc4aDk1Ljg1NWM0LjE0MiwwLDcuNS0zLjM1OCw3LjUtNy41di0yMCAgIGMwLTQuMTQyLTMuMzU4LTcuNS03LjUtNy41SDQzLjc3NmMtMjQuMTM4LDAtNDMuNzc1LDE5LjY0LTQzLjc3NSw0My43OHYxNzQuNzU1YzAsMjQuMTQsMTkuNjM4LDQzLjc3OCw0My43NzUsNDMuNzc4aDE3NC43NTYgICBjMjQuMTQsMCw0My43NzktMTkuNjM5LDQzLjc3OS00My43Nzh2LTkxLjE4NkMyNjIuMzEyLDE0NC4wNzEsMjU4Ljk1NCwxNDAuNzEzLDI1NC44MTIsMTQwLjcxM3oiIGZpbGw9IiMwMDAwMDAiLz4KCTxwYXRoIGQ9Ik0yNzUuNjc3LDBoLTc5LjU1M2MtNC4xNDIsMC03LjUsMy4zNTgtNy41LDcuNXYyMGMwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDI3LjMwNCAgIEwxMjAuNjgzLDEzNy43NDNjLTIuOTI5LDIuOTI5LTIuOTI5LDcuNjc3LDAsMTAuNjA3bDE0LjE0MiwxNC4xNDNjMS40MDcsMS40MDcsMy4zMTQsMi4xOTcsNS4zMDQsMi4xOTcgICBjMS45ODksMCwzLjg5Ny0wLjc5LDUuMzAzLTIuMTk3TDI0OC4xNzcsNTkuNzQ4djI3LjMwM2MwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDIwYzQuMTQyLDAsNy41LTMuMzU4LDcuNS03LjVWNy41ICAgQzI4My4xNzcsMy4zNTgsMjc5LjgxOSwwLDI3NS42NzcsMHoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" alt="" /></p>
+
+                </div>
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3674">Romance del papalote que quería llegar a la luna</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/637">Los Ibeyis y el diablo</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1242">Historia de Burros</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/610">Feo</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3153">El capricho feliz</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3430">Se durmió en los laureles </a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4028">El flautista de Hamelín</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1351">Teatro Victoria</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4776.html">Macbeth</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4923">Se durmió en los laureles </a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/83">Sala de Teatro La edad de oro</a></span><br />
+                    <span>October 9, 2014 - October 11, 2014</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4381">Se durmió en los laureles </a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/66.html">Teatro Nacional de Guiñol de Cuba</a></span><br />
+                    <span>November 2, 2013 - November 3, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4119.html">Yemayá y la maravillosa flauta</a><br />
+                    <span>Artistic/General Director</span><br />
+                    <span><a href="../venue/254.html">Casa de Cultura Pablo Quevedo</a></span><br />
+                    <span>March 14, 2012</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4135">Juegos de pirata</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/254.html">Casa de Cultura Pablo Quevedo</a></span><br />
+                    <span>March 18, 2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/728">Feo</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/281.html">Sala Teatro Papalote</a></span><br />
+                    <span>September 1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4027">Un bufo de este siglo</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/281.html">Sala Teatro Papalote</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4004">El día que se robaron los colores</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1338.html">Castillo de los Niños</a></span><br />
+                    <span>November 1968</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4000">El flautista de Hamelín</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1338.html">Castillo de los Niños</a></span><br />
+                    <span>April 1967</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4001">Pedrito y las semillas mágicas</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1338.html">Castillo de los Niños</a></span><br />
+                    <span>1967</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1667.html">Danilo y Dorotea</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4923">Se durmió en los laureles </a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/83">Sala de Teatro La edad de oro</a></span><br />
+                    <span>October 9, 2014 - October 11, 2014</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4381">Se durmió en los laureles </a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="../venue/66.html">Teatro Nacional de Guiñol de Cuba</a></span><br />
+                    <span>November 2, 2013 - November 3, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3565.html">Danilo y Dorotea</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="../venue/1006.html">Unknown venue - Camagüey</a></span><br />
+                    <span>2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4004">El día que se robaron los colores</a><br />
+                    <span>Costume designer, Puppets Designer, Set designer</span><br />
+                    <span><a href="../venue/1338.html">Castillo de los Niños</a></span><br />
+                    <span>November 1968</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4000">El flautista de Hamelín</a><br />
+                    <span>Puppets Designer, Costume designer, Set designer</span><br />
+                    <span><a href="../venue/1338.html">Castillo de los Niños</a></span><br />
+                    <span>April 1967</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4001">Pedrito y las semillas mágicas</a><br />
+                    <span>Costume designer, Puppets Designer, Set designer</span><br />
+                    <span><a href="../venue/1338.html">Castillo de los Niños</a></span><br />
+                    <span>1967</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1667.html">Danilo y Dorotea</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+                <div class="linkeditems">
+                <h3>Primary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/933/">Paisaje desde un papalote: entrevista a René Fernández</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/807/">Entretelones - Abril</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/794/">El timonel: noticias titiriteras 13</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+                <li>
+                  <h4>Website:</h4>
+                  <span><a href="http://www.cubaescena.cult.cu/global/loader.php?&amp;cat=artistas&amp;cont=showitem.php&amp;item=219&amp;seccion=personas" target="_blank">http://www.cubaescena.cult.cu/global/loader.php?&amp;cat=artistas&amp;cont=showitem.php&amp;item=219&amp;seccion=personas</a></span>
+                </li>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>August 4, 1944</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Matanzas, Matanzas, Cuba</span>
+                </li>
+              
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/14472">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c8/93/c8938474d40e3e27ed35aceb8a416c0d.jpg" title="Photograph of window advertising the production, &quot;Pedrito y las semillas mágicas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/52/60/52601e4a8be2077cf9035f6e00b6e18f.jpg" alt="Photograph of window advertising the production, &quot;Pedrito y las semillas mágicas&quot;" data-href="/digitalobject/14472" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c9/c3/c9c35a93b69332f2650dddd2977b90ff.jpg" title="Invitation for the production, &quot;El Flautista de Hamelín&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/32/ca/32ca6e3cc2b6bdeb33a12200c4a29499.jpg" alt="Invitation for the production, &quot;El Flautista de Hamelín&quot;" data-href="/digitalobject/14471" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fa/90/fa90792156d1abb7ceedbe2a6e47eef1.jpg" title="Flyer for the production of, &quot;El Flautista de Hamelín&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/63/20/632034ecc31b5e2e9a7f292445f28e1c.jpg" alt="Flyer for the production of, &quot;El Flautista de Hamelín&quot;" data-href="/digitalobject/14470" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f6/52/f6523716c5bf3031e6b9400f874cd46c.jpg" title="Photograph of the giant, in &quot;Pedrito y las semillas mágicas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/21/01/2101402cd3362fea780cfa493d0108f6.jpg" alt="Photograph of the giant, in &quot;Pedrito y las semillas mágicas&quot;" data-href="/digitalobject/14468" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3a/52/3a52cde7c06bdf93bd27567012a78c24.jpg" title="Photograph of the production, &quot;El flautista de Hamelin&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/be/e9/bee9e969b03181d0cb403184b6a8d236.jpg" alt="Photograph of the production, &quot;El flautista de Hamelin&quot;" data-href="/digitalobject/14466" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2d/4f/2d4f15b26dc3429b8b8ed2d623de9d5e.jpg" title="Photograph of the production, &quot;El día que se robaron los colores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3e/d3/3ed3a08f91b4c1f941e1555dc6d34ee2.jpg" alt="Photograph of the production, &quot;El día que se robaron los colores&quot;" data-href="/digitalobject/14465" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/24/5a/245ad3f6da5fb03802fe38a2c31a4b14.jpg" title="Photograph of rehearsal for the production, &quot;Un bufo de este siglo&quot; ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ba/88/ba880c042262dc74e780699c9dbc5bc7.jpg" alt="Photograph of rehearsal for the production, &quot;Un bufo de este siglo&quot; " data-href="/digitalobject/14464" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/30/52/3052f5cadeb970f2f9917fb7a26ea9cf.jpg" title="Program of the 1971 Season of Teatro Papalote">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f9/62/f9620b9c66990dc108119965598b5d3f.jpg" alt="Program of the 1971 Season of Teatro Papalote" data-href="/digitalobject/14463" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/73/8f/738f2c643ed5a7740b0e7880b9cb5055.jpg" title="Photograph of El castillo de los niños">
+                    
+                    
+                    <img src="../media/cache/8a/46/8a46ef9a7beadb71948add2f0fe219be.jpg" alt="Photograph of El castillo de los niños" data-href="/digitalobject/14462" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/27/b2/27b280f6bc188cade9a152d24cd6759c.jpg" title="Photograph of the production, &quot;Pedrito y las semillas mágicas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/66/06/6606b9a9d3533332dcf6e52c4d6a0ea8.jpg" alt="Photograph of the production, &quot;Pedrito y las semillas mágicas&quot;" data-href="/digitalobject/14461" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6b/54/6b54594d6c8a494bb4752bac0e9bd95a.jpg" title="Photograph of the production, &quot;Pedrito y las semillas mágicas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/73/f0/73f01c78ae0bc5bf19f42fe2776f71f2.jpg" alt="Photograph of the production, &quot;Pedrito y las semillas mágicas&quot;" data-href="/digitalobject/14460" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7d/26/7d2655fd190be0dcdfca4e3e35ad1f57.jpg" title="Photograph of the production, &quot;Pedrito y las semillas mágicas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7b/9b/7b9b4aff8e58830ddb1942377bb663e9.jpg" alt="Photograph of the production, &quot;Pedrito y las semillas mágicas&quot;" data-href="/digitalobject/14459" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c1/5b/c15b8dfea63c0b617a735dcb61910a19.jpg" title="Poster for the production, &quot;El flautista de Hamelín&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1e/6d/1e6de1e4e28907cab065083783798893.jpg" alt="Poster for the production, &quot;El flautista de Hamelín&quot;" data-href="/digitalobject/14473" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bb/d9/bbd90b3bac55b67d0cae79f0a3310f0c.jpg" title="René Fernández Santana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2c/2f/2c2fd3f216ae2096b3bc54c578e6c9f4.jpg" alt="René Fernández Santana" data-href="/digitalobject/14191" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9a/06/9a0646ea053d6cbbe2085ec45257d355.jpg" title="Photograph of René Fernández Santana, Marybel García Garzón, Sara Miyares and Pedro Knight hijo">
+                    
+                    
+                    <img src="../media/cache/68/bf/68bfbed2f774d32c6c86132f14ac1c6b.jpg" alt="Photograph of René Fernández Santana, Marybel García Garzón, Sara Miyares and Pedro Knight hijo" data-href="/digitalobject/14589" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

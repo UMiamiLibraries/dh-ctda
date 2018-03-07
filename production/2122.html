@@ -1,0 +1,594 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>Recuerdos de Tulipa</li>
+                </ul>
+            </nav>
+            <h2>Recuerdos de Tulipa</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/97.html">Herberto Dumé</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Cast: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Role(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2442">Marlene Acosta</a></td>
+                        <td>Beba</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2433">Daniel Jordán</a></td>
+                        <td>Ruperto</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/1701">Isaura Mendoza</a></td>
+                        <td>Tula</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2428">Fausto Montero</a></td>
+                        <td>Tarugo</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2426">Felipe Santos</a></td>
+                        <td>Cheo</td>
+                    </tr>
+                
+              </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Design team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="../creator/6438.html">María Elena Molinet</a></td>
+                    <td>Costume designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/6035">Tomás Oliva</a></td>
+                    <td>Set designer</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+          
+
+
+            
+
+
+
+            
+                <br>
+               Author: Mitch Carr; Dinorah Pérez Rementería (2008-12-08)
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              
+            
+                <a href="http://ctda.library.miami.edu/creator/4802" >Grupo Guernica (4802)</a><br />
+              
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano (Cuba)</a></span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>June 11, 1964</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/writtenwork/24">Recuerdos de Tulipa (Play script)</a><br />
+                <span>By <h4>Author / Playwright:</h4><a href='http://ctda.library.miami.edu/creator/16'>Manuel Reguera Saumell</a></span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/16852.html">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/75/92/7592fb59a04d7ca16cece624176c9f6c.jpg" title="Costume sketches for the production, Recuerdos de Tulipa">
+                
+                
+                <img src="../media/cache/e2/bb/e2bb0976b66d99f5043e1795d2066c7c.jpg" alt="Costume sketches for the production, Recuerdos de Tulipa" data-href="/digitalobject/16852" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/58/fd/58fdb5347aab42841ef5b15f592afe52.jpg" title="Costume sketches for the production, Recuerdos de Tulipa">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b3/e8/b3e87532c92819d95ec2f40a35e21b4c.jpg" alt="Costume sketches for the production, Recuerdos de Tulipa" data-href="/digitalobject/16852" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/77/a1/77a1f2a7438d9d7bec8e228187a211ed.jpg" title="Costume sketches for the production, Recuerdos de Tulipa">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/06/47/0647c26d48babe4638d2ba2484abe398.jpg" alt="Costume sketches for the production, Recuerdos de Tulipa" data-href="/digitalobject/16852" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/de/1f/de1f83fc4135e74749f0c718a810b997.jpg" title="Costume sketches for the production, Recuerdos de Tulipa">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d4/56/d4562b80c1a9a9ab20babd6a9fe2316d.jpg" alt="Costume sketches for the production, Recuerdos de Tulipa" data-href="/digitalobject/16852" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/78/cf/78cf73fc4c8cd688911b3a949741282e.jpg" title="Costume design drawings for the production, Recuerdo de Tulipa">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/12/78/1278ba4916777f6428b5f763067bbdee.jpg" alt="Costume design drawings for the production, Recuerdo de Tulipa" data-href="/digitalobject/16851" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fa/79/fa79b2a682a9106f306d05c4b433491a.jpg" title="Costume design drawings for the production, Recuerdo de Tulipa">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b2/de/b2de2ecf2b5225aaeaa452270e7d55bd.jpg" alt="Costume design drawings for the production, Recuerdo de Tulipa" data-href="/digitalobject/16851" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9d/3d/9d3da516c8555b1e2e5f326e0be2fb21.jpg" title="Costume design drawings for the production, Recuerdo de Tulipa">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a9/50/a950f3e5bf90c515151d7416b80c38ab.jpg" alt="Costume design drawings for the production, Recuerdo de Tulipa" data-href="/digitalobject/16851" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/57/a5/57a56a948f766cea4a3eed9ba1d25b7b.jpg" title="Costume design drawings for the production, Recuerdo de Tulipa">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/72/54/7254433f4f9e7feef07ed16b3b8a29f0.jpg" alt="Costume design drawings for the production, Recuerdo de Tulipa" data-href="/digitalobject/16851" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/51/4c/514cb9de96a9e93cf3478c6462958e14.jpg" title="Costume design drawings for the production, Recuerdo de Tulipa">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/94/c8/94c88bf6ddb65436541420250dbf7e90.jpg" alt="Costume design drawings for the production, Recuerdo de Tulipa" data-href="/digitalobject/16851" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/da/e0da0f0556b8cd37aebda68c58871521.jpg" title="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/fc/59/fc5994f7b0060fc6b3947268797cc032.jpg" alt="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)" data-href="/digitalobject/12936" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a1/ea/a1ea0aa83139488685581fab17ee2799.jpg" title="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/3c/43/3c43fe648099a0781823f5c14dba12eb.jpg" alt="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)" data-href="/digitalobject/12920" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0c/94/0c943d39191bc13315373f5514907f75.jpg" title="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5d/ac/5dac5aee978017c4f6c53d6eb1d64722.jpg" alt="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)" data-href="/digitalobject/12922" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2f/de/2fde05b6a4c3b7ee68368228f2311357.jpg" title="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/30/1f/301f5979499c4d3ffb8aa9b14de6fe95.jpg" alt="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)" data-href="/digitalobject/12930" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/35/d9/35d9954c28ad04d08869f05c648f4350.jpg" title="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/37/1a/371a149a9692a9966b05a1166fc9731d.jpg" alt="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)" data-href="/digitalobject/12918" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/44/df/44df03e710d5dcd7cca9a04c80232867.jpg" title="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ca/f7/caf7afc86d6cf3d51677866c1103b6e0.jpg" alt="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)" data-href="/digitalobject/12919" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/83/8683bcfa49d8671150287918f6a8bb71.jpg" title="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/33/98/3398eecfb58bd1eaf4ff0773ae873ce6.jpg" alt="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)" data-href="/digitalobject/12926" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

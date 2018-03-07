@@ -1,0 +1,2220 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Virgilio Piñera</li>
+                </ul>
+            </nav>
+            <h2>Virgilio Piñera</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Author / playwright</strong></p>
+
+            
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="../writtenwork/27.html">Una caja de zapatos vacía</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/111">Electra Garrigó</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/113.html">Falsa alarma</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/114">La boda</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1957</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/115">Jesús</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/116">El flaco y el gordo</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/117">Dos viejos pánicos</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/118">Un arropamiento sartorial en la caverna platómica</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/156">Las escapatorias de Laura y Oscar</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/245.html">Aire frío</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1959</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/353.html">El álbum</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/416">La vida entera</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/550.html">El no</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/559">Los siervos</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/751">El filántropo</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1000">Siempre se olvida algo</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1772">Estudio en blanco y negro</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2370">Un jesuita de la literatura</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2397">La vida entera</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3191">El trac</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3200">La niñita querida</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3291">La sorpresa</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3292">El encarne</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3293">Clamor en el penal</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1938</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3294">Ejercicio de estilo. Tema: Nacimiento de palabras</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1969</span>
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+        
+
+            
+              <div class="linkeditems">
+              <h3>Awards: +</h3>
+              <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Category</th>
+                  <th>Award</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td>1968</td>
+                        <td>Teatro</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/49">Premio Literario Casa de las Américas</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+                  
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+                <div class="linkeditems">
+                <h3>Primary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/805/">Una caja de zapatos vacía</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/804/">An Empty Shoebox</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/802/">El trac</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/801/">Ejercicio de estilo</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/800/">Una caja de zapatos vacía</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/799/">La niñita querida</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/798/">El no</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/638/">Electra Garrigó</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/803/">Una caja de zapatos vacía</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1282/">No estábamos arando en el mar</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/806/">Una caja de zapatos vacía</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/637/">Electra Garrigó</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1246/">"Cuba 1959-2008. Introducción histórico-cultural"</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1256/">Artistas de las dos orillas en temporada de Miami</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/667/">Virgilio Piñera: el que dijo 'No'</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/666/">Electra por dentro y por fuera: las orestíadas americanas de O'Neill y Piñera</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/647/">El inicio de una disidencia esencial en los años cuarenta: Virgilio Piñera como editor de Poeta y crítico generacional</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/641/">A la sombra de Virgilio, a bordo de un cadillac rojo. Antón Arrufat recuerda a Virgilio Piñera</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/642/">Virgilio Piñera, José Triana and Severo Sarduy: Cuban Playwrights of the Absurd</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/674/">La obra de Virgilio Piñera: un hito en la dramaturgia cubana</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/652/">La negación de la ética cubana: El 'no' de Virgilio Piñera</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/645/">Neobarroco y representación en 'El álbum' de Virgilio Piñera</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/925/">A la mesa con Virgilio</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/676/">Los ciclos herméticos violentos y el miedo al miedo en 'Dos viejos pánicos' de Virgilio Piñera</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/660/">Virgilio Piñera: la generosa provocación</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/646/">Carne de carnaval: Virgilio Piñera y la parodia de la modernidad</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/671/">Fleshing out Virgilio Piñera from the Cuban Closet</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/675/">Carne y papel: El fantasma de Virgilio</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/669/">La intertextualidad en 'El álbum' de Virgilio Piñera</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/650/">Electra y Prometeo: la luz y el fuego</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/653/">El secreto de Virgilio Piñera</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/651/">Estudio en blanco y negro: teatro de Virgilio Piñera</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/643/">Estética de la deformación en Gombrowicz y Piñera</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/665/">Vuelta a 'Electra Garrigó' de Virgilio Piñera</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/659/">Un análisis diferenciador del teatro de Virgilio Piñera: el teatro satírico burlesco y el teatro absurdista</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/639/">Los textos dramáticos de Virgilio Piñera y el teatro del absurdo</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/661/">Piñera y la vanguardia</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/654/">Games and Endgames in Virgilio Piñera's 'Dos viejos pánicos'</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/668/">Teatro cubano de transición (1958-1964): Piñera y Estorino</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/655/">El teatro de Virgilio Piñera</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/644/">Lo grotesco en Piñera: lectura de 'El álbum'</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/648/">La tragedia griega y su historización en Cuba: Electra Garrigó de Virgilio Piñera</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/662/">Virgilio Piñera: las ceremonias de la negación</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/640/">The Dramatic Texts of Virgilio Piñera and the Latin American Absurdist Movement</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/663/">Virgilio Piñera y el compromiso del absurdo</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/673/">Análisis del miedo en 'Dos viejos pánicos' de Virgilio Piñera</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/664/">De rebelión a morbosidad: juegos interpersonales en tres dramas hispanoamericanos</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/658/">'Historias para ser contadas' y 'Dos viejos pánicos': crítica y espectáculo</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/656/">Arte y situación de Virgilio Piñera</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/657/">Virgilio Piñera y el teatro del absurdo en Cuba</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/649/">Piñera narrador</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/672/">Hablando de Piñera</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+        
+            
+            <hr />
+            <h3>Videos</h3>
+            <ul class="videos">
+              
+              <li>
+                <figure>
+                  <a id="cta0014000019" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/88/d5/88d59b96708522894d052c60436a32dd.jpg" alt="Link to video of False Alarm (Extra Footage)" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/587">False Alarm (Extra Footage)</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0014000018" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/86/8d/868dbc5496f961e82811d636103f99d9.jpg" alt="Link to video of False Alarm" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/585">False Alarm</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0009000082" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/37/2f/372f821868b48ce9baed6a662dbd2a7c.jpg" alt="Link to video of Aire frío - Part 2 (Feb 12, 2012)" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/14106">Aire frío - Part 2 (Feb 12, 2012)</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0009000081" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/0e/3c/0e3cd34de645e8ca19b62e32fa80e9bb.jpg" alt="Link to video of Aire frío - Part one (Feb 12, 2012)" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/14105">Aire frío - Part one (Feb 12, 2012)</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0009000080" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/65/36/653655ed9803c4e8645dcfb3712e5edf.jpg" alt="Link to video of Aire frío" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/14104">Aire frío</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0009000079" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/a5/4d/a54dd1a1cf53f039d65c8c7ebaefb65c.jpg" alt="Link to video of Aire frío - Part one" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/14103">Aire frío - Part one</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0009000078" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/e8/12/e81224cb20baba048b273c314e2fc42e.jpg" alt="Link to video of Aire frío - Part one (Feb 19, 2012)" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/14102">Aire frío - Part one (Feb 19, 2012)</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0009000046" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/d4/33/d4330627087f17a56f89b3776f43f5be.jpg" alt="Link to video of Siempre se olvida algo" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="../digitalobject/4193.html">Siempre se olvida algo</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0003000012" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/c2/3a/c23a25bf045f3b436e4431aada19e27d.jpg" alt="Link to video of Electra Garrigó" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/60">Electra Garrigó</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0003000011" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/05/d7/05d79cc10a9ab2be998dff97deafc924.jpg" alt="Link to video of Los siervos" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/59">Los siervos</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0003000010" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/f8/a0/f8a0e50f8dc53644661d35aacfa5e36e.jpg" alt="Link to video of La boda" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/58">La boda</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0003000001" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/5f/16/5f16b74c955b1c770f5e2660d6fe597e.jpg" alt="Link to video of La boda" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/47">La boda</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              </ul>
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>August 4, 1912</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Cárdenas, Matanzas, Cuba</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Death date:</h4>
+                  <span>October 18, 1979</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of death:</h4>
+                  <span>La Habana, La Habana, Cuba</span>
+                </li>
+              
+              
+
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater--Playwrights"><li>Cuban Theater--Playwrights</li></a>
+                
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/15416">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9e/27/9e27f6b9ff4a18d42f40766611a40fc9.jpg" title="Dainerys Machado Vento, &quot;Virgilio Piñera&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/97/21/9721f032d2b0d5ede5ae8b2111db85fa.jpg" alt="Dainerys Machado Vento, &quot;Virgilio Piñera&quot;" data-href="/digitalobject/15416" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/96/49/964970f7da41f6d26fee4696d2b19d89.jpg" title="Dainerys Machado Vento, &quot;Virgilio Piñera&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f2/b9/f2b967df9b0895fbd6f32855f0f3d144.jpg" alt="Dainerys Machado Vento, &quot;Virgilio Piñera&quot;" data-href="/digitalobject/15416" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/54/83/54831fb0779b574036ea44d512c236ee.jpg" title="Dainerys Machado Vento, &quot;Virgilio Piñera&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/47/d0/47d0ac2ae90ba79a118d2e0631b3895a.jpg" alt="Dainerys Machado Vento, &quot;Virgilio Piñera&quot;" data-href="/digitalobject/15416" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/01/6f/016f99230290fbd5316c3afcdbae6ea3.jpg" title="Dainerys Machado Vento, &quot;Virgilio Piñera&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f2/02/f202bb896e266ee4d82357b9091a4201.jpg" alt="Dainerys Machado Vento, &quot;Virgilio Piñera&quot;" data-href="/digitalobject/15416" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0f/34/0f34c636a459f5e86b301c21ee197562.jpg" title="Dainerys Machado Vento, &quot;Virgilio Piñera&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/41/12/41127e8ee1dcb2bf84e27ce2a3060ca3.jpg" alt="Dainerys Machado Vento, &quot;Virgilio Piñera&quot;" data-href="/digitalobject/15416" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/30/7a30c900770a150249a636ca9f31f702.jpg" title="Dainerys Machado Vento, &quot;Virgilio Piñera&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d9/cc/d9cc28a3d604aa8ed305f6b87e24df1c.jpg" alt="Dainerys Machado Vento, &quot;Virgilio Piñera&quot;" data-href="/digitalobject/15416" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ee/79/ee7917edae2c24ca12e72222e367a475.jpg" title="Dainerys Machado Vento, &quot;Virgilio Piñera&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/79/6e/796e9dd019004cb6e31b6026203692a5.jpg" alt="Dainerys Machado Vento, &quot;Virgilio Piñera&quot;" data-href="/digitalobject/15416" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bf/5e/bf5edd056caccf6bedba1fad1a478eaf.jpg" title="Program for the production, &quot;Dos viejos pánicos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c8/2b/c82b13e672f8405dfa1323710498f0a2.jpg" alt="Program for the production, &quot;Dos viejos pánicos&quot;" data-href="/digitalobject/15415" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/95/7e/957e80c70c122da820f3fce5f43f9303.jpg" title="Program for the production, &quot;Dos viejos pánicos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8b/b0/8bb03c7069cc2acdb1d46aa1ab10b7af.jpg" alt="Program for the production, &quot;Dos viejos pánicos&quot;" data-href="/digitalobject/15415" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/08/36/08369a12552dd349e635200b75b65ddc.jpg" title="Program for the production, &quot;Dos viejos pánicos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e3/4f/e34fedc81929fe1b78e855d50e409f32.jpg" alt="Program for the production, &quot;Dos viejos pánicos&quot;" data-href="/digitalobject/15415" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/89/9c896f0d1d94e67c26617ad8296400d5.jpg" title="Program for the production, &quot;Dos viejos pánicos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f9/f5/f9f510d4c48f0e3c078229be0ff8d9f7.jpg" alt="Program for the production, &quot;Dos viejos pánicos&quot;" data-href="/digitalobject/15415" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2b/d4/2bd4f851d53c4f3bc4129181f2451b0c.jpg" title="Letter from Virgilio Piñera to Witold Gombrowicz">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/85/55/8555520009c9ab806fa025d71d34b1e0.jpg" alt="Letter from Virgilio Piñera to Witold Gombrowicz" data-href="/digitalobject/15570" />
+                    
+                    </a>
+                
+                    
+                    
+                    
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ac/ec/acecd8e630b2373085c2a04219193108.jpg" title="Gerardo RIverón, Julio Rodríguez, Maribel Barrios, Isabel Moreno,  in &quot;El No&quot;  ">
+                    
+                    
+                    <img src="../media/cache/d6/31/d631edca056d0d922244348c04456733.jpg" alt="Gerardo RIverón, Julio Rodríguez, Maribel Barrios, Isabel Moreno,  in &quot;El No&quot;  " data-href="/digitalobject/15422" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/08/62/086206b90345c0c7cbe068e013bd556c.jpg" title="Maribel Barrios, Julio Rodríguez, Gerardo RIverón, Isabel Moreno in &quot;El No&quot;  ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3b/f5/3bf59c3e8f7094a3982afcfc7f42ca57.jpg" alt="Maribel Barrios, Julio Rodríguez, Gerardo RIverón, Isabel Moreno in &quot;El No&quot;  " data-href="/digitalobject/15421" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/89/f189aff0052b1ffe0687be56eb458e80.jpg" title="Gerardo RIverón, Isabel Moreno, Julio Rodríguez, Maribel Barrios in &quot;El No&quot;  ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bd/33/bd336a379e1ac45a804531a70ed15d05.jpg" alt="Gerardo RIverón, Isabel Moreno, Julio Rodríguez, Maribel Barrios in &quot;El No&quot;  " data-href="/digitalobject/15420" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e1/0d/e10d912d8c8781e9df1ade041385cef0.jpg" title="Advertising postcard for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6d/2c/6d2c1c4e9d8da15a322c50e2e2f58889.jpg" alt="Advertising postcard for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/14549" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fc/e4/fce4c9936a053e43786f62aa930b0835.jpg" title="Yvonne López Arenal (Oficial), Carlos Pittella (Nikita- Filósofo del partido), Pablo de Cuéllar (Orloff- Primer ministro), Angel Lucena (Kirianin- General) and Miriam Bermúdez (Fedora- Secretaria del partido and Kolia- Obrera), in &quot;Los Siervos&quot;">
+                    
+                    
+                    <img src="../media/cache/9d/87/9d874b92cf5132470247514809cab01d.jpg" alt="Yvonne López Arenal (Oficial), Carlos Pittella (Nikita- Filósofo del partido), Pablo de Cuéllar (Orloff- Primer ministro), Angel Lucena (Kirianin- General) and Miriam Bermúdez (Fedora- Secretaria del partido and Kolia- Obrera), in &quot;Los Siervos&quot;" data-href="/digitalobject/14203" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b5/e8/b5e8809db301356193f730b86f3d1fd3.jpg" title="Costume design for the character Luz Marina for the production, &quot;Aire frío&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b7/f4/b7f475e69423733a1f8748b1f49d17d4.jpg" alt="Costume design for the character Luz Marina for the production, &quot;Aire frío&quot;" data-href="/digitalobject/14208" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/59/5d/595d1ae558f4a1919ee866025a3f47df.jpg" title="Press review for the production, &quot;Un poco de aire frío&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a3/c0/a3c0b881233d11efce37f93b061da222.jpg" alt="Press review for the production, &quot;Un poco de aire frío&quot;" data-href="/digitalobject/535" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/bf/09bf337bbe9d5ddde415b8c0631277f6.jpg" title="Program for the production, &quot;Un poco de aire frío&quot;">
+                    
+                    
+                    <img src="../media/cache/a9/b8/a9b8ede33e07eb40c976175755503614.jpg" alt="Program for the production, &quot;Un poco de aire frío&quot;" data-href="/digitalobject/525" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/be/43/be43de18caaf48b50652d7e1ca7868e9.jpg" title="Program for the production, &quot;Un poco de aire frío&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/50/72/5072963631df927f9d052b77c36fc640.jpg" alt="Program for the production, &quot;Un poco de aire frío&quot;" data-href="/digitalobject/525" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f7/11/f711f12ef809e2f37ecc61f5049ea1e2.jpg" title="Photograph of Déxter Cápiro, Xiomara Palacios and Héctor Noas in the production, “La boda”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a7/d9/a7d9d7b46cbd6121dfd33d6b1117b893.jpg" alt="Photograph of Déxter Cápiro, Xiomara Palacios and Héctor Noas in the production, “La boda”" data-href="/digitalobject/16406" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/36/74/36748e46f9a19408b787df6e9526642e.jpg" title="Photograph of Déxter Cápiro, Xiomara Palacios and Héctor Noas in the production, “La boda”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0c/ae/0caec0462675de235dec056d322d7368.jpg" alt="Photograph of Déxter Cápiro, Xiomara Palacios and Héctor Noas in the production, “La boda”" data-href="/digitalobject/16405" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7b/1b/7b1be58be5d8f323972e5d467a9a0779.jpg" title="Photograph of Déxter Cápiro (Vicente) and Anna Silvetti (Laura) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6c/bb/6cbb51b27c1471813c6f61b1de56409c.jpg" alt="Photograph of Déxter Cápiro (Vicente) and Anna Silvetti (Laura) in the production, “El no”" data-href="/digitalobject/16389" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/b7/d7b7638af3c02d25d1665b5875771c78.jpg" title="Photograph of Déxter Cápiro (Vicente), Patricia Azán (Emilia) and Anna Silvetti (Laura) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/da/55/da55efe4aa0e3eb0423fc0f484641583.jpg" alt="Photograph of Déxter Cápiro (Vicente), Patricia Azán (Emilia) and Anna Silvetti (Laura) in the production, “El no”" data-href="/digitalobject/16388" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/da/7f/da7f6a69c62e53f05ec55c6a4f8c6354.jpg" title="Photograph of Déxter Cápiro (Vicente), Patricia Azán (Emilia) and Anna Silvetti (Laura) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/27/d9/27d9e2177edca648c7f9afecbb8b9de2.jpg" alt="Photograph of Déxter Cápiro (Vicente), Patricia Azán (Emilia) and Anna Silvetti (Laura) in the production, “El no”" data-href="/digitalobject/16387" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/19/c1/19c1d7aecaae48b1717493c7233466ae.jpg" title="Photograph of Déxter Cápiro (Vicente) and Patricia Azán (Emilia) in the production, “El no”">
+                    
+                    
+                    <img src="../media/cache/38/c5/38c5899b05e3247c369d6ef33582277e.jpg" alt="Photograph of Déxter Cápiro (Vicente) and Patricia Azán (Emilia) in the production, “El no”" data-href="/digitalobject/16386" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6b/e9/6be96b37425e5c3fe3b04e944689958b.jpg" title="Photograph of Déxter Cápiro (Vicente) and Patricia Azán (Emilia) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/23/8e/238e95f84ca9ce89a273ab9498b766cf.jpg" alt="Photograph of Déxter Cápiro (Vicente) and Patricia Azán (Emilia) in the production, “El no”" data-href="/digitalobject/16385" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e4/15/e415c8b6d2a75e70274812a1b0b81148.jpg" title="Photograph of Déxter Cápiro (Vicente) and Patricia Azán (Emilia) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bc/10/bc10acd4becca0031b96d0a7fd93c936.jpg" alt="Photograph of Déxter Cápiro (Vicente) and Patricia Azán (Emilia) in the production, “El no”" data-href="/digitalobject/16384" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/de/79/de79ebee4cb1d5335ebf66fba1a4e55f.jpg" title="Photograph of Déxter Cápiro (Vicente) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/24/a2/24a2e8b3b750e711275db472c5ce2e23.jpg" alt="Photograph of Déxter Cápiro (Vicente) in the production, “El no”" data-href="/digitalobject/16383" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cb/8a/cb8a7cddd433a95f158ddb27305d0268.jpg" title="Photograph of Déxter Cápiro (Vicente) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/72/f1/72f19a8d0e67e16e9acb51ca9dbbee58.jpg" alt="Photograph of Déxter Cápiro (Vicente) in the production, “El no”" data-href="/digitalobject/16382" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/15/b5/15b526b77ae03c647cb0026f2d318065.jpg" title="Photograph of Déxter Cápiro (Vicente) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/cc/83/cc83d56d769d5c811e78d2f8e18a15a0.jpg" alt="Photograph of Déxter Cápiro (Vicente) in the production, “El no”" data-href="/digitalobject/16381" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ab/bb/abbb8fbed2e9ee25a50ded77076be2d0.jpg" title="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b3/6e/b36ed0d56a079198b06472a5bc69d8e5.jpg" alt="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16371" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2d/dc/2ddc0107e80ad5620e2f4e733625f345.jpg" title="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e7/31/e731fac171f3b1f407141a3dec53e568.jpg" alt="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16370" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/16/62/166207065e1f30b5ef7a4c360ccd360d.jpg" title="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6e/fe/6efe1b83a9bac2d12be68c7b4e69072f.jpg" alt="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16369" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/42/3e/423ef8b41eb03a075a68ae58d19e92aa.jpg" title="Photograph of Déxter Cápiro (Nicleto) and Roberto Gacio (Sedicom) in the production, “Los siervos”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/76/38/76389b18f70c3a6518a65cf944108a05.jpg" alt="Photograph of Déxter Cápiro (Nicleto) and Roberto Gacio (Sedicom) in the production, “Los siervos”" data-href="/digitalobject/16368" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4c/66/4c66352a93108a54811f079055b99f91.jpg" title="Photograph of Déxter Cápiro (Nicleto) and Grettel Trujillo (Zenón) the production, “Los siervos”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2a/b5/2ab5aa4fcdbd709117121c27fda52eab.jpg" alt="Photograph of Déxter Cápiro (Nicleto) and Grettel Trujillo (Zenón) the production, “Los siervos”" data-href="/digitalobject/16367" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/40/ea/40eac4097c32c0db9a8f5db1b31cff09.jpg" title="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1a/83/1a83c2d1a264f12375a4c24a33df0822.jpg" alt="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16366" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b4/74/b474a9c8c56764f23682a339856f118c.jpg" title="Photograph of Mario Guerra (Dimanisio) and Roberto Gacio (Sedicom) in the production, &quot;Los siervos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fd/31/fd310aecb9b961e7101f2f04cd745653.jpg" alt="Photograph of Mario Guerra (Dimanisio) and Roberto Gacio (Sedicom) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16365" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/26/1a26bdd2e17f3042afa2f8d493ecd28d.jpg" title="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;">
+                    
+                    
+                    <img src="../media/cache/b0/5f/b05f43262e659ac7744e444dd00d5945.jpg" alt="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16364" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d1/93/d193929ea81139f356619f882a8e7c98.jpg" title="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/67/d5/67d5ee4ad1e416ccb9636e86733225a7.jpg" alt="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16363" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fd/b8/fdb874a99c36fddb8daeb47ddde157e7.jpg" title="Photograph of Déxter Cápiro (Nicleto) and Mario Guerra (Silié) in the production, &quot;Los siervos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d4/33/d43337617bb9076d00930a93ee5ba0cc.jpg" alt="Photograph of Déxter Cápiro (Nicleto) and Mario Guerra (Silié) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16362" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bc/bc/bcbc5a7e43a6ff456b5fe08624f776e2.jpg" title="Photograph of Déxter Cápiro in the production, “La boda”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/da/ea/daeaf8d730d449e5ddf277b4ca55467d.jpg" alt="Photograph of Déxter Cápiro in the production, “La boda”" data-href="/digitalobject/16361" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/eb/9b/eb9b7561b5f941d0657b9933e84ccc8d.jpg" title="Award to Déxter Cápiro in the production, &quot;La boda&quot;">
+                    
+                    
+                    <img src="../media/cache/ac/8d/ac8d20ed6e7b2b9a634327e1ec709c96.jpg" alt="Award to Déxter Cápiro in the production, &quot;La boda&quot;" data-href="/digitalobject/16353" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/26/cb/26cbc14f9294768f0a7e03bddfa7bac5.jpg" title="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;">
+                    
+                    
+                    <img src="../media/cache/d4/0e/d40e70b83f8e47a22b18a6c65fe42dc9.jpg" alt="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16349" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dd/b3/ddb3ff3dd782beaadeba46037c131cdc.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/cd/d8/cdd8752e4c834966a3c36951e2ddc882.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16348" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/69/6f/696f4221d023e15c8c4ef3f240dfd951.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/03/ad/03adfd949ed4521fd59c0231cb031542.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16347" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/ff/d2ff4554bdac36b50d33c7ff859c064b.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) and Amarilys Núñez (Clitemnestra) in the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6b/fe/6bfe6f778aa527479357c85156c67628.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) and Amarilys Núñez (Clitemnestra) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16346" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2b/96/2b9610b2490caf0bc1b08a3728d34afa.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) and Gilda Bello (Electra) in the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1a/97/1a97dca38f171461d42dcfe1e308fb96.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) and Gilda Bello (Electra) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16345" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/85/94/859436ac64f4b453e42c7718c8dd3c99.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) and Amarilys Núñez (Clitemnestra) in the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6f/1a/6f1aabc5e7940b14d7002d0307978cd3.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) and Amarilys Núñez (Clitemnestra) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16344" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/a1/9ca18d17dfe61f4a4c8e6348494ca83f.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó), Amarilys Núñez (Clitemnestra) and Mario Guerra (Egisto) in the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/57/a5/57a5df3b44d36965b984506947a968f4.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó), Amarilys Núñez (Clitemnestra) and Mario Guerra (Egisto) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16343" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/02/df02f542c7bdebb4304f3c9ec7c8cf0a.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó), Roberto Gacio (Agamenón), Amarilys Núñez (Clitemnestra), Mario Guerra (Egisto) and Gilda Bello (Electra Garrigó) in the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ad/e4/ade464a7466a93cfae3b10ca5e7c25b7.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó), Roberto Gacio (Agamenón), Amarilys Núñez (Clitemnestra), Mario Guerra (Egisto) and Gilda Bello (Electra Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16342" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9d/da/9ddae63ba6b96d96d8c9c2b8e46aedf9.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/54/50/5450157b6d595d841d3b617f554978c2.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16341" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e2/a1/e2a1867295eba6547db0a06e1278fcd1.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e4/75/e475dd9889bd1af5f7df91692d37f903.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16340" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/65/6c/656c9bae1a10daab2058b55610d3c6d1.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/21/63/216302012f50c07db12ffc97a8566195.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16339" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cc/a8/cca87170d153a8303123a309ef7e4e30.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/00/a1/00a1f6fdf8f921948b5ea93ef5dd0e48.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16338" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a1/69/a16931781c13c9395a0a8c95739ea7b8.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/79/9e/799ec3e537f464bf5fe184a166a13094.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16333" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0e/bf/0ebff3ea4749ed5317326e590e47e89f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e0/17/e017d4de0cbe6afc1eb5f5bac79d9363.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16332" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/89/de/89deb30b71d95ec29f3c697b4fa70186.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9a/1d/9a1d197267027ccb8795c6500eb6818e.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16331" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/94/2894ac0c4ade0c3945012b53e0a6ce2a.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5b/1a/5b1a28a9101387d887401c0d819ba1ca.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16329" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a5/90/a5904e0f80b1bfc8f8e1b204deca68ef.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/cd/c0/cdc0e206348d54c2853ea9d7c7c95030.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16328" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/69/e4/69e4925f87ff453cc011428cc3bfac4c.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c0/d5/c0d56569def30aa0be27a8bfc9689518.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16327" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/05/e2/05e21932ea8081e346e41380f5ab6714.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/98/a8/98a8ad9af0e2c429810efeadac027273.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16326" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6d/7d/6d7ddec78f30a9629d124ae9d7fc3e37.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7e/46/7e46c6244de9695a9af66154d107a858.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16325" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/02/df02b14f99ecc71f1e6192b52d82ff57.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b9/88/b988c4bffa038da064fccb4bb7b9d8e2.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16324" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/5b/865b7aa707d97e78075e94c9160df13f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="../media/cache/c5/f4/c5f4b6fb2dceb1977af07154f08fb166.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16323" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/05/e4/05e496531d9a8cef82908d56f155234f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/60/c6/60c6cbda580e8dd4bc5cab3209299b35.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16322" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/55/78/5578d91a44790de8a7cf5027e67c12b0.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d9/99/d99959dcfaab5e8582d1d6f1763c9e30.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16321" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3f/47/3f47d0b74ad9ad60923d3d749b45b622.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/86/63/8663ee8ecb49a31a594104cf9cff4023.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16319" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/4b/d74ba3886efb647f035328ca9f482dfa.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f2/23/f223255e2e5780844f9b80f37c05eb3d.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16318" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/08/3d/083de5a06016098f797673371ed7b469.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="../media/cache/66/4a/664aa1ce43557b17e3ecddfacf58f82a.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16317" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/73/b7739e7884ee463ab1947248e91ea8e7.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2b/85/2b85b873967b61a12b30ec9f3ca29a74.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16316" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/26/7a266e90693e2ac4d21ee037a133ba30.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="../media/cache/d2/53/d253f04493e5443bb77d4c03804ee767.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16315" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/e6/ece60d65bfda1136ceabdcef30c859d0.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/cf/30/cf30e48909fbd3d638a759558d83aad5.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16314" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5f/22/5f22cfec322cc3d8f7c1ddfece6e25bd.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5a/5c/5a5c7f320828f5eedb2636e337953924.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16313" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/a7/e0a7ab944176b67c9288bd4f87194463.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/de/8a/de8ae28221ddd267ffe8d6b857374335.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16312" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7c/65/7c6582b1001ba38e22df7236c33105e9.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0f/9a/0f9a74d90c60c7b9c4826c476df9eb70.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16311" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e2/69/e269d595037a40f841d95e1a554beeb0.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b9/0b/b90b69158d123ed9f8f02b8f2d4f0280.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16310" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/08/48/084815b89bbf08c37c5a91d250e17c15.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="../media/cache/f8/34/f834ec3d6501d94b94b308ca7773500c.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16309" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/60/71/6071ccdf7d1ed98ee229a85ea2c4f0ed.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c8/7e/c87ec471dfb32b879951a200ffb1a156.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16308" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/94/b1/94b1bca9bb57d4cc770adac817ead119.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/00/ad/00ad4fc3acfe209332d1719bdd5cbe42.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16307" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6c/c9/6cc9e4a3512f4dc1474bcfd6782d2b6f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/18/22/18224da3b35168a2a563facc5ea2aa6c.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16306" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/be/08/be08ae39b231a42c3694c792f85df6b4.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a0/ed/a0ed0e40f198f82ac9b6d07cb571f160.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16297" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f0/48/f0480e96c3bf9abea7b95f76020ba520.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ad/ad/adad2ca88dca2a24471752b8d4b48150.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16305" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/c1/8fc1bde1c53ae90d26299b4afc3b5e35.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f4/ba/f4ba029f503aec95ea7f670a680767dd.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16304" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/19/56192c6d20c8be6516f3a53ad89f33e4.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b2/d9/b2d9afdb0021aac99db979d1cca562de.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16303" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/16/9b/169b8b7b720e64ec318b683aa3448204.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="../media/cache/e9/d8/e9d8f657a3e4e5522119c7b849159813.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16302" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ce/63/ce6328b09713cb5bef405b7f4c9047f1.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7c/ef/7cef987c6c05be79b0d86c8af152ee8c.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16301" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8d/8f/8d8f87d3781e68915526b2dbe83351aa.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ba/12/ba127a307482543358ef6c0277de522f.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16300" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/46/28467357adb55d5991c59919a84cd10f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a0/c3/a0c3efcd2e8b61aceeacad158388fa7b.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16299" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/99/6e/996e4973525dfbc775acbdc30c1006ec.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ef/73/ef736195c54e292ab3dfb38f8e791044.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16298" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fe/ec/feec13246237774a9604d9cd21b1f6d3.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/78/33/7833eade9726b489ad93d9eefbedf0a6.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16330" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3e/c7/3ec72c2e1577574dd29a10c947993b47.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0e/5a/0e5aaeb4112ae611bd6cfc1f97699566.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16296" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e4/0c/e40c9dd4e3f40fd68c5f4fb9a0f35c41.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d4/78/d478edc8416ae653a132f756fd14d02f.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16295" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3a/77/3a7744aa0787bb090dec5ff6e561e3ab.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/59/12/59128abd6799f2a46c90c4b6cf2491a4.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16294" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/f3/09f341398e726cd9217351e62d21d61d.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/44/7d/447d6f2dd159d4453df2fc00125555ff.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16293" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/21/e5/21e53c16bf483d8fe68f5cecc09dcee2.jpg" title="Advertisement for the productions &quot;Contigo pan y cebolla&quot;, &quot;Entremeses japoneses&quot;, &quot;Miami FLA&quot;, &quot;Pedro Manso&quot; y &quot;Aire Frio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/67/49/6749ba428ba7de27c91815b39f227b57.jpg" alt="Advertisement for the productions &quot;Contigo pan y cebolla&quot;, &quot;Entremeses japoneses&quot;, &quot;Miami FLA&quot;, &quot;Pedro Manso&quot; y &quot;Aire Frio&quot;" data-href="/digitalobject/16838" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/99/85/9985618b2ad510775a686ee4e1a27d5a.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/50/25/50254ab1a8ed97c201f708c171241829.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/17" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ea/f1/eaf1b8d1f1f5473527d1141e9b27a431.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/45/52/4552b031e8b21737ad5ebb4cc10a7e43.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/17" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/84/12/84129cb715b6c43c303022612f71c248.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fc/a6/fca6d4758a3324c3c4fcbfb334f8a699.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/17" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c9/90/c9902190252588e397ff235363ba8d95.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/85/86/85861b4de951d7c5881d3640bb6e16b4.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/17" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/85/d7/85d7eecf9d5a8fc1f3b877b36f6535c4.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e0/4a/e04acefc8f369a728c468067ea15e131.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/17" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/48/10/48100f35b10f53386275acc248585c7f.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/97/6b/976bd7bd166f4b1348791bd9f8d561db.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/17" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/35/ef/35ef554058444e69d75bb3b929b6c4c4.jpg" title="Program for the production, &quot;El filántropo&quot;">
+                    
+                    
+                    <img src="../media/cache/4c/b2/4cb260d3d567ea2c2cc5ca57d79981a3.jpg" alt="Program for the production, &quot;El filántropo&quot;" data-href="/digitalobject/16" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fa/00/fa002feafd37a4f61e1ec924419398eb.jpg" title="Program for the production, &quot;El filántropo&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6a/a9/6aa98e0082df0e2b6756b0efa0559c35.jpg" alt="Program for the production, &quot;El filántropo&quot;" data-href="/digitalobject/16" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/96/ac/96ac199317cef075895c9c9e89a21ad8.jpg" title="Program for the production, &quot;El filántropo&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/50/15/5015a22a12846536fe698009bbc246aa.jpg" alt="Program for the production, &quot;El filántropo&quot;" data-href="/digitalobject/16" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/60/ae/60ae80043ebb44422288f7875c7cf0e3.jpg" title="Program for the production, &quot;Aire frío&quot;">
+                    
+                    
+                    <img src="../media/cache/9c/58/9c58a2cf1bdb54627d74d96a19836404.jpg" alt="Program for the production, &quot;Aire frío&quot;" data-href="/digitalobject/7" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/98/bd/98bd91416214669b9f2ee907864fa297.jpg" title="Program for the production, &quot;Aire frío&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/dc/60/dc604516ed883cd1dca8c405b59ccc91.jpg" alt="Program for the production, &quot;Aire frío&quot;" data-href="/digitalobject/7" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/91/2e/912e908dfcf974edd08dcbe9d66d418f.jpg" title="Program for the production, &quot;Aire frío&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e7/3d/e73d4dcc21a17c9c737a9a508c60044a.jpg" alt="Program for the production, &quot;Aire frío&quot;" data-href="/digitalobject/7" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c6/2c/c62c9430f6fa1c5c13e2e245fd882a52.jpg" title="Program for the production, &quot;Aire frío&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/68/21/682126733fe8f0133447756ce47ae240.jpg" alt="Program for the production, &quot;Aire frío&quot;" data-href="/digitalobject/7" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/11/d8/11d877bcef2ece3538177e0eb906100d.jpg" title="Program for the production, &quot;Aire frío&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/08/5e/085e8a5d9811517f81158ef96f0f8d9e.jpg" alt="Program for the production, &quot;Aire frío&quot;" data-href="/digitalobject/7" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9b/16/9b1673640593c235b37bcfe2ee738666.jpg" title="Program for the production, &quot;Aire frío&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/79/d1/79d15294493cda6cdc00e7c20ecde831.jpg" alt="Program for the production, &quot;Aire frío&quot;" data-href="/digitalobject/7" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/12/50/1250dc8cb196ec8840b78bc67f990c53.jpg" title="Program for the production, &quot;Aire frío&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a9/88/a988d3881f37c688955656fd04a77cec.jpg" alt="Program for the production, &quot;Aire frío&quot;" data-href="/digitalobject/7" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/4c/7c/4c7c1a19fcd8f9b2301a8ca5544fc755.jpg" title="Poster for the production, &quot;Festival del Absurdo&quot;">
+                    
+                    
+                    <img src="../media/cache/33/e3/33e3fca88b63c63806edb2e2a50792c3.jpg" alt="Poster for the production, &quot;Festival del Absurdo&quot;" data-href="/digitalobject/13763" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/4b/00/4b004097e03a7e27acfe62dc19b154e1.jpg" title="Teresa María Rojas (Clitemnestra Plá), Gerardo Barrios (Egisto Don), Marilyn Romero (Electra Garrigó), and  José Zubero (Agamenón Garrigó), in &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/76/b6/76b6eaa3b1d8a5e979c9902186dc4fc7.jpg" alt="Teresa María Rojas (Clitemnestra Plá), Gerardo Barrios (Egisto Don), Marilyn Romero (Electra Garrigó), and  José Zubero (Agamenón Garrigó), in &quot;Electra Garrigó&quot;" data-href="/digitalobject/13720" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c1/98/c198a20893fb2e5c12cb65e2d5606231.jpg" title="José Zubero (Agamenón Garrigó) and Teresa María Rojas (Clitemnestra Plá), in &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/61/89/61896fd3db4ad7dac820e43354ff3c69.jpg" alt="José Zubero (Agamenón Garrigó) and Teresa María Rojas (Clitemnestra Plá), in &quot;Electra Garrigó&quot;" data-href="/digitalobject/13674" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b1/5f/b15f83897014d2ecc62facd5ddf80fa2.jpg" title="Teresa María Rojas (Clitemnestra Plá) and José Zubero (Agamenón Garrigó), in &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/48/d8/48d8e10f0aa04bf4511d2d6119919ab3.jpg" alt="Teresa María Rojas (Clitemnestra Plá) and José Zubero (Agamenón Garrigó), in &quot;Electra Garrigó&quot;" data-href="/digitalobject/13797" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/77/ac/77ac82fa72985bebaeea37b7ccb659c0.jpg" title="Teresa María Rojas (Luz Marina) and Andrés Nóbregas (Oscar), in &quot;Aire frío&quot;">
+                    
+                    
+                    <img src="../media/cache/d0/de/d0de4bb843f816e6098f5446e9b119ee.jpg" alt="Teresa María Rojas (Luz Marina) and Andrés Nóbregas (Oscar), in &quot;Aire frío&quot;" data-href="/digitalobject/13756" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ec/47/ec47f3c75c4ebc1dff86261a60c22884.jpg" title="Teresa María Rojas (Luz Marina), in &quot;Aire frío&quot;">
+                    
+                    
+                    <img src="../media/cache/86/f2/86f2926863b74d393481d39ecd2eca91.jpg" alt="Teresa María Rojas (Luz Marina), in &quot;Aire frío&quot;" data-href="/digitalobject/13635" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/3e/d6/3ed6cec233c2b14c9de86b3856d9df7e.jpg" title="Teresa María Rojas (Luz Marina) and Zobeida Castellanos (Ana), in &quot;Aire frío&quot;">
+                    
+                    
+                    <img src="../media/cache/90/09/9009cdab7d966312cc9a4a67194f30a9.jpg" alt="Teresa María Rojas (Luz Marina) and Zobeida Castellanos (Ana), in &quot;Aire frío&quot;" data-href="/digitalobject/13828" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/e9/07/e9077d9b7a2222b9a7272a39ac371def.jpg" title="Teresa María Rojas (Clitemnestra Plá), in &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/12/ae/12ae75e0b030d79622011ce40ab57068.jpg" alt="Teresa María Rojas (Clitemnestra Plá), in &quot;Electra Garrigó&quot;" data-href="/digitalobject/13669" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/e9/e4/e9e4918e9e0b4ff81fc3a892f6e66aed.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/5a/66/5a66ccd67ff1d8c56790cd9c01fb46d1.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b1/8f/b18f114cb9473907611475b8157f9fcf.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/7a/a8/7aa81957093e908b6e4996b8fa1adb60.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/67/41/67413b96a4bc43a9d340361a315cee9a.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/05/23/052360fd40c1fbe1fa9386623e0423c5.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/67/33/6733b9280910e8d230f7fde5f8e5c939.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/de/15/de15d97015ffc9edfe8e95709ac6cee0.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/9f/fd/9ffdce9d7c07bbbd565455e02bdec576.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/82/94/8294ca249e6bb8bb5e515c335d37f2cb.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/60/ed/60edad6a4007eb5f5d1861e7cd2c55ef.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/93/a3/93a304ea5e99cd1b75d64435e7964074.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/41/e0/41e0137809e2f4ae9e9cd8c93777abd9.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/8a/50/8a50cfec5499011c7c03aa27ebef5b9d.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/9a/1d/9a1d6283c2f9d8fab578fb2f3eaf439c.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/c7/39/c739e7df18f94e9dc9b1eb3c1ae76f81.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/1a/c6/1ac6154c7071df5925e03d4523f7422c.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/3a/5a/3a5a113aa7b380d1a2864e169cab4e48.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b6/e9/b6e92ae4d00c70eaa8ce4fd7d36d739d.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/df/a7/dfa7cf7f659a7f7da5605189e548daa2.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/40/46/4046cffa3d6a3847b08ab65878bbbeda.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/35/5d/355db7e3616c44b674b27879e43730d6.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ed/7c/ed7c5daecd0bec64fb47c1cee056d248.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/a2/12/a2126e740ae73e0c5b145fcb69292885.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/e1/5e/e15ebdb302b24463e13efe1f8e1c5fd5.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/42/31/4231bfae5afdff821dfa5541bbb63214.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/22/e7/22e74e33beb822a31651288f42668d87.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/2f/a3/2fa32636a72e14da1164b341e1a21659.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/0a/31/0a316419ab6ea4e4c598b5da4b3c58cd.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/1d/d1/1dd1cfdd2415f552d76f1c165549987b.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/00/77/00773e9bc651577d142f263551e60d23.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/d6/cf/d6cf410799ba0f5df8c3748acf029503.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/3c/f4/3cf43ae09bc05cef456ec83afce7b600.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/b5/42/b542430fab62827c57ff0e781bb7bf43.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/a8/89/a889cad2860731f5071332a5f9d0fe1a.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/09/63/0963f300ee6df687ef8ab94d1fc1311e.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c2/9c/c29c0d46e50a27c4fc1029904605d486.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/cd/2d/cd2d8c7346f363158e7a658531e5508a.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/7e/f3/7ef3b03c95f5f51c50538dcd9f62cd42.jpg" title="Playbill for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/c6/28/c628b90fb0f97cb3b71a26d57dee9bc2.jpg" alt="Playbill for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13456" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('#cta0014000019').fancybox({
+          content: '<video id="vid-cta0014000019" src="http://streaming.miami.edu:8080/flash/ctda/cta00140000190001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-cta0014000019').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0014000018').fancybox({
+          content: '<video id="vid-cta0014000018" src="http://streaming.miami.edu:8080/flash/ctda/cta00140000180001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-cta0014000018').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000082').fancybox({
+          content: '<video id="vid-cta0009000082" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000820001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000082').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000081').fancybox({
+          content: '<video id="vid-cta0009000081" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000810001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000081').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000080').fancybox({
+          content: '<video id="vid-cta0009000080" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000800001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000080').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000079').fancybox({
+          content: '<video id="vid-cta0009000079" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000790001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000079').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000078').fancybox({
+          content: '<video id="vid-cta0009000078" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000780001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000078').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000046').fancybox({
+          content: '<video id="vid-cta0009000046" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000460001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000046').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0003000012').fancybox({
+          content: '<video id="vid-cta0003000012" src="http://streaming.miami.edu:8080/flash/ctda/cta00030000120001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-cta0003000012').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0003000011').fancybox({
+          content: '<video id="vid-cta0003000011" src="http://streaming.miami.edu:8080/flash/ctda/cta00030000110001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-cta0003000011').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0003000010').fancybox({
+          content: '<video id="vid-cta0003000010" src="http://streaming.miami.edu:8080/flash/ctda/cta00030000100001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-cta0003000010').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0003000001').fancybox({
+          content: '<video id="vid-cta0003000001" src="http://streaming.miami.edu:8080/flash/ctda/cta00030000010001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-cta0003000001').mediaelementplayer();
+          }
+        });
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

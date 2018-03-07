@@ -1,0 +1,950 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en ">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../digitalobjects.html">Digital Objects</a></li>
+              <li>Program for the production, &quot;Manolo Torrente: siempre cubano&quot;</li>
+            </ul>
+          </nav>
+          <h2>Program for the production, &quot;Manolo Torrente: siempre cubano&quot;</h2>
+        </header>
+
+        <section class="objectdisplay main">
+                
+                
+                <img id="largepreview" data-index="0" src="http://ctda.library.miami.edu/media/cache/50/d9/50d9bedf6778f2eb9640086d5206a78d.jpg" alt='' style="display:block;float:none;" /><br />
+                
+                
+                
+                
+
+                
+
+                
+
+                <h3>Object details:</h3>
+                <dl class="objectdata">
+                
+
+                
+                
+                
+                
+                
+                
+                
+              
+                
+                  <dt>Physical object type:</dt>
+                  <dd>Theater programs</dd>
+                
+
+                
+                  <dt>Digital object format:</dt>
+                  <dd>Image</dd>
+                
+
+                  <dt>Object ID:</dt>
+                  <dd>cta0023000017</dd>
+                  
+                  <dt>Collection:</dt>
+                  <dd>Manolo Torrente / Alfonso Camiña-Muiña (Alfonso Martín)</dd>
+                  
+                  
+                  
+                
+                  <dt>License:</dt>
+                  <dd><a href="../copyright/index.html">University of Miami copyright policy</a></dd>
+                
+                  
+                
+                  
+                  
+                  
+                  
+                </dl>
+
+                
+                <h3>Related items:</h3>
+                
+                
+                <h4>Creators:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="../creator/6943.html">Manolo Torrente</a>
+                  </li>
+                  
+                </ul>
+                
+
+                
+
+                
+
+                
+
+                
+                
+            
+        </section>
+        
+        <aside class="thumbnails">
+            
+                <div class="data">
+                  <ul>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/b2/66/b2666c76ea687223e030c45c955316a5.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/50/d9/50d9bedf6778f2eb9640086d5206a78d.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/7c/d5/7cd57f6d0ac1ac79152d6369397852b5.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/68/2c/682c062eb7e0195e5fb1868dad7e3ec3.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/cb/5f/cb5f9004d04c3b62873790a82ba9542c.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/d4/c3/d4c355ac5b5004c7f8e2816ec93d2f79.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/00/2a/002a3a2fedd1860c38a9b93fcde797fd.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/d7/dc/d7dca9873cfa3a38499f91a532505c5c.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/dd/ca/ddca50557546f008b6c0c3c87d0e5cfa.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/dc/ff/dcff0083c8df161c250ee69c79cc1376.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/b0/47/b047650804ebd8ad4166848b89343b8d.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/08/87/0887a8e6098cc1f8bb6673232f16eee6.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/e4/41/e441e5ff63a63a45fee176cd9353d30b.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/a2/59/a2597f05765cc385c87322d35d1b3cd6.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/b6/f3/b6f3593c051c4e4a4756f306a2215592.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/aa/f0/aaf015b8fd19aab4024e7e2c910e5c45.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/62/6a/626a9e4248815caf1c8eb21d44a548e3.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/93/bf/93bf8a35a0c2232bd6cf4e8949431469.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/cc/58/cc5880c5f7d73754729bfa487224909e.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/43/33/4333ee319f736e9f16aea7683ec5cfcb.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/38/9e/389efcaa16eaa994af6a2ae67f126ce7.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/c4/9b/c49b87a2002366889603734b960fc77e.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/76/37/76377f67fa795082a530b4ed972590a1.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/34/b0/34b00aedcb854bd579cbf0f3120cb98f.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ce/80/ce80ab47150288eefeddf0b06105e9ee.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/a1/88/a18816004193f80271b87e6942b3fb9d.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/8e/27/8e270e775f2249d203c5d02c45255c47.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/6b/f6/6bf6bb8c3cd57ffa20328f10a1778ab1.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/16/5d/165d064caabd45270c93e2aea315d4bc.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/d2/ea/d2ea3174d62258de5f56c44383b7b33b.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/b0/1f/b01f860eb73a257694fddfefb5f06c55.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/dc/b1/dcb1b5d4a34f9cd847237dcca665d196.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/27/e6/27e6407388ed53618c7b6fda5ac1adca.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/0d/3e/0d3e657c35d1242b0dfdfdaeb0fb730e.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/8c/11/8c11d3db1fa7709157f5099aeecc145a.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/b0/d0/b0d0a60b6a3e8901d48cd9a1bcf736d1.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ec/fa/ecfa0d5b3cbb017444d16ed033eb0e27.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/98/73/987350bb90653f2f6c2104eeaa1277eb.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/af/87/af87c503825fba4cf7375121b72fa4a1.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/8b/06/8b06032acdf1dfec0ff088e0f1c0f2d5.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/c0/4d/c04d693988575dd83302e480de6445c8.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/79/5e/795e00ff7a3f6f9da21542b325bd01e7.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/d4/c7/d4c7dfaaef60dd68ed67814a8284bfcc.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/e5/93/e593f663872a28a633118ada2b1c80ec.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/a4/5a/a45a207364455eab45b2a61172bcde1d.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/6b/d2/6bd22924e1cc06757fbb1c0122366040.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/6f/77/6f778a816adb12e07e598d70f05d59ec.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/99/a8/99a859047fe9fea6fa0497f97dfd5990.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/8a/97/8a975df171304f169d84e837bdcf9e25.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/1c/a9/1ca90d112efe61961de6ade7b0e7afa3.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ec/25/ec252baef72a7b7ab8b51eb9401a529a.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/74/e8/74e8b1215a85dcef4d604a06323a6fb6.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/be/72/be7236266fd8b37edcaee6588d09a1aa.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/89/c6/89c675f92d1f27f569f34db744958d66.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/3c/56/3c56040489ff0ee87cc6d1c0c7880d2c.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/65/92/6592637ed5140cb6bcdb72c8976f5b01.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/66/6b/666bfa0ec56c8e3d465239a692d3c0fe.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/0b/ec/0bec2ae579c6cb726c61ab88bad28dc7.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/66/33/6633bea4a505222450bf3b02c7afac98.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/4c/21/4c2117f34030fc5d920d82c13478bef9.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/04/fe/04feb85af8e021e074eab3d0bb9c4ae9.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/be/9e/be9e1b6f9dbd37b8f86daf55c9f47941.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/11/fe/11fec3cdcb51aa835f10d91c775079d8.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/fc/42/fc427dc861c1fbfa0aa363ea518057e6.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/66/31/6631457d866dd4791d642844d330444f.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/04/43/04431924d381f2c52c5beca4f2267e39.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/a6/98/a6980813d6e84983d0f88b239caf210d.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/e4/59/e459ebfa69b95989709b5ec1ff69000e.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/0d/ce/0dce4c356543e6e72f17b7e2b9b92557.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/fd/d0/fdd0c793f11339c6d0c580ba8128ac46.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/71/23/71234869c490c0b785ad0afed6b73026.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/ed/de/eddef4533569ac7d5854b52a410e3b04.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/06/37/0637129d98a7eb306780cddb6012d553.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/16/1d/161d9d29825d874d672561c028a78ba5.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/95/a8/95a87191ce8e061e4ad9dde6fbb17b9f.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/f8/b1/f8b1eb6347aa9738d0456d2f2859f455.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/36/35/363531b3274f2473573bea9361168176.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/21/59/2159f0ad08670818d2b75f118a8a2f4d.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/2a/4e/2a4e7b097b92bcd54e9783c268cfe625.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/8b/8c/8b8c05e304868ea996925400b7109cc4.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/b0/0d/b00d122a911fa047a8e597284e23ce55.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/94/d1/94d120d224649299d9c4b01579c2e888.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/05/c9/05c9744f44d106d630355a6568a33d35.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/3a/6f/3a6f993929d81b59a6b4ac128f76fdbe.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/1a/25/1a25635cc7caa288da0fc0e6c8bed2ae.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/5b/b2/5bb277d8a3cf3a9e34735329e6bfb508.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/f4/b4/f4b4abfaf504f08f8573dfcde8586689.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" />
+                        
+                        
+                        <span>/media/cache/9b/83/9b834606fb9d1431b007b3a8f6e394f9.jpg</span>
+                        
+                    </li>
+                
+                </ul>
+              </div>
+            
+            
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+        $(window).load(function() {
+            
+            $('.thumbnails ul li').click(function() {
+                var current = $(this);
+                var index = $('.thumbnails ul li').index(current);
+                $('#largepreview').attr('src', current.children('span').text());
+                $('#largepreview').attr('data-index', index);
+            });
+            
+            $('#largepreview').click(function() {
+              $.fancybox([
+                
+                
+                "/media/cache/2a/b5/2ab55990ea51441598788f28fdc18339.jpg",
+                
+                
+                
+                "/media/cache/5f/a5/5fa5c6c0f28772a9b9c1ac1b2009fb7a.jpg",
+                
+                
+                
+                "/media/cache/ee/e7/eee7bdb7d15ebb34a09cfcb83e07093c.jpg",
+                
+                
+                
+                "/media/cache/b1/00/b1002047d1e0e3ee0d921d83ce6b6746.jpg",
+                
+                
+                
+                "/media/cache/2d/23/2d2332268e16ece38e45347c9423184e.jpg",
+                
+                
+                
+                "/media/cache/36/25/3625fc5413037915fa4cbb1b2f2c5747.jpg",
+                
+                
+                
+                "/media/cache/77/59/77591a6fee58a2f31d8145e3be524e70.jpg",
+                
+                
+                
+                "/media/cache/b2/3f/b23f7b822fe492f2cdab16df87b6b773.jpg",
+                
+                
+                
+                "/media/cache/2f/a2/2fa2358efdec2c33517312682f8492d9.jpg",
+                
+                
+                
+                "/media/cache/bd/db/bddb763578fe8ccbe05181e499cc6c15.jpg",
+                
+                
+                
+                "/media/cache/bb/37/bb37c0ca42a8fa17a9a6a4e998145a53.jpg",
+                
+                
+                
+                "/media/cache/f3/f9/f3f962dae62c8b20271c29974f3824b4.jpg",
+                
+                
+                
+                "/media/cache/37/e2/37e2c14eb54ce47ecc5566d1695e6067.jpg",
+                
+                
+                
+                "/media/cache/7b/f6/7bf6c6466460c0fb752ea2e24a9fdf7d.jpg",
+                
+                
+                
+                "/media/cache/0b/a0/0ba06f16fbe67cff6082c9f10b11c949.jpg",
+                
+                
+                
+                "/media/cache/66/c3/66c35a5c02ef86fd7a71d529534e3ef9.jpg",
+                
+                
+                
+                "/media/cache/ff/b6/ffb67edea4ec800e09ed48ab7a4235f0.jpg",
+                
+                
+                
+                "/media/cache/5c/61/5c612219be133d9a652362f55244ef86.jpg",
+                
+                
+                
+                "/media/cache/81/7c/817c86ec678e6001394af6f8b194b6f7.jpg",
+                
+                
+                
+                "/media/cache/f3/2d/f32d2e2eb0b58e7bece2d54a2c3b7c4a.jpg",
+                
+                
+                
+                "/media/cache/eb/3f/eb3f2183c97b46170c22973340a4ab35.jpg",
+                
+                
+                
+                "/media/cache/77/b9/77b9f167e39b420f60ec5ba342c2562d.jpg",
+                
+                
+                
+                "/media/cache/f9/7e/f97e55a4255ac6ffc4e545731b9bd6ae.jpg",
+                
+                
+                
+                "/media/cache/4c/0d/4c0d19b0397254607114ba09ac568cd5.jpg",
+                
+                
+                
+                "/media/cache/b5/c1/b5c1f204a228bdce5628567b7256a96e.jpg",
+                
+                
+                
+                "/media/cache/16/93/169380281dda52916536c7f7b6bbed1b.jpg",
+                
+                
+                
+                "/media/cache/f1/91/f191b5d63c6bc9dff90dd86a4698cc50.jpg",
+                
+                
+                
+                "/media/cache/42/8c/428c870dd06a08dec5e03ba9c71a7841.jpg",
+                
+                
+                
+                "/media/cache/95/1c/951c5c77e32751545e1756ec63ccba93.jpg",
+                
+                
+                
+                "/media/cache/22/49/22491a81545a2e092f6e9bdbd82822b9.jpg",
+                
+                
+                
+                "/media/cache/63/4f/634fdde492a14a64d96a99c8d208be91.jpg",
+                
+                
+                
+                "/media/cache/bf/65/bf65e121c930d311d0af01ad22b124bf.jpg",
+                
+                
+                
+                "/media/cache/59/e2/59e25473ed7093b69cb29ba6d75d5a45.jpg",
+                
+                
+                
+                "/media/cache/25/2f/252f547df53846b5f9ce20591150e3bd.jpg",
+                
+                
+                
+                "/media/cache/4f/52/4f52be8589595cce2100294895bb04c1.jpg",
+                
+                
+                
+                "/media/cache/6c/f0/6cf0d251f867d46bf01222d384ccdd4d.jpg",
+                
+                
+                
+                "/media/cache/84/c6/84c670655ff116877e5e346c469401ed.jpg",
+                
+                
+                
+                "/media/cache/60/7b/607b948f6356cb31466f0eafcbd9a8cf.jpg",
+                
+                
+                
+                "/media/cache/4c/60/4c606bb87e3d6536b94bcaf85d944b57.jpg",
+                
+                
+                
+                "/media/cache/9d/f7/9df7d50d0ed4ca9bdbec2f7d86d99a00.jpg",
+                
+                
+                
+                "/media/cache/bf/f8/bff8a77ed93e94dc027d1a48e4cfc082.jpg",
+                
+                
+                
+                "/media/cache/4a/ca/4acac66df0ff7b38458b2751d4dd6cdc.jpg",
+                
+                
+                
+                "/media/cache/da/48/da4818b9cfe64ab6cd6165ab50436234.jpg",
+                
+                
+                
+                "/media/cache/6f/1c/6f1cf24b88c1c0e4de364db09656baba.jpg",
+                
+                
+              ], {
+                'type': 'image',
+                'loop': false,
+                'index': $('#largepreview').attr('data-index')
+              });
+            });
+            
+        });
+    </script>
+
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

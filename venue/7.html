@@ -1,0 +1,2957 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../venues.html">Venues</a></li>
+              <li>Sala Teatro El Sótano</li>
+            </ul>
+          </nav>
+          <h2>Sala Teatro El Sótano</h2>
+        </header>
+
+        <section class="main">
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          <div class="linkeditems">
+            <h3>Productions: +</h3>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4360">Adiós y Welcome</a>
+                
+                
+                <br /><span>Directed by: Freddy Núñez Estenoz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4749">Todo x 1</a>
+                
+                
+                <br /><span>Directed by: Juan Carlos Cremata Malberti</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4603">En privado con la reina</a>
+                
+                <br /><span>July 3, 2015 - July 19, 2015</span>
+                
+                
+                <br /><span>Directed by: Jorge Mederos</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4730">Cloaca</a>
+                
+                <br /><span>December 2014 - 2015</span>
+                
+                
+                <br /><span>Directed by: Juan Carlos Cremata Malberti</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4768">Tula, tórtola y becerro</a>
+                
+                <br /><span>2014</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4388">La otra voz</a>
+                
+                <br /><span>October 27, 2013 - October 29, 2013</span>
+                
+                
+                <br /><span>Directed by: Manuel De</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4357">El cerco</a>
+                
+                <br /><span>September 20, 2013</span>
+                
+                
+                <br /><span>Directed by: Rubén Sicilia</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4021">Retrato de un hombre desnudo</a>
+                
+                <br /><span>December 7, 2012 - December 30, 2012</span>
+                
+                
+                <br /><span>Directed by: Yunior García Aguilera</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2534">Un Hombre Es Un Hombre</a>
+                
+                <br /><span>August 21, 2010 - October 17, 2010</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones Posada</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4939">Canto del pozo ciego</a>
+                
+                <br /><span>July 2010 - August 15, 2010</span>
+                
+                
+                <br /><span>Directed by: Jorge Luis Cacheiro</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2276.html">Jardín de héroes</a>
+                
+                <br /><span>May 2009</span>
+                
+                
+                <br /><span>Directed by: Lizette Silverio</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/34">Betún</a>
+                
+                <br /><span>January 24, 2009 - March 1, 2009</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3619">Noches de satín regio</a>
+                
+                <br /><span>December 9, 2006 - December 30, 2006</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1592">Contradanza</a>
+                
+                <br /><span>July 22, 2006</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3618">Réquiem por Yarini</a>
+                
+                <br /><span>February 11, 2006</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1502">El naufragio de la fe</a>
+                
+                <br /><span>January 29, 2006 - 2006</span>
+                
+                
+                <br /><span>Directed by: Amaury Ricardo Sarmiento</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1500">La pecera</a>
+                
+                <br /><span>2006</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1501">Cañaveral</a>
+                
+                <br /><span>2006</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1506">Sputnik</a>
+                
+                <br /><span>2006</span>
+                
+                
+                <br /><span>Directed by: Frank Duquesne</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1505">El muro de Omar Lorenzo</a>
+                
+                <br /><span>2006</span>
+                
+                
+                <br /><span>Directed by: Omar Lorenzo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1504">Nevada</a>
+                
+                <br /><span>2006</span>
+                
+                
+                <br /><span>Directed by: Grupo Rumbos</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1503">Los transformistas</a>
+                
+                <br /><span>2006</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1225">La comedia de las equivocaciones</a>
+                
+                <br /><span>November 19, 2005 - November 21, 2005</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones Posada</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4608.html">Naufragio de la fe</a>
+                
+                <br /><span>2005</span>
+                
+                
+                <br /><span>Directed by: Alex Madia Levi</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1846">Escándalo en la trapa</a>
+                
+                <br /><span>2005</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1848">El concierto</a>
+                
+                <br /><span>January 17, 2004</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/707">La ratonera</a>
+                
+                <br /><span>2004</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4880">Los días felices</a>
+                
+                <br /><span>March 14, 2003 - March 30, 2003</span>
+                
+                
+                <br /><span>Directed by: Doris Gutiérrez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/737">El diario de Anna Frank</a>
+                
+                <br /><span>2002</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1827">Los mangos de Caín</a>
+                
+                <br /><span>2001</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1828.html">Falsa alarma</a>
+                
+                <br /><span>2001</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1830">El señor Galíndez</a>
+                
+                <br /><span>2001</span>
+                
+                
+                <br /><span>Directed by: Paul Verdier</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/701">Muerte de amor en Verona</a>
+                
+                <br /><span>2001</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1831">Busca buscando</a>
+                
+                <br /><span>2001</span>
+                
+                
+                <br /><span>Directed by: Trinidad Rolando</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1829">El diario de Anna Frank</a>
+                
+                <br /><span>2001</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3647">Remolino en las aguas</a>
+                
+                <br /><span>August 11, 2000 - August 12, 2000</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1464">Parque de sueños</a>
+                
+                <br /><span>2000&#39;s</span>
+                
+                
+                <br /><span>Directed by: Ernesto Parra</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1826">Los cuernos de Don Friolera</a>
+                
+                <br /><span>2000</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones Posada</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/699">Muerte en el bosque</a>
+                
+                <br /><span>October 1999</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1824">Testamento</a>
+                
+                <br /><span>1999</span>
+                
+                
+                <br /><span>Directed by: José María Coll</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1825">Réquiem por Yarini</a>
+                
+                <br /><span>1999</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1678">Jesús</a>
+                
+                <br /><span>July 1998</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1823">Tormenta de nieve</a>
+                
+                <br /><span>1998</span>
+                
+                
+                <br /><span>Directed by: José María Coll</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1673">Los bandos de Verona</a>
+                
+                <br /><span>March 27, 1997</span>
+                
+                
+                <br /><span>Directed by: Rómulo Pianacci</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1658">Fiesta brava, o, Mirando al tendido</a>
+                
+                <br /><span>1997</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones Posada</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1650">Soliloquio en Rojo Empecinado</a>
+                
+                <br /><span>1997</span>
+                
+                
+                <br /><span>Directed by: Roberto Vega-Llort</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1675">Los  bandos de Verona</a>
+                
+                <br /><span>1997</span>
+                
+                
+                <br /><span>Directed by: Rómulo Pianacci</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1659">La gloria eres tú</a>
+                
+                <br /><span>1997</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3632">Noches de satín regio</a>
+                
+                <br /><span>May 1996</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1324">Provinciana</a>
+                
+                <br /><span>1996</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1822">Flash Flash</a>
+                
+                <br /><span>1996</span>
+                
+                
+                <br /><span>Directed by: Raúl Lima</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1660">Masigüere</a>
+                
+                <br /><span>1996</span>
+                
+                
+                <br /><span>Directed by: Trinidad Rolando</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1674">Remolino en las aguas</a>
+                
+                <br /><span>1996</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1647.html">Amadeus</a>
+                
+                <br /><span>1996</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1821">Emociones</a>
+                
+                <br /><span>1995</span>
+                
+                
+                <br /><span>Directed by: Nelson Dorr</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1644">Noches de satín regio</a>
+                
+                <br /><span>September 1994</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1815">Réquiem por la luna</a>
+                
+                <br /><span>1994</span>
+                
+                
+                <br /><span>Directed by: Miguel Lucero</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1656">Encuentro nocturno de extremo peligro</a>
+                
+                <br /><span>1994</span>
+                
+                
+                <br /><span>Directed by: Rafael González Rodríguez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1320">Volvió una noche</a>
+                
+                <br /><span>1994</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones Posada</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1814">Pervertimentos</a>
+                
+                <br /><span>1994</span>
+                
+                
+                <br /><span>Directed by: Alejandro Iglesias</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1322">La venganza de Medea</a>
+                
+                <br /><span>1994</span>
+                
+                
+                <br /><span>Directed by: Rafael González Rodríguez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1651">La cumbancha</a>
+                
+                <br /><span>1994</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones Posada</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1657.html">Dos semanas con la reina</a>
+                
+                <br /><span>1994</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1323">La piedra de Eliot</a>
+                
+                <br /><span>September 1993</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1649">La hija de Nacho</a>
+                
+                <br /><span>1993</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1812">Blue Moon in Havana</a>
+                
+                <br /><span>1993</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1813">La celestina</a>
+                
+                <br /><span>1993</span>
+                
+                
+                <br /><span>Directed by: Rafael Daboin</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1809">Sibila, mi amor</a>
+                
+                <br /><span>1992</span>
+                
+                
+                <br /><span>Directed by: José Milián</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1811">La catedral del helado</a>
+                
+                <br /><span>1992</span>
+                
+                
+                <br /><span>Directed by: Sara María Reyes</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1680">El lobo, el bosque y el hombre nuevo</a>
+                
+                <br /><span>1992</span>
+                
+                
+                <br /><span>Directed by: Rafael González Rodríguez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1318">Para comerte mejor</a>
+                
+                <br /><span>1992</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1317">La cueva</a>
+                
+                <br /><span>1992</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1648">Dos perdidos en una noche sucia</a>
+                
+                <br /><span>1992</span>
+                
+                
+                <br /><span>Directed by: Juan Carlos Maurén</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/800">Electra Garrigó</a>
+                
+                <br /><span>1991</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1774">Al que le tocó le tocó</a>
+                
+                <br /><span>1990</span>
+                
+                
+                <br /><span>Directed by: Ignacio Gutiérrez</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1316.html">Falsa alarma</a>
+                
+                <br /><span>1990</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones Posada</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3629">La querida de enramada</a>
+                
+                <br /><span>December 1989</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1643">Juana de Belciel</a>
+                
+                <br /><span>October 20, 1989 - 1989</span>
+                
+                
+                <br /><span>Directed by: José Milián</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1808.html">Habla bajo, si no yo grito</a>
+                
+                <br /><span>1989</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1807">Transparencia</a>
+                
+                <br /><span>1989</span>
+                
+                
+                <br /><span>Directed by: Xiomara Calderón</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1321">¡Arriba, corazón!</a>
+                
+                <br /><span>1989</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones Posada</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1775">Al que le tocó le tocó</a>
+                
+                <br /><span>1989</span>
+                
+                
+                <br /><span>Directed by: Xiomara Calderón</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1804">Nunca he visto caer la nieve</a>
+                
+                <br /><span>1989</span>
+                
+                
+                <br /><span>Directed by: Eugenio Hernández Espinosa</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1805">Entre ustedes y yo</a>
+                
+                <br /><span>March 1988</span>
+                
+                
+                <br /><span>Directed by: Ángel Heredia</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1646.html">La mandrágora</a>
+                
+                <br /><span>1988</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1806">Burgueses</a>
+                
+                <br /><span>1988</span>
+                
+                
+                <br /><span>Directed by: Nicolás Dorr</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3636">Arlequín, servidor de dos patrones</a>
+                
+                <br /><span>September 1987</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3627">La querida de enramada</a>
+                
+                <br /><span>September 1987</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1791">Mucho de todo</a>
+                
+                <br /><span>March 27, 1987</span>
+                
+                
+                <br /><span>Directed by: José Milián</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1671">Clase de hierro</a>
+                
+                <br /><span>March 24, 1987</span>
+                
+                
+                <br /><span>Directed by: Ignacio Gutiérrez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1794">En el cine</a>
+                
+                <br /><span>1987</span>
+                
+                
+                <br /><span>Directed by: Nicolás Dorr</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1799">El próximo verano que pasó</a>
+                
+                <br /><span>1987</span>
+                
+                
+                <br /><span>Directed by: Eugenio Hernández</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1800.html">La admiradora anónima</a>
+                
+                <br /><span>1987</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1801">Más sabe uno por viejo</a>
+                
+                <br /><span>1987</span>
+                
+                
+                <br /><span>Directed by: Ignacio Gutiérrez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1802">Vida de perro</a>
+                
+                <br /><span>1987</span>
+                
+                
+                <br /><span>Directed by: Jorge Cao</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1803">Enredos en el parque</a>
+                
+                <br /><span>1987</span>
+                
+                
+                <br /><span>Directed by: Ángel Más</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1792">El dedo en el merengue</a>
+                
+                <br /><span>1987</span>
+                
+                
+                <br /><span>Directed by: Nicolás Dorr</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1790">La ira y el éxtasis</a>
+                
+                <br /><span>1987</span>
+                
+                
+                <br /><span>Directed by: Nicolás Dorr, Fernando Quiñones Posada</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1793">La brujería científica de Tata Perfecto</a>
+                
+                <br /><span>1987</span>
+                
+                
+                <br /><span>Directed by: Ángel Más</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1786">La querida de enramada</a>
+                
+                <br /><span>August 30, 1986</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1787">Las pericas</a>
+                
+                <br /><span>1986</span>
+                
+                
+                <br /><span>Directed by: Nicolás Dorr</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1788">Yo tengo un brillante</a>
+                
+                <br /><span>1986</span>
+                
+                
+                <br /><span>Directed by: Nicolás Dorr</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1784">La proposición</a>
+                
+                <br /><span>1986</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1789">Ejercicio para un actor</a>
+                
+                <br /><span>1986</span>
+                
+                
+                <br /><span>Directed by: Alicia Bustamante</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1550">Baño de mar</a>
+                
+                <br /><span>1986</span>
+                
+                
+                <br /><span>Directed by: María Elena Ortega</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1840">Lola, o, El caso de los libros que nadie solicita y Eran las tres de la tarde</a>
+                
+                <br /><span>1985</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1783.html">Bajo la luna gitana</a>
+                
+                <br /><span>1985</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones Posada</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1782">El amor de Don Perlimplín con Belisa en su jardín</a>
+                
+                <br /><span>1984</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones Posada</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1637">Ha llegado un inspector</a>
+                
+                <br /><span>1984</span>
+                
+                
+                <br /><span>Directed by: María Elena Ortega</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1780">A tigre, zorra y bulldog</a>
+                
+                <br /><span>1984</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3590">La primera vez</a>
+                
+                <br /><span>1984</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1781">Arlequín, servidor de dos patrones</a>
+                
+                <br /><span>1984</span>
+                
+                
+                <br /><span>Directed by: María Elena Ortega</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1636">Esta noche se improvisa la comedia</a>
+                
+                <br /><span>1983</span>
+                
+                
+                <br /><span>Directed by: Atahualpa del Cioppo, Sara Larocca</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1244">A tigre, zorra y bulldog</a>
+                
+                <br /><span>1983</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1638">La querida de enramada</a>
+                
+                <br /><span>1983</span>
+                
+                
+                <br /><span>Directed by: Sara Larocca</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1639">La primera vez</a>
+                
+                <br /><span>1983</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones Posada</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1645">La proposición</a>
+                
+                <br /><span>1983</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/1634.html">Kunene (Al otro lado de la casa)</a>
+                
+                <br /><span>October 10, 1982</span>
+                
+                
+                <br /><span>Directed by: María Elena Ortega</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1248">Esta noche se improvisa la comedia</a>
+                
+                <br /><span>1982</span>
+                
+                
+                <br /><span>Directed by: Atahualpa del Cioppo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1779">El peine y el espejo</a>
+                
+                <br /><span>1982</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3642">El burgués gentilhombre</a>
+                
+                <br /><span>1981</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1635">Adriana en dos tiempos</a>
+                
+                <br /><span>1981</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1249">Orfeo desciende</a>
+                
+                <br /><span>1981</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1260.html">Rampa arriba Rampa abajo</a>
+                
+                <br /><span>1981</span>
+                
+                
+                <br /><span>Directed by: Lilliam Llerena</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1259">Cyrano de Bergerac</a>
+                
+                <br /><span>1981</span>
+                
+                
+                <br /><span>Directed by: María Elena Ortega</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1251">Aquí en el barrio</a>
+                
+                <br /><span>1981</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones Posada</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1778.html">Zoológico de cristal</a>
+                
+                <br /><span>1980</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1777">Melodía varsoviana</a>
+                
+                <br /><span>1980</span>
+                
+                
+                <br /><span>Directed by: Alejandro Iglesias</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1776">Cómo, cuándo y dónde halló la fortuna el andarín Carvajal</a>
+                
+                <br /><span>1980</span>
+                
+                
+                <br /><span>Directed by: Jesús Gregorio</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1277">S.O.S. (Una situación terriblemente delicada)</a>
+                
+                <br /><span>1980</span>
+                
+                
+                <br /><span>Directed by: María Elena Ortega</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1253">Un asesino para Carlota</a>
+                
+                <br /><span>1980</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1631">La casa del marinero</a>
+                
+                <br /><span>1979</span>
+                
+                
+                <br /><span>Directed by: María Elena Ortega</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/575">Historia de una muñeca abandonada</a>
+                
+                <br /><span>1979</span>
+                
+                
+                <br /><span>Directed by: Leonilo Guerra</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1549">Cantar por Tilín García</a>
+                
+                <br /><span>1979</span>
+                
+                
+                <br /><span>Directed by: Nelson Dorr</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1672">Juguemos el mundo a mirar</a>
+                
+                <br /><span>1979</span>
+                
+                
+                <br /><span>Directed by: Fernando Quiñones Posada</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1837">El golpe bibijagua</a>
+                
+                <br /><span>1979</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1836">Guarda tu luz, Oh, Patria</a>
+                
+                <br /><span>1979</span>
+                
+                
+                <br /><span>Directed by: Nelson Villagra</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/449">Del pobre BB a Bertolt Brecht</a>
+                
+                <br /><span>November 1978</span>
+                
+                
+                <br /><span>Directed by: José (Pepe) Santos Marrero</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1839">Historia de amor en Irkutsk</a>
+                
+                <br /><span>1978</span>
+                
+                
+                <br /><span>Directed by: María Elena Ortega</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1772">Doña Rosita, la soltera</a>
+                
+                <br /><span>1977</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1773">Tembladera</a>
+                
+                <br /><span>1977</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1616">Vida, fulgor y muerte de Joaquin Murieta</a>
+                
+                <br /><span>1977</span>
+                
+                
+                <br /><span>Directed by: Nelson Dorr</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1630">Rosalba y los llaveros</a>
+                
+                <br /><span>1977</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1641">Basta Arturo</a>
+                
+                <br /><span>1976</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1642">Los profanadores</a>
+                
+                <br /><span>1976</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1632">Cyrano de Bergerac</a>
+                
+                <br /><span>1976</span>
+                
+                
+                <br /><span>Directed by: María Elena Ortega</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1633.html">El burgués gentilhombre</a>
+                
+                <br /><span>1976</span>
+                
+                
+                <br /><span>Directed by: Sara Larocca</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1769">El son entero</a>
+                
+                <br /><span>1975</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1768">La boda</a>
+                
+                <br /><span>1975</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León, Evgueni Radomilenski</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1767">El canto del cisne</a>
+                
+                <br /><span>1975</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León, Evgueni Radomilenski</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1766">El aniversario</a>
+                
+                <br /><span>1975</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León, Evgueni Radomilenski</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1255">La corte de los divorcios</a>
+                
+                <br /><span>1975</span>
+                
+                
+                <br /><span>Directed by: Ignacio Gutiérrez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1254">De dos en dos</a>
+                
+                <br /><span>1975</span>
+                
+                
+                <br /><span>Directed by: Orlando V. Escalera</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1770">Mirandolina (La pícara hostelera)</a>
+                
+                <br /><span>1975</span>
+                
+                
+                <br /><span>Directed by: Rolando Ferrer</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1256.html">Brigada 2506</a>
+                
+                <br /><span>1974</span>
+                
+                
+                <br /><span>Directed by: Miriam Lezcano</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1760">La ratonera</a>
+                
+                <br /><span>1974</span>
+                
+                
+                <br /><span>Directed by: Fernando Bermúdez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1758">La dama duende</a>
+                
+                <br /><span>1973</span>
+                
+                
+                <br /><span>Directed by: Rolando Ferrer</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1755">El oso</a>
+                
+                <br /><span>1973</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1754">Trágico a la fuerza</a>
+                
+                <br /><span>1973</span>
+                
+                
+                <br /><span>Directed by: Ignacio Gutiérrez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1753">Sobre el daño que hace el tabaco</a>
+                
+                <br /><span>1973</span>
+                
+                
+                <br /><span>Directed by: Ignacio Gutiérrez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1751">Los chapuzones</a>
+                
+                <br /><span>1973</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1752">Petición de mano</a>
+                
+                <br /><span>1973</span>
+                
+                
+                <br /><span>Directed by: Ignacio Gutiérrez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1759">S.O.S. (Una situación terriblemente delicada)</a>
+                
+                <br /><span>1973</span>
+                
+                
+                <br /><span>Directed by: Oto Katusha</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1290">Andrócles y el león</a>
+                
+                <br /><span>1972</span>
+                
+                
+                <br /><span>Directed by: Ignacio Gutiérrez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1743">Los cheverones</a>
+                
+                <br /><span>1972</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1744">El hombre de la gallina</a>
+                
+                <br /><span>1972</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1378">De sentir y decir</a>
+                
+                <br /><span>1971</span>
+                
+                
+                <br /><span>Directed by: Rolando Ferrer</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1740">Las travesuras de Don Dionisio</a>
+                
+                <br /><span>1971</span>
+                
+                
+                <br /><span>Directed by: Héctor Álvarez</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1835.html">Tiempos de Don Regino</a>
+                
+                <br /><span>1971</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1739">El cruce sobre el Niágara</a>
+                
+                <br /><span>1971</span>
+                
+                
+                <br /><span>Directed by: Ignacio Gutiérrez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1379">Las preciosas ridículas</a>
+                
+                <br /><span>1971</span>
+                
+                
+                <br /><span>Directed by: Alejandro Iglesias</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1737">Anfitrión</a>
+                
+                <br /><span>1970</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1376">Llévame a la pelota</a>
+                
+                <br /><span>1970</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1738">La traición del padre Martín</a>
+                
+                <br /><span>1970</span>
+                
+                
+                <br /><span>Directed by: Rogerio Paulo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1366">Orfeo desciende</a>
+                
+                <br /><span>1969</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1615">El son entero</a>
+                
+                <br /><span>1969</span>
+                
+                
+                <br /><span>Directed by: Rolando Ferrer</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1711">El hombre en el piel de víbora</a>
+                
+                <br /><span>1969</span>
+                
+                
+                <br /><span>Directed by: Miguel Montesco</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1375">Te juro Juana que tengo ganas</a>
+                
+                <br /><span>1969</span>
+                
+                
+                <br /><span>Directed by: Ignacio Gutiérrez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1365">La gata sobre los rieles</a>
+                
+                <br /><span>1969</span>
+                
+                
+                <br /><span>Directed by: Ignacio Gutiérrez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1331">El metro</a>
+                
+                <br /><span>1969</span>
+                
+                
+                <br /><span>Directed by: Adela Escartín</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1727">La curva</a>
+                
+                <br /><span>1969</span>
+                
+                
+                <br /><span>Directed by: Adela Escartín</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1367">Mutatis mutandi</a>
+                
+                <br /><span>1969</span>
+                
+                
+                <br /><span>Directed by: Adela Escartín</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1380">Encuentro con Chejov</a>
+                
+                <br /><span>1969</span>
+                
+                
+                <br /><span>Directed by: Gerardo Fulleda León</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1363">El viento en las ramas del sasafrás</a>
+                
+                <br /><span>1968</span>
+                
+                
+                <br /><span>Directed by: Ignacio Gutiérrez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4659">La soga al cuello </a>
+                
+                <br /><span>1968</span>
+                
+                
+                <br /><span>Directed by: Gilda Hernández</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4661">La soga al cuello </a>
+                
+                <br /><span>1968</span>
+                
+                
+                <br /><span>Directed by: Gilda Hernández</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1362">La cuadratura del círculo</a>
+                
+                <br /><span>1968</span>
+                
+                
+                <br /><span>Directed by: Ignacio Gutiérrez</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3069.html">Quien le teme a Virginia Woolf?</a>
+                
+                <br /><span>December 1967</span>
+                
+                
+                <br /><span>Directed by: Rolando Ferrer, Néstor Raimondi</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2543">Aire frío</a>
+                
+                <br /><span>April 22, 1967</span>
+                
+                
+                <br /><span>Directed by: Humberto Arenal</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/938">El robo del cochino</a>
+                
+                <br /><span>February 17, 1966</span>
+                
+                
+                <br /><span>Directed by: Gilda Hernández</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3654">Cándida</a>
+                
+                <br /><span>May 1965</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2124">Cándida</a>
+                
+                <br /><span>September 1964</span>
+                
+                
+                <br /><span>Directed by: Herberto Dumé</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2122.html">Recuerdos de Tulipa</a>
+                
+                <br /><span>June 11, 1964</span>
+                
+                
+                <br /><span>Directed by: Herberto Dumé</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2127">Vestido de novia</a>
+                
+                <br /><span>1964</span>
+                
+                
+                <br /><span>Directed by: Herberto Dumé</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2123">Bodas de sangre</a>
+                
+                <br /><span>1964</span>
+                
+                
+                <br /><span>Directed by: Herberto Dumé</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2121">Mulato</a>
+                
+                <br /><span>1963</span>
+                
+                
+                <br /><span>Directed by: Herberto Dumé</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3119">Malditos</a>
+                
+                <br /><span>1959</span>
+                
+                
+                <br /><span>Directed by: Wilberto Cantón</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3120.html">Espíritu maligno</a>
+                
+                <br /><span>October 4, 1957</span>
+                
+                
+                <br /><span>Directed by: Orlando Nodal</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3621">La gloria eres tú</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1876">El burgués gentilhombre</a>
+                
+                <br /><span>20th century</span>
+                
+                
+              </li>
+              
+            </ul>
+          </div>
+        
+        
+             
+        
+          
+      
+                
+
+
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              <li>
+                <h4>Address:</h4>
+                <span>calle K, #514 entre 25 y 27</span>
+                
+                <br/><span>El Vedado</span>
+                
+              </li>
+              
+              
+              <li>
+                <h4>City:</h4>
+                <span>La Habana, La Habana</span>
+              </li>
+              
+              <li>
+                <h4>Country:</h4>
+                <span>Cuba</span>
+              </li>
+              
+              
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16441">View details</a>
+            <div id="digitalobjects">
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/ec/28ec4424cc19d669279de81c277e22bb.jpg" title="Article, &quot;Los días felices&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/1a/40/1a40c201aadaff0e95a733007927ba98.jpg" alt="Article, &quot;Los días felices&quot;" data-href="/digitalobject/16441" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/79/2079fa880b098e0b0ee1407e5936ee8c.jpg" title="Article, &quot;Los días felices&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/16/34/1634822f81539559e05a6fd093f71417.jpg" alt="Article, &quot;Los días felices&quot;" data-href="/digitalobject/16441" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/ca/20cab8ee43f43a6d113cbf0afd3bc96f.jpg" title="Nara Mansur about the production, &quot;Los días felices&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/49/3f/493f0d1720abb60a19e3640778719129.jpg" alt="Nara Mansur about the production, &quot;Los días felices&quot;" data-href="/digitalobject/16440" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6e/01/6e0157c54206272c81bb27efb2730f93.jpg" title="Poster for the production, &quot;Los días felices&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/a4/27/a427437624f596a154366938f353230f.jpg" alt="Poster for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16439" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/03/28034a9e278fda36fc359b3114eb8e07.jpg" title="Poster for the production, &quot;Los días felices&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ec/3d/ec3d0ef738c60230d90cd1449d22bf4c.jpg" alt="Poster for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16438" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7f/80/7f80228ec370278832bc7ad26b2a18bc.jpg" title="Program for the production, &quot;Los días felices&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/33/8e/338ec8eb8faaebb19fd02c228b1a32d8.jpg" alt="Program for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16437" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/59/72/5972ee33686112fd3b373254cb8fe661.jpg" title="Program for the production, &quot;Los días felices&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/39/17/391772c0169abe698e78323d5d49e92f.jpg" alt="Program for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16437" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/67/45/6745cbff9ed0c972049d8fe45081427e.jpg" title="Program for the production, &quot;La gata sobre los rieles&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/dc/0c/dc0caa7ae15fa2b7d509b387f313195e.jpg" alt="Program for the production, &quot;La gata sobre los rieles&quot;" data-href="/digitalobject/16292" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9b/a3/9ba33fd05c7f1eadc0b913b8e73cc010.jpg" title="Program for the production, &quot;La gata sobre los rieles&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/e7/37/e737e93f2d39eadac62a9fe20eb3537d.jpg" alt="Program for the production, &quot;La gata sobre los rieles&quot;" data-href="/digitalobject/16292" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/2e/df2e90ec8eb7893d9d89f494be971bbf.jpg" title="Program for the production, &quot;La gata sobre los rieles&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/5d/59/5d595e3c62bf4846ebd1183d2e1ae7ea.jpg" alt="Program for the production, &quot;La gata sobre los rieles&quot;" data-href="/digitalobject/16292" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/55/9f/559f78450fc5c969c2d75b7d72de8465.jpg" title="Program for the production, &quot;La gata sobre los rieles&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/bc/a2/bca290ace1cb81d38f9def4662f62f8b.jpg" alt="Program for the production, &quot;La gata sobre los rieles&quot;" data-href="/digitalobject/16292" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d5/66/d5669400dbe74b2f62e84d183cef9cd1.jpg" title="Photograph of rehearsal of the production, &quot;La Víctima&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/97/69/9769f3f4ac6f548563c45fb4ab847cf0.jpg" alt="Photograph of rehearsal of the production, &quot;La Víctima&quot;" data-href="/digitalobject/15953" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/61/01/6101c89b0a529e8d0ce5257906d39a77.jpg" title="Poster for the production, En tiempos de Don Regino">
+                  
+                  
+                  <img src="../media/cache/32/3f/323f09642af27f0fa826adfee40504d5.jpg" alt="Poster for the production, En tiempos de Don Regino" data-href="/digitalobject/16867" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/9e/e09e53b9a8fcb1c4211271c13862aa67.jpg" title="Poster for the production, De sentir y decir">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/5a/d5/5ad50128999ba133d7324c0c17d170ac.jpg" alt="Poster for the production, De sentir y decir" data-href="/digitalobject/16864" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/97/08/9708e00ea89706e5f7fbdfd88d920df7.jpg" title="Photograph of Margarita Placeres (Celeste Mendoza) in the production &quot;En privado con la reina&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ea/02/ea02039934eb807737956985c62b55e1.jpg" alt="Photograph of Margarita Placeres (Celeste Mendoza) in the production &quot;En privado con la reina&quot;" data-href="/digitalobject/15911" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b5/e8/b5e8809db301356193f730b86f3d1fd3.jpg" title="Costume design for the character Luz Marina for the production, &quot;Aire frío&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/b7/f4/b7f475e69423733a1f8748b1f49d17d4.jpg" alt="Costume design for the character Luz Marina for the production, &quot;Aire frío&quot;" data-href="/digitalobject/14208" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/21/e5/21e53c16bf483d8fe68f5cecc09dcee2.jpg" title="Advertisement for the productions &quot;Contigo pan y cebolla&quot;, &quot;Entremeses japoneses&quot;, &quot;Miami FLA&quot;, &quot;Pedro Manso&quot; y &quot;Aire Frio&quot;">
+                  
+                  
+                  <img src="../media/cache/67/49/6749ba428ba7de27c91815b39f227b57.jpg" alt="Advertisement for the productions &quot;Contigo pan y cebolla&quot;, &quot;Entremeses japoneses&quot;, &quot;Miami FLA&quot;, &quot;Pedro Manso&quot; y &quot;Aire Frio&quot;" data-href="/digitalobject/16838" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2d/51/2d51f5d8cdab03245abd0103f7961aba.jpg" title="Program for the production &quot;Orfeo desciende&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/66/1e/661e7d714ee42bf8e8c96d0515c06d3b.jpg" alt="Program for the production &quot;Orfeo desciende&quot;" data-href="/digitalobject/16689" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fe/42/fe427507d6db533a0013de5eab065d29.jpg" title="Program for the production &quot;Orfeo desciende&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/2a/69/2a69df9d387215013acceaff5f708aeb.jpg" alt="Program for the production &quot;Orfeo desciende&quot;" data-href="/digitalobject/16689" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/75/a0/75a043df59c2baacf3d02e3adf7e9c3d.jpg" title="Program for the production &quot;Orfeo desciende&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/13/9e/139e1d9e56837acbe362416e4d8a9b26.jpg" alt="Program for the production &quot;Orfeo desciende&quot;" data-href="/digitalobject/16689" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0a/3c/0a3c6502eb775e9bfe7dac90c1760799.jpg" title="Program for the production &quot;Orfeo desciende&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/7c/38/7c389d442f8e36cf509a593c4e1f6375.jpg" alt="Program for the production &quot;Orfeo desciende&quot;" data-href="/digitalobject/16689" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e6/00/e600701ce86905430e592f2e128f4b6c.jpg" title="Program for the production &quot;Orfeo desciende&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/1c/b0/1cb04ead82dc2ed9618f7c217ee480fc.jpg" alt="Program for the production &quot;Orfeo desciende&quot;" data-href="/digitalobject/16689" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d6/80/d680af1dff57b1f63f43154e1cf27d36.jpg" title="Program for the production &quot;El andarín carvajal&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/35/07/3507315a7f73494bcf2a631082a75170.jpg" alt="Program for the production &quot;El andarín carvajal&quot;" data-href="/digitalobject/16635" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/13/2c/132cb580fb0b7874180fd8646a9a09b7.jpg" title="Program for the production &quot;El andarín carvajal&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/1d/2b/1d2b5b8015f0e4bc58b4fb01641ced0c.jpg" alt="Program for the production &quot;El andarín carvajal&quot;" data-href="/digitalobject/16635" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7e/c7/7ec7f3fc351773ff0caf08f9fd4efb7c.jpg" title="Program for the production &quot;El andarín carvajal&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/50/13/5013b2a16c722a509672388c19c183ae.jpg" alt="Program for the production &quot;El andarín carvajal&quot;" data-href="/digitalobject/16635" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/50/cd/50cda615863525545d79d23aa39c09a7.jpg" title="Program for the production &quot;El andarín carvajal&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/be/9d/be9d5af041618308ddacb2d08abb34e8.jpg" alt="Program for the production &quot;El andarín carvajal&quot;" data-href="/digitalobject/16635" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3c/1e/3c1ee5eef8b33add164828ea7cb96364.jpg" title="Program for the production &quot;El andarín carvajal&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/04/17/0417e7d17ea1c1ada3a5c216d6ceede3.jpg" alt="Program for the production &quot;El andarín carvajal&quot;" data-href="/digitalobject/16635" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/17/c9/17c95f17d362492825aeed197898562b.jpg" title="Program for the production &quot;El andarín carvajal&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/9b/94/9b94f2a24f0a5239bc10904f1b7f39be.jpg" alt="Program for the production &quot;El andarín carvajal&quot;" data-href="/digitalobject/16635" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/6e/e06e94e105ec039c66198e010c462301.jpg" title="Program for the production &quot;El andarín carvajal&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/48/b6/48b6b57a59632d0d6feca5f04d89fbef.jpg" alt="Program for the production &quot;El andarín carvajal&quot;" data-href="/digitalobject/16635" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4f/78/4f78692cce3d29eadfebf1a209e8a9fc.jpg" title="Program for the production &quot;El andarín carvajal&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/65/2c/652cd0d1c620dc5fdc957591d7d37938.jpg" alt="Program for the production &quot;El andarín carvajal&quot;" data-href="/digitalobject/16635" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1d/7a/1d7a3017070081d6a5d15fe8033fca28.jpg" title="Program for the production, &quot;¿Quién le teme a Virginia Woolf?&quot;">
+                  
+                  
+                  <img src="../media/cache/32/be/32beec5d92278704752eeb6a6f974faa.jpg" alt="Program for the production, &quot;¿Quién le teme a Virginia Woolf?&quot;" data-href="/digitalobject/36" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/aa/8d/aa8d17ab6e286e49c5e6cc08f334da6d.jpg" title="Program for the production, &quot;¿Quién le teme a Virginia Woolf?&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/0e/b0/0eb0d669a3089b155917aefa2557c3db.jpg" alt="Program for the production, &quot;¿Quién le teme a Virginia Woolf?&quot;" data-href="/digitalobject/36" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/99/77/9977526840594be96bf90ed4e7a566f5.jpg" title="Program for the production, &quot;¿Quién le teme a Virginia Woolf?&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/b6/5e/b65e402df8dc64b7dbe16f7cc6e94398.jpg" alt="Program for the production, &quot;¿Quién le teme a Virginia Woolf?&quot;" data-href="/digitalobject/36" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/be/f2/bef2a303aa18d736f6041cdfd18bf0c1.jpg" title="Program for the production, &quot;¿Quién le teme a Virginia Woolf?&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/aa/90/aa9057fe7325db4c8b304a724cfff0d7.jpg" alt="Program for the production, &quot;¿Quién le teme a Virginia Woolf?&quot;" data-href="/digitalobject/36" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/01/39/0139a75cc2a6d3c480d1baa3de16c8d9.jpg" title="Program for the production, &quot;¿Quién le teme a Virginia Woolf?&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/18/8c/188c643eb5646812bd11a1c6ffae7074.jpg" alt="Program for the production, &quot;¿Quién le teme a Virginia Woolf?&quot;" data-href="/digitalobject/36" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e7/fe/e7fe2c094af8d8cf62696d394c5915be.jpg" title="Program for the production, &quot;¿Quién le teme a Virginia Woolf?&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/4a/a1/4aa199ae7c084864b2f4d5cd0251ed96.jpg" alt="Program for the production, &quot;¿Quién le teme a Virginia Woolf?&quot;" data-href="/digitalobject/36" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/60/ae/60ae80043ebb44422288f7875c7cf0e3.jpg" title="Program for the production, &quot;Aire frío&quot;">
+                  
+                  
+                  <img src="../media/cache/9c/58/9c58a2cf1bdb54627d74d96a19836404.jpg" alt="Program for the production, &quot;Aire frío&quot;" data-href="/digitalobject/7" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/98/bd/98bd91416214669b9f2ee907864fa297.jpg" title="Program for the production, &quot;Aire frío&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/dc/60/dc604516ed883cd1dca8c405b59ccc91.jpg" alt="Program for the production, &quot;Aire frío&quot;" data-href="/digitalobject/7" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/91/2e/912e908dfcf974edd08dcbe9d66d418f.jpg" title="Program for the production, &quot;Aire frío&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/e7/3d/e73d4dcc21a17c9c737a9a508c60044a.jpg" alt="Program for the production, &quot;Aire frío&quot;" data-href="/digitalobject/7" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c6/2c/c62c9430f6fa1c5c13e2e245fd882a52.jpg" title="Program for the production, &quot;Aire frío&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/68/21/682126733fe8f0133447756ce47ae240.jpg" alt="Program for the production, &quot;Aire frío&quot;" data-href="/digitalobject/7" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/11/d8/11d877bcef2ece3538177e0eb906100d.jpg" title="Program for the production, &quot;Aire frío&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/08/5e/085e8a5d9811517f81158ef96f0f8d9e.jpg" alt="Program for the production, &quot;Aire frío&quot;" data-href="/digitalobject/7" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9b/16/9b1673640593c235b37bcfe2ee738666.jpg" title="Program for the production, &quot;Aire frío&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/79/d1/79d15294493cda6cdc00e7c20ecde831.jpg" alt="Program for the production, &quot;Aire frío&quot;" data-href="/digitalobject/7" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/12/50/1250dc8cb196ec8840b78bc67f990c53.jpg" title="Program for the production, &quot;Aire frío&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/a9/88/a988d3881f37c688955656fd04a77cec.jpg" alt="Program for the production, &quot;Aire frío&quot;" data-href="/digitalobject/7" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b4/da/b4da8fb9fb362890289bb07ea9080b99.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="../media/cache/22/59/22590f04a866060058f3f86ed0b4ef41.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/23/f9/23f9fa77a4d6b2770aff7a5c08644b5e.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/03/f8/03f8e2ee88c765752d25fa5ef921a280.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/37/e4/37e4a8718bb752be0df348811a16a076.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/31/bf/31bf01c8d1582a0fe9a8441857f006c3.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/ab/1bab1e7b9362569f3cc237043618c20c.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/fb/b4/fbb454b32adebc4edde5732fdd5094e1.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/67/71672b8b603a2b2d7a4158e314c3e243.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/97/ee/97eeb265938a21e6784252bece8032fe.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f9/0a/f90a239cd57347d9eaa1437c32ded3c0.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/af/5c/af5c1218b3b3c163089b35579b996057.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/40/b3/40b3dafd855b273a6de283a9c5708f03.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/2c/4c/2c4c9b7eb6b5fbafecae7fb0939f4495.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1f/a3/1fa3c2ff118b4e214c44052c8a0db717.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/2c/23/2c23277e2a8fc7e0a9d4381e43bff162.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/45/c9/45c9ffb4028a214412ac95caa03e7162.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/92/09/92092bca74d569d240e149be041d3035.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/23/c9/23c9351a08744490a968f432004e15e9.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/3a/11/3a116de1c921daaf85170a5e23ffa219.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a6/84/a6846c44c1e386a356c4553f0865a22f.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/99/35/9935b6d40835ee616f7f0bcb01af4a2e.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/32/c3/32c3005840690f4c9e5884800e10b061.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/55/f1/55f1618d60cc85c5fc65456c3684a361.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9e/96/9e96e0716e43263b6bc2cf124554a46d.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/72/4c/724cd79909d2ac02d94a8b1bb67fc024.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2f/31/2f318a47397d43ef034361a921b1bc1a.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/14/e7/14e78a2bd6804db9fb3e0ae7f8cd4d23.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4e/26/4e26879874a785a48767ed82f5af675b.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/14/f0/14f0322360903a32ea2cd8a6f5be153d.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/ef/71ef77407eb0d2c0617ab25f39e4e645.jpg" title="Program for the production, &quot;Espíritu maligno&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/51/41/5141aa05a007c6890c48f52564baec0c.jpg" alt="Program for the production, &quot;Espíritu maligno&quot;" data-href="/digitalobject/13326" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5e/c3/5ec3b233a996a2a3b09524655c92d206.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/8c/49/8c49158477f4f4b69be571505595ce89.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/db/da/dbda3d262871d85b3b8f2621b0ee79ac.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ff/5c/ff5c31460a591f54a0276284d469d62d.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3c/fb/3cfb3a5337e7f414eff4a0a37da6dff8.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/85/32/8532a4026968232f808c0e48198dcf45.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8a/26/8a26491e3a9b716151cafe1373a3db4c.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/a6/fe/a6feb2d2fc1725d4a61607923878c3b6.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7f/47/7f476f4c0202cba82b9a09009e2555f5.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/0e/4b/0e4bd65cc25743dd218342fc840e8fef.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4e/9c/4e9c003f4317b447f7f3e260d7450eff.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/0f/3c/0f3c4c0e31fd4e0b32d89ebc3432fac4.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/96/cc/96cc2b5be3da9b6c7d876d165534eccf.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/58/57/5857b1eeda7fc3c73d5c78ee3ac7e1eb.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f4/bb/f4bb0a6372e5607ec624bf6dedf5df65.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ba/bc/babcf02b81b1036b8bd8a17c2c761714.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2d/7b/2d7bb888942c8e882fd7af6fef744765.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/60/d5/60d58d1fb5dac0106282883612b300c6.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/34/08/3408a1a33b7b98a6932955d2de46f61a.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/6f/1d/6f1d8af780fb6130cdaaf862ea966a12.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6b/aa/6baa1ed27f428aed6d8791196b280e42.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/06/98/0698a909564685d14be35966c9de08a0.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/46/0946ea4574beb29621a07ddde090f14a.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/30/25/30256191f4f32646ec7f8055fdcf56f4.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e7/b1/e7b109dcd74329d422e27a4200f9ae10.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/39/b6/39b67a44f0ba5caa72f79b99b15f1d3d.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/74/f3/74f3067bfdbed1e97e11ea7b2559f24b.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/42/d9/42d9166ec7fa53adcaf116bc3f67edbb.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d6/44/d644f95f411f0391e8b3eb320d41fc01.jpg" title="Program for the production, &quot;Malditos&quot; (Dammed)">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ce/16/ce169e7ea7d3a46026d6201e24481831.jpg" alt="Program for the production, &quot;Malditos&quot; (Dammed)" data-href="/digitalobject/13324" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/18/561852e22e631581cdc427bf7ba688dd.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                  
+                  
+                  <img src="../media/cache/44/26/44264e0b2f868235f38fc69fd4305a37.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/70/a4/70a4817f834065f41f92a7c11089a72a.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/fd/87/fd878e4103ff3d2e32e79d010edc0990.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2d/31/2d3136dcaea1957baff110f182c36094.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/96/0b/960baa96e99d403c52546c6e44c3ce5e.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/ff/c7ff09dfbe864020803663a84ae5d308.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/5c/e0/5ce0035e0b6c4e42ccd73867ce211354.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/88/c5/88c5d014950473b47839429533deb96b.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/7f/64/7f64222bfa5b423bab528c8c8453d142.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/06/fa/06fae523aa14a140e53f2635b9478073.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/76/6f/766f6eb8ec55fc8f528bae26016b04b8.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/3a/1a3ac97a58738c39816a65c837aca6e8.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ec/51/ec51dded4c064495bee5b11e40efa26d.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/c9/6ac97b210be27ca8e6451bd02b927400.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/61/c7/61c7d58b6b00365a5c2b74e300aae9fd.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                  
+                </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

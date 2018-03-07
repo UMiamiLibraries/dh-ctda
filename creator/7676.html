@@ -1,0 +1,1232 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Francisco Morín</li>
+                </ul>
+            </nav>
+            <h2>Francisco Morín</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Director, artistic/general director</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>Information available in Spanish;&nbsp;click "Espa&ntilde;ol" in the upper right hand side of the page.&nbsp;<img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI4My4xNzggMjgzLjE3OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjgzLjE3OCAyODMuMTc4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPHBhdGggZD0iTTI1NC44MTIsMTQwLjcxM2gtMjBjLTQuMTQyLDAtNy41LDMuMzU4LTcuNSw3LjV2OTEuMTg2YzAsNC44NC0zLjkzOSw4Ljc3OC04Ljc3OSw4Ljc3OEg0My43NzYgICBjLTQuODM5LDAtOC43NzUtMy45MzgtOC43NzUtOC43NzhWNjQuNjQ1YzAtNC44NDEsMy45MzYtOC43OCw4Ljc3NS04Ljc4aDk1Ljg1NWM0LjE0MiwwLDcuNS0zLjM1OCw3LjUtNy41di0yMCAgIGMwLTQuMTQyLTMuMzU4LTcuNS03LjUtNy41SDQzLjc3NmMtMjQuMTM4LDAtNDMuNzc1LDE5LjY0LTQzLjc3NSw0My43OHYxNzQuNzU1YzAsMjQuMTQsMTkuNjM4LDQzLjc3OCw0My43NzUsNDMuNzc4aDE3NC43NTYgICBjMjQuMTQsMCw0My43NzktMTkuNjM5LDQzLjc3OS00My43Nzh2LTkxLjE4NkMyNjIuMzEyLDE0NC4wNzEsMjU4Ljk1NCwxNDAuNzEzLDI1NC44MTIsMTQwLjcxM3oiIGZpbGw9IiMwMDAwMDAiLz4KCTxwYXRoIGQ9Ik0yNzUuNjc3LDBoLTc5LjU1M2MtNC4xNDIsMC03LjUsMy4zNTgtNy41LDcuNXYyMGMwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDI3LjMwNCAgIEwxMjAuNjgzLDEzNy43NDNjLTIuOTI5LDIuOTI5LTIuOTI5LDcuNjc3LDAsMTAuNjA3bDE0LjE0MiwxNC4xNDNjMS40MDcsMS40MDcsMy4zMTQsMi4xOTcsNS4zMDQsMi4xOTcgICBjMS45ODksMCwzLjg5Ny0wLjc5LDUuMzAzLTIuMTk3TDI0OC4xNzcsNTkuNzQ4djI3LjMwM2MwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDIwYzQuMTQyLDAsNy41LTMuMzU4LDcuNS03LjVWNy41ICAgQzI4My4xNzcsMy4zNTgsMjc5LjgxOSwwLDI3NS42NzcsMHoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" alt="" /></p>
+
+                </div>
+            
+
+            
+
+            
+             <div class="linkeditems">
+                <h3>Related creators: +</h3>
+                <ul>
+                    
+                        Member of
+                        <a href="http://ctda.library.miami.edu/creator/9943"> Prometeo (Nueva York)</a>, Founder,
+                        1983 <br />
+                    
+                        Member of
+                        <a href="http://ctda.library.miami.edu/creator/4811"> Grupo Prometeo (Habana)</a>, Founder,
+                        1948 1967<br />
+                    
+                </ul>
+             </div>
+            
+
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4650">La voz humana</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/32.html">Teatro Avante</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4975">Gas en los poros</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1534">Unknown venue - New York</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/250">Tres Tristes Tigres</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/3">Alcazar Cinemateque</a></span><br />
+                    <span>December 1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4974.html">En la ardiente oscuridad</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1533">PSW Studio</a></span><br />
+                    <span>June 1, 1983 - June 24, 1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/451">Ciclo de Teatro Experimental</a><br />
+                    <span>Director, Artistic/General Director</span><br />
+                    <span><a href="../venue/32.html">Teatro Avante</a></span><br />
+                    <span>1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2884.html">Electra Garrigó</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1044.html">Teatro América</a></span><br />
+                    <span>July 7, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3092.html">La encantadora familia Bliss</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/27.html">Miami Dade College - Wolfson Campus</a></span><br />
+                    <span>March 26, 1977 - March 27, 1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2252">Hey Fever</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4969">La dama boba</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>November 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/5026">Cuatro comedias: La carátula, Las aceitunas, El viejo celoso, y Los habladores</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1545">Grace United Methodist Church</a></span><br />
+                    <span>September 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3088.html">Flores de papel</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/27.html">Miami Dade College - Wolfson Campus</a></span><br />
+                    <span>May 31, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4332">Es diferente</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/28.html">Miami-Dade County Auditorium</a></span><br />
+                    <span>August 3, 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4334">Es diferente prueba</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/28.html">Miami-Dade County Auditorium</a></span><br />
+                    <span>August 3, 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4973">La muerte del Ñeque</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/638.html">Sala Teatro Prometeo</a></span><br />
+                    <span>1963</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3922">Pedro Mico</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3923">Mano santa</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3925">El día que se soltaron los leones</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4970">El parque de la fraternidad</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/638.html">Sala Teatro Prometeo</a></span><br />
+                    <span>1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4971">La casa ardiendo</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/638.html">Sala Teatro Prometeo</a></span><br />
+                    <span>1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3000">Medea en el espejo</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/638.html">Sala Teatro Prometeo</a></span><br />
+                    <span>March 10, 1961 - March 19, 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3919">Auto de la Compadecida</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4314">Medea en el espejo</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/638.html">Sala Teatro Prometeo</a></span><br />
+                    <span>December 17, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3249">Electra Garrigó</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>February 25, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2086.html">Carina</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/638.html">Sala Teatro Prometeo</a></span><br />
+                    <span>1958</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3894">Electra Garrigó</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>February 1958</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2089.html">El Mal Corre</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/249.html">Sala Teatro Prometeo</a></span><br />
+                    <span>1957</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3784.html">Llama viva</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/249.html">Sala Teatro Prometeo</a></span><br />
+                    <span>July 14, 1956</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2090.html">Delito en la Isla de las Cabras</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/249.html">Sala Teatro Prometeo</a></span><br />
+                    <span>1956</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4903">Las criadas</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1486">Center House Club</a></span><br />
+                    <span>November 12, 1954 - November 22, 1954</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4902">Las criadas</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1520">Sala de actos de la Asociación de Reporteros</a></span><br />
+                    <span>January 30, 1954 - February 5, 1954</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4294">Jesús</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1062">Teatro de la Escuela Municipal Valdés Rodríguez </a></span><br />
+                    <span>October 28, 1950</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4564">Amor con amor se paga</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1462.html">Parque Central</a></span><br />
+                    <span>January 28, 1950</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4565.html">Abdala</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1462.html">Parque Central</a></span><br />
+                    <span>January 28, 1950</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4555">La moza de cántaro</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1462.html">Parque Central</a></span><br />
+                    <span>January 7, 1950</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4556">Las aceitunas</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1462.html">Parque Central</a></span><br />
+                    <span>January 7, 1950</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4553">La más fuerte</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1462.html">Parque Central</a></span><br />
+                    <span>January 6, 1950</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4554">Entremes del mancebo que caso con mujer brava</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1462.html">Parque Central</a></span><br />
+                    <span>January 6, 1950</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/270">Electra Garrigó</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1062">Teatro de la Escuela Municipal Valdés Rodríguez </a></span><br />
+                    <span>October 23, 1948</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1297/">El teatro perdido de los 50: Conversaciones con Francisco Morín</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/369/">Morín sigue teniendo demonio</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban - American</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>1918</span>
+                </li>
+              
+              
+              
+                <li>
+                  <h4>Death date:</h4>
+                  <span>December 7, 2017</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of death:</h4>
+                  <span>New York, New York, United States</span>
+                </li>
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16891">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c0/4f/c04f1377ebd12bdc7b3356c76d1d6127.jpg" title="Press clipping of the production, En la ardiente oscuridad">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/46/de/46deedacd09f87bdcc7ff7304d48dc58.jpg" alt="Press clipping of the production, En la ardiente oscuridad" data-href="/digitalobject/16891" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9f/4f/9f4f0b77104f200cf979083e2022da2a.jpg" title="Photograph of the production, En la ardiente oscuridad">
+                    
+                    
+                    <img src="../media/cache/f2/92/f2929b39cc423550d8715cd9e6c64ad5.jpg" alt="Photograph of the production, En la ardiente oscuridad" data-href="/digitalobject/16890" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4c/2e/4c2ec614ba4d0b674be2f1bb32b971f0.jpg" title="Photograph of the production, En la ardiente oscuridad">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1f/4b/1f4b19270ec26e1ee03d61de14d59e9b.jpg" alt="Photograph of the production, En la ardiente oscuridad" data-href="/digitalobject/16889" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/11/d0/11d0b1a1dc54d9981db600d5bef35ee5.jpg" title="Poster for the production, En la ardiente oscuridad">
+                    
+                    
+                    <img src="../media/cache/2d/01/2d013d617ac5056fa8eecd1a6272a901.jpg" alt="Poster for the production, En la ardiente oscuridad" data-href="/digitalobject/16888" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/19/d1/19d15b193aedd0891dcf154e61111134.jpg" title="Photograph of the production, &quot;Carina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3b/f7/3bf74daef78c36cb996ea668c0f892da.jpg" alt="Photograph of the production, &quot;Carina&quot;" data-href="/digitalobject/15551" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5a/4f/5a4fc5fc433bdda0342ebce927e7cfc3.jpg" title="Press clipping of the production, La dama boba">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/16/d1/16d1720677b4492a1a665e0c2d8d0bfd.jpg" alt="Press clipping of the production, La dama boba" data-href="/digitalobject/16945" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/88/64/886474678c42ca23fb11b994a2b90d31.jpg" title="Press clipping for the production, Cuatro comedias">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bc/f8/bcf836138cc869d514161b85a8add1a7.jpg" alt="Press clipping for the production, Cuatro comedias" data-href="/digitalobject/16944" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/db/07/db0708c9c223dcd868b5cf60b0501ad9.jpg" title="Francisco Morín, QEPD / RIP. Cortesía Teresa María Rojas">
+                    
+                    
+                    <img src="../media/cache/e7/42/e74202982f1a21366c6750104b908904.jpg" alt="Francisco Morín, QEPD / RIP. Cortesía Teresa María Rojas" data-href="/digitalobject/16887" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b4/fa/b4fa6ae94399abe6a7b355f584c21d93.jpg" title="Photograph of Francisco Morín with the cast of Electra Garrigó">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/db/a3/dba30fd53f9d4bea628f1346ce7635a6.jpg" alt="Photograph of Francisco Morín with the cast of Electra Garrigó" data-href="/digitalobject/16886" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/7e/c1/7ec1678689fc26b64453b002ab063094.jpg" title="Teresa María Rojas (Eva) and José Armand (El Merluza), in &quot;Flores de papel&quot;">
+                    
+                    
+                    <img src="../media/cache/22/cd/22cd9a35a0b510cfb6b3bbf971352de7.jpg" alt="Teresa María Rojas (Eva) and José Armand (El Merluza), in &quot;Flores de papel&quot;" data-href="/digitalobject/16227" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6c/ab/6cab666f2c2b615816b382fa74cb5e63.jpg" title="Photograph of the production, &quot;Medea en el espejo&quot;. Asenneh Rodríguez as María">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/10/0e/100ec3e677e41ecf20728323cfb3af9a.jpg" alt="Photograph of the production, &quot;Medea en el espejo&quot;. Asenneh Rodríguez as María" data-href="/digitalobject/15552" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ac/5d/ac5d377d1250197c8cefdb95940390ea.jpg" title="Program for the production, Electra Garrigó">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/78/8e/788ea32f8703dc5402dbe7e82508814b.jpg" alt="Program for the production, Electra Garrigó" data-href="/digitalobject/561" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e7/37/e737500e579808da7762e33d3fcf284b.jpg" title="Program for the production, Electra Garrigó">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8a/6e/8a6eef3999e834266a53a0bd8ec739df.jpg" alt="Program for the production, Electra Garrigó" data-href="/digitalobject/561" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b5/d5/b5d5044489ce4e8818d67bbdb92fde3f.jpg" title="Program for the production, Electra Garrigó">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/53/02/530236cf312f3397a8a0900e0bc10be9.jpg" alt="Program for the production, Electra Garrigó" data-href="/digitalobject/561" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d5/df/d5df9c62b4cbe474824d33f25bc0adc6.jpg" title="Program for the production, Electra Garrigó">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c0/a6/c0a6f5773335abff69d76de7a5f6c975.jpg" alt="Program for the production, Electra Garrigó" data-href="/digitalobject/561" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9b/21/9b21af9c6f907e830a05b84a4bf73f27.jpg" title="Medea en el Espejo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f0/a0/f0a090eb1647a736c4a527bc7cf4a380.jpg" alt="Medea en el Espejo" data-href="/digitalobject/560" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d3/e9/d3e9b6b7a64fc4a011acc51d7fec4f4b.jpg" title="Medea en el Espejo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2b/d1/2bd14dd381e3601e56ddb6b20548de00.jpg" alt="Medea en el Espejo" data-href="/digitalobject/560" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/65/ea/65ea91efb72b9be15c1f3c1986fbc02c.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/39/0a/390a1c4d3eb94cb19bb9e2c6f3b675c4.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13654" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/f7/21/f721679e6d9380351ea3e0e778a0e6a3.jpg" title="José Armand (El Merluza) and Teresa María Rojas (Eva), in &quot;Flores de papel&quot;">
+                    
+                    
+                    <img src="../media/cache/57/a4/57a43532f1342aa2fdc828f4d6b1dabf.jpg" alt="José Armand (El Merluza) and Teresa María Rojas (Eva), in &quot;Flores de papel&quot;" data-href="/digitalobject/13766" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/9e/47/9e475dcfc16ee12d78ca946e852dfdb7.jpg" title="Teresa María Rojas (Judy, La Madre), German Soffia (Simon, El Hijo), and Glenda Díaz Rigau (Isadora, la Hija), in &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/49/f1/49f1738c42f0c414cec8284e9d317f8a.jpg" alt="Teresa María Rojas (Judy, La Madre), German Soffia (Simon, El Hijo), and Glenda Díaz Rigau (Isadora, la Hija), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13718" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ad/11/ad11ca35e2e48b9f31dfb289f93141be.jpg" title="Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/b5/c1/b5c12cd5453ad5aabb0a3e8a56e1f480.jpg" alt="Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13785" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/6e/d0/6ed0a6e17d9820f14169ea9462e5cb1f.jpg" title="German Soffia (Simon, El Hijo), José Amaya (David, El Padre), Teresa María Rojas (Judy, la Madre), and Glenda Díaz-Rigau (Isadora, la Hija), in &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/09/0d/090d2c8283f796be8b092d96429f220e.jpg" alt="German Soffia (Simon, El Hijo), José Amaya (David, El Padre), Teresa María Rojas (Judy, la Madre), and Glenda Díaz-Rigau (Isadora, la Hija), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13692" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/d6/5d/d65dd9c8e95d5164bb497040d2089487.jpg" title="Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/61/09/61091e5d17d90a4853270c5ff7e774df.jpg" alt="Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13678" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/4d/a4/4da413669caa4c9f12da15b95e7919cd.jpg" title="German Soffia (Simon, El Hijo), Paul D&#39;Alba (Sandalio), Ricardo Fernand (Ricardo), Teresa María Rojas (Judy, La Madre), and Lourdes Menci (Mayra), in &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/36/82/3682bdcbdcb8953ed99191a16bccd784.jpg" alt="German Soffia (Simon, El Hijo), Paul D&#39;Alba (Sandalio), Ricardo Fernand (Ricardo), Teresa María Rojas (Judy, La Madre), and Lourdes Menci (Mayra), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13684" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b5/75/b575e79e723944df7f592976b2e59f12.jpg" title="Glenda Díaz-Rigau (Isadora, La Hija), Paul D&#39;Alba (Sandalio) and Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/ca/46/ca4663c3f2c70db88751b9420ba355b3.jpg" alt="Glenda Díaz-Rigau (Isadora, La Hija), Paul D&#39;Alba (Sandalio) and Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13818" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/d5/52/d5523ab121ce10a3157998c1610d607c.jpg" title="Teresa María Rojas (Judy, La Madre), Paul D&#39;Alba (Sandalio), Glenda Díaz-Rigau (Isadora, La Hija), and José Amaya (David, El Padre), in &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/0f/b5/0fb5a47d26647b56d53db8bed69a6ce0.jpg" alt="Teresa María Rojas (Judy, La Madre), Paul D&#39;Alba (Sandalio), Glenda Díaz-Rigau (Isadora, La Hija), and José Amaya (David, El Padre), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13806" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b1/e9/b1e92d591b424024cc9cd232f4b5e539.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/a0/1d/a01da88410c03278c2730fc83db042f4.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13804" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/5b/c4/5bc4adf03aad0375079db8b74f40ccc5.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/45/81/458166764ebad5cbc8c199602beed827.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/90/38/903832e798090f000a6ea3a2a590c40a.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/0d/3a/0d3aa2ac9311653cdc5b0dec9c52f339.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/43/0f/430f06d8ea49241daee85f72c3b2e471.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/7d/0f/7d0fca9e6169f8e268a3125527ed019e.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c5/9c/c59c8d8559331f454ee926304a2f6845.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/b7/35/b735d595cc447157eb281726282ba045.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/d8/2c/d82c6591557d8a1635c1377a904e0974.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/20/d8/20d8e9868cba8e7c194876eee081ded5.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/1a/47/1a4751aee4fd3d13f9ad2760caaeab1f.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/5e/4f/5e4f978eac6994818e3af975ebd3e2b2.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/8c/3d/8c3d492663e9c9c433dbb666eb4c2404.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/6e/fe/6efe0d57bf0e475fe58cb4fb98300caa.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/30/35/3035fcd8f376a9fd9716e271a0f3b091.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/c5/3d/c53dffc2e3586d8b92e4ce417576f5dc.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/01/d1/01d17083c0d164b0fc8ea8739d76d2da.jpg" title="Program for the production, &quot;Flores de papel&quot;">
+                    
+                    
+                    <img src="../media/cache/ab/f4/abf42dc7bb265664b447bc3f8872e78a.jpg" alt="Program for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13528" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/7a/32/7a325717a6e188d6e80a7ccf86f483ce.jpg" title="Program for the production, &quot;Flores de papel&quot;">
+                    
+                    
+                    <img src="../media/cache/01/9f/019f28a6fe20e5cf69867a8d54372120.jpg" alt="Program for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13528" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/89/53/89535fafb7345aafcea8307df88a0b38.jpg" title="Program for the production, &quot;Flores de papel&quot;">
+                    
+                    
+                    <img src="../media/cache/26/80/2680fd3f691d88aba85ec0ae5d835105.jpg" alt="Program for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13528" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b7/6f/b76ff48c543ccbdc1cf8181202cf54f6.jpg" title="Program for the production, &quot;Flores de papel&quot;">
+                    
+                    
+                    <img src="../media/cache/29/fb/29fb9f7f5c6cdd1defe674cf62122673.jpg" alt="Program for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13528" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/9f/97/9f97d68454c9347ccdab9688bb5f49f8.jpg" title="Teresa María Rojas (Eva) and José Armand (El Merluza), in &quot;Flores de papel&quot;">
+                    
+                    
+                    <img src="../media/cache/ad/4c/ad4c7070c22b6c710060c94e684fb2db.jpg" alt="Teresa María Rojas (Eva) and José Armand (El Merluza), in &quot;Flores de papel&quot;" data-href="/digitalobject/13790" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/d4/d7/d4d76477b2dc80b018f1bd439faaef0f.jpg" title="Invitation for the production, &quot;Flores de papel&quot;">
+                    
+                    
+                    <img src="../media/cache/b9/05/b9055b5a5ac4a1f32174c725100375db.jpg" alt="Invitation for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13542" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/e2/a3/e2a39253a61251967932fe7d9171cfd4.jpg" title="Invitation for the production, &quot;Flores de papel&quot;">
+                    
+                    
+                    <img src="../media/cache/74/da/74da685d3d893dfe4719af55d9dcb30d.jpg" alt="Invitation for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13542" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/fb/3b/fb3bdc237a5fe91c78d3d187d468d0d1.jpg" title="Invitation for the production, &quot;Flores de papel&quot;">
+                    
+                    
+                    <img src="../media/cache/38/44/384492b1db08bbb54d9882668c98f6d7.jpg" alt="Invitation for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13542" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ed/d9/edd9a171a89a161581f0f595c5c01617.jpg" title="Invitation for the production, &quot;Flores de papel&quot;">
+                    
+                    
+                    <img src="../media/cache/52/fb/52fbdfab7e5b8fede28b564e68a37fe4.jpg" alt="Invitation for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13542" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/fc/ae/fcae683e51069edb14fc9f1c51360824.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/c9/a3/c9a360ad1e030da21da2fed96792e2e2.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13491" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/17/03/1703f04bfd1b4bb19aa76649329aafa9.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/81/5b/815b0ecceb4f7ef2ce691a858570c800.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13491" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/6d/d3/6dd30e142c3502476c36b0b1aa8c697b.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/c3/20/c320f8de669feb73c11ff0d40ad5e3fd.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13491" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/90/50/9050ed073a49423dbae8142ddaf31259.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                    
+                    
+                    <img src="../media/cache/a0/38/a0382d51e1eb3ec26e400f67fca49597.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13491" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c1/20/c12035e7e10ed0ab30478fc6a4375b3f.jpg" title="Poster for the production, &quot;Flores de papel&quot;">
+                    
+                    
+                    <img src="../media/cache/d0/90/d090f2c242a5fd197ba05c50246c7df2.jpg" alt="Poster for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13813" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/e9/e4/e9e4918e9e0b4ff81fc3a892f6e66aed.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/5a/66/5a66ccd67ff1d8c56790cd9c01fb46d1.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b1/8f/b18f114cb9473907611475b8157f9fcf.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/7a/a8/7aa81957093e908b6e4996b8fa1adb60.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/67/41/67413b96a4bc43a9d340361a315cee9a.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/05/23/052360fd40c1fbe1fa9386623e0423c5.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/67/33/6733b9280910e8d230f7fde5f8e5c939.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/de/15/de15d97015ffc9edfe8e95709ac6cee0.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/9f/fd/9ffdce9d7c07bbbd565455e02bdec576.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/82/94/8294ca249e6bb8bb5e515c335d37f2cb.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/60/ed/60edad6a4007eb5f5d1861e7cd2c55ef.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/93/a3/93a304ea5e99cd1b75d64435e7964074.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/41/e0/41e0137809e2f4ae9e9cd8c93777abd9.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/8a/50/8a50cfec5499011c7c03aa27ebef5b9d.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/9a/1d/9a1d6283c2f9d8fab578fb2f3eaf439c.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/c7/39/c739e7df18f94e9dc9b1eb3c1ae76f81.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/1a/c6/1ac6154c7071df5925e03d4523f7422c.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/3a/5a/3a5a113aa7b380d1a2864e169cab4e48.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b6/e9/b6e92ae4d00c70eaa8ce4fd7d36d739d.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/df/a7/dfa7cf7f659a7f7da5605189e548daa2.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/40/46/4046cffa3d6a3847b08ab65878bbbeda.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/35/5d/355db7e3616c44b674b27879e43730d6.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ed/7c/ed7c5daecd0bec64fb47c1cee056d248.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/a2/12/a2126e740ae73e0c5b145fcb69292885.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/e1/5e/e15ebdb302b24463e13efe1f8e1c5fd5.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/42/31/4231bfae5afdff821dfa5541bbb63214.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/22/e7/22e74e33beb822a31651288f42668d87.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/2f/a3/2fa32636a72e14da1164b341e1a21659.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/0a/31/0a316419ab6ea4e4c598b5da4b3c58cd.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/1d/d1/1dd1cfdd2415f552d76f1c165549987b.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/00/77/00773e9bc651577d142f263551e60d23.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/d6/cf/d6cf410799ba0f5df8c3748acf029503.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/3c/f4/3cf43ae09bc05cef456ec83afce7b600.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/b5/42/b542430fab62827c57ff0e781bb7bf43.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/a8/89/a889cad2860731f5071332a5f9d0fe1a.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/09/63/0963f300ee6df687ef8ab94d1fc1311e.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c2/9c/c29c0d46e50a27c4fc1029904605d486.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/cd/2d/cd2d8c7346f363158e7a658531e5508a.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/7e/f3/7ef3b03c95f5f51c50538dcd9f62cd42.jpg" title="Playbill for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/c6/28/c628b90fb0f97cb3b71a26d57dee9bc2.jpg" alt="Playbill for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/13456" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

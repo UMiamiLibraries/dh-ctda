@@ -1,0 +1,811 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Eddy Díaz Souza</li>
+                </ul>
+            </nav>
+            <h2>Eddy Díaz Souza</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Director, assistant director, artistic/general director, conductor, actor, set designer, costume designer, author / playwright, adapter</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>You can find biographical information in Spanish in "<a href="http://arrajatabla.net/eddy-diaz-souza-talento-y-amor/">Eddy D&iacute;az Souza: talento y amor</a>."</p>
+
+                </div>
+            
+
+            
+
+            
+             <div class="linkeditems">
+                <h3>Related creators: +</h3>
+                <ul>
+                    
+                        Member of
+                        <a href="http://ctda.library.miami.edu/creator/8348"> Artefactus Cultural Project</a>, Founder,
+                        2008 <br />
+                    
+                </ul>
+             </div>
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3545">Mi Platero</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>2014</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3502">El príncipe y el mar</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2749.html">Obba</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3167">Meñique</a><br />  
+                    <span>Adapter</span>
+                    <br /><span>2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3361">El caso de la luna</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4582">Mienteme</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1445">Artefactus Cultural Project</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4876.html">Gas en los poros</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1493.html">Comisionado Dominicano de Cultura</a></span><br />
+                    <span>June 3, 2017</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4871">Gas en los poros</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1445">Artefactus Cultural Project</a></span><br />
+                    <span>March 4, 2017 - March 19, 2017</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4493">Mi Platero</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/541.html">Centro Cultural Español Miami</a></span><br />
+                    <span>October 31, 2014</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4392">El caso de la luna</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/66.html">Teatro Nacional de Guiñol de Cuba</a></span><br />
+                    <span>October 27, 2013 - October 28, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4483">El príncipe y el mar</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1445">Artefactus Cultural Project</a></span><br />
+                    <span>September 13, 2013 - September 28, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4352">El caso de la luna</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/423.html">Teatro 8</a></span><br />
+                    <span>July 20, 2013 - August 4, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4218.html">Palabras al filo</a><br />
+                    <span>Artistic/General Director, Conductor</span><br />
+                    <span><a href="../venue/1289.html">Akuara Teatro - Sala Avellaneda</a></span><br />
+                    <span>May 30, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4045">Meñique</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/541.html">Centro Cultural Español Miami</a></span><br />
+                    <span>January 28, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3889.html">If you are going to pull a knife, USAlo</a><br />
+                    <span>Assistant Director</span><br />
+                    <span><a href="../venue/40.html">Teatro Trianón</a></span><br />
+                    <span>October 30, 2011 - October 31, 2011</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3888.html">If you are going to pull a knife, USAlo</a><br />
+                    <span>Assistant Director</span><br />
+                    <span><a href="../venue/28.html">Miami-Dade County Auditorium</a></span><br />
+                    <span>September 8, 2011 - September 11, 2011</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2782.html">Obba</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1289.html">Akuara Teatro - Sala Avellaneda</a></span><br />
+                    <span>June 17, 2011 - July 3, 2011</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2316">Pase adelante, si quiere</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/491.html">Havanafama Teatro Estudio</a></span><br />
+                    <span>March 6, 2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2228">Soldados somos y a la guerra vamos</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>June 26, 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4170">Una rosa para Catalina Lasa</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1292.html">Unknown Venue - Miami</a></span><br />
+                    <span>March 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/17">La vida del gato</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/505.html">Teatro en Miami Studio</a></span><br />
+                    <span>January 15, 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4169">Las vidas del gato</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1292.html">Unknown Venue - Miami</a></span><br />
+                    <span>2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2354">Juego de damas</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/625.html">La Biblioteca Pública de la esquina El conde</a></span><br />
+                    <span>September 1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2360">Juego de damas</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/626">Patio de San Bernardino</a></span><br />
+                    <span>August 5, 1994 - August 7, 1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2351">María Lionza</a><br />
+                    <span>Juan de la luz</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/266">Espacios Unión - Auditorium</a></span><br />
+                    <span>April 23, 1995</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3964">Nevada</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="../venue/1289.html">Akuara Teatro - Sala Avellaneda</a></span><br />
+                    <span>October 13, 2012</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+                <div class="linkeditems">
+                <h3>Primary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1142/">Gas y sangre en los poros</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1141/">«¡Tu libertad no te será fácil!»</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1334/">Cinco preguntas a Eddy Díaz Souza</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+                <br />
+               Author: Brittany Stockman; Lillian Manzor (2010-07-07; updated 2017)
+            
+        
+            
+            <hr />
+            <h3>Videos</h3>
+            <ul class="videos">
+              
+              <li>
+                <figure>
+                  <a id="cta0009000075" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/e4/f8/e4f8523dacdbb9483e36759253658a81.jpg" alt="Link to video of If You&#39;re Going to Pull a Knife, USAlo - Rehearsal Session 2" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/14075">If You&#39;re Going to Pull a Knife, USAlo - Rehearsal Session 2</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0009000009" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/c7/4f/c74f6be097841179b7de77738651747a.jpg" alt="Link to video of Obba" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/591">Obba</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              </ul>
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban - American</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>1965</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Jaruco, Mayabeque, Cuba</span>
+                </li>
+              
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16723">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bc/04/bc041c3fbc9dba9974f88753ef6b0f9e.jpg" title="Program for the production, El tiempo de las mandarinas">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4b/15/4b157a8807237e91d59046878fbc59ff.jpg" alt="Program for the production, El tiempo de las mandarinas" data-href="/digitalobject/16723" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fc/0e/fc0e6dbf953563b4e8692d8656f552cd.jpg" title="Program for the production, El tiempo de las mandarinas">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1a/64/1a64294cb6f9cb6789b4dfdf15f8a4f4.jpg" alt="Program for the production, El tiempo de las mandarinas" data-href="/digitalobject/16723" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/35/203509f489617c82970e013de54bd344.jpg" title="Program for the production, El tiempo de las mandarinas">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f1/e8/f1e85e2e380bc487efd65f912307dbdc.jpg" alt="Program for the production, El tiempo de las mandarinas" data-href="/digitalobject/16723" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/29/d4/29d4b11ecf77c68fc7c261aa1d2cb459.jpg" title="Program for the production, El tiempo de las mandarinas">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/21/b4/21b4b43ec9235560ecca59be7cb4fd93.jpg" alt="Program for the production, El tiempo de las mandarinas" data-href="/digitalobject/16723" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2d/0d/2d0d68016a35a3e29130a296ec8d5440.jpg" title="Program for the production, El tiempo de las mandarinas (large)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/05/91/059116403098bd621561c6325e0d6c17.jpg" alt="Program for the production, El tiempo de las mandarinas (large)" data-href="/digitalobject/16722" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6b/b4/6bb4eecf86b7386af2dc02988d5ef0ca.jpg" title="Program for the production, El tiempo de las mandarinas (large)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ca/4e/ca4e81db927974fc0a72195f330c41f7.jpg" alt="Program for the production, El tiempo de las mandarinas (large)" data-href="/digitalobject/16722" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ad/de/adde8d8431399a171142aaa2c3c1e6bd.jpg" title="Program for the production, El tiempo de las mandarinas (large)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ac/f8/acf826ed68279603a50aace1c93d531a.jpg" alt="Program for the production, El tiempo de las mandarinas (large)" data-href="/digitalobject/16722" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3d/b0/3db0959ddbe2549c2254fadbd471c76e.jpg" title="Program for the production, El tiempo de las mandarinas (large)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1a/8d/1a8db25acf2d2afbed9f849cc6ba2e39.jpg" alt="Program for the production, El tiempo de las mandarinas (large)" data-href="/digitalobject/16722" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ee/7d/ee7db6ab3ecf1e39d04db23545732d9d.jpg" title="Poster of the production, &quot;Gas en los poros&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3a/4c/3a4c447d3c184de2486c8ac2eaac0265.jpg" alt="Poster of the production, &quot;Gas en los poros&quot;" data-href="/digitalobject/16379" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0e/08/0e087fe0be215ce7c1c1dd045fb2b13d.jpg" title="Postcard for the production, &quot;Gas en los poros&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d5/9f/d59f0907d9dfa22af183fb02c594e4f1.jpg" alt="Postcard for the production, &quot;Gas en los poros&quot;" data-href="/digitalobject/16286" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/73/99/739977c41f8b8951b803ab882d342277.jpg" title="Poster for Autores: Ulises Rodriguez Febles">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0f/cc/0fccbf240008636f51ae9ffaa1cebb44.jpg" alt="Poster for Autores: Ulises Rodriguez Febles" data-href="/digitalobject/16234" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/63/0e/630eb1f46089af883655318754aab1f6.jpg" title="Mi Platero, Staged Reading at Centro Cultural Español">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f4/b9/f4b93148e4beba16e678ecf6b77984ba.jpg" alt="Mi Platero, Staged Reading at Centro Cultural Español" data-href="/digitalobject/15741" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c1/42/c14222309ea6bdd2a8c8324cf65a5c91.jpg" title="Postcard for the production, &quot;Palabras al filo&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ff/65/ff65c618cd36866a5e4e9bac0c45fe99.jpg" alt="Postcard for the production, &quot;Palabras al filo&quot;" data-href="/digitalobject/14948" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/72/71/72717e4fcd9d4db9821dcb2531cd0445.jpg" title="Postcard for the production, &quot;Palabras al filo&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/98/f9/98f9e2923bb11b7d1428b71d3a05d3b3.jpg" alt="Postcard for the production, &quot;Palabras al filo&quot;" data-href="/digitalobject/14948" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2d/18/2d184e755235a8167cdc2c3eabcdc08e.jpg" title="Poster for the production, El príncipe y el mar">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/55/fa/55faaf191d57f349242356bd7c2cf6f7.jpg" alt="Poster for the production, El príncipe y el mar" data-href="/digitalobject/15719" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/43/ba/43ba647d8df704c5184b11824821f596.jpg" title="Leandro Peraza (Yaz), Déxter Cápiro, Katherine Leyva (Liz), &quot;El caso de la luna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a7/b5/a7b5ade1b7574c0aafe1a67eb34f6154.jpg" alt="Leandro Peraza (Yaz), Déxter Cápiro, Katherine Leyva (Liz), &quot;El caso de la luna&quot;" data-href="/digitalobject/15456" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4b/60/4b60471e6ee240acd1e5e028b95d310d.jpg" title="Postcard for the production, &quot;El caso de la luna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3c/d2/3cd235681dddcac1bf61e856ec7f5d47.jpg" alt="Postcard for the production, &quot;El caso de la luna&quot;" data-href="/digitalobject/15454" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4b/60/4b60471e6ee240acd1e5e028b95d310d.jpg" title="El caso de la luna, Playing Oct 27-28 in La Habana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3c/d2/3cd235681dddcac1bf61e856ec7f5d47.jpg" alt="El caso de la luna, Playing Oct 27-28 in La Habana" data-href="/digitalobject/15575" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d8/e6/d8e64d03dfeea69df3f267e44575e213.jpg" title="Poster for the production, &quot;Meñique&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/14/91/14914f933d7570f9233eaeec41b684fe.jpg" alt="Poster for the production, &quot;Meñique&quot;" data-href="/digitalobject/14522" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('#cta0009000075').fancybox({
+          content: '<video id="vid-cta0009000075" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000750001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000075').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000009').fancybox({
+          content: '<video id="vid-cta0009000009" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000090001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000009').mediaelementplayer();
+          }
+        });
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

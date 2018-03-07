@@ -1,0 +1,1416 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Rolando Moreno</li>
+                </ul>
+            </nav>
+            <h2>Rolando Moreno</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Director, costume designer, set designer, light designer, props designer, sound/soundtrack designer, adapter</strong></p>
+
+            
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2019">El hombre que vino del mar</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2016">La última parada</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1963.html">Sabina y Lucrecia</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1969">Tres tazas de trigo</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2549">La retirada de Moscú</a><br />  
+                    <span>Adapter</span>
+                    <br /><span>2011</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1947">Bodas de sangre</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3077">Retrato de Aura</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4290">Josefina la viajera</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1405">Miami Hispanic Cultural Arts Center</a></span><br />
+                    <span>July 12, 2013 - July 27, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3999">Retrato de Aura</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/505.html">Teatro en Miami Studio</a></span><br />
+                    <span>October 26, 2012 - October 28, 2012</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3743">Si vas a comer espera por Virgilio</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/505.html">Teatro en Miami Studio</a></span><br />
+                    <span>May 2011</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2559.html">La retirada de Moscú</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/28.html">Miami-Dade County Auditorium</a></span><br />
+                    <span>March 19, 2011 - April 3, 2011</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/6">Alguien quiere decir una oración</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/505.html">Teatro en Miami Studio</a></span><br />
+                    <span>October 29, 2010 - October 31, 2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4296">Josefina la viajera</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/505.html">Teatro en Miami Studio</a></span><br />
+                    <span>April 13, 2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2109">Lorca con un vestido verde</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/423.html">Teatro 8</a></span><br />
+                    <span>March 28, 2008 - May 4, 2008</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4295">Josefina la viajera</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/423.html">Teatro 8</a></span><br />
+                    <span>2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1618">El hombre que vino del mar</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/174.html">Teatro de Bellas Artes</a></span><br />
+                    <span>October 7, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1444">El hombre que vino del mar</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/556">Tower Theater</a></span><br />
+                    <span>June 3, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1371.html">Fuenteovejuna</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/432.html">Ignatian Center for the Arts</a></span><br />
+                    <span>May 2004 - 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1358">El no</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/423.html">Teatro 8</a></span><br />
+                    <span>2002 - December 20, 2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1388">La última parada</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/440">Centro Cultural &quot;Acting Together&quot;</a></span><br />
+                    <span>2001 - March 11, 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3737">Divinas palabras</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/423.html">Teatro 8</a></span><br />
+                    <span>2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4900">El malentendido</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1039.html">Florida Shakespeare Theatre - Biltmore Hotel</a></span><br />
+                    <span>September 5, 1998 - September 27, 1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1214">Con la frente en el polvo</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/523">Coral Gables Congregational Church</a></span><br />
+                    <span>January 27, 1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/245">Jesús</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/3">Alcazar Cinemateque</a></span><br />
+                    <span>July 22, 1994 - August 14, 1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/395">Tres tazas de trigo</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/318.html">El Carrusel Theater</a></span><br />
+                    <span>June 26, 1993 - June 27, 1993</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/377.html">Sabina y Lucrecia</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/318.html">El Carrusel Theater</a></span><br />
+                    <span>June 23, 1992 - June 24, 1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/353">Ligazón</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/24.html">Minorca Playhouse</a></span><br />
+                    <span>May 31, 1991 - June 1, 1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4651">Una caja de zapatos vacía</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/32.html">Teatro Avante</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4652">Una farsa en el castillo</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/32.html">Teatro Avante</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4653">El fantasma de Marsella</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/32.html">Teatro Avante</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4290">Josefina la viajera</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1405">Miami Hispanic Cultural Arts Center</a></span><br />
+                    <span>July 12, 2013 - July 27, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4296">Josefina la viajera</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="../venue/505.html">Teatro en Miami Studio</a></span><br />
+                    <span>April 13, 2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/5015">La señorita de Tacna</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/423.html">Teatro 8</a></span><br />
+                    <span>2008</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4295">Josefina la viajera</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="../venue/423.html">Teatro 8</a></span><br />
+                    <span>2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/245">Jesús</a><br />
+                    <span>Props designer, Sound/Soundtrack Designer, Set designer, Light designer, Costume designer</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/3">Alcazar Cinemateque</a></span><br />
+                    <span>July 22, 1994 - August 14, 1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/395">Tres tazas de trigo</a><br />
+                    <span>Props designer, Set designer, Costume designer</span><br />
+                    <span><a href="../venue/318.html">El Carrusel Theater</a></span><br />
+                    <span>June 26, 1993 - June 27, 1993</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3446">El extravío</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="../venue/318.html">El Carrusel Theater</a></span><br />
+                    <span>February 5, 1993 - March 14, 1993</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/377.html">Sabina y Lucrecia</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/318.html">El Carrusel Theater</a></span><br />
+                    <span>June 23, 1992 - June 24, 1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3445">Deviations</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="../venue/318.html">El Carrusel Theater</a></span><br />
+                    <span>June 13, 1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/666">El extravío</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="../venue/318.html">El Carrusel Theater</a></span><br />
+                    <span>June 12, 1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/356">Los tres cerditos y el lobo carnicero</a><br />
+                    <span>Costume designer, Set designer, Props designer</span><br />
+                    <span><a href="../venue/318.html">El Carrusel Theater</a></span><br />
+                    <span>June 1, 1991 - June 2, 1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/353">Ligazón</a><br />
+                    <span>Props designer, Set designer, Costume designer</span><br />
+                    <span><a href="../venue/24.html">Minorca Playhouse</a></span><br />
+                    <span>May 31, 1991 - June 1, 1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/355">Las galas del difunto</a><br />
+                    <span>Props designer, Set designer, Costume designer</span><br />
+                    <span><a href="../venue/24.html">Minorca Playhouse</a></span><br />
+                    <span>May 31, 1991 - June 1, 1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3410">The Day You&#39;ll Love Me</a><br />
+                    <span>Sound/Soundtrack Designer, Set designer, Light designer, Costume designer</span><br />
+                    <span><a href="../venue/25.html">James L. Knight International Center, University of Miami Ashe Auditorium</a></span><br />
+                    <span>May 19, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/428">El día que me quieras</a><br />
+                    <span>Sound/Soundtrack Designer, Set designer, Light designer, Costume designer</span><br />
+                    <span><a href="../venue/25.html">James L. Knight International Center, University of Miami Ashe Auditorium</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/472">La noche de los asesinos</a><br />
+                    <span>Props designer, Sound/Soundtrack Designer, Set designer, Light designer, Costume designer</span><br />
+                    <span><a href="../venue/24.html">Minorca Playhouse</a></span><br />
+                    <span>May 12, 1989 - May 13, 1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/272">Bodas de sangre</a><br />
+                    <span>Set designer, Light designer, Costume designer</span><br />
+                    <span><a href="../venue/24.html">Minorca Playhouse</a></span><br />
+                    <span>1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/273">La Chunga</a><br />
+                    <span>Set designer, Light designer, Costume designer</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/14">Creation Art Center</a></span><br />
+                    <span>1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/236.html">Una caja de zapatos vacia</a><br />
+                    <span>Costume designer, Set designer</span><br />
+                    <span><a href="../venue/174.html">Teatro de Bellas Artes</a></span><br />
+                    <span>May 2, 1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/274.html">Electra Garrigó</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/154.html">Olympia Theater (Gusman Cultural Center for the Performing Arts)</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3319.html">Una caja de zapatos vacia</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="../venue/28.html">Miami-Dade County Auditorium</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3320.html">Una caja de zapatos vacia</a><br />
+                    <span>Costume designer, Set designer</span><br />
+                    <span><a href="../venue/182.html">Teatro Municipal de Puebla</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3321">An Empty Shoe Box</a><br />
+                    <span>Costume designer, Set designer</span><br />
+                    <span><a href="../venue/150.html">Daytona Beach Community College Theatre</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/237">Alguna cosita que alivie el sufrir</a><br />
+                    <span>Props designer, Set designer, Costume designer</span><br />
+                    <span><a href="../venue/174.html">Teatro de Bellas Artes</a></span><br />
+                    <span>May 2, 1986 - June 8, 1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/430.html">False Alarm</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="../venue/27.html">Miami Dade College - Wolfson Campus</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3141">Alguna cosita que alivie el sufrir</a><br />
+                    <span>Props designer, Set designer, Costume designer</span><br />
+                    <span><a href="../venue/36.html">New York Public Theater</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/258">La trabajadora milagrosa</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="../venue/174.html">Teatro de Bellas Artes</a></span><br />
+                    <span>March 1985 - April 1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1711">El hombre en el piel de víbora</a><br />
+                    <span>Props designer, Set designer</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1707.html">Lila, la mariposa</a><br />
+                    <span>Set designer, Light designer, Costume designer</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1968</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3589">La moral de la Señora Dulska</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>September 1967</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1335">La moral de la Señora Dulska</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>February 1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1356">El vals de toreador</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1357">Variaciones para muertos en percusión</a><br />
+                    <span>Set designer, Light designer, Costume designer</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1702">El baile</a><br />
+                    <span>Set designer, Light designer, Costume designer</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1697">Heredarás el viento</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>April 1965</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1334">Esquina peligrosa</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>February 1965</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1332">Las yaguas</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/494">Teatro Musical de La Habana</a></span><br />
+                    <span>1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1333">La pérgola de las flores</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/494">Teatro Musical de La Habana</a></span><br />
+                    <span>1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1689.html">Recuerdo a mamá</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1963</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1688">Sempronio</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1962</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+            
+              <div class="linkeditems">
+              <h3>Awards: +</h3>
+              <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Category</th>
+                  <th>Award</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td>2011</td>
+                        <td>Director </td>
+                        <td>
+                          <a href="../award/63.html">Premios Baco</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+                  
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+                <div class="linkeditems">
+                <h3>Primary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1251/">Rolando Moreno (director teatral)</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/678/">'El hombre que vino del mar' en el Teatro Tower</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/678/">'El hombre que vino del mar' en el Teatro Tower</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1057/">Cinco montajes y dos nuevos grupos teatrales en Miami</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+        
+            
+            <hr />
+            <h3>Videos</h3>
+            <ul class="videos">
+              
+              <li>
+                <figure>
+                  <a id="cta0009000040" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/0c/65/0c65c2cb1ad1b373c37980aa7a2cf100.jpg" alt="Link to video of Si vas a comer espera por Virgilio (Wide)" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/676">Si vas a comer espera por Virgilio (Wide)</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0009000013" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/10/42/10429986dc2411d14130f2b3344ea28a.jpg" alt="Link to video of Si vas a comer espera por Virgilio (Edited)" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/595">Si vas a comer espera por Virgilio (Edited)</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0009000006" class="fancybox">
+                    
+                    
+                      <img src="../media/cache/86/36/863620c0819082181f618d98d73252b9.jpg" alt="Link to video of La retirada de Moscú" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="../digitalobject/173.html">La retirada de Moscú</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0003000007" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/4a/5c/4a5c35b3de7d09ed889854cd96c774e7.jpg" alt="Link to video of Fuenteovejuna" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/55">Fuenteovejuna</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="chc5284000002" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/a7/e4/a7e44b3f876e6b4bea62346fd35552a8.jpg" alt="Link to video of Divinas Palabras" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/49">Divinas Palabras</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              </ul>
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              
+              
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/15434">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/43/0943d56d66d808bea3c4c8b804cb2ab9.jpg" title="Grettel Trujillo (Josefina), in &quot;Josefina la viajera&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b8/2b/b82b837bf024a99ffbba161fdd06f586.jpg" alt="Grettel Trujillo (Josefina), in &quot;Josefina la viajera&quot;" data-href="/digitalobject/15434" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/02/5f/025f0564fef7722ca25cac504f571955.jpg" title="Grettel Trujillo (Josefina), in &quot;Josefina la viajera&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1c/ea/1cea504d078ca662aede226dcfbfdec5.jpg" alt="Grettel Trujillo (Josefina), in &quot;Josefina la viajera&quot;" data-href="/digitalobject/15435" />
+                    
+                    </a>
+                
+                    
+                    
+                    
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/50/9c50c8f8107a9cb4afd98ebcb6683679.jpg" title="Josefina la viajera now playing at Miami Hispanic Cultural Arts Center">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/96/20/96205ce012c135c0cd0df399816e4c48.jpg" alt="Josefina la viajera now playing at Miami Hispanic Cultural Arts Center" data-href="/digitalobject/15432" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/89/a8/89a8e5612dac45d90ca0c160e48450cc.jpg" title="La retirada de Moscú - poster">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/10/45/10451ec65eb643ea1a43e7fb616f1536.jpg" alt="La retirada de Moscú - poster" data-href="/digitalobject/4173" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0a/f3/0af338fee1355a861b8e6350b0c68a78.jpg" title="Photograph of Déxter Cápiro in the production, “Fuenteovejuna”">
+                    
+                    
+                    <img src="../media/cache/a2/c7/a2c7ee2c046faeece481de409f3d69c6.jpg" alt="Photograph of Déxter Cápiro in the production, “Fuenteovejuna”" data-href="/digitalobject/16401" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/43/96/4396fe01434044e920dabd84e94fe188.jpg" title="Photograph of Déxter Cápiro in the production, “Fuenteovejuna”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ba/bd/babd901bde14e1b45d55fc7e10827c3d.jpg" alt="Photograph of Déxter Cápiro in the production, “Fuenteovejuna”" data-href="/digitalobject/16400" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/26/2a/262a3ef80e45a3d5f2d4a7487aab1406.jpg" title="Photograph of Déxter Cápiro in the production, “Fuenteovejuna”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a6/d8/a6d867ea9ace6a562de1afedd74f1fd4.jpg" alt="Photograph of Déxter Cápiro in the production, “Fuenteovejuna”" data-href="/digitalobject/16399" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/d3/7ad3b27d76b5f9a2425f23408c39b8af.jpg" title="Photograph of Déxter Cápiro in the production, “Fuenteovejuna”">
+                    
+                    
+                    <img src="../media/cache/45/66/45664c63ececfc8e02c8cdd7fddeb5a8.jpg" alt="Photograph of Déxter Cápiro in the production, “Fuenteovejuna”" data-href="/digitalobject/16396" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/de/18/de18f47328fa532a872e8b89b701872f.jpg" title="Photograph of Déxter Cápiro in the production, “Fuenteovejuna”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9e/f7/9ef7b76f25ca4d51cc52dedbc9cd50ac.jpg" alt="Photograph of Déxter Cápiro in the production, “Fuenteovejuna”" data-href="/digitalobject/16397" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ef/e3/efe3165d27a83c466f1327a38e36b6ed.jpg" title="Photograph of Déxter Cápiro and Grettel Trujillo in the production, “Fuenteovejuna”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2b/c1/2bc1c2ba5f71df65c8ada22d45c984be.jpg" alt="Photograph of Déxter Cápiro and Grettel Trujillo in the production, “Fuenteovejuna”" data-href="/digitalobject/16398" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/04/05/04050823aef884f9e104b25a25e5253f.jpg" title="Photograph of Déxter Cápiro in the production, “Fuenteovejuna”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/37/7b/377b1a5135372f4657f6cd608a092b49.jpg" alt="Photograph of Déxter Cápiro in the production, “Fuenteovejuna”" data-href="/digitalobject/16395" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7b/1b/7b1be58be5d8f323972e5d467a9a0779.jpg" title="Photograph of Déxter Cápiro (Vicente) and Anna Silvetti (Laura) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6c/bb/6cbb51b27c1471813c6f61b1de56409c.jpg" alt="Photograph of Déxter Cápiro (Vicente) and Anna Silvetti (Laura) in the production, “El no”" data-href="/digitalobject/16389" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/b7/d7b7638af3c02d25d1665b5875771c78.jpg" title="Photograph of Déxter Cápiro (Vicente), Patricia Azán (Emilia) and Anna Silvetti (Laura) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/da/55/da55efe4aa0e3eb0423fc0f484641583.jpg" alt="Photograph of Déxter Cápiro (Vicente), Patricia Azán (Emilia) and Anna Silvetti (Laura) in the production, “El no”" data-href="/digitalobject/16388" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/da/7f/da7f6a69c62e53f05ec55c6a4f8c6354.jpg" title="Photograph of Déxter Cápiro (Vicente), Patricia Azán (Emilia) and Anna Silvetti (Laura) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/27/d9/27d9e2177edca648c7f9afecbb8b9de2.jpg" alt="Photograph of Déxter Cápiro (Vicente), Patricia Azán (Emilia) and Anna Silvetti (Laura) in the production, “El no”" data-href="/digitalobject/16387" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/19/c1/19c1d7aecaae48b1717493c7233466ae.jpg" title="Photograph of Déxter Cápiro (Vicente) and Patricia Azán (Emilia) in the production, “El no”">
+                    
+                    
+                    <img src="../media/cache/38/c5/38c5899b05e3247c369d6ef33582277e.jpg" alt="Photograph of Déxter Cápiro (Vicente) and Patricia Azán (Emilia) in the production, “El no”" data-href="/digitalobject/16386" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6b/e9/6be96b37425e5c3fe3b04e944689958b.jpg" title="Photograph of Déxter Cápiro (Vicente) and Patricia Azán (Emilia) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/23/8e/238e95f84ca9ce89a273ab9498b766cf.jpg" alt="Photograph of Déxter Cápiro (Vicente) and Patricia Azán (Emilia) in the production, “El no”" data-href="/digitalobject/16385" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e4/15/e415c8b6d2a75e70274812a1b0b81148.jpg" title="Photograph of Déxter Cápiro (Vicente) and Patricia Azán (Emilia) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bc/10/bc10acd4becca0031b96d0a7fd93c936.jpg" alt="Photograph of Déxter Cápiro (Vicente) and Patricia Azán (Emilia) in the production, “El no”" data-href="/digitalobject/16384" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/de/79/de79ebee4cb1d5335ebf66fba1a4e55f.jpg" title="Photograph of Déxter Cápiro (Vicente) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/24/a2/24a2e8b3b750e711275db472c5ce2e23.jpg" alt="Photograph of Déxter Cápiro (Vicente) in the production, “El no”" data-href="/digitalobject/16383" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cb/8a/cb8a7cddd433a95f158ddb27305d0268.jpg" title="Photograph of Déxter Cápiro (Vicente) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/72/f1/72f19a8d0e67e16e9acb51ca9dbbee58.jpg" alt="Photograph of Déxter Cápiro (Vicente) in the production, “El no”" data-href="/digitalobject/16382" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/15/b5/15b526b77ae03c647cb0026f2d318065.jpg" title="Photograph of Déxter Cápiro (Vicente) in the production, “El no”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/cc/83/cc83d56d769d5c811e78d2f8e18a15a0.jpg" alt="Photograph of Déxter Cápiro (Vicente) in the production, “El no”" data-href="/digitalobject/16381" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/31/f131354d3bf8a3113f120f417f3606d3.jpg" title="Photograph of Déxter Cápiro (Lorca ensangrentado), Tomás Doval (Lorca en el traje blanco) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/82/5b/825ba64e2c852683cac7a8c87f4a329a.jpg" alt="Photograph of Déxter Cápiro (Lorca ensangrentado), Tomás Doval (Lorca en el traje blanco) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16283" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cc/6c/cc6caacd400735847570f1296698f4f3.jpg" title="Photograph of Déxter Cápiro (Lorca ensangrentado), Tomás Doval (Lorca en el traje blanco), Ariel Texidó (Lorca en verde) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3b/26/3b2690c2f14d9d52655aea989ec15939.jpg" alt="Photograph of Déxter Cápiro (Lorca ensangrentado), Tomás Doval (Lorca en el traje blanco), Ariel Texidó (Lorca en verde) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16282" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6e/83/6e83726986c3b5d2a95579495a9dd297.jpg" title="Photograph of Déxter Cápiro (Lorca ensangrentado), Tomás Doval (Lorca en el traje blanco), Ariel Texidó (Lorca en verde) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="../media/cache/7d/70/7d704ce1ce48c740f3958481ca5d29ad.jpg" alt="Photograph of Déxter Cápiro (Lorca ensangrentado), Tomás Doval (Lorca en el traje blanco), Ariel Texidó (Lorca en verde) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16281" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e9/90/e9907292b119e0bc320992b158b01784.jpg" title="Photograph of Déxter Cápiro (Lorca ensangrentado), Tomás Doval (Lorca en el traje blanco), Ariel Texidó (Lorca en verde) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e8/91/e891a674a8c2c02740bfc0d0245a2692.jpg" alt="Photograph of Déxter Cápiro (Lorca ensangrentado), Tomás Doval (Lorca en el traje blanco), Ariel Texidó (Lorca en verde) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16280" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f2/05/f2054cb223366e84fd5742bb621fc76b.jpg" title="Photograph of Déxter Cápiro (Lorca ensangrentado) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/18/de/18de7f252d38fa65bfe9024d8f7575c9.jpg" alt="Photograph of Déxter Cápiro (Lorca ensangrentado) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16279" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c2/d4/c2d4e86ba2ae2399a10d5af843b5c062.jpg" title="Photograph of Déxter Cápiro (Lorca ensangrentado) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="../media/cache/dc/cf/dccfca8e808dac44eb373c82d64ddd76.jpg" alt="Photograph of Déxter Cápiro (Lorca ensangrentado) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16278" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/35/75/3575f19f313138d85eaea6c4a9e93b77.jpg" title="Photograph of Déxter Cápiro (Lorca ensangrentado) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2e/9d/2e9dd2c2a1a9035f35d54f4509abdaea.jpg" alt="Photograph of Déxter Cápiro (Lorca ensangrentado) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16277" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/82/36/8236dd5c3b9e9762504c626ac0b2e199.jpg" title="Photograph of Déxter Cápiro (Lorca ensangrentado) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/66/68/666841f55332770114d8090b2d5e89ea.jpg" alt="Photograph of Déxter Cápiro (Lorca ensangrentado) and Paulina Gálvez (Lorca como mujer) in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16276" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/33/64/336444d19b4b9ae1a471b551d042b4a3.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1f/71/1f711737ae297482918d6fada7e0ef83.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16273" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/53/76/5376946331c146405e60bb03fa9ac1ee.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/78/94/78949065fd6c29d1de1b90fa067965e6.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16272" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4d/11/4d11f09435814f05d3560950dbe5ca5a.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="../media/cache/f2/de/f2de8c7b90e31a27fdd61a0dae7f60fb.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16271" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e3/65/e365b29517cf897759f009ba0eb16e41.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e7/e1/e7e195661debcb875b03e1621d617bbb.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16270" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/15/fd/15fd5ad166b2f21bec135fa3676411e2.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/38/d0/38d0038863b1aa5ace5b6eaa8b60e77e.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16269" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/de/92/de928ffb0d2ef5522256bd54e4cff66b.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/13/6a/136a614d2922d7ca4a7254b950673c8f.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16268" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/70/31703777dbb97853de48dc7bae71ef30.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f0/9f/f09f9183f7761432babdfd04f7129b60.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16267" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/52/5c/525c826cb282030dcf22aeae8f706aaa.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="../media/cache/a3/b3/a3b3579b6aea34295d3ead03dee0cd66.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16266" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/06/98/0698fc2c1d38d246a1860eec294d8ef1.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d0/cc/d0cc41f5c8e7d5c41d4b8b0fae61f73c.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16265" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/07/9b/079b18dd201500c504b9f03a1331fdaa.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f6/51/f651d77756149dc8e036581c5ce3dd89.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16264" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b1/79/b179c877815d462598f363099fd95d27.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d2/90/d29072a4ac4d26be42ab4636503cee60.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16263" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/39/47/394752710f495e29ec56ae72260264ae.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/03/1f/031fbdfc39a1c990fd521c5a03025f61.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16257" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/40/094039e4e8698cf6650f2ee7cbc7e0c9.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7f/55/7f55f8cab5bb75f51d35a645c1313fc9.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16262" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/00/7a/007a6c83a0a80959499631c6742d56f0.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c2/6e/c26e491a9f29021a80f59bafc3c53491.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16261" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ea/49/ea49619fd40d2fd813ca0351e50f493c.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="../media/cache/82/98/82989579c6a640ae29be1a20dbc00845.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16260" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/08/65/086524ae24b6497e06d7c158c2c1f3fa.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/03/b2/03b2dbf827791488af59c46bf6d6207f.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16259" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e3/67/e367f452c66cd1472251e836f1dc64be.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e7/28/e728f1a07caae54b40dc460d721184fd.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Lorca con un vestido verde&quot;" data-href="/digitalobject/16258" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/79/ac/79ac6125f3c5ded1f147f0013f7b1fae.jpg" title="Teresa María Rojas and Marilyn Romero, in &quot;Sabina y Lucrecia&quot;">
+                    
+                    
+                    <img src="../media/cache/d5/bb/d5bb3e98f9db78508bed56e9787838c1.jpg" alt="Teresa María Rojas and Marilyn Romero, in &quot;Sabina y Lucrecia&quot;" data-href="/digitalobject/13656" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/94/20/9420d5e6c4c5bad0b1f34aee3065621a.jpg" title="Una caja de zapatos vacía (program cover)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/93/95/9395eb6546d245fa77e9667126b90438.jpg" alt="Una caja de zapatos vacía (program cover)" data-href="/digitalobject/4162" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('#cta0009000040').fancybox({
+          content: '<video id="vid-cta0009000040" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000400001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000040').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000013').fancybox({
+          content: '<video id="vid-cta0009000013" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000130001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000013').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000006').fancybox({
+          content: '<video id="vid-cta0009000006" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000060001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000006').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0003000007').fancybox({
+          content: '<video id="vid-cta0003000007" src="http://streaming.miami.edu:8080/flash/ctda/cta00030000070001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-cta0003000007').mediaelementplayer();
+          }
+        });
+        
+        $('#chc5284000002').fancybox({
+          content: '<video id="vid-chc5284000002" src="http://streaming.miami.edu:8080/flash/ctda/chc52840000020001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-chc5284000002').mediaelementplayer();
+          }
+        });
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

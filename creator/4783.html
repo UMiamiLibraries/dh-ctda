@@ -1,0 +1,1413 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>INTAR Theatre</li>
+                </ul>
+            </nav>
+            <h2>INTAR Theatre</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong></strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p><strong><strong>Artistic Director: Lou Moreno</strong>&nbsp;(2010-present)</strong></p>
+<p><strong><strong>Founding Director: Max Ferr&aacute;</strong>&nbsp;(1966 - 2004)</strong></p>
+<p><strong><strong>Artistic Director: Eduardo Machado</strong>&nbsp;(2004-2010)</strong></p>
+<p>The oldest Latino theatre company in the USA producing in English, INTAR Theatre&rsquo;s mission is to develop and produce the best new works for theatre in English by U.S. Latino writers for the American theatre audience.</p>
+<p>INTAR was founded in 1966 as Adal by Max Ferr&aacute;. In 1971, he joined forces with Magaly Alabau and Manuel Mart&iacute;n Jr. of DUO Theater and Adal was renamed INTAR. Originally, the company's mission was to produce work by Latin American, Spanish and Hispanic (sic) playwrights in English. In 2004, Eduardo Machado became its artistic director.<br />Since its founding, INTAR has presented over 65 world premieres of new plays by U.S. Latino authors. The company's Hispanic Playwrights in Residence Laboratory (HPRL), created and run by Mar&iacute;a Irene Forn&eacute;s from 1981 until 1992, fostered and trained many of the most prominent Latino playwrights in the American theatre, including Migdalia Cruz, Eduardo Machado, Carmelita Tropicana, and Nilo Cruz (2003 Pulitzer Prize for Drama). For an economic analysis of HPRL see Marcela Arcos Holzinger,&nbsp;<a href="http://www.library.miami.edu/chc/files/2012/09/arcosreport.pdf">"An Economic Analysis of INTAR's Hispanic Playwrights-in-Residence Lab."</a><br />(Information taken from INTAR's web site and from&nbsp;<em>Ollantay's Theater Magazine</em>&nbsp;X1.21 (2003), a special issue on Manuel Mart&iacute;n Jr. and Jos&eacute; Corrales.)&nbsp;</p>
+<p>&nbsp;</p>
+
+                </div>
+            
+
+            
+              <div class="linkeditems">
+                  <h3>Notes: +</h3>
+                  <ul>
+                  <p><strong><strong><strong>Artistic Director: Lou Moreno</strong>&nbsp;(2010-present)</strong></strong></p>
+<p><strong><strong>Founding Director: Max Ferr&aacute;</strong>&nbsp;(1966 - 2004)</strong></p>
+<p><strong><strong>Artistic Director: Eduardo Machado</strong>&nbsp;(2004-2010)</strong></p>
+<p>The oldest Latino theatre company in the USA producing in English, INTAR Theatre&rsquo;s mission is to develop and produce the best new works for theatre in English by U.S. Latino writers for the American theatre audience.</p>
+<p>INTAR was founded in 1966 as Adal by Max Ferr&aacute;. In 1971, he joined forces with Magaly Alabau and Manuel Mart&iacute;n Jr. of DUO Theater and Adal was renamed INTAR. Originally, the company's mission was to produce work by Latin American, Spanish and Hispanic (sic) playwrights in English. In 2004, Eduardo Machado became its artistic director.<br /> Since its founding, INTAR has presented over 65 world premieres of new plays by U.S. Latino authors. The company's Hispanic Playwrights in Residence Laboratory (HPRL), created and run by Mar&iacute;a Irene Forn&eacute;s from 1981 until 1992, fostered and trained many of the most prominent Latino playwrights in the American theatre, including Migdalia Cruz, Eduardo Machado, Carmelita Tropicana, and Nilo Cruz (2003 Pulitzer Prize for Drama). For an economic analysis of HPRL see Marcela Arcos Holzinger, <a href="http://www.library.miami.edu/chc/files/2012/09/arcosreport.pdf">"An Economic Analysis of INTAR's Hispanic Playwrights-in-Residence Lab."</a><br /> (Information taken from INTAR's web site and from <em>Ollantay's Theater Magazine</em> X1.21 (2003), a special issue on Manuel Mart&iacute;n Jr. and Jos&eacute; Corrales.)&nbsp;</p>
+
+                  </ul>
+              </div>              
+            
+
+            
+             <div class="linkeditems">
+                <h3>Related creators: +</h3>
+                <ul>
+                    
+                        Related to
+                        <a href="326.html"> Max Ferrá</a>, Founder,
+                        1966 2004<br />
+                    
+                        Related to
+                        <a href="113.html"> Eduardo Machado</a>, Artistic Director,
+                        2004 2010<br />
+                    
+                        Related to
+                        <a href="http://ctda.library.miami.edu/creator/1470"> Louis Moreno</a>, Artistic Director,
+                        2010 <br />
+                    
+                </ul>
+             </div>
+            
+
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/5039">Pinkolandia</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1547.html">INTAR Theatre</a></span><br />
+                    <span>May 3, 2013 - May 26, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1945">All Eyes and Ears</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/389">Theatre Row</a></span><br />
+                    <span>April 30, 2008 - May 22, 2008</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1396">Points of Departure</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/443.html">Kirk Theater</a></span><br />
+                    <span>March 7, 2006 - March 12, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1451">Twenty Shadows</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/443.html">Kirk Theater</a></span><br />
+                    <span>January 21, 2006 - January 22, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1450">The Undoing of Berta</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/443.html">Kirk Theater</a></span><br />
+                    <span>January 20, 2006 - January 21, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1449">With Love, Gabe</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/443.html">Kirk Theater</a></span><br />
+                    <span>January 13, 2006 - January 15, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1452">Havana Bourgeois</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/93.html">59E59 Theaters</a></span><br />
+                    <span>January 8, 2006 - February 5, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1448">Animus</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/443.html">Kirk Theater</a></span><br />
+                    <span>January 6, 2006 - January 29, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/921">Deep Song</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>January 27, 2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1987">I&#39;m With Mauricio</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>June 25, 2004 - June 27, 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1988">Gray Sun</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>June 25, 2004 - June 27, 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1986.html">3 to a Session: A Monster&#39;s Tale</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>June 18, 2004 - June 20, 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1985">Undone</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>June 11, 2004 - June 13, 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1984">NewWorks Lab 2004</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>June 4, 2004 - June 27, 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1983">Camino/Montaña</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1919">El grito del Bronx</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>December 12, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1145">The Cook</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>November 20, 2003 - January 4, 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/869">Our Wide Wide Sea (Faith, Hope and Charity)</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>May 30, 2003 - June 29, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1937.html">Faith, Hope, and Charity</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>May 30, 2003 - June 29, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1995">Drawn and Quartered</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>April 18, 2003 - May 11, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1996">Memories of Our Women</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>April 18, 2003 - May 11, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1998">Whisper</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>April 18, 2003 - May 11, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/871">Havana Under the Sea</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>February 28, 2003 - April 13, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/906">The Monster in the Garden</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/221">The Pearl Theatre - Theatre 80</a></span><br />
+                    <span>February 24, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1920">Customs</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>January 23, 2003 - February 2, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/881">The Tropic of X</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/211">Playwrights Horizons Theatre School</a></span><br />
+                    <span>2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1940">Ties That Bind: 3 Plays in Rep</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>May 21, 2002 - June 30, 2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1939">Havana Under the Sea</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>February 24, 2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1938">The Alamo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>January 4, 2002 - January 20, 2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1956">San Diego Street Padres</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>June 15, 2001 - June 17, 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/287">Tight Embrace</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>June 8, 2001 - June 10, 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1941">Nuyorican Voices: 3 Plays in Rep</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>March 13, 2001 - April 22, 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1607">Sebastián</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>March 31, 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1929">Pilgrim&#39;s Passion</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>March 24, 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1931">Fool&#39;s Journey</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>March 17, 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2009">Fool&#39;s Journey</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>March 17, 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1922">I Never Even Seen My Father</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>March 10, 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1997">Arrivals and Departures</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>May 7, 1999 - May 9, 1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/299">Odiseo, Could You Stop For Some Bread and Eggs on Your Way Home? A Ten Minute Play</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>April 30, 1999 - May 2, 1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/913">As Five Years Pass</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>October 28, 1998 - November 26, 1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/916">Buster Keaton Takes a Walk</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/917">The Maiden, the Sailor, and the Student</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1341">The Next Stop (La próxima parada)</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1997</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/896.html">Away Down Dreaming</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/215.html">Evidence Room Theatre</a></span><br />
+                    <span>1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/899.html">Shelter</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/215.html">Evidence Room Theatre</a></span><br />
+                    <span>1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1926">Nostalgia Tropical</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/540">Playhouse 91</a></span><br />
+                    <span>1993</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1897">The Antitragedy of Zoila and Pilar (Scattered Showers)</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>April 14, 1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1901">Mango Grove</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>April 12, 1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1899">Me! Me! Me!</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>April 11, 1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1900.html">A Bicycle Country</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>April 10, 1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2321">The Lady from Havana</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>March 18, 1992 - April 19, 1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2003">Our Lady of the Tortilla</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>October 9, 1991 - November 10, 1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2291">The Have-Little</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>May 29, 1991 - June 30, 1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/920">Doña Ramona</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1328">Perfidia</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1908">Marriage of Convenience</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>December 1, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1907">The Opium Wars</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>November 30, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1909">Boot Days</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>November 29, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1904">Gee</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>November 27, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1903">Shelter</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>November 26, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1915">Peppermint Motel</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>February 8, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1911">Under The Sidewalk</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>February 7, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1910">Guariken</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>February 6, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1913">Graffiti</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>February 5, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1912">Rivals</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>February 4, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/791">Going to New England</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1336.html">But There Are Fires</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1932">Parting Gestures</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1326">It Is It Is Not</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>February 9, 1989 - 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1949">The Body Builder Book of Love</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2013">Shattering the Curve</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2372.html">Back to Back</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2373">Gleaning/Rebusca</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2374">Recourse</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2375">The Mango Orchard</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2376">Another dragon to the sky</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2377">Monosodium Glutamate</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1936">Two One-Act Musicals: Alma and Welcome Back to Salamanca</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1994.html">Tango Apasoinado</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2320">Our Lady of the Tortilla</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>June 3, 1987 - July 5, 1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1283">In the Country of Azure Nights</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1327">La Paloma</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1330">Santiago</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1346">Tatters</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1347">Bebo and the Band</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1351">The Chronicle of Soleded</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1353">Ira Evans</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2010">La Chunga</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2011">Lovers and Keepers</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1352">Álbum</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1985 - 1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2015">Savings</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2371">Impact</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2017">Sarita</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2294">Dog Lady</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/281">Union City Thanksgiving</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>March 9, 1983 - April 3, 1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2021">The Senorita From Tacna</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/647">The Last Latin Lover</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>June 2, 1982 - June 27, 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2306">The Extravagant Triumph of Jesus Christ, Karl Marx, and William Shakespeare</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>April 1, 1982 - April 25, 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2022">Exiles</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2370">Bodybags</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1981</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/312">Swallows</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>March 6, 1980 - April 1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2342">Mundo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2343">Hustlers With Worn-Out Shoes</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2344">A Little Holy Water</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2345.html">I Dare You to Resist Me</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2346">The Ash Can and the Cobra</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2347">In Another Part of the City</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2348">Initiation</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2349.html">Yerba Buena</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2368">Orphans</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2369">Bempires</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1928">Rice and Beans</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>October 4, 1979 - November 11, 1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1947">Blood Wedding</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1979 - 1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1963">Eyes on the Harem</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/389">Theatre Row</a></span><br />
+                    <span>1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1959">Latinos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>June 2, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/284">Carmencita</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>May 19, 1978 - June 18, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1964">La gran decisión</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1965">Columbus, Columbus</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/389">Theatre Row</a></span><br />
+                    <span>1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1967">Nosotros hacemos esto... ¿y ustedes qué?</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/389">Theatre Row</a></span><br />
+                    <span>1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1976">The Singing Lion</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1977">The House of Bernarda Alba</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1978.html">Hablemos a calzón quitado</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1979">Lolita in the Garden</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4969">La dama boba</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>November 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4307.html">Cap-a-Pie</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>May 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2303">Greta Garbo de la calle 42</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1975 - 1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2304">Nuestro New York</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1975 - 1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2298">The Visit</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>April 27, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2301">La zapatera prodigiosa</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1973 - 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2302">The Zoo Story</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1973 - 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1991">The Body Builder&#39;s Book of Love</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1331/">The Fantastical Reality In Pinkolandia</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1330/">Revolutionary Coming-of-Age In Wisconsin</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1329/">Pinkolandia</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/877/">An Economic Analysis of INTAR’s Hispanic Playwrights-in-Residence Lab (HPRL)</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1218/"> Choice of 9 Plays on the Boards</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1217/">Going Out: Latin Theater</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1216/">Back to Pinterland, Where The Living Is Uneasy</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/831/">Theater: 'Dog Lady' and 'Swimmer'</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+                <li>
+                  <h4>Website:</h4>
+                  <span><a href="http://www.intartheatre.org/" target="_blank">http://www.intartheatre.org/</a></span>
+                </li>
+              
+              
+              
+              
+              
+              
+              
+                <li>
+                  <h4>Office / HQ:</h4>
+                  <span><a href="../venue/307.html">New York, New York, United States</a></span>
+                </li>
+              
+
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Theatrical%20Companies--United%20States"><li>Theatrical Companies--United States</li></a>
+                
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16945">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5a/4f/5a4fc5fc433bdda0342ebce927e7cfc3.jpg" title="Press clipping of the production, La dama boba">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/16/d1/16d1720677b4492a1a665e0c2d8d0bfd.jpg" alt="Press clipping of the production, La dama boba" data-href="/digitalobject/16945" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ac/3e/ac3e3a95559805c60bf15bd39071b734.jpg" title="Program for the production, &quot;La estrella y la monja&quot;">
+                    
+                    
+                    <img src="../media/cache/0b/6e/0b6e12ab7f45231a6c22acec265f6d48.jpg" alt="Program for the production, &quot;La estrella y la monja&quot;" data-href="/digitalobject/12982" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/83/ff/83ff438e925d8a18d359a00f62aeb11a.jpg" title="Poster for play, &quot;Rice and Beans&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1a/f5/1af5f85ef6b8474b7e6abbc618d532a7.jpg" alt="Poster for play, &quot;Rice and Beans&quot;" data-href="/digitalobject/13024" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/ae/86ae4a0139fdcf9534349696161f1833.jpg" title="Photograph of the production, &quot;Rice and Beans&quot;">
+                    
+                    
+                    <img src="../media/cache/c3/da/c3dae289424f091348fbcae744c341b8.jpg" alt="Photograph of the production, &quot;Rice and Beans&quot;" data-href="/digitalobject/13069" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8d/55/8d55e6c90fc584492e0f6891a3b529e4.jpg" title="Photograph of the production, &quot;Rice and Beans&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8b/80/8b80d31ad523977bbffb15718d2355b6.jpg" alt="Photograph of the production, &quot;Rice and Beans&quot;" data-href="/digitalobject/13059" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

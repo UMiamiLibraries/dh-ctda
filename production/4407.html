@@ -1,0 +1,596 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>Me voy para Cuba ¡Fuaaa!</li>
+                </ul>
+            </nav>
+            <h2>Me voy para Cuba ¡Fuaaa!</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+                <p></p>
+            Premiere:
+            <strong>World</strong><br />
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/946.html">Mario Martín</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+          
+
+
+            
+
+
+
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="http://ctda.library.miami.edu/venue/1133">Sala Teatro La Comedia #2  (United States)</a></span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>December 20, 1979</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/writtenwork/3450">Me voy para Cuba, ¡Fuaa! (Play script)</a><br />
+                <span>By <h4>Author / Playwright:</h4><a href='../creator/946.html'>Mario Martín</a></span>
+              </li>
+              
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Genre--Comedy"><li>Genre--Comedy</li></a>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Subject--%20Return%20to%20Cuba"><li>Subject-- Return to Cuba</li></a>
+                
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/13303.html">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/82/40/82409ece144de191d8ed9378bce1ff6e.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="../media/cache/a1/0c/a10c50866337ae9bbd8df4f4117a0de0.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a7/3a/a73a364a3646c17e41b51d232166ddb0.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/57/16/5716cab9e3c8fbd0826ea11437d31ba8.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/33/33/333315e1373b86d0169109128c2314ff.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/bc/9b/bc9b4862ffb6da3804491b7336616a3a.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cb/9b/cb9b5898ab142df7372c16927d720055.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/72/a6/72a68238b9f3274c5e74e41c1cb20288.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ea/f6/eaf6cc251e426875987cb23c2ede0172.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e9/eb/e9eb50e51652895da29c6e33444c3516.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5e/24/5e24f945e77c68e90550384c9cec5ec5.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b2/f0/b2f0dade26301a7571444a28950800c9.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/96/4b/964ba419dbeb18eef24d666a379c8e54.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/38/69/3869481d91d3d2066783d631782a68ac.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/96/78/9678df7fd5276b36a988f573c70ba17b.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c4/8c/c48c8093452bae25c4921d07653f47c7.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0d/33/0d33095cd0e4e7c723d5a0f2870e756f.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/12/57/12571882451e84cd91cad2d2197a32ac.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/81/58/81581cb8ca1b6a5e71e21be6fbce648f.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5c/96/5c9630d420fc43a1aec247af35ce7fc8.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/af/ee/afee6e406a656771e6e633f45d7ddad1.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c5/20/c520584cd89cb935a10f709566f6bc05.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/de/86de554a64a859d869b6d72b601058ad.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/bb/c9/bbc965ee4a78eda84f071912a2ad2d4e.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/33/a9/33a9139e1d63dec1290eb574032769b8.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/38/19/3819a602dadb72dfcfd960f3dec8d2ca.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/02/09/02090a17137a6a02821307048ee4b9c3.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/3d/b0/3db08b94d1d9ec198431cc2b446d9d30.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fe/31/fe31efb34cb21e2ae9931a17447ed69d.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/82/9a/829aa8873f7360c7655a5831cc129bae.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/1e/f11e73a469c316a50347b589b35fec50.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/43/e0/43e0429f5dc534492a7186e2334a70ba.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/83/e0/83e09dffba2d5e9acf684514c470cb5d.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f0/ef/f0efe7b64a61b02c00be3e16c2a4e23b.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/17/33/1733400c68abdd9592ab1eff9ce450c0.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/9f/2d/9f2ddb65526b997d6b472ac2559ae787.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/65/21/6521f8fec598d3ae52b6cea90af28ad2.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/02/97/02979cccdef31b0fa6878b5bca0244c3.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/69/9c694391d8c5dd6a8e265ff5ac6ece83.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c9/5e/c95efddf19c312fde563036a58157bc0.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f4/80/f4804283cf70811731aed4395a9441de.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/38/7b/387b79bb622390376ea20c0002956721.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/27/3f/273ff57b70583165c866bbe3bf7ae716.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b0/71/b07142b29c462a8dd611be8927a2057c.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bf/49/bf49ec8348b57b829d3951c6b93c5765.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a0/c6/a0c6c2ad5dd6f976e418f5a1acecf940.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5c/e7/5ce70daaaa27e4227bb2a96c4a8b033c.jpg" title="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/3c/ba/3cba33b9eab65a238c8c0102f588bab5.jpg" alt="Program for the production, &quot;Me voy para Cuba, ¡Fuaaa!&quot;" data-href="/digitalobject/13303" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

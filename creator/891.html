@@ -1,0 +1,637 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Jean Anouilh</li>
+                </ul>
+            </nav>
+            <h2>Jean Anouilh</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Author / playwright</strong></p>
+
+            
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/573">Medea</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1155">La valse des toréadors</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1193">El viajero sin equipaje</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1315.html">L'Alouette</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1776">The Lark</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2640">Antigone</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2954.html">Ne reveillez pas Madame</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3599">Ardèle ou la Marguerite </a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1948</span>
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+        
+
+                    
+        
+
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>French</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>June 23, 1910</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Bordeaux, Aquitaine, France</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Death date:</h4>
+                  <span>October 3, 1987</span>
+                </li>
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/365">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/f9/d2f97e211b8dd308b41d98393dec6bd8.jpg" title="Poster for the illustrated conference, &quot;Las cuatro piezas negras de Jean Anouilh&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/41/7d/417d9f071a05d91f77d5d4f7238b6632.jpg" alt="Poster for the illustrated conference, &quot;Las cuatro piezas negras de Jean Anouilh&quot;" data-href="/digitalobject/365" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/54/b5/54b51abce1c423a8c1779bfeff11330a.jpg" title="Glenda Díaz Rigau (Juana), training for the production &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/37/56/3756f78190a2029fe3bc9b915c89bf6d.jpg" alt="Glenda Díaz Rigau (Juana), training for the production &quot;La alondra&quot;" data-href="/digitalobject/13686" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/a5/fb/a5fb6a3fccd8b0360deef8f853f2c3ff.jpg" title="Francisco Javier Iglesias, rehearsing for the production &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/e9/4c/e94c801e8667d641a7006c0223b7a2ec.jpg" alt="Francisco Javier Iglesias, rehearsing for the production &quot;La alondra&quot;" data-href="/digitalobject/13616" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/0c/6d/0c6d1f7e3cbabeef69154cd827a6a54c.jpg" title="Francisco Javier Iglesias, rehearsing for the production &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/6d/23/6d23294df0b0a7fea82c382df866184a.jpg" alt="Francisco Javier Iglesias, rehearsing for the production &quot;La alondra&quot;" data-href="/digitalobject/13732" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/6c/ca/6cca67b2d5fe7e6aeadb6c718ca643d1.jpg" title="Manuel Acosta (Capitán Beaudricourt), in &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/c4/c2/c4c276a7dcd7d30bb1fd6ca8707f224c.jpg" alt="Manuel Acosta (Capitán Beaudricourt), in &quot;La alondra&quot;" data-href="/digitalobject/13679" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/6b/1f/6b1fe5600ed613858feef9b521410cd7.jpg" title="Scene from the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/52/cf/52cf5ac7c798971f04ef2e898330a6fd.jpg" alt="Scene from the production, &quot;La alondra&quot;" data-href="/digitalobject/13730" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/d7/35/d735898afe01eb2797ddb74c2d2196a7.jpg" title="Invitation for the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/3c/41/3c41b3fced367ad79e3e2cac7e2de293.jpg" alt="Invitation for the production, &quot;La alondra&quot;" data-href="/digitalobject/13532" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/02/fd/02fdd486a8d3c58096333ce525b95e32.jpg" title="Invitation for the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/15/ac/15ac875b928c1ce40a70e3b647940631.jpg" alt="Invitation for the production, &quot;La alondra&quot;" data-href="/digitalobject/13532" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/a0/33/a033f19247af402d331976b812cb7f46.jpg" title="Invitation for the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/69/16/6916ab794f92715c58a4811764bba4f3.jpg" alt="Invitation for the production, &quot;La alondra&quot;" data-href="/digitalobject/13532" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/1d/45/1d4509f593fa01b8670188a198879107.jpg" title="Invitation for the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/14/1a/141a53e0c3afdae58df42be818e7cfb7.jpg" alt="Invitation for the production, &quot;La alondra&quot;" data-href="/digitalobject/13532" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/dd/44/dd44755fdaa14c7a64c9816417eb8d91.jpg" title="Rafael Cifuentes (Hermano Ladvenu), Gustavo Cardona (El Verdugo), Manuel Acosta (Capitán Beaudricourt) and Glenda Díaz Rigau (Juana), in &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/9e/55/9e559a57117ab1e8714febd83b513ae2.jpg" alt="Rafael Cifuentes (Hermano Ladvenu), Gustavo Cardona (El Verdugo), Manuel Acosta (Capitán Beaudricourt) and Glenda Díaz Rigau (Juana), in &quot;La alondra&quot;" data-href="/digitalobject/13734" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c5/83/c5839ec75ac0fb6b48b1a280170d1a41.jpg" title="Gustavo Cardona (El Verdugo), Manuel Acosta (Capitán Beaudricourt), Rafael Mejido (El padre) and Glenda Díaz Rigau (Juana), in &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/51/a1/51a1065d93cad1d2ac8e5faae3ad8ca1.jpg" alt="Gustavo Cardona (El Verdugo), Manuel Acosta (Capitán Beaudricourt), Rafael Mejido (El padre) and Glenda Díaz Rigau (Juana), in &quot;La alondra&quot;" data-href="/digitalobject/13637" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/08/8b/088b3a39547389a40de136f1b358ab62.jpg" title="Ricardo Fernand (El Arzobispo) and Armando Sardina (La Tremouille), in &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/6f/ac/6facc8f8819941bdec963bc29f7a0fb9.jpg" alt="Ricardo Fernand (El Arzobispo) and Armando Sardina (La Tremouille), in &quot;La alondra&quot;" data-href="/digitalobject/13819" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/a5/a6/a5a628f272c30900ab82dc153fd01eef.jpg" title="Miguel Angel Abadía (El Rey Carlos) and Glenda Díaz Rigau (Juana), in &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/56/93/56935a360f52511d8919c5253ffc83e1.jpg" alt="Miguel Angel Abadía (El Rey Carlos) and Glenda Díaz Rigau (Juana), in &quot;La alondra&quot;" data-href="/digitalobject/13771" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/f0/c8/f0c82818bd72bb5179df4bfb2ed1e838.jpg" title="Glenda Díaz Rigau (Juana), in &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/98/a6/98a65dbe136f811f52737462e737a8fe.jpg" alt="Glenda Díaz Rigau (Juana), in &quot;La alondra&quot;" data-href="/digitalobject/13673" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/67/77/677793dba96dfdcd26e1efec2b09ddc5.jpg" title="Efraín Martell (Promotor) and Gustavo Cardona (El Verdugo), in &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/a7/36/a736dfd62c2c668707346ea8d7d240d7.jpg" alt="Efraín Martell (Promotor) and Gustavo Cardona (El Verdugo), in &quot;La alondra&quot;" data-href="/digitalobject/13728" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/6e/22/6e2286f6447a0217ae55d130e2260ced.jpg" title="Manuel Acosta (Capitán Beaudricourt), in &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/69/7d/697d30f97cd688c8200065bc56c268c6.jpg" alt="Manuel Acosta (Capitán Beaudricourt), in &quot;La alondra&quot;" data-href="/digitalobject/13777" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/55/b9/55b9cdc84440ffbc1aecaaa5c2babcd8.jpg" title="Letter from Estela García to Teresa María Rojas about the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/bf/0d/bf0d1bbcca4443d4eb267bfaf13c221f.jpg" alt="Letter from Estela García to Teresa María Rojas about the production, &quot;La alondra&quot;" data-href="/digitalobject/13774" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/77/e2/77e247993cadb667435cb4de9c2e427c.jpg" title="Program for the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/2c/fe/2cfecc4447dd48f4561ba71aaadfe990.jpg" alt="Program for the production, &quot;La alondra&quot;" data-href="/digitalobject/13527" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/2b/76/2b763cee7daa8577312ca01f09fac569.jpg" title="Program for the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/5f/9d/5f9d59a6facddad247a184b107d24e9b.jpg" alt="Program for the production, &quot;La alondra&quot;" data-href="/digitalobject/13527" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/5c/66/5c66a037c664216046dc82085a879700.jpg" title="Program for the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/f6/d4/f6d42691a32711077eda9f4367479435.jpg" alt="Program for the production, &quot;La alondra&quot;" data-href="/digitalobject/13527" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/eb/f8/ebf8f0f00210a715667c27db80a384d3.jpg" title="Program for the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/8b/32/8b326051bad0508fd4d527b7d6521c86.jpg" alt="Program for the production, &quot;La alondra&quot;" data-href="/digitalobject/13527" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/0d/55/0d55737976b0c76d9ac01dd6d8391697.jpg" title="Program for the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/b3/29/b32919a4bda90c6d9421ad09183a23ab.jpg" alt="Program for the production, &quot;La alondra&quot;" data-href="/digitalobject/13527" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ed/96/ed9619c6bc1f8ebfbbe857e78a5e54be.jpg" title="Program for the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/25/67/256717370eb94057288238a7220498ed.jpg" alt="Program for the production, &quot;La alondra&quot;" data-href="/digitalobject/13527" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b0/44/b0445d087f1bbbcd03421497a4534f34.jpg" title="Program for the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/a5/73/a573cae1a682d7621b3f7eb0d1c9fa30.jpg" alt="Program for the production, &quot;La alondra&quot;" data-href="/digitalobject/13527" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/d5/58/d558171e9e7645631d737cc818ff6e38.jpg" title="Program for the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/0b/fb/0bfb1969db10c86ff96f256dfb69943d.jpg" alt="Program for the production, &quot;La alondra&quot;" data-href="/digitalobject/13527" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b7/c5/b7c53c2f212e18688510444708652983.jpg" title="Poster for the production, &quot;La alondra&quot;">
+                    
+                    
+                    <img src="../media/cache/57/38/573871a2b85716a33628ad3a29f2c278.jpg" alt="Poster for the production, &quot;La alondra&quot;" data-href="/digitalobject/13467" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

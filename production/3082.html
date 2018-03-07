@@ -1,0 +1,649 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>2075</li>
+                </ul>
+            </nav>
+            <h2>2075</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/594.html">Teresa María Rojas</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/42.html">Tony Wagner</a></td>
+                        <td>Musical Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Cast: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Role(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/1883.html">Hilda María Colomé</a></td>
+                        <td>Mujer</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/6872.html">Elisa Estrada</a></td>
+                        <td>Cromosoma</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/6871.html">Francisco Fernández</a></td>
+                        <td>Robot</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/6870.html">Féliz Ferrín</a></td>
+                        <td>Investigador II</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/2719.html">Reynaldo González</a></td>
+                        <td>Locutor</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/6867.html">Francisco Javier Iglesias</a></td>
+                        <td>Vector</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/6866.html">Gloria Kare</a></td>
+                        <td>Hemoglobina</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/6873.html">Efraín Martel</a></td>
+                        <td>Genio</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/6869.html">Rafael Mejido</a></td>
+                        <td>Investigador I</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/3134.html">Walter Núñez-Thievaud</a></td>
+                        <td>Isótopo</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/6868.html">Coqui Ramírez</a></td>
+                        <td>Radia</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/2048.html">Vivian Ruiz</a></td>
+                        <td>La bella durmiente</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/17.html">Mario Ernesto Sánchez</a></td>
+                        <td>Investigador Quantum</td>
+                    </tr>
+                
+              </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Design team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="../creator/6876.html">José A. González</a></td>
+                    <td>Light designer, Light designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="../creator/6875.html">Mario Hernandez Jr.</a></td>
+                    <td>Light designer</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Technical team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="../creator/6874.html">Jorge Vallejo</a></td>
+                    <td>Videographer</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+          
+
+
+            
+
+
+
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              
+            
+                <a href="../creator/4810.html" >Grupo Prometeo a/k/a Promethean Players, 1972- (4810)</a><br />
+              
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/27.html">Miami Dade College - Wolfson Campus (United States)</a></span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>October 11, 1975</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="../writtenwork/1781.html">2075 (Play script)</a><br />
+                <span>By <h4>Author / Playwright:</h4><a href='../creator/1586.html'>Teresa Casuso</a></span>
+              </li>
+              
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="../taggeditems-tag=Plays.html"><li>Plays</li></a>
+                
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/13496.html">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/f9/ee/f9ee373d2f0ec50d5183d065a54836c6.jpg" title="Program for the production, &quot;2075&quot;">
+                
+                
+                <img src="../media/cache/29/3c/293cb57a85edb2281490cd714800e85e.jpg" alt="Program for the production, &quot;2075&quot;" data-href="/digitalobject/13496" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/5e/a4/5ea4ec8905da66c4bfcd588af1f78e17.jpg" title="Program for the production, &quot;2075&quot;">
+                
+                
+                <img src="../media/cache/d2/46/d246d28612f088216050e80599569e92.jpg" alt="Program for the production, &quot;2075&quot;" data-href="/digitalobject/13496" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/ff/91/ff915fa99da5fc870dd4c436b93453a2.jpg" title="Program for the production, &quot;2075&quot;">
+                
+                
+                <img src="../media/cache/0a/c3/0ac35e3800dff8c0060795590e5587c0.jpg" alt="Program for the production, &quot;2075&quot;" data-href="/digitalobject/13496" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/bd/cc/bdcc6c7d3adddb531d1097fb39fd36a1.jpg" title="Program for the production, &quot;2075&quot;">
+                
+                
+                <img src="../media/cache/9d/1c/9d1cf4d953b18d893bb3e1e6b774587c.jpg" alt="Program for the production, &quot;2075&quot;" data-href="/digitalobject/13496" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/87/df/87dffd1b9e6a33870db3dbfd7efb0fb5.jpg" title="Invitation for the production, &quot;2075&quot;">
+                
+                
+                <img src="../media/cache/44/d1/44d137d9ee3561f6552eed51466448e5.jpg" alt="Invitation for the production, &quot;2075&quot;" data-href="/digitalobject/13534" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/14/67/14672840e3964ee586466e1cfc06f190.jpg" title="Invitation for the production, &quot;2075&quot;">
+                
+                
+                <img src="../media/cache/af/b2/afb2ae2fd9b6ef14a3c98bcdfdc89b70.jpg" alt="Invitation for the production, &quot;2075&quot;" data-href="/digitalobject/13534" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/85/23/8523544f67252b054ded1865dbf06e63.jpg" title="Invitation for the production, &quot;2075&quot;">
+                
+                
+                <img src="../media/cache/8f/6c/8f6ca26d08a36e6fd7d1f3b3eac0d91f.jpg" alt="Invitation for the production, &quot;2075&quot;" data-href="/digitalobject/13534" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/11/ff/11ff2ee9428f0b862dfe95c36dcac12c.jpg" title="Invitation for the production, &quot;2075&quot;">
+                
+                
+                <img src="../media/cache/7c/95/7c9567713b3646ec8aa57c3c62464a1c.jpg" alt="Invitation for the production, &quot;2075&quot;" data-href="/digitalobject/13534" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/fd/3c/fd3cca7b46e361c9b8393ef5cf67f9df.jpg" title="Hilda María Colomé (Mujer), in &quot;2075&quot;">
+                
+                
+                <img src="../media/cache/f7/2d/f72d4c7eb1800e1de84ad775f131bb5d.jpg" alt="Hilda María Colomé (Mujer), in &quot;2075&quot;" data-href="/digitalobject/13765" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/ce/fd/cefd731dad13d71fb2a485442d5469de.jpg" title="Francisco Javier Iglesias (Vector), in &quot;2075&quot;">
+                
+                
+                <img src="../media/cache/57/1b/571be6f4a236db73b8648d856dcbe90d.jpg" alt="Francisco Javier Iglesias (Vector), in &quot;2075&quot;" data-href="/digitalobject/13836" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/27/d2/27d29156a776216cdb846e5a0293307b.jpg" title="Mario Ernesto Sánchez (Investigador Quantum), in &quot;2075&quot;">
+                
+                
+                <img src="../media/cache/29/bf/29bf7af0e0fddeb9d1fbcbfc331e0055.jpg" alt="Mario Ernesto Sánchez (Investigador Quantum), in &quot;2075&quot;" data-href="/digitalobject/13668" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/37/0c/370ce45172eca42d6f371a33ce4d9dbb.jpg" title="Mario Ernesto Sánchez (Investigador Quantum) and Vivian Ruiz (La Bella Durmiente), in &quot;2075&quot;">
+                
+                
+                <img src="../media/cache/60/6e/606eb673e9ed90dd6bf9988eaeb5400d.jpg" alt="Mario Ernesto Sánchez (Investigador Quantum) and Vivian Ruiz (La Bella Durmiente), in &quot;2075&quot;" data-href="/digitalobject/13759" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/e2/8e/e28e5090295fff1d546222c9c5b2c6d0.jpg" title="Francisco Fernández (Robot) and Vivian Ruiz (La Bella Durmiente), in &quot;2075&quot;">
+                
+                
+                <img src="../media/cache/88/23/882370bd99bea339563e9bb944a90d01.jpg" alt="Francisco Fernández (Robot) and Vivian Ruiz (La Bella Durmiente), in &quot;2075&quot;" data-href="/digitalobject/13632" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/8a/12/8a129fa8c6b41c27510b6e58e83965d5.jpg" title="Poster for the production, &quot;2075&quot;">
+                
+                
+                <img src="../media/cache/14/73/147357986a50824faf69ac60503ef1e6.jpg" alt="Poster for the production, &quot;2075&quot;" data-href="/digitalobject/13743" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

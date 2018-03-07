@@ -1,0 +1,570 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../writtenworks.html">Written Works</a></li>
+              <li>Visiones de la cubanosofía</li>
+            </ul>
+          </nav>
+          <h2>Visiones de la cubanosofía
+          
+            (2005)
+          
+          </h2>
+        </header>
+        <section class="main">
+          <h4>Adaptation / Version
+          
+          (Spanish) 
+          </h4>
+          
+          
+          
+            <h3>Notes:</h3>
+            <p>"Visiones de la cubanosof&iacute;a." <em>El ciervo encantado: textos de la memoria</em>. La Habana: Editorial Letras Cubanas, 2012, 111-122.</p>
+<p>&nbsp;</p>
+<p>Additional Research Sources:</p>
+<p>&ldquo;La Cubanosof&iacute;a, fundamento de la educaci&oacute;n c&iacute;vica nacional&rdquo;, Alfonso Bernal del Riesgo</p>
+<p><em>Estudios etnosociol&oacute;gicos</em>, Fernando Ortiz</p>
+<p><em>Obras escogidas</em>, Jos&eacute; Mart&iacute;</p>
+<p><em>Big-Bang</em>, Severo Sarduy</p>
+<p><em>Leprosorio</em>, Reinaldo Arenas</p>
+<p>&ldquo;D&eacute;cimas&rdquo;, Lorelis Amores</p>
+<p>&ldquo;Cartas a Eduardo&rdquo;, Julio Alexis Torres</p>
+<p>&ldquo;La isla en peso&rdquo;, Virgilio Pi&ntilde;era</p>
+
+          
+                      
+
+            
+
+          
+          <div class="linkeditems">
+            <h3>Performances: +</h3>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4524">Visiones de la cubanosofía</a>
+                
+                <br /><span>Directed by <a href='../creator/382.html'>Nelda Castillo</a></span>
+                
+                
+                <br /><span><a href="http://ctda.library.miami.edu/venue/1459">Unknown Venue - India</a></span>
+                
+                
+                <br /><span>December 22, 2010</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2506">Visiones de la cubanosofía</a>
+                
+                <br /><span>Directed by <a href='../creator/382.html'>Nelda Castillo</a></span>
+                
+                
+                <br /><span><a href="../venue/1391.html">La Capilla de El Ciervo Encantado</a></span>
+                
+                
+                <br /><span>January 2009 - February 1, 2009</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2505">Visiones de la cubanosofía</a>
+                
+                <br /><span>Directed by <a href='../creator/382.html'>Nelda Castillo</a></span>
+                
+                
+                <br /><span><a href="../venue/1391.html">La Capilla de El Ciervo Encantado</a></span>
+                
+                
+                <br /><span>May 2008 - July 27, 2008</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3583">Visiones de la cubanosofía</a>
+                
+                
+                <br /><span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span>
+                
+                
+                <br /><span>2006</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/769">Visiones de la cubanosofía</a>
+                
+                <br /><span>Directed by <a href='../creator/382.html'>Nelda Castillo</a></span>
+                
+                
+                <br /><span><a href="../venue/464.html">Instituto Superior del Arte</a></span>
+                
+                
+                <br /><span>May 19, 2005 - June 11, 2005</span>
+                
+              </li>
+              
+            </ul>
+          </div>
+          
+
+            
+
+        
+          
+      
+          
+        
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              <li>
+                <span><h4>Author / Playwright:</h4><a href='../creator/382.html'>Nelda Castillo</a></span> 
+              </li>
+
+              <li>
+                
+              </li>
+              
+              
+              <li>
+                <h4>Creation date:</h4>
+                <span>2005</span>
+              </li>
+              
+            </ul>
+            
+            
+          </div>
+         
+          
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/15150">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/ee/d7ee5da5cb754bc79faf7b6e20e99a48.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ba/b0/bab07ee4c9a151e0b4c59a061610fd71.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15150" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fc/39/fc3982e97e8d1ac0c8146c173d672889.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/9a/2d/9a2db12ca3b237ff68aebd47c112e1a9.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15149" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/be/da/beda4fc9a22b0aa6a9e6292f4327839d.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d4/e6/d4e6973dd4a11d9b4afd3f3273b5f935.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15148" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/46/4c/464c902ab4d0942176473b092594a108.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/9b/26/9b268c6d47d24b6fd66ac7dca46bfa0b.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15147" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e3/34/e334eddb372e01cbff3a121629c00f61.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/37/a2/37a22b24a1423c5e40940e19c0bb4150.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15146" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ac/c9/acc97e6ca684640dc65170ff0f703931.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="../media/cache/7d/44/7d447097d765ae586d1e3b115d749488.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15145" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d1/f2/d1f291124ca85c604ab27e3aa01319b6.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/7d/32/7d32555f7f3a03e287b8f8c7dc8f9283.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15144" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cf/36/cf3682cade813bc0b255167494c1212e.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="../media/cache/97/89/97891b488458cdece2668d3aa3241d17.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15143" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/81/d2/81d2988e91576057e20d997ffa351090.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b4/fd/b4fd58b16fb9453244e3487e49caba77.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15142" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/06/66/0666e8af049063c46093ec374890d162.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/92/b2/92b2ccc33611b4a04605e909bb5d7181.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15141" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7d/21/7d21e0eaf356634623580ff2e399647e.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/54/1a/541a47dd3114d96884076762efec844b.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15140" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/09/6a0998de23645700514a9adbf0f9d315.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5b/d1/5bd15219cb6020dd0a9940af8ca4a70f.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15139" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/10/8b/108b87f10e3868a8618be272a53e1d7b.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5c/d9/5cd9334f2371d66f96599621bc3b6ee4.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15138" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b6/58/b6581ea562cdbf551c75e15e9fa183dc.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/10/27/1027ef7245dc5fe1f999ed60509ad317.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15137" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b4/7e/b47e886ad09a2d15cf0493fb3efd6901.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/3a/4e/3a4ea4aef3e51fddcc37e57f563c2bcf.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15136" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/02/e3/02e3843d2cc8114ee7fa16900d58a380.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b8/26/b826419dec335cc4f2c575d08df45277.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15135" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/92/b2/92b20be09129b767dbe9074d051d7eb1.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/99/a1/99a192ac92d6f79e6e56e687421a7a6d.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15134" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/92/09922a6b4178354279b359f03d1b3a7b.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f1/38/f138cde9d75fb29df4a300428c681bff.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15132" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/26/d3/26d3e33048ca8550103ec892172e4f91.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/94/e4/94e4f3bfd588753810517ef8540dfa63.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15131" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

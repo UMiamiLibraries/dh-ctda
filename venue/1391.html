@@ -1,0 +1,1405 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../venues.html">Venues</a></li>
+              <li>La Capilla de El Ciervo Encantado</li>
+            </ul>
+          </nav>
+          <h2>La Capilla de El Ciervo Encantado</h2>
+        </header>
+
+        <section class="main">
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          <div class="linkeditems">
+            <h3>Productions: +</h3>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4504">La última cena</a>
+                
+                <br /><span>February 14, 2014 - February 22, 2014</span>
+                
+                
+                <br /><span>Directed by: Nelda Castillo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4394">La última cena</a>
+                
+                <br /><span>December 6, 2013 - December 7, 2013</span>
+                
+                
+                <br /><span>Directed by: Nelda Castillo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4146">Aquiles y la tortuga</a>
+                
+                <br /><span>March 22, 2013 - March 31, 2013</span>
+                
+                
+                <br /><span>Directed by: Eric Morales Manero</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4211">A la eterna memoria</a>
+                
+                <br /><span>February 22, 2012</span>
+                
+                
+                <br /><span>Directed by: Nelda Castillo</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4215.html">Rapsodia para el mulo</a>
+                
+                <br /><span>2012</span>
+                
+                
+                <br /><span>Directed by: Nelda Castillo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4213">Cubalandia</a>
+                
+                <br /><span>July 1, 2011</span>
+                
+                
+                <br /><span>Directed by: Nelda Castillo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4212">Dramaturgia de la Revolución</a>
+                
+                <br /><span>February 15, 2011</span>
+                
+                
+                <br /><span>Directed by: Nelda Castillo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/14">Variedades Galiano</a>
+                
+                <br /><span>April 23, 2010 - May 30, 2010</span>
+                
+                
+                <br /><span>Directed by: Nelda Castillo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2506">Visiones de la cubanosofía</a>
+                
+                <br /><span>January 2009 - February 1, 2009</span>
+                
+                
+                <br /><span>Directed by: Nelda Castillo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4523">Un elefante ocupa mucho espacio</a>
+                
+                <br /><span>2009</span>
+                
+                
+                <br /><span>Directed by: Nelda Castillo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4522">Asalto a la revista Tablas</a>
+                
+                <br /><span>October 17, 2008</span>
+                
+                
+                <br /><span>Directed by: Nelda Castillo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2505">Visiones de la cubanosofía</a>
+                
+                <br /><span>May 2008 - July 27, 2008</span>
+                
+                
+                <br /><span>Directed by: Nelda Castillo</span>
+                
+              </li>
+              
+            </ul>
+          </div>
+        
+        
+             
+        
+          
+      
+                
+
+
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              <li>
+                <h4>Address:</h4>
+                <span>5ta and D</span>
+                
+                <br/><span>Vedado</span>
+                
+              </li>
+              
+              
+              <li>
+                <h4>City:</h4>
+                <span>La Habana, La Habana</span>
+              </li>
+              
+              <li>
+                <h4>Country:</h4>
+                <span>Cuba</span>
+              </li>
+              
+              
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/15793">View details</a>
+            <div id="digitalobjects">
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f2/04/f2041111a20879137fb399edd8f7f0df.jpg" title="Mariela Brito (Chela), Eduardo Martínez (José Miguel) in the performance, &quot;Asalto a la Revista Tablas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/fb/1c/fb1c6eeda8abf09c7d8d4aa301b03cae.jpg" alt="Mariela Brito (Chela), Eduardo Martínez (José Miguel) in the performance, &quot;Asalto a la Revista Tablas&quot;" data-href="/digitalobject/15793" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ed/e2/ede2c7e254fbd7dfde69b53d8ba6fa36.jpg" title="Photograph of the performance, &quot;Asalto a la Revista Tablas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/97/76/9776db1688267f9143f73710eaf27911.jpg" alt="Photograph of the performance, &quot;Asalto a la Revista Tablas&quot;" data-href="/digitalobject/15792" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/96/6a96620060ca4d6c4c92536d18894783.jpg" title="Mariela Brito (Chela), Eduardo Martínez (José Miguel) in the performance, &quot;Asalto a la Revista Tablas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/4a/8e/4a8e78a47101bc726dd893ed80c35cf0.jpg" alt="Mariela Brito (Chela), Eduardo Martínez (José Miguel) in the performance, &quot;Asalto a la Revista Tablas&quot;" data-href="/digitalobject/15791" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/97/38/973870726f24ca720822214d4e9aa904.jpg" title="Ernesto Fundora in the performance, &quot;Asalto a la Revista Tablas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/91/90/91903852f129ceae6da6dfe2abad9a5c.jpg" alt="Ernesto Fundora in the performance, &quot;Asalto a la Revista Tablas&quot;" data-href="/digitalobject/15790" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0a/79/0a79e4a748e14cd014af4e52c23e128b.jpg" title="Mariela Brito (Chela), Eduardo Martínez ( ), Omar Valiño in the performance, &quot;Asalto a la Revista Tablas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/17/37/173772339848231af496010a14746cd8.jpg" alt="Mariela Brito (Chela), Eduardo Martínez ( ), Omar Valiño in the performance, &quot;Asalto a la Revista Tablas&quot;" data-href="/digitalobject/15789" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/19/9e/199ed3f1ebde4e792cee82da5c204495.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/fe/d2/fed2db29fa99cfcc299fd4e4e447bfdf.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15227" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/44/a7/44a7eae4efdb02b28bc336604d7e10d7.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/2c/eb/2cebbcb3ea1e87f6fffc2f8a63be4047.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15226" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4e/40/4e40b9d0cff1c34b027949adfee9bb90.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/8a/1e/8a1e5acb6ee61a748c35fdd4a181b1d6.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15225" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/79/30/7930d499167abded446912406e8bf21d.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/2f/d4/2fd4e579755ccd0fcff987370c7c179c.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15224" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/79/30/7930d499167abded446912406e8bf21d.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/2f/d4/2fd4e579755ccd0fcff987370c7c179c.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15223" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/18/45/18456d8b510447141a9fa129e767261b.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/54/6b/546b106d366e95ffabdf69cf6782fbc2.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15222" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c8/13/c813ba459ee1a8a4542d745c7c911faa.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/aa/00/aa00bb25092baee5b724a162c96f06c9.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15221" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3e/2d/3e2decbf1548ca4baa6516d89e410ac6.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/91/76/9176511843fcb18507ae6ed7966cd81c.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15220" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ee/03/ee038f8a3f361cd10cff3f22de40260f.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/89/94/8994be8cf8876a515c8b5e3df2917262.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15219" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/53/01/5301a38bfd5da8d275ecdea117d57011.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/72/c1/72c111b549602724925c26296e3d26bc.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15218" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e5/8a/e58a592e16184834365b8015953e1f4d.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/6a/9c/6a9c6f65a9c09bf13f407233f1843823.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15217" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cc/57/cc5715a4adcd410e6c718b91d36cf122.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/0c/00/0c002af3e5c99479082b4a5a32de9bb8.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15216" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/43/80/4380d8f831e20340680a8cf50ff8ed94.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/b0/03/b00304f80f63b1ce5d52dd49ed233655.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15215" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/db/6adb62475a8371f704f97a5ccb85d1d9.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/a2/72/a272dd59d13bfad26196ea71ee7afe8c.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15214" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f8/eb/f8eb3f2185bf045678529233988ff93d.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/20/f2/20f2a7f3a17b23458a0b8da20aa59321.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15102" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/61/8d/618de1ad03f2f63f1c3ea03c57024149.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/78/bc/78bc313cbc38946d99a5c81eb50f29c3.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15101" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/91/b3/91b30254e783867d078d9db4667f3b34.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/bd/4c/bd4ccec98fa5cd8b5be67bed49c32433.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15100" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e1/93/e193abfb493615af247a12bcca75abde.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ce/01/ce01986fb5782c2847c8a748a34acad7.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15099" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f9/01/f90178fdfdabdcedc34f16ff9e0e5a55.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/42/0b/420b452f7e49dca677fcafff22037df4.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15098" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d1/db/d1dbe38f43e9595797a11599af61d4c7.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/4c/9c/4c9c2780d19f8727c74a07fc069e6c80.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15097" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ed/e3/ede3429f0f357db7205b4b109c47135f.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ae/f7/aef78d2d3f0ded2d8e219fe60c5c282e.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15096" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c2/85/c285fa65171bd259ba39509a2fdac039.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/09/ae/09aeaf0a3779fbb318e980a416a40eaa.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15095" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fb/89/fb89759190b907544219bd04d29ceac3.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/81/1c/811c63ef18790e36bc4f891481c43b10.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15094" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e6/80/e680a49f99b07f2a58025834b5b3df86.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/c1/c9/c1c98d2685ea984bd471e1ef99960ed6.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15093" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7c/49/7c4903995b45319c5230ab6950091739.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/d9/86/d9863d30ed51ab2aefff57807ff19218.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15092" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/75/bd75f4813b14539cbc223b712b6a8f4a.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/53/11/53114aae22e78b2ca01a3d7c74103fcc.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15091" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/4e/9c4e0d7e03d2369ed4a690d17dded535.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/65/ee/65ee945721c46f9748e6f6ecb96e4a64.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15090" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f7/8d/f78d2ccccbf964678245bd7c59615c7e.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/b2/1a/b21a57dd3951f952e4691bae39a9b1dc.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15089" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/91/b0/91b048afcca1608ffcfe23406afba567.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/60/43/6043f79564ec5c90fe3d5bf523486ee3.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15088" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ff/4c/ff4c8f44155c825d5ce73ecbcdd42f12.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/9d/48/9d48eeda89f491a65dfb4b9a11050bb6.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15087" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/92/53/925392040b5a4ccc2f00d6ea470b82ee.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/63/53/63531ee8570c5d238ed1c719dea0eada.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15086" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/32/e0328f98dec6bf0cb222e03bfcf2a936.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/dc/2c/dc2cfff2744bfa7c238dd9f48406b957.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15085" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/30/3f/303f17c58e95011de53dfd4115e6916b.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/52/62/52622f2c2d45cf06915d736ceeea1f77.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15084" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cc/81/cc81fe6841bb42eb398d467a0d8ad964.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/f7/d7/f7d792b67532ba0fb1c9c6448b385248.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15083" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/65/ab/65aba50b28597aa40c7ed901d2922cc3.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="../media/cache/44/d2/44d2b5d0c210eccbe039d694445916eb.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15081" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f8/f7/f8f7a4cfec81603a5352340ab70e7538.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/54/5c/545c3fa9bcf95696cf0a48688984814d.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15080" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c6/73/c673dd7e28ea47636e37427778ae2f57.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/6f/e4/6fe4a3415f4a38aff3052dd0a00a1093.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15079" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/80/f4/80f42607f82a552ea4fb73c12a197014.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/96/bf/96bf70a1d4e608f4fcbc043112260318.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15078" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/3b/bd3bb5ab2c3e430c9b1b6ac48737dc35.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ef/87/ef8789dd8a193706fc885fbacc1d019e.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15077" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fd/7b/fd7beaff8b2f2139038d3ea237ec80d8.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/4c/27/4c27df4ae9f36a89cd08dad9e17a7df0.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15076" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/89/b1/89b1f3f31b5ee862b1c1b3580edd03a1.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/e7/a9/e7a95d92f64e8c86f3cafba99d6e12d5.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15075" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/19/c7/19c7a27da57817c811e99db19e4ec5c8.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/72/9c/729c271018943064fdbb84c5c96bc5fd.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15074" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dc/3e/dc3e7d9a663f2ba17913fc31aaee07f1.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/2f/a0/2fa0091059baa972d5f0376f0b252276.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15073" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/46/01/4601748debbac2888c9ae1ac12cb1e8b.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/69/a2/69a20754ac84c2823fe66a8775950c34.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15072" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/48/5d/485d301f3f78b9ba6ad640723c2807c3.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/b9/97/b997d5621dd404fd62a0cb1fc8f40b08.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15071" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/87/dd/87dd89ab68196e08e76b0a984c7aa45e.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/1f/aa/1faae09edfa8140846ce710a97bc460a.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15070" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1c/e5/1ce5a5e5ab14f5f96304b0e2c10af6d2.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/72/38/7238780d24e08a6c22895359b2178a64.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15069" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b0/46/b0466fbf06525ed1e5ddded1a76acfe1.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="../media/cache/e5/db/e5db3b27ab38565d1b223e598480ad21.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15068" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d5/d8/d5d8d54381e0515554dc535057d011d5.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/4b/80/4b80de2cb6b6993aa86cbd95dbc0fd33.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15067" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4e/0c/4e0cc48072f0fd8bcd3c97600f561f98.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="../media/cache/fe/ef/feef95e553e49051e38dc8d407a5d19d.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15065" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/52/12/52124b96bab44263791e963e69d12499.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/4c/46/4c46c3c024447d6183dcbfa2dd737680.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15064" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a1/3e/a13ee471cb9e22b158d0b4af9e42236b.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="../media/cache/4a/da/4ada3a9e6b25bc8e59caea31d3f8a638.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15063" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/63/37/6337b4137471b3fd9c478bd2e62c9901.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/52/ed/52ed94d52ab0e51c856c04a143316ad8.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15062" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6e/3f/6e3f2e60978f3db1cd33079cee39e4c0.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/70/e2/70e2cbb2286fc7166463cf338bcdc557.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15061" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e8/89/e88966a7c63d02ce55a4323b021ce01b.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/b2/06/b206fda7eb7a01caa77503a40290c0a2.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15060" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1c/c3/1cc305d7de838c39ca41573118b7cbec.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/a2/a6/a2a690f254a02b2199a5c7ee75d25255.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15059" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4e/69/4e6977b5415fe095f82d811c0eefb178.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/75/5c/755cb2d0dd5ca8f1830f4b55fe45f676.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15058" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8e/52/8e52dc28cd9e2ab434badff84720f577.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/be/07/be071dbacfa52d9806db3b32e50f06a5.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15057" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bb/75/bb75abe7ada856ab4a4d328ac624ebd9.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/2f/35/2f3534c36d614c63df92f3825a91778e.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15056" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d1/9f/d19fe3275d0c926bbc49d8dfd13ed22b.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/bb/18/bb1848f01232d5c47059eca2e65a559f.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15055" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/60/1b6089ccae3f2a3ebb8372abf146352c.jpg" title="Audience in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/55/b6/55b6d29620a37fed3e707c8a543c062a.jpg" alt="Audience in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15054" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bc/c3/bcc3d2d9ab4a360e62516fc79d6a035c.jpg" title="Mariela Brito (Yara la China) and audience in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/5b/3a/5b3a3ac7a0c67653a26688bf7a5de72f.jpg" alt="Mariela Brito (Yara la China) and audience in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15053" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b2/be/b2bebe6d1d4abd3c1d2960643f3beaea.jpg" title="Mariela Brito (Yara la China) and audience in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/20/b1/20b119a5167956a44c7fc86419ba2a6a.jpg" alt="Mariela Brito (Yara la China) and audience in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15052" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/15/78/1578180a11ef993e32438c0c72310b84.jpg" title="Audience in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/c9/04/c904c893b1dc4403acda999966be6b97.jpg" alt="Audience in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15051" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1d/28/1d28f3c452d67b0b9b127fc8b2aa0a22.jpg" title="Audience in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/b0/ee/b0eee7edaecadb2a89e10f40d4052a08.jpg" alt="Audience in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15050" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f8/e6/f8e6335490a1d4c7f5b328bce571ac79.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/dc/dc/dcdcf9bd16d54488a3dcb0d8f0f58da0.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15049" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/35/18/35183f4ec4b28e426b3da4fabd53a7ba.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/71/25/71256849304be323448c30112e311322.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15048" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/91/f0/91f08486fe07b5192335aec58f5f8263.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/37/3b/373b58a9cebc6cbe2ce3195437f17bf6.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15047" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c4/88/c488727956721f6425453c54287a4ab3.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/cf/9c/cf9c7390d4f550b81a6e365e4ea8afa2.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15046" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/02/31/023141dafb35388fd854de627e531c05.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/56/5b/565b756e82611e121f125b16fe6c7328.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15045" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/42/be/42be59e26a8dd0dcdc3d60ce47b0de95.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/33/32/3332db2a867536d8a60540d656a1c679.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15044" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d5/5b/d55b5c7ce2a159c797d194def8661194.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/39/c3/39c33171da7225e43fe2948fc5db7967.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15043" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/69/bd/69bd4e21cb88a7db2891c4402eddd9db.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/03/b1/03b1c724b3bfdee8be00a09465fa599b.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15042" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a9/56/a95614e09e93afacf1e1dd9f9a23700b.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/c5/62/c5628b7dabc6e7b8628a8f2360972b51.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15041" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/53/50/5350cb011b3a0840f5bd3624547d5337.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/fa/10/fa102280ecc65f408808aefb1813d0fc.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15040" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/10/ba/10baab79e0e44f8c7c1e31fc6ece5941.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/14/c7/14c74b1551675ec83551b2328c790685.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15039" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/75/db/75db6ac98957c5166259bde644a154f8.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/25/43/2543f462ea7ad5bb107e0b278755e23a.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15038" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/67/a5/67a5ac9e1ae4557330acd5ee2d2d2d2b.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/f2/96/f2966dfd38a8a980c15257daead9c800.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15037" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/c3/c7c38595b23f4a412fbfeb02a3b8310e.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/65/6a/656ac622c3abff427c3d720b0a2d7212.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15036" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f2/c6/f2c63b4ee4f1202edb881e7b7666a839.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/97/cc/97cc50f959d9c49c43f701bdd69af55f.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15035" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8a/e1/8ae12f309978068d154ea40216d3de75.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/c6/bd/c6bdf980990c7cecb970ca4fa167acbe.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15034" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1e/6e/1e6e967f7bb3b67a54d26f3f7ec514e1.jpg" title="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/fe/18/fe18015508efb721ab3eb74e520266d2.jpg" alt="Mariela Brito (Yara la China) in the performance, &quot;Cubalandia&quot;" data-href="/digitalobject/15033" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d6/09/d609677676fc0a0d43380a579825cce6.jpg" title="Mariela Brito (Yara la china) in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/74/06/74067b69314e953d70d57a5e3b87ce73.jpg" alt="Mariela Brito (Yara la china) in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15031" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9a/e2/9ae28a4e234ebf3b2245ae6ad434b125.jpg" title="Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/9a/89/9a8982802f1c7bd3453a9dd721b80055.jpg" alt="Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15030" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8a/24/8a24b3536bddacd41895560793a69738.jpg" title="Lorelis Amores, Nelda Castillo in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/74/62/74624fb9f5b88f05d727b30804ed0cbf.jpg" alt="Lorelis Amores, Nelda Castillo in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15029" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3d/86/3d86243cb31d1b5783490deb26c7c44b.jpg" title="Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/78/75/7875d7ee199b67b35ad690c32f67aed8.jpg" alt="Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15028" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5f/87/5f8703426f58a76569c7a5f4f8cbaa3e.jpg" title="Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/31/eb/31ebf8169c945c2bfe3d363f01e05caa.jpg" alt="Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15027" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0f/b5/0fb53890f881ddedea718a29a47087ec.jpg" title="Lorelis Amores, Mariela Brito in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/f8/77/f877670bf6afcc3ba943a4124bec33a3.jpg" alt="Lorelis Amores, Mariela Brito in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15026" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/44/c5/44c5f853915b9943f3b63cc372f61a4c.jpg" title="Mariela Brito, Omar Valiño in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/94/ff/94ff76fcf7bd3f452a3cb51d4021a44d.jpg" alt="Mariela Brito, Omar Valiño in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15025" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/d0/09d087949cb1af0815c409a5a40207ad.jpg" title="Mariela Brito in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/f0/e0/f0e07802b1f6220c34e3ef309a3e73cc.jpg" alt="Mariela Brito in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15024" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5a/cd/5acd334fac66235f9f6ccec5fb975103.jpg" title="Mariela Brito, Omar Valiño in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/08/e9/08e937947f7449598df060ef9b428d88.jpg" alt="Mariela Brito, Omar Valiño in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15023" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b1/13/b1138fe78af5be6f8ef9c9f0c5f6695b.jpg" title="Mariela Brito, Lorelis Amores, Omar Valiño in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/b1/05/b1052845338223060ad290c43299c7db.jpg" alt="Mariela Brito, Lorelis Amores, Omar Valiño in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15022" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1d/77/1d773c2cf12309c69738843bccd67a82.jpg" title="Mariela Brito, Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/89/de/89de9b654488c9b7eb734fce29b57632.jpg" alt="Mariela Brito, Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15021" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/49/93/49939eb6f10e7ca17dc3156948adb3e5.jpg" title="Omar Valiño, Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ef/52/ef52270e0a70e878e4ab110f692a6d29.jpg" alt="Omar Valiño, Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15020" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fb/69/fb69a08f8b1c02e59b3cd32308389a82.jpg" title="Omar Valiño, Mariela Brito (Yara la china) in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/df/dc/dfdc8b8ad3f7ac18aabbe9e5bc7f831b.jpg" alt="Omar Valiño, Mariela Brito (Yara la china) in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15019" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b6/32/b6324533b2b81350de4a327856058590.jpg" title="Mariela Brito (Yara la china), Omar Valiño in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ed/93/ed931ad2482f9468748fd10ccdd08740.jpg" alt="Mariela Brito (Yara la china), Omar Valiño in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15018" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/11/b1/11b14aa956838fba3fb8c05796cace07.jpg" title="Nelda Castillo (El Chivo) in the production, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/68/b9/68b99894812adb01a63122149ec681ee.jpg" alt="Nelda Castillo (El Chivo) in the production, &quot;A la eterna memoria&quot;" data-href="/digitalobject/15001" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/55/31555c5176db00839af9ddd69099bf1b.jpg" title="Photograph of the procession, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/4d/7a/4d7a80bb4d14e5bb53de334c848f43d2.jpg" alt="Photograph of the procession, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14987" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/17/5c/175c50893d49f7fd4f3579c47c6c7d4b.jpg" title="Photograph of the procession, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/d6/52/d6522797fd0793ac92e730d6f4de6e98.jpg" alt="Photograph of the procession, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14986" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0b/c6/0bc6bbafaa773c31463389b36e5fea63.jpg" title="Photograph of the procession, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/36/78/367802561de43be98afb07535ffa702f.jpg" alt="Photograph of the procession, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14985" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6f/77/6f7711919c4888fb483610bac4b7d75d.jpg" title="Photograph of the procession, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/6c/00/6c00f269da4ff200657ad70002329385.jpg" alt="Photograph of the procession, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14984" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1d/00/1d0025ad7c1de12d7620e62ea06092a3.jpg" title="Photograph of the procession, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/4c/b0/4cb06b980c5956501b0d8705bed3139f.jpg" alt="Photograph of the procession, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14983" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6e/e3/6ee325d5d931b6a273e9a5042599a2e8.jpg" title="Photograph of the procession, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/91/26/91269e849d9e8c0d74fddf6bbb2d0506.jpg" alt="Photograph of the procession, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14982" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/30/f1/30f14ba76d83860669206ed547ccbdab.jpg" title="Photograph of the procession, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/a9/ca/a9ca93fe1207536209849f258ed744ca.jpg" alt="Photograph of the procession, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14981" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7e/91/7e91602fccdca08ca8342ea4cc9b28be.jpg" title="Photograph of the procession, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/aa/3e/aa3e9194f5cc026239cb4dc8c82e69b1.jpg" alt="Photograph of the procession, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14980" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d5/9a/d59ab58067d4716567d243be1fc7e0cf.jpg" title="Photograph of the procession, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/e4/71/e471941fc821ada7429d5d619f1c72ad.jpg" alt="Photograph of the procession, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14979" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/21/87/21874620da071feea3d30a34bf5d923b.jpg" title="Photograph of the procession, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/c6/9b/c69bad99ed1f121173a122eecea29258.jpg" alt="Photograph of the procession, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14978" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4c/73/4c73dca5f183284782a29fdca68bac43.jpg" title="Photograph of the procession, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/5e/23/5e235fe39ffd8c3e4311843196ecde1a.jpg" alt="Photograph of the procession, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14977" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0a/12/0a12a5879ca8d636210d007387ac3efa.jpg" title="Photograph of the procession, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/1c/de/1cdecd6dfd0b8c2683070364002535df.jpg" alt="Photograph of the procession, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14976" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3e/e8/3ee87bf90c7915fadc684f9635214c9b.jpg" title="Photograph of the procession, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/01/b3/01b3d985e7537edcfde8d305416bcbce.jpg" alt="Photograph of the procession, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14975" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/13/60/1360dc4b4d10b7d5f2de5b40aff42cd7.jpg" title="Photograph of the production, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/fa/58/fa586510d550fbbb66a03ff6c5db6435.jpg" alt="Photograph of the production, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14974" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/96/f3/96f3f7bfa94150e9ba7c1dcba4e3d229.jpg" title="Nelda Castillo (El Chivo) in the production, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/9a/ce/9ace642bba970ab8f215493729df587c.jpg" alt="Nelda Castillo (El Chivo) in the production, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14973" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f7/91/f7919fa77c20aaf2a7b65c1926f800ea.jpg" title="Nelda Castillo (El Chivo) in the production, &quot;A la eterna memoria&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/1d/79/1d79cc65208dd656944c6dba2249b0c5.jpg" alt="Nelda Castillo (El Chivo) in the production, &quot;A la eterna memoria&quot;" data-href="/digitalobject/14972" />
+                  
+                </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

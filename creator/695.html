@@ -1,0 +1,1019 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Yvonne López Arenal</li>
+                </ul>
+            </nav>
+            <h2>Yvonne López Arenal</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+                
+                    <img src="http://ctda.library.miami.edu/media/cache/c1/22/c12239f14fdd57a0bca65f8d7c3139ca.jpg" />
+                
+            
+
+            <p><strong>Director, artistic/general director, actor, producer, author / playwright</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>Information available in Spanish;&nbsp;click "Espa&ntilde;ol" in the upper right hand side of<a class="jknknkmi" title="Click to Continue &gt; by Extreme Blocker" href="#25659211">&nbsp;the page<img src="http://cdncache-a.akamaihd.net/items/it/img/arrow-10x10.png" alt="" /></a>.</p>
+
+                </div>
+            
+
+            
+              <div class="linkeditems">
+                  <h3>Notes: +</h3>
+                  <ul>
+                  <p>Information available in Spanish;&nbsp;click "Espa&ntilde;ol" in the upper right hand side of<a class="jknknkmi" title="Click to Continue &gt; by Extreme Blocker" href="#25659211">&nbsp;the page<img src="http://cdncache-a.akamaihd.net/items/it/img/arrow-10x10.png" alt="" /></a>.</p>
+
+                  </ul>
+              </div>              
+            
+
+            
+             <div class="linkeditems">
+                <h3>Related creators: +</h3>
+                <ul>
+                    
+                        Member of
+                        <a href="5014.html"> La Avellaneda Theatre Group</a>, Founder,
+                         <br />
+                    
+                        Member of
+                        <a href="http://ctda.library.miami.edu/creator/6930"> Akuara Teatro</a>, Founder,
+                         <br />
+                    
+                </ul>
+             </div>
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="../writtenwork/812.html">Gaviotas habaneras</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1325">El Reina María</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1326.html">Café Tuluz</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1327">Bejucal</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1328">La Habana-Manhattan</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1329">New York</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1330">¿Hotel Rusa, en Baracoa?</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1725">La noche de Eva</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4681">Las vidas del gato</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1289.html">Akuara Teatro - Sala Avellaneda</a></span><br />
+                    <span>January 16, 2016</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4358">Huevos</a><br />
+                    <span>Artistic/General Director</span><br />
+                    <span><a href="../venue/1289.html">Akuara Teatro - Sala Avellaneda</a></span><br />
+                    <span>November 16, 2013 - December 22, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4231">Gigi y Momo y el espejo mágico</a><br />
+                    <span>Artistic/General Director</span><br />
+                    <span><a href="../venue/1289.html">Akuara Teatro - Sala Avellaneda</a></span><br />
+                    <span>June 16, 2013 - July 14, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3964">Nevada</a><br />
+                    <span>Artistic/General Director</span><br />
+                    <span><a href="../venue/1289.html">Akuara Teatro - Sala Avellaneda</a></span><br />
+                    <span>October 13, 2012</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/5">Flores no me pongan</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/491.html">Havanafama Teatro Estudio</a></span><br />
+                    <span>November 12, 2010 - November 20, 2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2500">La Noche de Eva</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/505.html">Teatro en Miami Studio</a></span><br />
+                    <span>May 27, 2010 - June 12, 2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4172">La noche de Eva</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1304.html">Roy Arias Studios &amp; Theatres</a></span><br />
+                    <span>2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2227">La noche de Eva</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>June 26, 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2030">El Mayor General hablará de Teogonía</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/505.html">Teatro en Miami Studio</a></span><br />
+                    <span>June 19, 2008</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4166">Tula la Peregrina</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1292.html">Unknown Venue - Miami</a></span><br />
+                    <span>July 28, 2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3905">Los siervos</a><br />
+                    <span>Artistic/General Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1068">Teatro Estudio Havanafama</a></span><br />
+                    <span>June 19, 2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4165">Los siervos</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/826">Miami, Florida</a></span><br />
+                    <span>June 19, 2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1589">Gaviotas habaneras</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/379.html">Camera obscura</a></span><br />
+                    <span>March 16, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1397">El plan de las aguas</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/379.html">Camera obscura</a></span><br />
+                    <span>February 16, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1090">Gaviotas habaneras</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/314">Los Angeles Theatre Center</a></span><br />
+                    <span>May 4, 2002 - May 26, 2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2490">Tula la Peregrina</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/821">Norris Theatre</a></span><br />
+                    <span>April 25, 1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2533">Réquiem por Yarini</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/314">Los Angeles Theatre Center</a></span><br />
+                    <span>September 9, 1994 - September 18, 1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1398">Réquiem por Yarini</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/841.html">Los Angeles, California</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1399">De película</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/841.html">Los Angeles, California</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1400">El Super</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/841.html">Los Angeles, California</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4964">La noche de las tríbadas</a><br />
+                    <span>Siri von Essen</span><br />
+                    <span><a href="../venue/1515.html">Havanafama Teatro Estudio</a></span><br />
+                    <span>November 17, 2017 - December 9, 2017</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4484">El día que me quieras</a><br />
+                    <span>María Luisa Ancízar</span><br />
+                    <span><a href="../venue/1289.html">Akuara Teatro - Sala Avellaneda</a></span><br />
+                    <span>September 19, 2014</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4310">Fango</a><br />
+                    <span>Mar</span><br />
+                    <span><a href="../venue/1289.html">Akuara Teatro - Sala Avellaneda</a></span><br />
+                    <span>August 31, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4218.html">Palabras al filo</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1289.html">Akuara Teatro - Sala Avellaneda</a></span><br />
+                    <span>May 30, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4107">Contigo, pan y cebolla</a><br />
+                    <span>Lala</span><br />
+                    <span><a href="../venue/1289.html">Akuara Teatro - Sala Avellaneda</a></span><br />
+                    <span>February 23, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3964">Nevada</a><br />
+                    <span>Magda, madre de Lucía</span><br />
+                    <span><a href="../venue/1289.html">Akuara Teatro - Sala Avellaneda</a></span><br />
+                    <span>October 13, 2012</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3741">El banquete infinito</a><br />
+                    <span>Averrara</span><br />
+                    <span><a href="../venue/1289.html">Akuara Teatro - Sala Avellaneda</a></span><br />
+                    <span>August 5, 2011 - September 3, 2011</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2500">La Noche de Eva</a><br />
+                    <span>Eva</span><br />
+                    <span><a href="../venue/505.html">Teatro en Miami Studio</a></span><br />
+                    <span>May 27, 2010 - June 12, 2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4172">La noche de Eva</a><br />
+                    <span>Eva</span><br />
+                    <span><a href="../venue/1304.html">Roy Arias Studios &amp; Theatres</a></span><br />
+                    <span>2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4170">Una rosa para Catalina Lasa</a><br />
+                    <span>Catalina</span><br />
+                    <span><a href="../venue/1292.html">Unknown Venue - Miami</a></span><br />
+                    <span>March 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4169">Las vidas del gato</a><br />
+                    <span>Adalina</span><br />
+                    <span><a href="../venue/1292.html">Unknown Venue - Miami</a></span><br />
+                    <span>2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2030">El Mayor General hablará de Teogonía</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/505.html">Teatro en Miami Studio</a></span><br />
+                    <span>June 19, 2008</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4167">La sal de los muertos</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1292.html">Unknown Venue - Miami</a></span><br />
+                    <span>2008</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4166">Tula la Peregrina</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1292.html">Unknown Venue - Miami</a></span><br />
+                    <span>July 28, 2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3905">Los siervos</a><br />
+                    <span>Oficial, Basilia Adamova (Señora Encubierta)</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1068">Teatro Estudio Havanafama</a></span><br />
+                    <span>June 19, 2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4165">Los siervos</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/826">Miami, Florida</a></span><br />
+                    <span>June 19, 2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4164">&quot;El asunto,&quot; &quot;Ser escritor,&quot; y &quot;Máscaras&quot;</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1068">Teatro Estudio Havanafama</a></span><br />
+                    <span>February 20, 2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1589">Gaviotas habaneras</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/379.html">Camera obscura</a></span><br />
+                    <span>March 16, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1397">El plan de las aguas</a><br />
+                    <span>La Tierra</span><br />
+                    <span><a href="../venue/379.html">Camera obscura</a></span><br />
+                    <span>February 16, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4162">Un objeto de deseo</a><br />
+                    <span>Carmen Zayas Bazán</span><br />
+                    <span><a href="../venue/1373.html">Ediciones Universal</a></span><br />
+                    <span>2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1007">El hombre inmaculado</a><br />
+                    <span>Actor / actress, Actor / actress, Alicia</span><br />
+                    <span><a href="../venue/32.html">Teatro Avante</a></span><br />
+                    <span>June 4, 2004 - June 5, 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1090">Gaviotas habaneras</a><br />
+                    <span>María, Ochun, Novia, Macorina, Caridad, Entrevistadora.</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/314">Los Angeles Theatre Center</a></span><br />
+                    <span>May 4, 2002 - May 26, 2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2490">Tula la Peregrina</a><br />
+                    <span>Tula</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/821">Norris Theatre</a></span><br />
+                    <span>April 25, 1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4151">Sucedió en la Habana</a><br />
+                    <span>Isabel</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1068">Teatro Estudio Havanafama</a></span><br />
+                    <span>1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4152">La posadera</a><br />
+                    <span>Comedienne</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/643.html">La esquina peligrosa</a><br />
+                    <span>Betty Whitehouse</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 28, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/621.html">La venganza de Don Mendo</a><br />
+                    <span>Berenguela</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4153">La duodécima noche</a><br />
+                    <span>María</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4155">Bodas de sangre</a><br />
+                    <span>La novia</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4154">La fierecilla domada</a><br />
+                    <span>Catalina</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4156">Yerma</a><br />
+                    <span>Yerma</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1984 - 1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4157">Romeo y Julieta</a><br />
+                    <span>Julieta</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1983 - 1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4158">Andoba</a><br />
+                    <span>Corina</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1982 - 1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4159">María Antonia</a><br />
+                    <span>La muerte Cumachela</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1982 - 1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4160">La más fuerte</a><br />
+                    <span>La señora X</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4161">Las pericas</a><br />
+                    <span>Panchita</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1981 - 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1400">El Super</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/841.html">Los Angeles, California</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1400">El Super</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/841.html">Los Angeles, California</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1073/">Akuara Teatro estrena "Un mundo de cristal" - el sueño americano en la Pequeña Habana</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/896/">‘Contigo pan y cebolla’, regresa un éxito del vernáculo cubano</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/894/">Laughing Through Hard Times in Cuba</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/893/">“Contigo, pan y cebolla” en Miami</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/892/">Por primera vez, "Contigo pan y cebolla" en Miami</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+                <br />
+               Author: Lillian Manzor (2011-05-30)
+            
+        
+            
+            <hr />
+            <h3>Videos</h3>
+            <ul class="videos">
+              
+              <li>
+                <figure>
+                  <a id="cta0009000015" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/fe/e9/fee90f797f22a008682e2b70590ad8ce.jpg" alt="Link to video of El banquete infinito" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/621">El banquete infinito</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              </ul>
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban - American</span>
+                </li>
+              
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>La Habana, La Habana, Cuba</span>
+                </li>
+              
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/14949.html">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/f0/ba/f0ba8e6299f4987bd3398d69050bf9a5.jpg" title="Photograph of Micheline Calvert, Yvonne López Arenal, Mabel Roch, Teresa María Rojas, and Laura Zarrrabeitia">
+                    
+                    
+                    <img src="../media/cache/dc/ca/dccacbb52e86cd2a5436a5a87c22a865.jpg" alt="Photograph of Micheline Calvert, Yvonne López Arenal, Mabel Roch, Teresa María Rojas, and Laura Zarrrabeitia" data-href="/digitalobject/14949" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3b/cd/3bcd060204465f97f0c303968dbb59df.jpg" title="World Premiere of Las vidas del gato in Miami Jan 16, 2016">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3e/fc/3efc13669f18f31bd5c33a9b86fa6b7d.jpg" alt="World Premiere of Las vidas del gato in Miami Jan 16, 2016" data-href="/digitalobject/15963" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ad/a7/ada7f0271858a8df601ec5384ef4f2dd.jpg" title="Postcard for the production, Las vidas del gato">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c1/94/c1947accf1eba93843ec1cd54cc8ff6b.jpg" alt="Postcard for the production, Las vidas del gato" data-href="/digitalobject/15962" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/d2/9cd28c69774285c5f9ed03feb8af68fa.jpg" title="Postcard for the production, Las vidas del gato">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/df/08/df087f8f005750ef97033c88ecd849f6.jpg" alt="Postcard for the production, Las vidas del gato" data-href="/digitalobject/15962" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/9c/229cd111c3b24aaf3ce03554ed1f3a21.jpg" title="Photograph of Pedro Balmaseda, Adria Santana, Alberto Sarraín, Juan David Ferrer, Jorge Noa, Rosario Suárez (Charín), Lillian Manzor, Yvone López Arenal, Micheline Calvert, Isabel Moreno">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/09/a5/09a59b6005fa031aa4bdcca0a5c1c292.jpg" alt="Photograph of Pedro Balmaseda, Adria Santana, Alberto Sarraín, Juan David Ferrer, Jorge Noa, Rosario Suárez (Charín), Lillian Manzor, Yvone López Arenal, Micheline Calvert, Isabel Moreno" data-href="/digitalobject/15929" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b3/0a/b30a30eed742671eb37a889f7b794a8e.jpg" title="Portrait of Yvonne López Arenal">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/58/bb/58bb0f40a359906445b49a1fdec835a2.jpg" alt="Portrait of Yvonne López Arenal" data-href="/digitalobject/15547" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fc/e4/fce4c9936a053e43786f62aa930b0835.jpg" title="Yvonne López Arenal (Oficial), Carlos Pittella (Nikita- Filósofo del partido), Pablo de Cuéllar (Orloff- Primer ministro), Angel Lucena (Kirianin- General) and Miriam Bermúdez (Fedora- Secretaria del partido and Kolia- Obrera), in &quot;Los Siervos&quot;">
+                    
+                    
+                    <img src="../media/cache/9d/87/9d874b92cf5132470247514809cab01d.jpg" alt="Yvonne López Arenal (Oficial), Carlos Pittella (Nikita- Filósofo del partido), Pablo de Cuéllar (Orloff- Primer ministro), Angel Lucena (Kirianin- General) and Miriam Bermúdez (Fedora- Secretaria del partido and Kolia- Obrera), in &quot;Los Siervos&quot;" data-href="/digitalobject/14203" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9a/4c/9a4ccd5f3e48af6b2ce0895fd5c35f01.jpg" title="Poster for the production, La noche de las tríbadas">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ae/59/ae59f47b883417375e35bebb344d58aa.jpg" alt="Poster for the production, La noche de las tríbadas" data-href="/digitalobject/16878" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6e/0e/6e0ec35e9dd0e85c032b25f28a5b978d.jpg" title="Photograph for the production, Un mundo de cristal">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5b/9c/5b9c2c6ec400327e679b67a2cb7052d0.jpg" alt="Photograph for the production, Un mundo de cristal" data-href="/digitalobject/16226" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cd/37/cd371790a8aa5fd0e2ed1898afbeaece.jpg" title="Photograph for the production, Un mundo de cristal">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2c/e4/2ce44d4cb61e933544d8573a4ee5854e.jpg" alt="Photograph for the production, Un mundo de cristal" data-href="/digitalobject/16211" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/13/c1/13c1434d1649f35e0200e636a15b57d7.jpg" title="Photograph of the production, Un mundo de cristal">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b2/9d/b29d5f17d285e46d3d112ede5bd848c5.jpg" alt="Photograph of the production, Un mundo de cristal" data-href="/digitalobject/15924" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f7/52/f7525af12211b86d926ebdcb9d2c0ba0.jpg" title="Poster for the production, &quot;Fango&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/77/26/77262403cae9f12413c68d8619fc2739.jpg" alt="Poster for the production, &quot;Fango&quot;" data-href="/digitalobject/15545" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('#cta0009000015').fancybox({
+          content: '<video id="vid-cta0009000015" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000150001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000015').mediaelementplayer();
+          }
+        });
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

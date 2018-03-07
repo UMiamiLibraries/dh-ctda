@@ -1,0 +1,1200 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../venues.html">Venues</a></li>
+              <li>Plaza Rector Cadenas</li>
+            </ul>
+          </nav>
+          <h2>Plaza Rector Cadenas</h2>
+        </header>
+
+        <section class="main">
+          
+          <h4>Also known as: Plaza Ignacio Agramontes </h4>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          <div class="linkeditems">
+            <h3>Productions: +</h3>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2689">Prometeo encadenado</a>
+                
+                <br /><span>August 24, 1956</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2688">El desdén con el desdén </a>
+                
+                <br /><span>July 5, 1956</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2673">La fabulilla del secreto bien guardado</a>
+                
+                <br /><span>July 10, 1955</span>
+                
+                
+                <br /><span>Directed by: Juan Guerra</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2672">La verdad sospechosa</a>
+                
+                <br /><span>June 3, 1955 - June 5, 1955</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2662">Emilia Galotti</a>
+                
+                <br /><span>January 13, 1955</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2653">La zapatera prodigiosa</a>
+                
+                <br /><span>June 3, 1954</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2651">La dama boba</a>
+                
+                <br /><span>March 3, 1954</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2642.html">La hija de las flores o Todos están locos</a>
+                
+                <br /><span>April 9, 1953 - April 10, 1953</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2638">Agamenón</a>
+                
+                <br /><span>December 9, 1952</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2636">Agamenón</a>
+                
+                <br /><span>August 5, 1952</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2634">Una vida difícil</a>
+                
+                <br /><span>May 26, 1952</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2615.html">La escuela de las viudas </a>
+                
+                <br /><span>December 18, 1951 - December 19, 1951</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2740.html">Sganarelle o El cornudo imaginario </a>
+                
+                <br /><span>December 18, 1951 - December 19, 1951</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2614.html">La margarita</a>
+                
+                <br /><span>December 18, 1951 - December 19, 1951</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2610">Electra</a>
+                
+                <br /><span>August 6, 1951 - August 7, 1951</span>
+                
+                
+                <br /><span>Directed by: Rafael Ugarte</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2608">El lindo Don Diego</a>
+                
+                <br /><span>May 3, 1951</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2607">Juana de Castilla </a>
+                
+                <br /><span>February 20, 1951</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2603">Mariana Pineda </a>
+                
+                <br /><span>August 1, 1950 - August 2, 1950</span>
+                
+                
+                <br /><span>Directed by: Ramón Valenzuela</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2602">El Grito de Yara</a>
+                
+                <br /><span>May 17, 1950</span>
+                
+                
+                <br /><span>Directed by: Antonio Vázquez Gallo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2601">Medea </a>
+                
+                <br /><span>April 22, 1950</span>
+                
+                
+                <br /><span>Directed by: Antonio Vázquez Gallo</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2600.html">Cada cual</a>
+                
+                <br /><span>January 25, 1950</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2599">La discreta enamorada</a>
+                
+                <br /><span>August 10, 1949</span>
+                
+                
+                <br /><span>Directed by: Antonio Vázquez Gallo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2597">La marquesa Rosalinda </a>
+                
+                <br /><span>May 10, 1949</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2592.html">El vergonzoso en palacio</a>
+                
+                <br /><span>December 21, 1948</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2591">Medea</a>
+                
+                <br /><span>August 9, 1948 - August 10, 1948</span>
+                
+                
+                <br /><span>Directed by: Antonio Vázquez Gallo</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2587">Pedro de Urdemalas </a>
+                
+                <br /><span>March 9, 1948</span>
+                
+                
+                <br /><span>Directed by: Luis Alejandro Baralt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2586">La dama duende </a>
+                
+                <br /><span>August 12, 1947</span>
+                
+                
+                <br /><span>Directed by: Antonio Vázquez Gallo</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2585.html">María Estuardo </a>
+                
+                <br /><span>August 1, 1946</span>
+                
+                
+                <br /><span>Directed by: Ludwig  Schajowicz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2584">Mirandolina </a>
+                
+                <br /><span>May 26, 1946</span>
+                
+                
+                <br /><span>Directed by: Ludwig  Schajowicz</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2570.html">El Mercader de Venecia</a>
+                
+                <br /><span>April 4, 1946 - April 6, 1946</span>
+                
+                
+                <br /><span>Directed by: Ludwig  Schajowicz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2583">Edipo Rey </a>
+                
+                <br /><span>June 10, 1945</span>
+                
+                
+                <br /><span>Directed by: Ludwig  Schajowicz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2581">Una tragedia florentina</a>
+                
+                <br /><span>August 10, 1944</span>
+                
+                
+                <br /><span>Directed by: Ludwig  Schajowicz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2580">La dama morena de los sonetos</a>
+                
+                <br /><span>August 10, 1944</span>
+                
+                
+                <br /><span>Directed by: Ludwig  Schajowicz</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2582.html">La carroza de la Perricholi</a>
+                
+                <br /><span>August 10, 1944</span>
+                
+                
+                <br /><span>Directed by: Ludwig  Schajowicz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2579">Numancia </a>
+                
+                <br /><span>February 3, 1944 - February 5, 1944</span>
+                
+                
+                <br /><span>Directed by: Ludwig  Schajowicz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2578">Hécuba</a>
+                
+                <br /><span>October 1, 1943</span>
+                
+                
+                <br /><span>Directed by: Ludwig  Schajowicz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2577">Tartufo</a>
+                
+                <br /><span>April 15, 1943</span>
+                
+                
+                <br /><span>Directed by: Ludwig  Schajowicz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2576">Los caprichos de Mariana</a>
+                
+                <br /><span>January 20, 1943</span>
+                
+                
+                <br /><span>Directed by: Ludwig  Schajowicz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2575">Noche de reyes </a>
+                
+                <br /><span>August 18, 1942</span>
+                
+                
+                <br /><span>Directed by: Ludwig  Schajowicz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2574">Noche de reyes </a>
+                
+                <br /><span>January 18, 1942</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2572">Las coéforas </a>
+                
+                <br /><span>December 4, 1941</span>
+                
+                
+                <br /><span>Directed by: Ludwig  Schajowicz</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2573.html">Ifigenia en Táuride </a>
+                
+                <br /><span>December 4, 1941</span>
+                
+                
+                <br /><span>Directed by: Ludwig  Schajowicz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2571">Antígona</a>
+                
+                <br /><span>May 20, 1941</span>
+                
+                
+                <br /><span>Directed by: Ludwig Schajowicz</span>
+                
+              </li>
+              
+            </ul>
+          </div>
+        
+        
+             
+        
+          
+      
+                
+
+
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              <li>
+                <h4>Venue type:</h4>
+                <span>University non-performing space</span>
+              </li>
+              
+              
+              
+              <li>
+                <h4>City:</h4>
+                <span>La Habana, La Habana</span>
+              </li>
+              
+              <li>
+                <h4>Country:</h4>
+                <span>Cuba</span>
+              </li>
+              
+              
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/371">View details</a>
+            <div id="digitalobjects">
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f7/de/f7de8204d129c3e7b5af5a6aa28ee3e8.jpg" title="Scene for the production, &quot;La hija de las flores o Todos están locos&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ac/66/ac662aebe87517f962f1d1245a10c069.jpg" alt="Scene for the production, &quot;La hija de las flores o Todos están locos&quot;" data-href="/digitalobject/371" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c0/ed/c0ed6368db27a26e5a9cd21bf6687c97.jpg" title="Program for the production, &quot;La hija de las flores o Todos están locos&quot; ">
+                  
+                  
+                  <img src="../media/cache/ac/53/ac5311649cdfd0cb4af7a9086b9e05b9.jpg" alt="Program for the production, &quot;La hija de las flores o Todos están locos&quot; " data-href="/digitalobject/370" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/53/37/53371275f9e57f5701b4bbcab78664ca.jpg" title="Program for the production, &quot;La hija de las flores o Todos están locos&quot; ">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/25/15/2515a9a2a94edff2ef4090224efa8ebd.jpg" alt="Program for the production, &quot;La hija de las flores o Todos están locos&quot; " data-href="/digitalobject/370" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/85/0b/850bf436b12f5fdf97e3404ec472d8e5.jpg" title="Program for the production, &quot;La hija de las flores o Todos están locos&quot; ">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/56/34/5634860d54a8203c794687bff5b2c218.jpg" alt="Program for the production, &quot;La hija de las flores o Todos están locos&quot; " data-href="/digitalobject/370" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/28/7a282a9bfc563d01879ac1e572d8c650.jpg" title="Scene from the production, &quot;La carroza de la Perricholi&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/4e/8c/4e8cfe0d24c9db235c73c9c6bcdf972a.jpg" alt="Scene from the production, &quot;La carroza de la Perricholi&quot;" data-href="/digitalobject/369" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/35/b3/35b3b72535196a9928ae5f0982d0b580.jpg" title="Cover from the program for the production, &quot;Numancia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/6d/fd/6dfd087b11086c3cd40228558de8caee.jpg" alt="Cover from the program for the production, &quot;Numancia&quot;" data-href="/digitalobject/368" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/59/f3/59f3297218c86b774bb2868f05096aeb.jpg" title="Poster for the production, &quot;La verdad sospechosa&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/98/69/9869ab1887f36cbf49457d5c94c96fb7.jpg" alt="Poster for the production, &quot;La verdad sospechosa&quot;" data-href="/digitalobject/362" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/11/ec11d347d496deac0b610c9ed56d475b.jpg" title="Roberto Cabrera, Manuel Casals and Rafael Ugarte, in &quot;El mercader de Venecia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ad/76/ad7688ad2b0c3ef1294ed37602333d39.jpg" alt="Roberto Cabrera, Manuel Casals and Rafael Ugarte, in &quot;El mercader de Venecia&quot;" data-href="/digitalobject/357" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/27/7a271fb6fab64aeeb9aa708eabc472b3.jpg" title="Scene from the production, &quot;Sganarelle o El cornudo imaginario&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/7c/01/7c0105324e3e879934c03b38c26207bf.jpg" alt="Scene from the production, &quot;Sganarelle o El cornudo imaginario&quot;" data-href="/digitalobject/311" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/50/e8/50e858d271ba06c4d5926ec56df715c8.jpg" title="Dora Espinosa, Elisa González, Paco Alfonso, and Nena Acevedo, among others, in &quot;Agamenón&quot;">
+                  
+                  
+                  <img src="../media/cache/25/16/2516b25464cfa0ccb65e4fc45894d3d5.jpg" alt="Dora Espinosa, Elisa González, Paco Alfonso, and Nena Acevedo, among others, in &quot;Agamenón&quot;" data-href="/digitalobject/299" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a0/43/a043bd7dcdbd3593e4cd3e4ddc8ffdee.jpg" title="Dora Espinosa, Elisa González, Paco Alfonso, and Nena Acevedo, among others, in &quot;Agamenón&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/de/41/de41b9f18eb1c1f6b0c67f717c5b5d5b.jpg" alt="Dora Espinosa, Elisa González, Paco Alfonso, and Nena Acevedo, among others, in &quot;Agamenón&quot;" data-href="/digitalobject/299" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e9/48/e9480dd424a6c0152e29e123ecffeab5.jpg" title="Program for the production, &quot;Electra&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/00/01/00015ada4f412351f47788d18257ad3f.jpg" alt="Program for the production, &quot;Electra&quot;" data-href="/digitalobject/297" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/99/dc/99dcf3deef2dac67ac6f5b7a32f18fd4.jpg" title="Program for the production, &quot;Electra&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/3e/a7/3ea7a7d6d955d17a9b7a617552ea736d.jpg" alt="Program for the production, &quot;Electra&quot;" data-href="/digitalobject/297" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/73/d2/73d22f11550ad1e9bf78a5f033b711e9.jpg" title="Program for the production, &quot;Electra&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/c2/bb/c2bbf94cb27e8e69d2ad2c3099ac0efa.jpg" alt="Program for the production, &quot;Electra&quot;" data-href="/digitalobject/297" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bc/fe/bcfeb5c6918a9412084f6c9dbd84bbdf.jpg" title="Program for the production, &quot;El mercader de Venecia&quot;">
+                  
+                  
+                  <img src="../media/cache/f0/af/f0af3e06a417ad36749bb0315dbdd81b.jpg" alt="Program for the production, &quot;El mercader de Venecia&quot;" data-href="/digitalobject/296" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/eb/83/eb83484f05ac21f6300c96d2f4687035.jpg" title="Program for the production, &quot;El mercader de Venecia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/3c/7c/3c7ce319cb0ffa439b01d6969f321f11.jpg" alt="Program for the production, &quot;El mercader de Venecia&quot;" data-href="/digitalobject/296" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/73/43/73434c5c045cc8d1653bd358a40cb2cb.jpg" title="Program for the production, &quot;Medea&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/87/15/8715d3fe16319d89db223e25676755fa.jpg" alt="Program for the production, &quot;Medea&quot;" data-href="/digitalobject/295" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/34/ce/34cea9d8084f1fdbbfb9b3aaf13a8a14.jpg" title="Program for the production, &quot;Medea&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/48/90/48901d86e2acd7b84b13437561c38dff.jpg" alt="Program for the production, &quot;Medea&quot;" data-href="/digitalobject/295" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d6/8e/d68e4ec5eba6ee35ee7673050f87cfe5.jpg" title="Program for the production, &quot;Medea&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/87/09/87094d4ddf2df47b579ee0d7bfd1aa04.jpg" alt="Program for the production, &quot;Medea&quot;" data-href="/digitalobject/295" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/12/2c/122c0b3318146201ac2dba2c36712f32.jpg" title="Program for the production, &quot;Mariana Pineda&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/fc/87/fc87cabca2f645e9248f45d166bd14ab.jpg" alt="Program for the production, &quot;Mariana Pineda&quot;" data-href="/digitalobject/293" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a7/a0/a7a00e18b9a40b6f6c3025d1e420632b.jpg" title="Program for the production, &quot;Mariana Pineda&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/1e/ef/1eef4b3d592d853919e9db2dc5d31bf2.jpg" alt="Program for the production, &quot;Mariana Pineda&quot;" data-href="/digitalobject/293" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/90/e1/90e1f0e87b9e0ecb2c50e27eb9885cba.jpg" title="Program for the production, &quot;Mariana Pineda&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ca/f8/caf8c79c5c785882aba5585004fa7f8a.jpg" alt="Program for the production, &quot;Mariana Pineda&quot;" data-href="/digitalobject/293" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/12/93/1293a7b40f1df756c75e0dfb31f0da49.jpg" title="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;">
+                  
+                  
+                  <img src="../media/cache/ca/e4/cae480c1ae7c02538136b61e55c08dde.jpg" alt="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;" data-href="/digitalobject/291" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ab/05/ab059339f6d8e8ba205e3dbc996fa3f4.jpg" title="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;">
+                  
+                  
+                  <img src="../media/cache/7f/bf/7fbf761c20c8dec2e59d0182df3f12f9.jpg" alt="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;" data-href="/digitalobject/291" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/5e/3c/5e3c5715590beb0fd6daa06a60a84398.jpg" title="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;">
+                  
+                  
+                  <img src="../media/cache/fc/2a/fc2a5b9dc8d8820323072db8e5475cbd.jpg" alt="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;" data-href="/digitalobject/291" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/29/38/29389514a494f58a6960adc3404042ba.jpg" title="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;">
+                  
+                  
+                  <img src="../media/cache/c8/3e/c83eb5900d731ae72b04a51641645946.jpg" alt="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;" data-href="/digitalobject/291" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/fd/ea/fdea04d22cec2ac6d932b6244fae0166.jpg" title="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;">
+                  
+                  
+                  <img src="../media/cache/93/1e/931e150100fe0a80b2f7cc1e432948df.jpg" alt="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;" data-href="/digitalobject/291" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e4/f9/e4f9dbc56375ca4ca22757d925cc8c52.jpg" title="Program for the production, &quot;El grito de Yara&quot;">
+                  
+                  
+                  <img src="../media/cache/12/bf/12bf443cc1c3ef1edfbd1f42e97d2ea7.jpg" alt="Program for the production, &quot;El grito de Yara&quot;" data-href="/digitalobject/285" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/dd/9cddb92eebc989e2066d74f74df081e6.jpg" title="Program for the production, &quot;El grito de Yara&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/e6/8b/e68b5825f2fe1943c76362783da00198.jpg" alt="Program for the production, &quot;El grito de Yara&quot;" data-href="/digitalobject/285" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/66/2866c887da202ac8b9ca5fafa25cdeba.jpg" title="Program for the production, &quot;El grito de Yara&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/cd/ee/cdee04bcd23d4a6a4bf778a67f96b961.jpg" alt="Program for the production, &quot;El grito de Yara&quot;" data-href="/digitalobject/285" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e2/91/e291746c2872d0ce08a1ae40773b5363.jpg" title="Program for the production, &quot;El grito de Yara&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/e8/c2/e8c28e72f678a3cc185f1c1e3838a241.jpg" alt="Program for the production, &quot;El grito de Yara&quot;" data-href="/digitalobject/285" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/18/9f/189f3f3fa544cc79fdc342ef04cecaf2.jpg" title="Program for the production, &quot;Antígona&quot;">
+                  
+                  
+                  <img src="../media/cache/80/04/80046c011f238ca8fee64412a12e01ac.jpg" alt="Program for the production, &quot;Antígona&quot;" data-href="/digitalobject/281" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/01/01/0101a85ca916b0d5651620c2fc15c564.jpg" title="Program for the production, &quot;Antígona&quot;">
+                  
+                  
+                  <img src="../media/cache/a8/ab/a8ab0146d7a765ab049b0d62bfbc4ee0.jpg" alt="Program for the production, &quot;Antígona&quot;" data-href="/digitalobject/281" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/a4/bf/a4bf5ebd8918787ea86dc675e1030bf7.jpg" title="Program for the production, &quot;Antígona&quot;">
+                  
+                  
+                  <img src="../media/cache/30/ee/30ee3b352b9e96725dccbd7cd5780390.jpg" alt="Program for the production, &quot;Antígona&quot;" data-href="/digitalobject/281" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d0/00/d0000e53d0c4752ccea9065f7b48c863.jpg" title="Program for the production, &quot;Antígona&quot;">
+                  
+                  
+                  <img src="../media/cache/10/8f/108f0071779f32c7d40dc11d51815012.jpg" alt="Program for the production, &quot;Antígona&quot;" data-href="/digitalobject/281" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a4/fb/a4fbe5ae64a3386c2222916c66abd496.jpg" title="Poster for the production, &quot;Noche de Reyes&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/e3/47/e3470b2ccb88b656ae87803305767231.jpg" alt="Poster for the production, &quot;Noche de Reyes&quot;" data-href="/digitalobject/254" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2c/49/2c49751baf72f77844854b75ec773bcd.jpg" title="Scene from the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/cb/b6/cbb65b9b11cda64b41c272b28aa30216.jpg" alt="Scene from the production, &quot;La dama boba&quot;" data-href="/digitalobject/236" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ce/15/ce15af55db0353fb06d23203b5f9b830.jpg" title="Elisa González and Rafael Ugarte, in &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/fd/fc/fdfcb2bf3bdc06c026f0e00909f0ab47.jpg" alt="Elisa González and Rafael Ugarte, in &quot;La dama boba&quot;" data-href="/digitalobject/235" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dc/7b/dc7b5fef8b4399f04f3d0f0890cc2eb5.jpg" title="Elisa González and Rafael Ugarte, in &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/a7/5e/a75e26aa89acc1965c15c6c1e637f6e6.jpg" alt="Elisa González and Rafael Ugarte, in &quot;La dama boba&quot;" data-href="/digitalobject/235" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/41/7141e6a887178dd9b0a23d0738b19a33.jpg" title="Scene from the production, &quot;El mercader de Venecia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/22/2f/222f01be57f2b285bb0fdcd9edcde54e.jpg" alt="Scene from the production, &quot;El mercader de Venecia&quot;" data-href="/digitalobject/202" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ca/17/ca1705a98aefc08a1597b17e8a1caed3.jpg" title="Scene from the production, &quot;El mercader de Venecia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/74/00/74003b5e500e6f2c7a12b6de198758b4.jpg" alt="Scene from the production, &quot;El mercader de Venecia&quot;" data-href="/digitalobject/200" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/f4/b7f400e4503e54c3631c23403190d92f.jpg" title="Scene from the production, &quot;El mercader de Venecia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/fc/e1/fce138ea4e4571b1a091089f025a9007.jpg" alt="Scene from the production, &quot;El mercader de Venecia&quot;" data-href="/digitalobject/199" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6c/fe/6cfe90f8f87d2369fa3408dbec8d36a1.jpg" title="Scene from the production, &quot;El mercader de Venecia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/b2/54/b25448af730648ffa089ffeaa8c2a9e9.jpg" alt="Scene from the production, &quot;El mercader de Venecia&quot;" data-href="/digitalobject/197" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/82/01/8201e149817002a08162f3654fa40f4e.jpg" title="Scene from the production, &quot;El mercader de Venecia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/87/fc/87fc7663589d055ae7ce28da4b560696.jpg" alt="Scene from the production, &quot;El mercader de Venecia&quot;" data-href="/digitalobject/196" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/59/e5/59e541459ba8c65cb02654b002b8a3cf.jpg" title="Cast from the production, &quot;El mercader de Venecia&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/07/74/0774780260bc1cba0c22e6d03c95e295.jpg" alt="Cast from the production, &quot;El mercader de Venecia&quot;" data-href="/digitalobject/195" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a5/7a/a57af721911ec233616222e1e87fd64f.jpg" title="Poster for the production, &quot;El vergonzoso en palacio&quot;">
+                  
+                  
+                  <img src="../media/cache/5e/68/5e68cd6ce17d25953facfcdccf3cee74.jpg" alt="Poster for the production, &quot;El vergonzoso en palacio&quot;" data-href="/digitalobject/192" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/44/90/449008e401ac990f0ed5f4933995ad4f.jpg" title="Poster for the production, &quot;Pedro de Urdemalas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/21/37/213766c09cb5c66b117331f550950886.jpg" alt="Poster for the production, &quot;Pedro de Urdemalas&quot;" data-href="/digitalobject/189" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2d/28/2d28de739c8513c6b1e615ada7aad260.jpg" title="Poster for the production, &quot;La discreta enamorada&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/5a/15/5a155c691f1f64fad4a094d63661d582.jpg" alt="Poster for the production, &quot;La discreta enamorada&quot;" data-href="/digitalobject/185" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bc/a3/bca3c687b082555035e547c04a7192db.jpg" title="Poster for the production, &quot;La verdad sospechosa&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/6c/ad/6cad25af32176767c4dbcef9425a50f0.jpg" alt="Poster for the production, &quot;La verdad sospechosa&quot;" data-href="/digitalobject/184" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/41/6d/416d411926360cf70adbcdc451413ac3.jpg" title="Juan Cañas and Carucha Camejo, in &quot;El vergonzoso en palacio&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/b5/bb/b5bb1826963e7ad77248a4b9431db6fc.jpg" alt="Juan Cañas and Carucha Camejo, in &quot;El vergonzoso en palacio&quot;" data-href="/digitalobject/181" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/02/e8/02e8b66acbab732f1ec921f986152801.jpg" title="Juan Cañas and Carucha Camejo, in &quot;El vergonzoso en palacio&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/b2/b9/b2b93e16e64e68d075144759bad7f8e6.jpg" alt="Juan Cañas and Carucha Camejo, in &quot;El vergonzoso en palacio&quot;" data-href="/digitalobject/181" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fb/8e/fb8eb0f781d307c5e209414f3314d737.jpg" title="Scene from the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/2c/b2/2cb2026135300dfdb6e922996a77653f.jpg" alt="Scene from the production, &quot;La dama boba&quot;" data-href="/digitalobject/178" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/48/0948cf11923fb40e9f5eab0cbae3ff09.jpg" title="Scene from the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/85/a3/85a37293961b5a5c2119a97fc1de01e7.jpg" alt="Scene from the production, &quot;La dama boba&quot;" data-href="/digitalobject/177" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/63/62/6362dba6227d5234801c140bee909eda.jpg" title="Press release for the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/a6/6b/a66bb039150f69b0b6a96f6e5259852d.jpg" alt="Press release for the production, &quot;La dama boba&quot;" data-href="/digitalobject/176" />
+                  
+                </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

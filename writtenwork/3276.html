@@ -1,0 +1,633 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../writtenworks.html">Written Works</a></li>
+              <li>Rapsodia para el mulo</li>
+            </ul>
+          </nav>
+          <h2>Rapsodia para el mulo
+          
+            (2010)
+          
+          </h2>
+        </header>
+        <section class="main">
+          <h4>Play script
+          
+          (Spanish) 
+          </h4>
+          
+          
+          
+                      
+
+            
+
+          
+          <div class="linkeditems">
+            <h3>Performances: +</h3>
+            <ul>
+              
+            </ul>
+          </div>
+          
+
+            
+
+        
+          
+      
+          
+        
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              <li>
+                <span><h4>Author / Playwright:</h4><a href='../creator/382.html'>Nelda Castillo</a></span> 
+              </li>
+
+              <li>
+                
+                  FOLLOWS AFTER
+                   <a href="3275.html">Rapsodia para el mulo</a><br /><br />
+                   <h4>Author / Playwright:</h4><a href='../creator/8344.html'>José Lezama Lima</a><br />
+                
+              </li>
+              
+              
+              <li>
+                <h4>Creation date:</h4>
+                <span>2010</span>
+              </li>
+              
+            </ul>
+            
+            
+          </div>
+         
+          
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/15094">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fb/89/fb89759190b907544219bd04d29ceac3.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/81/1c/811c63ef18790e36bc4f891481c43b10.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15094" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e6/80/e680a49f99b07f2a58025834b5b3df86.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c1/c9/c1c98d2685ea984bd471e1ef99960ed6.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15093" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7c/49/7c4903995b45319c5230ab6950091739.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d9/86/d9863d30ed51ab2aefff57807ff19218.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15092" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/75/bd75f4813b14539cbc223b712b6a8f4a.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/53/11/53114aae22e78b2ca01a3d7c74103fcc.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15091" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/4e/9c4e0d7e03d2369ed4a690d17dded535.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/65/ee/65ee945721c46f9748e6f6ecb96e4a64.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15090" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f7/8d/f78d2ccccbf964678245bd7c59615c7e.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b2/1a/b21a57dd3951f952e4691bae39a9b1dc.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15089" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/91/b0/91b048afcca1608ffcfe23406afba567.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/60/43/6043f79564ec5c90fe3d5bf523486ee3.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15088" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ff/4c/ff4c8f44155c825d5ce73ecbcdd42f12.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/9d/48/9d48eeda89f491a65dfb4b9a11050bb6.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15087" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/92/53/925392040b5a4ccc2f00d6ea470b82ee.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/63/53/63531ee8570c5d238ed1c719dea0eada.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15086" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/32/e0328f98dec6bf0cb222e03bfcf2a936.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/dc/2c/dc2cfff2744bfa7c238dd9f48406b957.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15085" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/30/3f/303f17c58e95011de53dfd4115e6916b.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/52/62/52622f2c2d45cf06915d736ceeea1f77.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15084" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cc/81/cc81fe6841bb42eb398d467a0d8ad964.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f7/d7/f7d792b67532ba0fb1c9c6448b385248.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15083" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/65/ab/65aba50b28597aa40c7ed901d2922cc3.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="../media/cache/44/d2/44d2b5d0c210eccbe039d694445916eb.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15081" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f8/f7/f8f7a4cfec81603a5352340ab70e7538.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/54/5c/545c3fa9bcf95696cf0a48688984814d.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15080" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c6/73/c673dd7e28ea47636e37427778ae2f57.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/6f/e4/6fe4a3415f4a38aff3052dd0a00a1093.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15079" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/80/f4/80f42607f82a552ea4fb73c12a197014.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/96/bf/96bf70a1d4e608f4fcbc043112260318.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15078" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/3b/bd3bb5ab2c3e430c9b1b6ac48737dc35.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ef/87/ef8789dd8a193706fc885fbacc1d019e.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15077" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fd/7b/fd7beaff8b2f2139038d3ea237ec80d8.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/4c/27/4c27df4ae9f36a89cd08dad9e17a7df0.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15076" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/89/b1/89b1f3f31b5ee862b1c1b3580edd03a1.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e7/a9/e7a95d92f64e8c86f3cafba99d6e12d5.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15075" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/19/c7/19c7a27da57817c811e99db19e4ec5c8.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/72/9c/729c271018943064fdbb84c5c96bc5fd.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15074" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dc/3e/dc3e7d9a663f2ba17913fc31aaee07f1.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/2f/a0/2fa0091059baa972d5f0376f0b252276.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15073" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/46/01/4601748debbac2888c9ae1ac12cb1e8b.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/69/a2/69a20754ac84c2823fe66a8775950c34.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15072" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/48/5d/485d301f3f78b9ba6ad640723c2807c3.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b9/97/b997d5621dd404fd62a0cb1fc8f40b08.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15071" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/87/dd/87dd89ab68196e08e76b0a984c7aa45e.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/1f/aa/1faae09edfa8140846ce710a97bc460a.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15070" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1c/e5/1ce5a5e5ab14f5f96304b0e2c10af6d2.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/72/38/7238780d24e08a6c22895359b2178a64.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15069" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b0/46/b0466fbf06525ed1e5ddded1a76acfe1.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="../media/cache/e5/db/e5db3b27ab38565d1b223e598480ad21.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15068" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d5/d8/d5d8d54381e0515554dc535057d011d5.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/4b/80/4b80de2cb6b6993aa86cbd95dbc0fd33.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15067" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4e/0c/4e0cc48072f0fd8bcd3c97600f561f98.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="../media/cache/fe/ef/feef95e553e49051e38dc8d407a5d19d.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15065" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/52/12/52124b96bab44263791e963e69d12499.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/4c/46/4c46c3c024447d6183dcbfa2dd737680.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15064" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a1/3e/a13ee471cb9e22b158d0b4af9e42236b.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="../media/cache/4a/da/4ada3a9e6b25bc8e59caea31d3f8a638.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15063" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/63/37/6337b4137471b3fd9c478bd2e62c9901.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/52/ed/52ed94d52ab0e51c856c04a143316ad8.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15062" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6e/3f/6e3f2e60978f3db1cd33079cee39e4c0.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/70/e2/70e2cbb2286fc7166463cf338bcdc557.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15061" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e8/89/e88966a7c63d02ce55a4323b021ce01b.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b2/06/b206fda7eb7a01caa77503a40290c0a2.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15060" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1c/c3/1cc305d7de838c39ca41573118b7cbec.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a2/a6/a2a690f254a02b2199a5c7ee75d25255.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15059" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4e/69/4e6977b5415fe095f82d811c0eefb178.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/75/5c/755cb2d0dd5ca8f1830f4b55fe45f676.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15058" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8e/52/8e52dc28cd9e2ab434badff84720f577.jpg" title="Photograph of the production, &quot;Rapsodia para el mulo&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/be/07/be071dbacfa52d9806db3b32e50f06a5.jpg" alt="Photograph of the production, &quot;Rapsodia para el mulo&quot;" data-href="/digitalobject/15057" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

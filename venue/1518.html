@@ -1,0 +1,608 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../venues.html">Venues</a></li>
+              <li>Sala Teatro a Cuestas</li>
+            </ul>
+          </nav>
+          <h2>Sala Teatro a Cuestas</h2>
+        </header>
+
+        <section class="main">
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          <div class="linkeditems">
+            <h3>Productions: +</h3>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4894">La noche del Pez Luna</a>
+                
+                <br /><span>2008</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4893">El dulce amargo de las Vaginas</a>
+                
+                <br /><span>April 2007 - May 2007</span>
+                
+                
+              </li>
+              
+            </ul>
+          </div>
+        
+        
+             
+        
+          
+      
+                
+
+
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              <li>
+                <h4>Venue type:</h4>
+                <span>State performing space</span>
+              </li>
+              
+              
+              <li>
+                <h4>Address:</h4>
+                <span>54 entre 31 y 29</span>
+                
+              </li>
+              
+              
+              <li>
+                <h4>City:</h4>
+                <span>Cienfuegos, Cienfuegos</span>
+              </li>
+              
+              <li>
+                <h4>Country:</h4>
+                <span>Cuba</span>
+              </li>
+              
+              
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16501">View details</a>
+            <div id="digitalobjects">
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4a/bd/4abd241435604dd294977c84b719c055.jpg" title="Poster for the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/6b/d8/6bd89b4d6f89a8dfbcc725320871f98e.jpg" alt="Poster for the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16501" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/4a/1a4aef3469459d7b78fe402f49dc5127.jpg" title="Poster for the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/23/6e/236ea1ac9fede98162c77d61f9acdd2d.jpg" alt="Poster for the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16502" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/13/f8/13f82f12b17c2c2f1ef2e91bc30809c5.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/24/83/2483c4546cf5158ef59dba1745b6e308.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16500" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/96/68/9668b806f4803bc0cf2da205d1798e4c.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/02/eb/02eb99fa42587019fe8bedd99e5f7eee.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16497" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bf/78/bf787a69e2c2c9b8d03f3def5c0a67fe.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/78/59/78595e905062043814b8e84e771151de.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16496" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5b/79/5b794fa864de9c797af5a14e3ace20a0.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/74/46/7446f08ebdd10d8d6f840d78359b5b90.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16495" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/26/8c/268cc9134a14c4f235915bee37abf59e.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/da/e7/dae77017b06694e875582c2a8e1a36f7.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16494" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/f1/ecf1e812988e92d4afb4152bcb75ddf5.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/3c/6e/3c6e80c9b9b675bbc182e56a06e1aa41.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16493" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8e/d4/8ed4c1e186b9c6d1022331fcf5e2e203.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/b9/b8/b9b8c5544c444b3bc11f12fcb663cb86.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16492" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dc/ee/dceed6cb14763e9f7921fa86f9e3fa07.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/35/3d/353d7e4a526dfb300a1b9556a49b2599.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16491" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/05/a3/05a3678bc85814e861da32bb11dae963.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="../media/cache/e1/0a/e10af501713ca25cd27f2fcda966c95e.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16490" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f5/f5/f5f582542a802cd824d9284a2071e024.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="../media/cache/33/6a/336a5bcf9605a548d1438a05a2255c2c.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16489" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/07/ca/07cae18f2ba1c1b9716b456964dceb39.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ec/03/ec03ca7b0da7c22edf4cd2ffa583a534.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16488" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a0/03/a0034bba0f63ac713d0be714a261621d.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/f9/a1/f9a1740f0b9e2ba86e740097d012881e.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16487" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/35/43/3543e037f3252e0645e66196028e611b.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/39/9c/399cf90523642112f0c9e40f56dc8b47.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16486" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2d/9c/2d9c74b8679c896dfe26f4e8a6da37fa.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/74/80/7480355db44766895c8f450261cd488c.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16485" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/76/50/76500a77d0686da7cd02369eb49689b6.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/3a/39/3a3977c9c9387b836ab42313fc5fc76d.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16484" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4a/74/4a7410c0e1512db2791d472a26af54cb.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/6c/60/6c60a041e045fa532e70b61eeac4fccc.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16483" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/35/c0/35c0c554dfa3270ed9377499ebbdbfd8.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/a8/34/a834fbe8bbf8b69420f7052b4eaf7a24.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16482" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ed/4d/ed4de99cd2ae2a58dccf3aa513c2e946.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="../media/cache/18/ed/18ed7fb891574117de0f918f8fc9ac8b.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16481" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a9/75/a975bc77033c4179142cfccff4467e35.jpg" title="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;">
+                  
+                  
+                  <img src="../media/cache/ed/1f/ed1ff48bda316ea67b9c1515d0514908.jpg" alt="Photograph of Adnaloy Pérez (Lila) and Javier Fernández Jaure (Felo) in the production, &quot;La noche del Pez Luna&quot;" data-href="/digitalobject/16480" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/88/71888d99ab72093e45b248d248892ce9.jpg" title="Poster Velas Teatro">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/9a/33/9a33f2f090157cdfebaf0e29d3ea8654.jpg" alt="Poster Velas Teatro" data-href="/digitalobject/16479" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a4/08/a408caec9a2e06408a403c60d1f1d62f.jpg" title="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/18/52/1852f01e440ae8ce8d22fbddde86acd8.jpg" alt="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;" data-href="/digitalobject/16478" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a9/89/a9896e541ccfd6cece28176a7d066b07.jpg" title="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/9f/1c/9f1cb7111c926fa618b050bfdf06e85a.jpg" alt="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;" data-href="/digitalobject/16478" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8c/fd/8cfd6b615492e1d7d8ebcb08b723e0f4.jpg" title="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/8f/77/8f7717e5577fd0e8398cf23e29244893.jpg" alt="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;" data-href="/digitalobject/16478" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9b/45/9b45f35141b1dce277530415d7fbcff8.jpg" title="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/91/67/9167caad0a2e59c6e7455e456f8b626a.jpg" alt="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;" data-href="/digitalobject/16478" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/53/e9/53e94db593f86915921373195c854170.jpg" title="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/20/37/20371e519760ca887d7a5b6fa271527c.jpg" alt="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;" data-href="/digitalobject/16478" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7e/d9/7ed91241db8b5d9f20adad15e68e84cf.jpg" title="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/71/51/71511a2acafa96ed94703d741783e345.jpg" alt="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;" data-href="/digitalobject/16478" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4e/c4/4ec481c92a5740eddbd58000522ff67c.jpg" title="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/1a/14/1a141c3695b03f37d6f4762296366e37.jpg" alt="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;" data-href="/digitalobject/16478" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/88/ce/88ce78f7af776fd64e0008825e262347.jpg" title="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/66/f8/66f866dc846626353fb2293d13a27ba0.jpg" alt="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;" data-href="/digitalobject/16478" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1f/87/1f87ce57cf96522939e978d47132dcb4.jpg" title="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/4f/9c/4f9c6b5df3ca68e22f301e3a68d7f00f.jpg" alt="Photograph of the production, &quot;El Dulce Amargo de Las Vaginas&quot;" data-href="/digitalobject/16478" />
+                  
+                </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

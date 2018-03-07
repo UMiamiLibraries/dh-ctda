@@ -1,0 +1,711 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../venues.html">Venues</a></li>
+              <li>Miami Senior High School</li>
+            </ul>
+          </nav>
+          <h2>Miami Senior High School</h2>
+        </header>
+
+        <section class="main">
+          
+          <h4>Also known as: Miami Senior High; Auditorium Miami High</h4>
+          
+
+          
+
+          
+
+          
+          <h4>Notes:</h4>
+          <p>The theater at Miami Senior High School was the center of cultural life in Dade county until the Miami-Dade County Auditorium was built.</p>
+          
+
+          
+
+          
+          <div class="linkeditems">
+            <h3>Productions: +</h3>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4436">Afternoons at the Ballet</a>
+                
+                <br /><span>March 9, 1975</span>
+                
+                
+                <br /><span>Directed by: Marta Del Pino, Sonia Díaz, Eduardo Recalt</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3812">Los Gavilanes</a>
+                
+                <br /><span>November 17, 1974</span>
+                
+                
+                <br /><span>Directed by: Manuel Ochoa</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3851.html">La sopera</a>
+                
+                <br /><span>September 7, 1974 - September 8, 1975</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3807">Gigantes y Cabezudos</a>
+                
+                <br /><span>April 6, 1974 - April 7, 1974</span>
+                
+                
+                <br /><span>Directed by: Manuel Ochoa</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2881">Las Leandras</a>
+                
+                <br /><span>February 2, 1974</span>
+                
+                
+                <br /><span>Directed by: René Pérez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2880">La del manojo de rosas</a>
+                
+                <br /><span>September 16, 1973</span>
+                
+                
+                <br /><span>Directed by: René Pérez</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2813">La herida luminosa</a>
+                
+                <br /><span>March 23, 1972</span>
+                
+                
+                <br /><span>Directed by: Alfonso Cremata</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2854">La tercera palabra</a>
+                
+                <br /><span>1972</span>
+                
+                
+                <br /><span>Directed by: Salvador Ugarte</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3138">Ven conmigo y verás la Habana</a>
+                
+                <br /><span>1970</span>
+                
+                
+                <br /><span>Directed by: Jorge Gómez</span>
+                
+              </li>
+              
+            </ul>
+          </div>
+        
+        
+             
+        
+          
+      
+                
+
+
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              <li>
+                <h4>Address:</h4>
+                <span>2450 S.W. 1 Street</span>
+                
+              </li>
+              
+              
+              <li>
+                <h4>City:</h4>
+                <span>Miami, Florida</span>
+              </li>
+              
+              <li>
+                <h4>Country:</h4>
+                <span>United States</span>
+              </li>
+              
+              
+              <li>
+                <h4>Website:</h4>
+                <span><a href="http://teachers.dadeschools.net/bquintero/tour/theatre.html" target="_blank">http://teachers.dadeschools.net/bquintero/tour/theatre.html</a></span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/13379.html">View details</a>
+            <div id="digitalobjects">
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/47/97/4797752864890ed64ee98c5150c362ca.jpg" title="Poster for the production, &quot;La tercera palabra&quot; ">
+                  
+                  
+                  <img src="../media/cache/a3/99/a399a17c8005d19453447aebb1fa0399.jpg" alt="Poster for the production, &quot;La tercera palabra&quot; " data-href="/digitalobject/13379" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/10/c0/10c0b775a3713906108daf9e7dcda88d.jpg" title="Poster for the production, &quot;Ven conmigo y verás La Habana&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/b6/aa/b6aa7a24021ec6b8c9e5fcab02e11156.jpg" alt="Poster for the production, &quot;Ven conmigo y verás La Habana&quot;" data-href="/digitalobject/13394" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/20/1a/201a153135c039a54b34b6f566ddf750.jpg" title="Invitation for the production, &quot;La sopera&quot;">
+                  
+                  
+                  <img src="../media/cache/83/da/83dae70961675726e3dfe40aadd35063.jpg" alt="Invitation for the production, &quot;La sopera&quot;" data-href="/digitalobject/13677" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b0/25/b025c6341452cb60ba3cda8d7428dfa9.jpg" title="Invitation for the production, &quot;La sopera&quot;">
+                  
+                  
+                  <img src="../media/cache/87/14/87148554dabec4f6a96c658992fc444b.jpg" alt="Invitation for the production, &quot;La sopera&quot;" data-href="/digitalobject/13788" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ff/0a/ff0aa68bdcf9de48a2f2c0b71ef0d65d.jpg" title="Clipping for the production, &quot;La sopera&quot;">
+                  
+                  
+                  <img src="../media/cache/ff/b9/ffb9abb8caa5520677866f300046437c.jpg" alt="Clipping for the production, &quot;La sopera&quot;" data-href="/digitalobject/13663" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/1f/d71f11fa6ef5f8392478cd552c640d6e.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/0c/54/0c54b8d2481ab6cb0bb3d1bd974df10b.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7f/c6/7fc687615338af316a03a5121434012f.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/a0/23/a023e6e8d88402c9af5c4130f1d2db30.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7f/ee/7fee9e7bd23fb5202d210168a3ac6f2a.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/bf/30/bf30aaaf52b37c435577dbf1d3d642ff.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e7/e2/e7e2e43de2e607c7511d2d47589077ef.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/16/dc/16dc1b7a01c0bbb254555a5b6b9ddafa.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/f1/d2f177a82c21244693f977978d6c2714.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/63/f4/63f4ee5fa9d7fb39551082ed6bf9b0f3.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/37/3a/373ac0ad7c06c53afc4fda0301d8ad85.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/92/c0/92c022ce62f43a91b7d4af8969ea015f.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c3/51/c3516ba5e32e58ae2fe293d2f451e9a3.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/fa/db/fadb365e99db519dc96d7429fb4a5ccb.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/25/00/25007676b9f48d7a493fceeb9ccf6688.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ad/f8/adf827b2df2a16fa6cb61ffa9d0733ce.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/a9/e0a9edbe2de99dde45f5b40b35841e27.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/c7/f0/c7f01cbaa578a5ca2250f0f2bbf5ac59.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ee/b5/eeb563256e931ea72d0af40e104a3c97.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/67/93/67938774773ab8aa700d71d3c93d3f4b.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/00/3c/003c386654cb2d9f4fce013a962e6013.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/8f/1a/8f1ad414dca2671a9ebd43c457ccf02c.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/95/44/9544aa62a2c06ee59175d80fbb107056.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/a5/38/a53826824838e29c3c56348417033db0.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d3/4e/d34e89e135116f50a1606b8372d5c612.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/9d/8c/9d8c059fb3a0ae9c9ce66116eacbcc2f.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8e/bb/8ebb7571746c53eeb47062a359db02e9.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/08/1c/081c30a1d89a68514e923a32c1834661.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/96/5f/965f2f1911ccd5e62981ed2142682686.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/a8/77/a877e68f6ed3c9545527425be6086064.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d6/b9/d6b985337caf8a2ebaf6a28a76f051c1.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/c9/87/c9879e1183314a69bc30910306451d90.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3b/f4/3bf4b8568c4c0fa2d32d255dbb66cae2.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/8d/d6/8dd66467559b276e6969227494c021da.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/94/ba/94ba4c59db9f343df4c1de4e7ddb0025.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/86/d2/86d26ff5adc83f821d52cf4f2615cdde.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e6/96/e696ff25564eb054d892aa5d998e25c1.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/dc/8f/dc8f05ca37726f87951d3ec8ff2e6b3f.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5e/d2/5ed2f065e12c99a7ccafca2653766cff.jpg" title="Program for the production, &quot;Una noche con Cuba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/69/bc/69bc4d0702c1abdceee232392db34d8b.jpg" alt="Program for the production, &quot;Una noche con Cuba&quot;" data-href="/digitalobject/13408" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9b/dd/9bdd68e18862fe09838a37e989a41c4c.jpg" title="Program for the production, &quot;La tercera palabra&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/2e/0d/2e0d09cee070dc2ab734482e4859e65e.jpg" alt="Program for the production, &quot;La tercera palabra&quot;" data-href="/digitalobject/13317" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c3/90/c3904452966d385484a95727630eb1c8.jpg" title="Program for the production, &quot;La tercera palabra&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/50/a4/50a48ee7695c2f593268b3204d0497d8.jpg" alt="Program for the production, &quot;La tercera palabra&quot;" data-href="/digitalobject/13317" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/60/8f6022de01c26a97c6e38f382bde4617.jpg" title="Program for the production, &quot;La tercera palabra&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ee/47/ee47148298d29a253ce61718847f9f87.jpg" alt="Program for the production, &quot;La tercera palabra&quot;" data-href="/digitalobject/13317" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f8/1f/f81f5bceeba87fcdba0ee9998d991e67.jpg" title="Program for the production, &quot;La tercera palabra&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/96/a0/96a045450af3f0751353da4dfdad0072.jpg" alt="Program for the production, &quot;La tercera palabra&quot;" data-href="/digitalobject/13317" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/5c/205c6d88b2d8c71108b559062329ff03.jpg" title="Program for the production, &quot;La tercera palabra&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/0c/23/0c231537749bc0e2a965ff109530f164.jpg" alt="Program for the production, &quot;La tercera palabra&quot;" data-href="/digitalobject/13317" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ed/63/ed63625ef7695be3450c059c05da1211.jpg" title="Program for the production, &quot;La tercera palabra&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/05/66/0566295bf67c212df9dbf89101e83103.jpg" alt="Program for the production, &quot;La tercera palabra&quot;" data-href="/digitalobject/13317" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/70/f170fbb2e24de94c9ebed9ed72f8ee5f.jpg" title="Program for the production, &quot;La tercera palabra&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/81/d3/81d3c33771b66c7ac5f528b9002d18a6.jpg" alt="Program for the production, &quot;La tercera palabra&quot;" data-href="/digitalobject/13317" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/0d/2a/0d2ae5d919ab252f13b425137c81588c.jpg" title="Playbill for the production, &quot;La sopera&quot; (The soup bowl)">
+                  
+                  
+                  <img src="../media/cache/b1/82/b1826f206c464e7be45c3b8d52d9c2ec.jpg" alt="Playbill for the production, &quot;La sopera&quot; (The soup bowl)" data-href="/digitalobject/13442" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/91/7a914bda58dc47832b6641bbdda9e073.jpg" title="Invitation, &quot;La herida luminosa&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/98/ef/98ef0e7cf94d91e8bae5fd4f6a93fac4.jpg" alt="Invitation, &quot;La herida luminosa&quot;" data-href="/digitalobject/13459" />
+                  
+                </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,656 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>Las impuras</li>
+                </ul>
+            </nav>
+            <h2>Las impuras</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/97.html">Herberto Dumé</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+
+            
+              <div class="linkeditems">
+              <h3>Design team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="../creator/5542.html">Salvador Fernández</a></td>
+                    <td>Set designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/5369">Héctor Lechuga</a></td>
+                    <td>Light designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="../creator/6438.html">María Elena Molinet</a></td>
+                    <td>Costume designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/5541">Raúl Oliva</a></td>
+                    <td>Set designer</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+          
+
+
+            
+
+
+
+            
+                <br>
+               Author: Mitch Carr; Dinorah Pérez Rementería (2005-03-04)
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              
+            
+                <a href="http://ctda.library.miami.edu/creator/4802" >Grupo Guernica (4802)</a><br />
+              
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/254.html">Casa de Cultura Pablo Quevedo (Cuba)</a></span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>April 12, 1962</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="../writtenwork/1906.html">Las impuras (Adaptation / Version)</a><br />
+                <span>By <h4>Adapter:</h4><a href='../creator/84.html'>Abelardo Estorino</a></span>
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/writtenwork/1907">Las impuras (Translation)</a><br />
+                <span>By <h4>Adapter:</h4><a href='../creator/163.html'>Pancho García</a></span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/12628">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fd/68/fd68277370b4b30b4c9360fa66f157ab.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/79/47/7947e14b64a4b09f917c172f567d7df0.jpg" alt="Las impuras" data-href="/digitalobject/12628" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d6/2d/d62d2dcbcbea7e39a765f1a861dbb6ca.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b2/7e/b27ebe1093d6a38e1a9508c541a5dd6b.jpg" alt="Las impuras" data-href="/digitalobject/12600" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2a/28/2a28c86dfd90c54a87d853dbef3285ae.jpg" title="Las impuras">
+                
+                
+                <img src="../media/cache/22/c4/22c42414f6a1605ea8c3146fc9503b88.jpg" alt="Las impuras" data-href="/digitalobject/12592" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/42/65/426565c352834a9ae155d77f4b96d6f5.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/20/75/20756c5e26f98a89c40c5c4c79571bd3.jpg" alt="Las impuras" data-href="/digitalobject/12525" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7e/cb/7ecb414b839ac528070a6b7b107ca566.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/49/23/4923d67be4fa1c99b74a9a30885026a7.jpg" alt="Las impuras" data-href="/digitalobject/12522" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/f6/20f6eb59ac19efbb4dd78788d216def9.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/8c/9b/8c9be7ddf807bfecde7a733757664c5e.jpg" alt="Las impuras" data-href="/digitalobject/12506" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/44/0944619970b008fc37aefeecdd1ad48f.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/da/6f/da6fa49e67db2477171e945f33aab840.jpg" alt="Las impuras" data-href="/digitalobject/12505" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/59/f1591945444df9f3506d78aa752b2461.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/9c/9a/9c9a68d53f5ce70c6e8c203fbcc21a50.jpg" alt="Las impuras" data-href="/digitalobject/12486" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cb/cf/cbcf024e5ab7984945c27cab4256bba3.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c1/d1/c1d171b750a25b6786604d9688d3de8b.jpg" alt="Las impuras" data-href="/digitalobject/12485" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/75/6b/756bf8a2452c7f259facf064875bfea8.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c3/93/c393e7fe0f52dd1a21c8071a68764e88.jpg" alt="Las impuras" data-href="/digitalobject/12477" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/6e/316e66c88a8eaea3edc1de1a4ea80163.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f0/13/f0132d3a2084c2042e5647fba915f67d.jpg" alt="Las impuras" data-href="/digitalobject/12468" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/45/d2/45d2b47a21f588b7eaa419b655b600f6.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e0/b6/e0b630f5503e54846b123d232e885d41.jpg" alt="Las impuras" data-href="/digitalobject/12453" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d0/aa/d0aa73984d44645d3b34a3be53baa6d9.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/1f/d1/1fd1390fee318a822370d28c4049169d.jpg" alt="Las impuras" data-href="/digitalobject/12423" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/37/d1/37d167b09f2c1a8afb6830f73fe90244.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5a/d6/5ad699cdbb428bc11251689c7bc6fd70.jpg" alt="Las impuras" data-href="/digitalobject/12411" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3f/e9/3fe9f9cd941777410f6abbcc131499e9.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/1c/fd/1cfd91ffbabba92d0c2eadb6bd5fc9dd.jpg" alt="Las impuras" data-href="/digitalobject/12396" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2f/de/2fde80813f222d18e60484dde90656e2.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/84/a1/84a1ca26fd7efe7d828513e22d0fc911.jpg" alt="Las impuras" data-href="/digitalobject/12389" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/61/8661b323b429da327ac0fde8b243c4e9.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/4c/95/4c956e409492c642b8e44a6e4eb6b4cd.jpg" alt="Las impuras" data-href="/digitalobject/12387" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/40/79/407938667c69f4cb04a24333d58a49a6.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/00/70/00703a2cdad91c7b9a54fae4677fc33c.jpg" alt="Las impuras" data-href="/digitalobject/12371" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/46/d746de82d9d7b2eda95d353c486cc79f.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ce/39/ce396e5d297addcd7622d69100f76b5d.jpg" alt="Las impuras" data-href="/digitalobject/12344" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/99/74/99743bca5113c44c00099b14b907a596.jpg" title="Las impuras">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/56/e2/56e2d210d2eff99ec17f7da1bac36fda.jpg" alt="Las impuras" data-href="/digitalobject/12340" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d5/2b/d52bb8d7b4d24f9e5ee22fb967f90bff.jpg" title="Scene from the play, &quot;Las impuras&quot; (The impure ones)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/4d/b4/4db4b4e995f428a97d011f5d7dd444e9.jpg" alt="Scene from the play, &quot;Las impuras&quot; (The impure ones)" data-href="/digitalobject/12895" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/08/5b/085b4687e7936422240b9776e9d485a1.jpg" title="Scene from the play, &quot;Las impuras&quot; (The impure ones)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/af/42/af42488dbda9109cc61295a5fcde473b.jpg" alt="Scene from the play, &quot;Las impuras&quot; (The impure ones)" data-href="/digitalobject/12879" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/82/ed/82ede35b1cdc356057924e791714e89e.jpg" title="Scene from the play, &quot;Las impuras&quot; (The impure ones)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/85/e8/85e8bc5a78ec4d5bf8140e1b38b313d7.jpg" alt="Scene from the play, &quot;Las impuras&quot; (The impure ones)" data-href="/digitalobject/12893" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a7/ba/a7ba19212b35f994927db3d7c90417f7.jpg" title="Scene from the play, &quot;Las impuras&quot; (The impure ones)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/84/d0/84d04bcaaa48c8e6079c889a431610a2.jpg" alt="Scene from the play, &quot;Las impuras&quot; (The impure ones)" data-href="/digitalobject/12887" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/82/fa/82faadf246e377b8578a67d218b7f9f1.jpg" title="Scene from the play, &quot;Las impuras&quot; (The impure ones)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5d/1d/5d1dbf323d486f0cef61d5eafd7f8a69.jpg" alt="Scene from the play, &quot;Las impuras&quot; (The impure ones)" data-href="/digitalobject/12885" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c2/3f/c23feecce66770ed8ac0d6681ea106ac.jpg" title="Scene from the play, &quot;Las impuras&quot; (The impure ones)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/8f/c8/8fc8a27044793984c153a700231e325d.jpg" alt="Scene from the play, &quot;Las impuras&quot; (The impure ones)" data-href="/digitalobject/12881" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/28/2228edc48141b69fed217eaafb861742.jpg" title="Scenery from the play, &quot;Las impuras&quot; (The impure ones)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/0d/6e/0d6e2f4ddec87468f7ebb9779c0c6b60.jpg" alt="Scenery from the play, &quot;Las impuras&quot; (The impure ones)" data-href="/digitalobject/12882" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,643 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Jean Baptiste Poquelin Molière</li>
+                </ul>
+            </nav>
+            <h2>Jean Baptiste Poquelin Molière</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Author / playwright</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>Whose real name was Jean Baptiste Poquelin, composed 12 of the most durable and penetratingly satirical full-length comedies of all time, some in rhyming verse, some in prose, as well as six shorter farces and comedies. As a comic dramatist he ranks with such other distinctive masters of the genre as Aristophanes, Plautus, and George Bernard Shaw. He was also the leading French comic actor, stage director, and dramatic theoretician of the 17th century. In a theatrical period, the early baroque, dominated by the formal neoclassical tragedies of Mairet, Rotrou, du Ryer, Pierre and Thomas Corneille, and Racine, Moli&egrave;re affirmed the potency of comedy as a serious, flexible art form. He also wrote a number of pastorals and other indoor and outdoor divertissements, such as his popular comedy-ballets, that depended on a formidable array of stage machinery (mostly imported from Italy) capable of providing swift and startling changes of sumptuous scenic effects.<br />The strongest influence on Moli&egrave;re's theater came from the Italian commedia dell'arte troupes -- with their stock characters and situations -- that he encountered during his travels. This influence was enhanced by Moli&egrave;re's sharing of the Th&eacute;&acirc;tre du Petit-Bourbon in Paris with the Italian Players, led by the celebrated Scaramouche. In his longer comedies, Moli&egrave;re immensely refined the commedia themes and techniques, setting most of his plots in and around Paris and raising neoclassical French comedy to a plane of artistry and inventiveness never attained before or since. He applied the alexandrine , or rhymed hexameter line -- borrowed from contemporary tragedies, many of which he had staged -- to a relaxed dialogue that imitated conversational speech. He also created a gallery of incisive portraits: Tartuffe the religious hypocrite, and Orgon, his dupe; Jourdain the social climber; Don Juan the rebel and libertine; cuckolds such as Arnolphe, Dandin, and Amphitryon; Alceste the stony idealist; Harpagon the miser; Scapin the trickster; Argan the hypochondriac; Philaminte the pretentiously cultured lady; and many more.<br />(Information taken from website)</p>
+
+                </div>
+            
+
+            
+              <div class="linkeditems">
+                  <h3>Notes: +</h3>
+                  <ul>
+                  <p>His principal short plays (in one or two acts) are:<br /><em>The Jealous Husband</em> (1645?) <br /><em>The Flying Doctor</em> (1648?)<br /><em>Sganarelle</em> (1660)<br /><em>The Rehearsal at Versailles</em> (1663)<br />and The Forced Marriage (1664)</p>
+<p>The longer plays (in three or five acts) include:<br /><em>The School for Husbands</em> (1661)<br /><em>The School for Wives</em> (1662)<br /><em>Tartuffe</em> (1664)<br /><em>Don Juan</em> (1665)<br /><em>The Misanthrope (1666)<br /><em>The Doctor in Spite of Himself</em> (1666)<br /><em>Amphitryon</em> (1668)<br /><em>The Miser</em> (1668)<br /><em>George Dandin</em> (1668)<br /><em>The Bourgeois Gentleman</em> (1670)<br /><em>Scapin</em> (1671)<br /><em>The Learned Ladies</em> (1672)<br />and <em>The Imaginary Invalid</em> (1673)</em></p>
+
+                  </ul>
+              </div>              
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/552">Tartuffe</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/558">The Physician in Spite of Himself /Le Médecin malgré lui</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1173">Les précieuses ridicules</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1540">Le Bourgeois Gentilhomme</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1752">The School of Wives</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2584">El casamiento a la fuerza</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2719">El avaro</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2720.html">Sganarelle o El cornudo imaginario </a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2744">El enfermo imaginario</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3338">L'École des femmes</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1662</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/3894.html">Don Juan</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+        
+
+                    
+        
+
+            
+        
+            
+                <br />
+               Author: Alberto Sarraín (2007-12-10)
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>January 15, 1622</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Paris, France, France</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Death date:</h4>
+                  <span>February 17, 1673</span>
+                </li>
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/356">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0d/e4/0de47ce6d38c679aeb66663db723cf25.jpg" title="Eslinda Núñez and Rafael Ugarte, in &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/aa/7f/aa7fe881d35b8d6cd9f91c08a1844b92.jpg" alt="Eslinda Núñez and Rafael Ugarte, in &quot;El enfermo imaginario&quot;" data-href="/digitalobject/356" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/89/38/893883e736cf58273ce58e998e32348b.jpg" title="Eslinda Núñez and Rafael Ugarte, in &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/87/e0/87e0b20abad8dff3a7b359bea758a71d.jpg" alt="Eslinda Núñez and Rafael Ugarte, in &quot;El enfermo imaginario&quot;" data-href="/digitalobject/356" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4e/75/4e7508b5c3004e5ae0349ed558ded8bf.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/75/14/7514c1e4d36476f8315df382dbd0ac49.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/352" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/35/9c3579109e1fc68eb27d43fbb0a14cff.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a6/83/a6838d1abd84bbd4e98922b4ea980451.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/351" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a5/88/a588a256144c6e1c3325dce9671fff43.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ec/a3/eca34ba4100ec83ee51da31755f2e35f.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/350" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9f/36/9f3642fc82758578060e1bd5e364797c.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6d/a3/6da343984acbedf4970de00250032846.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/349" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f5/b9/f5b94123b9b4a135f0138810dfa5412d.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/81/95/819531655c65f6204c068fa231db44dc.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/348" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f3/53/f353b28073aef7f7c5fbd60d43e67845.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/85/b1/85b18ac409279b4a8cc25e2040116412.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/347" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4c/99/4c99ef9d25a55fe0185b69c20342d2c9.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b5/d0/b5d0930ca0bb968d20cae776591214e7.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/346" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3c/b6/3cb64f51a574454544ad184aad45a9c7.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3c/ad/3cad5a30e649106fdde0c3bb840e194d.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/345" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/a2/7aa22a15fedb2db9447da592650cd737.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4a/b0/4ab0405c110e316fc155cf46c0107701.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/344" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c0/48/c0480c62e29470cc81dcbe3595c172f9.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b1/00/b100c25472fd59e54c739567959ca0dd.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/343" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3b/35/3b35ab348dfecebf23798bc1976ae070.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/39/ed/39ed7b3e4d57249095f6160d0e5fd0d6.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/342" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e7/92/e792bdf68c7a093c839aad186636e60a.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/94/9c/949c67c79f4091d7856e913866a6c12f.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/341" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cf/69/cf6967937a145dd8b92bb04d5d8e03bb.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot; ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/11/80/11809bb19ee7bada773fd82f7f39bdcb.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot; " data-href="/digitalobject/340" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/06/75/0675356ccf9e88ea5a6b7367a32e7e62.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b8/83/b883644c05100c67768026f862c40b35.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/339" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3c/45/3c45745e6d6b99d5da7d6c5f512e706c.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/52/e0/52e0a36d9f9472693f52058396f7bdfb.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/338" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6f/3b/6f3bf500f5980815981e7aa26aca4c16.jpg" title="Scene from the production, &quot;El enfermo imaginario&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0a/11/0a11809c93bb576358b669b662ed74ba.jpg" alt="Scene from the production, &quot;El enfermo imaginario&quot;" data-href="/digitalobject/337" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/12/93/1293a7b40f1df756c75e0dfb31f0da49.jpg" title="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;">
+                    
+                    
+                    <img src="../media/cache/ca/e4/cae480c1ae7c02538136b61e55c08dde.jpg" alt="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;" data-href="/digitalobject/291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ab/05/ab059339f6d8e8ba205e3dbc996fa3f4.jpg" title="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;">
+                    
+                    
+                    <img src="../media/cache/7f/bf/7fbf761c20c8dec2e59d0182df3f12f9.jpg" alt="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;" data-href="/digitalobject/291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/5e/3c/5e3c5715590beb0fd6daa06a60a84398.jpg" title="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;">
+                    
+                    
+                    <img src="../media/cache/fc/2a/fc2a5b9dc8d8820323072db8e5475cbd.jpg" alt="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;" data-href="/digitalobject/291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/29/38/29389514a494f58a6960adc3404042ba.jpg" title="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;">
+                    
+                    
+                    <img src="../media/cache/c8/3e/c83eb5900d731ae72b04a51641645946.jpg" alt="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;" data-href="/digitalobject/291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/fd/ea/fdea04d22cec2ac6d932b6244fae0166.jpg" title="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;">
+                    
+                    
+                    <img src="../media/cache/93/1e/931e150100fe0a80b2f7cc1e432948df.jpg" alt="Program for the productions, &quot;Sganarelle o El cornudo imaginario&quot;, &quot;La margarita&quot;, and &quot;La escuela de las viudas&quot;" data-href="/digitalobject/291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6f/01/6f019350fd9823427f6512af86a13df4.jpg" title="Scene for the production, &quot;El avaro&quot; ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b3/4b/b34b9b63818ba1c349959fb090f873c9.jpg" alt="Scene for the production, &quot;El avaro&quot; " data-href="/digitalobject/284" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

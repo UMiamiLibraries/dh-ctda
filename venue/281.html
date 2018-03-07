@@ -1,0 +1,843 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../venues.html">Venues</a></li>
+              <li>Sala Teatro Papalote</li>
+            </ul>
+          </nav>
+          <h2>Sala Teatro Papalote</h2>
+        </header>
+
+        <section class="main">
+          
+
+          
+
+          
+
+          
+          <h4>Notes:</h4>
+          <p>Information available in Spanish.</p>
+          
+
+          
+
+          
+          <div class="linkeditems">
+            <h3>Productions: +</h3>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4104">Huevos</a>
+                
+                <br /><span>February 28, 2013 - March 1, 2013</span>
+                
+                
+                <br /><span>Directed by: Tony Díaz</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/2326">Los zapaticos de rosa</a>
+                
+                <br /><span>October 2009</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4143.html">Por el monte, Carulé</a>
+                
+                <br /><span>September 11, 2009 - September 13, 2009</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2325.html">Federico de noche</a>
+                
+                <br /><span>January 24, 2009 - January 26, 2009</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4899.html">Los zapaticos de rosa</a>
+                
+                <br /><span>January 2007</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/403.html">La virgencita de bronce</a>
+                
+                <br /><span>2005</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/276">El mago de Oz</a>
+                
+                <br /><span>January 28, 2005</span>
+                
+                
+                <br /><span>Directed by: Armando Morales</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3323">Las penas saben nadar</a>
+                
+                <br /><span>January 27, 2005</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/653.html">Pelusín y los pájaros</a>
+                
+                <br /><span>2002</span>
+                
+                
+                <br /><span>Directed by: Rubén Darío Salazar</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/728">Feo</a>
+                
+                <br /><span>September 1999</span>
+                
+                
+                <br /><span>Directed by: René Fernández Santana</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4027">Un bufo de este siglo</a>
+                
+                <br /><span>1969</span>
+                
+                
+                <br /><span>Directed by: René Fernández Santana</span>
+                
+              </li>
+              
+            </ul>
+          </div>
+        
+        
+             
+        
+          
+      
+                
+
+
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              <li>
+                <h4>Address:</h4>
+                <span>Calle Daoiz 83</span>
+                
+                <br/><span>entre Santa Teresa y Ayuntamiento</span>
+                
+              </li>
+              
+              
+              <li>
+                <h4>City:</h4>
+                <span>Matanzas, Matanzas</span>
+              </li>
+              
+              <li>
+                <h4>Country:</h4>
+                <span>Cuba</span>
+              </li>
+              
+              <li>
+                <h4>Date range:</h4>
+                <span>1971-</span>
+              </li>
+              
+              
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/14464">View details</a>
+            <div id="digitalobjects">
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/24/5a/245ad3f6da5fb03802fe38a2c31a4b14.jpg" title="Photograph of rehearsal for the production, &quot;Un bufo de este siglo&quot; ">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ba/88/ba880c042262dc74e780699c9dbc5bc7.jpg" alt="Photograph of rehearsal for the production, &quot;Un bufo de este siglo&quot; " data-href="/digitalobject/14464" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/bf/7a/bf7a8e9e861c4b801264a555efde0a81.jpg" title="Photograph of the production, &quot;Los zapaticos de rosa&quot;">
+                  
+                  
+                  <img src="../media/cache/2c/0e/2c0ef12fad11c2583ca7526ef81318ba.jpg" alt="Photograph of the production, &quot;Los zapaticos de rosa&quot;" data-href="/digitalobject/16567" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/67/5a/675a5b15dc1bc6f068ad3bae524c34a7.jpg" title="Photograph of Carlos Pérez Peña (Special Performance) in the production, &quot;Los zapaticos de rosa&quot;">
+                  
+                  
+                  <img src="../media/cache/42/34/4234cb60ea47a4dff7734d940d4c1bf7.jpg" alt="Photograph of Carlos Pérez Peña (Special Performance) in the production, &quot;Los zapaticos de rosa&quot;" data-href="/digitalobject/16566" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/1d/64/1d649a9c049acf0b52c0d71431a3de03.jpg" title="Photograph of Migdalia Seguí (Dama 2) in the production, &quot;Los zapaticos de rosa&quot;">
+                  
+                  
+                  <img src="../media/cache/31/ed/31edd5741e3be8de3237d00844487c43.jpg" alt="Photograph of Migdalia Seguí (Dama 2) in the production, &quot;Los zapaticos de rosa&quot;" data-href="/digitalobject/16565" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/9e/ad/9eaddf241153c2ee0d4b18cfc12e1b11.jpg" title="Photograph of Yerandy Basart (Caballero 3) and Fara Madrigal (Dama 1) in the production, &quot;Los zapaticos de rosa&quot;">
+                  
+                  
+                  <img src="../media/cache/6d/94/6d94bb94934f73e1149873bf53010379.jpg" alt="Photograph of Yerandy Basart (Caballero 3) and Fara Madrigal (Dama 1) in the production, &quot;Los zapaticos de rosa&quot;" data-href="/digitalobject/16564" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/a4/7e/a47ed163157943119dfb100d7e08d5c3.jpg" title="Photograph of Yerandy Basart (Caballero 3) and Fara Madrigal (Dama 1) in the production, &quot;Los zapaticos de rosa&quot;">
+                  
+                  
+                  <img src="../media/cache/9a/84/9a840430e8377be65b12fa86531a184b.jpg" alt="Photograph of Yerandy Basart (Caballero 3) and Fara Madrigal (Dama 1) in the production, &quot;Los zapaticos de rosa&quot;" data-href="/digitalobject/16563" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b6/33/b63388514fe411e968e984b6edce01ed.jpg" title="Poster for the production, &quot;Los zapaticos de rosa&quot;">
+                  
+                  
+                  <img src="../media/cache/d2/b4/d2b4f2024621eeeb4d9829add6001c94.jpg" alt="Poster for the production, &quot;Los zapaticos de rosa&quot;" data-href="/digitalobject/16562" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/0c/42/0c42491c8f9c7e41716bd68e20c50352.jpg" title="Poster for the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/b7/1b/b71b704e0d8413d88a72014abaeaebab.jpg" alt="Poster for the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16558" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/3a/48/3a48b325207071f96664f828d4013531.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/57/cf/57cf9c6eeda252a79383ea59ed6a8329.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/27/5d/275d7f420a22468a0cfd3a725a040420.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/f2/6e/f26e79492a7b894327b108b0adbac1e0.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/48/89/48894a7e171c3acd18d8392a93796ed0.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/b1/ac/b1ac9b351f967fce6f2e49e69fa3e5f4.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/1e/c5/1ec53277354086568774b8f30c8e701f.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/1e/3b/1e3b3f4e359de04c343011ef89251aba.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/04/31/04310f3b45e1fab6e7613300a5b33ccb.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/fd/4d/fd4d2768985920bcd47775e6f8ea5db4.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/eb/07/eb076fc5349c8b579cd2110e03f4327c.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/b6/40/b6409b866bf46f03d7b68bd3003bc112.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d0/7a/d07ae299ce4e28695edc92b4b2342939.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/c7/b6/c7b685d687e576ad02236f0506193258.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/19/ca/19cae678e2eff3a96e29cc00790e15cf.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/5a/b5/5ab54920461d0aab89f67ea21a25ecd2.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/5a/8d/5a8d3b64bf13a6980faff02ed0691378.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/c2/77/c2776d7e8d86d47452337dc8efb5abbe.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/5a/02/5a02deb78bda8318fcc968ae0b56e5e2.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/cc/d7/ccd7fcf80e985783f79227c8fecd58f6.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16557" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/61/7b/617b905c80caaf932b8a594efa9031f1.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/4f/5f/4f5f5b6327ff758218902618184dddc3.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/16/7e/167e41c8ac8310aa20eb28cbcf151252.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/39/0e/390e74a77dbfb7730ecfffe27bb04526.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/be/e7/bee7d65b3ffd3e7166acd9a056946587.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/4d/dd/4ddd5a7ab55dd43a6eca69c7a47cb7c7.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/4a/79/4a79ade8913c7cf1ca9dc83e227ddf8f.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/9c/8c/9c8c23620ef203119461f104f2af81ec.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/4b/c5/4bc5c4fd9d8278e5ed33c0edf7d4950c.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/4f/ea/4feabf01a82594142fb158e8a256d806.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/98/39/9839dbcd7ec44c1eaa50a5e43b5bc852.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/ef/52/ef52f2a04ebd288c74b12dd68d5a45f6.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/7d/cd/7dcd2c177e7bc0a7834f1ede04b402e6.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/0a/b5/0ab5e727a6bbde21994f7ca2f84599c4.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/63/d4/63d4cea10a854faee378e9299e6926dd.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/6f/95/6f955eea4361c25bcd8841ee3e412500.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/39/22/3922ea50ef85c17eb12ad181593ddcde.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/75/70/75708db56142ddb09af12004affcf38b.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/c6/21/c621b1831698aec544b192d881082ba6.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/28/0c/280ce67a978368a420f42a82d5bee2e7.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ce/a8/cea8f3875ac544ab6093484c3a0e860c.jpg" title="Photographs of the production, &quot;Federico de noche&quot;">
+                  
+                  
+                  <img src="../media/cache/58/27/5827f8217254fb559c52f78923a23618.jpg" alt="Photographs of the production, &quot;Federico de noche&quot;" data-href="/digitalobject/16556" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ee/3b/ee3b0e8e9f240a322eefa14807e1061d.jpg" title="Poster for the production, &quot;Por el monte carulé&quot;">
+                  
+                  
+                  <img src="../media/cache/a4/b1/a4b150a1be4adf91670f5ce21342f1c3.jpg" alt="Poster for the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16555" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/3c/aa/3caac793f3950ecf1fafdde0e3c099f7.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                  
+                  
+                  <img src="../media/cache/e9/c9/e9c98d281830b5261adfd2b002dc0d35.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16554" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/a9/6e/a96e892bb4756b729da693d1788bd895.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                  
+                  
+                  <img src="../media/cache/4a/be/4abe77041a04d55cc1fe05dbac1a0ea3.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16552" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/5d/1d/5d1d63adb7aa39be8b82c8cc8d4659cc.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                  
+                  
+                  <img src="../media/cache/58/f8/58f82bdd6ae1bd1e7a88809537d3b9d3.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16551" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/64/68/6468029359f4b987e110f6997a1416c0.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                  
+                  
+                  <img src="../media/cache/af/30/af3017ae83e1b35d3a52fac8e2474896.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16550" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/a1/20/a12097c2bf548f446e632faac44f0cbe.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                  
+                  
+                  <img src="../media/cache/2b/82/2b82f1465156ce6a15482cd24ace96b0.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16548" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/76/2f/762f1a15ccee799fdd0469be5fcb6af9.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                  
+                  
+                  <img src="../media/cache/b4/c9/b4c9b13be087be253c62dc5e07cf7dcd.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16553" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/a6/31/a631ec5574d8c4e0531680ecfab1fa39.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                  
+                  
+                  <img src="../media/cache/c8/95/c8951ce03bb2bb87dd1634e7b9a1d1c8.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16549" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d2/81/d28119716d273bfb60ece558d670fba2.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                  
+                  
+                  <img src="../media/cache/5a/23/5a238b146f2e1d272d12e445637feb42.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16546" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/af/e3/afe37c8f4709eb3e25150eb4f9839a48.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                  
+                  
+                  <img src="../media/cache/be/be/bebeb952076db4680803203d5655a88b.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16547" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ba/27/ba27831e1b26d12f5bd351187751cf94.jpg" title="Photograph of the production, &quot;Por el monte carulé&quot;">
+                  
+                  
+                  <img src="../media/cache/94/8a/948a383d1b4508d495e72a0c6ee314e7.jpg" alt="Photograph of the production, &quot;Por el monte carulé&quot;" data-href="/digitalobject/16545" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/94/65/946549f72baa2a065d12aa2f382d6df0.jpg" title="Poster for the production, &quot;La Virgencita de Bronce&quot;">
+                  
+                  
+                  <img src="../media/cache/cc/2a/cc2ae76fe140551b4b1582e656b1b236.jpg" alt="Poster for the production, &quot;La Virgencita de Bronce&quot;" data-href="/digitalobject/16538" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b5/e5/b5e5244e86979c36290da92c5017e95b.jpg" title="Photograph of the production, &quot;La Virgencita de Bronce&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/f4/c6/f4c6f1a64911c68c6a0bb0026b6a3163.jpg" alt="Photograph of the production, &quot;La Virgencita de Bronce&quot;" data-href="/digitalobject/16540" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/6f/d76f2b063fbb3ff3e546f5419337ed9d.jpg" title="Photograph of the production, &quot;La Virgencita de Bronce&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/ce/8f/ce8fa043c8fc903f18657eba8f3975f3.jpg" alt="Photograph of the production, &quot;La Virgencita de Bronce&quot;" data-href="/digitalobject/16539" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/21/86212679d1816455b25936ca5212fee9.jpg" title="Photograph of the production, &quot;La Virgencita de Bronce&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/59/a6/59a681d25c0e03f07af5bde10dd62886.jpg" alt="Photograph of the production, &quot;La Virgencita de Bronce&quot;" data-href="/digitalobject/16537" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/35/1b3573510e1c940f3f0a943c97b950ca.jpg" title="Photograph of the production, &quot;La Virgencita de Bronce&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/55/2e/552ecd79416ad9f3984a1d4d05037b83.jpg" alt="Photograph of the production, &quot;La Virgencita de Bronce&quot;" data-href="/digitalobject/16536" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/93/ec93c7a5ca5eb26b4f4d17cb1f4a6964.jpg" title="Photograph of the production, &quot;La Virgencita de Bronce&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/2b/bf/2bbf08a905c2c6753d6d56dfb9c19c37.jpg" alt="Photograph of the production, &quot;La Virgencita de Bronce&quot;" data-href="/digitalobject/16535" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b4/2b/b42b1625c4f5f572b6ec944809a102c5.jpg" title="Photograph of the production, &quot;La Virgencita de Bronce&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/a4/c3/a4c38c3bf9aad8765a6a7513c4966acc.jpg" alt="Photograph of the production, &quot;La Virgencita de Bronce&quot;" data-href="/digitalobject/16534" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/30/e8/30e8bc27b25de96865d0eb77db7200ed.jpg" title="Invitation for the dress rehearsal, &quot;Por el monte, Carulé&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/01/b2/01b2b5f96ce3d73f987c8a555b5aedf1.jpg" alt="Invitation for the dress rehearsal, &quot;Por el monte, Carulé&quot;" data-href="/digitalobject/14605" />
+                  
+                </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

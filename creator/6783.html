@@ -1,0 +1,1048 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Jarlys Ramírez</li>
+                </ul>
+            </nav>
+            <h2>Jarlys Ramírez</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Actor, light designer</strong></p>
+
+            
+            
+
+            
+
+            
+
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4382">Perros que jamás ladraron</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4480.html">Bent</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>2014</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3800">Se ruega puntualidad</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>February 17, 2012</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3803">La belleza del padre</a><br />
+                    <span>Lorca</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>February 17, 2012</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3395">El adiestramiento</a><br />
+                    <span>Light designer</span><br />
+                    <span><a href="../venue/32.html">Teatro Avante</a></span><br />
+                    <span>June 6, 2000 - June 7, 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1063">El adiestramiento</a><br />
+                    <span>Light designer</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+        
+            
+        
+            
+            <hr />
+            <h3>Videos</h3>
+            <ul class="videos">
+              
+              <li>
+                <figure>
+                  <a id="cta0009000059" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/93/ca/93cab954a001303ba85c89c0606f5d9e.jpg" alt="Link to video of Se ruega puntualidad" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/12847">Se ruega puntualidad</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0009000056" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/f0/9b/f09b346435e1b4e70ee4d95786727ac6.jpg" alt="Link to video of La belleza del padre" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/12844">La belleza del padre</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              </ul>
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              
+              
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/16125.html">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/e9/7d/e97dca02e9a2ea3f91be9413d409a912.jpg" title="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/bb/96/bb96fe96c777283c5bd6f178503bdcaf.jpg" alt="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16125" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/bb/3d/bb3d7883e4b2544befc22ee9c7088cba.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/6c/06/6c0616dfaa49516e393cfe9e184b08ef.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16145" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ca/0e/ca0e6f41639e0050476f9721d0e98c86.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/d0/61/d061c849c31cf51d7e2452e53a51cc24.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16144" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c9/0f/c90fd019844d6369eacde221a1b087a4.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/49/b8/49b803bce903393c5935ec2fead3dd8f.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16143" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/50/97/50979363cc7bb3b19ccb883ca14c26d2.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/24/03/24038e10fc8ff274a2d3da24d488f437.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16142" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/0a/7b/0a7b85f1bbe012e18196263477b30fbc.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/7a/0f/7a0f31aaba589b1001219f9838e73dd3.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16141" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/43/0b/430b5465c479598e86d92f50e4bdb985.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/47/0a/470a4e542877a35217d86ab526408895.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16140" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b5/d2/b5d24bd48bb7ebf31cca36b8d18daf8a.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/16/74/16741366cfbb45383e272edbec87dcb4.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16139" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/6b/ae/6bae7d86c471721d62984b2ecc218c05.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/6b/94/6b945ef4657662c8876e577e1159b8af.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16138" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/f9/12/f91223ea54234bf71941912ddf382007.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/32/78/3278cb78beaf089c5bc207bbbc6cf11b.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16137" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c3/e9/c3e9f4e93758e244f4aa83fbd98f4fe7.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/e7/53/e753409933751a643cd55b1aa9ab022b.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16136" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/67/37/6737efac8c8b90bdf9bbfa94669813e6.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/a8/83/a883e7a23cc97e0b2cfe5f7d80f9ec05.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16135" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c2/a7/c2a739bf7f4256242edbcb45e78c14d2.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/b7/d2/b7d23dee579ea062d8d76477089a7bb8.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16134" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/74/ba/74bad0dcefd50d80f94d21b847d9329f.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/9f/df/9fdff748dcc50ff99bf8c5f21d5b1379.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16133" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/89/49/89495e2c6e7e44c0f0ea38d324c1736e.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/1b/96/1b96db92052a74365b17da952a0856e0.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16132" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/a3/b2/a3b23672235bc5d45d67d6d6b392acf9.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/46/98/46987d517736d7bd1c2f31873b9aa12d.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16131" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/bf/2e/bf2e7d6b35fb25e3177f5c57c61043ec.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/c5/de/c5de0b7d15a9cb970547c4e29a50294c.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16130" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ce/d0/ced01639c7bb3f18cb8c36dd2754c6a1.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/4b/70/4b708f6ff673cfefea1563a09de026cd.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16129" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/cd/98/cd98d32f3e439c7ac2ae297b3002de82.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/e1/c8/e1c80d2189e1ef70cbc0767b808df96f.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16128" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/56/30/5630da9366949e3b49c928589dd0796d.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/d5/96/d596dcfc3d1cc1282f75f70ae1c2ce44.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16127" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/34/86/34867ab3198b21d84c4c12702cf938f4.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/aa/60/aa60ac1287fedbb8359e6a0ce3760ee6.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16126" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/33/fb/33fb241e05760acf0d5f03b5074c3868.jpg" title="Enmanuel Galbán and Yoao Aguilera in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/c6/73/c673c806cf15f6dd20df880d5d512e9c.jpg" alt="Enmanuel Galbán and Yoao Aguilera in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16148" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/64/b2/64b26d2c91d881c5f20cedb4b49c0fdf.jpg" title="Enmanuel Galbán, Jarlys Ramírez and Yoao Aguilera in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/d0/0c/d00c58a7ab0328a26831df268505f13e.jpg" alt="Enmanuel Galbán, Jarlys Ramírez and Yoao Aguilera in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16150" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/3c/e6/3ce6f3749fd96c5d2158bad41df6bb46.jpg" title="Enmanuel Galbán, Jarlys Ramírez and Yoao Aguilera in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/60/3e/603e1afe255b4df6d9fdad778ee45c78.jpg" alt="Enmanuel Galbán, Jarlys Ramírez and Yoao Aguilera in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16149" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/d5/7b/d57b9c5a44282d6632d3d5faed7c484d.jpg" title="Enmanuel Galbán and Yoao Aguilera in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/2e/a6/2ea63dfa8c55576aa3c6a1bd71a63f88.jpg" alt="Enmanuel Galbán and Yoao Aguilera in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16147" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/01/f8/01f864eec1579dffd4c2be1945eeb057.jpg" title="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/e5/e4/e5e40d857e805954b9b4fb26f5a1558c.jpg" alt="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16120" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/53/87/53874108a5eff17b61f9d200efe10254.jpg" title="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/84/a5/84a57267b4ecf1de9ec4a890a08164a6.jpg" alt="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16119" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/8e/98/8e98ddac19112755bbbe634ccd613ec6.jpg" title="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/08/da/08dac7fd9dda4a4e718ae986f33728c7.jpg" alt="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16118" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/be/38/be38ce4b3ef0f5194d69937662d807d8.jpg" title="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/82/01/820118875eef92446b7dced9c4ec961d.jpg" alt="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16117" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/f3/f7/f3f760a62e2d7b291d2145a100f0de57.jpg" title="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/c9/09/c909562d672ebd3544af06d6d2495a85.jpg" alt="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16124" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ba/2d/ba2d0e5e97b3f83fb3754e072972e749.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/2c/25/2c2560f1665af797e3013ce84bc1c05b.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16152" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/8c/9f/8c9f60fddb9416e88c940d03f9641a3b.jpg" title="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/eb/e0/ebe0ab2d1b5a3141b2f2fbb7c58ed3e3.jpg" alt="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/1d/aa/1daaec3bfd8a34c5bb119df355b29f03.jpg" title="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/11/a4/11a45625899ed2ddbe7d06449d5f4540.jpg" alt="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/04/a8/04a8309f2e900d16498a0d9e39b051c6.jpg" title="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/4f/5e/4f5e17c69fc74d68e2daa06699ed45b1.jpg" alt="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16121" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/67/3f/673fd19a41f7285e7d47a65fc333f291.jpg" title="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/25/4a/254ade00ed1764dd840d72e57c81b528.jpg" alt="Alegnis Castillo in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16151" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c6/e2/c6e2053214e2049ac4fe84c001e65f54.jpg" title="Alegnis Castillo and Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/5b/f1/5bf1004509998a138ece5f4494f6a91a.jpg" alt="Alegnis Castillo and Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16155" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/bb/9a/bb9a28c966fa93949da6d432f67416a8.jpg" title="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/78/a7/78a7931e42d8f94d7a586be42f3c8ff9.jpg" alt="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16111" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/7f/05/7f058fa35f113be371d1c31038998969.jpg" title="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/cb/a2/cba22b056b0769c8a2c58e61527e9ce7.jpg" alt="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16110" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/12/77/12771e4cfb6155469eb4f4f98e7bc6a8.jpg" title="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/5b/51/5b51b339b0d8ad8e1a38851c21b39c5c.jpg" alt="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16109" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c3/f0/c3f057845ce81634e100821d3b3a2eb4.jpg" title="Alegnis Castillo and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/fb/58/fb58074835b8047faee8e3ca1a7be0ca.jpg" alt="Alegnis Castillo and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16154" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/1c/d4/1cd481840d65f3812d335918873fa756.jpg" title="Alegnis Castillo and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/f9/d7/f9d7d2195bf20d68838b011d48cd5408.jpg" alt="Alegnis Castillo and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16153" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/83/43/834382e41a48b6bb9cc2ac390b9514db.jpg" title="Alegnis Castillo and Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/67/f8/67f807cf7c14b3110e89c432739c24c1.jpg" alt="Alegnis Castillo and Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16146" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/96/63/9663768047628d9ef46ce6b6580d4ee7.jpg" title="Audience participant in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/17/a6/17a6f7a049658333b2e41c805b05d2b0.jpg" alt="Audience participant in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16070" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/a3/c9/a3c91921d6b826089bf5e286d67122f0.jpg" title="Jarlys Ramírez and audience participant in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/dc/0b/dc0bea60fc749cc8b6ae6d2421865172.jpg" alt="Jarlys Ramírez and audience participant in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16161" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/61/8b/618b7a3f5e04579b43126c110daac48f.jpg" title="Jarlys Ramírez and audience participant in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/88/20/8820c7af698350e575d58bb0147b0793.jpg" alt="Jarlys Ramírez and audience participant in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16159" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/fc/a4/fca487883453eeb87a56134fe32303a1.jpg" title="Audience participant in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/fe/1d/fe1d37b523d968cb6cebfd6129858810.jpg" alt="Audience participant in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16160" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c2/66/c2661e89fa921f5920c1dd764c561b26.jpg" title="Enmanuel Galbán and audience participant in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/b8/de/b8deef9c823cbabb9a406c548b1c7186.jpg" alt="Enmanuel Galbán and audience participant in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16158" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/06/9d/069d91195da6b9aaf4556257b5e1fce7.jpg" title="Enmanuel Galbán and audience participant in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/e6/d9/e6d9db36f8533ab481cb28ee4346049f.jpg" alt="Enmanuel Galbán and audience participant in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16157" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/2a/82/2a82b937427d790e4fd9c170e320b225.jpg" title="Jarlys Ramírez and audience participant in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/7c/81/7c816c0ce3d357ca40e643919e59fcb5.jpg" alt="Jarlys Ramírez and audience participant in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16072" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/23/9d/239dea8997ed180a5f07d146a2a5df51.jpg" title="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/e5/f5/e5f516565538b3b05a09bdd01313937f.jpg" alt="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16116" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/4d/fc/4dfcb86be70450a637215e84a27ab9e9.jpg" title="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/ec/52/ec524f1a2e4f4836c80472fbb55cc1e7.jpg" alt="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16115" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/5e/74/5e74cc2366fe473b71339590ac372ad1.jpg" title="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/4a/16/4a1658e766cf2d79b57cd71f5afd5a93.jpg" alt="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16114" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b7/5f/b75f21788cd7309fa0a99a4e5941c86b.jpg" title="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/c6/50/c65009d7371bdc547a16429047711c25.jpg" alt="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16113" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b8/bf/b8bf740e499b292c117d688179d58c41.jpg" title="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/1c/89/1c89d37dc3e724e580ece46b0c85bbec.jpg" alt="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16112" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/d7/3d/d73da1b484d9ae517306498ee040d15d.jpg" title="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/53/df/53dfb72fdab251f5e3cc6b21e40dc06d.jpg" alt="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16108" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/8e/f1/8ef1e80c350fee26a86a1d28d68e141f.jpg" title="Alegnis Castillo and Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/d9/d4/d9d46cf4fa2c2bef7fd625bd60d04621.jpg" alt="Alegnis Castillo and Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16107" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/e3/06/e30652ac43e728c169e5dabd72d579c1.jpg" title="Alegnis Castillo and Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/32/c9/32c95fabec7935224cada7df33816b8d.jpg" alt="Alegnis Castillo and Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16106" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/e0/02/e002cbeb1108321b815b261728c0277c.jpg" title="Alegnis Castillo and Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/4d/ff/4dff13021c93157dc6d1f460ec804191.jpg" alt="Alegnis Castillo and Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16105" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/76/ee/76ee0769181e211e7d8776719de56d2f.jpg" title="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/5b/7c/5b7c1298485e0d8d230090d22159dbf4.jpg" alt="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16104" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/28/69/28692328ea54393c1b823414766f31bb.jpg" title="Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/aa/97/aa9736d3cefa2814542ca14277456c36.jpg" alt="Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16103" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/1a/c1/1ac191d59467c8b188778c8bb07827fd.jpg" title="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/a4/44/a4445956f494cd9c10d3189414ce00fe.jpg" alt="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16102" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/1a/09/1a09b77a24d535b3468b8b10aa7fb034.jpg" title="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/5d/4a/5d4ae36f8f24867fcdda20cdaf215fd6.jpg" alt="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16101" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/05/49/054971c8c6b9cd1709022c2bcd1d0431.jpg" title="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/6d/73/6d73a4ee2aa41ffe125400f56e3a097d.jpg" alt="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16100" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/95/38/9538441a5af08af50e5b7b05e4cd8067.jpg" title="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/11/1f/111f4b3b424df890efc6e7c001475c5c.jpg" alt="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16099" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/72/e3/72e3dd646275dd42321c1680bbeb2118.jpg" title="Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/a5/6b/a56b19cc9f067e706b95a3c4d96fe854.jpg" alt="Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16098" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/49/b1/49b19b5f4e6865718d27a627cf16cbde.jpg" title="Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/ac/6c/ac6caea957539e5fda1f143729484b8e.jpg" alt="Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16097" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b0/78/b0782c54b36e1b608d80dcc0aae2e878.jpg" title="Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/0b/b9/0bb9230ddc26ccee803bbb348e873b8d.jpg" alt="Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16096" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b0/78/b0782c54b36e1b608d80dcc0aae2e878.jpg" title="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/0b/b9/0bb9230ddc26ccee803bbb348e873b8d.jpg" alt="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16095" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/70/39/7039aa4fc41aa5d7263b0489b797d773.jpg" title="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/6a/78/6a78a0c8663b5f41e6e40bcad590f494.jpg" alt="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16094" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/76/3f/763f02dc50f0e2ab45f0c751cb40a839.jpg" title="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/ad/a4/ada4fc20c092ebc694eda1f75e643cdd.jpg" alt="Alegnis Castillo, Jarlys Ramírez and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16093" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/53/bb/53bbf5b6cd7901cf3c8fc4a568ddf764.jpg" title="Alegnis Castillo and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/53/36/53366ab9b016b74480da8545144aefe8.jpg" alt="Alegnis Castillo and Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16092" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/f8/81/f8812b21bbb2f0274d2e9688692ad68a.jpg" title="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/74/ff/74ff22b1fa02cb697d70560b55fc967f.jpg" alt="Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16086" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/08/1a/081ae2ae16dbe87d219c648e71e570e9.jpg" title="Alegnis Castillo and Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/97/13/971332e3bdbc902039b5b9c770bce975.jpg" alt="Alegnis Castillo and Jarlys Ramírez in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16071" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/d4/f9/d4f97f223204c3a752731f7c9d7867fa.jpg" title="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/6c/95/6c95dbffa25e06d0e8b7876679d85efb.jpg" alt="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16073" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/a7/5c/a75ca2222516e293d92247db5bd7456e.jpg" title="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;">
+                    
+                    
+                    <img src="../media/cache/fd/d0/fdd06e560ebc872d84d30f4e3c41d0c2.jpg" alt="Enmanuel Galbán in the production, &quot;Perros que jamás ladraron&quot;" data-href="/digitalobject/16057" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('#cta0009000059').fancybox({
+          content: '<video id="vid-cta0009000059" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000590001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000059').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000056').fancybox({
+          content: '<video id="vid-cta0009000056" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000560001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000056').mediaelementplayer();
+          }
+        });
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

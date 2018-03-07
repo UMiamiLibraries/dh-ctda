@@ -1,0 +1,1237 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Manolo Torrente</li>
+                </ul>
+            </nav>
+            <h2>Manolo Torrente</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+                
+                    <img src="http://ctda.library.miami.edu/media/cache/c0/03/c003db10458d21f8868f5607bfd93b83.jpg" />
+                
+            
+
+            <p><strong>Director, actor, author / playwright</strong></p>
+
+            
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2956">Latin Fire</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3859">Latin Fire 72</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1311.html">Del Webb&#39;s Thunderbird Hotel &amp; Casino</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3860">Viva Cuba - USA</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/28.html">Miami-Dade County Auditorium</a></span><br />
+                    <span>July 18, 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3885">Latin Fire</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1319.html">El Club Cubano Americano de West Palm Beach</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3886">El amor todo lo puede</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/174.html">Teatro de Bellas Artes</a></span><br />
+                    <span>February 11, 2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3861">Espíritu Burlón</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1312">Hotel Nacional de Cuba</a></span><br />
+                    <span>1950's</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3887">Todo mi amor</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/174.html">Teatro de Bellas Artes</a></span><br />
+                    <span>May 7, 2005</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban - American</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>December 7, 1925</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>La Habana, La Habana, Cuba</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Death date:</h4>
+                  <span>August 20, 2009</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of death:</h4>
+                  <span>Miami, Florida, United States</span>
+                </li>
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/14187">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5d/b0/5db0158d47a4bb953f35b8ee0b112803.jpg" title="Program for the production, &quot;Manolo Torrente: Intransigente&quot; ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/48/eb/48ebc11628907406f9268dc26ba54e76.jpg" alt="Program for the production, &quot;Manolo Torrente: Intransigente&quot; " data-href="/digitalobject/14187" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/4b/094bd7683e67a59ba6dd88d333df7242.jpg" title="Program for the production, &quot;Manolo Torrente: Intransigente&quot; ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/60/fd/60fdf5db613e99ceacab3c6752beaad5.jpg" alt="Program for the production, &quot;Manolo Torrente: Intransigente&quot; " data-href="/digitalobject/14187" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d8/0d/d80dae950c435569d4404cb338893ec0.jpg" title="Program for the production, &quot;Manolo Torrente: Intransigente&quot; ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1e/98/1e98042a5f081727c5d51387d6b770c0.jpg" alt="Program for the production, &quot;Manolo Torrente: Intransigente&quot; " data-href="/digitalobject/14187" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ab/45/ab451abbc26177af4910b9c305cde23f.jpg" title="Program for the production, &quot;Manolo Torrente: Intransigente&quot; ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/65/20/65209fce6a81832bca2364439b05a0b6.jpg" alt="Program for the production, &quot;Manolo Torrente: Intransigente&quot; " data-href="/digitalobject/14187" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/21/9d/219db10332227228a2e1e2393caa1781.jpg" title="Program for the production, &quot;Manolo Torrente: Intransigente&quot; ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/60/d4/60d4ee6d9c4a001cf542588f0137477d.jpg" alt="Program for the production, &quot;Manolo Torrente: Intransigente&quot; " data-href="/digitalobject/14187" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1d/1a/1d1acd550287fc8aaaaa1db297ba6355.jpg" title="Program for the production, &quot;Manolo Torrente: Intransigente&quot; ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/80/23/802382fb7ac2ca656c1939a2cb6169c2.jpg" alt="Program for the production, &quot;Manolo Torrente: Intransigente&quot; " data-href="/digitalobject/14187" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/26/bc/26bcd45946ebc1b91bb587399bc772de.jpg" title="Program for the production, &quot;Manolo Torrente: Intransigente&quot; ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a6/b6/a6b6d844e0b1fe02743f661222d1a3f3.jpg" alt="Program for the production, &quot;Manolo Torrente: Intransigente&quot; " data-href="/digitalobject/14187" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f6/f5/f6f568dac6c9a04fe6966a6ce735027e.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ba/18/ba18702a67a9c86f0ffbb577bdeb8c65.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fc/cb/fccb0db75177b4bbfe56343c71c68948.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/61/db/61db4bbdc963f9757cc57af39e1bb10d.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/35/8a/358a2fac1166b0e37ff25897c522736d.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/89/35/89355c15062f6e8a6b558e64af0563ea.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/a3/20a3e7a16d7e9f5b6ec58aac144a3191.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/97/c3/97c3ced9fde5f8c092238412a4b0e8f2.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c0/9c/c09c94e42d9751576fe3c84393b5ca42.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e2/fb/e2fb5349f1c86e4ba8a96d8ff40b9af5.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/78/ec/78ec88a14dccf2180df9cb9207dbd111.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1a/bd/1abd4040779d277fa2c4508c69f6b8a6.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/a8/31a8f59921ff82cda96bed8e891ce025.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3e/47/3e47b7a80f5acd8baa0dc502910d013a.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d9/7e/d97ee9481ca091e160fb9f0d8fcb71f8.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/23/e6/23e627bb4ff938e86238be847132738a.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3c/58/3c58acbc428131ae63107895f1896eb7.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bf/b1/bfb178b521d8988e56fdbc44270a7099.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1e/f3/1ef3aedfbbac81582f07eca28e26e3eb.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d9/ef/d9efc68509934c645f31b1f196cab20a.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a0/12/a0121bd34939d34bbebc6c1525ee45f3.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bd/b6/bdb636758c232cd520e1f424bd311878.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/eb/10/eb10c6d6c5a34201a03c2824ade61428.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/60/49/60499c141506f708d7262f9a7a59e957.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/90/ac/90ac13c7f67cb43c283d18fe5fb29827.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/22/5a/225a8baa18ca26db6c3c68193280cf75.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5c/90/5c90bfd2a826c1baf82cba1b6eace6f2.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8b/ee/8bee12bfa3f86f89e0c7cf7ab5a4a4c0.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/24/53/245372e944a535d76d6278234f1723fd.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ae/e3/aee32b51913603b44729bb2512bbb404.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3f/9b/3f9b644294253ee5b01107870ed8a97f.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/07/a8/07a81700601ec22c562d2f0eb13ef31e.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d0/87/d0870066f27f469c71dec1223dc28d60.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7b/e2/7be2b277e4990a20d509ba3b59afbceb.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e8/68/e8687ebc27a054e49f2e5457427de52c.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/35/20/35206dc1f7c89b1ce323d06721970b04.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e9/a5/e9a50acd30c8a7a75c5c033381cd0607.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/13/c5/13c521e9f49e9397cb12c2a5a7587ded.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5a/db/5adb7ab518bdbde366a09dbd5d45b39a.jpg" title="Program for the production, &quot;Manolo Torrente con los grandes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0b/30/0b301055cf310063dd61baffdaa2b546.jpg" alt="Program for the production, &quot;Manolo Torrente con los grandes&quot;" data-href="/digitalobject/14123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2a/b5/2ab55990ea51441598788f28fdc18339.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="../media/cache/92/85/928589d56c6c3cfb906b53e77696e546.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5f/a5/5fa5c6c0f28772a9b9c1ac1b2009fb7a.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/04/57/045799c5d594efb45cc5e39b93842c26.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ee/e7/eee7bdb7d15ebb34a09cfcb83e07093c.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3f/60/3f60250ebea742b4055f36f04948e854.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b1/00/b1002047d1e0e3ee0d921d83ce6b6746.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2e/91/2e914578cf7993d71a6719046b024d57.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2d/23/2d2332268e16ece38e45347c9423184e.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d1/35/d1350912de7624261d3dc7a916e69bda.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/36/25/3625fc5413037915fa4cbb1b2f2c5747.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fd/16/fd16c424a5fb5594d84019df7c4fdf60.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/77/59/77591a6fee58a2f31d8145e3be524e70.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ef/28/ef287a70e84ad5abac39780f0e7c7daa.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b2/3f/b23f7b822fe492f2cdab16df87b6b773.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/92/76/92768687b3ca45c144bf4a1d718c1f38.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2f/a2/2fa2358efdec2c33517312682f8492d9.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2f/4b/2f4b0ac7e99e7160f250964971ee8aa8.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/db/bddb763578fe8ccbe05181e499cc6c15.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/52/e4/52e440cce35fa1c0101b48897148963b.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bb/37/bb37c0ca42a8fa17a9a6a4e998145a53.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5a/29/5a296ed4edbb200e198aedc9be9d4c67.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f3/f9/f3f962dae62c8b20271c29974f3824b4.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/52/c5/52c5910215cfd2e11c003ae2f693ae84.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/37/e2/37e2c14eb54ce47ecc5566d1695e6067.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b6/dc/b6dc05ece04d40b201fa0c846cb36eb9.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7b/f6/7bf6c6466460c0fb752ea2e24a9fdf7d.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/47/db/47dbbd5faf51fcb17d691a6c27885ce9.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0b/a0/0ba06f16fbe67cff6082c9f10b11c949.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2f/ba/2fba7a558ea52af6ba64cd774967b139.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/66/c3/66c35a5c02ef86fd7a71d529534e3ef9.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b6/02/b6029cdbf7ebd5fa06c0106eb826b179.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ff/b6/ffb67edea4ec800e09ed48ab7a4235f0.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/64/c9/64c922b2e983df55134e669b81866b71.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5c/61/5c612219be133d9a652362f55244ef86.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/be/4e/be4e1f8e04e066206e7fec6a991149ea.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/81/7c/817c86ec678e6001394af6f8b194b6f7.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5f/bd/5fbdf8abcc3483c01bbd700cd5536f94.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f3/2d/f32d2e2eb0b58e7bece2d54a2c3b7c4a.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d0/2b/d02b4a1da1a65477ad278a4ed959ec46.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/eb/3f/eb3f2183c97b46170c22973340a4ab35.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/36/31/3631e1124cb65b34e58cd81e2d03401b.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/77/b9/77b9f167e39b420f60ec5ba342c2562d.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f3/cc/f3ccb814933ae4f56591f80a3d1c24d1.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f9/7e/f97e55a4255ac6ffc4e545731b9bd6ae.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3f/58/3f586110d2c5ac3bd63d6fb2f39d4959.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4c/0d/4c0d19b0397254607114ba09ac568cd5.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/04/ef/04ef4379700f6a9b5d41db6536b9092c.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b5/c1/b5c1f204a228bdce5628567b7256a96e.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4e/3a/4e3a6b52b09d28c5f4102ead98f2eb7a.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/16/93/169380281dda52916536c7f7b6bbed1b.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ee/47/ee47252be2462bf21eeae78b404b4f88.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/91/f191b5d63c6bc9dff90dd86a4698cc50.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a2/77/a277836ffe4612ee8f4d1d5c725aa3b2.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/42/8c/428c870dd06a08dec5e03ba9c71a7841.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f1/2d/f12d4c6a7a02be65c4d8dea27fd1e46a.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/95/1c/951c5c77e32751545e1756ec63ccba93.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0c/ed/0ced7bd1e8efa659b15ca3d267c5ba93.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/49/22491a81545a2e092f6e9bdbd82822b9.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/89/d6/89d6116c52a46cbc639118da2b33edd3.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/63/4f/634fdde492a14a64d96a99c8d208be91.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fe/1c/fe1c94aa6ed9325adbdc62daa7504794.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bf/65/bf65e121c930d311d0af01ad22b124bf.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a1/be/a1be5f0c173f430f7cc1e9271b4e2243.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/59/e2/59e25473ed7093b69cb29ba6d75d5a45.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ca/bb/cabb1144926f5ae85ef470fbeb6d327b.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/25/2f/252f547df53846b5f9ce20591150e3bd.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e6/0e/e60eada01281333710d78b5c2d81e908.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4f/52/4f52be8589595cce2100294895bb04c1.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d0/ca/d0cab17d952469beaf424b5f60a6b24e.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6c/f0/6cf0d251f867d46bf01222d384ccdd4d.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ad/3a/ad3a9f737193a2c3b5ebde8147080bbd.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/84/c6/84c670655ff116877e5e346c469401ed.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1f/fe/1ffe90603f890b3d500909d37f7f8313.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/60/7b/607b948f6356cb31466f0eafcbd9a8cf.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0e/7f/0e7fae26db48c6e99f77538fe5b9e0da.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4c/60/4c606bb87e3d6536b94bcaf85d944b57.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8b/f1/8bf144b47a336103f35536015289f782.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9d/f7/9df7d50d0ed4ca9bdbec2f7d86d99a00.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c7/03/c703c6fc5f20e852c6c37223054999fe.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bf/f8/bff8a77ed93e94dc027d1a48e4cfc082.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/60/80/608062c726374dba5290d8503bdf7730.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4a/ca/4acac66df0ff7b38458b2751d4dd6cdc.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0d/31/0d31051970be6bcbe9fb7a5ae47c480b.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/da/48/da4818b9cfe64ab6cd6165ab50436234.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a3/5e/a35e82292c0c6ce8404b730b658e1793.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6f/1c/6f1cf24b88c1c0e4de364db09656baba.jpg" title="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/70/51/7051e231a4bcea2bddf7031a9868e55f.jpg" alt="Program for the production, &quot;Manolo Torrente: siempre cubano&quot;" data-href="/digitalobject/14122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/60/02/6002ad88bfea5d1070a197fe3b5a2726.jpg" title="Clipping, &quot;Se nos ha apagado otra estrella...&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c1/f6/c1f652963de3fcce10411655965a9283.jpg" alt="Clipping, &quot;Se nos ha apagado otra estrella...&quot;" data-href="/digitalobject/14121" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1c/60/1c60164e7f92be53d0d8e84d4c3a0a0f.jpg" title="Flyer for the production, &quot;Todo mi amor&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/01/0d/010d2d9a33bca5103f0436437bb8e9df.jpg" alt="Flyer for the production, &quot;Todo mi amor&quot;" data-href="/digitalobject/14120" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/db/22dbcc27ebc024969217422b48f7e797.jpg" title="Flyer for the production, &quot;El amor todo lo puede&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/79/eb/79eb3e2f9ffb3e8b24cf7841e891c506.jpg" alt="Flyer for the production, &quot;El amor todo lo puede&quot;" data-href="/digitalobject/14119" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fd/42/fd421916c3a7830b23020124b841f500.jpg" title="Flyer for the production, &quot;Latin Fire&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b7/32/b732a6232a73a8b02dc191a7bf6cebca.jpg" alt="Flyer for the production, &quot;Latin Fire&quot;" data-href="/digitalobject/14118" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/73/86/7386dac20ceb88d886526ae3b757d62a.jpg" title="Ticket for the production, &quot;Rompiendo cadenas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7e/f9/7ef983ac6ed10c0033dff842792c343d.jpg" alt="Ticket for the production, &quot;Rompiendo cadenas&quot;" data-href="/digitalobject/14116" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/09/f109a93e5205064ad68aa9bab5f3c162.jpg" title="Program for the production, &quot;Rompiendo Cadenas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b6/e7/b6e7abfc628948229697c4c2818b312a.jpg" alt="Program for the production, &quot;Rompiendo Cadenas&quot;" data-href="/digitalobject/14115" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/95/2b/952be5564bb41bb52ea6141feb779453.jpg" title="Program for the production, &quot;Rompiendo Cadenas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/94/15/94152a25123f1de2e338cb1a69c43df4.jpg" alt="Program for the production, &quot;Rompiendo Cadenas&quot;" data-href="/digitalobject/14115" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c1/83/c183209dc41cec163f02ef43cbcf5eb0.jpg" title="Program for the production, &quot;Rompiendo Cadenas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9c/fd/9cfdff549b78399a375cce2bb24def86.jpg" alt="Program for the production, &quot;Rompiendo Cadenas&quot;" data-href="/digitalobject/14115" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7b/a8/7ba8bdd88a95993371d24145d1546887.jpg" title="Flyer for the production, &quot;Manolo Torrente: Around the World&quot;">
+                    
+                    
+                    <img src="../media/cache/75/81/75811de96e6293006ec07405b8bbcdd0.jpg" alt="Flyer for the production, &quot;Manolo Torrente: Around the World&quot;" data-href="/digitalobject/14114" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/e0/8fe0d62b2c9e80c60ecd0963ad947a02.jpg" title="Clipping, &quot;Singing with María Margarita Martínez Casado&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3d/9c/3d9c7e2db8159a919985a8115bb57c2f.jpg" alt="Clipping, &quot;Singing with María Margarita Martínez Casado&quot;" data-href="/digitalobject/14113" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c5/ee/c5ee0379e82a6b6457512855ea88b752.jpg" title="Flyer for the musical review, &quot;Espíritu Burlón&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ca/93/ca937ae01159e0e05b48380ff711cdb7.jpg" alt="Flyer for the musical review, &quot;Espíritu Burlón&quot;" data-href="/digitalobject/14087" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a7/69/a7695e90f843331ad7b02723b30d6c0e.jpg" title="Clipping, &quot;Manolo Torrente en México&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/04/bc/04bc8baf92ff223be8881e8c85ec0eb9.jpg" alt="Clipping, &quot;Manolo Torrente en México&quot;" data-href="/digitalobject/14086" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5e/c6/5ec64bebc209113afe10ddeb5a6a34d8.jpg" title="Ticket for the production, &quot;Manolo Torrente&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/22/c4/22c4f2add478e8cbb010a6aab8f6565e.jpg" alt="Ticket for the production, &quot;Manolo Torrente&quot;" data-href="/digitalobject/14085" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/21/d7215ffe8b20df07351f66e5505aaeb7.jpg" title="Ticket for the production, &quot;Viva Cuba - USA&quot;">
+                    
+                    
+                    <img src="../media/cache/55/a7/55a78351b84b816712c71f130e1557bf.jpg" alt="Ticket for the production, &quot;Viva Cuba - USA&quot;" data-href="/digitalobject/14084" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/29/9c/299cd7ec6a33b0f6562c4d623d161ba4.jpg" title="Program for the production, &quot;Latin Fire 72&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f8/1e/f81e8f08d29a435445453711a656abcb.jpg" alt="Program for the production, &quot;Latin Fire 72&quot;" data-href="/digitalobject/14083" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/50/2e/502e634b25c988e9cb7e809c0ce31a33.jpg" title="Program for the production, &quot;Latin Fire 72&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2e/a4/2ea418f01b172608e9eed80663810bd8.jpg" alt="Program for the production, &quot;Latin Fire 72&quot;" data-href="/digitalobject/14083" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/93/20933e33112d4ea0861ef275b988aa2e.jpg" title="Program for the production, &quot;Latin Fire 72&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/af/72/af72acdbbc31955d40a6b57b632c125c.jpg" alt="Program for the production, &quot;Latin Fire 72&quot;" data-href="/digitalobject/14083" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/32/b2/32b2a8a42c71cac044132b26c94da840.jpg" title="Program for the production, &quot;Latin Fire 72&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f1/2a/f12a93e428bfcf319f43a80950b3e9ba.jpg" alt="Program for the production, &quot;Latin Fire 72&quot;" data-href="/digitalobject/14083" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/59/31594273041c9783e53c891aee0fa77a.jpg" title="Program for the production, &quot;Latin Fire 72&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3f/73/3f736d2652266baf5d86b2fb5e07e3cf.jpg" alt="Program for the production, &quot;Latin Fire 72&quot;" data-href="/digitalobject/14083" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b4/00/b4003f2815799f480d177dc36caa8443.jpg" title="Program for the production, &quot;Latin Fire 72&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/44/32/4432e7f530f7b0c17dd26c2fb8b04c40.jpg" alt="Program for the production, &quot;Latin Fire 72&quot;" data-href="/digitalobject/14083" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/39/57/3957da0e73015ed1b0f6f8377fc6a3b8.jpg" title="Photograph of Manolo Torrente and Gina Romand">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/62/e6/62e66afd17f65b4cd63681bca76f2fd4.jpg" alt="Photograph of Manolo Torrente and Gina Romand" data-href="/digitalobject/4177" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/cc/09ccfb9d112fa3a1029f521bd20dc02d.jpg" title="Photograph of Manolo Torrente">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1d/c7/1dc78cba52661cce75c1b8915d37fca4.jpg" alt="Photograph of Manolo Torrente" data-href="/digitalobject/4176" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f6/c0/f6c09be9492b053628d03f05bc974636.jpg" title="Escrito de Manolo Torrente">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c5/68/c568e4b50d9da417693eb7e614831a77.jpg" alt="Escrito de Manolo Torrente" data-href="/digitalobject/4174" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/54/d254bb1c8fdd9f5c86d260adc668af6c.jpg" title="Program for the production, &quot;Latin Fire&quot;">
+                    
+                    
+                    <img src="../media/cache/80/e9/80e984d4ad5341865331ae355f47530e.jpg" alt="Program for the production, &quot;Latin Fire&quot;" data-href="/digitalobject/14082" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8e/be/8ebe33ea513cc4037af77476e5b59cf4.jpg" title="Program for the production, &quot;Latin Fire&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/93/1d/931d44b894dcd44ac54e298430893f05.jpg" alt="Program for the production, &quot;Latin Fire&quot;" data-href="/digitalobject/14082" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ed/ee/edee1f6809958dc79e833ae4f061a2bc.jpg" title="Program for the production, &quot;Latin Fire&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/dd/1d/dd1d047964e95e221753c0fa9d0c57db.jpg" alt="Program for the production, &quot;Latin Fire&quot;" data-href="/digitalobject/14082" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ba/9a/ba9a68b405fd0dcb7f4352df94eec008.jpg" title="Program for the production, &quot;Latin Fire&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fe/42/fe421e5741ab57ec0917dac4cd658820.jpg" alt="Program for the production, &quot;Latin Fire&quot;" data-href="/digitalobject/14082" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9f/62/9f6275e6fc45e4b8421c093953019b4a.jpg" title="Program for the production, &quot;Latin Fire&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bb/3f/bb3f8cf1373d6c83d7cf8abd923a2e76.jpg" alt="Program for the production, &quot;Latin Fire&quot;" data-href="/digitalobject/14082" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d4/af/d4af75999d1207b41ae0707281f9d19b.jpg" title="Program for the production, &quot;Latin Fire&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ff/8f/ff8ff533c7e81cb5cc0e5ff97f231e46.jpg" alt="Program for the production, &quot;Latin Fire&quot;" data-href="/digitalobject/14082" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

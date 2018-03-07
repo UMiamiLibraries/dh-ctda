@@ -1,0 +1,787 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Eduardo Manet</li>
+                </ul>
+            </nav>
+            <h2>Eduardo Manet</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Director, author / playwright, adapter, translator, librettist</strong></p>
+
+            
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/661">Mare Nostrum</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/663">Viva Verdi</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/996">Las monjas</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>November 1967</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1224">Eux ou  la prise du pouvoir</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1225">Histoire de Maheu le boucher</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1226">Holocaustum ou le Borgne</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1227">Monsieur Lovestar et son voisin de palier</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1229">Un balcon sur les Andes</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1230">Madras, la nuit où...</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1231">Lady Strass</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1232">Le jour où Mary Shelley rencontra Charlotte Bronte</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1233">Scherzo</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1234">La infanta que quiso tener los ojos verdes</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1236">Presagio</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1351">La Santa</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1352">Un cri sur le rivage</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1353">Helen viendra nous voir de Hollywood</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1354">Sur la piste</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1355">Les Ménines de la Mer Morte</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1356">Mendoza, en Argentine</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1358.html">Ma’ Déa</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1359">Les Gonzi</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1360.html">Sacrilèges</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1362">Les chiennes</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1363">Le primerissimo</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1364">Les couples et les paravents</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1365">Poupée Fidel, Papa Marx, Buffalo Bill et la Femme à Barbe</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1367.html">Raconte-moi Rachel</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2034">L'autre Don Juan</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2252">Les nonnes</a><br />  
+                    <span>Translator</span>
+                    <br /><span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3591">La tiza magica</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3706">Cecilia</a><br />  
+                    <span>Librettist</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4947">Cleopatra y nosotros</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2306">The Extravagant Triumph of Jesus Christ, Karl Marx, and William Shakespeare</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>April 1, 1982 - April 25, 1982</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+                <div class="linkeditems">
+                <h3>Primary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1138/">Manet de vuelta</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1297/">El teatro perdido de los 50: Conversaciones con Francisco Morín</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1055/">Evolución de la dramaturgia cubana fuera de Cuba</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+                <br />
+               Author: Rita Benitez (2004-12-08)
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              
+              
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16856">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/ac/dfacd94a70428599cd0d65d639b1a8af.jpg" title="Costume sketch for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/56/d1/56d1f72d272c00b9ceddb278351ffa0c.jpg" alt="Costume sketch for the production, Cleopatra y los otros" data-href="/digitalobject/16856" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/60/61/60612b6c7b0ab0d7bc93c12fe2457a2c.jpg" title="Costume sketch for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7a/e7/7ae7fc5f8fccd3f3c0e8475ba87d252d.jpg" alt="Costume sketch for the production, Cleopatra y los otros" data-href="/digitalobject/16856" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ed/da/edda75ba617d0d7431c486dde49b7ac9.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7a/75/7a75c92c0e8f868938ea097ccbd0609d.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/9e/9c9e887f936357d3778602a2cda7be57.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/37/68/3768bb92079d7527e3e7ef855f095751.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e3/f3/e3f3310a73e57948baae540a5ed807b8.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ff/13/ff1386dc6048b6be30300b2f530d87fd.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/6d/316d2bc7ce5f1da405b0d2a785ea19ca.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0d/0e/0d0e95f575f8dd22c4778fae8f05b3c6.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e8/11/e8114c945bff2b63ce217925f7b6897e.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2d/90/2d90bb7bc4da4fb4a69b433dc1089953.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b9/7f/b97fdd10eaee9bc51fb87b1a9fa248c5.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/32/b8/32b8f4277addffe4db83746bc16c0faf.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/43/43/43436253d083524a077c48fac894cfd2.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d2/cd/d2cde20588ef6abb55c2d0c88b3bb807.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0b/52/0b528b2c4800ac1474b82be695b2dbcd.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/aa/70/aa70fc683468a455bdccff3db4a9ca0c.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/39/50/3950d0ebea8c9cb25870288e65df6d4d.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/79/a6/79a6262e23402d557e8a3f891e18528a.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9b/33/9b335a0f6169b22d6fcf54a966b85b22.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5f/3f/5f3fec67193f2bbabec113abb244d717.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/03/82/03824ed19af3dabb0ed9526074184d9b.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ef/d0/efd0cc496907ccbae64652d36380878f.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/a6/7aa6a7ddf75523645eb78ba5a820f5c8.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/70/55/7055523a7578f189e654431d7ee7f0c2.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/d4/1bd477871503ba0434a3662c787cfd47.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2a/5e/2a5ee5edd6dfc908c25de490dac34f10.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/96/35/9635c6a6a1e9fb1d5b40dcc5a18eb45e.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d7/a1/d7a178d190a16130ac65cf04cc40fe3c.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7b/16/7b16c646426878d4303c90d8aa5c26e3.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7d/8c/7d8cadf4a1132156883684451b1ca551.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/14/40/1440b4d9df55bc719f4a44e113ea69b3.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b8/2d/b82d8262d0740f09d91628681262335a.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c9/cb/c9cb70ee40372dfc18ae080a2ced5fbf.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fe/1f/fe1f0c63d4dd76d5cb48124c7e85fa2d.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/63/22/6322ad0499c5bc57494bdf8808194e60.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/df/5a/df5acff6fb78a8f46a3916927445249f.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/95/4f/954fe60941e1e8ebaa9dcc6b6d94cca7.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8c/97/8c97258de12c9243b0d39dcbd32aa689.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/32/a8/32a80572676d0e1026c74ae4dd09e9a3.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/07/a3/07a344a2fd72b751570d4be7693f4d7d.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c1/d3/c1d3bab64ccac2f84465ef027676e987.jpg" title="Costume design drawings for the production, Cleopatra y los otros">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d1/99/d1991a74214fa34678a2696d70d6e5ba.jpg" alt="Costume design drawings for the production, Cleopatra y los otros" data-href="/digitalobject/16855" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

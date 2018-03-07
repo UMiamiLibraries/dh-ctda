@@ -1,0 +1,391 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Paul Claudel</li>
+                </ul>
+            </nav>
+            <h2>Paul Claudel</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Author / playwright</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>French poet, playwright, and diplomat, whose work shows the influence of Roman Catholic Mysteries, Thomas Aquinas, and Dante. Among Claudel's best known works are the confessional Five Great Odes (1910) and The Satin Slippers (1929). He was a prominent figure in the whole French Catholic Renaissance of the early part of the twentieth century.Car &agrave; quoi servent les pieds sinon &agrave; se joindre &agrave; la course qui les entraine? et le c&oelig;ur Sinon &agrave; compter le temps et attendre la seconde imminente?Et la voix, sinon &agrave; joindre la voix qui a commenc&eacute; avant elle? Et la vie, sinon &agrave; &ecirc;tre donn&eacute;e? et la femme, sinon &agrave; &ecirc;tre une femme entre les bras d'un homme?<br /> from 'Cantique du Rh&ocirc;ne')</p>
+<p>Paul Claudel was born in Villeneuve-sur-F&egrave;re-en-Tardenois, in Aisne, into a family of farmers and gentry. His father, Louis-Prosper, dealt in mortgages and bank transactions. His mother, the former Louise Cerceaux, came from a Champagne family of Catholic farmers and priests. At the age of 18 Claudel experienced a revelation, which changed totally his view of the world: during a service on Christmas Day in Notre Dame Cathedral, he was suddenly converted to Roman Catholicism on the crest of a spiritual surge. He heard, as a voice from above: "There is a God." In the following years, the Bible became the center of Claudel's world and his inspiration. Claudel saw that God is the supreme architect of the world, and God has chosen man in the central place in the drama of the world. Thereafter everything that Claudel did or wrote was based on this large cosmic idea.</p>
+<p>"Paul Claudel appears as the most demanding of contemporary poets. To be understood and followed, he requires from his reader a total spiritual submission and attention. It is not only the ornate and complex part of his work which tyrannizes the reader's intelligence, it is above all the harassing and well-night unbearable unity of his books." (Wallace Fowlie in Clowns and Angels, 1943)  After studying in Paris he joined the diplomatic service in 1898. Two years later he entered the Abbey of Ligug&eacute; as an oblate of the Benedictine order. In the early 1900s Claudel had a four-year relationship with a married Polish woman. During this period the theme of forbidden love became a notable element in his works.</p>
+<p>Claudel married Sainte-Marie Perrin in 1906. As a diplomat he spent the years between 1893 and 1934 mostly outside France, in - amongst others countries - America, China, Italy, Rio de Janeiro, and with the rank of ambassador, Tokyo and Washington (1927-1933), and finally in Brussels. In 1935 Claudel retired to his ch&acirc;teau in Brangues (Is&ecirc;re). Though an opponent of the Nazis, he managed to write a triumphal ode to P&eacute;tain in 1940, and then again one to De Gaulle in 1944, yet without being accused of opportunism. In 1947 Claudel was elected to the Acad&eacute;mie Fran&ccedil;aise. On May 1, 1950, he was honored by the Pope, in an unprecedented public ceremony. Claudel died in Paris on February 23, in 1955.</p>
+<p>In his youth Claudel read Mallarm&eacute;, Virgil, Dante, and Shakespeare. Rejecting the inner contemplation of the modern poet, he turned instead to the Intelligence of all creation. For his verse, Claudel developed a long line - a cross between Walt Whitman and the King James Bible. Claudel assumed for the poet the godlike prerogative to 'possess, his privilege being to give all things a name.' Or as he wrote in 'La Ville' (1897): "You explain nothing O poet, but thanks to you all things become explicable." Foremost among Claudel's poetic works is his CINQ GRANDES ODES (1910, Five Great Odes), a five-part poem, relating the poet's inspiration and his gift of describing with words the mystery of the universe.</p>
+<p>"He gives me the impression of a solidified cyclone..." (Andr&eacute; Gide on Paul Claudel in Journal, 1905)Claudel's journalism and literary criticism were framed by his strong religious faith. His attacks on Richard Wagner are often quoted - Claudel admired Wagner's music but he disliked Teutonism and ridiculed the story of Der Ring des Nibelungen. Most of Claudel's criticism dealt with French literature, although he also wrote about Chinese poetry and while serving in Tokyo he became acquainted with Japanese literature. Claudel admired Baudelaire, whom he saw as a confessed sinner doing lifelong penance, Rimbaud whom he considered "not a poet, not even a man of letters. He is a prophet on whom the spirit has descended, not as on David, but as on Saul."</p>
+<p>As a playwright Claudel made his debut with T&Ecirc;TE D'OR (1890), which reflected his own religious struggle. The protagonist, Simon Angel, aspires to conquer the earth, but meets at the Caucasus defeat and death. In 1908 he started his trilogy L'OTAGE (1911), LE PAIN DUR (1918), LE P&Eacute;RE HUMILI&Eacute; (1920), in which he traced the degeneration of the formerly noble families. LE SOULIER DE SATIN (1930), an epic drama in the Spanish tradition, was about the adventures of Rodrigue and his beloved, Do&ntilde;a Prouh&egrave;ze. PARTAGE DE MIDI (Break at Noon) was written in 1906, but not performed until 1948. It was based on a passionate episode in Claudel's own life and dealt with the theme of adultery. L'ANNONCE FAITE &Aacute; MARIE (1912, The Tidings Brought to Mary) was a 'mystery' set in fifteenth-century Champagne. It told of two sisters, one dedicated to the flesh and the other to the spirit.</p>
+<p>For further reading: Die Kunstanschauung Paul Claudels by H. Dieckmann (1931); Le g&eacute;nie de Paul Claudel by J. Madaule (1933); Le drame de Paul Claudel by J. Madaule (1936); &Eacute;tudes Claud&eacute;liennes by E. Friche (1943); Clowns and Angels by Wallace Fowlie (1943); Paul Claudel, po&egrave;te musicien by J. Samson (1948); Introduction to Paul Claudel by M. Ryan (1951); Paul Claudel by L. Barjon (1953); The Poetic Drama of Paul Claudel by J. Chiari (1954); Paul Claudel by W. Fowlie (1957); Paul Claudel by S. Flumet (1958); Claudel plus intime by H. Mondoe (1960); The Inner Stage by R. Berchan (1966); Claudel's Immortal Heroes by H. Watson (1971); Claudel by A. Blanc (1973); Lecture psychanalytique de l'&oelig;uvre de Claudel by M. Malicet (1978); Paul Claudel by B.L. Knapp (1982); Beauty and Grace by A. Caranfa (1989); The Art Criticism of Paul Claudel by M.-T. Killiam (1990); The Empty Cross by C.J. Lambert (1990) - EUG&Egrave;NE IONESCO: "Claudel may perhaps be the least charitable Christian poet, because the comic characters he puts on the stage are too insignificant for anyone to take pity on." (from Cahiers Paul Claudel (1960, vol H, pp-26-27) - Note: Paul Claudel's sister Camille (1864-1943) became a well-known sculptor. She was the mistress of August Rodin. The break with the famous artist affected her mental stability. From 1913 until her death she was confined to various institutions. - See also: Saint-John Perse, Colette</p>
+<p>Taken from: http://www.kirjasto.sci.fi/pclaudel.htm</p>
+
+                </div>
+            
+
+            
+              <div class="linkeditems">
+                  <h3>Notes: +</h3>
+                  <ul>
+                  <p><strong>Selected works:</strong><br />T&Ecirc;TE D'OR, 1890<br />LA VILLE L'&Eacute;CHANGE, 1893-The City -Vaihtajat<br />CONNAISSANCE DE L'EST, 1900 -The East I Know<br />LES REPOS DU SEPTI&Egrave;ME JOUR, 1901<br /> L'&Eacute;CHANGE, 1901-The Exchange <br />PARTAGE DE MIDI, 1906 - Break of Noon-Keskip&auml;iv&auml;n taite<br />ART PO&Egrave;TIQUE, 1907 - Poetic Art<br /> CINQ GRANDES ODES, 1910 - Five Great Odes<br />L'OTAGE, 1911-The Hostage<br />LE CHEMIN DE LA CROIX, 1911<br />L'ANNONCE FAITE &Aacute; MARIE, 1912-Tidings Brought to Mary-Lapsi on meille annettu<br /> VERS D'EXIL, 1912<br />PROT&Eacute;E, 1914-Proteus<br />CORONA BENIGNITATIS ANNI DEI, 1915-Coronal<br />TROIS PO&Eacute;MES DE GUERRE, 1915 - Three poems of the War<br />LA NUIT DE NO&Euml;L 1914, 1915<br /> L'HOMME ET SON D&Eacute;SIR, 1917<br />LE PAIN DUR, 1918 - Crusts<br /> L'OURS ET LA LUNE, 1919<br />LA MESSE L&Agrave; BAS, 1919<br /> INTRODUCTION &Agrave; QUELQUES &OElig;UVRES, 1920<br />LE P&Eacute;RE HUMILI&Eacute;, 1920 - The Humiliation of the Father<br />ODE JUBILAIRE POUR LE SIX CENTI&Egrave;ME ANNIVERSAIRE DE LA MORT DE DANTE, 1921<br />PO&Egrave;MES DE GUERRE 1914-1916, 1922<br />&Agrave; TRAVERS LES VILLES ENFLAMMES, 1924<br />FEUILLES DE SAINTS, 1925<br />L'ENDORMIE, 1925<br />LE VIEILLARD SUR LE MONT OMI, 1927<br />L'OISEAU NOIR DANS LE SOLEIL LEVANT, 1927<br />SOUS LE REMPART D'ATH&Egrave;NES, 1928<br />POSITIONS ET PROPOSITIONS, 1928 - Ways and Crossways<br />LE SOULIER DE SATIN, 1929 - The Satin Slipper<br />FRAGMENT D'UN DRAME, 1931<br /> LE LIVRE DE CHRISTOPHE COLOMB, 1933 - The Book of Christopher Columbus<br />&Eacute;COUTE, MA FILLE, 1934<br />CONVERSATIONS DANS LE LOIR-E-CHER, 1935<br />INTRODUCTION &Agrave; LA PEINTURE HOLLANDAISE, 1935<br />FIGURES ET PARABOLES, 1936<br />TOI, QUI ES-TU?, 1936<br /> LES AVENTURES DE SOPHIE, 1937<br />INTRODUCTION AU LIVRE DE RUTH, 1938<br />UN PO&Egrave;TE REGARDE DE CROIX, 1938 - A Poet before the Cross<br />JEANNE D'ARC AU B&Ucirc;CHER, 1939 - Joan of Arc at the Stakes - Johanna polttoroviolla<br />L'HISTOIRE DE TOBIE ET DE SARA, 1939 - Tobiaan ja Saaran tarina<br />L'&Eacute;P&Eacute;E ET LE MIROIR, 1939<br />LA SAGESSE, 1939<br />PR&Eacute;SENCE ET PROPH&Eacute;TIE, 1941<br /> SEIGNEUR, APPARENZ-NOUS `PRIER, 1942 - Lord, Teach Us to Pray<br />DODOITZU, 1945<br />PO&Egrave;MES ET PAROLES DURANT KA GUERRE DE TRENTE ANS, 1945<br />LES SEPT PSAUMES DE LA P&Eacute;NITENCE, 1945<br /> LE LIVRE DE JOB, 1946<br />INTRODUCTION &Agrave; L'APOCALYPSE, 1946<br /> LES R&Eacute;V&Eacute;LATIONS DE LA SALETTE, 1946<br />LA ROSE ET LE ROSAIRE, 1946<br />L'&OElig;IL &Eacute;COUTE, 1946 - The Eye Listens<br />DISCOURS ET REMERCIEMENTS, 1947<br />DU C&Ocirc;TE DE CHEZ RAMUZ, 1947<br /> VISAGES RADIEUX, 1947<br />SOUS LE SIGNE DU DRAGON, 1948<br /> PAUL CLAUDEL INTERROGE LE CANTIQUE DES CANTIQUES, 1948<br /> ACCOMPAGNEMENTS, 1949<br />CORRESPONDANCE, 1949<br />LA LUNE &Agrave; LA RECHERCHE D'ELLE-M&Ecirc;ME, 1949<br />M&Eacute;MOIRES IMPROVIS&Eacute;S, 1954<br /> &OElig;UVRES COMPL&Egrave;TES (1950-59, 20 vols.)<br />UNE VOIX SUR ISRA&Euml;L, 1951<br />L'EVANGILE D'ISA&Iuml;E, 1951<br />J'AIME LA BIBLE, 1955 - The Essence of the Bible<br />TH&Eacute;&Acirc;TRE, 1956 (2 vols.)<br />&OElig;UVRE PO&Eacute;TIQUE, 1957<br />CORRESPONDANCE PAUL CLAUDEL - DARIUS MILHAUD 1912-1953, 1961</p>
+
+                  </ul>
+              </div>              
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="../writtenwork/805.html">Jeanne D'Arc Au Bucher</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+        
+
+                    
+        
+
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>French</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>1868</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Villeneuve-sur-Fère-en-Tardenois, Aisne, France</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Death date:</h4>
+                  <span>1955</span>
+                </li>
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,744 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>La verbena de la paloma</li>
+                </ul>
+            </nav>
+            <h2>La verbena de la paloma</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/5485.html">Miguel de Grandy II</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/5486">Pili de la Rosa</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+          
+
+
+            
+
+
+
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              
+            
+                <a href="../creator/5258.html" >Sociedad Pro-Arte Grateli (5258)</a><br />
+              
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/28.html">Miami-Dade County Auditorium (United States)</a></span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>June 28, 1969 - June 29, 1969</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/writtenwork/2931">La Verbena de la Paloma (Zarzuela)</a><br />
+                <span>By <h4>Author / Playwright:</h4><a href='http://ctda.library.miami.edu/creator/311'>Ricardo de la Vega</a>, <h4>Composer:</h4><a href='http://ctda.library.miami.edu/creator/310'>Tomás Bretón</a></span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/13173.html">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/12/d9/12d92a09f3f455db7df1a66b366b9a74.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="../media/cache/dd/d6/ddd63e54947bafa9cf099f95a0d5cbce.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/91/86/9186e6dcdecb78e9f2850d03950bbe1d.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b2/94/b294acb440e6a41f9d1329d03da561f1.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a0/b3/a0b34691d6d7ddcc58eb5452d675dd7b.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/25/ce/25ce95862347f683d805e8e6648aa5b3.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/04/6a048d2c04cf2642eeeda7b68c13831f.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ee/2b/ee2bb6872eea05bfddc57a19f9029431.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1c/1a/1c1a36eef7982bcea487513b181074a7.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ab/db/abdb225dd19d40a7e03500264bcd12cd.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/14/b4/14b42989b9617ebf2d11b51204799957.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/fb/b2/fbb23ba8e17587dfefabed329a2dd85a.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/74/72/7472a3211dce759fa59d5d26358a19d1.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/28/83/28836b0bd27ae84dea3e71afbe85ef22.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/65/1b65bea3841f5550224f448296fbb629.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/81/77/81776d4c5f74f8cbc28b5c12f98dc68a.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/b8/d2b8a18ae41b023f139a264930688359.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ce/94/ce944fe3d9a74c8662219de093f010f5.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/90/ef/90ef1db5d19aa0b0ac8d9c41ff3dad25.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ba/1c/ba1c4ca0d3566949c5f6f99799117c46.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/cb/b7cb6e8f6195c6a89eef28c8bc296545.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/18/74/1874f0e488aa59c060a276dfcf33109e.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/01/b4/01b4be776f559c60aa6a106629ce3df9.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/84/45/84452ec57e8703f543cbc0043b57acb5.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b6/00/b6007d6460a385e6661440c753eff3c6.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a8/0f/a80fd8c68b1648219706ae235947e1fa.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e8/7b/e87b5ee0eb4c9779c62b0e12b17fe93f.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/4d/b1/4db191dc0ea2b9ca9e94266dcbfded77.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2b/b4/2bb4b5cd0d88890d0813f59cbd05ca9f.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ea/78/ea788d9d36faa53158bed20651736a12.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/03/bb/03bbbaa4b7419a30f4d47a51ec7cf129.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/35/58/3558df2e56973d794c1752a6c3aeca06.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/43/b2/43b2028332211168b6b72c7267c2d25b.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d4/f7/d4f7045958baff143cb3979a561f3e43.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/97/1c/971c079918cf6265d8947d97b51998fe.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/91/1f/911f9296d3213113b9868917b6734595.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f3/84/f384f6d6e5e0ad5ffa4ad0c91c59dee4.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/02/4a/024a6fc8796529bcd2e1c0c37d259746.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/77/e8/77e8c59ceda751023564c3eb9e350107.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/87/e4/87e46579117530f6912c4be51da7a39a.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ff/79/ff7913304195bdad796feca82d90f7cb.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/7d/3f/7d3fb13e1f22699d5f303167717575fc.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/77/0a/770acbea2dc96598f1cd48aef175fe52.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/28/94/28941ac1c9b9ce183bb413c15392ba3b.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d8/cc/d8cc6e62d0f9c737501f12dbe8b07fb9.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a8/d1/a8d13283fdeedc8d20c9a847ff4c4893.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/07/fe/07fe1d823ee90c72ffaa9283f2bcff4c.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/53/1e/531eb2bcfa5184eb26cb7c1f1e6a87e4.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e8/99/e8993d418eec57bd8836fc8819f12d1e.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/14/50/14503e5881ec6d1bd0479f51623dcb73.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/30/5d/305d74af0a4919f3d17f726e5912ff08.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/6d/ae/6dae29f3a5d9ae33a653810f55d433ec.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7e/a8/7ea81e604443b6bd290335358011eaa4.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/bf/b3/bfb3a0890289b8828920965bc0771932.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/76/73/767396cfcba830cee036ff281737a3f9.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/71/c5/71c50de01caa2a7664ed57441381af0d.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b2/83/b28314e321778294852ab915dd3a02ab.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ed/56/ed5665537782e573581026b7671b108a.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b4/00/b4005bd44144b4f6a223172da35774df.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/99/64/9964701970d6bfcb5ef52e7b56141c9a.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2c/e2/2ce2d4a813757f0273696c3794770099.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/8d/9c/8d9caf28ef440aa09e0dc93bc0c9ec55.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8c/83/8c838234d1be46088d0a57bb5d51b41b.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f4/20/f420470680e558c7a3df770facc8729e.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ca/e0/cae0edac22a3d8f6fcaa86cea67fa74d.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f4/03/f4034241986ba8fda876b5b967ba0388.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4b/8c/4b8c7c9ebcfede8071f0e49dfd4c06cc.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/48/b0/48b00a2748c1ce19019e1df0c2ffe775.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/73/ee/73ee28895fd54e5ffcda7c82ee36dc0d.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c2/51/c25106af9d1791435668832bd4401c64.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/60/0d/600dedfd1595bf60ebedcabdaf55f6bd.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/4a/f0/4af0add06332274b96ba2274af3641cc.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c2/85/c28528016ce28189c3ee98ca534e5860.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/38/86/3886f920a77101ae4f551eba6ef14235.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5a/83/5a831f8a694ff2f2688a98d2c10ba9d8.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/55/8e/558ef93be72accc56923680c7789f8db.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/17/7e/177efb4431a2202552fad82480a89ef8.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/53/91/53911e56ad7a3573122b49ceefc19e32.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ca/9d/ca9d908a4c42d2ced5dbcf510049a43b.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/21/64/21641194f5de14164efe3fe8b9a01d42.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e2/1f/e21f4e73c7588c1fd5b90fd276e7ccfd.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/23/8b/238b20e7c2fcd90219551b503e53e603.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/92/c79270b58f0bffbb18ff410e7bef9a99.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b4/a5/b4a5a7ee1163292e34664cdf9bcadf16.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/00/56/0056c061cf7b58474176584656efcbe1.jpg" title="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/98/3d/983d0fbb6b823289fbcbab5405ed7b85.jpg" alt="Program for the production, &quot;La verbena de la paloma&quot; (Fair of the dove)" data-href="/digitalobject/13173" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

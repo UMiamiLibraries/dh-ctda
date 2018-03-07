@@ -1,0 +1,755 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../writtenworks.html">Written Works</a></li>
+              <li>El álbum</li>
+            </ul>
+          </nav>
+          <h2>El álbum
+          
+          </h2>
+        </header>
+        <section class="main">
+          <h4>Short story/stories
+          
+          </h4>
+          
+          
+          
+                      
+
+            
+
+          
+          <div class="linkeditems">
+            <h3>Performances: +</h3>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3263">El álbum</a>
+                
+                <br /><span>Directed by <a href='../creator/40.html'>Raúl Martín</a></span>
+                
+                
+                <br /><span><a href="../venue/57.html">Teatro Tomás Terry</a></span>
+                
+                
+                <br /><span>February 11, 2003</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3261">El álbum</a>
+                
+                <br /><span>Directed by <a href='../creator/40.html'>Raúl Martín</a></span>
+                
+                
+                <br /><span><a href="../venue/45.html">Unknown1</a></span>
+                
+                
+                <br /><span>2003</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3170">El álbum</a>
+                
+                <br /><span>Directed by <a href='../creator/40.html'>Raúl Martín</a></span>
+                
+                
+                <br /><span><a href="../venue/45.html">Unknown1</a></span>
+                
+                
+                <br /><span>September 8, 2002</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3260.html">El álbum</a>
+                
+                <br /><span>Directed by <a href='../creator/40.html'>Raúl Martín</a></span>
+                
+                
+                <br /><span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span>
+                
+                
+                <br /><span>July 26, 2002</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3220">El álbum</a>
+                
+                <br /><span>Directed by <a href='../creator/40.html'>Raúl Martín</a></span>
+                
+                
+                <br /><span><a href="../venue/12.html">Gramercy Arts Theater</a></span>
+                
+                
+                <br /><span>May 22, 2001</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/456.html">El álbum</a>
+                
+                <br /><span>Directed by <a href='../creator/40.html'>Raúl Martín</a></span>
+                
+                
+                <br /><span><a href="../venue/31.html">Koubek Center (Miami Dade College)</a></span>
+                
+                
+                <br /><span>May 3, 2001</span>
+                
+              </li>
+              
+            </ul>
+          </div>
+          
+
+            
+              <br />
+               Author: Dainerys Machado (2017)
+            
+
+        
+          
+      
+          
+        
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              <li>
+                <span><h4>Author / Playwright:</h4><a href='../creator/24.html'>Virgilio Piñera</a></span> 
+              </li>
+
+              <li>
+                
+              </li>
+              
+              
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Actor"><li>Actor</li></a>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Adaptations"><li>Adaptations</li></a>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Cuban"><li>Cuban</li></a>
+                
+                    <a href="../taggeditems-tag=Cuban%20Theater.html"><li>Cuban Theater</li></a>
+                
+            </ul>
+            
+            
+          </div>
+         
+          
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16348">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dd/b3/ddb3ff3dd782beaadeba46037c131cdc.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/cd/d8/cdd8752e4c834966a3c36951e2ddc882.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16348" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a1/69/a16931781c13c9395a0a8c95739ea7b8.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/79/9e/799ec3e537f464bf5fe184a166a13094.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16333" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0e/bf/0ebff3ea4749ed5317326e590e47e89f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e0/17/e017d4de0cbe6afc1eb5f5bac79d9363.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16332" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/89/de/89deb30b71d95ec29f3c697b4fa70186.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/9a/1d/9a1d197267027ccb8795c6500eb6818e.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16331" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/94/2894ac0c4ade0c3945012b53e0a6ce2a.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5b/1a/5b1a28a9101387d887401c0d819ba1ca.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16329" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a5/90/a5904e0f80b1bfc8f8e1b204deca68ef.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/cd/c0/cdc0e206348d54c2853ea9d7c7c95030.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16328" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/69/e4/69e4925f87ff453cc011428cc3bfac4c.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c0/d5/c0d56569def30aa0be27a8bfc9689518.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16327" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/05/e2/05e21932ea8081e346e41380f5ab6714.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/98/a8/98a8ad9af0e2c429810efeadac027273.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6d/7d/6d7ddec78f30a9629d124ae9d7fc3e37.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/7e/46/7e46c6244de9695a9af66154d107a858.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16325" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/02/df02b14f99ecc71f1e6192b52d82ff57.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b9/88/b988c4bffa038da064fccb4bb7b9d8e2.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16324" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/5b/865b7aa707d97e78075e94c9160df13f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="../media/cache/c5/f4/c5f4b6fb2dceb1977af07154f08fb166.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16323" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/05/e4/05e496531d9a8cef82908d56f155234f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/60/c6/60c6cbda580e8dd4bc5cab3209299b35.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16322" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/55/78/5578d91a44790de8a7cf5027e67c12b0.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d9/99/d99959dcfaab5e8582d1d6f1763c9e30.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16321" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3f/47/3f47d0b74ad9ad60923d3d749b45b622.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/86/63/8663ee8ecb49a31a594104cf9cff4023.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16319" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/4b/d74ba3886efb647f035328ca9f482dfa.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f2/23/f223255e2e5780844f9b80f37c05eb3d.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16318" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/08/3d/083de5a06016098f797673371ed7b469.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="../media/cache/66/4a/664aa1ce43557b17e3ecddfacf58f82a.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16317" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/73/b7739e7884ee463ab1947248e91ea8e7.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/2b/85/2b85b873967b61a12b30ec9f3ca29a74.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16316" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/26/7a266e90693e2ac4d21ee037a133ba30.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="../media/cache/d2/53/d253f04493e5443bb77d4c03804ee767.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16315" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/e6/ece60d65bfda1136ceabdcef30c859d0.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/cf/30/cf30e48909fbd3d638a759558d83aad5.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16314" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5f/22/5f22cfec322cc3d8f7c1ddfece6e25bd.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5a/5c/5a5c7f320828f5eedb2636e337953924.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16313" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/a7/e0a7ab944176b67c9288bd4f87194463.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/de/8a/de8ae28221ddd267ffe8d6b857374335.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16312" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7c/65/7c6582b1001ba38e22df7236c33105e9.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/0f/9a/0f9a74d90c60c7b9c4826c476df9eb70.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16311" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e2/69/e269d595037a40f841d95e1a554beeb0.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b9/0b/b90b69158d123ed9f8f02b8f2d4f0280.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16310" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/08/48/084815b89bbf08c37c5a91d250e17c15.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="../media/cache/f8/34/f834ec3d6501d94b94b308ca7773500c.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16309" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/60/71/6071ccdf7d1ed98ee229a85ea2c4f0ed.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c8/7e/c87ec471dfb32b879951a200ffb1a156.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16308" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/94/b1/94b1bca9bb57d4cc770adac817ead119.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/00/ad/00ad4fc3acfe209332d1719bdd5cbe42.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16307" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6c/c9/6cc9e4a3512f4dc1474bcfd6782d2b6f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/18/22/18224da3b35168a2a563facc5ea2aa6c.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16306" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/be/08/be08ae39b231a42c3694c792f85df6b4.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a0/ed/a0ed0e40f198f82ac9b6d07cb571f160.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16297" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f0/48/f0480e96c3bf9abea7b95f76020ba520.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ad/ad/adad2ca88dca2a24471752b8d4b48150.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16305" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/c1/8fc1bde1c53ae90d26299b4afc3b5e35.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f4/ba/f4ba029f503aec95ea7f670a680767dd.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16304" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/19/56192c6d20c8be6516f3a53ad89f33e4.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b2/d9/b2d9afdb0021aac99db979d1cca562de.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16303" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/16/9b/169b8b7b720e64ec318b683aa3448204.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="../media/cache/e9/d8/e9d8f657a3e4e5522119c7b849159813.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16302" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ce/63/ce6328b09713cb5bef405b7f4c9047f1.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/7c/ef/7cef987c6c05be79b0d86c8af152ee8c.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16301" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8d/8f/8d8f87d3781e68915526b2dbe83351aa.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ba/12/ba127a307482543358ef6c0277de522f.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16300" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/46/28467357adb55d5991c59919a84cd10f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a0/c3/a0c3efcd2e8b61aceeacad158388fa7b.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16299" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/99/6e/996e4973525dfbc775acbdc30c1006ec.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ef/73/ef736195c54e292ab3dfb38f8e791044.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16298" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fe/ec/feec13246237774a9604d9cd21b1f6d3.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/78/33/7833eade9726b489ad93d9eefbedf0a6.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16330" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3e/c7/3ec72c2e1577574dd29a10c947993b47.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/0e/5a/0e5aaeb4112ae611bd6cfc1f97699566.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16296" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e4/0c/e40c9dd4e3f40fd68c5f4fb9a0f35c41.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d4/78/d478edc8416ae653a132f756fd14d02f.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16295" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3a/77/3a7744aa0787bb090dec5ff6e561e3ab.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/59/12/59128abd6799f2a46c90c4b6cf2491a4.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16294" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/f3/09f341398e726cd9217351e62d21d61d.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/44/7d/447d6f2dd159d4453df2fc00125555ff.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16293" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,753 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>María Meilán</li>
+                </ul>
+            </nav>
+            <h2>María Meilán</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Assistant director, assistant to the director, actor, light designer</strong></p>
+
+            
+            
+
+            
+
+            
+
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="../production/1655.html">La noche de los asesinos</a><br />
+                    <span>Assistant to the Director</span><br />
+                    <span><a href="../venue/27.html">Miami Dade College - Wolfson Campus</a></span><br />
+                    <span>December 3, 1977 - December 4, 1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3087.html">Fando y Lis</a><br />
+                    <span>Assistant Director</span><br />
+                    <span><a href="../venue/27.html">Miami Dade College - Wolfson Campus</a></span><br />
+                    <span>August 28, 1976 - August 29, 1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3091.html">La alondra</a><br />
+                    <span>La madre</span><br />
+                    <span><a href="../venue/154.html">Olympia Theater (Gusman Cultural Center for the Performing Arts)</a></span><br />
+                    <span>October 8, 1977 - October 9, 1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3092.html">La encantadora familia Bliss</a><br />
+                    <span>Clara Luz</span><br />
+                    <span><a href="../venue/27.html">Miami Dade College - Wolfson Campus</a></span><br />
+                    <span>March 26, 1977 - March 27, 1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3830.html">Suandende</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/37.html">Florida International University Wertheim Performing Art Center</a></span><br />
+                    <span>1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3130.html">Prometeo</a><br />
+                    <span>Light designer</span><br />
+                    <span><a href="../venue/27.html">Miami Dade College - Wolfson Campus</a></span><br />
+                    <span>March 20, 1979 - March 21, 1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4385.html">Prometeo</a><br />
+                    <span>Light designer</span><br />
+                    <span><a href="../venue/305.html">Miami Dade College - North Campus</a></span><br />
+                    <span>May 21, 1974</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              
+              
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/13557.html">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/38/2b/382bc414b03085424a26ab950b270bac.jpg" title="Program for the production, &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/bd/ae/bdaebda2c93cd2c636ff5ada98f34fc2.jpg" alt="Program for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13557" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/95/3a/953a1921fafe8d664998e5a79b154227.jpg" title="Program for the production, &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/7b/26/7b262a185836b26a9d70ad89dee7c13d.jpg" alt="Program for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13557" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c8/7f/c87f0f6763cfbd8f98d14967cb0d81d7.jpg" title="Program for the production, &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/16/e2/16e26cb48b0889400c978aeff1792bd1.jpg" alt="Program for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13557" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/f8/54/f8545b6939d49671813d6d637b612781.jpg" title="Program for the production, &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/53/19/53191842766d6f3f05b25924805aa45a.jpg" alt="Program for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13557" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/31/c4/31c4c004f3ba33dc9eaf87b244c3b7c9.jpg" title="María Meilán (La mujer), in &quot;Suandende&quot;">
+                    
+                    
+                    <img src="../media/cache/d3/3d/d33d5c9f8ece1139c0ab7e754aa61f19.jpg" alt="María Meilán (La mujer), in &quot;Suandende&quot;" data-href="/digitalobject/13789" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/32/ed/32ed52f6064cab8a538e29f975e332f3.jpg" title="Invitation for the production, &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/d0/3a/d03a7ff47325b6511a5110c9e9fd554e.jpg" alt="Invitation for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13555" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/44/ce/44ced00cadc22d524f305fd52d288741.jpg" title="Invitation for the production, &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/b5/39/b539afc66cfc233ab818d4deab0a7b9a.jpg" alt="Invitation for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13555" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b0/f1/b0f1d3094b11e83865ba0e02d821a0c9.jpg" title="Invitation for the production, &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/36/c5/36c58f9db4f7d613b00977b0a6803905.jpg" alt="Invitation for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13555" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/5c/55/5c5515add430c65349846250a18b8f39.jpg" title="Invitation for the production, &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/65/22/652257cdc549b3aa90a8cae4f842e241.jpg" alt="Invitation for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13555" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/fb/67/fb675b2c27a685a9b8bebf5c62ac0a78.jpg" title="María Meilán (La mujer), in &quot;Suandende&quot;">
+                    
+                    
+                    <img src="../media/cache/e0/4c/e04ceac776502d22530f4d84df82f22c.jpg" alt="María Meilán (La mujer), in &quot;Suandende&quot;" data-href="/digitalobject/13772" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/84/31/84315627b3c6c31489c3117de57d1041.jpg" title="José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/7a/90/7a90dbba136659fb4ef4d48da0be2993.jpg" alt="José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;" data-href="/digitalobject/13835" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c7/c8/c7c8e726c29d26bb04a348db7cef1292.jpg" title="José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/60/2c/602c184c85928604a505640d316874f4.jpg" alt="José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;" data-href="/digitalobject/13747" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/2c/ab/2cab81c4331e332ccfffefd913eef986.jpg" title="María Meilán (La mujer), in &quot;Suandende&quot;">
+                    
+                    
+                    <img src="../media/cache/43/8e/438e709eeb02c875cf3a16eb4b8c44f7.jpg" alt="María Meilán (La mujer), in &quot;Suandende&quot;" data-href="/digitalobject/13837" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/4f/85/4f850f76d433f3ed47dbaf7d7e3c8b3d.jpg" title="José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/44/08/440864f703c218688cd01ed5f684b283.jpg" alt="José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;" data-href="/digitalobject/13751" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/f1/9f/f19ff56a677b9173433283b3323a27fa.jpg" title="Los tres hombres del paraguas: Ricardo Fernand (Namur), Reynaldo Gonzalez (Mitaro) and José A. González (Toso), and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;  ">
+                    
+                    
+                    <img src="../media/cache/bc/d8/bcd85d8d20599f6d869001b035b7862a.jpg" alt="Los tres hombres del paraguas: Ricardo Fernand (Namur), Reynaldo Gonzalez (Mitaro) and José A. González (Toso), and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;  " data-href="/digitalobject/13717" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/82/45/824595eaa91f570556f5d75e7383770f.jpg" title="Ricardo Fernand (Namur) and Reynaldo Gonzalez (Mitaro), in &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/e0/ef/e0ef8debbc38865ca9125046aff82d01.jpg" alt="Ricardo Fernand (Namur) and Reynaldo Gonzalez (Mitaro), in &quot;Fando y Lis&quot;" data-href="/digitalobject/13782" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ab/29/ab292f23baad2cca3509a5ae7f4a6910.jpg" title=" José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/f6/20/f62027170dac861cd7c6c05b402e2070.jpg" alt=" José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;" data-href="/digitalobject/13681" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/e4/a6/e4a6cc20c02682146a4acf4b0519e84e.jpg" title="Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/72/5b/725b535a948099a529dd32a8f7d76c94.jpg" alt="Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;" data-href="/digitalobject/13617" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/0a/e3/0ae3d913c7ba6a140b9724c8d21c57ad.jpg" title="Poster for the production, &quot;Fando y Lis&quot;">
+                    
+                    
+                    <img src="../media/cache/b1/4e/b14e78c0e778dca46a165fd26918269e.jpg" alt="Poster for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13829" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/f2/f2/f2f28342f2b3837ed3c8fa0bba2da773.jpg" title="Francisco Fernández, María Meilán, Lydia Cabrera, Teresa María Rojas, and  Josefina Llanes in a drama class at the Miami Dade College">
+                    
+                    
+                    <img src="../media/cache/f6/53/f65397efcac4fdc028dab9339e265479.jpg" alt="Francisco Fernández, María Meilán, Lydia Cabrera, Teresa María Rojas, and  Josefina Llanes in a drama class at the Miami Dade College" data-href="/digitalobject/13687" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/03/9a/039a0c85185a2b73ba68beccdce4d15a.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                    
+                    
+                    <img src="../media/cache/9f/91/9f91b351db38d8368e29c8b295ef73d7.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13132" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/06/47/0647f633f081d30ca7c757070db2aff9.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                    
+                    
+                    <img src="../media/cache/2f/81/2f81e1d335e49a9123a70a960a8d341b.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13132" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/44/98/4498f10c7fef912ea156495f9d89546e.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                    
+                    
+                    <img src="../media/cache/3f/67/3f67f875cd84c7ca184b9de1cd03ccdd.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13132" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/16/4a/164a85e54cb534cffdf486d98f7b207a.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                    
+                    
+                    <img src="../media/cache/32/f8/32f86dc382130e181bb25d3e770ec0ba.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13132" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/cf/df/cfdf4030e9c8d5ed7a8e0b57a198eb8f.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                    
+                    
+                    <img src="../media/cache/82/46/8246cf4aeb6ddb62228674c84eb5d998.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13125" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/09/92/09924487122648e53904368485bab1fb.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                    
+                    
+                    <img src="../media/cache/96/4d/964dab2898d2bb2b8b636da0d72fca84.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13125" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/e5/8e/e58e4a042674beddaa52a2c70da179b7.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                    
+                    
+                    <img src="../media/cache/ec/10/ec10d2213dd11acbd1bc924a2e52589a.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13125" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/d7/45/d74579e05387d0a294bd47d43ada5f97.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                    
+                    
+                    <img src="../media/cache/28/7f/287f298fccbbf8757dd39da1f3293388.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13125" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/38/28/38285d4a6735da793927617e337b2ef1.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                    
+                    
+                    <img src="../media/cache/29/53/2953b38ee76070c9ffa05128c362dc9b.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/2c/89/2c894d2a162ad7dc4cfa880a994a3894.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                    
+                    
+                    <img src="../media/cache/33/a5/33a559c687613a671bd6fb321b146ac0.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/02/53/02532c61096e03e1942361a60ccd4695.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                    
+                    
+                    <img src="../media/cache/7c/b9/7cb94aa7cfdb0b2a860cdb17449241dd.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/cd/1e/cd1e48ebb702f3744f3a210c8c16a2a1.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                    
+                    
+                    <img src="../media/cache/f4/08/f40827b6698373b73dca9898919139a2.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/57/ab/57ab9e6d41243ef6246ba20222a65bcd.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                    
+                    
+                    <img src="../media/cache/66/59/6659d2b2c130689ff0b606e7b34ce3e4.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/a9/dc/a9dc32666b5a20af350209a911feaeb0.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                    
+                    
+                    <img src="../media/cache/74/76/7476f469787fa070f803212e55c2a51f.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/41/71/4171c0f84072b4b992b9346b79578cfb.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                    
+                    
+                    <img src="../media/cache/b9/f6/b9f68de82cef1593939e3b651fa7d8d2.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b0/d6/b0d64393a8a96c078f76cd1fdeb9fbd6.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                    
+                    
+                    <img src="../media/cache/40/7a/407a780115394fbb7b6050f36e8418eb.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/8e/6b/8e6bde64d34e688f2705341b55b867ec.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="../media/cache/0d/18/0d1830c1b18bfa051f9cdf9efda84282.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/fa/a8/faa8afb7e7ba48d1ebb92a40262149bb.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="../media/cache/c5/dc/c5dc44a1de629604ac2985c4b148f28d.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/e1/ed/e1ed8093aff60636777d0d026a14e0c8.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="../media/cache/88/06/8806e9aa6e73258b99c8daece21475ed.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/8c/47/8c477595d322a808628afe32dc59a01e.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="../media/cache/76/3e/763e62ade1cde0897876f57a3f6ba723.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/0f/d3/0fd305bee512239f870bc0530e78eff9.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="../media/cache/36/29/3629b3e5fd50926a5655727116268289.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/13/38/1338f4df63b3d78bf46ac6b4a6b111f2.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="../media/cache/7a/20/7a2004702bf2b41267c617a6cc43d9a1.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/0c/65/0c654d73b97ec72c8ddcff404e59baa6.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="../media/cache/94/1c/941c9aac3df2bc59022dbbe8748bdb83.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b9/5b/b95b4588b85902c39cf71baa1a0524e1.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="../media/cache/fc/1e/fc1e8fdb71831fb83c6b717a60f4acc4.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

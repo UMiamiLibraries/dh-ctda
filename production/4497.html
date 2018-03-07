@@ -1,0 +1,592 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>The Orphan Sea</li>
+                </ul>
+            </nav>
+            <h2>The Orphan Sea</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/9230">Kevin Brown</a></td>
+                        <td>Artistic/General Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="../publications/875/index.html">'Sea' Legs: MU Premiere Presses Line Between Play, Epic Poetry</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/874/index.html">Award Winning Playwright Writes for MU Theatre Department</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/873/index.html">Three Reasons ‘The Orphan Sea’ Proves That Theater Is Cool</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/870/index.html">MU Theatre’s Ode to the Theatre</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+          
+
+
+            
+
+
+
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/1451.html">Rhynsburger Theatre (United States)</a></span>
+                    
+                </li>
+                
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="../writtenwork/3551.html">The Orphan Sea (Play script)</a><br />
+                <span>By <h4>Author / Playwright:</h4><a href='../creator/48.html'>Caridad Svich</a></span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/15842">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8c/1c/8c1c5c0de9038c67c51bd736ee7459b6.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/8d/d9/8dd92de0a6fb0161c6db2d20f7850ddd.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15842" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f9/48/f94860586172f782d394ef6cf6584703.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/67/86/67865663e747299ba06305e5bd2aa8d4.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15841" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e2/1f/e21f002d2e74c066fb1bfe385c45d078.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d0/81/d0817686d0cb1aad0b751627ba647b34.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15840" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9e/35/9e35d58422a4b3a7edbbd3c23152a957.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/05/43/0543d26dc8b083e3a72adf190d0ec0f0.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15839" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/df/22df4b4d9156708fe5ec078e44686eb9.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/54/e2/54e2a4bba3a4caa379ec1d86a304890c.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15838" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/69/29/6929e226c3b98d7a926f732ee940b79e.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e0/59/e0595a8223882250763d7b26eb8635cb.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15837" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/66/bc/66bcc5b10b845bcd24fab529930ada6d.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/45/52/45521de18244941da97edd11d8a89077.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15823" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/50/62/5062bbe4c6a94573d69f271fff8686dc.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c3/f6/c3f60411a39f043c168d5191e3563a43.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15822" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4f/1b/4f1bd527fa50f817e7ef53e5ba50d800.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/cf/47/cf47dd2e3ee3a589131fd164614cb652.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15821" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e6/be/e6beadcd63d09d5f340c9592e4dd74d5.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/7b/07/7b070aacec30bed85d74354bb18dfba0.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15820" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5a/b0/5ab037c8c4ae8445c06bc3c99eb4aa56.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/0f/ba/0fba0d85dfcb7ef455e092cc7d4f724c.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15819" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5c/b5/5cb5886efde6280735d074a606b2a06d.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="../media/cache/68/7c/687c92aaf357419b5e07398a8f7099f9.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15818" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/81/e081090c5ec365ece9132fc9d02e38cf.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b2/83/b2835dd7bde63bb05174e89759a39a48.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15817" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/66/f2/66f2c312d8933bb3076aa037b640cb19.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ad/4b/ad4ba6c87501142e70a1628e3fa2c23d.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15816" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/11/74/1174effac0b998bff5fc867421b6e5a1.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/0a/11/0a11607917bccef4467f7ca7f60f3282.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15815" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c1/03/c10394b801a678c83fa48a793275aa30.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/bf/44/bf446563537c1a73f010345d53d897b3.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15814" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cf/c2/cfc2df0e14963508510d1c931470b0f6.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/86/61/86613af7f2a7212041bf3ac663a460b6.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15813" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/97/0c/970c928ae062b87690962b9ce598eaab.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/90/b3/90b33ebef6f084821a7596be0d5c97bd.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15812" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/96/ac/96ac46434bb2148c967b012d1493bc21.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/88/f8/88f83f2530711edcaa221d8871ca8b08.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15811" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b9/e5/b9e5bc52807d73c8f14904786c978917.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/78/d8/78d8775e8793edfa248ac8de440f0a3a.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15810" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/87/47/87473effd7306587a4416ba736d5aaa8.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c2/9e/c29ece0f5f7a5ea0d26d842b8b515926.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15809" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/80/d3/80d323f173cbd6d7dfe69878e1da74c2.jpg" title="Photograph for the production, &quot;The Orphan Sea&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f8/93/f893473ff9f887656416e82266ff4994.jpg" alt="Photograph for the production, &quot;The Orphan Sea&quot;" data-href="/digitalobject/15808" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

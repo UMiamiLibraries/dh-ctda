@@ -1,0 +1,537 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../writtenworks.html">Written Works</a></li>
+              <li>Ballad of Reading Goal</li>
+            </ul>
+          </nav>
+          <h2>Ballad of Reading Goal
+          
+            (May 1897)
+          
+          </h2>
+        </header>
+        <section class="main">
+          <h4>Poem
+          
+          (English) 
+          </h4>
+          
+          
+          
+                      
+
+            
+
+          
+
+            
+              <br />
+               Author: Dainerys Machado (2017)
+            
+
+        
+          
+      
+          
+        
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              <li>
+                <span><h4>Poet:</h4><a href='../creator/5294.html'>Oscar  Wilde</a></span> 
+              </li>
+
+              <li>
+                
+              </li>
+              
+              
+              <li>
+                <h4>Creation date:</h4>
+                <span>May 1897</span>
+              </li>
+              
+            </ul>
+            
+            
+          </div>
+         
+          
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16527">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/85/65/85651bc83f0077687205a307265f9844.jpg" title="Poster for the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d9/ef/d9efd68e1c72c98c6b216753047a80b2.jpg" alt="Poster for the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16527" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/27/72/2772fcfc09db6f93caaf644ac7339f4a.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/65/4e/654e7567d04b82a537215c81b43c0d38.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16526" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/61/8d/618d1571c04ca749c4122c19e6bf3075.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c2/16/c216df4350bd19079e84868f3b577e2c.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16525" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e5/f0/e5f004a3bfe2bf30936c147233c8641b.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/8f/9c/8f9c482f36eb0a806b6142102d387dc6.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16524" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e6/63/e663f8b3adbcbf075fe55f8e42261bcb.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a0/78/a078b131c6ad783949a0b4b850da1b08.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16523" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bf/93/bf93ba888e0cc7a60308c8915181aa5a.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="../media/cache/14/da/14dad2f796744a9b5eabca15e79207fc.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16522" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8e/4a/8e4a651463c1a97a2d707f9ac079cdf6.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a7/23/a72376b64d2b503d7808ca25045e9382.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16521" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a8/b0/a8b0091ac4108921220c92b82422c5e5.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/59/6f/596f59dafcf3884ab649ab5a6f365479.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16520" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/76/6b/766bf2785e1b307d303d707b1a63ad0c.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/44/70/447029f8795e844a100f3bf760e22520.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16519" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/52/23/5223f569b48520a7f2b1a42e35c26ddd.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/cd/ee/cdeef4990ce49761c16ff1407b3a4e04.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16518" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f6/aa/f6aa1d8b39046f0d86f8891341e522b9.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/2a/d3/2ad3f127edc9e49dfcaac2be6971b515.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16517" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7b/a3/7ba30599b36ab38623ba3246a754779f.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/11/38/1138dddaa3bd7fe0247bc8c91012691b.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16516" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/48/284817b9209a4f3e7e8c6bdca137b622.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="../media/cache/35/a2/35a2714a457577c347a83b088a7a6c72.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16515" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7c/f9/7cf938fc3579a1426aa042547f2d328e.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/2f/03/2f03e62e337645c7a066689610659c5d.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16514" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/73/b0/73b0c881a07e7c1e4415de563fe8db18.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d9/97/d99767f9fbf5109e4017b7c20fcd5828.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16513" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/05/8605824b021ec058e82351cbc9313c9e.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="../media/cache/6a/24/6a2467cbdc5a7eb7bed388d400a2dccc.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16512" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/40/79/4079e8b4d6398950941e5a997cb5dbe8.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/26/5c/265c43c6326e5ecb2a0c70d2b11ef80d.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16511" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/18/ac/18acb98f6cedaf00dbd9ad7167869ad5.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/95/2b/952b223b2a5f0cd3985c602ac99b53e6.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16510" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c9/c5/c9c5ad8276e735f82e25c1618802bb42.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/0d/18/0d1818be62b2bd0d948585998c3f8853.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16509" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/17/38/17386a5adbcd440dbed184ccdc48bf3c.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/68/3c/683c049823b391b3e907c1379965cff3.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16508" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/60/a5/60a59e9e4231190a4ffe18f79fc1e2fd.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/7f/9b/7f9bf69875d2ca44f1a7a9b3637138c3.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16507" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/6c/9c6c509549808bf3e1eddc2054e7dc40.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/14/ff/14ffb7d89f513fd47eabf57313441cdb.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16506" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/1d/1a1d7a2f03d02e96e1f5a53016b61f94.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="../media/cache/d0/f4/d0f416ab7579654106a79666791d6c32.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16505" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c1/f9/c1f922e562b04db1781cb548dbd2fa4e.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="../media/cache/14/ca/14ca42bbaf79bef2893f3f613ef40bb1.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16504" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/23/45/234516f9bac84a14d047a003432b9bef.jpg" title="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/42/9c/429c3d03bc6e4588fd7a4150ff6a313e.jpg" alt="Photograph of the production, &quot;La Balada de la Cárcel de Reading&quot;" data-href="/digitalobject/16503" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

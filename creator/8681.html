@@ -1,0 +1,525 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Vanessa Garcia</li>
+                </ul>
+            </nav>
+            <h2>Vanessa Garcia</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Author / playwright</strong></p>
+
+            
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="../writtenwork/3856.html">1000 Miles</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>2017</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/3401.html">The Cuban Spring </a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+        
+
+                    
+        
+
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              
+              
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/16068.html">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/8d/60/8d604f72534ac1e0256363bff086e5bf.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/85/c5/85c525012af83e947717a4857d94b3e2.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/0d/18/0d187275c6060078f716e9df4b5a6421.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/11/39/1139e1b5140f5ff1526b0f4e6f9b51b6.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/54/9f/549f158bb1bbdb61ca90ce1a39a6f0bc.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/10/1e/101ee1769706061d8c25efa9673166d5.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/be/b1/beb19b45c5e66579ecb49e860c716527.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/c2/cd/c2cd7cc17534e7bbf7774bb2a7c7e022.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c4/a4/c4a4ce498c86f2ac1343ff8c7cb19cec.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/27/78/27781033f6f55b21976eea98382d0c84.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/4c/19/4c199e720530bb43b8d27e130385a393.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/ae/9c/ae9cd949be6e1725039348b6e7e9a64d.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/e5/fd/e5fdf8380967e9649f1792f3e74ddca0.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/35/99/3599f4f66f8ba460342f389a68ba9694.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/5a/f5/5af5a33f6697e34341603cedb6b89516.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/f7/d2/f7d2d6761f31e2028a93189c0fd98f8d.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/55/02/5502ffc247ae4bbbc922d52cef7b8828.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/8c/e1/8ce137f55df1039aaece9c1f488a677d.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/15/bf/15bfea7fffce024be82678ee722eb3d7.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/7f/9d/7f9d0f9b0402662806926c62dcc46afa.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b0/19/b019164033cfc247f39f93f01cf1c7d8.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/0c/e6/0ce6685e9214c3cf59f60999af846c45.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c0/9e/c09e086080a029b09f62ff380fa00210.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/8f/e1/8fe15f0d68aa2cf7fb3995e60904f31b.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/cf/9d/cf9d6235fc2e60aa6e910571582fa341.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/b3/40/b3402c6b1d70c4d32b2dfda54d18fb86.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/f0/05/f00526709c0d4ca6c3312ed50f8a60f4.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/ad/c8/adc81f6ffabba5c0157a47d9cfda3866.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/a8/96/a8962a8064f776ba24db2e6d979ea9d3.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/9a/38/9a386f7d780b4bbf0d61368e28c8c9d3.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/7b/64/7b6475c7fc92c23b91103e41bd398934.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/8b/09/8b09114e9c2a3206f60419c4bae3629b.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/61/ba/61ba4113d0da1eae0ecb8ce03150fbab.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/c8/6f/c86f2b5061fce92c34993fc62446cfee.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/28/80/288074267f127ef7bbca09490664bd3e.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/87/d7/87d76ead21e5c66e0aa4505fcaf54780.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/78/3d/783da65d29ef6b2ac8f2074f107eff50.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/0e/aa/0eaa8c6da5e13622b0b2ba6b2317e71b.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/68/ff/68ff3361e4e938a922f9879e01abb5f1.jpg" title="Program for the production, &quot;The Cuban Spring&quot; ">
+                    
+                    
+                    <img src="../media/cache/7b/f0/7bf0dcc759d856bd751106243a209ea6.jpg" alt="Program for the production, &quot;The Cuban Spring&quot; " data-href="/digitalobject/16068" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,698 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>La muerte de un viajante</li>
+                </ul>
+            </nav>
+            <h2>La muerte de un viajante</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2479">Juan Carlos García</a></td>
+                        <td>Assistant to the Director</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/163.html">Pancho García</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/9843">Amilsy Valdivia</a></td>
+                        <td>Assistant to the Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Cast: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Role(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/8772">Alexander Díaz</a></td>
+                        <td>Biff</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/3153">Pedro Díaz Ramos</a></td>
+                        <td>Tío Ben</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2479">Juan Carlos García</a></td>
+                        <td>Camarero</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/163.html">Pancho García</a></td>
+                        <td>Willy Loman</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/9827">Einar Gil</a></td>
+                        <td>Camarero</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/8884">Liliana Lam</a></td>
+                        <td>Loretta</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/1858">Miriam Learra</a></td>
+                        <td>Linda</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/524">Amada Morado</a></td>
+                        <td>Linda</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2816">Arístides Naranjo</a></td>
+                        <td>Bernard</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/9842">Liudmila Naranjo</a></td>
+                        <td>Mujer</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/3804">Ilsi Pérez</a></td>
+                        <td>Mujer</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/3418">Gilberto Ramos</a></td>
+                        <td>Harold</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/4089">Carlos Treto</a></td>
+                        <td>Charley</td>
+                    </tr>
+                
+              </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Design team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/4739">Eduardo Arrocha</a></td>
+                    <td>Costume designer, Set designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/8198">Jesús Darío</a></td>
+                    <td>Light designer</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Technical team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/6092">Eugenio González</a></td>
+                    <td>Hairdresser</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Production team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/9828">Vivian Bárzaga</a></td>
+                    <td>Director of production</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/9387">Loly Fernández</a></td>
+                    <td>Director of production</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1174/">El sentido del sueño</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1173/">El huerto inútil</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1172/">Diálogo profundo en la Hubert de Blanck</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1171/">Un viajante en el Vedado</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1170/">Diálogo profundo en el teatro Hubert de Blanck</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+          
+
+
+            
+            <div class="linkeditems">
+                <p></p>
+                <h3>Notes: +</h3>
+                <div>
+                <p>The program for the production, "La muerte de un viajante", is in Spanish;&nbsp;click "Espa&ntilde;ol" in the upper&nbsp;right hand&nbsp;side of the page.&nbsp;<img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI4My4xNzggMjgzLjE3OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjgzLjE3OCAyODMuMTc4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPHBhdGggZD0iTTI1NC44MTIsMTQwLjcxM2gtMjBjLTQuMTQyLDAtNy41LDMuMzU4LTcuNSw3LjV2OTEuMTg2YzAsNC44NC0zLjkzOSw4Ljc3OC04Ljc3OSw4Ljc3OEg0My43NzYgICBjLTQuODM5LDAtOC43NzUtMy45MzgtOC43NzUtOC43NzhWNjQuNjQ1YzAtNC44NDEsMy45MzYtOC43OCw4Ljc3NS04Ljc4aDk1Ljg1NWM0LjE0MiwwLDcuNS0zLjM1OCw3LjUtNy41di0yMCAgIGMwLTQuMTQyLTMuMzU4LTcuNS03LjUtNy41SDQzLjc3NmMtMjQuMTM4LDAtNDMuNzc1LDE5LjY0LTQzLjc3NSw0My43OHYxNzQuNzU1YzAsMjQuMTQsMTkuNjM4LDQzLjc3OCw0My43NzUsNDMuNzc4aDE3NC43NTYgICBjMjQuMTQsMCw0My43NzktMTkuNjM5LDQzLjc3OS00My43Nzh2LTkxLjE4NkMyNjIuMzEyLDE0NC4wNzEsMjU4Ljk1NCwxNDAuNzEzLDI1NC44MTIsMTQwLjcxM3oiIGZpbGw9IiMwMDAwMDAiLz4KCTxwYXRoIGQ9Ik0yNzUuNjc3LDBoLTc5LjU1M2MtNC4xNDIsMC03LjUsMy4zNTgtNy41LDcuNXYyMGMwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDI3LjMwNCAgIEwxMjAuNjgzLDEzNy43NDNjLTIuOTI5LDIuOTI5LTIuOTI5LDcuNjc3LDAsMTAuNjA3bDE0LjE0MiwxNC4xNDNjMS40MDcsMS40MDcsMy4zMTQsMi4xOTcsNS4zMDQsMi4xOTcgICBjMS45ODksMCwzLjg5Ny0wLjc5LDUuMzAzLTIuMTk3TDI0OC4xNzcsNTkuNzQ4djI3LjMwM2MwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDIwYzQuMTQyLDAsNy41LTMuMzU4LDcuNS03LjVWNy41ICAgQzI4My4xNzcsMy4zNTgsMjc5LjgxOSwwLDI3NS42NzcsMHoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" alt="" /></p>
+                </div>
+            </div>
+            
+
+
+
+            
+                <br>
+               Author: Dainerys Machado (2017)
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              
+            
+                <a href="../creator/4801.html" >Compañía Teatral Hubert de Blanck (4801)</a><br />
+              
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck (Cuba)</a></span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>June 27, 2009 - July 2009</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/writtenwork/3868">La muerte de un viajante (Adaptation / Version)</a><br />
+                <span>By <h4>Adapter:</h4><a href='../creator/163.html'>Pancho García</a></span>
+              </li>
+              
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Adaptations--Arthur%20Miller"><li>Adaptations--Arthur Miller</li></a>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Cuban%20theater--Havana"><li>Cuban theater--Havana</li></a>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Drama"><li>Drama</li></a>
+                
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16464">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/44/59/4459607b42bfa6b699c5b95a96f3eaee.jpg" title="Photograph of Pancho García (Willy Loman) in the production, &quot;La muerte de un viajante&quot;">
+                
+                
+                <img src="../media/cache/1a/e1/1ae13dfe31b3fc7e50493c573733b432.jpg" alt="Photograph of Pancho García (Willy Loman) in the production, &quot;La muerte de un viajante&quot;" data-href="/digitalobject/16464" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/56/b0/56b098417dbfe08d9d4693c7dd8fe459.jpg" title="Photograph of Pancho García (Willy Loman) and Carlos Treto (Charley) in the production, &quot;La muerte de un viajante&quot;">
+                
+                
+                <img src="../media/cache/3d/90/3d90748a3b9c5db5269fcf38e82419f5.jpg" alt="Photograph of Pancho García (Willy Loman) and Carlos Treto (Charley) in the production, &quot;La muerte de un viajante&quot;" data-href="/digitalobject/16463" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/81/fc/81fcb338e5f0860b3b97633692c06ef3.jpg" title="Poster for the production, &quot;La muerte de un viajante&quot;">
+                
+                
+                <img src="../media/cache/f7/c4/f7c4da74b87ac0bc175337e7cc5ce901.jpg" alt="Poster for the production, &quot;La muerte de un viajante&quot;" data-href="/digitalobject/16462" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/6a/ff/6aff0ac6632fe264000951fd3fd75a51.jpg" title="Photograph of Alexander Díaz (Biff) and Gilberto Ramos (Harold) in the production, &quot;La muerte de un viajante&quot;">
+                
+                
+                <img src="../media/cache/66/18/6618b2e8ac755ecc2b438f08a5bcd280.jpg" alt="Photograph of Alexander Díaz (Biff) and Gilberto Ramos (Harold) in the production, &quot;La muerte de un viajante&quot;" data-href="/digitalobject/16461" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/aa/5b/aa5b6b190580342cadd68599ceadd62c.jpg" title="Photograph of Pancho García (Willy Loman), Amada Morado (Linda) and  y Alexander Díaz (Biff) in the production, &quot;La muerte de un viajante&quot;">
+                
+                
+                <img src="../media/cache/6f/c0/6fc0d618ae5edc53bb4b3e23ef99b716.jpg" alt="Photograph of Pancho García (Willy Loman), Amada Morado (Linda) and  y Alexander Díaz (Biff) in the production, &quot;La muerte de un viajante&quot;" data-href="/digitalobject/16460" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/c5/a7/c5a745d0b37d89ae056a7aab7d47ff07.jpg" title="Photograph of Pancho García (Willy Loman), Amada Morado (Linda) and Alexander Díaz (Biff) in the production, &quot;La muerte de un viajante&quot;">
+                
+                
+                <img src="../media/cache/e3/2d/e32d0fc1ff83df78b29a8690ae6567c4.jpg" alt="Photograph of Pancho García (Willy Loman), Amada Morado (Linda) and Alexander Díaz (Biff) in the production, &quot;La muerte de un viajante&quot;" data-href="/digitalobject/16459" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/21/cb/21cb983548aa02e9d2956f33e482290d.jpg" title="Photograph of Pancho García (Willy Loman) and Miriam Learra (Linda) in the production, &quot;La muerte de un viajante&quot;">
+                
+                
+                <img src="../media/cache/e2/0c/e20c3cc61159143e525f0eb34708871c.jpg" alt="Photograph of Pancho García (Willy Loman) and Miriam Learra (Linda) in the production, &quot;La muerte de un viajante&quot;" data-href="/digitalobject/16458" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/35/83/358398d6de9a792a0811bc84ef8990c6.jpg" title="Photograph of Pancho García (Willy Loman) and Amada Morado (Linda) in the production, &quot;La muerte de un viajante&quot;">
+                
+                
+                <img src="../media/cache/b9/87/b9870facbe65435c11380e73642d1873.jpg" alt="Photograph of Pancho García (Willy Loman) and Amada Morado (Linda) in the production, &quot;La muerte de un viajante&quot;" data-href="/digitalobject/16457" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/35/83/358398d6de9a792a0811bc84ef8990c6.jpg" title="Photograph of Pancho García (Willy Loman) in the production, &quot;La muerte de un viajante&quot;">
+                
+                
+                <img src="../media/cache/b9/87/b9870facbe65435c11380e73642d1873.jpg" alt="Photograph of Pancho García (Willy Loman) in the production, &quot;La muerte de un viajante&quot;" data-href="/digitalobject/16465" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/35/83/358398d6de9a792a0811bc84ef8990c6.jpg" title="Photograph of Pancho García (Willy Loman) in the production, &quot;La muerte de un viajante&quot;">
+                
+                
+                <img src="../media/cache/b9/87/b9870facbe65435c11380e73642d1873.jpg" alt="Photograph of Pancho García (Willy Loman) in the production, &quot;La muerte de un viajante&quot;" data-href="/digitalobject/16466" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,739 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en ">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../digitalobjects.html">Digital Objects</a></li>
+              <li>Program for the production, &quot;Mi hijo no es lo que parece…&quot;</li>
+            </ul>
+          </nav>
+          <h2>Program for the production, &quot;Mi hijo no es lo que parece…&quot;</h2>
+        </header>
+
+        <section class="objectdisplay main">
+                
+                
+                <img id="largepreview" data-index="0" src="http://ctda.library.miami.edu/media/cache/7d/44/7d442240f23f27a15f6ba9145eceaf88.jpg" alt='' style="display:block;float:none;" /><br />
+                
+                
+                
+                
+
+                
+
+                
+                <h3>Notes:</h3>
+                Production title: Mi hijo no es lo que parece<br />
+Production directed by Mario Martín<br />
+Object date: 1977-12-23<br />
+Coverage (temporal): 1970-1980<p>Coverage (spatial): Miami (Florida)</p>
+
+                
+
+                <h3>Object details:</h3>
+                <dl class="objectdata">
+                
+
+                
+                
+                
+                
+                
+                  <dt>Physical object date:</dt>
+                  <dd>1980</dd>
+                  
+                
+                
+                
+              
+                
+                  <dt>Physical object type:</dt>
+                  <dd>Theater programs</dd>
+                
+
+                
+                  <dt>Digital object format:</dt>
+                  <dd>Image</dd>
+                
+
+                  <dt>Object ID:</dt>
+                  <dd>chc5160000243</dd>
+                  
+                  <dt>Collection:</dt>
+                  <dd>Theater Ephemera Collection</dd>
+                  
+                  
+                  
+                
+                  <dt>License:</dt>
+                  <dd><a href="../copyright/index.html">University of Miami copyright policy</a></dd>
+                
+                  
+                
+                  
+                  
+                  
+                  
+                </dl>
+
+                
+                <h3>Related items:</h3>
+                
+                
+                <h4>Creators:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="../creator/8443.html">Miriam Blanco</a>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/creator/7210">Marta Casañas</a>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/creator/7202">Pedro de Pool</a>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/creator/8527">Miguel A. Herrera</a>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/creator/7209">Velia Martínez</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../creator/946.html">Mario Martín</a>
+                  </li>
+                  
+                </ul>
+                
+
+                
+                <h4>Productions:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2993">Mi hijo no es lo que parece (Sala Teatro La Comedia #1 , December 23, 1977)</a>
+                  </li>
+                  
+                </ul>
+                
+
+                
+
+                
+
+                
+                <h4>Venues:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="../venue/1049.html">Sala Teatro La Comedia #1  (United States)</a>
+                  </li>
+                  
+                </ul>
+                
+                
+            
+        </section>
+        
+        <aside class="thumbnails">
+            
+                <div class="data">
+                  <ul>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/20/63/2063ae3921875a06d85d6f310a301e21.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/7d/44/7d442240f23f27a15f6ba9145eceaf88.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/50/88/508817d4959a11b29a384e10b2197394.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/21/52/21526d4bdedffd51d4db9a49d7904801.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/f6/63/f6634ab7836d9d205061493788fadee4.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/ad/c2/adc2e2099242b20137c9a8bfc4370f9f.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/44/f5/44f56c4e6c52a295a319f6c46d688687.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/96/67/9667592bd46c7d57a7bee2e722f1c5f0.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/50/d0/50d0517d6eea3189a501717d36243c6b.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/d3/d4/d3d4d5b2c2d0393e6cc6bc0bcb0e43bb.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/62/58/6258f8ac08de2b0a84605cc0bf07d1fa.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/6b/30/6b30670a39a7e2eb46a0d3a1ef5a8e26.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/f4/01/f401f88e49406c01f716128ffbeebbd7.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/8d/95/8d95901af467bc7bae5722f70d048c3b.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/7f/1a/7f1ac32f07db17de426e8a981073e120.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/66/14/6614dc774b1b038451b47932919784e0.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ce/67/ce6715370a9449ff1661d9d1625313b3.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/f0/0a/f00a28f0111ebfe91bed9e9272949e69.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/f5/6b/f56b5c741c0dbf11e9384fbae2621a7c.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/dc/ca/dcca99d6590f4d4ad0b8aef6bc4c8760.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/6f/08/6f08fb344d11de0e57926626ef08d67a.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/62/fe/62fe5a7ce223ac0da6a226f067d4dbbb.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/f1/9a/f19a2a13bda603fd51f04a49aadb7c0b.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/98/92/9892fb5e5e8bfdbe878327844ff544f1.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/6b/84/6b842c48437d56bac4824c5cf2268a62.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/05/79/0579963a1a578284c6b469b9818d3518.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/9d/9d/9d9d48af3be19e472d9aa5d36a41ed1e.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/b3/e8/b3e8dfa3ea0870a623315e11e94b9fcd.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/4f/a3/4fa3c7b512691193394c99500ebc07bd.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/a8/dc/a8dc67fdc2e99e417983f57e228a9605.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/c0/23/c02321ccde1c8e14321e976e862b79bc.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/6a/05/6a05785dd5245dc50a79d5f287347b43.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/2f/08/2f08133cbaf98c5f6bfc8e05dafec01d.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/0d/1c/0d1ca946927609b063e9d01e413baeeb.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/5e/81/5e81cc3c0e976053878aafd3169c7366.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/17/a1/17a1f809b6f16bd0186d8c025b907d03.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/df/13/df13d2b8479ee7bd8400d073ca60dd61.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/ca/ea/caeabb13f71d569f1870f5dc0ae1068c.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/87/cb/87cb208d74d283355a3fe15a9626736e.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/19/ff/19ff6b8e7251ea5faae4d77588a09471.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ea/c9/eac91c9fe47c003b71da615d07392060.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/89/86/8986087fdada2fcb37a2f51d3421ebc1.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ad/5f/ad5f82cb585f13034b3cfba642afc1c3.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/c8/94/c894d972f8bc6a578467c7e7d86deb31.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/01/26/01268f3cb48ffecf0cdfe4fbc8dac490.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/06/c8/06c889ed20a775447f643fd4bb486472.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ab/48/ab4828b34ba2ec54972d030e9346595c.jpg" width="100" height="100" alt='' title="Program for the production, &quot;Mi hijo no es lo que parece…&quot;" />
+                        
+                        
+                        <span>/media/cache/a0/30/a03032f75549664686287d2881ab41c8.jpg</span>
+                        
+                    </li>
+                
+                </ul>
+              </div>
+            
+            
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+        $(window).load(function() {
+            
+            $('.thumbnails ul li').click(function() {
+                var current = $(this);
+                var index = $('.thumbnails ul li').index(current);
+                $('#largepreview').attr('src', current.children('span').text());
+                $('#largepreview').attr('data-index', index);
+            });
+            
+            $('#largepreview').click(function() {
+              $.fancybox([
+                
+                
+                "/media/cache/f0/80/f080c651cf7bef8c3c7abb7e9afedcec.jpg",
+                
+                
+                
+                "/media/cache/3d/82/3d82b3f48951728cf7c9a6e76cade948.jpg",
+                
+                
+                
+                "/media/cache/57/9e/579edf3f87c68841567c09086c4adbd9.jpg",
+                
+                
+                
+                "/media/cache/b8/52/b85232e2cd9b90a81dc9ed946a2d4e16.jpg",
+                
+                
+                
+                "/media/cache/d8/f6/d8f62e02ba975d8180c7a66714ea57c6.jpg",
+                
+                
+                
+                "/media/cache/b5/4f/b54ff337306a99926457852cb6b8ff8e.jpg",
+                
+                
+                
+                "/media/cache/8a/3a/8a3a92f9f6d844a48223967c84bbd117.jpg",
+                
+                
+                
+                "/media/cache/d5/00/d5008be69a9bc5e47af0c67984779440.jpg",
+                
+                
+                
+                "/media/cache/b2/dd/b2dd229f22162c7a45b936d5193bbfcf.jpg",
+                
+                
+                
+                "/media/cache/cf/2b/cf2bfdc07c0427b57d122048ce2f05e6.jpg",
+                
+                
+                
+                "/media/cache/80/1b/801b4101d9b96538507e03f5d1c4aa89.jpg",
+                
+                
+                
+                "/media/cache/c1/b0/c1b0ca8cff0b5339b0ba7ccabe3cbab2.jpg",
+                
+                
+                
+                "/media/cache/37/1c/371cb2ce349e531a7e3efd2947d0ce0b.jpg",
+                
+                
+                
+                "/media/cache/12/8b/128bcd78dbabcb8e0c4611ffe638551f.jpg",
+                
+                
+                
+                "/media/cache/e7/e1/e7e1acbbafeadb1ce580c3a3e0965175.jpg",
+                
+                
+                
+                "/media/cache/ed/26/ed26223e4f848ff1e69dd1a94b719a2b.jpg",
+                
+                
+                
+                "/media/cache/c6/26/c6260bd384714138c33557dddbc9a341.jpg",
+                
+                
+                
+                "/media/cache/68/70/6870ed681a1dcd96f08bc7aa9ae24982.jpg",
+                
+                
+                
+                "/media/cache/eb/b5/ebb5d8e0e447da157f05467592cb606c.jpg",
+                
+                
+                
+                "/media/cache/a5/50/a5503471727604c986e5b0a63a0ada28.jpg",
+                
+                
+                
+                "/media/cache/40/9d/409d2c3f097a41a3b8f2071f692c50cb.jpg",
+                
+                
+                
+                "/media/cache/d8/69/d869a22f7bf68bf2c7c670a6a2519359.jpg",
+                
+                
+                
+                "/media/cache/02/f5/02f5f1bfeed44d5e542efacbe1e7ffb9.jpg",
+                
+                
+                
+                "/media/cache/19/87/1987b1814b699c3b58441312313496f5.jpg",
+                
+                
+              ], {
+                'type': 'image',
+                'loop': false,
+                'index': $('#largepreview').attr('data-index')
+              });
+            });
+            
+        });
+    </script>
+
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

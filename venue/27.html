@@ -1,0 +1,3357 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../venues.html">Venues</a></li>
+              <li>Miami Dade College - Wolfson Campus</li>
+            </ul>
+          </nav>
+          <h2>Miami Dade College - Wolfson Campus</h2>
+        </header>
+
+        <section class="main">
+          
+          <h4>Also known as: Miami Dade Community College Downtown Campus Auditorium</h4>
+          
+
+          
+
+          
+
+          
+
+          
+          <h4>Stages:</h4>
+          <ul>
+          
+          <li>
+            <strong>Auditorium</strong><br />
+            
+            
+            
+
+            
+
+            
+
+            
+
+            
+              
+            
+          </li><br />
+          
+          <li>
+            <strong>Sala El Teatrino de Prometeo</strong><br />
+            
+            <span>Also known as: El Teatrino</span><br />
+            
+            
+            
+
+            
+
+            
+
+            
+
+            
+              
+            
+            <p>El Teatrino was the home of Grupo Prometeo between 2000 and 2004.</p>
+            
+          </li><br />
+          
+          <li>
+            <strong>Teatro Prometeo Theater</strong><br />
+            
+            
+            
+
+            
+
+            
+
+            
+
+            
+              
+            
+            <p>Theater opened in 2004.</p>
+            
+          </li><br />
+          
+          </ul>
+          
+
+          
+          <div class="linkeditems">
+            <h3>Productions: +</h3>
+            <ul>
+              
+              <li>
+                <a href="../production/4239.html">La hora de la fantasia</a>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4276.html">Infieles</a>
+                
+                <br /><span>July 2012</span>
+                
+                
+                <br /><span>Directed by: Ernest A. Figueroa</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4275.html">A puerta cerrada</a>
+                
+                <br /><span>May 2012</span>
+                
+                
+                <br /><span>Directed by: Yaraní del Valle</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4285.html">Pippin</a>
+                
+                <br /><span>April 19, 2012 - April 21, 2012</span>
+                
+                
+                <br /><span>Directed by: Amy Ibberson</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4274.html">Remembranzas de Emily Dickinson</a>
+                
+                <br /><span>April 2012</span>
+                
+                
+                <br /><span>Directed by: Zaida Castellanos</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4277.html">Liz</a>
+                
+                <br /><span>February 2012</span>
+                
+                
+                <br /><span>Directed by: Beatriz Rizk</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4280.html">Monólogos de la vagina</a>
+                
+                <br /><span>2012</span>
+                
+                
+                <br /><span>Directed by: Joann Yarrow</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4272.html">Mujeres de Shakespeare</a>
+                
+                <br /><span>July 2011</span>
+                
+                
+                <br /><span>Directed by: Jacqueline Briceño</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4273.html">La conducta de la vida</a>
+                
+                <br /><span>June 2011</span>
+                
+                
+                <br /><span>Directed by: Joann Yarrow</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4283.html">Guys and Dolls</a>
+                
+                <br /><span>2011</span>
+                
+                
+                <br /><span>Directed by: Amy Ibberson</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4284.html">Spelling Bee</a>
+                
+                <br /><span>2011</span>
+                
+                
+                <br /><span>Directed by: Amy Ibberson</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/27.html">Filo al fuego</a>
+                
+                <br /><span>July 9, 2010 - July 17, 2010</span>
+                
+                
+                <br /><span>Directed by: Joann Yarrow</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4271.html">Fuenteovejuna</a>
+                
+                <br /><span>2010</span>
+                
+                
+                <br /><span>Directed by: Lilliam Vega</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4270.html">Lección para señoritas</a>
+                
+                <br /><span>2010</span>
+                
+                
+                <br /><span>Directed by: Jacqueline Briceño</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3758.html">Yo me llamo Virgilio Piñera</a>
+                
+                <br /><span>December 2009</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/4269.html">Otelo</a>
+                
+                <br /><span>2009</span>
+                
+                
+                <br /><span>Directed by: Lilliam Vega</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2509.html">Los intereses creados</a>
+                
+                <br /><span>July 10, 2008 - July 15, 2008</span>
+                
+                
+                <br /><span>Directed by: Joann Yarrow</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1843.html">El pueblo de Esteban</a>
+                
+                <br /><span>November 4, 2007 - November 7, 2007</span>
+                
+                
+                <br /><span>Directed by: Lilliam Vega</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4260.html">Una tempestad</a>
+                
+                <br /><span>November 14, 2006</span>
+                
+                
+                <br /><span>Directed by: Lilliam Vega</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4259.html">Una tempestad</a>
+                
+                <br /><span>June 2006</span>
+                
+                
+                <br /><span>Directed by: Lilliam Vega</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1401.html">El viajero sin equipaje</a>
+                
+                <br /><span>February 10, 2006 - March 10, 2006</span>
+                
+                
+                <br /><span>Directed by: Larry Villanueva</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/4268.html">La casa de todos</a>
+                
+                <br /><span>2006</span>
+                
+                
+                <br /><span>Directed by: Joann Yarrow</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1034.html">Falsa alarma</a>
+                
+                <br /><span>June 8, 2005 - June 9, 2005</span>
+                
+                
+                <br /><span>Directed by: José González</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/660.html">Las brujitas del Downtown</a>
+                
+                <br /><span>November 2004</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas, Larry Villanueva</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/745.html">La violación de Bona Cortada</a>
+                
+                <br /><span>September 10, 2004</span>
+                
+                
+                <br /><span>Directed by: Frank Quintana</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1002.html">Josephine&#39;s Bakery</a>
+                
+                <br /><span>2004</span>
+                
+                
+                <br /><span>Directed by: Frank Quintana</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2049.html">The Orchestra</a>
+                
+                <br /><span>2004</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1012.html">Matías y el aviador</a>
+                
+                <br /><span>June 13, 2003 - June 14, 2003</span>
+                
+                
+                <br /><span>Directed by: Jorge Luis Morejón</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2157.html">The Proposal and the Bear</a>
+                
+                <br /><span>2003</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1021.html">Farsa maravillosa del gato con botas</a>
+                
+                <br /><span>June 7, 2002 - June 8, 2002</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2159.html">El canto de la cigarra y El circo del silencio</a>
+                
+                <br /><span>2002</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1061.html">Suandende y Persecución</a>
+                
+                <br /><span>June 7, 2001 - June 8, 2001</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/2154.html">Something Else</a>
+                
+                <br /><span>2001</span>
+                
+                
+                <br /><span>Directed by: Frank Quintana</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1215.html">A Park In Our House</a>
+                
+                <br /><span>December 2, 2000</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3512.html">Clown, Quijote de La Mancha</a>
+                
+                <br /><span>June 20, 1999</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/1161.html">Gestos para nada</a>
+                
+                <br /><span>June 11, 1999 - June 12, 1999</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3502.html">La tempestad</a>
+                
+                <br /><span>June 14, 1998</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/3501.html">Un golpe a la tristeza</a>
+                
+                <br /><span>June 14, 1998</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/1135.html">Fiesta de máscaras</a>
+                
+                <br /><span>June 4, 1997 - June 5, 1997</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1128.html">Yerma</a>
+                
+                <br /><span>June 8, 1996 - June 9, 1996</span>
+                
+                
+                <br /><span>Directed by: Alberto Alonso</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1115.html">El retablo de las maravillas</a>
+                
+                <br /><span>June 10, 1995 - June 11, 1995</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3670.html">La Cuba de antier</a>
+                
+                <br /><span>January 27, 1990</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/1087.html">Los invasores</a>
+                
+                <br /><span>May 24, 1988 - May 25, 1988</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1080.html">El álbum familiar</a>
+                
+                <br /><span>May 29, 1987 - May 31, 1987</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/430.html">False Alarm</a>
+                
+                <br /><span>1986</span>
+                
+                
+                <br /><span>Directed by: Alberto Sarraín</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3847.html">El relojero de Cordoba</a>
+                
+                <br /><span>March 14, 1985 - March 16, 1985</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3852.html">La presidenta y los guerrilleros</a>
+                
+                <br /><span>March 18, 1983 - March 27, 1983</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3867.html">No Exit</a>
+                
+                <br /><span>1979</span>
+                
+                
+                <br /><span>Directed by: Efraín Martel</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3749.html">No son todos los que están</a>
+                
+                <br /><span>October 12, 1979</span>
+                
+                
+                <br /><span>Directed by: Iván Acosta</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3090.html">&quot;El viaje&quot; y &quot;La abuela&quot;</a>
+                
+                <br /><span>April 19, 1979 - April 21, 1979</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="../production/3130.html">Prometeo</a>
+                
+                <br /><span>March 20, 1979 - March 21, 1979</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3853.html">La dama boba</a>
+                
+                <br /><span>March 1979</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3868.html">Garden of Delights</a>
+                
+                <br /><span>November 1978</span>
+                
+                
+                <br /><span>Directed by: Mario Ernesto Sánchez</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3761.html">Guaracha Rock</a>
+                
+                <br /><span>October 6, 1978 - October 8, 1978</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3083.html">El gran teatro del mundo</a>
+                
+                <br /><span>March 18, 1978</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1655.html">La noche de los asesinos</a>
+                
+                <br /><span>December 3, 1977 - December 4, 1977</span>
+                
+                
+                <br /><span>Directed by: Tony Wagner</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3848.html">Cordero de Dios (Agnes of God)</a>
+                
+                <br /><span>August 22, 1977 - August 24, 1977</span>
+                
+                
+                <br /><span>Directed by: Gonzalo Rodríguez</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3093.html">Proceso a cuatro monjas</a>
+                
+                <br /><span>July 9, 1977 - July 10, 1977</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3092.html">La encantadora familia Bliss</a>
+                
+                <br /><span>March 26, 1977 - March 27, 1977</span>
+                
+                
+                <br /><span>Directed by: Francisco Morín</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3087.html">Fando y Lis</a>
+                
+                <br /><span>August 28, 1976 - August 29, 1976</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3082.html">2075</a>
+                
+                <br /><span>October 11, 1975</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3088.html">Flores de papel</a>
+                
+                <br /><span>May 31, 1975</span>
+                
+                
+                <br /><span>Directed by: Francisco Morín</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3094.html">Estampas de la novelística cubana</a>
+                
+                <br /><span>March 8, 1975</span>
+                
+                
+                <br /><span>Directed by: Griselda Nogueras</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3849.html">Chimpete-Champata &amp; Chi-Chenó</a>
+                
+                <br /><span>December 13, 1974</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3850.html">La sopera</a>
+                
+                <br /><span>November 22, 1974 - November 23, 1974</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3133.html">El juicio final</a>
+                
+                <br /><span>1974</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3866.html">La cucarachita Martina</a>
+                
+                <br /><span>December 21, 1973</span>
+                
+                
+                <br /><span>Directed by: Teresa María Rojas</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/1242.html">E Pluribus Unum</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: Leandro Soto</span>
+                
+              </li>
+              
+            </ul>
+          </div>
+        
+        
+             
+        
+          
+      
+                
+
+
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              <li>
+                <h4>Address:</h4>
+                <span>300 N.E. 2nd Avenue</span>
+                
+              </li>
+              
+              
+              <li>
+                <h4>City:</h4>
+                <span>Miami, Florida</span>
+              </li>
+              
+              <li>
+                <h4>Country:</h4>
+                <span>United States</span>
+              </li>
+              
+              
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/13403.html">View details</a>
+            <div id="digitalobjects">
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/98/be/98bec80c7288d8559bc9b7f273273093.jpg" title="Poster for the production, &quot;El juicio final&quot;">
+                  
+                  
+                  <img src="../media/cache/7c/87/7c8761d65fa686feaf88f2e87c7f7da6.jpg" alt="Poster for the production, &quot;El juicio final&quot;" data-href="/digitalobject/13403" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/2f/f3/2ff3b8f023c208ec0a4ecb45fe332674.jpg" title="Poster for the production,&quot;La hora de la fantasía&quot;">
+                  
+                  
+                  <img src="../media/cache/53/16/53166152013f6167780fe56f69bade0d.jpg" alt="Poster for the production,&quot;La hora de la fantasía&quot;" data-href="/digitalobject/13392" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e5/40/e540b20aff737874ca6dc80cc94ce2b1.jpg" title="Playbill for the production, &quot;La cucarachita Martina&quot;">
+                  
+                  
+                  <img src="../media/cache/fb/04/fb0465845b91d86918480de7c831fd14.jpg" alt="Playbill for the production, &quot;La cucarachita Martina&quot;" data-href="/digitalobject/13517" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/44/58/4458bb8110e7af6905f0c8caffda6aeb.jpg" title="Playbill for the production, &quot;La cucarachita Martina&quot;">
+                  
+                  
+                  <img src="../media/cache/0a/cc/0acc3b11d2aad84ac4cc6357204f187e.jpg" alt="Playbill for the production, &quot;La cucarachita Martina&quot;" data-href="/digitalobject/13517" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/38/2b/382bc414b03085424a26ab950b270bac.jpg" title="Program for the production, &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/bd/ae/bdaebda2c93cd2c636ff5ada98f34fc2.jpg" alt="Program for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13557" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/95/3a/953a1921fafe8d664998e5a79b154227.jpg" title="Program for the production, &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/7b/26/7b262a185836b26a9d70ad89dee7c13d.jpg" alt="Program for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13557" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/c8/7f/c87f0f6763cfbd8f98d14967cb0d81d7.jpg" title="Program for the production, &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/16/e2/16e26cb48b0889400c978aeff1792bd1.jpg" alt="Program for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13557" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/f8/54/f8545b6939d49671813d6d637b612781.jpg" title="Program for the production, &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/53/19/53191842766d6f3f05b25924805aa45a.jpg" alt="Program for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13557" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/39/f8/39f817013c1f574f2eef13cc3eda8f4f.jpg" title="Invitation for the production, &quot;Prometeo&quot;">
+                  
+                  
+                  <img src="../media/cache/3a/58/3a58215dc4fbc5d79f336f4787272ec2.jpg" alt="Invitation for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13511" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/1d/98/1d98b5d07edb6201bc92b4d9a004e9fa.jpg" title="Invitation for the production, &quot;Prometeo&quot;">
+                  
+                  
+                  <img src="../media/cache/ba/19/ba198e711083aa3aa185deccf92bd2e6.jpg" alt="Invitation for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13511" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/58/7c/587cd9a5b2e35a09082315b0c86a683b.jpg" title="Invitation for the production, &quot;Prometeo&quot;">
+                  
+                  
+                  <img src="../media/cache/a1/b2/a1b2e5849e2deee238417a40996c908f.jpg" alt="Invitation for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13511" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/5f/d6/5fd65784a5b24f1beeb5650c6f1782b1.jpg" title="Invitation for the production, &quot;Prometeo&quot;">
+                  
+                  
+                  <img src="../media/cache/55/db/55db450682fdc0eeff5ea46bfc884924.jpg" alt="Invitation for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13511" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/65/ea/65ea91efb72b9be15c1f3c1986fbc02c.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/39/0a/390a1c4d3eb94cb19bb9e2c6f3b675c4.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13654" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/9e/74/9e749f5c53c0fa0c4a23f5e643e6f256.jpg" title="Efraín Martell (Seguismundo), in &quot;La vida es sueño&quot;">
+                  
+                  
+                  <img src="../media/cache/36/58/365872e92b48080a1fddfaf85a4f4c59.jpg" alt="Efraín Martell (Seguismundo), in &quot;La vida es sueño&quot;" data-href="/digitalobject/13740" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/f7/21/f721679e6d9380351ea3e0e778a0e6a3.jpg" title="José Armand (El Merluza) and Teresa María Rojas (Eva), in &quot;Flores de papel&quot;">
+                  
+                  
+                  <img src="../media/cache/57/a4/57a43532f1342aa2fdc828f4d6b1dabf.jpg" alt="José Armand (El Merluza) and Teresa María Rojas (Eva), in &quot;Flores de papel&quot;" data-href="/digitalobject/13766" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/79/fa/79fa6059253d446d040bb9c9ae9a132c.jpg" title="Rafael Mejido from Prometeo (theater group) in a class">
+                  
+                  
+                  <img src="../media/cache/b9/77/b9779fc6960abc62795820e39dbe609f.jpg" alt="Rafael Mejido from Prometeo (theater group) in a class" data-href="/digitalobject/13821" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/f5/08/f508ada0980de5a563d6b7d06fc74929.jpg" title="Press release for the productions, &quot;Chimpete-Champata&quot; and &quot;Chi-chenó&quot;">
+                  
+                  
+                  <img src="../media/cache/17/37/17371cd4273d151f4cf7b82cb851f50f.jpg" alt="Press release for the productions, &quot;Chimpete-Champata&quot; and &quot;Chi-chenó&quot;" data-href="/digitalobject/13809" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/3b/5e/3b5e51cfbe3ffa01f745c00f6c2c5638.jpg" title="Letter from Fernando del Castillo to Teresa María Rojas about the production, &quot;Flores de papel&quot;">
+                  
+                  
+                  <img src="../media/cache/79/4f/794f8512f6684cc294314eadea2bf8b2.jpg" alt="Letter from Fernando del Castillo to Teresa María Rojas about the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13768" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/9b/d0/9bd058eeb51eb91c34a760d5032ba119.jpg" title="Invitation for the production, &quot;No exit&quot;">
+                  
+                  
+                  <img src="../media/cache/d9/e6/d9e6aa48ecffe70a83f5e7fd22e72193.jpg" alt="Invitation for the production, &quot;No exit&quot;" data-href="/digitalobject/13634" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ce/0c/ce0c37b700abd69df08f3a5b51afff2c.jpg" title="Program for the production, &quot;No exit&quot;">
+                  
+                  
+                  <img src="../media/cache/61/2c/612cff294397366305d2c9604685dba2.jpg" alt="Program for the production, &quot;No exit&quot;" data-href="/digitalobject/13500" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e7/38/e738801ccbdb1c8df8461d044e7489fd.jpg" title="Program for the production, &quot;No exit&quot;">
+                  
+                  
+                  <img src="../media/cache/9e/b6/9eb6865489a4697a526dce681f8464d6.jpg" alt="Program for the production, &quot;No exit&quot;" data-href="/digitalobject/13500" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ed/60/ed60436c8e47b8c2f2c22d307dc88266.jpg" title="Program for the production, &quot;No exit&quot;">
+                  
+                  
+                  <img src="../media/cache/69/24/69245ad706535192be08d836da7d3c9f.jpg" alt="Program for the production, &quot;No exit&quot;" data-href="/digitalobject/13500" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e7/23/e7238498c142c2d7fcfda2c32a0e81e1.jpg" title="Program for the production, &quot;No exit&quot;">
+                  
+                  
+                  <img src="../media/cache/e6/e2/e6e2de32b0b15f059914c43b752873de.jpg" alt="Program for the production, &quot;No exit&quot;" data-href="/digitalobject/13500" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/1c/75/1c75bd98a2619bd51282458b126a3fa2.jpg" title="Program for the production, &quot;La vida es sueño&quot;">
+                  
+                  
+                  <img src="../media/cache/ac/37/ac37992463a99ee8b37a833f8392769e.jpg" alt="Program for the production, &quot;La vida es sueño&quot;" data-href="/digitalobject/13570" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/12/d2/12d2e4a46dadfb9336236d4e1e9abd38.jpg" title="Program for the production, &quot;La vida es sueño&quot;">
+                  
+                  
+                  <img src="../media/cache/7d/a2/7da2aa777a43c1cf6c05585b67a88f4a.jpg" alt="Program for the production, &quot;La vida es sueño&quot;" data-href="/digitalobject/13570" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/6e/ee/6eee9ee3e5264d1f1d6ac8ab96198156.jpg" title="Program for the production, &quot;La vida es sueño&quot;">
+                  
+                  
+                  <img src="../media/cache/d2/1e/d21e0fa86a90979d2a266deddafdd2a5.jpg" alt="Program for the production, &quot;La vida es sueño&quot;" data-href="/digitalobject/13570" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/03/99/0399a2b4d5df623ead1b59e4642f0f72.jpg" title="Program for the production, &quot;La vida es sueño&quot;">
+                  
+                  
+                  <img src="../media/cache/0b/9f/0b9ff48c61daef1fe7d5256ef5c65b70.jpg" alt="Program for the production, &quot;La vida es sueño&quot;" data-href="/digitalobject/13570" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/82/ed/82ed1498bb0701292d131db399132501.jpg" title="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;">
+                  
+                  
+                  <img src="../media/cache/1a/d3/1ad36b3861f45537686747b124237e34.jpg" alt="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;" data-href="/digitalobject/13562" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/00/34/003462503d10ea264dc6daa8c4466ee7.jpg" title="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;">
+                  
+                  
+                  <img src="../media/cache/87/b0/87b06103b379e3803a48f444d05bfffc.jpg" alt="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;" data-href="/digitalobject/13562" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ac/3f/ac3fb0f17bc4d127d28121de763f67c3.jpg" title="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;">
+                  
+                  
+                  <img src="../media/cache/44/07/4407ed84c00c4eed3e7052fdfa5b2189.jpg" alt="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;" data-href="/digitalobject/13562" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e6/b2/e6b2d57bb39e0ebd1cf22589074e150e.jpg" title="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;">
+                  
+                  
+                  <img src="../media/cache/bb/37/bb37f4024c657c1e31a7a421533e1553.jpg" alt="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;" data-href="/digitalobject/13562" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/0e/d6/0ed6700f2edcde09f291751d53d2908c.jpg" title="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;">
+                  
+                  
+                  <img src="../media/cache/90/a7/90a7bcd25b7e9da67523093f0b294efb.jpg" alt="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;" data-href="/digitalobject/13562" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e1/bd/e1bdff1adb983167f221aa6112ff2b0b.jpg" title="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;">
+                  
+                  
+                  <img src="../media/cache/44/1f/441fe67257ba4359cb7946cad2b64a8a.jpg" alt="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;" data-href="/digitalobject/13562" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/a6/b3/a6b35461b5feb62b9bbde1959f9f2b4d.jpg" title="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;">
+                  
+                  
+                  <img src="../media/cache/97/b6/97b60bc72ba7394906801d911bcb39ac.jpg" alt="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;" data-href="/digitalobject/13562" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d0/7c/d07c059e8dcf91172e82d7c49e1a8775.jpg" title="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;">
+                  
+                  
+                  <img src="../media/cache/bf/b0/bfb09ca096099130f9771a9867c9c4d5.jpg" alt="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;" data-href="/digitalobject/13562" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/67/70/6770a97dd24abf2771e7f400ca0b698c.jpg" title="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;">
+                  
+                  
+                  <img src="../media/cache/f7/d7/f7d783604d7c02a85ea72b606e607f3c.jpg" alt="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;" data-href="/digitalobject/13562" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/07/24/07249be6c36502b365d9a3646692fb46.jpg" title="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;">
+                  
+                  
+                  <img src="../media/cache/d8/8d/d88ddb3765995653dbac9a5d64ee9887.jpg" alt="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;" data-href="/digitalobject/13562" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/01/60/01608b8c8f68b7e03d37fcea1a821aaa.jpg" title="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;">
+                  
+                  
+                  <img src="../media/cache/ec/2d/ec2db26eb11e1431a56f825368928291.jpg" alt="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;" data-href="/digitalobject/13562" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/3c/03/3c03b37a3786eff9a27ae40a33897dbb.jpg" title="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;">
+                  
+                  
+                  <img src="../media/cache/09/f5/09f5a46aeb6a9e16e95a24f2675386cb.jpg" alt="Program for the event, &quot;Hispanic Heritage Week, 1979&quot;" data-href="/digitalobject/13562" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/7f/f6/7ff619d7dc315f3dfe0f5246ffab6b00.jpg" title="  José Amaya (Laurencio) and Glenda Díaz Rigau (Finea), in &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="../media/cache/88/ed/88edbc28d5d8c804cc6b1ed5c9f41bff.jpg" alt="  José Amaya (Laurencio) and Glenda Díaz Rigau (Finea), in &quot;La dama boba&quot;" data-href="/digitalobject/13799" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/62/aa/62aa18bbc5122f932f172971c2c09a4a.jpg" title="Invitation for the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="../media/cache/3a/98/3a9860d3359f8bba4fad0a0f123851ec.jpg" alt="Invitation for the production, &quot;La dama boba&quot;" data-href="/digitalobject/13530" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/59/c1/59c12fbe090163f0b093b65062b30708.jpg" title="Invitation for the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="../media/cache/66/1d/661d4a68960482a67c7a675e0965c1c6.jpg" alt="Invitation for the production, &quot;La dama boba&quot;" data-href="/digitalobject/13530" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/21/61/21611f7d8b70bc97480d6826a6959b5d.jpg" title="Invitation for the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="../media/cache/47/8f/478f969a7690fed8be160548c53d4c79.jpg" alt="Invitation for the production, &quot;La dama boba&quot;" data-href="/digitalobject/13530" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/79/76/797685d361f3f2c827ad9354d6ca9024.jpg" title="Invitation for the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="../media/cache/c9/b6/c9b6861b0664b7e5453d5529f243193c.jpg" alt="Invitation for the production, &quot;La dama boba&quot;" data-href="/digitalobject/13530" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/70/d2/70d2e9e172c443258031c884deada950.jpg" title="Poster for the production, &quot;Something else...&quot;">
+                  
+                  
+                  <img src="../media/cache/72/27/722745e8c9a6c85d77d343dc5075824c.jpg" alt="Poster for the production, &quot;Something else...&quot;" data-href="/digitalobject/13762" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/5f/e1/5fe185ff5b116a41fd61aa5e3edb8fbc.jpg" title="Reynaldo González (Monseñor), in &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/9f/23/9f23d03f2a61ec267e74ea66082b0839.jpg" alt="Reynaldo González (Monseñor), in &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13696" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/27/bd/27bd134c9065b2dbb3b83ed8df3d1594.jpg" title="Armando Sardina (Gianni), in &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/6f/06/6f06afbb023f2fd4fb1d48987dd4a89e.jpg" alt="Armando Sardina (Gianni), in &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13787" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/0a/d9/0ad9e2122f74a9503eb1f06f5cf47547.jpg" title="Lucía Lorenzo (Sor Maurilia) and Miguel Ángel Abadía (Mario), in &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/6c/93/6c93552440abd031a17b560e4f961934.jpg" alt="Lucía Lorenzo (Sor Maurilia) and Miguel Ángel Abadía (Mario), in &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13811" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/4c/20/4c20cf4c1dfafc1d055996ce29aa5d31.jpg" title="Lourdes Guigou (Madre Fausta) and Ana María Nápoles (Sor Honorina), in &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/72/73/72731710bec8a9a41153abfce96f06f5.jpg" alt="Lourdes Guigou (Madre Fausta) and Ana María Nápoles (Sor Honorina), in &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13754" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/8e/ff/8eff593c5c5f36970000705843413ba2.jpg" title="Ana María Nápoles (Sor Honorina) and Lucía Lorenzo (Sor Maurilia), in &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/80/99/809918d6d5f1b93f618a14c6061f84bd.jpg" alt="Ana María Nápoles (Sor Honorina) and Lucía Lorenzo (Sor Maurilia), in &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13657" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/8c/ca/8cca177b8e5fdb6a6248d2f527b8bc0c.jpg" title="Rossie Uranga, in &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/59/fe/59fe2fdcae1047deb341e82b98521d6a.jpg" alt="Rossie Uranga, in &quot;Guaracha Rock&quot;" data-href="/digitalobject/13693" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/48/40/4840e6e3e7eb7c72e33fe68d98c5c0a5.jpg" title="Ana Teresa Montes, in &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/b6/80/b680deddbe5bcd5ec871608ed5de9726.jpg" alt="Ana Teresa Montes, in &quot;Guaracha Rock&quot;" data-href="/digitalobject/13783" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/c1/a5/c1a53de901fcb0bdd864e77fc816e52b.jpg" title="Rossie Uranga, in &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/64/3c/643c165c5ba03f1cf793fad1ce5dbd8c.jpg" alt="Rossie Uranga, in &quot;Guaracha Rock&quot;" data-href="/digitalobject/13685" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/7d/6b/7d6bc6bf6a901c395cefe66e63b445da.jpg" title="Demi Castellón, in &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/ae/4c/ae4c39c47991826411b3e253a479690a.jpg" alt="Demi Castellón, in &quot;Guaracha Rock&quot;" data-href="/digitalobject/13792" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/39/95/3995f1591dcf46e0b170243f546abb1c.jpg" title="Ricardo Ferrán, in &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/5a/30/5a30c6ccf78cf30702844908f0ac8598.jpg" alt="Ricardo Ferrán, in &quot;Guaracha Rock&quot;" data-href="/digitalobject/13834" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/71/41/714175b75dd0096e47faa4c779e150d4.jpg" title="Mario Ernesto Sánchez in, &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/11/f6/11f6b914d54205d4de910ff445eef791.jpg" alt="Mario Ernesto Sánchez in, &quot;Guaracha Rock&quot;" data-href="/digitalobject/13826" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b3/59/b359e76a0f640d66c94755721e4d2cbc.jpg" title="Diosmani Fernández Trujillo, in &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/f6/a8/f6a8ce4026f4778edfc75c61ad11deb3.jpg" alt="Diosmani Fernández Trujillo, in &quot;Guaracha Rock&quot;" data-href="/digitalobject/13724" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/9c/98/9c982aa7a33d88c8200bbe76dd069d8c.jpg" title="Efraín Martel, in &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/df/74/df748e72d347011f47b001d2382b0784.jpg" alt="Efraín Martel, in &quot;Guaracha Rock&quot;" data-href="/digitalobject/13779" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/7c/d9/7cd9edf675332054c6f3f3619ee55256.jpg" title="Reynaldo González, in &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/16/a6/16a6a1359de5522ba8f4be1dc65eda8b.jpg" alt="Reynaldo González, in &quot;Guaracha Rock&quot;" data-href="/digitalobject/13622" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/fc/c1/fcc1e516a6d34d7b76daefb0eb663a38.jpg" title="Armando Sardina, in &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/4b/19/4b19d51caa610105a32939a6095bea02.jpg" alt="Armando Sardina, in &quot;Guaracha Rock&quot;" data-href="/digitalobject/13662" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/4a/38/4a383b8aade3d851e2a836c1014c14ac.jpg" title="Ana Teresa Montes, in &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/aa/ae/aaae0c05fb92a0674e49ca0796ecba1a.jpg" alt="Ana Teresa Montes, in &quot;Guaracha Rock&quot;" data-href="/digitalobject/13626" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ad/04/ad041f8407743080b36acefb4198ba19.jpg" title="Ricardo Ferrán, in &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/37/2b/372b4242cc7f891e97e0142c937314f3.jpg" alt="Ricardo Ferrán, in &quot;Guaracha Rock&quot;" data-href="/digitalobject/13824" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/1e/9b/1e9b0ce08639dea2e651efbe8a58ca09.jpg" title="Actor from the production, &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/14/3f/143fb033ad334bc398c6d1b610a32dd3.jpg" alt="Actor from the production, &quot;Guaracha Rock&quot;" data-href="/digitalobject/13750" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/6c/16/6c16be5449e327eb84ada18fe1639f93.jpg" title="Lourdes Menci, Reynaldo González, and Patricio Palacios holding performance award for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/87/45/87457d0f9bcbf67155bd7a57ccb1449e.jpg" alt="Lourdes Menci, Reynaldo González, and Patricio Palacios holding performance award for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13695" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/fe/70/fe7022f14373505b08083067f56ef3d2.jpg" title="Martell (El Autor), Abadía (El Mundo), Noroña (El Rey), Mitjans (La Ley de la Gracia), DoMuiño (La Discreción), Menci (La Hermosura), Diamé (El Niño), Morgan (El Rico), Palacios (El Pobre) and González (El Labrador), in &quot;El Gran Teatro del Mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/95/55/955540d0f997afb07e0022219f3785ee.jpg" alt="Martell (El Autor), Abadía (El Mundo), Noroña (El Rey), Mitjans (La Ley de la Gracia), DoMuiño (La Discreción), Menci (La Hermosura), Diamé (El Niño), Morgan (El Rico), Palacios (El Pobre) and González (El Labrador), in &quot;El Gran Teatro del Mundo&quot;" data-href="/digitalobject/13659" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/db/fc/dbfc139078ccebcaa65554f73ff53694.jpg" title="Martell (El Autor), Abadía (El Mundo), Noroña (El Rey), Mitjans (La Ley de la Gracia), DoMuiño (La Discreción), Menci (La Hermosura), Diamé (El Niño), Morgan (El Rico), Palacios (El Pobre) and González (El Labrador), in &quot;El Gran Teatro del Mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/c4/36/c43693370964a7b6bc0e2bddd123a1ba.jpg" alt="Martell (El Autor), Abadía (El Mundo), Noroña (El Rey), Mitjans (La Ley de la Gracia), DoMuiño (La Discreción), Menci (La Hermosura), Diamé (El Niño), Morgan (El Rico), Palacios (El Pobre) and González (El Labrador), in &quot;El Gran Teatro del Mundo&quot;" data-href="/digitalobject/13703" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ef/91/ef915f65e985773e4f5ae45a7f475828.jpg" title="Patricio Palacios (El Pobre), in &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/6e/50/6e50afbbc4eb39782f7b825847d11510.jpg" alt="Patricio Palacios (El Pobre), in &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13752" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/83/c7/83c7c1c1242c24d2e497087467127e23.jpg" title="Efraín Martel (El Autor), in &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/4b/ff/4bff75da5b39e76a2d74ce5888d19ba6.jpg" alt="Efraín Martel (El Autor), in &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13749" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/19/b7/19b7768cb4de8a8794cfc1e05dde48d0.jpg" title="Lourdes Menci (La Hermosura), in &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/be/2c/be2cb351ad75181030652b4eee6f7d3c.jpg" alt="Lourdes Menci (La Hermosura), in &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13682" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/f1/1b/f11b1afa3689e40ab8d3f9c0a63ac478.jpg" title="Efraín Martell (El Autor) and Miguel Ángel Abadía (El Mundo), in &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/e5/ed/e5ede02b8e1e6c317098b9659b048879.jpg" alt="Efraín Martell (El Autor) and Miguel Ángel Abadía (El Mundo), in &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13775" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/83/4c/834c6eafae5a82fc37dfc2701f75d5df.jpg" title="Invitation for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/bb/23/bb23f3eebdb1050f8c3b96621948f626.jpg" alt="Invitation for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13488" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/77/54/775484678c423af07fc6e217fb84d1c1.jpg" title="Invitation for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/bf/db/bfdb1d258bb996fb10c1601ccd392e39.jpg" alt="Invitation for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13488" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/0d/3a/0d3a8e40f18d053bf773921fda08d404.jpg" title="Invitation for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/83/e2/83e29ebf559a3dd46347ebbccbc3624c.jpg" alt="Invitation for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13488" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e2/25/e225d79a3a47ea55f67647f38fc134cc.jpg" title="Invitation for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/99/22/99226690356eb2e4468df1996968e5b1.jpg" alt="Invitation for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13488" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/09/a3/09a32b0f48fdd418782f83f3f495e4f7.jpg" title="Lourdes Guigou (Cuca) and Miguel Angel Abadía (Lalo), in &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/53/4c/534c20e5e0db44ab6651846121512bf0.jpg" alt="Lourdes Guigou (Cuca) and Miguel Angel Abadía (Lalo), in &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13697" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/a4/52/a4528a14079012c607590b2892e4ea87.jpg" title="Miguel Ángel Abadía (Lalo), in &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/cb/07/cb078fe3d2c29604c7c6fd2e87bb1a4d.jpg" alt="Miguel Ángel Abadía (Lalo), in &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13784" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/60/e8/60e86ea989cafff2cbfc7adda9b20546.jpg" title="Miguel Ángel Abadía (Lalo), in &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/68/84/68841eedc9ef456d368d63e22259d26d.jpg" alt="Miguel Ángel Abadía (Lalo), in &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13667" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/a5/1f/a51ff06fd3ca8cc1d908d3529ec2e47e.jpg" title="Miguel Ángel Abadía (Lalo), in &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/56/03/5603b897a660e942c8468652548d6bea.jpg" alt="Miguel Ángel Abadía (Lalo), in &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13814" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/a3/49/a3496156e3580c6381fe5e0b6b295199.jpg" title="Invitation for the production, &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/f4/a3/f4a3b3509935bb8d42085ac0b8cb9b0a.jpg" alt="Invitation for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13510" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/da/55/da559894b92dab5991573af21d01af96.jpg" title="Invitation for the production, &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/10/26/102695d936dcd588b94be4f806348094.jpg" alt="Invitation for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13510" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/de/fc/defcd3b9b0318ff6148d99e2abd1989e.jpg" title="Invitation for the production, &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/37/d2/37d20476a251679ae059cc88523ba6c5.jpg" alt="Invitation for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13510" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/12/83/1283f9a54f67407ed09602d27966af63.jpg" title="Invitation for the production, &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/b8/cd/b8cdcc6cbe07de61106ef2e2476b4c34.jpg" alt="Invitation for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13510" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/eb/86/eb860354acf18bb126d4ee3a4259d27e.jpg" title="Miguel Ángel Abadía (Lalo), in &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/3c/44/3c442ca762a51f02f2d4dee3ce79e406.jpg" alt="Miguel Ángel Abadía (Lalo), in &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13649" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/9e/47/9e475dcfc16ee12d78ca946e852dfdb7.jpg" title="Teresa María Rojas (Judy, La Madre), German Soffia (Simon, El Hijo), and Glenda Díaz Rigau (Isadora, la Hija), in &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/49/f1/49f1738c42f0c414cec8284e9d317f8a.jpg" alt="Teresa María Rojas (Judy, La Madre), German Soffia (Simon, El Hijo), and Glenda Díaz Rigau (Isadora, la Hija), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13718" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ad/11/ad11ca35e2e48b9f31dfb289f93141be.jpg" title="Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/b5/c1/b5c12cd5453ad5aabb0a3e8a56e1f480.jpg" alt="Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13785" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/6e/d0/6ed0a6e17d9820f14169ea9462e5cb1f.jpg" title="German Soffia (Simon, El Hijo), José Amaya (David, El Padre), Teresa María Rojas (Judy, la Madre), and Glenda Díaz-Rigau (Isadora, la Hija), in &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/09/0d/090d2c8283f796be8b092d96429f220e.jpg" alt="German Soffia (Simon, El Hijo), José Amaya (David, El Padre), Teresa María Rojas (Judy, la Madre), and Glenda Díaz-Rigau (Isadora, la Hija), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13692" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d6/5d/d65dd9c8e95d5164bb497040d2089487.jpg" title="Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/61/09/61091e5d17d90a4853270c5ff7e774df.jpg" alt="Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13678" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/4d/a4/4da413669caa4c9f12da15b95e7919cd.jpg" title="German Soffia (Simon, El Hijo), Paul D&#39;Alba (Sandalio), Ricardo Fernand (Ricardo), Teresa María Rojas (Judy, La Madre), and Lourdes Menci (Mayra), in &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/36/82/3682bdcbdcb8953ed99191a16bccd784.jpg" alt="German Soffia (Simon, El Hijo), Paul D&#39;Alba (Sandalio), Ricardo Fernand (Ricardo), Teresa María Rojas (Judy, La Madre), and Lourdes Menci (Mayra), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13684" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b5/75/b575e79e723944df7f592976b2e59f12.jpg" title="Glenda Díaz-Rigau (Isadora, La Hija), Paul D&#39;Alba (Sandalio) and Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/ca/46/ca4663c3f2c70db88751b9420ba355b3.jpg" alt="Glenda Díaz-Rigau (Isadora, La Hija), Paul D&#39;Alba (Sandalio) and Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13818" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d5/52/d5523ab121ce10a3157998c1610d607c.jpg" title="Teresa María Rojas (Judy, La Madre), Paul D&#39;Alba (Sandalio), Glenda Díaz-Rigau (Isadora, La Hija), and José Amaya (David, El Padre), in &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/0f/b5/0fb5a47d26647b56d53db8bed69a6ce0.jpg" alt="Teresa María Rojas (Judy, La Madre), Paul D&#39;Alba (Sandalio), Glenda Díaz-Rigau (Isadora, La Hija), and José Amaya (David, El Padre), in &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13806" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b1/e9/b1e92d591b424024cc9cd232f4b5e539.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/a0/1d/a01da88410c03278c2730fc83db042f4.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13804" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/4c/7c/4c7c1a19fcd8f9b2301a8ca5544fc755.jpg" title="Poster for the production, &quot;Festival del Absurdo&quot;">
+                  
+                  
+                  <img src="../media/cache/33/e3/33e3fca88b63c63806edb2e2a50792c3.jpg" alt="Poster for the production, &quot;Festival del Absurdo&quot;" data-href="/digitalobject/13763" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ed/d9/edd93ebc1de3c0373d9cb16a08a69cb6.jpg" title="Program for the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="../media/cache/5a/a3/5aa361aa8de37c6e822bd1219f09a1a0.jpg" alt="Program for the production, &quot;La dama boba&quot;" data-href="/digitalobject/13567" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/c8/0e/c80e98ab26df24ef14d7d0891d87d4ba.jpg" title="Program for the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="../media/cache/cf/7b/cf7b1865e5b45fe1c9b3f0dbbfde1ced.jpg" alt="Program for the production, &quot;La dama boba&quot;" data-href="/digitalobject/13567" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/fd/b8/fdb8a57f12a5a4c5d70b4593e9bf0ae1.jpg" title="Program for the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="../media/cache/d7/15/d715e34c0abc5f9e0d89934a0b88c61d.jpg" alt="Program for the production, &quot;La dama boba&quot;" data-href="/digitalobject/13567" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/40/31/4031236aaf633e732cde7dba0a970424.jpg" title="Program for the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="../media/cache/e2/0a/e20afa8b137d6ab4f19e2e1743b370ba.jpg" alt="Program for the production, &quot;La dama boba&quot;" data-href="/digitalobject/13567" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/87/b6/87b699a2035551b3a764a47d28141424.jpg" title="Program for the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="../media/cache/d4/1d/d41d211264cf3c1cae492c63b05009e1.jpg" alt="Program for the production, &quot;La dama boba&quot;" data-href="/digitalobject/13567" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/94/8c/948c90733a812320c1042dc404c62039.jpg" title="Program for the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="../media/cache/a3/db/a3db1588bf778e185621b86a114eac37.jpg" alt="Program for the production, &quot;La dama boba&quot;" data-href="/digitalobject/13567" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/0e/77/0e7751c38ca77d5e72add8db1364a26b.jpg" title="Program for the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="../media/cache/aa/56/aa565c1a7a45191db883b12c9f5203de.jpg" alt="Program for the production, &quot;La dama boba&quot;" data-href="/digitalobject/13567" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/a0/6d/a06d4e82821c5a426ff9e071fcd2d5fb.jpg" title="Program for the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="../media/cache/a1/6a/a16ad4b584665fc58568701fb3b3b3df.jpg" alt="Program for the production, &quot;La dama boba&quot;" data-href="/digitalobject/13567" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/07/76/07766a6756b07c8631ffee4750eb269a.jpg" title="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/6e/44/6e442ef4bec19d89762abafff0148ea0.jpg" alt="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13533" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/64/63/6463dacdff25b0ba683361db196d1098.jpg" title="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/d7/c8/d7c8fb56bfe0299048e58392d57010ab.jpg" alt="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13533" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/04/c1/04c1b292366b7ad6a4bf8c8a41fa589b.jpg" title="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/fd/0e/fd0ebb3a5757fbb09820666cf4797559.jpg" alt="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13533" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/10/e5/10e5565becad82727e07875d894ede4e.jpg" title="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/4c/ed/4ceddd381bb9509b75b19c50f7e9d464.jpg" alt="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13533" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/20/63/2063c16611cab40c648612ee1f79520c.jpg" title="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/6a/bc/6abc6c31891e428bfa75c8cea02e5f38.jpg" alt="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13533" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/4c/f8/4cf8308636739cae51913cb2970eb17a.jpg" title="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/3a/4b/3a4bf8975ecb1cedb599c1d79c91c580.jpg" alt="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13533" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/2f/4b/2f4b4202d36f00f4672eb85a2a1c1f86.jpg" title="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/ef/9f/ef9ff6274951aa7007f51cd315d8c6a5.jpg" alt="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13533" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b7/ba/b7bae4fe780971fdc9bbd9ca677a22db.jpg" title="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/a7/55/a75504d16a1913950360dcebecc7af2d.jpg" alt="Program for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13533" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/65/e6/65e654c7576d9cc65fd9971539c2eff0.jpg" title="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/93/35/93352e371af9d3ce41e57580972dfe87.jpg" alt="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13564" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/db/81/db81f566ee9ec0954c94f9a108928a2c.jpg" title="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/cc/51/cc51e62b5d89651715edebdd8a171438.jpg" alt="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13564" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/f8/0c/f80cc9925f4b623ba423f1a35bb8d4c6.jpg" title="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/b3/9a/b39a3784a605407b98a2a76bf8471cdf.jpg" alt="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13564" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/11/44/1144caebe5e2cae3ecb505ae30880d07.jpg" title="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/c0/59/c059f00733e04851e1c8c0a69119b20a.jpg" alt="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13564" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/5b/c4/5bc4adf03aad0375079db8b74f40ccc5.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/45/81/458166764ebad5cbc8c199602beed827.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/90/38/903832e798090f000a6ea3a2a590c40a.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/0d/3a/0d3aa2ac9311653cdc5b0dec9c52f339.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/43/0f/430f06d8ea49241daee85f72c3b2e471.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/7d/0f/7d0fca9e6169f8e268a3125527ed019e.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/c5/9c/c59c8d8559331f454ee926304a2f6845.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/b7/35/b735d595cc447157eb281726282ba045.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d8/2c/d82c6591557d8a1635c1377a904e0974.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/20/d8/20d8e9868cba8e7c194876eee081ded5.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/1a/47/1a4751aee4fd3d13f9ad2760caaeab1f.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/5e/4f/5e4f978eac6994818e3af975ebd3e2b2.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/8c/3d/8c3d492663e9c9c433dbb666eb4c2404.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/6e/fe/6efe0d57bf0e475fe58cb4fb98300caa.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/30/35/3035fcd8f376a9fd9716e271a0f3b091.jpg" title="Program for the production, &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/c5/3d/c53dffc2e3586d8b92e4ce417576f5dc.jpg" alt="Program for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13503" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/fe/52/fe525b4db7d566c730300fbf7cf841fc.jpg" title="Program for the production, &quot;El relojero de Córdoba&quot;">
+                  
+                  
+                  <img src="../media/cache/bd/78/bd78dbc6817b2fb15be76044a36a4c80.jpg" alt="Program for the production, &quot;El relojero de Córdoba&quot;" data-href="/digitalobject/13540" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ab/65/ab6506147dc038270f19f7e37b5834c0.jpg" title="Program for the production, &quot;El relojero de Córdoba&quot;">
+                  
+                  
+                  <img src="../media/cache/0d/8f/0d8f30ed90d6543956388c7eba69f39d.jpg" alt="Program for the production, &quot;El relojero de Córdoba&quot;" data-href="/digitalobject/13540" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b3/16/b3164965f89a91dae7f357750940aa87.jpg" title="Program for the production, &quot;El relojero de Córdoba&quot;">
+                  
+                  
+                  <img src="../media/cache/35/2c/352c20651d730131a7d3cfbf1b0893b2.jpg" alt="Program for the production, &quot;El relojero de Córdoba&quot;" data-href="/digitalobject/13540" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/15/e5/15e59d31011fbef2cc470a453ae2ce15.jpg" title="Program for the production, &quot;El relojero de Córdoba&quot;">
+                  
+                  
+                  <img src="../media/cache/1e/f7/1ef7afface419a836613df589f9f318f.jpg" alt="Program for the production, &quot;El relojero de Córdoba&quot;" data-href="/digitalobject/13540" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ff/6f/ff6fd12b9ed579878605ddb890ed51d7.jpg" title="Program for the production, &quot;El juicio final&quot;">
+                  
+                  
+                  <img src="../media/cache/08/c8/08c83302d12db7d66d39b10a9e02217c.jpg" alt="Program for the production, &quot;El juicio final&quot;" data-href="/digitalobject/13498" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/70/04/70048427fbc04302891c281f0f9c0b55.jpg" title="Program for the production, &quot;El juicio final&quot;">
+                  
+                  
+                  <img src="../media/cache/62/c9/62c90b5656e08833d4f601a4b1b7189c.jpg" alt="Program for the production, &quot;El juicio final&quot;" data-href="/digitalobject/13498" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ba/f1/baf107b8951db56593bf29a71b6641d3.jpg" title="Program for the production, &quot;El juicio final&quot;">
+                  
+                  
+                  <img src="../media/cache/45/76/4576a190d7e53b91551132c51d9a0860.jpg" alt="Program for the production, &quot;El juicio final&quot;" data-href="/digitalobject/13498" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/77/b4/77b4b03b5bfc26646b717269497522db.jpg" title="Program for the production, &quot;El juicio final&quot;">
+                  
+                  
+                  <img src="../media/cache/ef/19/ef19632e50e2ca79cc2fad781e6c620f.jpg" alt="Program for the production, &quot;El juicio final&quot;" data-href="/digitalobject/13498" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/c2/59/c2595cf867cc7d28aaa4a730c0405efe.jpg" title="Program for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/71/0b/710b4302ad0ea06073470056a784db6e.jpg" alt="Program for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13490" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/1e/af/1eaf3d2f2f49af7c32eaf8732c7bfdf5.jpg" title="Program for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/ad/ec/adecf34b27fb0f4af47de7d44cc9aa98.jpg" alt="Program for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13490" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ff/7d/ff7d5a82e03739b4971974b1ddb7a0bf.jpg" title="Program for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/5d/88/5d883930d04c7823544f09bd4fd61d15.jpg" alt="Program for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13490" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/2c/eb/2cebf21579532284e4acd7fa9fe3ae81.jpg" title="Program for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/b0/86/b086a392c547aa4aa60eaefe5aedfcae.jpg" alt="Program for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13490" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d3/d3/d3d3e2748c44f38b1da05a0ff129c1a6.jpg" title="Program for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/84/dc/84dcb4bdcec8c8c43fd62902c9df673b.jpg" alt="Program for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13490" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/74/98/7498b4cc80a89ef14fdd232de34ca5bf.jpg" title="Program for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/e0/50/e050ad135a891c70bbdd5e9a03c86011.jpg" alt="Program for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13490" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/9a/99/9a99b08840d36188c3838064a3b40942.jpg" title="Program for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/33/d7/33d7bd3ec1a1832f6dc24939228f7ab8.jpg" alt="Program for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13490" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/46/b7/46b7b484695c0fa976e550f45995efd4.jpg" title="Program for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/42/b7/42b715a74861012167919e25f7d1d997.jpg" alt="Program for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13490" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/61/db/61dbf7828054d5b40b804162845f1fc3.jpg" title="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;">
+                  
+                  
+                  <img src="../media/cache/2a/6b/2a6bedb3497b4446a532a30893d45e5e.jpg" alt="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;" data-href="/digitalobject/13516" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/99/eb/99eb4a605dfeddd113f40cab06cb0095.jpg" title="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;">
+                  
+                  
+                  <img src="../media/cache/73/5c/735c442c81575c4e543ab560bff27714.jpg" alt="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;" data-href="/digitalobject/13516" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/66/89/66899967729bf185bd705de76bb7f7ea.jpg" title="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;">
+                  
+                  
+                  <img src="../media/cache/9f/30/9f304730091631dea3fd68d5ae039667.jpg" alt="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;" data-href="/digitalobject/13516" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/57/d7/57d7119e059385f72484dc9e5b7b26d0.jpg" title="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;">
+                  
+                  
+                  <img src="../media/cache/f6/cb/f6cb6778e8fdf48e9c3d2f1f146dff20.jpg" alt="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;" data-href="/digitalobject/13516" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/79/be/79be5d03cc003cde095160a396ebf470.jpg" title="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;">
+                  
+                  
+                  <img src="../media/cache/03/ce/03ce6d370f6d7f32ac356365079c0b6c.jpg" alt="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;" data-href="/digitalobject/13516" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ed/fd/edfda66d712b89e0c4de02da5713d942.jpg" title="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;">
+                  
+                  
+                  <img src="../media/cache/00/4a/004abe50fda5f1c066732416009f8c4c.jpg" alt="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;" data-href="/digitalobject/13516" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e6/09/e6096277201e60d9b70662a868cd9383.jpg" title="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;">
+                  
+                  
+                  <img src="../media/cache/35/bc/35bc49cb9031ad73a3d72b09b3c45787.jpg" alt="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;" data-href="/digitalobject/13516" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/63/41/63416df8de1b0e1b38877bb8336ee672.jpg" title="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;">
+                  
+                  
+                  <img src="../media/cache/34/6c/346cecc2b9ea1e0cc498fed217dc994e.jpg" alt="Program for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;" data-href="/digitalobject/13516" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/6e/82/6e82accc3b546f6da144d151fb1f6138.jpg" title="Program for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/d9/f8/d9f8d9c2112739dc4e4647f6fcd38952.jpg" alt="Program for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13545" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e7/08/e7081cfa6dd37b814c32c90f30f72a4a.jpg" title="Program for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/7f/65/7f656e7097619566c7064ea123453499.jpg" alt="Program for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13545" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b1/d8/b1d8cfa004a704ce5e29e93607481d96.jpg" title="Program for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/e3/13/e3135f2071ec5519c36b684cd32397d4.jpg" alt="Program for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13545" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/36/ae/36ae6a61985db5562d4d18f44f3c38fe.jpg" title="Program for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/52/db/52db0a8de3adfa9cc052f46e9d9bdbfb.jpg" alt="Program for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13545" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/72/00/7200387b8118f379c98045e6b61d5e33.jpg" title="Program for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/96/84/9684b9a4680991169bf92cbafb33fca4.jpg" alt="Program for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13545" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/7e/ce/7ecef38e534d10136c354d97cf33ba7d.jpg" title="Program for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/c8/23/c823439325ca06ed081844de9ac0e418.jpg" alt="Program for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13545" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/85/c1/85c1af9d5f8757a0f1eb26262c2ba967.jpg" title="Program for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/6c/00/6c0063eb1eb2699ec84a66f33a487cfe.jpg" alt="Program for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13545" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/fe/66/fe66a1bbebc0a811a3d4ff1d2c316c6b.jpg" title="Program for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/fa/6a/fa6a0f23665bc119867cbe4d3fc03874.jpg" alt="Program for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13545" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d0/99/d099a5240f901e607f89f1a348f950ee.jpg" title="Program for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/ec/52/ec52e1824aac0d4c52168ec337cf794b.jpg" alt="Program for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13545" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/30/ae/30ae5c1c5d412caf7b6ed9136aabd941.jpg" title="Program for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/45/6f/456fe581e428d2904cf765f3b898e863.jpg" alt="Program for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13545" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d7/b2/d7b215fccf92b37182aaaf0e6a3a0fc7.jpg" title="Program for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/53/bc/53bc8e7055e0fbc8af80ac4635290a36.jpg" alt="Program for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13545" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/0f/92/0f92153579ab0dcf6a7160b0be2010af.jpg" title="Program for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/bb/da/bbdaeb93d9795dbd6ffb74c260c184a4.jpg" alt="Program for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13545" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/76/33/7633b9ac0202f6e92f9cf5c80761ee17.jpg" title="Invitation for the production, &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/de/d0/ded05c6458f872332b41e4ed540f01a9.jpg" alt="Invitation for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13569" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/41/31/41317e30e8b6c791b38e30a596935bf2.jpg" title="Invitation for the production, &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/e5/71/e571409b1ac200c5cc1fd075e3e66c7a.jpg" alt="Invitation for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13569" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/30/b4/30b4a61cd87ec3e923e76c97d94f9e42.jpg" title="Invitation for the production, &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/3f/14/3f14571e4f2b68c587bfab2ee023f092.jpg" alt="Invitation for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13569" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/5f/ad/5fad3f62f0074e745e85ddb91a3ae88f.jpg" title="Invitation for the production, &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/53/61/536141453de4e5fbe69721b4743fbe5b.jpg" alt="Invitation for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13569" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/32/ed/32ed52f6064cab8a538e29f975e332f3.jpg" title="Invitation for the production, &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/d0/3a/d03a7ff47325b6511a5110c9e9fd554e.jpg" alt="Invitation for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13555" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/44/ce/44ced00cadc22d524f305fd52d288741.jpg" title="Invitation for the production, &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/b5/39/b539afc66cfc233ab818d4deab0a7b9a.jpg" alt="Invitation for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13555" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b0/f1/b0f1d3094b11e83865ba0e02d821a0c9.jpg" title="Invitation for the production, &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/36/c5/36c58f9db4f7d613b00977b0a6803905.jpg" alt="Invitation for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13555" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/5c/55/5c5515add430c65349846250a18b8f39.jpg" title="Invitation for the production, &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/65/22/652257cdc549b3aa90a8cae4f842e241.jpg" alt="Invitation for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13555" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/7c/ad/7cad46f9c9233964d2442b397846137b.jpg" title="Invitation for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/49/4c/494ca635d30d5dbfa4c08ba4671a5ff3.jpg" alt="Invitation for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13525" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/65/85/65852eb255738efa023b7055ad722e87.jpg" title="Invitation for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/61/19/611959d26d95807a699469195034d665.jpg" alt="Invitation for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13525" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/0d/9b/0d9be7ddf2d52408f6c1359adabf4252.jpg" title="Invitation for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/f3/f9/f3f9fb593af1e9df2df33432f4d3faa5.jpg" alt="Invitation for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13525" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/22/f3/22f3fba2f0a276588d94e8491e2fbfa0.jpg" title="Invitation for the production, &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/39/58/3958612b398875aa77203578ed049de5.jpg" alt="Invitation for the production, &quot;Cordero de Dios&quot;" data-href="/digitalobject/13525" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/db/a9/dba930ccd3b2973488fbf4ed5264a788.jpg" title="Membership form, Prometeo theater group">
+                  
+                  
+                  <img src="../media/cache/ce/8f/ce8f24cff7a6c35c9f94d0399a5557fb.jpg" alt="Membership form, Prometeo theater group" data-href="/digitalobject/13551" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b4/4d/b44d691cca342f0d184ac4fc61f87ff4.jpg" title="Membership form, Prometeo theater group">
+                  
+                  
+                  <img src="../media/cache/c6/ac/c6acf32dbbc4951ea04a26a9a19e9f42.jpg" alt="Membership form, Prometeo theater group" data-href="/digitalobject/13551" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/7e/b3/7eb3a66c2269321556b1f51cc1cc1acf.jpg" title="Membership form, Prometeo theater group">
+                  
+                  
+                  <img src="../media/cache/98/cd/98cdc9bfda78f63c47329349300e5454.jpg" alt="Membership form, Prometeo theater group" data-href="/digitalobject/13551" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/5c/34/5c34a90af90172037b4f9da8eafa6ca1.jpg" title="Membership form, Prometeo theater group">
+                  
+                  
+                  <img src="../media/cache/88/c3/88c30e416046acb664dc3ea04c64aace.jpg" alt="Membership form, Prometeo theater group" data-href="/digitalobject/13551" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/2a/c1/2ac14079be464564a8edb009c4bdc89e.jpg" title="Program for the production, &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/cd/1f/cd1f3bd30a6eed7e40c0efeade905135.jpg" alt="Program for the production, &quot;Guaracha Rock&quot;" data-href="/digitalobject/13506" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/24/91/249191b10017d7b7731187054c500dbb.jpg" title="Program for the production, &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/58/17/5817c27e6f2f23287d277bf286e5f64c.jpg" alt="Program for the production, &quot;Guaracha Rock&quot;" data-href="/digitalobject/13506" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/11/24/11248b43902c893d47e36dfb672f27d8.jpg" title="Program for the production, &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/77/99/7799112a1d83e232038c28dda2e29d2a.jpg" alt="Program for the production, &quot;Guaracha Rock&quot;" data-href="/digitalobject/13506" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/2b/2a/2b2a0e4f3c91b5eeaf64059d94b3f2a1.jpg" title="Program for the production, &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/d4/c0/d4c0658ded8f359b8185e568a4a5270a.jpg" alt="Program for the production, &quot;Guaracha Rock&quot;" data-href="/digitalobject/13506" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/08/73/0873e337eac028341c3b055cf530c66e.jpg" title="T. M. Rojas, E. Martell, M. A. Abadía, J.F. Noroña, I. Mitjans, C. DoMuiño, R. Diamé, L. Menci, P. Palacios, R. González, and M. Madruga holding performance award for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/12/76/1276a9c937ecdd7ba68e575092fd7405.jpg" alt="T. M. Rojas, E. Martell, M. A. Abadía, J.F. Noroña, I. Mitjans, C. DoMuiño, R. Diamé, L. Menci, P. Palacios, R. González, and M. Madruga holding performance award for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13666" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b1/dd/b1dde9c70d892fbf84bdf6e76e4e330e.jpg" title="Mario Ernesto Sánchez (Él) and Teresa María Rojas /Ella), in &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/fd/a9/fda9d86462d94fa67c7b5c7e630b0982.jpg" alt="Mario Ernesto Sánchez (Él) and Teresa María Rojas /Ella), in &quot;El viaje&quot;" data-href="/digitalobject/13627" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/01/d1/01d17083c0d164b0fc8ea8739d76d2da.jpg" title="Program for the production, &quot;Flores de papel&quot;">
+                  
+                  
+                  <img src="../media/cache/ab/f4/abf42dc7bb265664b447bc3f8872e78a.jpg" alt="Program for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13528" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/7a/32/7a325717a6e188d6e80a7ccf86f483ce.jpg" title="Program for the production, &quot;Flores de papel&quot;">
+                  
+                  
+                  <img src="../media/cache/01/9f/019f28a6fe20e5cf69867a8d54372120.jpg" alt="Program for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13528" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/89/53/89535fafb7345aafcea8307df88a0b38.jpg" title="Program for the production, &quot;Flores de papel&quot;">
+                  
+                  
+                  <img src="../media/cache/26/80/2680fd3f691d88aba85ec0ae5d835105.jpg" alt="Program for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13528" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b7/6f/b76ff48c543ccbdc1cf8181202cf54f6.jpg" title="Program for the production, &quot;Flores de papel&quot;">
+                  
+                  
+                  <img src="../media/cache/29/fb/29fb9f7f5c6cdd1defe674cf62122673.jpg" alt="Program for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13528" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/9f/97/9f97d68454c9347ccdab9688bb5f49f8.jpg" title="Teresa María Rojas (Eva) and José Armand (El Merluza), in &quot;Flores de papel&quot;">
+                  
+                  
+                  <img src="../media/cache/ad/4c/ad4c7070c22b6c710060c94e684fb2db.jpg" alt="Teresa María Rojas (Eva) and José Armand (El Merluza), in &quot;Flores de papel&quot;" data-href="/digitalobject/13790" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d4/d7/d4d76477b2dc80b018f1bd439faaef0f.jpg" title="Invitation for the production, &quot;Flores de papel&quot;">
+                  
+                  
+                  <img src="../media/cache/b9/05/b9055b5a5ac4a1f32174c725100375db.jpg" alt="Invitation for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13542" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e2/a3/e2a39253a61251967932fe7d9171cfd4.jpg" title="Invitation for the production, &quot;Flores de papel&quot;">
+                  
+                  
+                  <img src="../media/cache/74/da/74da685d3d893dfe4719af55d9dcb30d.jpg" alt="Invitation for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13542" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/fb/3b/fb3bdc237a5fe91c78d3d187d468d0d1.jpg" title="Invitation for the production, &quot;Flores de papel&quot;">
+                  
+                  
+                  <img src="../media/cache/38/44/384492b1db08bbb54d9882668c98f6d7.jpg" alt="Invitation for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13542" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ed/d9/edd9a171a89a161581f0f595c5c01617.jpg" title="Invitation for the production, &quot;Flores de papel&quot;">
+                  
+                  
+                  <img src="../media/cache/52/fb/52fbdfab7e5b8fede28b564e68a37fe4.jpg" alt="Invitation for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13542" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/96/b5/96b58d93439256ded260d0b6f82173d8.jpg" title="Teresa María Rojas (Cándida), in &quot;Doña Diabla&quot;">
+                  
+                  
+                  <img src="../media/cache/0e/4d/0e4dc39214983022bab8d9c50c8046eb.jpg" alt="Teresa María Rojas (Cándida), in &quot;Doña Diabla&quot;" data-href="/digitalobject/13712" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/5b/65/5b65a2b249c4a1bc3451c01e39a1cace.jpg" title="Ulises Regueira, in &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/64/b9/64b9036ff30b19dcebd4fa08fa265c82.jpg" alt="Ulises Regueira, in &quot;Guaracha Rock&quot;" data-href="/digitalobject/13733" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/f9/ee/f9ee373d2f0ec50d5183d065a54836c6.jpg" title="Program for the production, &quot;2075&quot;">
+                  
+                  
+                  <img src="../media/cache/29/3c/293cb57a85edb2281490cd714800e85e.jpg" alt="Program for the production, &quot;2075&quot;" data-href="/digitalobject/13496" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/5e/a4/5ea4ec8905da66c4bfcd588af1f78e17.jpg" title="Program for the production, &quot;2075&quot;">
+                  
+                  
+                  <img src="../media/cache/d2/46/d246d28612f088216050e80599569e92.jpg" alt="Program for the production, &quot;2075&quot;" data-href="/digitalobject/13496" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ff/91/ff915fa99da5fc870dd4c436b93453a2.jpg" title="Program for the production, &quot;2075&quot;">
+                  
+                  
+                  <img src="../media/cache/0a/c3/0ac35e3800dff8c0060795590e5587c0.jpg" alt="Program for the production, &quot;2075&quot;" data-href="/digitalobject/13496" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/bd/cc/bdcc6c7d3adddb531d1097fb39fd36a1.jpg" title="Program for the production, &quot;2075&quot;">
+                  
+                  
+                  <img src="../media/cache/9d/1c/9d1cf4d953b18d893bb3e1e6b774587c.jpg" alt="Program for the production, &quot;2075&quot;" data-href="/digitalobject/13496" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/87/df/87dffd1b9e6a33870db3dbfd7efb0fb5.jpg" title="Invitation for the production, &quot;2075&quot;">
+                  
+                  
+                  <img src="../media/cache/44/d1/44d137d9ee3561f6552eed51466448e5.jpg" alt="Invitation for the production, &quot;2075&quot;" data-href="/digitalobject/13534" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/14/67/14672840e3964ee586466e1cfc06f190.jpg" title="Invitation for the production, &quot;2075&quot;">
+                  
+                  
+                  <img src="../media/cache/af/b2/afb2ae2fd9b6ef14a3c98bcdfdc89b70.jpg" alt="Invitation for the production, &quot;2075&quot;" data-href="/digitalobject/13534" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/85/23/8523544f67252b054ded1865dbf06e63.jpg" title="Invitation for the production, &quot;2075&quot;">
+                  
+                  
+                  <img src="../media/cache/8f/6c/8f6ca26d08a36e6fd7d1f3b3eac0d91f.jpg" alt="Invitation for the production, &quot;2075&quot;" data-href="/digitalobject/13534" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/11/ff/11ff2ee9428f0b862dfe95c36dcac12c.jpg" title="Invitation for the production, &quot;2075&quot;">
+                  
+                  
+                  <img src="../media/cache/7c/95/7c9567713b3646ec8aa57c3c62464a1c.jpg" alt="Invitation for the production, &quot;2075&quot;" data-href="/digitalobject/13534" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/fd/3c/fd3cca7b46e361c9b8393ef5cf67f9df.jpg" title="Hilda María Colomé (Mujer), in &quot;2075&quot;">
+                  
+                  
+                  <img src="../media/cache/f7/2d/f72d4c7eb1800e1de84ad775f131bb5d.jpg" alt="Hilda María Colomé (Mujer), in &quot;2075&quot;" data-href="/digitalobject/13765" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ce/fd/cefd731dad13d71fb2a485442d5469de.jpg" title="Francisco Javier Iglesias (Vector), in &quot;2075&quot;">
+                  
+                  
+                  <img src="../media/cache/57/1b/571be6f4a236db73b8648d856dcbe90d.jpg" alt="Francisco Javier Iglesias (Vector), in &quot;2075&quot;" data-href="/digitalobject/13836" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/27/d2/27d29156a776216cdb846e5a0293307b.jpg" title="Mario Ernesto Sánchez (Investigador Quantum), in &quot;2075&quot;">
+                  
+                  
+                  <img src="../media/cache/29/bf/29bf7af0e0fddeb9d1fbcbfc331e0055.jpg" alt="Mario Ernesto Sánchez (Investigador Quantum), in &quot;2075&quot;" data-href="/digitalobject/13668" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/37/0c/370ce45172eca42d6f371a33ce4d9dbb.jpg" title="Mario Ernesto Sánchez (Investigador Quantum) and Vivian Ruiz (La Bella Durmiente), in &quot;2075&quot;">
+                  
+                  
+                  <img src="../media/cache/60/6e/606eb673e9ed90dd6bf9988eaeb5400d.jpg" alt="Mario Ernesto Sánchez (Investigador Quantum) and Vivian Ruiz (La Bella Durmiente), in &quot;2075&quot;" data-href="/digitalobject/13759" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e2/8e/e28e5090295fff1d546222c9c5b2c6d0.jpg" title="Francisco Fernández (Robot) and Vivian Ruiz (La Bella Durmiente), in &quot;2075&quot;">
+                  
+                  
+                  <img src="../media/cache/88/23/882370bd99bea339563e9bb944a90d01.jpg" alt="Francisco Fernández (Robot) and Vivian Ruiz (La Bella Durmiente), in &quot;2075&quot;" data-href="/digitalobject/13632" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/03/20/0320bc03a4bbd4e9a1e2f9f70a50c098.jpg" title="José Amaya (Prometeo) and Paul D&#39;Alba (Meteo), in &quot;Prometeo&quot;">
+                  
+                  
+                  <img src="../media/cache/15/75/1575204ba4181037ee01cc86ae462857.jpg" alt="José Amaya (Prometeo) and Paul D&#39;Alba (Meteo), in &quot;Prometeo&quot;" data-href="/digitalobject/13748" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/fd/e6/fde6171f963689b055622b943725aa9c.jpg" title="Glenda Díaz Rigau (El Coro), in &quot;Prometeo&quot;">
+                  
+                  
+                  <img src="../media/cache/bb/85/bb85848ac49488dbc953c433aa6eb95d.jpg" alt="Glenda Díaz Rigau (El Coro), in &quot;Prometeo&quot;" data-href="/digitalobject/13796" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b9/c2/b9c2f76c05a416c65e0627e26a76389d.jpg" title="Susana Sosa (Susan B. Anthony), Alina Interián (Amelia Earhart), and Rebeca Sánchez (Joan of Arc), in &quot;Chamber Music&quot;">
+                  
+                  
+                  <img src="../media/cache/c0/5e/c05e81cdc751d6654c69432297708b6d.jpg" alt="Susana Sosa (Susan B. Anthony), Alina Interián (Amelia Earhart), and Rebeca Sánchez (Joan of Arc), in &quot;Chamber Music&quot;" data-href="/digitalobject/13822" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/61/56/61567851db5b64d387df8d1cd2840bbb.jpg" title="Siro del Castillo (El Viejo Que Hace Los Muñecos), in &quot;Los fantoches&quot;">
+                  
+                  
+                  <img src="../media/cache/36/a2/36a2345ab5eb99377f3013ddaca76dae.jpg" alt="Siro del Castillo (El Viejo Que Hace Los Muñecos), in &quot;Los fantoches&quot;" data-href="/digitalobject/13639" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/fc/ae/fcae683e51069edb14fc9f1c51360824.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/c9/a3/c9a360ad1e030da21da2fed96792e2e2.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13491" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/17/03/1703f04bfd1b4bb19aa76649329aafa9.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/81/5b/815b0ecceb4f7ef2ce691a858570c800.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13491" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/6d/d3/6dd30e142c3502476c36b0b1aa8c697b.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/c3/20/c320f8de669feb73c11ff0d40ad5e3fd.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13491" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/90/50/9050ed073a49423dbae8142ddaf31259.jpg" title="Invitation for the production, &quot;La encantadora familia Bliss&quot;">
+                  
+                  
+                  <img src="../media/cache/a0/38/a0382d51e1eb3ec26e400f67fca49597.jpg" alt="Invitation for the production, &quot;La encantadora familia Bliss&quot;" data-href="/digitalobject/13491" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/f1/3c/f13c94c79fd0f9c1e1729f850ed6b817.jpg" title="Pedro Julio González (El Funcionario), José Armán (El Ángel), Reynaldo González (El Juez) and Manuel Uriarte (El Hombre), in &quot;El juicio final&quot;">
+                  
+                  
+                  <img src="../media/cache/06/eb/06eb59c83d021b28ce165a7a065e21b0.jpg" alt="Pedro Julio González (El Funcionario), José Armán (El Ángel), Reynaldo González (El Juez) and Manuel Uriarte (El Hombre), in &quot;El juicio final&quot;" data-href="/digitalobject/13680" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/75/22/75220cf3742d6f1627c58028802cd042.jpg" title="Reynaldo González (El Juez) and Manuel Uriarte (El Hombre), in &quot;El juicio final&quot;">
+                  
+                  
+                  <img src="../media/cache/99/27/9927ab1f5724e0640fb67690f13678d4.jpg" alt="Reynaldo González (El Juez) and Manuel Uriarte (El Hombre), in &quot;El juicio final&quot;" data-href="/digitalobject/13722" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d6/f7/d6f752db78eb3a1da2862f8410fa80a6.jpg" title="Reynaldo González (El Juez), in &quot;El juicio final&quot;">
+                  
+                  
+                  <img src="../media/cache/ce/f7/cef7acde573fa32131c2f1901a3e37ff.jpg" alt="Reynaldo González (El Juez), in &quot;El juicio final&quot;" data-href="/digitalobject/13625" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e9/e1/e9e16dbdc2c71999ec6b39c826e67977.jpg" title="Invitation for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;">
+                  
+                  
+                  <img src="../media/cache/ab/bd/abbd503732c516d4a0541f1a098fdcd5.jpg" alt="Invitation for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;" data-href="/digitalobject/13565" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/11/a9/11a9e529fe5ed895c31d10319ae92f58.jpg" title="Invitation for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;">
+                  
+                  
+                  <img src="../media/cache/0a/6b/0a6b2ad4a7c3cc9ac13e079c6855c499.jpg" alt="Invitation for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;" data-href="/digitalobject/13565" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/a1/6c/a16cc3e2d61ef5bf875ce8ced131589b.jpg" title="Invitation for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;">
+                  
+                  
+                  <img src="../media/cache/c2/ca/c2caf45cbfcd8d42b1e56bde3cf593f4.jpg" alt="Invitation for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;" data-href="/digitalobject/13565" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/1e/70/1e70d9f1358edc8d4520e957f28109f8.jpg" title="Invitation for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;">
+                  
+                  
+                  <img src="../media/cache/f2/d2/f2d2d11a00e83dd5035e71874ce4b8c2.jpg" alt="Invitation for the productions, &quot;Los Fantoches&quot;, &quot;Chamber music&quot;, and &quot;Ejercicio a Constantino&quot;" data-href="/digitalobject/13565" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/84/31/84315627b3c6c31489c3117de57d1041.jpg" title="José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/7a/90/7a90dbba136659fb4ef4d48da0be2993.jpg" alt="José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;" data-href="/digitalobject/13835" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/c7/c8/c7c8e726c29d26bb04a348db7cef1292.jpg" title="José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/60/2c/602c184c85928604a505640d316874f4.jpg" alt="José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;" data-href="/digitalobject/13747" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/fa/e7/fae7d708072c669fa71c3368966680a7.jpg" title="Manuel Acosta, actor from the theater group, &quot;Prometeo&quot;">
+                  
+                  
+                  <img src="../media/cache/eb/35/eb35e66d300c5b3acf1a16c7866fcd81.jpg" alt="Manuel Acosta, actor from the theater group, &quot;Prometeo&quot;" data-href="/digitalobject/13830" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/77/04/770417669df8ecba9b86463c67457acc.jpg" title="Reynaldo González and José Antonio González, in &quot;Chimpete-Champata&quot;">
+                  
+                  
+                  <img src="../media/cache/24/b9/24b904d1fd3c5a2acd931706cf5d76ff.jpg" alt="Reynaldo González and José Antonio González, in &quot;Chimpete-Champata&quot;" data-href="/digitalobject/13653" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/cd/0e/cd0eded0b63b7d77933a9ad935d19e58.jpg" title="Gloria Kare, in &quot;La cucarachita Martina&quot; (Children&#39;s Theater)">
+                  
+                  
+                  <img src="../media/cache/75/bd/75bd25f315ccb0ed3ae6895cbc9552ac.jpg" alt="Gloria Kare, in &quot;La cucarachita Martina&quot; (Children&#39;s Theater)" data-href="/digitalobject/13735" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/bb/dd/bbdd6d3889c244aefc02739914f562f7.jpg" title="Glenda Díaz Rigau (Coro) and José Amaya (Prometeo), in a rehearsal for the production &quot;Prometeo&quot;">
+                  
+                  
+                  <img src="../media/cache/36/2a/362afd834146cc50fd023239016ac3c1.jpg" alt="Glenda Díaz Rigau (Coro) and José Amaya (Prometeo), in a rehearsal for the production &quot;Prometeo&quot;" data-href="/digitalobject/13739" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/4f/85/4f850f76d433f3ed47dbaf7d7e3c8b3d.jpg" title="José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/44/08/440864f703c218688cd01ed5f684b283.jpg" alt="José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;" data-href="/digitalobject/13751" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/f1/9f/f19ff56a677b9173433283b3323a27fa.jpg" title="Los tres hombres del paraguas: Ricardo Fernand (Namur), Reynaldo Gonzalez (Mitaro) and José A. González (Toso), and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;  ">
+                  
+                  
+                  <img src="../media/cache/bc/d8/bcd85d8d20599f6d869001b035b7862a.jpg" alt="Los tres hombres del paraguas: Ricardo Fernand (Namur), Reynaldo Gonzalez (Mitaro) and José A. González (Toso), and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;  " data-href="/digitalobject/13717" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/82/45/824595eaa91f570556f5d75e7383770f.jpg" title="Ricardo Fernand (Namur) and Reynaldo Gonzalez (Mitaro), in &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/e0/ef/e0ef8debbc38865ca9125046aff82d01.jpg" alt="Ricardo Fernand (Namur) and Reynaldo Gonzalez (Mitaro), in &quot;Fando y Lis&quot;" data-href="/digitalobject/13782" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ab/29/ab292f23baad2cca3509a5ae7f4a6910.jpg" title=" José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/f6/20/f62027170dac861cd7c6c05b402e2070.jpg" alt=" José Armand (Fando, el hombre que la lleva a Tar) and Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;" data-href="/digitalobject/13681" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e4/a6/e4a6cc20c02682146a4acf4b0519e84e.jpg" title="Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/72/5b/725b535a948099a529dd32a8f7d76c94.jpg" alt="Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;" data-href="/digitalobject/13617" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/f5/b8/f5b812ec70bc0532bea3a68d0885f622.jpg" title="Reynaldo González (El Juez) and Manuel Uriarte (El Hombre), in &quot;El juicio final&quot;">
+                  
+                  
+                  <img src="../media/cache/2c/77/2c77f065deff8b5a67a9c963d863eb4b.jpg" alt="Reynaldo González (El Juez) and Manuel Uriarte (El Hombre), in &quot;El juicio final&quot;" data-href="/digitalobject/13825" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/bf/d3/bfd3f492bcd7ad4cf47a3eeae46bb12f.jpg" title="Press release for the production, &quot;Trilogía&quot;">
+                  
+                  
+                  <img src="../media/cache/a5/23/a523608daa05b202b0f3ffe161ea0e48.jpg" alt="Press release for the production, &quot;Trilogía&quot;" data-href="/digitalobject/13526" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b7/ea/b7ea0cbe16fe88dc840622e7338c9e2c.jpg" title="Press release for the production, &quot;Trilogía&quot;">
+                  
+                  
+                  <img src="../media/cache/17/86/1786c190076ccdcdd0ec6d4cbb318b74.jpg" alt="Press release for the production, &quot;Trilogía&quot;" data-href="/digitalobject/13526" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b9/06/b9061bc3c61956ef958f99802a018c90.jpg" title="Promotional materials for the production, &quot;La presidenta y los guerrilleros&quot;">
+                  
+                  
+                  <img src="../media/cache/76/41/7641fdf2415974df8b81e845f7c44a6e.jpg" alt="Promotional materials for the production, &quot;La presidenta y los guerrilleros&quot;" data-href="/digitalobject/13546" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/4b/7e/4b7eb64f211f0bb01598d3b265c8dd98.jpg" title="Teresa María Rojas, Lourdes Menci, Reynaldo González and Patricio Palacios holding performance award for the production, &quot;El Gran Teatro del Mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/de/12/de12f9f0512885f07c4a39649e536ac2.jpg" alt="Teresa María Rojas, Lourdes Menci, Reynaldo González and Patricio Palacios holding performance award for the production, &quot;El Gran Teatro del Mundo&quot;" data-href="/digitalobject/13832" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/36/4f/364f0cccc062ee7df026399a4d9eac82.jpg" title="Poster for the production, &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/fb/79/fb79ea2c0c6dc4a607ea61a7965085c6.jpg" alt="Poster for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13707" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/a8/04/a8043953e2b90539edb566c01dc0194a.jpg" title="Poster for the production, &quot;La presidenta y los guerrilleros&quot;">
+                  
+                  
+                  <img src="../media/cache/f2/a5/f2a57e9ab5ac441f7a3ea9fec4286afb.jpg" alt="Poster for the production, &quot;La presidenta y los guerrilleros&quot;" data-href="/digitalobject/13780" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/1d/7b/1d7b5096eac1c4c8107bb67b84cd3036.jpg" title="Poster for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/5a/18/5a181efe3bb5e2489c7891fe31172d3d.jpg" alt="Poster for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13665" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/6b/44/6b4430defa0d621ed13681a1aecf21cb.jpg" title="Poster for the production, &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/c6/13/c613d6c45459a15c764e005f0317b440.jpg" alt="Poster for the production, &quot;Guaracha Rock&quot;" data-href="/digitalobject/13691" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/c1/20/c12035e7e10ed0ab30478fc6a4375b3f.jpg" title="Poster for the production, &quot;Flores de papel&quot;">
+                  
+                  
+                  <img src="../media/cache/d0/90/d090f2c242a5fd197ba05c50246c7df2.jpg" alt="Poster for the production, &quot;Flores de papel&quot;" data-href="/digitalobject/13813" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/0a/e3/0ae3d913c7ba6a140b9724c8d21c57ad.jpg" title="Poster for the production, &quot;Fando y Lis&quot;">
+                  
+                  
+                  <img src="../media/cache/b1/4e/b14e78c0e778dca46a165fd26918269e.jpg" alt="Poster for the production, &quot;Fando y Lis&quot;" data-href="/digitalobject/13829" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d5/a7/d5a749cda5db9b73a53e552211b6a7bf.jpg" title="Poster for the production, &quot;El relojero de Córdoba&quot;">
+                  
+                  
+                  <img src="../media/cache/4e/fa/4efabcf8e5e63807c1ab41ee51e8ba52.jpg" alt="Poster for the production, &quot;El relojero de Córdoba&quot;" data-href="/digitalobject/13812" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/8a/12/8a129fa8c6b41c27510b6e58e83965d5.jpg" title="Poster for the production, &quot;2075&quot;">
+                  
+                  
+                  <img src="../media/cache/14/73/147357986a50824faf69ac60503ef1e6.jpg" alt="Poster for the production, &quot;2075&quot;" data-href="/digitalobject/13743" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/6c/c2/6cc2d9c3f293c1ebd2bd19c7091306ea.jpg" title="Instructional materials by Teresa María Rojas">
+                  
+                  
+                  <img src="../media/cache/bf/6f/bf6f619502b936d4be2b71c0e0096935.jpg" alt="Instructional materials by Teresa María Rojas" data-href="/digitalobject/13630" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/50/6f/506f4a5251818cc80f0653686f379fe1.jpg" title="Instructional materials by Teresa María Rojas">
+                  
+                  
+                  <img src="../media/cache/06/89/06893da6568ca0d122a6a843a553925c.jpg" alt="Instructional materials by Teresa María Rojas" data-href="/digitalobject/13629" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/22/3d/223d2323e864b304a2c2329b2ff2db4c.jpg" title="Instructional materials by Teresa María Rojas">
+                  
+                  
+                  <img src="../media/cache/bb/6e/bb6eca82048f769598fd05388f2d780c.jpg" alt="Instructional materials by Teresa María Rojas" data-href="/digitalobject/13553" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/c7/7d/c77d44ae76b49a8716c300bc6b00f773.jpg" title="Instructional materials by Teresa María Rojas">
+                  
+                  
+                  <img src="../media/cache/ec/61/ec6190e8c8401b564d7510f40ae9570d.jpg" alt="Instructional materials by Teresa María Rojas" data-href="/digitalobject/13553" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/82/fa/82fa10d5b81f3904d98e67e82f057f1f.jpg" title="Teresa María Rojas (Madre Miriam) and Alina Interián (Doctora Marta Livingstone), in &quot;Cordero de Dios&quot;">
+                  
+                  
+                  <img src="../media/cache/d7/9e/d79e972bae81162750952d9d5d059952.jpg" alt="Teresa María Rojas (Madre Miriam) and Alina Interián (Doctora Marta Livingstone), in &quot;Cordero de Dios&quot;" data-href="/digitalobject/13810" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/79/ac/79ac6125f3c5ded1f147f0013f7b1fae.jpg" title="Teresa María Rojas and Marilyn Romero, in &quot;Sabina y Lucrecia&quot;">
+                  
+                  
+                  <img src="../media/cache/d5/bb/d5bb3e98f9db78508bed56e9787838c1.jpg" alt="Teresa María Rojas and Marilyn Romero, in &quot;Sabina y Lucrecia&quot;" data-href="/digitalobject/13656" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/64/ef/64ef956ba83c84caf5d27b82ad16f480.jpg" title="Miguel Ángel Abadía (Lalo), Ana María Nápoles (Beba), and Lourdes Guigou (Cuca), in &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/1c/90/1c90e77ee9f0c811c544aee9363fddcf.jpg" alt="Miguel Ángel Abadía (Lalo), Ana María Nápoles (Beba), and Lourdes Guigou (Cuca), in &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13642" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/0c/e3/0ce32a457376f454c889848e5f0cc62b.jpg" title="Invitation, &quot;Estampas de la novelística cubana&quot;">
+                  
+                  
+                  <img src="../media/cache/dd/a3/dda3eb5e86408647c3dbb3a12b6d6d01.jpg" alt="Invitation, &quot;Estampas de la novelística cubana&quot;" data-href="/digitalobject/13472" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/0e/2b/0e2b81a5d201bdc37d8c9222676bb53e.jpg" title="Invitation for the production, &quot;No exit&quot;">
+                  
+                  
+                  <img src="../media/cache/c4/4a/c44a2313ab497b31bac96ffe9a7982da.jpg" alt="Invitation for the production, &quot;No exit&quot;" data-href="/digitalobject/13478" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d2/62/d262cfe3ee627f8fb2050beb6cba0ce7.jpg" title="Invitation for the production, &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/fd/58/fd58b4e7390f17de8d9885373e5dc8df.jpg" alt="Invitation for the production, &quot;Guaracha Rock&quot;" data-href="/digitalobject/13474" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/3e/27/3e27231300437f7b84f85d6b3e91dad6.jpg" title="Invitation for the production, &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/f0/57/f05798d35477159d09dafc5b0ed6d4d7.jpg" alt="Invitation for the production, &quot;Guaracha Rock&quot;" data-href="/digitalobject/13406" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/72/e0/72e0562d6637731ccb9f6d55f36a2fb6.jpg" title="Invitation for the production, &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/da/4d/da4d23d22573e340191dd332bd803a7f.jpg" alt="Invitation for the production, &quot;Guaracha Rock&quot;" data-href="/digitalobject/13406" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/ac/87/ac8795d20d8cf6822122105782d849e3.jpg" title="Invitation for the production, &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/43/89/43899cd73a1646c385681d0155b0cda5.jpg" alt="Invitation for the production, &quot;Guaracha Rock&quot;" data-href="/digitalobject/13406" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/44/32/4432d2576443eabfbff10c9291dfe8b9.jpg" title="Invitation for the production, &quot;Guaracha Rock&quot;">
+                  
+                  
+                  <img src="../media/cache/fe/fe/fefe27adb274f4fd25ba1d22c0097761.jpg" alt="Invitation for the production, &quot;Guaracha Rock&quot;" data-href="/digitalobject/13406" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/5f/ab/5fabf3307a732b3586a6e9e024e240e7.jpg" title="Invitation for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/ed/7d/ed7d02e62d42deab15ec9adb806906c8.jpg" alt="Invitation for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13214" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/52/86/528683b473cfba051b01ea38dfd50089.jpg" title="Invitation for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/6d/6b/6d6b261332287d5f3d5a7906ffa95c96.jpg" alt="Invitation for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13214" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/83/ce/83ce3f5451a5b49240a8cb499a56f0c3.jpg" title="Invitation for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/6e/68/6e682169f9313ac83560008195e949d4.jpg" alt="Invitation for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13214" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/53/38/533871dc502600e12cd345e4cb1a3903.jpg" title="Invitation for the production, &quot;El gran teatro del mundo&quot;">
+                  
+                  
+                  <img src="../media/cache/5b/be/5bbe2f08835c0857f7dac53973e367dd.jpg" alt="Invitation for the production, &quot;El gran teatro del mundo&quot;" data-href="/digitalobject/13214" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/41/46/414644d12cbcece7d87e730dcb46cf57.jpg" title="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/29/c2/29c2fa1ced381b84f6715e0d1efc2bb9.jpg" alt="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13293" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/0a/af/0aafa885f39d029cb571ac8ad70740eb.jpg" title="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/c5/a5/c5a5aa3a912cdb4b3a97627f831b8cd9.jpg" alt="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13293" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e5/25/e5259794eb50271ff8a9e3a02a15cd75.jpg" title="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/aa/6c/aa6cb3f52bbe1067f528d205a8175fb9.jpg" alt="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13293" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/67/66/676673c77c2477f55b6c430773cbb260.jpg" title="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;">
+                  
+                  
+                  <img src="../media/cache/47/af/47afb5648460f7365ae0eaa72cbc5065.jpg" alt="Invitation for the productions, &quot;La abuela&quot; and &quot;El viaje&quot;" data-href="/digitalobject/13293" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/1e/07/1e07a71850eadf53b19e8a22457abad8.jpg" title="Invitation for the production, &quot;La dama boba&quot;">
+                  
+                  
+                  <img src="../media/cache/0e/09/0e09a2932f0ba1c28d6c49180d1c1c1e.jpg" alt="Invitation for the production, &quot;La dama boba&quot;" data-href="/digitalobject/13482" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/7f/fd/7ffd2aba5105c980e559fe9dfc8eb0af.jpg" title="Invitation, &quot;Estampas de la novelística cubana&quot;">
+                  
+                  
+                  <img src="../media/cache/dc/46/dc46fcbd3ae3bd4a109c44d5b7a0c341.jpg" alt="Invitation, &quot;Estampas de la novelística cubana&quot;" data-href="/digitalobject/13473" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/cf/df/cfdf4030e9c8d5ed7a8e0b57a198eb8f.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                  
+                  
+                  <img src="../media/cache/82/46/8246cf4aeb6ddb62228674c84eb5d998.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13125" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/09/92/09924487122648e53904368485bab1fb.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                  
+                  
+                  <img src="../media/cache/96/4d/964dab2898d2bb2b8b636da0d72fca84.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13125" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e5/8e/e58e4a042674beddaa52a2c70da179b7.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                  
+                  
+                  <img src="../media/cache/ec/10/ec10d2213dd11acbd1bc924a2e52589a.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13125" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/d7/45/d74579e05387d0a294bd47d43ada5f97.jpg" title="Program for the production, &quot;Prometeo&quot;">
+                  
+                  
+                  <img src="../media/cache/28/7f/287f298fccbbf8757dd39da1f3293388.jpg" alt="Program for the production, &quot;Prometeo&quot;" data-href="/digitalobject/13125" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/38/28/38285d4a6735da793927617e337b2ef1.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/29/53/2953b38ee76070c9ffa05128c362dc9b.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/2c/89/2c894d2a162ad7dc4cfa880a994a3894.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/33/a5/33a559c687613a671bd6fb321b146ac0.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/02/53/02532c61096e03e1942361a60ccd4695.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/7c/b9/7cb94aa7cfdb0b2a860cdb17449241dd.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/cd/1e/cd1e48ebb702f3744f3a210c8c16a2a1.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/f4/08/f40827b6698373b73dca9898919139a2.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/57/ab/57ab9e6d41243ef6246ba20222a65bcd.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/66/59/6659d2b2c130689ff0b606e7b34ce3e4.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/a9/dc/a9dc32666b5a20af350209a911feaeb0.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/74/76/7476f469787fa070f803212e55c2a51f.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/41/71/4171c0f84072b4b992b9346b79578cfb.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/b9/f6/b9f68de82cef1593939e3b651fa7d8d2.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b0/d6/b0d64393a8a96c078f76cd1fdeb9fbd6.jpg" title="Program for the production, &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/40/7a/407a780115394fbb7b6050f36e8418eb.jpg" alt="Program for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13128" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b7/2d/b72db0368bdd7ad257d34efb208c602b.jpg" title="Playbill for the production, &quot;Proceso a cuatro monjas&quot;">
+                  
+                  
+                  <img src="../media/cache/80/68/8068cce34b7e60ae8fd0c63f3ca53bc4.jpg" alt="Playbill for the production, &quot;Proceso a cuatro monjas&quot;" data-href="/digitalobject/13414" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/8e/6b/8e6bde64d34e688f2705341b55b867ec.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/0d/18/0d1830c1b18bfa051f9cdf9efda84282.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/fa/a8/faa8afb7e7ba48d1ebb92a40262149bb.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/c5/dc/c5dc44a1de629604ac2985c4b148f28d.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/e1/ed/e1ed8093aff60636777d0d026a14e0c8.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/88/06/8806e9aa6e73258b99c8daece21475ed.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/8c/47/8c477595d322a808628afe32dc59a01e.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/76/3e/763e62ade1cde0897876f57a3f6ba723.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/0f/d3/0fd305bee512239f870bc0530e78eff9.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/36/29/3629b3e5fd50926a5655727116268289.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/13/38/1338f4df63b3d78bf46ac6b4a6b111f2.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/7a/20/7a2004702bf2b41267c617a6cc43d9a1.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/0c/65/0c654d73b97ec72c8ddcff404e59baa6.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/94/1c/941c9aac3df2bc59022dbbe8748bdb83.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="../media/cache/b9/5b/b95b4588b85902c39cf71baa1a0524e1.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                  
+                  
+                  <img src="../media/cache/fc/1e/fc1e8fdb71831fb83c6b717a60f4acc4.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/13129" />
+                  
+                </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

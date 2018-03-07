@@ -1,0 +1,806 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en ">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../digitalobjects.html">Digital Objects</a></li>
+              <li>Souvenir Program, Teatro Las Máscaras (1976)</li>
+            </ul>
+          </nav>
+          <h2>Souvenir Program, Teatro Las Máscaras (1976)</h2>
+        </header>
+
+        <section class="objectdisplay main">
+                
+                
+                <img id="largepreview" data-index="0" src="http://ctda.library.miami.edu/media/cache/f8/c0/f8c0f8caa878e5b5c7336b5b4d12a302.jpg" alt='' style="display:block;float:none;" /><br />
+                
+                
+                
+                
+
+                
+
+                
+                <h3>Notes:</h3>
+                <p>Creator: Roba&iacute;n, Olivia Object date: 1976 Coverage (temporal): 1970-1980 Coverage (spatial): Miami (Florida)</p>
+
+                
+
+                <h3>Object details:</h3>
+                <dl class="objectdata">
+                
+
+                
+                
+                
+                
+                
+                
+                
+              
+                
+                  <dt>Physical object type:</dt>
+                  <dd>Promotional materials</dd>
+                
+
+                
+                  <dt>Digital object format:</dt>
+                  <dd>Image</dd>
+                
+
+                  <dt>Object ID:</dt>
+                  <dd>chc5160000263</dd>
+                  
+                  <dt>Collection:</dt>
+                  <dd>Theater Ephemera Collection</dd>
+                  
+                  
+                  
+                
+                  <dt>License:</dt>
+                  <dd><a href="../copyright/index.html">University of Miami copyright policy</a></dd>
+                
+                  
+                
+                  
+                  
+                  
+                  
+                </dl>
+
+                
+                <h3>Related items:</h3>
+                
+                
+                <h4>Creators:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="../creator/5465.html">Alfonso Cremata</a>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/creator/5463">Teatro Las Máscaras</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../creator/1164.html">Salvador Ugarte</a>
+                  </li>
+                  
+                </ul>
+                
+
+                
+
+                
+
+                
+
+                
+                <h4>Venues:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="../venue/1097.html">Teatro Las Máscaras (United States), February 28, 1969-1973</a>
+                  </li>
+                  
+                  <li>
+                    <a href="../venue/1132.html">Teatro Las Máscaras #1 (United States), October 5, 1973-</a>
+                  </li>
+                  
+                </ul>
+                
+                
+            
+        </section>
+        
+        <aside class="thumbnails">
+            
+                <div class="data">
+                  <ul>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/d9/ae/d9ae9ba515348a9ee37d273c9d8d9679.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/f8/c0/f8c0f8caa878e5b5c7336b5b4d12a302.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/c1/57/c157986d8dfc26ef58bdd34848f82c4a.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/84/50/8450cd4889f807eaf7f06db3021462ff.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/f8/e7/f8e7f2b9d0172c8c35833ecfee94e9f2.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/8d/cc/8dccad137ab31829b84edadade986a18.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/67/66/6766e3f2fde77608f140a36e40ea4ca4.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/12/4b/124b4395391aef08da7292f669154807.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/31/05/3105a4f1dbf56b7d857d1962e15d21df.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/4c/fe/4cfe78a2fcc38d1315203c6f966bd925.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/cc/86/cc865aba8d1727a34aedfd534cbf3bd6.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/7f/57/7f57827c7682d2acbd84362c768ce210.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/09/6c/096c5f78cd435c6c529b78b8322dd7a8.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/ef/ce/efce884dfe49bb1184883c677af759ac.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/75/14/75140cbe20826deb1201a504b312a598.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/95/e4/95e46734623650290228b4a2e52517a8.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/35/db/35dbbc0dae23f180ff40fae6052047d1.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/08/0e/080ee3372b1964d6b2023ba0922a159b.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/04/db/04db7b994a7034c97cc9dbd77f4c352b.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/75/f8/75f8787bf076d0d066da66384897c394.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/3c/00/3c0079a7a1d9a3ff99359479517ea865.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/e3/9b/e39b2349dcacfa1deea2b0291f1fc3d6.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/50/7e/507e3b410916c3117d860b21577e3b51.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/aa/ca/aacab8b5a1256a7d58a0bde3291f9f3d.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/e1/4e/e14e93d5d26107e0bbb9feb7f66658e9.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/a2/b7/a2b73de87961a056e2c72ebebfc29b59.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/15/d2/15d2f4d68c3e93b8dd7c207a5f333c4f.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/b8/3b/b83baa4e012a9f87d5b073ddb99c398e.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/f3/9a/f39a611ff5380ae76db9408f140fd9cd.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/20/e5/20e5822b83d3d340091faf67e32cfeee.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/97/3e/973e838bd9eef848951dd23d4a0d9702.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/57/f1/57f136c2edf4938f37de46701e13f604.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/48/f7/48f7c332c3c01b2366d882e2fcc0c16e.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/e4/f3/e4f3b1096b5595e400b92576be7bea68.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/62/9f/629ff657e19ca19f3ca6abc957e8c345.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/7b/25/7b25a5dd658b0a73ca80a600df4b37de.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/90/f4/90f47622d179f8e57440a3bbbff9baf5.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/b8/d4/b8d40807264ce82b2d97a68b49a23656.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/18/ea/18eaf646153bf23d4a74ddd2c1736ee3.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/e9/54/e9541bfc4c88137dfbc5a8bf89f43edd.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/d0/ba/d0ba85e66528b9190c9f0837ac417dfa.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/a9/4d/a94d4e65060e318d00ed76700ebf2daf.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/72/a6/72a6fdfe2dd9b29c79e0b6160c4956f7.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/14/32/143294f4736bc44005fb8f45cbb898f6.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/b1/8b/b18bafa5966c55e8361a7f048f25d544.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/fd/18/fd18ee7587cf18ab37cb584b75059238.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/b5/b3/b5b3e3669be9c813e415a27085a001ee.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/bc/c1/bcc1d947db971f909f307a61fe4d193e.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/86/68/86681e1bfc94ebe0e34e3a309d43762c.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/32/0a/320a80815edd944805ec0ab400eb1e74.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/4f/47/4f47dcde10defc559d97eda63b6a3484.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/25/94/259449cdb60517fac2c8d1d1a6ab8833.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/8b/61/8b61c79401dd06f37693e7a619862334.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/a9/37/a9379cf5bc401263cb33990150029457.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/dd/fe/ddfe77806449395af3553780df334466.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/97/bf/97bfaf720fe7d69bba22def5dca1bafc.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/de/14/de140f8e8ce5bbbcae6673cb345dcd78.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/12/1f/121f205ac66c47971ab5eb544fcd7b12.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/bc/2f/bc2fd0be3c7ccfba002117c1455322a3.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/7b/75/7b757105ed1e7a04c6f7cb4c6c0814e6.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/60/55/6055f414e68360c536bd598f3127d36b.jpg" width="100" height="100" alt='' title="Souvenir Program, Teatro Las Máscaras (1976)" />
+                        
+                        
+                        <span>/media/cache/c0/b7/c0b705d5f0bb3828d166880e98021d97.jpg</span>
+                        
+                    </li>
+                
+                </ul>
+              </div>
+            
+            
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+        $(window).load(function() {
+            
+            $('.thumbnails ul li').click(function() {
+                var current = $(this);
+                var index = $('.thumbnails ul li').index(current);
+                $('#largepreview').attr('src', current.children('span').text());
+                $('#largepreview').attr('data-index', index);
+            });
+            
+            $('#largepreview').click(function() {
+              $.fancybox([
+                
+                
+                "/media/cache/e6/30/e6303b826d17d8be9c26aa4ea307574f.jpg",
+                
+                
+                
+                "/media/cache/d8/9e/d89ed2a7aff07b1cc3c47fdac78cda8d.jpg",
+                
+                
+                
+                "/media/cache/e6/6d/e66d148b9496ff8edd6b0444e609b9c2.jpg",
+                
+                
+                
+                "/media/cache/c3/b4/c3b465d27fa32bab958a93e25e31e1a1.jpg",
+                
+                
+                
+                "/media/cache/94/cd/94cda3b78bca73e123419496f6c40182.jpg",
+                
+                
+                
+                "/media/cache/4f/41/4f4168f2156c7bcee643933f348dd615.jpg",
+                
+                
+                
+                "/media/cache/a0/3a/a03a53fdbc9debbb12fc13c3c89b688a.jpg",
+                
+                
+                
+                "/media/cache/33/41/3341712e72f579e6c03376a5d761c55e.jpg",
+                
+                
+                
+                "/media/cache/c4/c3/c4c3f3769e51758b7106adef367f08dd.jpg",
+                
+                
+                
+                "/media/cache/59/36/59362320247bb30a60bc56973f30bb7c.jpg",
+                
+                
+                
+                "/media/cache/38/68/386827794077f99491ac4225be179f97.jpg",
+                
+                
+                
+                "/media/cache/0e/4a/0e4ae3dc263a57b25cfac3798442682d.jpg",
+                
+                
+                
+                "/media/cache/cf/ad/cfad7f31e8293131e12ce615d73c135c.jpg",
+                
+                
+                
+                "/media/cache/ee/cd/eecd8871620049caf15485a0a91288c0.jpg",
+                
+                
+                
+                "/media/cache/40/3b/403b48d0404609178003066bc1f27669.jpg",
+                
+                
+                
+                "/media/cache/4a/b5/4ab5354b3764514613570099df394f73.jpg",
+                
+                
+                
+                "/media/cache/e0/06/e00603ff694f390607a292b9a04294e5.jpg",
+                
+                
+                
+                "/media/cache/73/04/7304e30f94abfac8e23a26c4746769fe.jpg",
+                
+                
+                
+                "/media/cache/41/ff/41ffe816b7981b4036496ec30316a95b.jpg",
+                
+                
+                
+                "/media/cache/fd/ae/fdaec774f1ff1eef856b78601b6725a5.jpg",
+                
+                
+                
+                "/media/cache/6b/a8/6ba87c7b2fd81384621230db7ce7ecfc.jpg",
+                
+                
+                
+                "/media/cache/97/b6/97b6e570db8d13fd5a2af5a3bdb9cbae.jpg",
+                
+                
+                
+                "/media/cache/72/46/724690eb9ade0cd144e9b5b9cb56860e.jpg",
+                
+                
+                
+                "/media/cache/a9/d5/a9d5bc1acf47d6ca759e99413f3bee6d.jpg",
+                
+                
+                
+                "/media/cache/68/84/68842b6cd6ac2824cce5e847075c511f.jpg",
+                
+                
+                
+                "/media/cache/e3/ab/e3ab4584cef52e104feea9a63a3aa318.jpg",
+                
+                
+                
+                "/media/cache/c7/d1/c7d1877a96052ee811c79d39d9d69c81.jpg",
+                
+                
+                
+                "/media/cache/ac/db/acdbc6303417cfe2768e9de7dd698ff7.jpg",
+                
+                
+                
+                "/media/cache/7d/02/7d0220f996ca84f9bb5be2fdb8572a3a.jpg",
+                
+                
+                
+                "/media/cache/a1/37/a137c6508fb1ce307bf53535027cb00e.jpg",
+                
+                
+                
+                "/media/cache/6b/b1/6bb1cd50192a245c4f9acdc34d7cb260.jpg",
+                
+                
+              ], {
+                'type': 'image',
+                'loop': false,
+                'index': $('#largepreview').attr('data-index')
+              });
+            });
+            
+        });
+    </script>
+
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

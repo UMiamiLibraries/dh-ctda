@@ -1,0 +1,691 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../writtenworks.html">Written Works</a></li>
+              <li>El alma buena de Se-Chuan</li>
+            </ul>
+          </nav>
+          <h2>El alma buena de Se-Chuan
+          
+          </h2>
+        </header>
+        <section class="main">
+          <h4>Play script
+          
+          (Spanish) 
+          </h4>
+          
+          
+          
+                      
+
+            
+
+          
+          <div class="linkeditems">
+            <h3>Performances: +</h3>
+            <ul>
+              
+              <li>
+                <a href="../production/3064.html">El alma buena de Se-Chuan</a>
+                
+                <br /><span>Directed by <a href='../creator/183.html'>Vicente Revuelta</a></span>
+                
+                
+                <br /><span><a href="../venue/559.html">Palacio de Bellas Artes</a></span>
+                
+                
+                <br /><span>June 12, 1959</span>
+                
+              </li>
+              
+            </ul>
+          </div>
+          
+
+            
+
+        
+          
+      
+          
+        
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              <li>
+                <span></span> 
+              </li>
+
+              <li>
+                
+              </li>
+              
+              
+            </ul>
+            
+            
+          </div>
+         
+          
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/14202.html">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/76/f176fe8830137a9dca9220eeb9cc4b61.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="../media/cache/fc/00/fc00b9851a561a922905a64a1a0ebb6d.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1f/b4/1fb463bc7a22cf2e7d412860fbaf3c3e.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/09/12/09129f127688387ed188633cd89f6501.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7e/65/7e65652423dd5eda9f33325f89d76214.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/de/e5/dee5ed751e9aed3e22cb1176a308f8d1.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/9f/f19fbbc3b2a1b031d663b704351b9b55.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/0d/4d/0d4d6baab628aeef495fd15fccd1494d.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b9/e1/b9e18bac74bb307f1e53ddac59ccf2f7.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/37/ae/37aec5d79e0c490715a89198d3eaa78c.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/67/1b67d09edafdc07f7399ade00e1f08e5.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d2/aa/d2aaafe2dc96dbbb60f86f0ae1657ac1.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/96/22961fca8a6087b97c1f60aa341de09b.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/73/67/7367ae61f63bb0d8d20788e9a7f3b8d1.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a8/c0/a8c09819b5d0cc7d73afb91d30817087.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/0d/7f/0d7ff285d7aa3bb4f3c19da6adab35ac.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/76/24/7624784421294b8d20eb14609b3fb589.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f2/de/f2de7254efaff84679ab7f9772c74adf.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/1a/b71a18a16e86341ff8be8e027829607d.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/3e/21/3e21a8944940ddfbaf37c85493dfd12a.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cf/13/cf1393b964d135b4e27ae5e29e8f24cb.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ab/4d/ab4d8c70040cdd385f75446caa6698c1.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/01/1c/011cf7da4496b54d8e3b228a0ae0b0c1.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/8e/34/8e3406b1625c01958b483bc4e8287f92.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6f/d4/6fd4d3f4fdb9a77d98337223c74d9656.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/03/13/031355c5673821a832597e2c36234487.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8c/cc/8ccc3bb4fdff17704b9c80a7b820631c.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/60/52/605288e6bc9f43ec3ab48c39a527710b.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/32/05/320511bcba55b6cc9d76e1715d344aea.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d7/5b/d75b8b74dd2358a327672c73c2c602e0.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/46/b8/46b85054c17eb9e5cdd7967b1327d81a.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/14/2c/142c674f042f909191c355ef16275c20.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/78/c0/78c01ee9c73c70f9c59a171a98296fc7.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/9e/6b/9e6ba00e86baaecc10183f3d458db26c.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fd/c8/fdc830b0df70c1ef9aa47684067f19ac.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/4a/d5/4ad5fd4818f60e29aa139f0c4497154b.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/da/2d/da2d836eaa2b427ac8dad7e74b8d1426.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5d/1f/5d1fe7bb381087e84bdf84a58418c19a.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/f7/f1f74c0f555c3a80e0b138a5839f0363.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b2/cb/b2cb3214945857dbc07f5ccffc5c1035.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/9b/7a9b9c33e3a921f71704e7447db2acfc.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f0/e1/f0e1b2bdb3c047910c94ed91e378ccf9.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cd/58/cd581af05b926069c448a802b2418d6a.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/15/96/159665b2e45fc279336d56725748f0cb.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f7/14/f7149a1f3dbbd0d023e1291eb1851baa.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/6d/61/6d61b5cfbf9581f2501c19cfc4dcad0d.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/55/d2/55d277b6cf4e26b5b6192a756e049a75.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/57/b0/57b0d8b25a82e19db379619f3786058f.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f2/d4/f2d4f368d5ba152ea201e437653a534a.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/84/4e/844ef819bc411bf4a6586396523c073b.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fa/21/fa21571dd06cebbb08dc02b2d3271f9d.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b0/4b/b04b9efc97855757d5300ee113b3df64.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5c/d2/5cd23eea4e351caef5b6d353c4ffc160.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="../media/cache/84/d5/84d5b1fc5df1e7b132b6a0a435271c76.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9d/c0/9dc0f6ddbb731367fbdf0b5b223adeab.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/60/03/6003515cc98415e93b92a2bf3eba4a35.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b5/03/b5034f088b5d5c74fc8ba0fe79748212.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/03/2e/032eff2b55c3158368a0e5f4ae01bbed.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/49/7f/497f9e4aa0ffa00e953ad13b9f884343.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/53/1a/531a0767b1560b219d0f813cfc56054c.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/eb/ecebd8016d2d70d81ca223aa68839c5c.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/27/72/2772025d080f52b0f279d40398816879.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5e/e3/5ee3e5d6a1b905ff2cf47bf38f723812.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/81/ed/81ed859b3c9d6c96f6c3871a04cf428f.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5e/f6/5ef61e02af3da5d514a2be62811836c1.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/04/23/042300a62dcce9bce1fce50d51e42223.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a7/f5/a7f5ca2261d4a45da26ab9b9340e60e3.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/76/b3/76b3bc0bfce82cc005626fee1d74fff5.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/fc/31fcc2b9f0ba9c5fdc41fbbd17221d9e.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c3/32/c3320f3ef13949aecf8cf1851a5e19ca.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6b/6c/6b6c8c8af4addf8e64e5ec6a570a57ca.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/15/ba/15ba153d3fdce5f6b297075b713b3093.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/42/ae/42aece805d2cd00807beebcfb80ed05b.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a9/18/a918029a668060dbb905b06a352667d7.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4f/63/4f638f0592006b9cdf05aeb817cc3790.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5a/54/5a549767b5f3493646671d10731622e2.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/18/0d/180d50e4e13781e04898c1bb04ec79bc.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/65/3c/653c19b8ad2b5a5df3bd90f078b78105.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0f/73/0f7361ad57c84f4eebfcee9be17d4bbc.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d4/93/d493f8c037a2b80c33c1e35bac37e0af.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2a/39/2a3956099e82fab108b2dd363e4a7e8b.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e1/2f/e12ff347b7c9b793c163ef62d2f9e1db.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f0/46/f0461fd4e1184fc68f6daaf0b0e41b11.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ae/cb/aecb98ea1ffad2f4cabf086297273ff3.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/33/55/3355983fb17df15f36b070fc4721806c.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/58/54/5854894d466b03a906c67b497ed346cf.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,765 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>La malasangre</li>
+                </ul>
+            </nav>
+            <h2>La malasangre</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/84.html">Abelardo Estorino</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Cast: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Role(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/1875">Paula Alí</a></td>
+                        <td>Madre</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2375">Oscar Álvarez</a></td>
+                        <td>Fermín</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2382">Othón Blanco</a></td>
+                        <td>Fermín</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/1872">Gilberto Reyes</a></td>
+                        <td>Juan Pedro</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/1857">Julio Rodríguez</a></td>
+                        <td>Rafael</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/1856.html">Adria Santana</a></td>
+                        <td>Dolores</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/1876">Eduardo Vergara</a></td>
+                        <td>Padre</td>
+                    </tr>
+                
+              </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Design team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/4330">Julio Díaz</a></td>
+                    <td>Makeup designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/5647">Clara Gómez</a></td>
+                    <td>Makeup designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/6237">Umberto Peña</a></td>
+                    <td>Costume designer, Set designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="../creator/5533.html">Carlos Repilado</a></td>
+                    <td>Light designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="../creator/151.html">Iván Tenorio</a></td>
+                    <td>Choreographer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="../creator/152.html">Marta Valdés</a></td>
+                    <td>Sound/Soundtrack Designer</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Technical team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/6131">Boris Shlacht</a></td>
+                    <td>Hairdresser</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+          
+          
+            
+              <div class="linkeditems">
+              <h3>Awards: +</h3>
+              <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Category</th>
+                  <th>Award</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td>1988</td>
+                        <td>Best Actress</td>
+                        <td> <a href="http://ctda.library.miami.edu/award/75">Premio Festival Nacional de Teatro de Camagüey</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+          
+          
+            
+          
+
+
+            
+
+
+
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              
+            
+                <a href="../creator/4800.html" >Grupo Teatro Estudio (4800)</a><br />
+              
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck (Cuba)</a></span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>July 13, 1988</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/writtenwork/243">La malasangre (Play script)</a><br />
+                <span>By <h4>Author / Playwright:</h4><a href='http://ctda.library.miami.edu/creator/90'>Griselda Gambaro</a></span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/12625">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/91/42/91420b4931b88e777bb7ea4f5e6f9b7e.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/93/39/933984d532cb83c10febdcae37affd3e.jpg" alt="La malasangre" data-href="/digitalobject/12625" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9f/62/9f621871b88714d4c3684f238ca46b7a.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/25/6b/256b3a21a9d0fa1274f8b75fedffba63.jpg" alt="La malasangre" data-href="/digitalobject/12623" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0c/2e/0c2e646b20c9af6669f441d5c11e303d.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/92/a4/92a45ba21290e5039ed26fe9843effe7.jpg" alt="La malasangre" data-href="/digitalobject/12578" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/93/c793abf61445260aa4438cd797c262a7.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/25/cf/25cfed9fecef0a5fb9608a0c005b6858.jpg" alt="La malasangre" data-href="/digitalobject/12569" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/44/ee/44ee62f9003293567bc8fa5811f67a47.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a5/1c/a51c9a0f847b3d7022f2669fb00426f0.jpg" alt="La malasangre" data-href="/digitalobject/12498" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/58/49/5849e6b2cc3d497676e75ea258a9e002.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ed/af/edaf69853abde24eb9e75414702c37d7.jpg" alt="La malasangre" data-href="/digitalobject/12463" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5f/e0/5fe068ac66986aa5c0f844505a1b0f11.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/af/67/af67e02cbf09785032f322e1151ea680.jpg" alt="La malasangre" data-href="/digitalobject/12426" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7b/ee/7bee666c576f3a371c02b0f5900a4bc6.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/61/39/61398c146ad874975f8b87a20deb7fe1.jpg" alt="La malasangre" data-href="/digitalobject/12412" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4b/6d/4b6d2c38f000100f8316ac0c4b36acab.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/8e/ea/8eea0552869fe8a46e5aafe58b92ff95.jpg" alt="La malasangre" data-href="/digitalobject/12351" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/62/6e/626e91e370e7de82e300ad6d82f716dd.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/71/4c/714cb988a634749e6d40cdad85ad3156.jpg" alt="La malasangre" data-href="/digitalobject/12348" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ae/f3/aef3ec8446ed279f766931faa4a5e046.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/8c/03/8c03f2debe2b6ee6843bb8136ae1ad81.jpg" alt="La malasangre" data-href="/digitalobject/12345" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a6/78/a678729409317dd1f3a3c56328a2c885.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/6f/ab/6fab5f5e6cfa8aa51b27af0fcd21b321.jpg" alt="La malasangre" data-href="/digitalobject/12308" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/75/be/75be1ae72484a67965a512db417f124d.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e4/f3/e4f3141f66d02dce68f1f892b975b2bb.jpg" alt="La malasangre" data-href="/digitalobject/12282" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b2/40/b240edfb3010eac6119bff048ff325e9.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c8/05/c805606ad42accb07121d75abb37cf2e.jpg" alt="La malasangre" data-href="/digitalobject/12282" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e4/5e/e45e539d15f7589b2562bcb8d29c033c.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b5/3c/b53c21db0886fac189db5fd44c7c433f.jpg" alt="La malasangre" data-href="/digitalobject/12282" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/58/d4/58d47a00fb453b6ce9468ffa3ca4904a.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/cc/ac/ccacd1696d8faadcf871934f8b2af697.jpg" alt="La malasangre" data-href="/digitalobject/12282" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7e/90/7e90ea0b446f9d97532d4ae625b7ddbb.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/77/4b/774b7f4d540b15a2fc0cfa14c34ef7ba.jpg" alt="La malasangre" data-href="/digitalobject/12282" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b0/99/b099c642d9d3f3f9c9db4d4902f7834f.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/fc/e7/fce77f904c05bf2cddae8a035d81a4c5.jpg" alt="La malasangre" data-href="/digitalobject/12282" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/44/1a/441ab0e5d9f129ae56aaff7595c49ccb.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/af/d0/afd07a5f3702ec48b4b5390ac625d050.jpg" alt="La malasangre" data-href="/digitalobject/12282" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f2/67/f26714dd15a814793e6d77c7d164ff83.jpg" title="La malasangre">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/3c/8b/3c8bfbeda98f953202879f27e37432e3.jpg" alt="La malasangre" data-href="/digitalobject/12282" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/94/b794b87a7b87f4fa2f99e5c7ea8c4c6f.jpg" title="Program for the production &quot;La malasangre&quot;">
+                
+                
+                <img src="../media/cache/58/13/5813228ffb4a2a22676fd4540e81eb3e.jpg" alt="Program for the production &quot;La malasangre&quot;" data-href="/digitalobject/16683" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cb/67/cb67bb841563a6c3008ad8b9ce114d90.jpg" title="Program for the production &quot;La malasangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/81/0c/810c7bc4bd31708a26cef54b2fc2dedd.jpg" alt="Program for the production &quot;La malasangre&quot;" data-href="/digitalobject/16683" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/65/64/6564f53889070889e0cd74ab2bc97791.jpg" title="Program for the production &quot;La malasangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b8/a9/b8a92bbcf9b625006346055e315b06a9.jpg" alt="Program for the production &quot;La malasangre&quot;" data-href="/digitalobject/16683" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/cf/8fcfb6dfad82156bba14c7cef607579d.jpg" title="Program for the production &quot;La malasangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/30/5d/305ddff4d68055c245e40402ba09ac8c.jpg" alt="Program for the production &quot;La malasangre&quot;" data-href="/digitalobject/16683" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/39/da/39daa1743bb99658f297b4785fbade6d.jpg" title="Program for the production &quot;La malasangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/cb/39/cb39573eab587db1b76f92aad7a37fa3.jpg" alt="Program for the production &quot;La malasangre&quot;" data-href="/digitalobject/16683" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/e7/56e71283306aeb40bc2869fd1297b85c.jpg" title="Program for the production &quot;La malasangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/71/57/715709deb874c8db6444af98daac311f.jpg" alt="Program for the production &quot;La malasangre&quot;" data-href="/digitalobject/16683" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/b7/1bb7ec0b6e4f138076c57c3082d68d02.jpg" title="Program for the production &quot;La malasangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e1/d3/e1d304c17e2e59ad835eae64c8743165.jpg" alt="Program for the production &quot;La malasangre&quot;" data-href="/digitalobject/16683" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/03/b8/03b87d2cc2e4645dcf6c3284143d508a.jpg" title="Program for the production &quot;La malasangre&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/9a/2a/9a2a07919879994bc24690206d66246d.jpg" alt="Program for the production &quot;La malasangre&quot;" data-href="/digitalobject/16683" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

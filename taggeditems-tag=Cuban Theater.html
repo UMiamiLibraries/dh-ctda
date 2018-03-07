@@ -1,0 +1,1455 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="static/favicon.ico" />
+    <link rel="apple-touch-icon" href="static/apple-touch-icon.png" />
+    <script src="static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en ">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="about/index.html">About</a></li>
+                    <li><a href="people/index.html">People</a></li>
+                    <li><a href="participate/index.html">Participate</a></li>
+                    <li><a href="publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="creators.html">Creators</a></li>
+                <li><a href="productions.html">Productions</a></li>
+                <li><a href="writtenworks.html">Written Works</a></li>
+                <li><a href="venues.html">Venues</a></li>
+                <li><a href="awards.html">Awards</a></li>
+                <li><a href="festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="digitalobjects.html">All objects</a></li>
+                    <li><a href="digitalobjects/images.html">Images</a></li>
+                    <li><a href="digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="digitalobjects/types.html">By Type</a></li>
+                    <li><a href="digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+        <nav class="breadcrumbs">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>Tags</li>
+            </ul>
+        </nav>
+        <h2>Tags</h2>
+        </header>
+<section class="main"> 
+    <form id="tag_form"> 
+	<input type="text" id="eventTags" name="tag" value="" />
+	<div id="events_container"></div>
+    </form>
+        <table id="taggeditems_list">
+            <thead>
+                <tr>
+                    <th>Type</th>
+		    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16837">Photographs of the exhibition at Escuela Rita Luna, by Gabriel Hierrezuelo (cta0067000080)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16752">Invitation to a screening of the film and panel discussion on El Super (cta0067000057)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16734">Program for the production, &quot;Mundo de muertos&quot; (cta0067000045)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16733">Program for the production, &quot;En busca de una antigua ilusión&quot; (cta0067000044)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16441">Article, &quot;Los días felices&quot; (cta0063000033)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16440">Nara Mansur about the production, &quot;Los días felices&quot; (cta0063000032)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16439">Poster for the production, &quot;Los días felices&quot; (cta0063000031)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16438">Poster for the production, &quot;Los días felices&quot; (cta0063000030)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16437">Program for the production, &quot;Los días felices&quot; (cta0063000029)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16420">Press release for the production, &quot;Los soles truncos&quot; (cta0063000012)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="digitalobject/16415.html">Best direction to Doris Gutiérrez and Mónica Guffanti in the production, &quot;Las criadas&quot; (cta0063000007)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16411">Photograph of the theoretic foundation made by Doris Gutiérrez for the production, “El tio Vania” (cta0063000003)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16410">Email from Amado del Pino to Doris Gutiérrez about the production, &quot;El tío Vania&quot; (cta0063000002)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16409">Email from Esther Suárez Durán to Doris Gutiérrez about the production, &quot;El tío Vania&quot; (cta0063000001)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/15238">Poster for the production, &quot;El ciervo encantado&quot; (cta0034000266)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/15237">Photograph of the production, &quot;El ciervo encantado&quot; (cta0034000265)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/15236">Photograph of the production, &quot;El ciervo encantado&quot; (cta0034000264)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16748">Press note for the production, &quot;Matrimonio blanco&quot; (cta0015000029)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="digitalobject/16555.html">Poster for the production, &quot;Por el monte carulé&quot; (cta0013000059)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16554">Photograph of the production, &quot;Por el monte carulé&quot; (cta0013000058)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16552">Photograph of the production, &quot;Por el monte carulé&quot; (cta0013000057)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16551">Photograph of the production, &quot;Por el monte carulé&quot; (cta0013000056)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16550">Photograph of the production, &quot;Por el monte carulé&quot; (cta0013000055)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16548">Photograph of the production, &quot;Por el monte carulé&quot; (cta0013000054)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16553">Photograph of the production, &quot;Por el monte carulé&quot; (cta0013000053)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="digitalobject/16549.html">Photograph of the production, &quot;Por el monte carulé&quot; (cta0013000052)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16546">Photograph of the production, &quot;Por el monte carulé&quot; (cta0013000051)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16547">Photograph of the production, &quot;Por el monte carulé&quot; (cta0013000050)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16545">Photograph of the production, &quot;Por el monte carulé&quot; (cta0013000049)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16408">Photograph of Déxter Cápiro (cta0003000162)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16407">Photograph of Déxter Cápiro (cta0003000161)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16406">Photograph of Déxter Cápiro, Xiomara Palacios and Héctor Noas in the production, “La boda” (cta0003000160)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16405">Photograph of Déxter Cápiro, Xiomara Palacios and Héctor Noas in the production, “La boda” (cta0003000159)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16404">Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot; (cta0003000158)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16403">Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot; (cta0003000157)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16402">Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot; (cta0003000156)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16371">Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot; (cta0003000129)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16370">Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot; (cta0003000128)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16369">Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot; (cta0003000127)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16366">Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot; (cta0003000124)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16365">Photograph of Mario Guerra (Dimanisio) and Roberto Gacio (Sedicom) in the production, &quot;Los siervos&quot; (cta0003000123)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="digitalobject/16364.html">Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot; (cta0003000122)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16363">Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot; (cta0003000121)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16362">Photograph of Déxter Cápiro (Nicleto) and Mario Guerra (Silié) in the production, &quot;Los siervos&quot; (cta0003000120)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16359">Photograph of Déxter Cápiro and Mario Guerra in the production, &quot;La boda&quot; (cta0003000117)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="digitalobject/16358.html">Photograph of Déxter Cápiro and Alina Rodríguez in the production, &quot;La boda&quot; (cta0003000116)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16357">Photograph of Déxter Cápiro and Mario Guerra in the production, &quot;La boda&quot; (cta0003000115)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16356">Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot; (cta0003000114)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16355">Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot; (cta0003000113)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16354">Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot; (cta0003000112)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="digitalobject/16349.html">Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot; (cta0003000110)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16348">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000109)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16347">Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot; (cta0003000108)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16346">Photograph of Déxter Cápiro (Orestes Garrigó) and Amarilys Núñez (Clitemnestra) in the production, &quot;Electra Garrigó&quot; (cta0003000107)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16345">Photograph of Déxter Cápiro (Orestes Garrigó) and Gilda Bello (Electra) in the production, &quot;Electra Garrigó&quot; (cta0003000106)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16344">Photograph of Déxter Cápiro (Orestes Garrigó) and Amarilys Núñez (Clitemnestra) in the production, &quot;Electra Garrigó&quot; (cta0003000105)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16343">Photograph of Déxter Cápiro (Orestes Garrigó), Amarilys Núñez (Clitemnestra) and Mario Guerra (Egisto) in the production, &quot;Electra Garrigó&quot; (cta0003000104)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16342">Photograph of Déxter Cápiro (Orestes Garrigó), Roberto Gacio (Agamenón), Amarilys Núñez (Clitemnestra), Mario Guerra (Egisto) and Gilda Bello (Electra Garrigó) in the production, &quot;Electra Garrigó&quot; (cta0003000103)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16341">Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot; (cta0003000102)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16340">Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot; (cta0003000101)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16339">Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot; (cta0003000100)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16338">Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot; (cta0003000099)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16337">Photograph of Déxter Cápiro  (cta0003000098)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16334">Photograph of Déxter Cápiro and Laura de la Uz (cta0003000097)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16335">Photograph of Déxter Cápiro and Laura de la Uz (cta0003000096)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16336">Photograph of Déxter Cápiro and Laura de la Uz (cta0003000095)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16333">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000094)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16332">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000093)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16331">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000092)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16329">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000091)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16328">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000090)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16327">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000089)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16326">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000088)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16325">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000087)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16324">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000086)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="digitalobject/16323.html">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000085)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16322">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000084)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16321">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000083)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16320">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000082)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16319">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000081)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16318">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000080)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="digitalobject/16317.html">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000079)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16316">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000078)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="digitalobject/16315.html">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000077)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16314">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000076)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16313">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000075)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16312">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000074)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16311">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000073)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16310">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000072)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="digitalobject/16309.html">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000071)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16308">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000070)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16307">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000069)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16306">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000068)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16297">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000067)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16305">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000066)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16304">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000065)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16303">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000064)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="digitalobject/16302.html">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000063)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16301">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000062)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16300">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000061)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16299">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000060)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16298">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000059)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16330">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000058)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16296">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000057)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16295">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000056)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16294">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000055)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16293">Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot; (cta0003000054)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16768">Program for the production, &quot;Águila y Dragones&quot; (chc5297000002)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>digitalobject</td>
+                        	<td><a href="http://ctda.library.miami.edu/digitalobject/16767">Program for the production, &quot;Macbeth&quot; (chc5297000001)</a></td>
+                    	</tr>
+			
+                
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4360">Adiós y Welcome (Sala Teatro El Sótano)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4146">Aquiles y la tortuga (La Capilla de El Ciervo Encantado, March 22, 2013)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4869">Asamblea de las mujeres (Santiago de Cuba, 1988)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4870">Baroko (Santiago de Cuba, 1990)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4845">Bromibromeando (Matanzas, 1997)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4853">Cementerio de Automóviles (Santiago de Cuba, 1968)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4847">Charlot (Matanzas, 2002)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4841">Chúo Gil y las Tejedoras (Matanzas, 1994)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4856">Del teatro cubano se trata (Santiago de Cuba, 1972)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4858">El 23 se rompe el corojo (Santiago de Cuba, 1974)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="production/3260.html">El álbum (Teatro Nacional de Cuba, July 26, 2002)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4854">El algodón ciega a los pájaros (Santiago de Cuba, 1968)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4222">El ciervo encantado (Sala El Ciervo Encantado, April 1997)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4525">El ciervo encantado (Gran Teatro de La Habana, October 1996)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4839">El circo de los Pasos (Matanzas, 1990)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4857">El macho y el guanajo (Santiago de Cuba, 1973)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="production/2497.html">El tío Vania (Sala Teatro Hubert de Blanck, September 25, 2010)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4928">En busca de una antigua ilusión (Camagüey, Camagüey, Cuba, October 6, 2014)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4890">Final de partida (Sala Argos Teatro, October 30, 2009)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4864">Historia de Monte adentro (Santiago de Cuba, 1980)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4368">Historia de una media naranja (Teatro de la Villa, October 28, 2013)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4860">Juan Jaragan y los Diablos (Santiago de Cuba, 1975)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4930">La muchachita del mar (Sala de Teatro La edad de oro, October 6, 2014)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4675">La muchachita del mar (Teatro Nacional de Guiñol de Cuba, October 28, 2015)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4865">La paciencia del espejo (Santiago de Cuba, 1980)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4818">Las mariposas saltan al vacío (Centro Cultural Bertolt Brecht, November 18, 1994)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4849">La zorra y las uvas (Santiago de Cuba, 1961)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4844">Llegaron los Zancudos (Matanzas, 1996)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4855">Los cuernos de Don Friolera (Santiago de Cuba, 1971)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4879">Los días felices (Teatro Nacional de Cuba, October 20, 2001)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4862">Mientras más cerca... más lejos (Santiago de Cuba, 1976)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4840">Pasos Callejeros (Matanzas, 1993)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="production/4898.html">Por el monte carulé (Charleville-Mézières (unknown), September 19, 2009)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/1893">Si me miras, si me besas (Teatro Musical de La Habana, 1988)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4837">Tres locos de películas (Matanzas, 1985)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4850">Una ciba de carne (Santiago de Cuba, 1964)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4835">Un cuento de Allá (Matanzas, 1984)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>production</td>
+                        	<td><a href="http://ctda.library.miami.edu/production/4842">Variedades (Matanzas, 1994)</a></td>
+                    	</tr>
+			
+                
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3413">Adiós y Welcome (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3423">Alicia- en busca del conejo blanco (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3853">Asamblea de las mujeres (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3854">Baroko (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3832">Bromibromeando (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3833">Circo de Sueños (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3822">Cordelia de pueblo en pueblo (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3842">De cómo Santiago Apóstol puso los pies en la tierra (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3841">Del teatro cubano se trata (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3809">Departures (Performance art)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="writtenwork/353.html">El álbum (Short story/stories)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3840">El algodón ciega a los pájaros (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3826">El circo de los Pasos (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3830">El Gato Manchado y la Golondrina Siñá (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/63">Hortensia and the Museum of Dreams (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3868">La muerte de un viajante (Adaptation / Version)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3848">La paciencia del espejo (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3831">Llegaron los Zancudos (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3416">Los Pintores (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3845">Mientras más cerca... más lejos (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3667">Si me miras, me besas (Musical)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="http://ctda.library.miami.edu/writtenwork/3824">Tres locos de películas (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="writtenwork/3835.html">Una ciba de carne (Play script)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>writtenwork</td>
+                        	<td><a href="writtenwork/3829.html">Variedades (Play script)</a></td>
+                    	</tr>
+			
+                
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/6377">Alonso, Fernando, December 27, 1914-July 27, 2013 (6377)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/114">Arrufat, Antón, August 14, 1935- (114)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/289">Artiles, Freddy, January 13, 1946-December 24, 2009 (289)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/1309">Barreiro, José, 1948- (1309)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/9828">Bárzaga, Vivian (9828)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/322">Blanca Gil, Augusto, June 24, 1945- (322)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/179">Blanco, Roberto, January 21, 1936-December 24, 2002 (179)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/8764">Calistre, Jorge (8764)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/892">Cao, Jorge, January 2, 1944- (892)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/382.html">Castillo, Nelda, June 29, 1953- (382)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/47.html">Cruz, Nilo, October 10, 1960- (47)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/8097">del Castillo Rodríguez, Jesús, 1948- (8097)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/170.html">Díaz, Tony, October 9, 1944-January 29, 2014 (170)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/1704">Durán, Pablo, 1967- (1704)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/1">Estévez, Abilio, January 7, 1954- (1)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/8762">Estévez, Alfredo (8762)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/63.html">Fulleda León, Gerardo, February 12, 1942- (63)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/1995.html">Gacio Suárez, Roberto, March 12, 1941- (1995)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/1553">García Aguilera, Yunior, 1982- (1553)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/163.html">García, Pancho, October 4, 1943- (163)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/9827">Gil, Einar (9827)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/176.html">González Melo, Abel, January 14, 1980- (176)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/5107">Grupo de Teatro Guiñol de Santa Clara, May 25, 1962- (5107)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/8759">Guerrero, Lia (8759)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/1261.html">Guffanti, Mónica, November 18, 1943- (1261)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/1546">Hernández Díaz, Agnieska, 1977- (1546)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/108.html">Hernández Espinosa, Eugenio, November 15, 1936- (108)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/9464">Herrera, Georgina, April 23, 1936- (9464)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/368.html">Herrero Beatón, Ramiro, February 22, 1938-January 3, 2012 (368)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/4700">Jiménez Hurtado, Iván, 1939-February 6, 2012 (4700)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/8333">La Isla Secreta, 2012- (8333)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/8766">Linares, Gustavo (8766)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/9453.html">Lugo Herrera, Lilianne, July 29, 1987- (9453)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/4167">Martínez, Gelet, 1983- (4167)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/227.html">Milián, José, March 17, 1946- (227)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/87.html">Montero, Reinaldo, 1952- (87)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/1860.html">Núñez Barrios, Amarilys, June 6, 1968- (1860)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/349.html">Núñez Estenoz, Freddy, January 12, 1976- (349)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/9826">Oliver, Daniel (9826)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/1551.html">Orizondo, Rogelio, 1983- (1551)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/121">Paz, Albio, 2017-May 29, 2005 (121)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/350">Pérez Peña, Carlos, May 30, 1938- (350)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/8761">Poveda Piloto, Viviana (8761)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/115.html">Quintero, Héctor, October 1, 1942-April 6, 2011 (115)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/7176">Rivero Iturria, Yasel, November 13, 1986- (7176)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/8758">Rodbers, Ana (8758)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/1545.html">Rodríguez de la Cruz, Maikel, 1979- (1545)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/8760">Royan, Marian (8760)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/5351.html">Ruiz, Jesús, 1943-June 1, 2014 (5351)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/3422">Ruiz, Yaité, December 7, 1982- (3422)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/8765">Sánchez, Ida (8765)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/1856.html">Santana, Adria, August 29, 1948-September 30, 2011 (1856)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/5376">Santana, Olivia, December 15, 1983- (5376)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/9805">Santiago Martín, Baltasar, July 15, 1955- (9805)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/9829">Spasskaia, Verónica (9829)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/214.html">Suárez del Villar, Armando, 1936-September 17, 2012 (214)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/9867">Teatro Callejero Medioambiental, 2009- (9867)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/9009">Teatro La Proa (9009)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="http://ctda.library.miami.edu/creator/5133">Teatro Tuyo, January 1999- (5133)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/109.html">Torriente, Alberto Pedro, September 29, 1954-June 4, 2005 (109)</a></td>
+                    	</tr>
+			
+                    	<tr>
+				<td>creator</td>
+                        	<td><a href="creator/2144.html">Uz, Laura de la, February 14, 1970- (2144)</a></td>
+                    	</tr>
+			
+                
+            </tbody>
+        </table>
+</section>
+<aside>
+	<div class="data">
+		<h3> Tag(s) </h3>
+		<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Children's Theater' onclick = "$('#eventTags').tagit('createTag', 'Children's Theater');">Children's Theater(5)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Plays' onclick = "$('#eventTags').tagit('createTag', 'Plays');">Plays(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=teatro%20cubano' onclick = "$('#eventTags').tagit('createTag', 'teatro cubano');">teatro cubano(4)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Cine' onclick = "$('#eventTags').tagit('createTag', 'Cine');">Cine(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Puppet%20Theater--Adults' onclick = "$('#eventTags').tagit('createTag', 'Puppet Theater--Adults');">Puppet Theater--Adults(12)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Director--Cuban' onclick = "$('#eventTags').tagit('createTag', 'Director--Cuban');">Director--Cuban(8)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Adaptations--Iv%C3%A1n%20Acosta' onclick = "$('#eventTags').tagit('createTag', 'Adaptations--Iván Acosta');">Adaptations--Iván Acosta(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Children's Theater-- Santa Clara' onclick = "$('#eventTags').tagit('createTag', 'Children's Theater-- Santa Clara');">Children's Theater-- Santa Clara(2)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Performance%20art--Cuba' onclick = "$('#eventTags').tagit('createTag', 'Performance art--Cuba');">Performance art--Cuba(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Translations--' onclick = "$('#eventTags').tagit('createTag', 'Translations--');">Translations--(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Cuban%20Playwrights--%20Spain' onclick = "$('#eventTags').tagit('createTag', 'Cuban Playwrights-- Spain');">Cuban Playwrights-- Spain(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=agriculture' onclick = "$('#eventTags').tagit('createTag', 'agriculture');">agriculture(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Adaptations--Shakespeare' onclick = "$('#eventTags').tagit('createTag', 'Adaptations--Shakespeare');">Adaptations--Shakespeare(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Social%20issues--AIDS' onclick = "$('#eventTags').tagit('createTag', 'Social issues--AIDS');">Social issues--AIDS(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Cuban%20Theater' onclick = "$('#eventTags').tagit('createTag', 'Cuban Theater');">Cuban Theater(232)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Adaptations--Rozewicz' onclick = "$('#eventTags').tagit('createTag', 'Adaptations--Rozewicz');">Adaptations--Rozewicz(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Cuban%20Playwrights' onclick = "$('#eventTags').tagit('createTag', 'Cuban Playwrights');">Cuban Playwrights(5)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Habana' onclick = "$('#eventTags').tagit('createTag', 'Habana');">Habana(2)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Festivals--Camaguey' onclick = "$('#eventTags').tagit('createTag', 'Festivals--Camaguey');">Festivals--Camaguey(2)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Cuban%20Theater--Playwrights' onclick = "$('#eventTags').tagit('createTag', 'Cuban Theater--Playwrights');">Cuban Theater--Playwrights(2)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Director' onclick = "$('#eventTags').tagit('createTag', 'Director');">Director(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Historical%20Theater--Cuba' onclick = "$('#eventTags').tagit('createTag', 'Historical Theater--Cuba');">Historical Theater--Cuba(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Awards' onclick = "$('#eventTags').tagit('createTag', 'Awards');">Awards(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Cuban%20Theater%E2%80%94Spain' onclick = "$('#eventTags').tagit('createTag', 'Cuban Theater—Spain');">Cuban Theater—Spain(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Puppet' onclick = "$('#eventTags').tagit('createTag', 'Puppet');">Puppet(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Design%20drawing' onclick = "$('#eventTags').tagit('createTag', 'Design drawing');">Design drawing(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Designers' onclick = "$('#eventTags').tagit('createTag', 'Designers');">Designers(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Festival%20de%20Teatro%202013--Cuba' onclick = "$('#eventTags').tagit('createTag', 'Festival de Teatro 2013--Cuba');">Festival de Teatro 2013--Cuba(4)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Topics%20for%20Children' onclick = "$('#eventTags').tagit('createTag', 'Topics for Children');">Topics for Children(2)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=social%20issues' onclick = "$('#eventTags').tagit('createTag', 'social issues');">social issues(14)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Cuban%20theater%20in%20the%20US' onclick = "$('#eventTags').tagit('createTag', 'Cuban theater in the US');">Cuban theater in the US(2)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Adaptations' onclick = "$('#eventTags').tagit('createTag', 'Adaptations');">Adaptations(57)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Spanish' onclick = "$('#eventTags').tagit('createTag', 'Spanish');">Spanish(4)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Cuban--Ballet' onclick = "$('#eventTags').tagit('createTag', 'Cuban--Ballet');">Cuban--Ballet(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Adaptations--Samuel%20Beckett' onclick = "$('#eventTags').tagit('createTag', 'Adaptations--Samuel Beckett');">Adaptations--Samuel Beckett(8)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Adaptations--Anton%20Ch%C3%A9jov' onclick = "$('#eventTags').tagit('createTag', 'Adaptations--Anton Chéjov');">Adaptations--Anton Chéjov(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Actor' onclick = "$('#eventTags').tagit('createTag', 'Actor');">Actor(33)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Cuban' onclick = "$('#eventTags').tagit('createTag', 'Cuban');">Cuban(7)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Monologue' onclick = "$('#eventTags').tagit('createTag', 'Monologue');">Monologue(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Musical' onclick = "$('#eventTags').tagit('createTag', 'Musical');">Musical(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Cuban%20theater--Havana' onclick = "$('#eventTags').tagit('createTag', 'Cuban theater--Havana');">Cuban theater--Havana(2)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Peter%20Pan%20Exodus' onclick = "$('#eventTags').tagit('createTag', 'Peter Pan Exodus');">Peter Pan Exodus(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Street%20Theater' onclick = "$('#eventTags').tagit('createTag', 'Street Theater');">Street Theater(3)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Producer' onclick = "$('#eventTags').tagit('createTag', 'Producer');">Producer(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Contemporary' onclick = "$('#eventTags').tagit('createTag', 'Contemporary');">Contemporary(2)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Actress' onclick = "$('#eventTags').tagit('createTag', 'Actress');">Actress(18)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Cuban%20Theater--Clowns' onclick = "$('#eventTags').tagit('createTag', 'Cuban Theater--Clowns');">Cuban Theater--Clowns(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Costume%20Design' onclick = "$('#eventTags').tagit('createTag', 'Costume Design');">Costume Design(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Women's theater' onclick = "$('#eventTags').tagit('createTag', 'Women's theater');">Women's theater(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Spanish--language' onclick = "$('#eventTags').tagit('createTag', 'Spanish--language');">Spanish--language(13)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Operaci%C3%B3n%20Pedro%20P%C3%A1n' onclick = "$('#eventTags').tagit('createTag', 'Operación Pedro Pán');">Operación Pedro Pán(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Festivals--Camag%C3%BCey' onclick = "$('#eventTags').tagit('createTag', 'Festivals--Camagüey');">Festivals--Camagüey(2)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Adaptations--Arthur%20Miller' onclick = "$('#eventTags').tagit('createTag', 'Adaptations--Arthur Miller');">Adaptations--Arthur Miller(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=costumbres' onclick = "$('#eventTags').tagit('createTag', 'costumbres');">costumbres(2)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=Drama' onclick = "$('#eventTags').tagit('createTag', 'Drama');">Drama(2)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Theater&amp;tag=local%20theater' onclick = "$('#eventTags').tagit('createTag', 'local theater');">local theater(1)</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	</div>
+</aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="static/js/jquery.isotope.min.js"></script>
+        <script src="static/js/jquery.cycle.lite.min.js"></script>
+        <script src="static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="static/css/fancybox/jquery.fancybox.css" />
+        <script src="static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="static/css/mediaelement/mediaelementplayer.css" />
+        <script src="static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+        
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

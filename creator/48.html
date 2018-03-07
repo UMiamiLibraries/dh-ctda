@@ -1,0 +1,1271 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Caridad Svich</li>
+                </ul>
+            </nav>
+            <h2>Caridad Svich</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+                
+                    <img src="../media/cache/c3/e1/c3e13a7606689f90bf5ac689df833596.jpg" />
+                
+            
+
+            <p><strong>Director, actor, original score, author / playwright, adapter, translator</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>&nbsp; &nbsp; &nbsp;Caridad Svich is one of the most prolific and active Latino/a and American playwright. In addition to having more than a dozen plays published and over 30 produced &ndash;the majority of them include songs and music also written by her--she has translated numerous Spanish-language plays and has participated in many text and performance collaborations including online collaborations. She is also a critic having co-edited five books, and published numerous interviews, essays, and reviews on contemporary Latino/a, U.S. and world theater. She has also taught at different institutions in the U.S. and abroad.<br />&nbsp; &nbsp; &nbsp;Her standard biographical information states that she is of Cuban, Croatian, Argentine and Spanish descent. She spent her child and adolescent years in New Jersey and Miami and then moved to North Carolina to do her undergraduate work (BFA, University of North Carolina at Charlotte, 1985). She then went to Southern California (currently one of her &ldquo;home&rdquo; addresses) where she finished her MFA in theatre-paywrighting at UCSD in 1988. In 1988, she left for New York where she was first a student of Mar&iacute;a Irene Forn&eacute;s&rsquo; Latino playwrighting workshop, followed by playwright residencies at INTAR, Theater Communications Group, Lake Placid Institute for the Arts, and New Dramatists. Other residencies have taken her back to California to several playwrighting labs, to Minnesota&rsquo;s Playwrights Center, to several universities in Ohio as well as Harvard and Yale, and to Rhode Island and Massachusetts. She has also traveled internationally to places as varied as Edinburgh and London, Greece, Argentina and Havana. I have detailed at length her travels because travel is key to understanding Caridad&rsquo;s development as a playwright and as a human being. Most importantly, she has transformed every community in which she has lived through her active involvement in the artistic scene. She meets local artists and establishes conversations between them and artists with whom she has collaborated at other places by curating readings and roundtable discussions. Undoubtedly, it is for these reasons that she was chosen to travel to Colombia in October 2004 as U.S. Arts Emissary. Svich also <a href="http://www.nopassport.org/">NoPassport</a>, an artist-driven cross-cultural alliance focused on contemporary performance, advocacy and publication. She has curated several of the <em>NoPassport Conference</em>, a yearly event that focuses on a wide range of contemporary works for theatre and performance, viewing memory, legacy and r/evolutionary art from a variety of formal perspectives.</p>
+<p>Her collection can be found in <a href="http://proust.library.miami.edu/findingaids/index.php?p=collections/findingaid&amp;id=490&amp;q=svich">Caridad Svich Papers&nbsp;</a>(Cuban Heritage Collection, University of Miami).</p>
+<p>(Information taken from "Caridad Svich" by Lillian Manzor, <em>Oxford Enyclopedia of Latino Cultures</em>)</p>
+
+                </div>
+            
+
+            
+              <div class="linkeditems">
+                  <h3>Notes: +</h3>
+                  <ul>
+                  <p>In many ways, Caridad&rsquo;s trajectory as a Latina playwright is representative of the development of Latino/a and of American theaters in the last four decades. Her first plays, <em>Brazo Gitano (text with songs)</em> and <em>Gleaning/Rebusca</em> dealt primarily with questions of identity, albeit in a quasi-expressionistic (as opposed to realistic) style, and their first productions circulated primarily in &ldquo;ethnic&rdquo; artistic circuits. In those early plays, however, we can already see the seeds of themes, styles, and the concerns that shape Caridad&rsquo;s dramaturgy: a critique of the American Dream and a constant search for home through the prism of diaspora and migration, mixture of rituals and traditional cultural elements from the Americas with global pop-culture, obtuse treatment of love and desire, and a poetic and non-realistic use of language and musical elements.<br /> Subsequent plays continue to have transient and lower-class protagonists searching for home. All of them wonder through the wastelands of the U.S. and what keeps them going is the fact that there is always somewhere else to go. Svich&rsquo;s characters survive by becoming &ldquo;professional&rdquo; nomads. Like their creator, they find themselves at the intersection of identities. As hybrids or transcultural beings, they live in a U.S. that is figured as the borderlands, a consumer society inhabited by nomads and the dispossessed. Comfort is found primarily through acts of their imagination. The women are usually the only ones who are able to find support in a community of other women that transcend ethnic categories. Rituals survive as they are transformed in their travels; likewise, characters survive and grow as they accept nomadism as a way of life.<br /> It is important to highlight that her critical and curatorial work is driven by the same interests and concerns that characterize her playwrighting. She is usually interested in pieces that are outside of the norm, in playwrights who, like herself, defy easy labels because they do not fit the mold of what a Latino/a playwright should be writing about or how s/he decides to tell stories. She has focused on artists such as her mentor Mar&iacute;a Irene Forn&eacute;s and many Latino/a artists. She has also written about and/or interviewed artists who work on documentary radical popular drama such as Mois&eacute;s Kaufman (Latino-Jewish author of <em>The Laramie Project</em>), or who are interested in digital media and video such as Sheffield-based Tim Etchells,  or who borrow from fringe culture&rsquo;s alternative music and theatre such as the British Martyn Jacques and Mark Ravenhill, and Federico Garc&iacute;a Lorca, always in the foreground and background of all of her work. <br />Svich writes from the positionality of a Latina and there is a Latina sensibility or affect in all of her oeuvre. Her plays, however, defy and question the simple categorization or easy boxing of Latinos both in content and form. The reason for this is that in spite of mainstream&rsquo;s constructions and expectations, it is impossible to think of Latino playwrighting as a unified, homogeneous movement. Furthermore, she is interested in creating points of conversion between Latinos/as and other Americans, understood not just as citizens or inhabitants of the United States but of the Americas. Finally, starting from the specificity of Latinos/as in their hybridity and multiplicity, in their conflicting memories and multiple storytelling traditions, she stages the drama of her characters in such a way that they become an expressionistic allegory of the uncertainty of  (post)modern times: displaced human beings reconfigure the maps of home in nonlinear fashion so that we can inhabit our imagined and imaginary communities of Mexico-Hollywood-Buenos Aires or Granada-Havana-New York.</p>
+<p>Information taken from "Caridad Svich" by Lillian Manzor, <em>Oxford Enyclopedia of Latino Cultures</em>.</p>
+
+                  </ul>
+              </div>              
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="../writtenwork/47.html">Iphigenia Crash Land Falls on the Neon Shell That Was Once Her Heart (A Rave Fable)</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/48.html">Magnificent Waste</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/50.html">Fugitive Pieces</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/52.html">Scar</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/53.html">Brazo Gitano (Text with Songs)</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/54.html">Any Place But Here</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/55.html">Prodigal Kiss (Text with Songs)</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/56.html">But There Are Fires</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/57.html">Alchemy of Desire/ Dead-Man's Blues (A Play with Songs)</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/104.html">The Archaeology of Dreams</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/206.html">Perdita Gracia</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/207.html">Calculating Genesis</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/209.html">Begging the Eclipse</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/210.html">Waterfall</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/211.html">Antigone Arkhe</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/213.html">Gleaning/Rebusca</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/214.html">Transient Animations</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/215.html">A Clear, Blue Thing</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/216.html">Nightwood</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/217.html">Let Loose on a World Gone Hollow</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/218.html">Atomic Reverie</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/219.html">Carnival</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/221.html">Winter in July</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/223.html">The Tropic of X</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/224.html">Lulu Ascending</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/225.html">Tilt Heaven</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/226.html">Slow Fast Walking on the Red Eye</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/227.html">Steal Back Light from the Virtual</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/228.html">Transmission 0500/To the Blue Peninsula</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/229.html">In the Upper Room</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/230.html">Something Simple, Plain -Spoken</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/231.html">Pensacola</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/233.html">Away Down Dreaming</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/234.html">Shelter</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/235.html">Thrush (A Play with Slaughter Songs)</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/623.html">A  Short Time After</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/624.html">The Booth Variations</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/641.html">Deportations: Mix No. 1</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/656.html">Stealing Medea</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/658.html">The Eliots</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/659.html">Finding Life</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/664.html">Torch</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/677.html">Torn Limb (a torso-monologue for private viewing from a human opera)</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/945.html">Wreckage</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/948.html">Hair Pieces: By Women, About Hair</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/949.html">Return to the Upright Position</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1033.html">Luna Park</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1034.html">Verbatim</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1131.html">Stations of Desire: Saints, Sinners and In-Between</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1166.html">Self Made: A Border Crossing</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1563.html">Lucinda Caval</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1786.html">Instructions for Breathing</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1788.html">Stepping on Water</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1791.html">Genuine Bonafide Article</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1813.html">Rift</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/1990.html">The Monster in the Garden</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2097.html">La casa de los espíritus</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2193.html">Our Wide Wide Sea (Faith, Hope and Charity)</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2008.html">Huddersfield</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2194.html">Havana Under the Sea</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2195.html">Doña Rosita/  The Language of Flowers</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2196.html">Blood Wedding</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2197.html">The House of Bernarda Alba</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2198.html">As Five Years Pass</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2199.html">The Monster in the Garden</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2200.html">Chimera</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2201.html">The Story of a Staircase</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2202.html">Love of Don Perlimplín for Belisa in the Garden</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2203.html">La alquimia del deseo/ Canto de un hombre muerto</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2205.html">The Kings</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2206.html">Fever 107 Degrees</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2207.html">Buster Keaton Takes a Walk</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2208.html">The Maiden, the Sailor, and the Student</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2209.html">Doña Ramona</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2245.html">The Public</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2290.html">The Shoemaker's Prodigious Wife</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2327.html">Havana Under the Sea</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2349.html">Adela and Juana</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2476.html">Kill to Eat</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2220.html">Yerma</a><br />  
+                    <span>Translator</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/208.html">Turn the Dark Up, Bow Down, This is a Hymn</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/220.html">Martin and Ed</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/232.html">12 Short Prayers for Life When Dying</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/671.html">Random Acts of Culture</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/947.html">Everything's Gonna Be Allright</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2204.html">Ifigenia se desploma, y cae a la tierra sobre la cáscara de neón que era una vez su corazón (una fábula del delirio)</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2031.html">The Labyrinth of Desire</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/49.html">12 Ophelias (A Play With Broken Songs)</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2192.html">En cualquier otro lugar menos éste</a><br />  
+                    <span>Translator</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/3170.html">El amor en los tiempos del cólera</a><br />  
+                    <span>Adapter</span>
+                    <br /><span>2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/3171.html">Guapa</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>2012</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/3415.html">Jarman</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/3551.html">The Orphan Sea</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/3550.html">Spark</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/3643.html">The Hour of All Things</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/3712.html">The Breadth of Stars</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>2015</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/3811.html">La tía Julia y el Escribidor</a><br />  
+                    <span>Adapter</span>
+                    <br /><span>2016</span>
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="../production/1336.html">But There Are Fires</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/845.html">Scar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/199.html">Perishable Theatre</a></span><br />
+                    <span>2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1176.html">Alchemy of Desire/ Dead Man&#39;s Blues (Text with Songs)</a><br />
+                    <span>Original score</span><br />
+                    <span><a href="../venue/344.html">The Hal B. Wallis Theatre</a></span><br />
+                    <span>March 4, 2005 - March 5, 2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1181.html">Alchemy of Desire/ Dead Man&#39;s Blues (Text with Songs)</a><br />
+                    <span>Original score</span><br />
+                    <span><a href="../venue/348.html">William and Mary Theatre</a></span><br />
+                    <span>February 24, 2005 - February 27, 2005</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+            
+              <div class="linkeditems">
+              <h3>Awards: +</h3>
+              <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Category</th>
+                  <th>Award</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td>2009</td>
+                        <td>None</td>
+                        <td>
+                          <a href="../award/17.html">Lee Reynolds Award</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2013</td>
+                        <td>Best Play Script</td>
+                        <td>
+                          <a href="../award/67.html">National Latino Playwriting Award</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2012</td>
+                        <td>Life Time Achievement Award</td>
+                        <td>
+                          <a href="../award/16.html">OBIE (Off-Broadway Theater Awards)</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2013</td>
+                        <td>Best Play Script</td>
+                        <td>
+                          <a href="../award/66.html">Todd McNerney Playwriting Award</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+                  
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+                <div class="linkeditems">
+                <h3>Primary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="../publications/767/index.html">On the Act of Regarding Another: Some thoughts on live performance, silence and fragility</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/895/index.html">Spark</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/759/index.html">On Stage: An interview with Caridad Svich</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/763/index.html">Teatro cubano actual: dramaturgia escrita en Estados Unidos</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/764/index.html">But There Are Fires</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/765/index.html">Any Place But Here</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="../publications/1054/index.html">A Magic Hour, An Hour of All Things</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/891/index.html">‘Spark’ Eloquently Counterpoints Family Concerns Against a Larger World in Conflict</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/890/index.html">To Create a New Kind of Flower</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/889/index.html">Pygmalion's “Spark” Explores War from Women's Perspective</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/875/index.html">'Sea' Legs: MU Premiere Presses Line Between Play, Epic Poetry</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/874/index.html">Award Winning Playwright Writes for MU Theatre Department</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/873/index.html">Three Reasons ‘The Orphan Sea’ Proves That Theater Is Cool</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/870/index.html">MU Theatre’s Ode to the Theatre</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/869/index.html">Utah Theater Company Tells a Female Post-war Story in ‘Spark’</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/1079/index.html">A Twenty-first Century Iphigenia in a Play by Caridad Svich: Between Aulis and Ciudad Juárez</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/1219/index.html">Intercambio teatral en Cuba</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+                <br />
+               Author: Rita Benítez, Lillian Manzor (2004, 2012, 2017)
+            
+        
+            
+            <hr />
+            <h3>Videos</h3>
+            <ul class="videos">
+              
+              <li>
+                <figure>
+                  <a id="cta0009000085" class="fancybox">
+                    
+                    
+                      <img src="../media/cache/f2/7a/f27a2ae4e4b488c2c68b6e6a2294664d.jpg" alt="Link to video of La casa de los espíritus" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="../digitalobject/14124.html">La casa de los espíritus</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              </ul>
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+                <li>
+                  <h4>Website:</h4>
+                  <span><a href="http://caridadsvich.com/" target="_blank">http://caridadsvich.com/</a></span>
+                </li>
+              
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>1963</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Philadelphia, Pennsylvania, United States</span>
+                </li>
+              
+              
+              
+              
+
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="../taggeditems-tag=Latina%20Playwrights.html"><li>Latina Playwrights</li></a>
+                
+                    <a href="../taggeditems-tag=Playwrights--Cuban%20American.html"><li>Playwrights--Cuban American</li></a>
+                
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/14512.html">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c2/a9/c2a94327c3a0612293cb19a3114f198a.jpg" title="Photograph of Caridad Svich, New York, 2012">
+                    
+                    
+                    <img src="../media/cache/29/e5/29e5a47e53b235d876b9054084e83138.jpg" alt="Photograph of Caridad Svich, New York, 2012" data-href="/digitalobject/14512" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/93/31/9331e290c1bb53bf412a0047a8aee2ee.jpg" title="Caridad Svich, recipient of 2012 Obie Award for Lifetime Achievement">
+                    
+                    
+                    <img src="../media/cache/61/40/614025160f11c2e67388eaafb4aa9010.jpg" alt="Caridad Svich, recipient of 2012 Obie Award for Lifetime Achievement" data-href="/digitalobject/14199" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/cb/fb/cbfb498bf24d080d565c21077b6f3f47.jpg" title="La Casa de los Espíritus - Poster">
+                    
+                    
+                    <img src="../media/cache/21/76/2176bd05fb7e1eef34e0b13fd3f7eb9f.jpg" alt="La Casa de los Espíritus - Poster" data-href="/digitalobject/636" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/60/4c/604cbf98fbfbc885c2ea8873fe5d9110.jpg" title="Turn the Dark Up, Bow Down, This is a Hymn">
+                    
+                    
+                    <img src="../media/cache/a3/c0/a3c0cf617e35ee16610687cd245d8f07.jpg" alt="Turn the Dark Up, Bow Down, This is a Hymn" data-href="/digitalobject/12627" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/02/6e/026e8147d25a7ba8d9e7627d55fa907d.jpg" title="Advertising postcard for the production, &quot;Iphigenia Crash Land Falls on the Neon Shell That Was Once Her Heart (A Rave Fable)">
+                    
+                    
+                    <img src="../media/cache/0f/7f/0f7fcc19ecc4f78f9faf9c3fc75fb777.jpg" alt="Advertising postcard for the production, &quot;Iphigenia Crash Land Falls on the Neon Shell That Was Once Her Heart (A Rave Fable)" data-href="/digitalobject/14257" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/1a/a6/1aa6422e973635605e1c32d79b6fd049.jpg" title="Caridad Svich">
+                    
+                    
+                    <img src="../media/cache/1c/e5/1ce585a5762aa8d0190313facf8ce54a.jpg" alt="Caridad Svich" data-href="/digitalobject/14185" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/c5/73/c5731f7d74835804f539b530ce24990e.jpg" title="Scene from the play, &quot;Alchemy of Desire / Dead Man&#39;s Blues (Text with Songs)&quot;">
+                    
+                    
+                    <img src="../media/cache/3b/11/3b117678e614d48260a7232d8a586fbf.jpg" alt="Scene from the play, &quot;Alchemy of Desire / Dead Man&#39;s Blues (Text with Songs)&quot;" data-href="/digitalobject/13097" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/cd/9b/cd9b89326c992680124d9a68182d7a4f.jpg" title="Scene from the play, &quot;Alchemy of Desire / Dead Man&#39;s Blues (Text with Songs)&quot;">
+                    
+                    
+                    <img src="../media/cache/bb/45/bb45c3a0eb15ee0032aaf842792d8656.jpg" alt="Scene from the play, &quot;Alchemy of Desire / Dead Man&#39;s Blues (Text with Songs)&quot;" data-href="/digitalobject/13115" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/62/58/6258d0a9a91242cbee9cc055cee9b8ef.jpg" title="Scene from the play, &quot;Twelve Ophelias (Text with Songs)&quot;">
+                    
+                    
+                    <img src="../media/cache/e7/bd/e7bd6945c27c99c63d4bea9fe8bb7f0e.jpg" alt="Scene from the play, &quot;Twelve Ophelias (Text with Songs)&quot;" data-href="/digitalobject/13112" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/b7/a7/b7a7cfeb7aeb21225a733bce641b21f0.jpg" title="Scene from the play, &quot;Twelve Ophelias (Text with Songs)&quot;">
+                    
+                    
+                    <img src="../media/cache/f4/58/f45864ce894c6e45eb7848b5ca4a9eb8.jpg" alt="Scene from the play, &quot;Twelve Ophelias (Text with Songs)&quot;" data-href="/digitalobject/13099" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('#cta0009000085').fancybox({
+          content: '<video id="vid-cta0009000085" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000850001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000085').mediaelementplayer();
+          }
+        });
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

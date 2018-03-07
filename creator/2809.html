@@ -1,0 +1,1300 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Lorelis Amores</li>
+                </ul>
+            </nav>
+            <h2>Lorelis Amores</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Director, actor, costume designer</strong></p>
+
+            
+            
+
+            
+
+            
+             <div class="linkeditems">
+                <h3>Related creators: +</h3>
+                <ul>
+                    
+                        Member of
+                        <a href="http://ctda.library.miami.edu/creator/4869"> El Ciervo Encantado</a>, Actor/Actress,
+                        October 20, 1996 2010<br />
+                    
+                </ul>
+             </div>
+            
+
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4208">La oración</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1426.html">Teatrito de La Isla Secreta </a></span><br />
+                    <span>2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4228">La lista de Schindler</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1395">Centro Teórico-Cultural Criterios</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4229">Iré a Santiago</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4208">La oración</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1426.html">Teatrito de La Isla Secreta </a></span><br />
+                    <span>2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4212">Dramaturgia de la Revolución</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1391.html">La Capilla de El Ciervo Encantado</a></span><br />
+                    <span>February 15, 2011</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4524">Visiones de la cubanosofía</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1459">Unknown Venue - India</a></span><br />
+                    <span>December 22, 2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/14">Variedades Galiano</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1391.html">La Capilla de El Ciervo Encantado</a></span><br />
+                    <span>April 23, 2010 - May 30, 2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4227">La tempestad y la calma</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1394.html">Galería Galeano</a></span><br />
+                    <span>March 30, 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4501.html">Cabaret Poético: El Ciervo Encantado y Omni Zona Franca</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/464.html">Instituto Superior del Arte</a></span><br />
+                    <span>March 25, 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4523">Un elefante ocupa mucho espacio</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1391.html">La Capilla de El Ciervo Encantado</a></span><br />
+                    <span>2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4502">Un elefante ocupa mucho espacio</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1454">Casa de la Cultura</a></span><br />
+                    <span>April 2008</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4521">Ausencia justificada</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1458.html">Galería Servando Cabrera</a></span><br />
+                    <span>July 7, 2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4217">Escrito sobre la piel</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1392">Casa del Benemérito de las Américas Benito Juárez</a></span><br />
+                    <span>July 2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4223">Un elefante ocupa mucho espacio</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1393.html">Centro Hispano-Americano de Cultura</a></span><br />
+                    <span>June 21, 2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4225.html">Pájaros de la playa</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1393.html">Centro Hispano-Americano de Cultura</a></span><br />
+                    <span>May 25, 2007 - June 22, 2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1694">Humo en las altas torres</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/464.html">Instituto Superior del Arte</a></span><br />
+                    <span>October 25, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3583">Visiones de la cubanosofía</a><br />
+                    <span>La Virgen, El Conquistador, El Decimista, El Pescador, La Ciudad</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/769">Visiones de la cubanosofía</a><br />
+                    <span>La Virgen, El Conquistador, El Decimista, El Pescador, La Ciudad</span><br />
+                    <span><a href="../venue/464.html">Instituto Superior del Arte</a></span><br />
+                    <span>May 19, 2005 - June 11, 2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4226">Café teatro La Siempreviva II</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/464.html">Instituto Superior del Arte</a></span><br />
+                    <span>April 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/749.html">Pájaros de la playa</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/464.html">Instituto Superior del Arte</a></span><br />
+                    <span>August 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4503">Café-teatro La Siempreviva I</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/464.html">Instituto Superior del Arte</a></span><br />
+                    <span>1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1693">Un elefante ocupa mucho espacio</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/464.html">Instituto Superior del Arte</a></span><br />
+                    <span>1997</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3583">Visiones de la cubanosofía</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/769">Visiones de la cubanosofía</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/464.html">Instituto Superior del Arte</a></span><br />
+                    <span>May 19, 2005 - June 11, 2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3238">Los pájaros en la playa</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span>August 6, 2004 - August 29, 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3229.html">Pájaros de la playa</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/464.html">Instituto Superior del Arte</a></span><br />
+                    <span>September 25, 2003 - September 27, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3233">Los pájaros en la playa</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/1006.html">Unknown venue - Camagüey</a></span><br />
+                    <span>September 26, 2002 - October 6, 2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/749.html">Pájaros de la playa</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/464.html">Instituto Superior del Arte</a></span><br />
+                    <span>August 2001</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+                <div class="linkeditems">
+                <h3>Primary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/858/">Desde el saber de un actor: visita al interior de El Ciervo Encantado</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/943/">Performances e identidades: Enriqueta, Cubita y otros compañeros</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>1977</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Santa Clara, Villa Clara, Cuba</span>
+                </li>
+              
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/15799">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/23/8f/238f8ef3688e5cb0bf94efeb2e9fd02f.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7d/c2/7dc21bbbae03c16568062eb530ecfac7.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15799" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/e7/71e78fc58f58594325e298d4a6e1d816.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/eb/b4/ebb4de8f5f077d4a3ac117643a25db99.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15798" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/db/ce/dbce8c9ced2e8b0add3c8247e9d96532.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e9/ab/e9ab9ea1176ea3d4581921f6396f0a4f.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15342" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a6/8b/a68b1560cbfdabb50b2c83a6cdeb5dfe.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e6/9b/e69b0866818555e31282108f7327fa65.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15341" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e6/69/e6697647e8eed1218194c10f3d529286.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4f/cc/4fccae3abc5776ff3c5dc945bf44d0cf.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15340" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/68/6d/686d18a923eef0a090fda4bcbce58642.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ab/be/abbefe061639d25b8bdd0013b2b17f1b.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15339" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/87/c2/87c2fc87d5c44762e58f7a0f5e959cf9.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/13/cc/13ccbec3875a13826e66d922dcc891f3.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15338" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ca/e9/cae997863907c96a0bbd4fc899796b29.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b4/a8/b4a878bab87e7b16e249e0d8b0d5d97d.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15337" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/50/16/5016dabd67b0f0f013be93886e531f03.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ef/aa/efaaf3ec445cf2a122babbfa9fd0b1e7.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15336" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/aa/c0/aac072998d724905aaba26d5c5167e9d.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/df/3d/df3d85e61819ca62939568a68b858b46.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15335" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d6/95/d695806f97abbe4df1d38806db1f53fd.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b7/9f/b79f32612ad83afe0f40c1f9f808e88f.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15334" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9f/5b/9f5bea3db79fad7e4442d244f6166399.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0f/50/0f509f6e07ad6547387f58875342c387.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15333" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/62/ac/62ac61427d49c921fa826f23a3ecf513.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/be/26/be2685553b84afa1738ca5433979d621.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15332" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c8/a1/c8a188d996d061f6dca893962567b419.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/86/9d/869d9c730d01e20d9272477630749fcf.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15331" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/35/69/356958e3488ed2479aebca6d5ccab560.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/79/dc/79dc804917b5ba970f40b297fc6f26fd.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15330" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9f/de/9fde23af3f010188c01b7291ad757d1e.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7f/a7/7fa7d39fb6a627a766590aed461dcc0b.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15329" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bf/1a/bf1ac86f0073c5f5eeaf3f3b1b90b96c.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6d/53/6d538d843d316e154e32ffdb1e5e6733.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15328" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/35/ca/35ca6737a47fc7fc445788da065aadf2.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e2/79/e279a3f3a7206d2375d6b32266ffc56e.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15327" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/16/fc/16fc6e4b7631369773342d296e9e52ba.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c6/e2/c6e231c50e4bfd2a10fd9ff29e464ce7.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15326" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0e/4b/0e4b8f11fb9a0b62d38163eeb5cac90f.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/dd/35/dd35a122b78fc40ce1f00a92e129991d.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15325" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9a/52/9a52a88f51f8ec0b4438e1ccf8b53df6.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9a/08/9a08e7d179c9bb79835f7b4fa41f59d6.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15324" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a5/c8/a5c8dbae330055ef888e25de319dea30.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3e/cb/3ecb27d296cfa16f215f106e08e27086.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15323" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/7b/e07be93979cffbfec6de3df85461fb4d.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="../media/cache/83/a6/83a6ad55d16907cc5925c23dc2f85ec4.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15322" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a1/03/a103e0228e6d7fd35a931dbc5ebc95a0.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/92/74/92742172686a1c4573066bd2fcdb0374.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15321" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0a/d8/0ad80c923ab47a2a5a1abe597eed675c.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/29/9b/299bc47d0197e364454cb509b1061d6a.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15320" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e5/df/e5df71c69e51e21fdd984557bc784eee.jpg" title="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;">
+                    
+                    
+                    <img src="../media/cache/97/04/9704697950db00afd9ca3384c7365344.jpg" alt="Lorelis Amores in the performance, &quot;Iré a Santiago&quot;" data-href="/digitalobject/15319" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/65/28659b923eb7d801b55ee5eaedc5e28a.jpg" title="Mariela Brito, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4c/05/4c056560036d978a94f2229914dc340a.jpg" alt="Mariela Brito, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;" data-href="/digitalobject/15317" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8d/f2/8df2268eeec9bddf36a297ad50056691.jpg" title="Mariela Brito, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f3/74/f3749f3586157c1d4a62c1b4a26e04b4.jpg" alt="Mariela Brito, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;" data-href="/digitalobject/15316" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6e/c7/6ec72262ef9ef3f5f937a88dd6573ac8.jpg" title="Mariela Brito, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/22/93/2293ea12ee109aefad0c06464df77a48.jpg" alt="Mariela Brito, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;" data-href="/digitalobject/15314" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fb/fc/fbfc41d881073a0e0c718b4c7257704b.jpg" title="Audience, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/59/e1/59e1c71b172a898d82338d2a4b8c08c9.jpg" alt="Audience, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;" data-href="/digitalobject/15313" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1d/0e/1d0ec58677639a250b42ffad1e770f2e.jpg" title="Lorelis Amores, audience in the performance, &quot;La lista de Schindler&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bf/72/bf72c448fe1eab10435f3d8ef24218b8.jpg" alt="Lorelis Amores, audience in the performance, &quot;La lista de Schindler&quot;" data-href="/digitalobject/15312" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/52/f3/52f35920bb320e5e42b338b6b2d27faf.jpg" title="Mariela Brito, Lorelis Amores, audience in the performance, &quot;La lista de Schindler&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e3/39/e339a53cbf6e91a899c35b10e37160e2.jpg" alt="Mariela Brito, Lorelis Amores, audience in the performance, &quot;La lista de Schindler&quot;" data-href="/digitalobject/15311" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cb/8d/cb8d3377092e3d06cd4982033e9eeba8.jpg" title="Lorelis Amores in the performance, &quot;La lista de Schindler&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fe/80/fe8050d5fe4dc1fac02154b05c2918d7.jpg" alt="Lorelis Amores in the performance, &quot;La lista de Schindler&quot;" data-href="/digitalobject/15310" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d0/2f/d02f2606c89fcf2f8d426fbdddfa9985.jpg" title="Mariela Brito, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/77/4a/774a22ad6dc1a1778ec1da9214023dca.jpg" alt="Mariela Brito, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;" data-href="/digitalobject/15308" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/18/6a/186a37f31397320b36a7a474d9cd3ac5.jpg" title="Mariela Brito, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d7/24/d7246751674554334e5662cf39d19716.jpg" alt="Mariela Brito, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;" data-href="/digitalobject/15307" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7e/40/7e40fd04cf0ee20363a7713655b259c2.jpg" title="Mariela Brito, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/26/cb/26cb439712a91ad11cf0ea72c1544791.jpg" alt="Mariela Brito, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;" data-href="/digitalobject/15306" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/46/79/46790ef450d1f9baaf0e64f873ac4f75.jpg" title="Mariela Brito, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/dc/d3/dcd33d4073511ce9bfed6fa412f7e63f.jpg" alt="Mariela Brito, Lorelis Amores in the performance, &quot;La lista de Schindler&quot;" data-href="/digitalobject/15305" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/04/f3/04f33ca359780351dc853227872ae7c2.jpg" title="Eduardo Martínez, Aisar Jalil, Mariela Brito, Lorelis Amores in the performance, &quot;La tempestad y la calma&quot;">
+                    
+                    
+                    <img src="../media/cache/b9/61/b9617f859d37b9bcabec62971b6096ff.jpg" alt="Eduardo Martínez, Aisar Jalil, Mariela Brito, Lorelis Amores in the performance, &quot;La tempestad y la calma&quot;" data-href="/digitalobject/15304" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/84/a6/84a6a41665244c39658669fabec962b9.jpg" title="Eduardo Martínez, Lorelis Amores, Mariela Brito in the performance, &quot;La tempestad y la calma&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0d/11/0d11d0801cd1e78cb78a9ebe1efde129.jpg" alt="Eduardo Martínez, Lorelis Amores, Mariela Brito in the performance, &quot;La tempestad y la calma&quot;" data-href="/digitalobject/15302" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8c/19/8c19fe6769877dbbf39ebe7c55df2de2.jpg" title="Lorelis Amores in the performance, &quot;La tempestad y la calma&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/31/00/31008d667b93e3853e57e36c55ee5569.jpg" alt="Lorelis Amores in the performance, &quot;La tempestad y la calma&quot;" data-href="/digitalobject/15298" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bb/c5/bbc5d13eb5941df9bc5a56d7f86df7f7.jpg" title="Mariela Brito, Eduardo Martínez in the performance, &quot;La tempestad y la calma&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/26/62/2662ee2cc0b4b1137cde6a5acd86d4e7.jpg" alt="Mariela Brito, Eduardo Martínez in the performance, &quot;La tempestad y la calma&quot;" data-href="/digitalobject/15297" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7f/a3/7fa3ea28ae51237cf0fb5e60d7d3d94c.jpg" title="Mariela Brito, Eduardo Martínez, Lorelis Amores in the performance, &quot;La tempestad y la calma&quot;">
+                    
+                    
+                    <img src="../media/cache/16/eb/16eb9b8fc87ffa0d35fafc4c47d0c8bd.jpg" alt="Mariela Brito, Eduardo Martínez, Lorelis Amores in the performance, &quot;La tempestad y la calma&quot;" data-href="/digitalobject/15296" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cb/1e/cb1eabfeef54eb09e36187dace68c5e7.jpg" title="Lorelis Amores, Mariela Brito in the performance, &quot;La tempestad y la calma&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/00/36/003697ebb7c7ae1cb838252513a2bade.jpg" alt="Lorelis Amores, Mariela Brito in the performance, &quot;La tempestad y la calma&quot;" data-href="/digitalobject/15295" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ca/dd/cadd176abf6f3ba3007973266de4f5f1.jpg" title="Lorelis Amores in the performance, &quot;La tempestad y la calma&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f3/6f/f36f7e2554aca843956cef7d5b678717.jpg" alt="Lorelis Amores in the performance, &quot;La tempestad y la calma&quot;" data-href="/digitalobject/15294" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/05/09051c8e950646afae16ecaf58117c28.jpg" title="Eduardo Martínez, Mariela Brito, Lorelis Amores in the performance, &quot;La tempestad y la calma&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/da/3d/da3dcbaba177f37a11023bfc00c38038.jpg" alt="Eduardo Martínez, Mariela Brito, Lorelis Amores in the performance, &quot;La tempestad y la calma&quot;" data-href="/digitalobject/15293" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/52/f6/52f6692f0d8073c6d33122509883bfb4.jpg" title="Eduardo Martínez, Mariela Brito, Lorelis Amores in the performance, &quot;La tempestad y la calma&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1f/80/1f802aff5fdf63c9117b307a68769974.jpg" alt="Eduardo Martínez, Mariela Brito, Lorelis Amores in the performance, &quot;La tempestad y la calma&quot;" data-href="/digitalobject/15292" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ce/54/ce54b979e1d278b87d376e67d212ff75.jpg" title="Eduardo Martínez, Mariela Brito, Lorelis Amores in the performance, &quot;La tempestad y la calma&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/01/e7/01e7de2faa6b0c9f6c219910dd8bf13c.jpg" alt="Eduardo Martínez, Mariela Brito, Lorelis Amores in the performance, &quot;La tempestad y la calma&quot;" data-href="/digitalobject/15291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/29/58/2958593730ce4bfa9c180aa78de0add4.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ae/38/ae38a47435e8c8c75f174988ea46ac3d.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15254" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/06/6a0631e35d56bef3b7f92e82f293d247.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4e/46/4e467539c23217f5449f0283b73ccc0b.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15253" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/72/37/723744b422a2cf5e8eb1e19e83c6f70d.jpg" title="Photograph of the production, &quot;Pájaros de la playa&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2f/d4/2fd4c045c05f09d52e302c5db84885c0.jpg" alt="Photograph of the production, &quot;Pájaros de la playa&quot;" data-href="/digitalobject/15252" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/03/17/0317db47ed1e7a6c4ab2fa6c73b6040e.jpg" title="Photograph of the production, &quot;Un elefante ocupa mucho espacio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/dc/a7/dca7df658034eb9dd95deb0b2d963044.jpg" alt="Photograph of the production, &quot;Un elefante ocupa mucho espacio&quot;" data-href="/digitalobject/15244" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/1f/d21f348ff7fed672dedbdc5705cd3dde.jpg" title="Photograph of the production, &quot;Un elefante ocupa mucho espacio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/10/11/101128fd08c3d7b9494180af198d5b7e.jpg" alt="Photograph of the production, &quot;Un elefante ocupa mucho espacio&quot;" data-href="/digitalobject/15241" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e5/8a/e58a592e16184834365b8015953e1f4d.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6a/9c/6a9c6f65a9c09bf13f407233f1843823.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15217" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cc/57/cc5715a4adcd410e6c718b91d36cf122.jpg" title="Photograph of the production, &quot;Variedades Galiano&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0c/00/0c002af3e5c99479082b4a5a32de9bb8.jpg" alt="Photograph of the production, &quot;Variedades Galiano&quot;" data-href="/digitalobject/15216" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6e/0e/6e0e664aa11ac266bac151b6ee846cd0.jpg" title="Eduardo Martínez, Nelda Castillo, Mariela Brito, Lorelis Amores in the performance, &quot;Humo en las altas torres&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2d/d3/2dd394059a24aac6399c0dc085f4e1f8.jpg" alt="Eduardo Martínez, Nelda Castillo, Mariela Brito, Lorelis Amores in the performance, &quot;Humo en las altas torres&quot;" data-href="/digitalobject/15169" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/ee/d7ee5da5cb754bc79faf7b6e20e99a48.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ba/b0/bab07ee4c9a151e0b4c59a061610fd71.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15150" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fc/39/fc3982e97e8d1ac0c8146c173d672889.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9a/2d/9a2db12ca3b237ff68aebd47c112e1a9.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15149" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e3/34/e334eddb372e01cbff3a121629c00f61.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/37/a2/37a22b24a1423c5e40940e19c0bb4150.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15146" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b4/7e/b47e886ad09a2d15cf0493fb3efd6901.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3a/4e/3a4ea4aef3e51fddcc37e57f563c2bcf.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15136" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/02/e3/02e3843d2cc8114ee7fa16900d58a380.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b8/26/b826419dec335cc4f2c575d08df45277.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15135" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/92/b2/92b20be09129b767dbe9074d051d7eb1.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/99/a1/99a192ac92d6f79e6e56e687421a7a6d.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15134" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/92/09922a6b4178354279b359f03d1b3a7b.jpg" title="Photograph of the production, &quot;Visiones de la cubanosofía&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f1/38/f138cde9d75fb29df4a300428c681bff.jpg" alt="Photograph of the production, &quot;Visiones de la cubanosofía&quot;" data-href="/digitalobject/15132" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fe/ae/feaea971528201e7f3f1d059718e3c95.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/64/34/64349c2e727e95722cb7e994f4686328.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15130" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3d/08/3d08152829b5a4634eb9706b00d482e9.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="../media/cache/4d/78/4d78d86e15070bda7f1c847d4a35e277.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15129" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/27/d7/27d7c8c279263c02b85397aba60357bb.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5e/c5/5ec50093a447d0bf38bead18eecd368a.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15128" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/57/22/5722b252e8b8e17192119dc02694f528.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c8/b2/c8b271c2c1475971f7ef99533e22fad8.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15127" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/db/1bdbc124900e44b9306f0498bea2806c.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/45/21/4521de96e30fb76cdd336d0c8c6e9385.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15126" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a8/49/a8490782029a88b202af0e30e16b14e5.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5e/cb/5ecb65a22e6f2e84facc3d02204360c5.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15125" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/53/1c/531c7e882a499497a11f14ebf34c1244.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/10/ee/10ee66a55a8a7ab50f17c9325c4b6a40.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15124" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fd/f3/fdf376d7fc9f49bc7fd4cd5bc97709da.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/77/72/777207a57e64bad6b4b9a38a3be2f576.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15123" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3d/21/3d21744823c2c5398b688b06774de16a.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/62/0a/620add777f399ca94744bd0512461bd5.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15122" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c9/a2/c9a2fa7abee37f4b548dd01ebfd4b142.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e2/61/e261df12d0d9182c5aa6e35a20c1af7c.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15121" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/16/26/162606592cc0d08bc65e305a583d2fdb.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8b/5c/8b5c7ce456a0e84fbcbdbb32797fa72e.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15120" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/5e/c75e132bd2d84446323511c54a870cfa.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c3/ff/c3ff31f6acc95e43263e3b45e3d34169.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15119" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/23/ec233c6b03181e7829e09f4770ae4bb0.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7f/c7/7fc79b03bb296b7f5e029b901c765180.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15118" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/77/ec/77ecd8e21c19f0b73942da0386a1181c.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9a/76/9a76808dc3fad226d6f7533da9378329.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15117" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ef/d2/efd2205ad1e4036c0cf3eb82f517f200.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/75/61/7561c9eb806329850bcfff8514edc203.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15116" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3b/87/3b878c1b11487c8482603361cb7e49ee.jpg" title="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/68/8a/688a252cc6073510fc6c18eedb717858.jpg" alt="Lorelis Amores in the performance, &quot;Escrito sobre la piel&quot;" data-href="/digitalobject/15115" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9a/e2/9ae28a4e234ebf3b2245ae6ad434b125.jpg" title="Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9a/89/9a8982802f1c7bd3453a9dd721b80055.jpg" alt="Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15030" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8a/24/8a24b3536bddacd41895560793a69738.jpg" title="Lorelis Amores, Nelda Castillo in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/74/62/74624fb9f5b88f05d727b30804ed0cbf.jpg" alt="Lorelis Amores, Nelda Castillo in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15029" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3d/86/3d86243cb31d1b5783490deb26c7c44b.jpg" title="Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/78/75/7875d7ee199b67b35ad690c32f67aed8.jpg" alt="Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15028" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5f/87/5f8703426f58a76569c7a5f4f8cbaa3e.jpg" title="Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/31/eb/31ebf8169c945c2bfe3d363f01e05caa.jpg" alt="Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15027" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0f/b5/0fb53890f881ddedea718a29a47087ec.jpg" title="Lorelis Amores, Mariela Brito in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f8/77/f877670bf6afcc3ba943a4124bec33a3.jpg" alt="Lorelis Amores, Mariela Brito in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15026" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5a/cd/5acd334fac66235f9f6ccec5fb975103.jpg" title="Mariela Brito, Omar Valiño in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/08/e9/08e937947f7449598df060ef9b428d88.jpg" alt="Mariela Brito, Omar Valiño in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15023" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b1/13/b1138fe78af5be6f8ef9c9f0c5f6695b.jpg" title="Mariela Brito, Lorelis Amores, Omar Valiño in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b1/05/b1052845338223060ad290c43299c7db.jpg" alt="Mariela Brito, Lorelis Amores, Omar Valiño in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15022" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1d/77/1d773c2cf12309c69738843bccd67a82.jpg" title="Mariela Brito, Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/89/de/89de9b654488c9b7eb734fce29b57632.jpg" alt="Mariela Brito, Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15021" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/49/93/49939eb6f10e7ca17dc3156948adb3e5.jpg" title="Omar Valiño, Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ef/52/ef52270e0a70e878e4ab110f692a6d29.jpg" alt="Omar Valiño, Lorelis Amores in the performance, &quot;Dramaturgia de la Revolución&quot;" data-href="/digitalobject/15020" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

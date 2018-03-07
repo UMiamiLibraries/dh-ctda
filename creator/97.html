@@ -1,0 +1,2854 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Herberto Dumé</li>
+                </ul>
+            </nav>
+            <h2>Herberto Dumé</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Assistant director, director, actor, costume designer, light designer, set designer, original score, sound/soundtrack designer, producer, author / playwright, adapter</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>Information available in Spanish; click "Espa&ntilde;ol" in the upper&nbsp;right hand&nbsp;side of the page.&nbsp;<img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI4My4xNzggMjgzLjE3OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjgzLjE3OCAyODMuMTc4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPHBhdGggZD0iTTI1NC44MTIsMTQwLjcxM2gtMjBjLTQuMTQyLDAtNy41LDMuMzU4LTcuNSw3LjV2OTEuMTg2YzAsNC44NC0zLjkzOSw4Ljc3OC04Ljc3OSw4Ljc3OEg0My43NzYgICBjLTQuODM5LDAtOC43NzUtMy45MzgtOC43NzUtOC43NzhWNjQuNjQ1YzAtNC44NDEsMy45MzYtOC43OCw4Ljc3NS04Ljc4aDk1Ljg1NWM0LjE0MiwwLDcuNS0zLjM1OCw3LjUtNy41di0yMCAgIGMwLTQuMTQyLTMuMzU4LTcuNS03LjUtNy41SDQzLjc3NmMtMjQuMTM4LDAtNDMuNzc1LDE5LjY0LTQzLjc3NSw0My43OHYxNzQuNzU1YzAsMjQuMTQsMTkuNjM4LDQzLjc3OCw0My43NzUsNDMuNzc4aDE3NC43NTYgICBjMjQuMTQsMCw0My43NzktMTkuNjM5LDQzLjc3OS00My43Nzh2LTkxLjE4NkMyNjIuMzEyLDE0NC4wNzEsMjU4Ljk1NCwxNDAuNzEzLDI1NC44MTIsMTQwLjcxM3oiIGZpbGw9IiMwMDAwMDAiLz4KCTxwYXRoIGQ9Ik0yNzUuNjc3LDBoLTc5LjU1M2MtNC4xNDIsMC03LjUsMy4zNTgtNy41LDcuNXYyMGMwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDI3LjMwNCAgIEwxMjAuNjgzLDEzNy43NDNjLTIuOTI5LDIuOTI5LTIuOTI5LDcuNjc3LDAsMTAuNjA3bDE0LjE0MiwxNC4xNDNjMS40MDcsMS40MDcsMy4zMTQsMi4xOTcsNS4zMDQsMi4xOTcgICBjMS45ODksMCwzLjg5Ny0wLjc5LDUuMzAzLTIuMTk3TDI0OC4xNzcsNTkuNzQ4djI3LjMwM2MwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDIwYzQuMTQyLDAsNy41LTMuMzU4LDcuNS03LjVWNy41ICAgQzI4My4xNzcsMy4zNTgsMjc5LjgxOSwwLDI3NS42NzcsMHoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" alt="" /></p>
+
+                </div>
+            
+
+            
+              <div class="linkeditems">
+                  <h3>Notes: +</h3>
+                  <ul>
+                  <p>Information available in Spanish; click "Espa&ntilde;ol" in the upper&nbsp;right hand&nbsp;side of the page.&nbsp;<img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI4My4xNzggMjgzLjE3OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjgzLjE3OCAyODMuMTc4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPHBhdGggZD0iTTI1NC44MTIsMTQwLjcxM2gtMjBjLTQuMTQyLDAtNy41LDMuMzU4LTcuNSw3LjV2OTEuMTg2YzAsNC44NC0zLjkzOSw4Ljc3OC04Ljc3OSw4Ljc3OEg0My43NzYgICBjLTQuODM5LDAtOC43NzUtMy45MzgtOC43NzUtOC43NzhWNjQuNjQ1YzAtNC44NDEsMy45MzYtOC43OCw4Ljc3NS04Ljc4aDk1Ljg1NWM0LjE0MiwwLDcuNS0zLjM1OCw3LjUtNy41di0yMCAgIGMwLTQuMTQyLTMuMzU4LTcuNS03LjUtNy41SDQzLjc3NmMtMjQuMTM4LDAtNDMuNzc1LDE5LjY0LTQzLjc3NSw0My43OHYxNzQuNzU1YzAsMjQuMTQsMTkuNjM4LDQzLjc3OCw0My43NzUsNDMuNzc4aDE3NC43NTYgICBjMjQuMTQsMCw0My43NzktMTkuNjM5LDQzLjc3OS00My43Nzh2LTkxLjE4NkMyNjIuMzEyLDE0NC4wNzEsMjU4Ljk1NCwxNDAuNzEzLDI1NC44MTIsMTQwLjcxM3oiIGZpbGw9IiMwMDAwMDAiLz4KCTxwYXRoIGQ9Ik0yNzUuNjc3LDBoLTc5LjU1M2MtNC4xNDIsMC03LjUsMy4zNTgtNy41LDcuNXYyMGMwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDI3LjMwNCAgIEwxMjAuNjgzLDEzNy43NDNjLTIuOTI5LDIuOTI5LTIuOTI5LDcuNjc3LDAsMTAuNjA3bDE0LjE0MiwxNC4xNDNjMS40MDcsMS40MDcsMy4zMTQsMi4xOTcsNS4zMDQsMi4xOTcgICBjMS45ODksMCwzLjg5Ny0wLjc5LDUuMzAzLTIuMTk3TDI0OC4xNzcsNTkuNzQ4djI3LjMwM2MwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDIwYzQuMTQyLDAsNy41LTMuMzU4LDcuNS03LjVWNy41ICAgQzI4My4xNzcsMy4zNTgsMjc5LjgxOSwwLDI3NS42NzcsMHoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" alt="" /></p>
+
+                  </ul>
+              </div>              
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1715">Faramalla</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2092">El caso de la niña Cecilia</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2090">La celestina o la tragicomedia de Calisto y Melibea</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2093">El chino es Electra</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2091">Las criadas</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2085">La dama de las camelias</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2086">Episodios de la vida íntima</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2089">Santa Camila de la Habana Vieja</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2084">Los verdugos</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2087">La voz humana</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2088">El bello indiferente</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2106">Exilio</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/555">Miami Dadeland Marriott Hotel (Grand Ballroom)</a></span><br />
+                    <span>October 8, 1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2240">Mátame</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/37.html">Florida International University Wertheim Performing Art Center</a></span><br />
+                    <span>February 12, 1998 - February 14, 1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2239">En busca del paraíso</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/14">Creation Art Center</a></span><br />
+                    <span>May 3, 1997</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2019">Exilio</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/14">Creation Art Center</a></span><br />
+                    <span>December 7, 1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2238">Balada de un verano en La Habana</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/14">Creation Art Center</a></span><br />
+                    <span>April 27, 1996 - May 26, 1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2236">Sin salida</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/14">Creation Art Center</a></span><br />
+                    <span>September 1992 - October 1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2237">Las criadas</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/14">Creation Art Center</a></span><br />
+                    <span>May 1992 - June 1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2234">María Antonia</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/174.html">Teatro de Bellas Artes</a></span><br />
+                    <span>October 13, 1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1108.html">El chino</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/24.html">Minorca Playhouse</a></span><br />
+                    <span>May 30, 1989 - May 31, 1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2020">Exilio</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/554">Cuban Museum of Arts and Culture</a></span><br />
+                    <span>March 19, 1988 - April 3, 1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2233">La celestina o la tragicomedia de Calisto y Melibea</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2232">Esperando a Godot</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/357">El Portón</a></span><br />
+                    <span>June 1, 1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2229">El pez que fuma</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/357">El Portón</a></span><br />
+                    <span>November 17, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2216">El cruce sobre el Niágara</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/577.html">Queens Theatre in the Park</a></span><br />
+                    <span>August 3, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2230.html">Santa Camila de La Habana Vieja</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/578.html">41-17 Greenpoint</a></span><br />
+                    <span>June 14, 1978 - June 25, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2203.html">Cándida</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/578.html">41-17 Greenpoint</a></span><br />
+                    <span>April 28, 1978 - May 20, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2231">Juana Machete: la muerte en bicicleta</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/578.html">41-17 Greenpoint</a></span><br />
+                    <span>March 10, 1978 - April 2, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2221.html">La voz humana</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>November 12, 1976 - December 5, 1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2223.html">El bello indiferente</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>November 12, 1976 - December 5, 1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2192.html">La noche de los asesinos</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>April 2, 1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2224.html">Burlesque</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>January 30, 1976 - February 29, 1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2225.html">La relación</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>January 30, 1976 - February 29, 1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2220.html">La señorita Julia</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>November 19, 1975 - December 7, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2218.html">Santa Camila de la Habana Vieja</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>October 10, 1975 - November 9, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2206.html">El malentendido</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>June 13, 1975 - June 29, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2217.html">Medea</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>March 15, 1975 - April 27, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/926.html">El robo del cochino</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>February 28, 1975 - April 13, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2214.html">La dama de las camelias</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>November 9, 1974 - December 23, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2210.html">El tío Vania</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>February 9, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2126.html">El arquitecto y el emperador de Asiria</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>December 27, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2209.html">Espectros</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>November 9, 1973 - December 2, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2215">Episodios de la vida íntima</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>April 20, 1973 - June 3, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/837">La casa vieja</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>January 12, 1973 - February 18, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2213">Réquiem por Yarini</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/575">The New York Public Library at Lincoln Center (auditorium)</a></span><br />
+                    <span>September 25, 1972 - September 26, 1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2212">Faramalla</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>October 22, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2204">Fando y Lis</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>May 7, 1971 - June 20, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2205">Los verdugos</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>May 7, 1971 - June 20, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2211">Réquiem por Yarini</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2125">Retablo de la avaricia, la lujuria y la muerte</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/574.html">TAR Estudio: 39 East 10th St. (basement)</a></span><br />
+                    <span>October 11, 1969 - November 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2115">Fando y Lis</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/569">Sala-Teatro Alarcón</a></span><br />
+                    <span>January 1969 - February 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2124">Cándida</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>September 1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2122.html">Recuerdos de Tulipa</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>June 11, 1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2123">Bodas de sangre</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2127">Vestido de novia</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/964.html">El robo del cochino</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 1963</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2113">Ana</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1963</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2121">Mulato</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1963</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2243.html">Una aventura</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/183.html">Teatro Payret</a></span><br />
+                    <span>May 10, 1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/937.html">Las impuras</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/254.html">Casa de Cultura Pablo Quevedo</a></span><br />
+                    <span>April 12, 1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/346">Las vacas gordas</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/270.html">Gran Teatro de La Habana</a></span><br />
+                    <span>1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2119">El mago de Oz</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/562">Teatro Astral</a></span><br />
+                    <span>December 30, 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/347.html">El robo del cochino</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 21, 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2207.html">El que dijo sí y El que dijo no</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>May 13, 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/935">El mago de Oz</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/183.html">Teatro Payret</a></span><br />
+                    <span>April 21, 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3777">La cucarachita Martina</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3778">Pompín, el fantasmita</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/348">El peine y el espejo</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/274">Teatro del Ministerio de Obras Públicas - Sala Granma</a></span><br />
+                    <span>October 14, 1960 - October 22, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/922">La taza de café</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/274">Teatro del Ministerio de Obras Públicas - Sala Granma</a></span><br />
+                    <span>October 14, 1960 - October 22, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2116">Los fusiles de la madre Carrar</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/559.html">Palacio de Bellas Artes</a></span><br />
+                    <span>August 26, 1960 - August 28, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3875">El lindo ruiseñor</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>March 10, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2120.html">Las manos de Eurídice</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/563.html">Palacio Municipal de Marianao</a></span><br />
+                    <span>November 26, 1959</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2105">La taza de café</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/571">Hemiciclo del Ayuntamiento</a></span><br />
+                    <span>April 1, 1959 - April 3, 1959</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2202">Su esposo</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/571">Hemiciclo del Ayuntamiento</a></span><br />
+                    <span>April 1, 1959 - April 3, 1959</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2246">El aldeano sabio y el rey bueno</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/580">Sala T.E.D.A.</a></span><br />
+                    <span>May 22, 1956 - June 12, 1956</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2247">¿Una urraca o un cuco?</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/580">Sala T.E.D.A.</a></span><br />
+                    <span>May 22, 1956 - June 12, 1956</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2244">El vago señor Chun-Min</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/580">Sala T.E.D.A.</a></span><br />
+                    <span>April 24, 1956</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2245">La cucarachita Martina</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/580">Sala T.E.D.A.</a></span><br />
+                    <span>April 24, 1956</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2621">La casa de Bernarda Alba</a><br />
+                    <span>Assistant Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/75">Teatro La Caridad</a></span><br />
+                    <span>December 30, 1952</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/837">La casa vieja</a><br />
+                    <span>Higinio</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>January 12, 1973 - February 18, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2241">La muerte acecha</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/579">Studio Alarcón</a></span><br />
+                    <span>April 18, 1969 - May 10, 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2115">Fando y Lis</a><br />
+                    <span>Fando</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/569">Sala-Teatro Alarcón</a></span><br />
+                    <span>January 1969 - February 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2234">María Antonia</a><br />
+                    <span>Original score, Set designer, Costume designer</span><br />
+                    <span><a href="../venue/174.html">Teatro de Bellas Artes</a></span><br />
+                    <span>October 13, 1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2232">Esperando a Godot</a><br />
+                    <span>Set designer, Light designer, Costume designer</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/357">El Portón</a></span><br />
+                    <span>June 1, 1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3661">El arquitecto y el emperador de Asiria</a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/573">Teatro Alberto de Paz y Mateo</a></span><br />
+                    <span>April 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3660">El arquitecto y el emperador de Asiria</a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>February 13, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2210.html">El tío Vania</a><br />
+                    <span>Light designer, Costume designer</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>February 9, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3659.html">El arquitecto y el emperador de Asiria</a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>January 4, 1974 - January 13, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2126.html">El arquitecto y el emperador de Asiria</a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>December 27, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2209.html">Espectros</a><br />
+                    <span>Set designer, Light designer, Costume designer</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>November 9, 1973 - December 2, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2215">Episodios de la vida íntima</a><br />
+                    <span>Sound/Soundtrack Designer, Set designer, Light designer, Costume designer</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>April 20, 1973 - June 3, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/837">La casa vieja</a><br />
+                    <span>Sound/Soundtrack Designer, Set designer, Light designer</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>January 12, 1973 - February 18, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3662">Réquiem por Yarini</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/576">Urban Arts Corps: 26 West 20th St.</a></span><br />
+                    <span>October 14, 1972 - October 29, 1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2213">Réquiem por Yarini</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/575">The New York Public Library at Lincoln Center (auditorium)</a></span><br />
+                    <span>September 25, 1972 - September 26, 1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2204">Fando y Lis</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>May 7, 1971 - June 20, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2205">Los verdugos</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>May 7, 1971 - June 20, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2211">Réquiem por Yarini</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2125">Retablo de la avaricia, la lujuria y la muerte</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="../venue/574.html">TAR Estudio: 39 East 10th St. (basement)</a></span><br />
+                    <span>October 11, 1969 - November 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2113">Ana</a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1963</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3657">Los fusiles</a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/558">Sala Covarrubias</a></span><br />
+                    <span>October 4, 1960 - October 5, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2116">Los fusiles de la madre Carrar</a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="../venue/559.html">Palacio de Bellas Artes</a></span><br />
+                    <span>August 26, 1960 - August 28, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3656">La taza de café</a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>December 25, 1959 - December 27, 1959</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2120.html">Las manos de Eurídice</a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="../venue/563.html">Palacio Municipal de Marianao</a></span><br />
+                    <span>November 26, 1959</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2105">La taza de café</a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/571">Hemiciclo del Ayuntamiento</a></span><br />
+                    <span>April 1, 1959 - April 3, 1959</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2020">Exilio</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/554">Cuban Museum of Arts and Culture</a></span><br />
+                    <span>March 19, 1988 - April 3, 1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2192.html">La noche de los asesinos</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>April 2, 1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2224.html">Burlesque</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>January 30, 1976 - February 29, 1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2225.html">La relación</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>January 30, 1976 - February 29, 1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3664">Santa Camila de la Habana Vieja</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>November 24, 1975 - December 9, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2220.html">La señorita Julia</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>November 19, 1975 - December 7, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2218.html">Santa Camila de la Habana Vieja</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>October 10, 1975 - November 9, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2206.html">El malentendido</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>June 13, 1975 - June 29, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2217.html">Medea</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/572.html">409 West 44th Street</a></span><br />
+                    <span>March 15, 1975 - April 27, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/926.html">El robo del cochino</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>February 28, 1975 - April 13, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2212">Faramalla</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>October 22, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2204">Fando y Lis</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>May 7, 1971 - June 20, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2205">Los verdugos</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>May 7, 1971 - June 20, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2211">Réquiem por Yarini</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement</a></span><br />
+                    <span>1970</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+            
+              <div class="linkeditems">
+              <h3>Awards: +</h3>
+              <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Category</th>
+                  <th>Award</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td>1969</td>
+                        <td>Best Actor</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/58">Premio El Tiempo</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+                  
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/749/">Dumé: Gloria y marginación</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/748/">Herberto Dumé, 73, Key Figure in Spanish-Language Theater</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/751/">Conversando con Herberto Dumé</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/747/">Presencia del Teatro Cubano en el Exilio</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1057/">Cinco montajes y dos nuevos grupos teatrales en Miami</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/746/">Dirige Dumé al grupo 'Prometeo' en el Festival de Teatro Hispano de Miami</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/750/">Un recital, un teatrista, y mucho entusiasmo</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+                <br />
+               Author: Mitch Carr, Jackie Sarduy (2004, 2008, 2017)
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban - American</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>1929</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Matanzas, Matanzas, Cuba</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Death date:</h4>
+                  <span>August 4, 2003</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of death:</h4>
+                  <span>Miami, Florida, United States</span>
+                </li>
+              
+              
+
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Cuban%20American--Actors"><li>Cuban American--Actors</li></a>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Cuban%20American--Directors"><li>Cuban American--Directors</li></a>
+                
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/12294">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/65/7a6556227b069975de0412ecfca2a651.jpg" title="Program for the production, &quot;El Mago de Oz&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b8/d5/b8d5b5953b46f192b8ed821419eaf70c.jpg" alt="Program for the production, &quot;El Mago de Oz&quot;" data-href="/digitalobject/12294" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5d/bc/5dbcc88e09678f6e8ac40b07d88c5efa.jpg" title="Program for the production, &quot;El Mago de Oz&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c9/c1/c9c1c2809849a15f94d0f3505e3bbc51.jpg" alt="Program for the production, &quot;El Mago de Oz&quot;" data-href="/digitalobject/12294" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f4/a6/f4a611c4a9f6a3356f1c9db52a4b4953.jpg" title="Program for the production, &quot;El Mago de Oz&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ea/20/ea20dfb1129ef0289ad0e13faf8afc0f.jpg" alt="Program for the production, &quot;El Mago de Oz&quot;" data-href="/digitalobject/12294" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c5/ca/c5ca16d651e0ba4834f418c845460d50.jpg" title="Program for the production, &quot;El Mago de Oz&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d2/a9/d2a94eaa21a47201ddf07fe8c3bea116.jpg" alt="Program for the production, &quot;El Mago de Oz&quot;" data-href="/digitalobject/12294" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/52/8e/528e9e7090fc6cc71fd4f3ec6d0b17eb.jpg" title="Program for the production, &quot;El Mago de Oz&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/54/fb/54fb0cb6e24395d7a40993f105e92abb.jpg" alt="Program for the production, &quot;El Mago de Oz&quot;" data-href="/digitalobject/12294" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/54/7b/547bac92030b2387980ea9bc592ce635.jpg" title="Program for the production, &quot;El Mago de Oz&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a6/2e/a62e35c7b5986703d4b7a500d87aa047.jpg" alt="Program for the production, &quot;El Mago de Oz&quot;" data-href="/digitalobject/12294" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9e/2a/9e2ae207c7669f4eae086439564437f8.jpg" title="Program for the production, &quot;El Mago de Oz&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fb/49/fb49cc4fe4072a07bbaeaa42bec3cad3.jpg" alt="Program for the production, &quot;El Mago de Oz&quot;" data-href="/digitalobject/12294" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/30/7130a868bab0182620ae6dabe40736e0.jpg" title="Program for the production, &quot;El Mago de Oz&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/27/73/2773e56102f91181d47922bbb11455df.jpg" alt="Program for the production, &quot;El Mago de Oz&quot;" data-href="/digitalobject/12294" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/79/50/7950ee66b18ed1574903efa03df2c228.jpg" title="Quotes from Eugene Ionesco">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a0/86/a08615380f5e529fb9d6d619645c855f.jpg" alt="Quotes from Eugene Ionesco" data-href="/digitalobject/13611" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f5/cb/f5cb7f312014391f1b021e32c8cbc5c7.jpg" title="Dumé Grupo Estudio:  1970-71 Summary">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/60/ad/60adbb5c213ded2246557456612671df.jpg" alt="Dumé Grupo Estudio:  1970-71 Summary" data-href="/digitalobject/13612" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f4/ca/f4ca41f77c198383579d66b043692ed6.jpg" title="Dumé Grupo Estudio:  Declaración Artística">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ec/a3/eca3d7e79bb2f94c4959fbdfc9c754ab.jpg" alt="Dumé Grupo Estudio:  Declaración Artística" data-href="/digitalobject/13613" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/23/59/23597b8a66b9bcec3c649125642fdd4e.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8b/ab/8bab297d920d7942f8d6165f7b1a4775.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ab/c5/abc58bca486df452d2eee5fa8e0864d3.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b1/e2/b1e284e83f2de0c05d02503a75b61fd7.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/6e/c76e63befb9269f52a675ea9d7b861e9.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/cb/02/cb026ebcc30a0e8778c2caff49d011b3.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0c/96/0c961f703c3adb70a8441a7027e1fb41.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/05/97/059729eb4157f48dd97f69ab447786c7.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/36/863662977759ff9d241df123b3c020df.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c2/4d/c24da56b194161fd19b07ae85bffab90.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9b/54/9b545eabc3faf2216b95ffb3de2fc821.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ef/f0/eff0e82eb591cbbb18264e3b4f2142b5.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a1/ed/a1edadf588864578f4923aaf7cbd96a2.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bf/a2/bfa22d68fcc74d3d434cf4e510715f43.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/78/9c/789c94707ed0a401dbef9c7076d1dd89.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f9/1d/f91d723ba883bbd1c21de780a5ab9d58.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/92/c2/92c2a9d793d9776d088395df6d04c025.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a7/9d/a79dc467d7f30ce32f55b34b7faf0856.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4b/f4/4bf4f12eab8fa5aab93a040c0179037e.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4b/4c/4b4c63285162be536d4d7ccaf05e7306.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6f/e5/6fe5eeca30e9169c679feb424a30a660.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/75/fe/75fe062d9fab407f348b74fb94233cf0.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/73/e0/73e09ee3b7d215f9df93d90f56bfcbfb.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/81/c8/81c80bb919f4b7e4612f8ff17f940d01.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/08/2d/082dc082872b34537d5df61f83a5525d.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/30/2d/302d102fe1406999fd9ff2139360e7b8.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ab/0e/ab0e7f1ddeba2a38bb4e49fc9b6ccc05.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b5/7d/b57d6cfe5fa74dd0899075f3173cb3c6.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/52/fa/52fa0b5e255cdb653d1c924026bdfc97.jpg" title="Dumé Grupo Estudio:  Artistic Statement">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ea/06/ea068350cf3b57fd37a26f08b1460cfe.jpg" alt="Dumé Grupo Estudio:  Artistic Statement" data-href="/digitalobject/13609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/74/567433b3c997d16d9fbd0701efee13c0.jpg" title="Artes hispanas: el primer Festival de Artes Hispanas en Staten Island...">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f9/4e/f94ebd5110f41755df34963292694c99.jpg" alt="Artes hispanas: el primer Festival de Artes Hispanas en Staten Island..." data-href="/digitalobject/13610" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e4/41/e441af54e6a36e50643fbebc20a2d9b4.jpg" title="Bilingüismo en televisión; Dumé en Miami">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bb/95/bb95cff7be84305261bdc73edeb69875.jpg" alt="Bilingüismo en televisión; Dumé en Miami" data-href="/digitalobject/13614" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d0/ff/d0ff7a0c51531724151d198751ae4df9.jpg" title="Herberto Dumé: el documento de la llegada">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/74/8c/748cb2136eb0fb3204b3ff01d4e5a99f.jpg" alt="Herberto Dumé: el documento de la llegada" data-href="/digitalobject/13615" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/aa/22aa962e6f584ce65347ac928364c721.jpg" title="Letter from Cecilio (Noble) to Chino (Herberto Dumé)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/97/4a/974a4152aaceeaaecbc64a4ae09dd723.jpg" alt="Letter from Cecilio (Noble) to Chino (Herberto Dumé)" data-href="/digitalobject/13608" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c4/3d/c43d3924b16b9bbb514f110d29d4872c.jpg" title="Letter from Cecilio (Noble) to Chino (Herberto Dumé)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a3/f1/a3f1b7737297eb64f96f49778ef435f0.jpg" alt="Letter from Cecilio (Noble) to Chino (Herberto Dumé)" data-href="/digitalobject/13608" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5a/f2/5af24318766d7d03cdb916b8368da3e1.jpg" title="Letter from Cecilio (Noble) to Chino (Herberto Dumé)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e9/63/e963469910353acfe4f5b4c8c618e7cb.jpg" alt="Letter from Cecilio (Noble) to Chino (Herberto Dumé)" data-href="/digitalobject/13608" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/38/0938a925c959e28e218a8c57245f461f.jpg" title="Record of the assembly, &quot;Alianza de Teatros en Español&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/56/c4/56c44ab2c1276d09c6340200f4319c9e.jpg" alt="Record of the assembly, &quot;Alianza de Teatros en Español&quot;" data-href="/digitalobject/13607" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/90/7e/907e41070cafb28c37a2e998045a2f63.jpg" title="Record of the assembly, &quot;Alianza de Teatros en Español&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3a/a8/3aa8ae70f0b0ac0709de8091eeed1a7d.jpg" alt="Record of the assembly, &quot;Alianza de Teatros en Español&quot;" data-href="/digitalobject/13607" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/97/fb/97fb8fb437300763adc1a8bdfc4d0cbc.jpg" title="Record of the assembly, &quot;Alianza de Teatros en Español&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3f/67/3f67b00d7bc31941e6d427d7fca4d1fd.jpg" alt="Record of the assembly, &quot;Alianza de Teatros en Español&quot;" data-href="/digitalobject/13607" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d5/49/d54997e95bc58143221ab4e5e415507b.jpg" title="Record of the assembly, &quot;Alianza de Teatros en Español&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c8/47/c847e8aba5995e1e4e7b0629f6a0ec11.jpg" alt="Record of the assembly, &quot;Alianza de Teatros en Español&quot;" data-href="/digitalobject/13607" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/77/a3/77a39ada6e8345b7dd1cf7fae1771bdb.jpg" title="Record of the assembly, &quot;Alianza de Teatros en Español&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6f/1c/6f1c8e1224657617df6cb8445c18697b.jpg" alt="Record of the assembly, &quot;Alianza de Teatros en Español&quot;" data-href="/digitalobject/13607" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/21/24/212462941ed20fc93cd77c2cf8567c20.jpg" title="Vestido de novia">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9e/dd/9edddac3b6f5cc4653e1e8ef7408306e.jpg" alt="Vestido de novia" data-href="/digitalobject/12902" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/68/2b/682b1f0fbf8ed37d6169834a8f701fdb.jpg" title="Vestido de novia">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ec/6f/ec6feabfadfa0ee9fc1d103e9d0eabae.jpg" alt="Vestido de novia" data-href="/digitalobject/12902" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/99/b799e439682a52b919f4a495c7e2fb3d.jpg" title="Vestido de novia">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/62/31/62313d3694459470db6249b5c2ea9246.jpg" alt="Vestido de novia" data-href="/digitalobject/12902" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0c/57/0c57fad5e6b9446b6374e3f9c81cd1fb.jpg" title="Vestido de novia">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/72/40/7240a0bbf8e611bf8c34f4c8b6710ad4.jpg" alt="Vestido de novia" data-href="/digitalobject/12902" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ae/06/ae0618da3d4ed57c9f248f9cb915a19d.jpg" title="Vestido de novia">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a0/05/a00571bcbc58947f5d2d7a0fdde4e077.jpg" alt="Vestido de novia" data-href="/digitalobject/12902" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/da/e0da0f0556b8cd37aebda68c58871521.jpg" title="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fc/59/fc5994f7b0060fc6b3947268797cc032.jpg" alt="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)" data-href="/digitalobject/12936" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a1/ea/a1ea0aa83139488685581fab17ee2799.jpg" title="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3c/43/3c43fe648099a0781823f5c14dba12eb.jpg" alt="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)" data-href="/digitalobject/12920" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0c/94/0c943d39191bc13315373f5514907f75.jpg" title="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5d/ac/5dac5aee978017c4f6c53d6eb1d64722.jpg" alt="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)" data-href="/digitalobject/12922" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2f/de/2fde05b6a4c3b7ee68368228f2311357.jpg" title="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/30/1f/301f5979499c4d3ffb8aa9b14de6fe95.jpg" alt="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)" data-href="/digitalobject/12930" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/35/d9/35d9954c28ad04d08869f05c648f4350.jpg" title="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/37/1a/371a149a9692a9966b05a1166fc9731d.jpg" alt="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)" data-href="/digitalobject/12918" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/44/df/44df03e710d5dcd7cca9a04c80232867.jpg" title="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ca/f7/caf7afc86d6cf3d51677866c1103b6e0.jpg" alt="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)" data-href="/digitalobject/12919" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/83/8683bcfa49d8671150287918f6a8bb71.jpg" title="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/33/98/3398eecfb58bd1eaf4ff0773ae873ce6.jpg" alt="Scene from the play, &quot;Recuerdos de Tulipa&quot; (Remembering Tulipa)" data-href="/digitalobject/12926" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/18/561852e22e631581cdc427bf7ba688dd.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="../media/cache/44/26/44264e0b2f868235f38fc69fd4305a37.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/70/a4/70a4817f834065f41f92a7c11089a72a.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fd/87/fd878e4103ff3d2e32e79d010edc0990.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2d/31/2d3136dcaea1957baff110f182c36094.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/96/0b/960baa96e99d403c52546c6e44c3ce5e.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/ff/c7ff09dfbe864020803663a84ae5d308.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5c/e0/5ce0035e0b6c4e42ccd73867ce211354.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/88/c5/88c5d014950473b47839429533deb96b.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7f/64/7f64222bfa5b423bab528c8c8453d142.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/06/fa/06fae523aa14a140e53f2635b9478073.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/76/6f/766f6eb8ec55fc8f528bae26016b04b8.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/3a/1a3ac97a58738c39816a65c837aca6e8.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ec/51/ec51dded4c064495bee5b11e40efa26d.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/c9/6ac97b210be27ca8e6451bd02b927400.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/61/c7/61c7d58b6b00365a5c2b74e300aae9fd.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12904" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5d/71/5d717dc1b0eb28715f740fdb96ce31e3.jpg" title="Mulato">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/46/3a/463a82946e01c25baca19af327c85a41.jpg" alt="Mulato" data-href="/digitalobject/12913" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9a/f5/9af5369596dd14d55770fdf2f7954230.jpg" title="Mulato">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bd/24/bd24ec0d19873f2a852b2ca00dfb0c85.jpg" alt="Mulato" data-href="/digitalobject/12913" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f2/af/f2afb48600ee093d1071e744d0ac32a8.jpg" title="Mulato">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bb/ea/bbea0f9dd2689e2f123504a18b14bac3.jpg" alt="Mulato" data-href="/digitalobject/12913" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/98/ab/98abd79d946dced9932df39c5d6a849a.jpg" title="Mulato">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/82/c4/82c4058fe3f86466e8cbdc8d95fbe5a8.jpg" alt="Mulato" data-href="/digitalobject/12913" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/53/ab/53abd2db236101498dc67116ecfa0911.jpg" title="Mulato">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ec/c8/ecc8050c37d501efd7de48138701b5de.jpg" alt="Mulato" data-href="/digitalobject/12913" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9a/32/9a32b5219a03ba6079994d2847a80334.jpg" title="Mulato">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5d/e8/5de8e59c9dace3782eaf96c206566fe9.jpg" alt="Mulato" data-href="/digitalobject/12913" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f4/a4/f4a45d93fd8a0b4cee3ecd034b09da97.jpg" title="Mulato">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/14/44/1444763b26034917f1da4cb80826df9e.jpg" alt="Mulato" data-href="/digitalobject/12913" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/0b/310bc078f46003d7123167c11db2d51e.jpg" title="Mulato">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/32/9a/329ad91ca630e2aeec5310520d173969.jpg" alt="Mulato" data-href="/digitalobject/12913" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/92/35/92352e02b1869846085a70f732b9e354.jpg" title="Mulato">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2c/a8/2ca857c9eeefe283406f353737d3c1e7.jpg" alt="Mulato" data-href="/digitalobject/12913" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0e/5a/0e5a41c2af30aaa03bdfe6dd6fc7ff73.jpg" title="Ana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d5/cf/d5cffe97116b7c24c101042d3a10d967.jpg" alt="Ana" data-href="/digitalobject/12908" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1d/b1/1db1ece37d8a03fb2c6a8384544fd7d2.jpg" title="Ana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6e/1a/6e1a25dcc09b3307557cb6c3520010e5.jpg" alt="Ana" data-href="/digitalobject/12908" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/f5/8ff5be419a561422776756cbf3c0b2e6.jpg" title="Ana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/70/51/7051e66d96cfb1ef70b84d46c2fa1c91.jpg" alt="Ana" data-href="/digitalobject/12908" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/10/88/1088593c26b2ba4c984c8708b819eb98.jpg" title="Ana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b1/6b/b16b57ad31989ff291b3a9235777689b.jpg" alt="Ana" data-href="/digitalobject/12908" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/45/e2/45e2baf0ef430921bc9c0b696567962e.jpg" title="Ana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/59/6c/596c129d637e24cdf264b923b349a113.jpg" alt="Ana" data-href="/digitalobject/12908" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b6/7d/b67de40a531b4994d979cb9342d6fa58.jpg" title="Ana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0c/87/0c879c2c9526c341e4aaceafcacfccd8.jpg" alt="Ana" data-href="/digitalobject/12908" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/67/e0673f90581512ff01e1dd5c96a05aa2.jpg" title="Scene from the play, &quot;Candida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/55/43/5543e0d94bd7fd2f2550b09af0cfe815.jpg" alt="Scene from the play, &quot;Candida&quot;" data-href="/digitalobject/12933" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5a/ba/5aba9da36b66a5cc4a41f9492f75bcfa.jpg" title="Scene from the play, &quot;Candida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/30/25/302572dd817d4f1f06bf37f0c1eeaca6.jpg" alt="Scene from the play, &quot;Candida&quot;" data-href="/digitalobject/12924" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/74/a7/74a70606a20efe95ec6ed16aaa6c65db.jpg" title="Scene from the play, &quot;Candida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/31/36/31366d01b119245467a5b761643ebe02.jpg" alt="Scene from the play, &quot;Candida&quot;" data-href="/digitalobject/12925" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5a/b1/5ab1924d7a4143912c1d41f277e37d41.jpg" title="Scene from the play, &quot;Candida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5c/76/5c76cd4b46ea71edf2459690460c8c61.jpg" alt="Scene from the play, &quot;Candida&quot;" data-href="/digitalobject/12937" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/c3/d7c3993c112ac9a14e572d29d27e7e3d.jpg" title="Scene from the play, &quot;Candida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/66/e3/66e34c84ec989faad829c383a228bba8.jpg" alt="Scene from the play, &quot;Candida&quot;" data-href="/digitalobject/12929" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0d/fc/0dfc0ab6b103ca3d36965dcbf01845d5.jpg" title="Candida, 1978">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/90/ae/90aebcc1b31ec1aca797d9f000bf1695.jpg" alt="Candida, 1978" data-href="/digitalobject/12903" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c4/de/c4deb0684437f90e18b2777c2a5fd0a4.jpg" title="Candida, 1978">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/56/9a/569a2d02cd000ead5d8f4e884bfb8dd7.jpg" alt="Candida, 1978" data-href="/digitalobject/12903" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a8/4e/a84e7e62ad1cea9704725d0e4d44cde6.jpg" title="Candida, 1965">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/db/aa/dbaafe03c8fd4e6beca89e886e943a58.jpg" alt="Candida, 1965" data-href="/digitalobject/12914" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e2/e3/e2e36fdb1cbd020128c4e9574f357ddb.jpg" title="Candida, 1965">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6c/65/6c652668a14d7e7dcf2255d690e4f1f0.jpg" alt="Candida, 1965" data-href="/digitalobject/12914" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/84/51/8451b06bcd0f7bd2d9c1cb4ddd6c1b9d.jpg" title="Candida, 1965">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fd/b0/fdb0987a59de9dc8b45e0ec7aaefb4f8.jpg" alt="Candida, 1965" data-href="/digitalobject/12914" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a6/a0/a6a091094b0f6faf140917f130707212.jpg" title="Candida, 1965">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/43/0c/430c9433faed2ad7c92d217e03b3ad1e.jpg" alt="Candida, 1965" data-href="/digitalobject/12914" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/49/cb/49cb452213f22e5c73047998f9ed740d.jpg" title="Candida, 1964">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/94/97/9497572344842b2e4eae5fb43a1776c9.jpg" alt="Candida, 1964" data-href="/digitalobject/12915" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9a/d8/9ad8b6b181ed2f225c65abc7cab7f887.jpg" title="Candida, 1964">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/15/05/150582e8888049f0efd20b338fd434ce.jpg" alt="Candida, 1964" data-href="/digitalobject/12915" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f3/da/f3daa0ff1e30932dfbbaef951623da64.jpg" title="Candida, 1964">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a5/51/a551d70c6f4981e4b03f8073a9dec290.jpg" alt="Candida, 1964" data-href="/digitalobject/12915" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/10/e3/10e3dfdec85522ff521131233feed271.jpg" title="Candida, 1964">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c1/75/c17596f7ad9f835352198023f5305d72.jpg" alt="Candida, 1964" data-href="/digitalobject/12915" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b4/d6/b4d68e2b2def7084d1ca720fb0bcfed0.jpg" title="Candida, 1964">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ca/1f/ca1f01eb37b45fbedd27b6852ed91d54.jpg" alt="Candida, 1964" data-href="/digitalobject/12915" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/de/f5/def5ef7db3a9caf68c289fe153db53b6.jpg" title="Candida, 1964">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/92/31/92311d22c2e160894f4ee295e0d2f790.jpg" alt="Candida, 1964" data-href="/digitalobject/12915" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/74/bb/74bb8bad7b39c9eb5cb17d929add4168.jpg" title="Candida, 1964">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9a/d7/9ad7bc4d3f1e99fe528391e2e821af45.jpg" alt="Candida, 1964" data-href="/digitalobject/12915" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/2b/282b9fd4a1d2b412ed657f0bc2be526e.jpg" title="Candida, 1964">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/af/d9/afd937cf1c63840282117da7f145b0bb.jpg" alt="Candida, 1964" data-href="/digitalobject/12915" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ca/9d/ca9de3ea71d255bf00493ac0faa381ce.jpg" title="Candida, 1953">
+                    
+                    
+                    <img src="../media/cache/74/47/7447b96df5fcf44bff643426d3fb4eca.jpg" alt="Candida, 1953" data-href="/digitalobject/12905" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/54/5e/545e32ee051928d05c1506208f929606.jpg" title="Candida, 1953">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b3/78/b378b622cecaf2c5ee2e0bf624627653.jpg" alt="Candida, 1953" data-href="/digitalobject/12905" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7b/38/7b38ef2f8e362e3163c6c1d5c10aeb2a.jpg" title="Candida, 1953">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a0/25/a0255a43eded7499a6528a742fc5419c.jpg" alt="Candida, 1953" data-href="/digitalobject/12905" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5a/ba/5aba8f2d4ebe761ccf93333348a5f376.jpg" title="Los fusiles and Los santos">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/be/d1/bed1771d8739fab5edb1cdf6a9109700.jpg" alt="Los fusiles and Los santos" data-href="/digitalobject/12912" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1d/95/1d9510dac916872fe89399e3f7f2ef4b.jpg" title="Los fusiles and Los santos">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c5/15/c51582423739493f8270a3ad84e62d72.jpg" alt="Los fusiles and Los santos" data-href="/digitalobject/12912" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/06/e6/06e6dd04ba2a0eb654dd427fc8d7b222.jpg" title="Los fusiles and Los santos">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/00/16/001673e255d60fe7e0196144ae93fd02.jpg" alt="Los fusiles and Los santos" data-href="/digitalobject/12912" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3e/75/3e75c8a2b445f6af15af3f41a2f38bbf.jpg" title="Los fusiles and Los santos">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/79/e4/79e4f1d42a45d9c364c2ae8e7e3ea5a0.jpg" alt="Los fusiles and Los santos" data-href="/digitalobject/12912" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ee/a7/eea7895071827743c1815e5ade812131.jpg" title="Los fusiles and Los santos">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/50/db/50db47c923fdb7f5b048a89d64b4367f.jpg" alt="Los fusiles and Los santos" data-href="/digitalobject/12911" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ff/e5/ffe5d6bbea3d3601b3336a3e523ac132.jpg" title="Los fusiles and Los santos">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6b/a2/6ba28ce5c264ebc0513feded1354afe2.jpg" alt="Los fusiles and Los santos" data-href="/digitalobject/12911" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f8/e2/f8e29f6fb693b5291e356c9fde9c0170.jpg" title="Los fusiles and Los santos">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/01/06/01064f53d34dbaa621c30d3fd88ea7a3.jpg" alt="Los fusiles and Los santos" data-href="/digitalobject/12911" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e8/d6/e8d6e5fa6d300aac7c411260c4e90cc2.jpg" title="Los fusiles and Los santos">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/91/86/91861eb52246f062179778d85ac77cb9.jpg" alt="Los fusiles and Los santos" data-href="/digitalobject/12911" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6b/a2/6ba23e1cde217180b8959588852e7933.jpg" title="Los fusiles and Los santos">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c4/91/c49125e82e189d31c5d7edab5330b280.jpg" alt="Los fusiles and Los santos" data-href="/digitalobject/12911" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4f/61/4f61b9ff37f03a4ae53449002917cb5f.jpg" title="Las manos de Eurídice">
+                    
+                    
+                    <img src="../media/cache/07/14/07143598351935870a120bd0a5d94025.jpg" alt="Las manos de Eurídice" data-href="/digitalobject/12909" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/3e/6a3e2b8a283c23e797fa009a0c69063b.jpg" title="Las manos de Eurídice">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f3/55/f3550412ec0b4cd60a92a78b797a3e68.jpg" alt="Las manos de Eurídice" data-href="/digitalobject/12909" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/36/7e/367e748d422ed7616b4ddfde7a30868d.jpg" title="Las manos de Eurídice">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b9/c1/b9c14f5caaace02f634d0bd12fb33f55.jpg" alt="Las manos de Eurídice" data-href="/digitalobject/12909" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/64/cf/64cfb26f6dbcb20640e792ab385d1cc3.jpg" title="Las manos de Eurídice">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1d/39/1d39c01046ee11b185ea5959714c723c.jpg" alt="Las manos de Eurídice" data-href="/digitalobject/12909" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/54/73/5473b71589a3d93fc6cea2b3e7c2a4b3.jpg" title="La taza de café and Su esposo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/28/e4/28e490c77cbf605a82f66b2d43d7bded.jpg" alt="La taza de café and Su esposo" data-href="/digitalobject/12910" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3d/7b/3d7b1ee848b7afc94b668eae29ae3e05.jpg" title="La taza de café and Su esposo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/84/3c/843c62447cff18d5a331428fe3bf337b.jpg" alt="La taza de café and Su esposo" data-href="/digitalobject/12910" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/04/57/04573b2954994eb03d2a4d16ae5b5d95.jpg" title="La taza de café and Su esposo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a0/20/a0209052d2a1491b4a28e0c707859f42.jpg" alt="La taza de café and Su esposo" data-href="/digitalobject/12910" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f0/a6/f0a6c077b23097eb7dd935ade0f93d83.jpg" title="La taza de café and Su esposo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ac/62/ac62443ef9ec96e02b271fa7254e90e1.jpg" alt="La taza de café and Su esposo" data-href="/digitalobject/12910" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4b/d8/4bd86d97f06eb7808b9018e85faec373.jpg" title="La taza de café and Su esposo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/63/0f/630f0c98447d1d093580e6fa182443a3.jpg" alt="La taza de café and Su esposo" data-href="/digitalobject/12910" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/94/20/94206f3ac4070aa2f04e99c344059a5b.jpg" title="La taza de café and Su esposo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/92/47/9247dc05fb129bfb4c0972464f1aa112.jpg" alt="La taza de café and Su esposo" data-href="/digitalobject/12910" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bc/b5/bcb5ea15d4f3cc314f078e738ae31a02.jpg" title="La taza de café and Su esposo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/50/6a/506a81fac49b297e39e08a7ed531c7db.jpg" alt="La taza de café and Su esposo" data-href="/digitalobject/12910" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/10/c7109262c3883e2241f7a07247e92a92.jpg" title="La taza de café and Su esposo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7e/2a/7e2a5980fb59e43680068d6d9033b043.jpg" alt="La taza de café and Su esposo" data-href="/digitalobject/12910" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/00/61/00619a816aee7e361a3997f26ff7daf4.jpg" title="La taza de café and Su esposo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c3/99/c3990428d1a802dfcba407339719d1a2.jpg" alt="La taza de café and Su esposo" data-href="/digitalobject/12906" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/e0/dfe0cae273b8d9e470c063bf1e7518f0.jpg" title="La taza de café and Su esposo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2a/8a/2a8a496ab01ce82a29161113788b91a6.jpg" alt="La taza de café and Su esposo" data-href="/digitalobject/12906" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8c/e0/8ce0845986a93ede5acb1896c618aef8.jpg" title="La taza de café and Su esposo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2e/00/2e002a76eb09cdefc9211f486a5e1cdf.jpg" alt="La taza de café and Su esposo" data-href="/digitalobject/12906" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0f/ba/0fba43e744cb37a94616e9841015c212.jpg" title="Program for the production, &quot;El Mago de Oz&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/66/35/66350121b6ed60c3f4d39d00fe98dcb7.jpg" alt="Program for the production, &quot;El Mago de Oz&quot;" data-href="/digitalobject/12907" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b4/1e/b41e42247ee345ef40a7c277c909c430.jpg" title="Program for the production, &quot;El Mago de Oz&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f7/92/f7925bc4bb35f3806818a12430ffef46.jpg" alt="Program for the production, &quot;El Mago de Oz&quot;" data-href="/digitalobject/12907" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/3a/bd3a57a498126b902790f33330668bf3.jpg" title="Program for the production, &quot;El Mago de Oz&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c2/47/c247e632136212bb81e5ba6fcff2256e.jpg" alt="Program for the production, &quot;El Mago de Oz&quot;" data-href="/digitalobject/12907" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b3/c3/b3c355d3cb05179834ec93c47637f1a5.jpg" title="Program for the production, &quot;El Mago de Oz&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/96/9f/969fee0cb1b9a5be8a724c5dbc707881.jpg" alt="Program for the production, &quot;El Mago de Oz&quot;" data-href="/digitalobject/12907" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/17/6a170105148e8350929242925b0643f2.jpg" title="Program for the production, &quot;El Mago de Oz&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ff/28/ff28186fa153feee73f1387f3579c6d4.jpg" alt="Program for the production, &quot;El Mago de Oz&quot;" data-href="/digitalobject/12907" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/70/36/70365a9a840a976a2a90ecc1e5ff797e.jpg" title="Program for the production, &quot;El Mago de Oz&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/28/4a/284a7dc5e0ed3940d7a8a22ad107d1ec.jpg" alt="Program for the production, &quot;El Mago de Oz&quot;" data-href="/digitalobject/12907" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/21/8c/218cbf5ebc15858a00da489037296643.jpg" title="La excepción y la regla and El que dijo sí y El que dijo no">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/51/b6/51b6bcc81b6d3e76c72563e567416398.jpg" alt="La excepción y la regla and El que dijo sí y El que dijo no" data-href="/digitalobject/12901" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/87/25/8725655e10aab81f9e12a9cf14e5b653.jpg" title="La excepción y la regla and El que dijo sí y El que dijo no">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/32/54/3254fe859d1209fe1f66687ffc0a1ed2.jpg" alt="La excepción y la regla and El que dijo sí y El que dijo no" data-href="/digitalobject/12901" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d1/b4/d1b4aece65eed2d00c20a271c1b1fbfb.jpg" title="La excepción y la regla and El que dijo sí y El que dijo no">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4b/93/4b93af43a09a8a92c2ae7258f220d1c8.jpg" alt="La excepción y la regla and El que dijo sí y El que dijo no" data-href="/digitalobject/12901" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5f/e2/5fe2572966bb9c12e90a2d3e856771fb.jpg" title="La excepción y la regla and El que dijo sí y El que dijo no">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/66/7a/667aace64d87b12e4a846193d0441bbc.jpg" alt="La excepción y la regla and El que dijo sí y El que dijo no" data-href="/digitalobject/12901" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/a1/28a1e7eb170dc3eee6399a1e06df0026.jpg" title="La excepción y la regla and El que dijo sí y El que dijo no">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6c/08/6c0836d0dd1bc198ca28b9e11537d2c6.jpg" alt="La excepción y la regla and El que dijo sí y El que dijo no" data-href="/digitalobject/12901" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/26/ef/26ef20b1d3443745777f838188fd9c29.jpg" title="La excepción y la regla and El que dijo sí y El que dijo no">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/16/b1/16b11eae1eb835fd9b5e3ee741a55a7a.jpg" alt="La excepción y la regla and El que dijo sí y El que dijo no" data-href="/digitalobject/12901" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c4/47/c4478cfaf776528aed847d37526ec1ca.jpg" title="La excepción y la regla and El que dijo sí y El que dijo no">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fb/10/fb109c85c2ecb5b6c5e079b2701d4751.jpg" alt="La excepción y la regla and El que dijo sí y El que dijo no" data-href="/digitalobject/12901" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/89/d1/89d13a1b0b4e3205ee10e24635156faf.jpg" title="Scene from the play, &quot;El que dijo sí y El que dijo no&quot; ( The one who said yes and the one who said no)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1b/69/1b69da4490c7bb29d06d701da6f8d992.jpg" alt="Scene from the play, &quot;El que dijo sí y El que dijo no&quot; ( The one who said yes and the one who said no)" data-href="/digitalobject/12916" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/88/47/88479b5a5f72498aa83b608b5cfc69a8.jpg" title="Scene from the play, &quot;El que dijo sí y El que dijo no&quot; ( The one who said yes and the one who said no)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/53/f6/53f696bd3f5487350d2524c6b6e9bfbe.jpg" alt="Scene from the play, &quot;El que dijo sí y El que dijo no&quot; ( The one who said yes and the one who said no)" data-href="/digitalobject/12938" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/af/2b/af2b353e78f10a9dd155b03f2b5e22d0.jpg" title="Scene from the play, &quot;El lindo ruiseñor&quot; (The Nightingale)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/93/0d/930d4f4a9278c20888424d742b1748e4.jpg" alt="Scene from the play, &quot;El lindo ruiseñor&quot; (The Nightingale)" data-href="/digitalobject/12934" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b5/51/b55102eb239683e8ff13f94ed30def22.jpg" title="Scene from the play, &quot;El lindo ruiseñor&quot; (The Nightingale)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/48/f5/48f5903333efd33cf7b000ccdeb5b7bc.jpg" alt="Scene from the play, &quot;El lindo ruiseñor&quot; (The Nightingale)" data-href="/digitalobject/12931" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fe/d6/fed6af486704671cb931e9afa73392ba.jpg" title="Scene from the play, &quot;El lindo ruiseñor&quot; (The Nightingale)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/85/74/85740b5053282816774b26da3457b776.jpg" alt="Scene from the play, &quot;El lindo ruiseñor&quot; (The Nightingale)" data-href="/digitalobject/12923" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e9/05/e9052ea1cf645eadaedb2ba7eaee27ab.jpg" title="Scene from the play, &quot;El lindo ruiseñor&quot; (The Nightingale)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ac/ba/acba3cd193ff4fd0262b345935a9c89b.jpg" alt="Scene from the play, &quot;El lindo ruiseñor&quot; (The Nightingale)" data-href="/digitalobject/12921" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e5/31/e53120833f9924f6b9810ae5a9e1ddef.jpg" title="Scene from the play, &quot;El lindo ruiseñor&quot; (The Nightingale)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/de/48/de48c13b693922c45aec3251a5389902.jpg" alt="Scene from the play, &quot;El lindo ruiseñor&quot; (The Nightingale)" data-href="/digitalobject/12935" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dc/80/dc805f42669eed26939d5d1979a16642.jpg" title="Scene from the play, &quot;El lindo ruiseñor&quot; (The Nightingale)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/73/78/7378c6efc706720e1c10df23f18e9aef.jpg" alt="Scene from the play, &quot;El lindo ruiseñor&quot; (The Nightingale)" data-href="/digitalobject/12932" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/de/74/de7475266ed40263bfa3a6bf589a75c1.jpg" title="Scene from the play, &quot;El lindo ruiseñor&quot; (The Nightingale)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/38/9b/389b7e487482ecc94f188992bc188cff.jpg" alt="Scene from the play, &quot;El lindo ruiseñor&quot; (The Nightingale)" data-href="/digitalobject/12939" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/66/c0/66c0001d9ae30a74be55592f7cfc4514.jpg" title="Photograph of the production, &quot;El mago de Oz&quot; (The Wizard of Oz)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e5/a7/e5a71224e7d80835869ea0fe87d46d67.jpg" alt="Photograph of the production, &quot;El mago de Oz&quot; (The Wizard of Oz)" data-href="/digitalobject/12927" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dc/48/dc48986e8d7c9ee46d95c3ea901b3b92.jpg" title="Photograph of the production, &quot;El mago de Oz&quot; (The Wizard of Oz)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/09/46/0946f72b1e984420c33ab386295b95c7.jpg" alt="Photograph of the production, &quot;El mago de Oz&quot; (The Wizard of Oz)" data-href="/digitalobject/12917" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f7/6e/f76eaea11533e0274c5a43e8d651d826.jpg" title="Herberto Dumé and Eloisa Castellanos">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/64/0b/640b05e6be52ed2fb9eaa1e82e828d1f.jpg" alt="Herberto Dumé and Eloisa Castellanos" data-href="/digitalobject/12896" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6f/73/6f73086a260a791f711702d8ec1d265c.jpg" title="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/90/cc/90ccaefc8fd47aefd6205eb2537535e2.jpg" alt="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)" data-href="/digitalobject/12899" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/32/c6/32c6999cf6173966c697aa7abc598c87.jpg" title="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/54/40/54408a13da94ac1998cfabc5fc617d35.jpg" alt="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)" data-href="/digitalobject/12865" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b0/8d/b08d8f7907f3e569b1b2cfaa7840a67e.jpg" title="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/85/87/8587e7ca21a48e669b3dc5f321358ee0.jpg" alt="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)" data-href="/digitalobject/12898" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c6/b2/c6b2e661b1668020894f0a42da3d7c78.jpg" title="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/92/49/9249eb2d86e8359360ad36db26f331e4.jpg" alt="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)" data-href="/digitalobject/12864" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/2e/282e04857eea06984335bf2782547147.jpg" title="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f5/e1/f5e1fc6814ea112e894f0878d3f55c67.jpg" alt="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)" data-href="/digitalobject/12900" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/64/7a/647a303d147e4e439d920e1c3076f699.jpg" title="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/12/fa/12fa7fcf5c38116c3c41913c98250725.jpg" alt="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)" data-href="/digitalobject/12884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d5/2b/d52bb8d7b4d24f9e5ee22fb967f90bff.jpg" title="Scene from the play, &quot;Las impuras&quot; (The impure ones)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4d/b4/4db4b4e995f428a97d011f5d7dd444e9.jpg" alt="Scene from the play, &quot;Las impuras&quot; (The impure ones)" data-href="/digitalobject/12895" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/08/5b/085b4687e7936422240b9776e9d485a1.jpg" title="Scene from the play, &quot;Las impuras&quot; (The impure ones)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/af/42/af42488dbda9109cc61295a5fcde473b.jpg" alt="Scene from the play, &quot;Las impuras&quot; (The impure ones)" data-href="/digitalobject/12879" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/82/ed/82ede35b1cdc356057924e791714e89e.jpg" title="Scene from the play, &quot;Las impuras&quot; (The impure ones)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/85/e8/85e8bc5a78ec4d5bf8140e1b38b313d7.jpg" alt="Scene from the play, &quot;Las impuras&quot; (The impure ones)" data-href="/digitalobject/12893" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a7/ba/a7ba19212b35f994927db3d7c90417f7.jpg" title="Scene from the play, &quot;Las impuras&quot; (The impure ones)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/84/d0/84d04bcaaa48c8e6079c889a431610a2.jpg" alt="Scene from the play, &quot;Las impuras&quot; (The impure ones)" data-href="/digitalobject/12887" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/82/fa/82faadf246e377b8578a67d218b7f9f1.jpg" title="Scene from the play, &quot;Las impuras&quot; (The impure ones)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5d/1d/5d1dbf323d486f0cef61d5eafd7f8a69.jpg" alt="Scene from the play, &quot;Las impuras&quot; (The impure ones)" data-href="/digitalobject/12885" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c2/3f/c23feecce66770ed8ac0d6681ea106ac.jpg" title="Scene from the play, &quot;Las impuras&quot; (The impure ones)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8f/c8/8fc8a27044793984c153a700231e325d.jpg" alt="Scene from the play, &quot;Las impuras&quot; (The impure ones)" data-href="/digitalobject/12881" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/28/2228edc48141b69fed217eaafb861742.jpg" title="Scenery from the play, &quot;Las impuras&quot; (The impure ones)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0d/6e/0d6e2f4ddec87468f7ebb9779c0c6b60.jpg" alt="Scenery from the play, &quot;Las impuras&quot; (The impure ones)" data-href="/digitalobject/12882" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8a/9f/8a9fa15bfce46c22be55d9937dd20b8c.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7a/93/7a93f9c484db6815a82ad1a89d60b0b2.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ff/d1/ffd1d73e764d6adb4e08d3d02ce5375d.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/06/a3/06a38cdd922f35cdc972a57261c557ff.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/57/b75755274e899285fb0018a05a4810b6.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/82/f8/82f8addc87df925744d2e1dd37fb2b5b.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fb/cf/fbcf54f7d22ac9f1a3378378447985f4.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/47/98/4798e3f41b1a0e5f11633461de00e7f2.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4b/ac/4bac1a79d3d9938f39c9417603a05813.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c7/c4/c7c4b9607e46a23ec40b2097905c8d24.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/c4/86c463caf255b85840f5d1909641bab6.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c3/1f/c31f6735db7487cc2d247d06564b5294.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f2/f5/f2f528e6d982311d350abb7458ed97f1.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/81/53/8153e30225cbc1c59b0b327fce566888.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/1d/c71deb570f114d1f306e6f78058cf7cc.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c8/20/c82001dcd32d24014861980c3c0b27a7.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/78/b6/78b6f38a7f4529281167524c89a7498c.jpg" title="Herberto Dumé">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3d/1c/3d1c9c420d8acc964b56162a4008f12c.jpg" alt="Herberto Dumé" data-href="/digitalobject/12876" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f9/b7/f9b7515579653555c78d8f83cec46eb7.jpg" title="Manuscript displaying names of characters and a scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a6/6b/a66b0c46d028113f1f514e770b6e6d9a.jpg" alt="Manuscript displaying names of characters and a scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12872" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/de/9cdebdca06fa203a8667bfb2712c2eb5.jpg" title="Manuscript displaying names of characters and a scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/11/50/1150dd06042c364ccf9775a57417dc48.jpg" alt="Manuscript displaying names of characters and a scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12872" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/18/df/18df8c29a4c663efe932eed2ed2b48e4.jpg" title="Newspaper clipping titled, &quot;La casa vieja&quot; (The old house)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5d/b5/5db5c7490aea77f2dbf55690260f8dfd.jpg" alt="Newspaper clipping titled, &quot;La casa vieja&quot; (The old house)" data-href="/digitalobject/12867" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/94/c79440eb3a1db58c193fdae72eb4ed7c.jpg" title="Scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fe/fd/fefd6fb45e30dd65541d11128be79102.jpg" alt="Scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12891" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c2/ca/c2ca562f455df09559cd1ea51b076d37.jpg" title="Scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fa/d8/fad87d3ee03efafb2a7b2043e5c6d6b8.jpg" alt="Scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12880" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/c6/22c6180ef3ce94c96dd3dd3a831bd3a6.jpg" title="Scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0a/84/0a8460bfce872cd1a237da10978cf635.jpg" alt="Scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12873" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6c/17/6c177e2da09ee866627dd77a6a489f11.jpg" title="Scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/14/3d/143de2dd61b449b7b9cd0f0a77c8b570.jpg" alt="Scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12874" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/50/20/5020a6834e5d3d0cce3f1b17bafbed08.jpg" title="Scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ac/80/ac804069fb6d657b031830a0fa7ee568.jpg" alt="Scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12897" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/00/16/00161cae5a5e0725178d75d3c847448f.jpg" title="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)">
+                    
+                    
+                    <img src="../media/cache/bf/15/bf156ad22710505356a05dedcb7f566b.jpg" alt="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)" data-href="/digitalobject/12886" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0c/cb/0ccba81b4a9a5c22087c1e7b13906640.jpg" title="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c6/49/c649cd8374529fe14fe1a64c8c26bac4.jpg" alt="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)" data-href="/digitalobject/12894" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b6/0a/b60ae88165e2dee30ca68044c5c2cd97.jpg" title="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f1/6e/f16e64357400b18509cacf22c20789e1.jpg" alt="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)" data-href="/digitalobject/12892" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/65/a3/65a3d0c7d74e2bae119ffd46bd8b3d76.jpg" title="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5c/37/5c37130055395aa2ded9b04530b8587f.jpg" alt="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)" data-href="/digitalobject/12878" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e1/c9/e1c9397947133008ca352bee0410ea8d.jpg" title="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1f/e0/1fe0e883475fd0d8d2f807f8a2357d3e.jpg" alt="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)" data-href="/digitalobject/12889" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/2c/bd2caebd2457b34017c1ad7c7b80a05e.jpg" title="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/54/4f/544f89ed002e66f3684ff33b7d3e1c63.jpg" alt="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)" data-href="/digitalobject/12890" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0e/81/0e811dc0d39e5ea5e44b42416ec73524.jpg" title="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/19/67/196797bc75db3cfaf44cf83c74716373.jpg" alt="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)" data-href="/digitalobject/12883" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/21/8c/218ccfec86ae8d733286de67d4df0c74.jpg" title="El robo del cochino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/33/d9/33d9279d5cc319353be3f82133901c41.jpg" alt="El robo del cochino" data-href="/digitalobject/12870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c1/e3/c1e37464e04203fe27b91655c1d03b74.jpg" title="El robo del cochino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/12/ed/12ed46a170849672e386cb8224e23c2a.jpg" alt="El robo del cochino" data-href="/digitalobject/12870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f6/ec/f6ec18b0af6cd35669cc31cddc9c943f.jpg" title="El robo del cochino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/62/a6/62a6d76fe3d6b36044de9acbbc788a7d.jpg" alt="El robo del cochino" data-href="/digitalobject/12870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/57/de/57debba2cada74ef1d3f2890864d2123.jpg" title="El robo del cochino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/24/5c/245c07c485abf065ff14f88f02891ece.jpg" alt="El robo del cochino" data-href="/digitalobject/12870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ad/7b/ad7bde8a98a422f044f7b6ef68455c31.jpg" title="El robo del cochino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8e/2e/8e2ebbced3b37c5f9124305efa2bc4f6.jpg" alt="El robo del cochino" data-href="/digitalobject/12868" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1f/99/1f990e966a00032e88a4a601d2174c8a.jpg" title="El robo del cochino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b6/b2/b6b2b35c4d50af4423844e7b3ba8b87e.jpg" alt="El robo del cochino" data-href="/digitalobject/12868" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/44/e2/44e29bcbcb37ecbf627adf37bf2beea7.jpg" title="El robo del cochino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8e/d1/8ed1d9803ad77ab980e9fd273434b068.jpg" alt="El robo del cochino" data-href="/digitalobject/12868" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/ec/dfec588893586bbcd7ccf4cb073c94e5.jpg" title="El robo del cochino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2d/5d/2d5d75d3a3027fd2474f69e92b3287f5.jpg" alt="El robo del cochino" data-href="/digitalobject/12868" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f0/3f/f03f21ffd8bc744419cd5980f0e16f45.jpg" title="El robo del cochino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fa/aa/faaa14da0506af46a924a68f6feb7bbc.jpg" alt="El robo del cochino" data-href="/digitalobject/12868" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/69/71696fe9ea6cac38504f9daf4606d6ac.jpg" title="El robo del cochino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f3/1d/f31d93ef5eec270ed9eac41756ca3461.jpg" alt="El robo del cochino" data-href="/digitalobject/12868" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0b/09/0b0908adb477e3e6a060c069e1c3b47e.jpg" title="Scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b5/34/b534777323a77ef381499964a5d2b1e9.jpg" alt="Scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12888" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/54/75/5475d2aba548c6375c3ec5f3cf5e2825.jpg" title="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/02/d1/02d10d82aa865f0b4a8de011762b0d71.jpg" alt="Scene from the play, &quot;El robo del cochino&quot; (The Pig Theft)" data-href="/digitalobject/12875" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/44/d3/44d3f36c89f2794ff4843d593220f8d0.jpg" title="Scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/56/0f/560f9641d89696627944f20ddf335348.jpg" alt="Scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12866" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/67/2d/672d9fca135bdfda32ffc71d33bc8045.jpg" title="El robo del cochino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c5/63/c5631baa406e16bc86217755d2c3281a.jpg" alt="El robo del cochino" data-href="/digitalobject/12869" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5f/64/5f64a7094ca9a5d5502203efa91a11f6.jpg" title="El robo del cochino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c3/a6/c3a6ca4d2af3a7836df23109629d0549.jpg" alt="El robo del cochino" data-href="/digitalobject/12869" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

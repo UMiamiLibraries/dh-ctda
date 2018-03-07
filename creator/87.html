@@ -1,0 +1,869 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Reinaldo Montero</li>
+                </ul>
+            </nav>
+            <h2>Reinaldo Montero</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Author / playwright, adapter, screenwriter</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>Information available in Spanish; click "Espa&ntilde;ol" in the upper&nbsp;right hand&nbsp;side of the page.&nbsp;<img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI4My4xNzggMjgzLjE3OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjgzLjE3OCAyODMuMTc4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPHBhdGggZD0iTTI1NC44MTIsMTQwLjcxM2gtMjBjLTQuMTQyLDAtNy41LDMuMzU4LTcuNSw3LjV2OTEuMTg2YzAsNC44NC0zLjkzOSw4Ljc3OC04Ljc3OSw4Ljc3OEg0My43NzYgICBjLTQuODM5LDAtOC43NzUtMy45MzgtOC43NzUtOC43NzhWNjQuNjQ1YzAtNC44NDEsMy45MzYtOC43OCw4Ljc3NS04Ljc4aDk1Ljg1NWM0LjE0MiwwLDcuNS0zLjM1OCw3LjUtNy41di0yMCAgIGMwLTQuMTQyLTMuMzU4LTcuNS03LjUtNy41SDQzLjc3NmMtMjQuMTM4LDAtNDMuNzc1LDE5LjY0LTQzLjc3NSw0My43OHYxNzQuNzU1YzAsMjQuMTQsMTkuNjM4LDQzLjc3OCw0My43NzUsNDMuNzc4aDE3NC43NTYgICBjMjQuMTQsMCw0My43NzktMTkuNjM5LDQzLjc3OS00My43Nzh2LTkxLjE4NkMyNjIuMzEyLDE0NC4wNzEsMjU4Ljk1NCwxNDAuNzEzLDI1NC44MTIsMTQwLjcxM3oiIGZpbGw9IiMwMDAwMDAiLz4KCTxwYXRoIGQ9Ik0yNzUuNjc3LDBoLTc5LjU1M2MtNC4xNDIsMC03LjUsMy4zNTgtNy41LDcuNXYyMGMwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDI3LjMwNCAgIEwxMjAuNjgzLDEzNy43NDNjLTIuOTI5LDIuOTI5LTIuOTI5LDcuNjc3LDAsMTAuNjA3bDE0LjE0MiwxNC4xNDNjMS40MDcsMS40MDcsMy4zMTQsMi4xOTcsNS4zMDQsMi4xOTcgICBjMS45ODksMCwzLjg5Ny0wLjc5LDUuMzAzLTIuMTk3TDI0OC4xNzcsNTkuNzQ4djI3LjMwM2MwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDIwYzQuMTQyLDAsNy41LTMuMzU4LDcuNS03LjVWNy41ICAgQzI4My4xNzcsMy4zNTgsMjc5LjgxOSwwLDI3NS42NzcsMHoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" alt="" /></p>
+
+                </div>
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2514">Liz</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/240">Medea</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/572">La noche del Pinto</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/681">La violación</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/967">Fausto</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/968">Los equívocos morales</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/969">Historias de caracol</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/971">Memoria de las lluvias</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/972">Con tus palabras</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/987">Desesperados</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/988">Homo habilis</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1285">Rosa Fuentes</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/2412.html">Fabriles</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1991">Concierto barroco</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1992">Rosa Fuentes : una historia de amor con la historia al fondo</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2908">Dos ríos</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3234">Aquiles y la tortuga</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3492">Visitaciones de Emilio</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3493">Donjuanes</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3494">El encanto del regreso</a><br />  
+                    <span>Screenwriter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3495">Trabajos de amor perdidos</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3496">Misiones</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3497">La visita de la Infanta</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3728">Ayax y Casandra</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3745">Los emigrados</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+        
+
+            
+              <div class="linkeditems">
+              <h3>Awards: +</h3>
+              <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Category</th>
+                  <th>Award</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td>2005</td>
+                        <td>Novela</td>
+                        <td>
+                          <a href="../award/57.html">Premio Alejo Carpentier</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1988</td>
+                        <td>None</td>
+                        <td>
+                          <a href="../award/50.html">Premio Benalmádena</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1985</td>
+                        <td>None</td>
+                        <td>
+                          <a href="../award/48.html">Premio Caimán Barbudo</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1992</td>
+                        <td>Mejor Guión</td>
+                        <td>
+                          <a href="../award/52.html">Premio Caracol</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1992</td>
+                        <td>None</td>
+                        <td>
+                          <a href="../award/51.html">Premio Castilla-La Mancha</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1984</td>
+                        <td>None</td>
+                        <td>
+                          <a href="../award/47.html">Premio David</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1997</td>
+                        <td>None</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/22">Premio de la Crítica Literaria</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2002</td>
+                        <td>None</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/22">Premio de la Crítica Literaria</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2006</td>
+                        <td>None</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/22">Premio de la Crítica Literaria</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1993</td>
+                        <td>Mejor Guión</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/53">Premio del I Festival de Cine de Bogotá</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1996</td>
+                        <td>None</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/55">Premio Italo Calvino</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1986</td>
+                        <td>Cuento</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/49">Premio Literario Casa de las Américas</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1996</td>
+                        <td>None</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/54">Premio Literario Internacional Juan Rulfo</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+                  
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+                <div class="linkeditems">
+                <h3>Primary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/745/">Rosa fuentes: una historia de amor con la historia al fondo</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+              
+            </div>
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>1952</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Ciego Montero, Cienfuegos, Cuba</span>
+                </li>
+              
+              
+              
+              
+
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Cuban%20Playwrights"><li>Cuban Playwrights</li></a>
+                
+                    <a href="../taggeditems-tag=Cuban%20Theater.html"><li>Cuban Theater</li></a>
+                
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/14610">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/0a/bd0af79094b04325c8c27e1bea78f303.jpg" title="Advertising postcard for the production, &quot;Aquiles y la tortuga&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0d/37/0d377719c4c23dcf1023006c1a260b9b.jpg" alt="Advertising postcard for the production, &quot;Aquiles y la tortuga&quot;" data-href="/digitalobject/14610" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ef/6f/ef6fbaf8affaf354d23d3c220b79feee.jpg" title="Photograph of Reinaldo Montero, Alberto Sarraín, Abelardo Estorino, and Olga Lastra at Fundación Ludwig, Havana 2004">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8e/a9/8ea9643a1527cefc15ed9ff3bdcee838.jpg" alt="Photograph of Reinaldo Montero, Alberto Sarraín, Abelardo Estorino, and Olga Lastra at Fundación Ludwig, Havana 2004" data-href="/digitalobject/12829" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/f6/20f61957ec03dbdf499ab016c7f9cdb3.jpg" title="Photograph of Reinaldo Montero and Senel Paz at UNEAC, Havana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/81/a1/81a1e1843d54f93469272df28181963a.jpg" alt="Photograph of Reinaldo Montero and Senel Paz at UNEAC, Havana" data-href="/digitalobject/12814" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/3f/6a3f9ea115db99ee5d1c334e4d1bb7a1.jpg" title="Photograph of Abelardo Estorino and Reinaldo Montero at Estorino&#39;s home, Havana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/35/bf/35bf51d363d073a113f285182cd2e958.jpg" alt="Photograph of Abelardo Estorino and Reinaldo Montero at Estorino&#39;s home, Havana" data-href="/digitalobject/12813" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e2/7f/e27fff0b64a67c13ecd61a6e98ecc8a8.jpg" title="Photograph of Alberto Sarraín, Amado del Pino, and Reinaldo Montero">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/99/4b/994bf882aa3f39ef566a2cd0602ea883.jpg" alt="Photograph of Alberto Sarraín, Amado del Pino, and Reinaldo Montero" data-href="/digitalobject/12807" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/64/89/6489458bed8c7da13ac9171a4f80a332.jpg" title="Photograph of Abelardo Estorino and Reinaldo Montero at Estorino&#39;s home, Havana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f6/1c/f61cb2cd5e0cd272727e4e0f0c483ee8.jpg" alt="Photograph of Abelardo Estorino and Reinaldo Montero at Estorino&#39;s home, Havana" data-href="/digitalobject/12806" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/53/bb/53bb6689bec5717b1e53b9715f29986c.jpg" title="Photograph of Olga Lastra, Reinaldo Montero, Omar Valiño, and Abelardo Estorino at Fundación Ludwig, Havana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4f/0f/4f0ffba704c1cee57d91fee9b05772b1.jpg" alt="Photograph of Olga Lastra, Reinaldo Montero, Omar Valiño, and Abelardo Estorino at Fundación Ludwig, Havana" data-href="/digitalobject/12805" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/77/38/7738bf928ef79f13427c55a9344b4c2a.jpg" title="Photograph of Abelardo Estorino and Reinaldo Montero at Estorino&#39;s home, Havana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/15/c9/15c943739cd4eaf5aa02d54260ad02c1.jpg" alt="Photograph of Abelardo Estorino and Reinaldo Montero at Estorino&#39;s home, Havana" data-href="/digitalobject/12802" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5d/f8/5df8abc8169b548642e713a959bed419.jpg" title="Photograph of Alberto Sarraín, Olga Lastra, and Reinaldo Montero, Havana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6c/7a/6c7ace6ac99092628f32ecc03215c5c2.jpg" alt="Photograph of Alberto Sarraín, Olga Lastra, and Reinaldo Montero, Havana" data-href="/digitalobject/12790" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/39/05/3905372e36032bc0f2d9c6c508483aa0.jpg" title="Abelardo Estorino and Reinaldo Montero">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e1/7f/e17fcb6b20b4a86fe1e799e1157077f6.jpg" alt="Abelardo Estorino and Reinaldo Montero" data-href="/digitalobject/12788" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ef/5a/ef5a104020a28b1889ef036e277f1db9.jpg" title="Abelardo Estorino and Reinaldo Montero in a Chinese restaurant">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d7/3c/d73c20016a5dccdb83d57cef4299b383.jpg" alt="Abelardo Estorino and Reinaldo Montero in a Chinese restaurant" data-href="/digitalobject/12786" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2a/ea/2aeaec7ac686a7fc46d4c309c1582db9.jpg" title="Reinaldo Montero and Olga Lastra, 2004">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4a/9a/4a9a1ffd0d7be7206c515f781485f611.jpg" alt="Reinaldo Montero and Olga Lastra, 2004" data-href="/digitalobject/12779" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bc/e5/bce5d99cf1746b16df1613eb58509062.jpg" title="Luis Ubaldo Benítez, Abelardo Estorino, Alberto Sarraín, Miriam Learra, Pancho García, and Reinaldo Montero, Havana 2004">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/73/a0/73a08de6d9ffd4dbc220fcc27d4a6540.jpg" alt="Luis Ubaldo Benítez, Abelardo Estorino, Alberto Sarraín, Miriam Learra, Pancho García, and Reinaldo Montero, Havana 2004" data-href="/digitalobject/12773" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/c7/56c76af291bd4e97bef873b819a6ac0c.jpg" title="Abelardo Estorino, Adria Santana, Reinaldo Montero, and Olga Lastra, Havana 2004">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1d/03/1d03ab2157985a0502b2cba13f1e262b.jpg" alt="Abelardo Estorino, Adria Santana, Reinaldo Montero, and Olga Lastra, Havana 2004" data-href="/digitalobject/12771" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/10/16/101615152e5497b4f36d970a3b9c8740.jpg" title="Abelardo Estorino,  Olga Lastra, Estorino&#39; sister, and Reinaldo Montero in Estorino&#39;s birthday party, 2004">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4c/16/4c1613efb4981bbad14406a1eaf3aefd.jpg" alt="Abelardo Estorino,  Olga Lastra, Estorino&#39; sister, and Reinaldo Montero in Estorino&#39;s birthday party, 2004" data-href="/digitalobject/12759" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/e6/d7e6195b0164b18b77f2fc420a81f749.jpg" title="Abelardo Estorino, Adria Santana, and Reinaldo Montero, Havana 2004">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/73/15/7315ffdb738f82c41585462fdb843fa7.jpg" alt="Abelardo Estorino, Adria Santana, and Reinaldo Montero, Havana 2004" data-href="/digitalobject/12741" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/db/ab/dbabdeab09d99f1c3ffde32d8c6661e1.jpg" title="Reinaldo Montero, Abelardo Estorino, and Olga Lastra">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fd/e8/fde8023a6a3eaffcef3f16a2c1c90348.jpg" alt="Reinaldo Montero, Abelardo Estorino, and Olga Lastra" data-href="/digitalobject/12735" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/27/5f/275f5c905cd336c97d18fa59c6b34392.jpg" title="Luis Ubaldo Benítez, Abelardo Estorino, Alberto Sarraín, Miriam Learra, and Reinaldo Montero (back), Havana 2004">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fb/1f/fb1f5a4bbeaa8a48aa5189bf2174dac2.jpg" alt="Luis Ubaldo Benítez, Abelardo Estorino, Alberto Sarraín, Miriam Learra, and Reinaldo Montero (back), Havana 2004" data-href="/digitalobject/12728" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ac/3b/ac3b16ce7ec609d51d30d79a0b95f31d.jpg" title="Photograph of Roberto Gacio and Reinaldo Montero">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/31/61/316156fce210b3ba13e9a9605bbec618.jpg" alt="Photograph of Roberto Gacio and Reinaldo Montero" data-href="/digitalobject/12724" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dc/ef/dcef514fd157fb0918ff9257df6fb002.jpg" title="Xiomara Palacios, Maikel Chávez, and Reinaldo Montero in Fundación Ludwig, Havana, 2004">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3f/c1/3fc1b0da7b9323f6dba42e22d7e7c912.jpg" alt="Xiomara Palacios, Maikel Chávez, and Reinaldo Montero in Fundación Ludwig, Havana, 2004" data-href="/digitalobject/12718" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a9/7e/a97e9e3842f868c65be5b8ce318841c7.jpg" title="Alberto Sarraín and Reinaldo Montero">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/da/ec/daecea4c36d6e633accb7015b6ae88f2.jpg" alt="Alberto Sarraín and Reinaldo Montero" data-href="/digitalobject/12701" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/15/81/15810b87df42ae5efa4963b4d7d2a44e.jpg" title="Alberto Sarraín, Olga Lastra, Reinaldo Montero, Omar Valiño, and Abelardo Estorino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e3/cf/e3cf106c37d7f4efe74329bda160d889.jpg" alt="Alberto Sarraín, Olga Lastra, Reinaldo Montero, Omar Valiño, and Abelardo Estorino" data-href="/digitalobject/12690" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/47/1d/471d38f26d15d4bd261ddd4a8e2c803d.jpg" title="Abelardo Estorino and Reinaldo Montero">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/07/3c/073c888b3c0c483f11dcc72f52f6613c.jpg" alt="Abelardo Estorino and Reinaldo Montero" data-href="/digitalobject/12719" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

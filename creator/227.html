@@ -1,0 +1,1542 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>José Milián</li>
+                </ul>
+            </nav>
+            <h2>José Milián</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Director, artistic/general director, actor, design (general), set designer, costume designer, light designer, stage designer, author / playwright, adapter, dramaturge</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>Information available in Spanish; click "Espa&ntilde;ol" in the upper&nbsp;right hand&nbsp;side of the page.&nbsp;<img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI4My4xNzggMjgzLjE3OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjgzLjE3OCAyODMuMTc4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPHBhdGggZD0iTTI1NC44MTIsMTQwLjcxM2gtMjBjLTQuMTQyLDAtNy41LDMuMzU4LTcuNSw3LjV2OTEuMTg2YzAsNC44NC0zLjkzOSw4Ljc3OC04Ljc3OSw4Ljc3OEg0My43NzYgICBjLTQuODM5LDAtOC43NzUtMy45MzgtOC43NzUtOC43NzhWNjQuNjQ1YzAtNC44NDEsMy45MzYtOC43OCw4Ljc3NS04Ljc4aDk1Ljg1NWM0LjE0MiwwLDcuNS0zLjM1OCw3LjUtNy41di0yMCAgIGMwLTQuMTQyLTMuMzU4LTcuNS03LjUtNy41SDQzLjc3NmMtMjQuMTM4LDAtNDMuNzc1LDE5LjY0LTQzLjc3NSw0My43OHYxNzQuNzU1YzAsMjQuMTQsMTkuNjM4LDQzLjc3OCw0My43NzUsNDMuNzc4aDE3NC43NTYgICBjMjQuMTQsMCw0My43NzktMTkuNjM5LDQzLjc3OS00My43Nzh2LTkxLjE4NkMyNjIuMzEyLDE0NC4wNzEsMjU4Ljk1NCwxNDAuNzEzLDI1NC44MTIsMTQwLjcxM3oiIGZpbGw9IiMwMDAwMDAiLz4KCTxwYXRoIGQ9Ik0yNzUuNjc3LDBoLTc5LjU1M2MtNC4xNDIsMC03LjUsMy4zNTgtNy41LDcuNXYyMGMwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDI3LjMwNCAgIEwxMjAuNjgzLDEzNy43NDNjLTIuOTI5LDIuOTI5LTIuOTI5LDcuNjc3LDAsMTAuNjA3bDE0LjE0MiwxNC4xNDNjMS40MDcsMS40MDcsMy4zMTQsMi4xOTcsNS4zMDQsMi4xOTcgICBjMS45ODksMCwzLjg5Ny0wLjc5LDUuMzAzLTIuMTk3TDI0OC4xNzcsNTkuNzQ4djI3LjMwM2MwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDIwYzQuMTQyLDAsNy41LTMuMzU4LDcuNS03LjVWNy41ICAgQzI4My4xNzcsMy4zNTgsMjc5LjgxOSwwLDI3NS42NzcsMHoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" alt="" /></p>
+
+                </div>
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/421">La toma de La Habana por los ingleses</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/519">¿Y quién va a tomar café?</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/600">Otra vez Jehová con el cuento de Sodoma</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/613">Mamíferos hablando con sus muertos</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/631.html">Vade Retro</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/710">Lo que le pasó a la cantante de baladas</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1342">La Reina de Bachiche</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1377">Juana de Belciel</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1479">Mucho de todo</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1487">Vida de perro</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1499">Sibila, mi amor</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1529">La rueda de casino</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2875">Si vas a comer espera por Virgilio</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1997</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2874">Mahagonny</a><br />  
+                    <span>Adapter</span>
+                    <br /><span>1993</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3201">Para matar a Carmen</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3204">La ópera del mendigo</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3569">Maestra Vida</a><br />  
+                    <span>Dramaturge</span>
+                    <br /><span>1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3408">Las mariposas saltan al vacío</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1993</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3571">Las mariposas saltan al vacío</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3658">Los Triunfadores Recital Para Mayas y Conquistadores</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3661">El viejo varietés</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3876">Las criadas asesinas</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4355">Las mariposas saltan al vacío</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4773">Si vas a comer espera por Virgilio</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4742">La toma de La Habana por los ingleses</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>2015</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4378">El flaco y el gordo</a><br />
+                    <span>Director, Artistic/General Director</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>October 25, 2013 - October 26, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4039">El gordo y el flaco</a><br />
+                    <span>Director, Artistic/General Director</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>October 2012 - January 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4905">Las criadas asesinas</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>June 2012 - July 30, 2012</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1600">La Reina de Bachiche</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>June 16, 2006 - July 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/816">Lo que le pasó a la cantante de baladas</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span>April 2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4095">La ópera del mendigo</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4094">Para matar a Carmen</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4092">Juana de Belciel</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4093">Sibila, mi amor</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/690">Otra vez Jehová con el cuento de Sodoma</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>April 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3733">Si vas a comer espera por Virgilio</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3754">Si vas a comer, espera por Virgilio</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>October 31, 1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4818">Las mariposas saltan al vacío</a><br />
+                    <span>Artistic/General Director</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>November 18, 1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3732">Mahagonny</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>September 4, 1993</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1809">Sibila, mi amor</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3744">Sibila, mi amor</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1990's</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1643">Juana de Belciel</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>October 20, 1989 - 1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1791">Mucho de todo</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>March 27, 1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4632">Los Triunfadores: Recital para Mayas y Conquistadores</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/494">Teatro Musical de La Habana</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/611.html">¿Y quién va a tomar café?</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 26, 1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4634">Una señora comediante</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/494">Teatro Musical de La Habana</a></span><br />
+                    <span>1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4635">En el viejo Varietés</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/494">Teatro Musical de La Habana</a></span><br />
+                    <span>1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4961.html">En el viejo Varietés</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/494">Teatro Musical de La Habana</a></span><br />
+                    <span>1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/535.html">La toma de La Habana por los ingleses</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>June 6, 1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1598">La Reina de Bachiche</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/98">Teatro Van Troi</a></span><br />
+                    <span>1968</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3159">Otra vez Jehová con el cuento de Sodoma</a><br />
+                    <span>Actor</span><br />
+                    <span><a href="../venue/81.html">Teatro Principal de Camagüey</a></span><br />
+                    <span>September 29, 2000 - October 7, 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/690">Otra vez Jehová con el cuento de Sodoma</a><br />
+                    <span>Actor</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>April 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4773">Si vas a comer espera por Virgilio</a><br />
+                    <span>Design (General)</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4742">La toma de La Habana por los ingleses</a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>2015</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4378">El flaco y el gordo</a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>October 25, 2013 - October 26, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4039">El gordo y el flaco</a><br />
+                    <span>Stage designer</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>October 2012 - January 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1600">La Reina de Bachiche</a><br />
+                    <span>Set designer, Costume designer</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>June 16, 2006 - July 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4818">Las mariposas saltan al vacío</a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span>November 18, 1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1809">Sibila, mi amor</a><br />
+                    <span>Set designer, Light designer, Costume designer</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3564">Juana de Belciel</a><br />
+                    <span>Light designer, Costume designer</span><br />
+                    <span><a href="../venue/1006.html">Unknown venue - Camagüey</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1643">Juana de Belciel</a><br />
+                    <span>Light designer, Costume designer</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>October 20, 1989 - 1989</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+                <div class="linkeditems">
+                <h3>Primary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1140/">La Coreana</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/905/">Rosa Fornés: su imagen múltiple</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/807/">Entretelones - Abril</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1314/">Teatro musical: la luneta impaciente</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/925/">A la mesa con Virgilio</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1290/">Maestra vida</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+                <br />
+               Author: Monique T. Labat (2004-08-10, 2017)
+            
+        
+            
+            <hr />
+            <h3>Videos</h3>
+            <ul class="videos">
+              
+              <li>
+                <figure>
+                  <a id="cta0009000040" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/0c/65/0c65c2cb1ad1b373c37980aa7a2cf100.jpg" alt="Link to video of Si vas a comer espera por Virgilio (Wide)" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/676">Si vas a comer espera por Virgilio (Wide)</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0009000013" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/10/42/10429986dc2411d14130f2b3344ea28a.jpg" alt="Link to video of Si vas a comer espera por Virgilio (Edited)" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/595">Si vas a comer espera por Virgilio (Edited)</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0003000018" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/66/96/66967231d8e203283ea0807db148c25b.jpg" alt="Link to video of Sibila, mi amor" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/12836">Sibila, mi amor</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0003000016" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/c7/cf/c7cfcd9ecf7bd07213b5bac8e4260f44.jpg" alt="Link to video of Si vas a comer espera por Virgilio" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/4163">Si vas a comer espera por Virgilio</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0003000013" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/a2/54/a2548d24e8eeb6089db7a2d91ee883f8.jpg" alt="Link to video of Si vas a comer espera por Virgilio" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/61">Si vas a comer espera por Virgilio</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0003000005" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/93/f1/93f123cb0ac9a3a9ec6b25be394b6f6e.jpg" alt="Link to video of Sibila, mi amor" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/53">Sibila, mi amor</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0003000004" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/56/a6/56a69d7f839cfb3bd42d036e9eb31b02.jpg" alt="Link to video of Si vas a comer espera por Virgilio" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/52">Si vas a comer espera por Virgilio</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0003000003" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/80/88/8088435b7008b07a6a9d0bb642e9dd8b.jpg" alt="Link to video of Las mariposas saltan al vacío - Salute" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/51">Las mariposas saltan al vacío - Salute</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0003000002" class="fancybox">
+                    
+                    
+                      <img src="http://ctda.library.miami.edu/media/cache/24/39/243990f3a51171144164f181717a0680.jpg" alt="Link to video of Mahagonny" />
+                    
+                    
+                  </a>
+                  <figcaption>
+                    <a href="http://ctda.library.miami.edu/digitalobject/50">Mahagonny</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              </ul>
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+                <li>
+                  <h4>Website:</h4>
+                  <span><a href="http://www.cniae.cult.cu/Milian_biografia.htm" target="_blank">http://www.cniae.cult.cu/Milian_biografia.htm</a></span>
+                </li>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>March 17, 1946</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Matanzas, Matanzas, Cuba</span>
+                </li>
+              
+              
+              
+              
+
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="../taggeditems-tag=Cuban%20Theater.html"><li>Cuban Theater</li></a>
+                
+                    <a href="../taggeditems-tag=Director--Cuban.html"><li>Director--Cuban</li></a>
+                
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/16870.html">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/b9/7ab910d933ed01be5f70095c4c3ae2a8.jpg" title="Program for the production, &quot;En el viejo varietés&quot;">
+                    
+                    
+                    <img src="../media/cache/00/b1/00b1c6e9587c6d0ddf09640fcefbba32.jpg" alt="Program for the production, &quot;En el viejo varietés&quot;" data-href="/digitalobject/16870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0e/66/0e6645c824d293d07742062931208a99.jpg" title="Program for the production, &quot;En el viejo varietés&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6f/78/6f78f1651c51509775b0a76e21acf8ab.jpg" alt="Program for the production, &quot;En el viejo varietés&quot;" data-href="/digitalobject/16870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5d/19/5d19084525d299cdbeaa0ebac8672d7b.jpg" title="Program for the production, &quot;En el viejo varietés&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/38/8e/388e200a6d86888c982bdb04292cb41e.jpg" alt="Program for the production, &quot;En el viejo varietés&quot;" data-href="/digitalobject/16870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b5/b2/b5b266cf2cb682636d35133ed4c35e31.jpg" title="Program for the production, &quot;En el viejo varietés&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/63/4e/634e815e5fc43443ca367661bcb35f83.jpg" alt="Program for the production, &quot;En el viejo varietés&quot;" data-href="/digitalobject/16870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/44/46/44467d7da7c4713bdcedd6a98fc65b7b.jpg" title="Program for the production, &quot;En el viejo varietés&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/aa/d5/aad5afd33d8c82f908be93ad34aa6941.jpg" alt="Program for the production, &quot;En el viejo varietés&quot;" data-href="/digitalobject/16870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/51/7c/517cc5a820c1cb6593139a14a4414412.jpg" title="Program for the production, &quot;En el viejo varietés&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/02/21/022163f375164766f593df0d49c1749c.jpg" alt="Program for the production, &quot;En el viejo varietés&quot;" data-href="/digitalobject/16870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9a/54/9a54eb068f4f7c60e2c5148f028db668.jpg" title="Program for the production, &quot;En el viejo varietés&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/12/32/12325fea8e7b34a2d1559f215df8f4d5.jpg" alt="Program for the production, &quot;En el viejo varietés&quot;" data-href="/digitalobject/16870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7f/7a/7f7ad2ecf1f85e7f8534ad2d5963ec76.jpg" title="Program for the production, &quot;En el viejo varietés&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/cc/f2/ccf254dfe51833acd44f73857012f4a2.jpg" alt="Program for the production, &quot;En el viejo varietés&quot;" data-href="/digitalobject/16870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/04/59/0459924819c7828c755cdafa969ffb17.jpg" title="Program for the production, &quot;En el viejo varietés&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c3/2d/c32d1fde262b7526355972033068c23f.jpg" alt="Program for the production, &quot;En el viejo varietés&quot;" data-href="/digitalobject/16870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/aa/78/aa782f497805607b7ad1b56efa867e25.jpg" title="Program for the production, &quot;En el viejo varietés&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/63/81/6381a22f7aaf2e13a6fb3383aa9681d7.jpg" alt="Program for the production, &quot;En el viejo varietés&quot;" data-href="/digitalobject/16870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ed/ef/edef465a51c2c237b31c73d929f61819.jpg" title="Program for the production, &quot;En el viejo varietés&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/44/12/44124c996c78efce4e8b0d9fedc66cde.jpg" alt="Program for the production, &quot;En el viejo varietés&quot;" data-href="/digitalobject/16870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/73/c773f264adee13c6ce9aad36fc8dd37a.jpg" title="Program for the production, &quot;En el viejo varietés&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8f/fb/8ffb5ad5d4408a7d1261cd050952a172.jpg" alt="Program for the production, &quot;En el viejo varietés&quot;" data-href="/digitalobject/16870" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/24/c3/24c35199870c0d7c288f2b32ff8af6b9.jpg" title="Program for the production, &quot;En el viejo varietés&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/34/a2/34a2fcdbcd38db8d42de8d11d2921feb.jpg" alt="Program for the production, &quot;En el viejo varietés&quot;" data-href="/digitalobject/16869" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3f/98/3f9809dab8b4fa729c8c1f2ebf78091f.jpg" title="Program for the production, &quot;En el viejo varietés&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0f/0b/0f0b8e5243b594869d19c68d85f0798e.jpg" alt="Program for the production, &quot;En el viejo varietés&quot;" data-href="/digitalobject/16869" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/a6/8fa6d62f84a4e4f13ff6ceec1217e20e.jpg" title="Program for the production, &quot;Una señora comediante&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ee/6e/ee6eba53edd33cca4612298b8282b224.jpg" alt="Program for the production, &quot;Una señora comediante&quot;" data-href="/digitalobject/15975" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/62/b4/62b45ffc7ebd95b7f12c2d2312f13b57.jpg" title="Program for the production, &quot;Una señora comediante&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/40/fa/40fa0e417a110ac2b16e3ffd9c613157.jpg" alt="Program for the production, &quot;Una señora comediante&quot;" data-href="/digitalobject/15975" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7d/06/7d06534ce71a3bba3c1edf3212f78771.jpg" title="Program for the production, &quot;Una señora comediante&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/02/93/0293243f118c5c93c9a9891cc93832c1.jpg" alt="Program for the production, &quot;Una señora comediante&quot;" data-href="/digitalobject/15975" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/19/c71901a7b762871e17571f5355e5de63.jpg" title="Program for the production, &quot;Una señora comediante&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ac/86/ac86221144ae7fad4d500f594fc4fe63.jpg" alt="Program for the production, &quot;Una señora comediante&quot;" data-href="/digitalobject/15975" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f2/fb/f2fb51fa977857b1f7062056b8b66784.jpg" title="Program for the production, &quot;Una señora comediante&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bd/f1/bdf1d530c4cb97864c73f7e49c02ca72.jpg" alt="Program for the production, &quot;Una señora comediante&quot;" data-href="/digitalobject/15975" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b8/cb/b8cb7bae22060899ca1df95372faaa73.jpg" title="Program for the production, &quot;Una señora comediante&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/45/51/455136df8cf36dec06d9adb37d8309a0.jpg" alt="Program for the production, &quot;Una señora comediante&quot;" data-href="/digitalobject/15975" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c2/4a/c24aac49e3d6cfb4d0cb3ce6a850bd5a.jpg" title="Program for the production, &quot;Una señora comediante&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/08/2a/082aa3e6140190213e975105c4da5061.jpg" alt="Program for the production, &quot;Una señora comediante&quot;" data-href="/digitalobject/15975" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/05/45/0545c8a217dd336ca166dc2644060dec.jpg" title="Program for the production, &quot;Una señora comediante&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2f/d0/2fd09c5a3841b433927964aeda15b7d4.jpg" alt="Program for the production, &quot;Una señora comediante&quot;" data-href="/digitalobject/15975" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/e5/b7e5219b84b93f87aca869d49c5709c9.jpg" title="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8f/e9/8fe97934862942fa7b94d344d0063f06.jpg" alt="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;" data-href="/digitalobject/15972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b1/23/b123cade3c0d5f2ead33cf3f719340e7.jpg" title="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d7/d8/d7d87f09640599bea5a51340d3e991a0.jpg" alt="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;" data-href="/digitalobject/15972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/53/04/530410c61a2c8295c753a90f05a01081.jpg" title="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5d/f5/5df58d3689b0288ac641d6316e0b8709.jpg" alt="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;" data-href="/digitalobject/15972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0f/9f/0f9faf28aa5686c04bf04df46667686d.jpg" title="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f7/c9/f7c935128f4c663e02f1799f14cf509f.jpg" alt="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;" data-href="/digitalobject/15972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/f9/31f94796dc53d6cae63d3250c00eb23f.jpg" title="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/27/13/271364341840bb46cd019c35546e4a17.jpg" alt="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;" data-href="/digitalobject/15972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/83/80/8380d2a8a025eb4007bee1565025f946.jpg" title="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6d/0e/6d0e1d277aba176ed0557f1cc8c55555.jpg" alt="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;" data-href="/digitalobject/15972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/44/bb/44bba9a03b385f371b71e6ccdaa45c24.jpg" title="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/cd/94/cd946bce4f4c8f9c3ed055f2760cc16f.jpg" alt="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;" data-href="/digitalobject/15972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/59/96/5996b83f33872de92aeb4cdbd75dd41b.jpg" title="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3d/8d/3d8d159c5f12e37a4cf026704e8e6032.jpg" alt="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;" data-href="/digitalobject/15972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a2/cb/a2cb0a37c6f27b43e154aff76ff0dbf5.jpg" title="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/94/d4/94d46885cc07425394bf8e9239b3b6a5.jpg" alt="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;" data-href="/digitalobject/15972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/62/07/6207e07c8e55dc83e3ded5a64516da5a.jpg" title="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/22/e6/22e68776c2500f34449ce34607dd7619.jpg" alt="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;" data-href="/digitalobject/15972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/b1/1bb1830d629082aa84a788c1abf0936b.jpg" title="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fc/18/fc18b7349ef76806df4fd52aa77a338b.jpg" alt="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;" data-href="/digitalobject/15972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/a1/b7a1dcdc3f51592d7a0e6d7b7fd2ff03.jpg" title="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b7/85/b785ea648efaffabd395bf6dd94c9fe2.jpg" alt="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;" data-href="/digitalobject/15972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/55/c8/55c8cffedde788acc6c882dc6dd8dce2.jpg" title="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/76/8c/768cf8a22a49ad4b4167ce25b09a8aaa.jpg" alt="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;" data-href="/digitalobject/15972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/af/32/af32d3ab77bf26f05e9dc1ab38f021bb.jpg" title="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8c/50/8c50943fa2b50ec2730eb545ce4518a8.jpg" alt="Program for the production, &quot;Los triunfadores: recital para mayas y conquistadores&quot;" data-href="/digitalobject/15972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/0f/d20f4ca60587d2f49d82659f711de449.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5d/0c/5d0cf605890b942ea4289e79dc558fa0.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/74/d274f24ea568d33f2acd9f22e88465b2.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ae/85/ae855851120c858f52efda5683d713c1.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/25/49/2549ddd739e194b89a87704d003276da.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ed/55/ed55d1cb882024cfd2c5cfa5a4e43a0f.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/55/ed/55ed4440529cb838cb9fefdbb9807fd2.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/10/2f/102f2855b4de0ad19b343822c08174ae.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d3/2f/d32f38d9a2ccdfd376485242eb6efd23.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/59/9f/599f9983fef9e9aea2375229628ade81.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/6c/e06cc47d9168b57dadfd3e8dfb467c49.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3e/b6/3eb67939b22d6fb1178a8318e7bcdea9.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/de/01/de010a3733222517650099975c32a7fb.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d1/83/d183d745a25bd1edb5f29b7c531a5d46.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7b/ac/7bac807ffbf9cf99355cd521e8bcc26b.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/52/b8/52b8424ea63ee5f65989b226c81a06c5.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/94/58/9458821721b828426e13cf45e92cde8d.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/75/a6/75a65050f3d1662e641b195a8bd9b9f3.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/eb/11/eb11ab9c1b38faa9186dce47e31b7a95.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c8/ed/c8edec406b4c32701525852d4771d342.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/42/c3/42c38044a00c35a31825d9dcafb57e06.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/31/be/31be0af14f18327d81d1fb358cff59d2.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/13/8613052561f7e5dcc56d6c58349a98b1.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6e/9b/6e9b6c815f0165fd19b2298b5d982a1a.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/47/54/47544ab2de436fa488c3064f07c3510b.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0c/1d/0c1db12c3f7a749feb5fd3b6976f353e.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d8/2c/d82c5c84b09ec060b431e23f23745bc6.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/02/f4/02f43c6d7e5a1b26d835ffea1cad5407.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/eb/f5/ebf5f3ab68c780147935eae28665720a.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d5/ab/d5ab364f3a879c0223cbca9e10a93a6c.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0a/d1/0ad1a6279277701fb96360c89ec49bb2.jpg" title="Program for the production, &quot;Maestra Vida&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/03/a1/03a16812486146a9a500f320d4653445.jpg" alt="Program for the production, &quot;Maestra Vida&quot;" data-href="/digitalobject/16884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3a/b5/3ab51b42d13f8f2a8ec37e6d3a42d38d.jpg" title="Photograph of José Milián, Zoa Fernández and Iván Tenorio">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/76/75/7675f2f7ad321602913c97b2c140e687.jpg" alt="Photograph of José Milián, Zoa Fernández and Iván Tenorio" data-href="/digitalobject/16885" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a5/0e/a50edf55cf3dd7214e1a445cfe16640b.jpg" title="Photograph of Eugenio Hernández Espinosa, José Milián, and Maité Vera">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f4/b3/f4b3ca8c5ca3ab7961ddbf38a68dd2b3.jpg" alt="Photograph of Eugenio Hernández Espinosa, José Milián, and Maité Vera" data-href="/digitalobject/16230" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d1/45/d1451b7aed588c1a8522e11972b4f365.jpg" title="Photograph of Zenaida Elizalde in the production, &quot;La toma de La Habana por los ingleses&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a0/b4/a0b4449871e942bfd5831808164af443.jpg" alt="Photograph of Zenaida Elizalde in the production, &quot;La toma de La Habana por los ingleses&quot;" data-href="/digitalobject/16229" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cf/4c/cf4c2cd1e8d27290c1d1829db5df7e07.jpg" title="Photograph of the production of &quot;La toma de La Habana por los ingress&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/61/bf/61bfe9cde552d4add2f79553421a7ee2.jpg" alt="Photograph of the production of &quot;La toma de La Habana por los ingress&quot;" data-href="/digitalobject/14537" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/62/bd/62bd9be335f048bbff6b40652fc639c0.jpg" title="Photograph of Déxter Cápiro (Pepe) and Arístides Naranjo (Virgilio) in the production, “Si vas a comer, espera por Virgilio”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/63/bc/63bccbcd63a6b9433b164c359a893ebf.jpg" alt="Photograph of Déxter Cápiro (Pepe) and Arístides Naranjo (Virgilio) in the production, “Si vas a comer, espera por Virgilio”" data-href="/digitalobject/16375" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/9f/869f4eb2de6b834ce8b38026c5274a34.jpg" title="Photograph of Déxter Cápiro (Pepe) and Arístides Naranjo (Virgilio) in the production, “Si vas a comer, espera por Virgilio”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/09/49/09494031eee4081721722501dd66a358.jpg" alt="Photograph of Déxter Cápiro (Pepe) and Arístides Naranjo (Virgilio) in the production, “Si vas a comer, espera por Virgilio”" data-href="/digitalobject/16374" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f9/42/f9425c30806bd8270bf33b70a87c2f92.jpg" title="Photograph of Déxter Cápiro (Pepe) and Arístides Naranjo (Virgilio) in the production, “Si vas a comer, espera por Virgilio”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b4/ed/b4edba00e86f879163e7de1c108423f9.jpg" alt="Photograph of Déxter Cápiro (Pepe) and Arístides Naranjo (Virgilio) in the production, “Si vas a comer, espera por Virgilio”" data-href="/digitalobject/16373" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('#cta0009000040').fancybox({
+          content: '<video id="vid-cta0009000040" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000400001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000040').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0009000013').fancybox({
+          content: '<video id="vid-cta0009000013" src="http://streaming.miami.edu:8080/flash/ctda/cta00090000130001002.mp4" width=1280 height=720></video>',
+          maxWidth: 1310,
+          maxHeight: 775,
+          afterShow: function() {
+            $('#vid-cta0009000013').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0003000018').fancybox({
+          content: '<video id="vid-cta0003000018" src="http://streaming.miami.edu:8080/flash/ctda/cta00030000180001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-cta0003000018').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0003000016').fancybox({
+          content: '<video id="vid-cta0003000016" src="http://streaming.miami.edu:8080/flash/ctda/cta00030000160001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-cta0003000016').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0003000013').fancybox({
+          content: '<video id="vid-cta0003000013" src="http://streaming.miami.edu:8080/flash/ctda/cta00030000130001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-cta0003000013').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0003000005').fancybox({
+          content: '<video id="vid-cta0003000005" src="http://streaming.miami.edu:8080/flash/ctda/cta00030000050001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-cta0003000005').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0003000004').fancybox({
+          content: '<video id="vid-cta0003000004" src="http://streaming.miami.edu:8080/flash/ctda/cta00030000040001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-cta0003000004').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0003000003').fancybox({
+          content: '<video id="vid-cta0003000003" src="http://streaming.miami.edu:8080/flash/ctda/cta00030000030001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-cta0003000003').mediaelementplayer();
+          }
+        });
+        
+        $('#cta0003000002').fancybox({
+          content: '<video id="vid-cta0003000002" src="http://streaming.miami.edu:8080/flash/ctda/cta00030000020001002.mp4" width=720 height=480></video>',
+          maxWidth: 750,
+          maxHeight: 535,
+          afterShow: function() {
+            $('#vid-cta0003000002').mediaelementplayer();
+          }
+        });
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

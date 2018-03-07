@@ -1,0 +1,885 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../venues.html">Venues</a></li>
+              <li>Gramercy Arts Theater</li>
+            </ul>
+          </nav>
+          <h2>Gramercy Arts Theater</h2>
+        </header>
+
+        <section class="main">
+          
+
+          
+
+          
+
+          
+          <h4>Notes:</h4>
+          <p>138 E. 27th St.<br /> New York, NY 10016<br /> Phone:(212) 889-2850 Fax: 2126863782<br /> Box Office Hours:Mon.-Sat. 9:30AM-8PM; Sun. 3PM-8PM<br /> Parking: No.<br /> Handicap Accessible: Yes. Orchestra fully accessible</p>
+          
+
+          
+
+          
+          <div class="linkeditems">
+            <h3>Productions: +</h3>
+            <ul>
+              
+              <li>
+                <a href="../production/1596.html">Gardel: el musical</a>
+                
+                <br /><span>August 4, 2006 - December 17, 2006</span>
+                
+                
+                <br /><span>Directed by: Lynnette Salas</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3308">Crónica de una muerte anunciada</a>
+                
+                <br /><span>April 17, 2005 - May 20, 2005</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3310">La casa de Bernarda Alba</a>
+                
+                <br /><span>April 15, 2005 - May 31, 2005</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/928">Ana en el trópico</a>
+                
+                <br /><span>September 26, 2004 - May 15, 2005</span>
+                
+                
+                <br /><span>Directed by: René Buch</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3251">El enano en la botella</a>
+                
+                <br /><span>September 17, 2004 - November 3, 2004</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3168">El enano en la botella</a>
+                
+                <br /><span>May 22, 2001</span>
+                
+                
+                <br /><span>Directed by: Raúl Martín</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3220">El álbum</a>
+                
+                <br /><span>May 22, 2001</span>
+                
+                
+                <br /><span>Directed by: Raúl Martín</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3287">El baile</a>
+                
+                <br /><span>December 3, 2000 - December 17, 2000</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3288">El baile</a>
+                
+                <br /><span>May 2000</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3280">Parece blanca</a>
+                
+                <br /><span>January 28, 2000 - May 25, 2000</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/336">El baile (También podría titularse El collar)</a>
+                
+                <br /><span>November 11, 1999 - December 19, 1999</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/979">Crónica de una muerte anunciada</a>
+                
+                <br /><span>May 1, 1999</span>
+                
+                
+                <br /><span>Directed by: Jorge Alí Triana</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/558">La casa de Bernarda Alba</a>
+                
+                <br /><span>March 18, 1999</span>
+                
+                
+                <br /><span>Directed by: René Buch</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3313">Las penas saben nadar</a>
+                
+                <br /><span>1999</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1337">The Next Stop (La próxima  parada)</a>
+                
+                <br /><span>1999</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/337">Parece blanca</a>
+                
+                <br /><span>October 29, 1998</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/3266.html">Vagos rumores</a>
+                
+                <br /><span>October 13, 1998</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3296">Las penas saben nadar</a>
+                
+                <br /><span>1998</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3312">Las penas saben nadar</a>
+                
+                <br /><span>March 30, 1997 - April 11, 1997</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3265">Las penas saben nadar</a>
+                
+                <br /><span>October 8, 1996 - November 18, 1996</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/339.html">Obscure Rumors</a>
+                
+                <br /><span>October 8, 1996 - November 16, 1996</span>
+                
+                
+                <br /><span>Directed by: Abelardo Estorino</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3871">Vagos rumores</a>
+                
+                <br /><span>October 8, 1996 - November 16, 1996</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/5034">Bodas de sangre</a>
+                
+                <br /><span>May 1993</span>
+                
+                
+                <br /><span>Directed by: René Buch</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/5020">La cándida Eréndira</a>
+                
+                <br /><span>February 4, 1992 - 1996</span>
+                
+                
+                <br /><span>Directed by: Jorge Alí Triana</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/322">Botanica</a>
+                
+                <br /><span>January 1991 - March 1991</span>
+                
+                
+                <br /><span>Directed by: Manuel Martín Jr.</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/5030">El Eterno Femenino</a>
+                
+                <br /><span>1990</span>
+                
+                
+                <br /><span>Directed by: Beatriz Córdoba</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1096">La nonna</a>
+                
+                <br /><span>July 29, 1989</span>
+                
+                
+                <br /><span>Directed by: Braulio Villar</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/5033.html">Padre Gómez y Santa Cecilia</a>
+                
+                <br /><span>1988</span>
+                
+                
+                <br /><span>Directed by: René Buch</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1088">Revoltillo</a>
+                
+                <br /><span>November 5, 1987 - 1998</span>
+                
+                
+                <br /><span>Directed by: René Buch</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/366.html">Café con leche</a>
+                
+                <br /><span>1984</span>
+                
+                
+                <br /><span>Directed by: René Buch</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/5016">A secreto agravio, secreta venganza</a>
+                
+                <br /><span>1983</span>
+                
+                
+                <br /><span>Directed by: René Buch</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/5021">Doña Rosita la soltera</a>
+                
+                <br /><span>1982</span>
+                
+                
+                <br /><span>Directed by: René Buch</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/5022">El día que me quieras</a>
+                
+                <br /><span>1982</span>
+                
+                
+                <br /><span>Directed by: René Buch</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4697">Mundo de cristal</a>
+                
+                <br /><span>July 29, 1980 - August 30, 1980</span>
+                
+                
+                <br /><span>Directed by: René Buch</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/5013.html">La celestina</a>
+                
+                <br /><span>March 1980</span>
+                
+                
+                <br /><span>Directed by: René Buch</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/4994">La casa de Bernarda Alba</a>
+                
+                <br /><span>November 1979</span>
+                
+                
+                <br /><span>Directed by: René Buch</span>
+                
+              </li>
+              
+              <li>
+                <a href="../production/5023.html">Jardín de otoño</a>
+                
+                <br /><span>1978 - 1979</span>
+                
+                
+                <br /><span>Directed by: Delfor Peralta</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/5029">The Love of Don Perlimplin and Belisa in Her Garden</a>
+                
+                <br /><span>1976</span>
+                
+                
+                <br /><span>Directed by: Christopher Martín</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/5037">A Miracle for Maggie</a>
+                
+                <br /><span>November 7, 1974</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3660">El arquitecto y el emperador de Asiria</a>
+                
+                <br /><span>February 13, 1974</span>
+                
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3811">Electra Garrigó</a>
+                
+                <br /><span>September 22, 1973</span>
+                
+                
+                <br /><span>Directed by: Silvia Brito</span>
+                
+              </li>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/1342">La Gringa</a>
+                
+                <br /><span>20th century</span>
+                
+                
+                <br /><span>Directed by: René Buch</span>
+                
+              </li>
+              
+            </ul>
+          </div>
+        
+        
+             
+        
+          
+      
+                
+
+
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              <li>
+                <h4>Venue type:</h4>
+                <span>Private performing space</span>
+              </li>
+              
+              
+              
+              <li>
+                <h4>City:</h4>
+                <span>New York, New York</span>
+              </li>
+              
+              <li>
+                <h4>Country:</h4>
+                <span>United States</span>
+              </li>
+              
+              
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16943">View details</a>
+            <div id="digitalobjects">
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7c/d9/7cd91a0880d7aee6a90953226acc6da4.jpg" title="Press clipping for the production, electra Garrigó">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/f9/92/f9926640149441b0f3eaf22c71fab09c.jpg" alt="Press clipping for the production, electra Garrigó" data-href="/digitalobject/16943" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/05/df05246e58bfad19521e22b9afdef6b4.jpg" title="Ana Margarita Martínez-Casado (Poncia) and Adria Santana (Bernarda) in &quot;The House of Bernarda Alba&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/16/06/1606aa50ff37f3fbd3fd9fb33400eb8e.jpg" alt="Ana Margarita Martínez-Casado (Poncia) and Adria Santana (Bernarda) in &quot;The House of Bernarda Alba&quot;" data-href="/digitalobject/15419" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/51/a3/51a3027817e6f2f5ffdd513de0aab6d8.jpg" title="Photographs of the production, A secreto agravio, secreta venganza">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/6e/cd/6ecd84a249b83bb6bd050e43074ab5b9.jpg" alt="Photographs of the production, A secreto agravio, secreta venganza" data-href="/digitalobject/16916" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8e/ba/8eba2fb7f1cf13b5a3c6b87f82a5a88c.jpg" title="Photographs of the production, A secreto agravio, secreta venganza">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/79/55/7955cbb87203cb28e3946a23222d1354.jpg" alt="Photographs of the production, A secreto agravio, secreta venganza" data-href="/digitalobject/16916" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/04/f5/04f5fdcfffd6fa2573df33a816b16cc8.jpg" title="Photograph of the production, Colón Cristobal">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/10/16/101671f2431cf9affed52c8d6021c803.jpg" alt="Photograph of the production, Colón Cristobal" data-href="/digitalobject/16934" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/51/43/51432f6d6d6e910a4a036b07ba266812.jpg" title="Photograph of the production, Jardín de otoño">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/7b/d8/7bd8e9655b686df34d92441c0e5a241d.jpg" alt="Photograph of the production, Jardín de otoño" data-href="/digitalobject/16933" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/9a/229abce569996691803ab0c08d71c6b6.jpg" title="Photograph of the production, Mundo de cristal">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/c0/5a/c05afe4782d794db554b82b831331366.jpg" alt="Photograph of the production, Mundo de cristal" data-href="/digitalobject/16931" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/02/91/02918ebefe42335956eb57838fd98a24.jpg" title="Photographs of the production, El día que me quieras">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/b6/6a/b66aa09709e7a400a520564852154176.jpg" alt="Photographs of the production, El día que me quieras" data-href="/digitalobject/16929" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/74/31/743154cb1a51c77cb13be1df37a0bb91.jpg" title="Photographs of the production, El día que me quieras">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/fc/e1/fce1799f251c4aadfcd5c20f12c594bd.jpg" alt="Photographs of the production, El día que me quieras" data-href="/digitalobject/16929" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fe/3a/fe3a51ce84122e6d310da00180317c8d.jpg" title="Photograph of the production, Doña Rosita la soltera">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/85/2c/852ccd2564b2bb819e353973198bebd0.jpg" alt="Photograph of the production, Doña Rosita la soltera" data-href="/digitalobject/16928" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/25/ec25d1954926a3fe7bbd462179d96808.jpg" title="Photographs of the production, La Celestina">
+                  
+                  
+                  <img src="../media/cache/7a/52/7a522ca630ea2066bfd9f472a7147a39.jpg" alt="Photographs of the production, La Celestina" data-href="/digitalobject/16927" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/4d/314da453aaa8a72234b6295d869fc952.jpg" title="Photographs of the production, La Celestina">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/5e/dd/5edd6703fe74f5da295137ad8221692c.jpg" alt="Photographs of the production, La Celestina" data-href="/digitalobject/16927" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ed/2b/ed2b85d64760f4c460a98afb87929f3f.jpg" title="Photographs of the production, La Celestina">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/3c/80/3c8095eab2ac68b243112fc49019cedf.jpg" alt="Photographs of the production, La Celestina" data-href="/digitalobject/16927" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/4c/314c09637410f491e0910c962887114b.jpg" title="Photographs of the production, La Celestina">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/e5/d9/e5d9788ea02f9cbc33fb84dffd775c08.jpg" alt="Photographs of the production, La Celestina" data-href="/digitalobject/16927" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c1/51/c1514309795cef111f331cc15c8ecd9d.jpg" title="Photographs of the production, La cándida Eréndira">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/6e/28/6e285bac7fe2a2251e273e1dc11d6630.jpg" alt="Photographs of the production, La cándida Eréndira" data-href="/digitalobject/16922" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ba/74/ba74127631f6275bcf1825723e9c01ce.jpg" title="Photographs of the production, La cándida Eréndira">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/db/6d/db6d4e6b50195ee9290105f3603d4c63.jpg" alt="Photographs of the production, La cándida Eréndira" data-href="/digitalobject/16922" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/28/6a2887c1342da34cda169e2c8815523c.jpg" title="Photographs of the production, La cándida Eréndira">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/6c/3e/6c3eda035613787382f135418b305058.jpg" alt="Photographs of the production, La cándida Eréndira" data-href="/digitalobject/16922" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/43/79/43799b8294f6915132ef1c84f12ad9cf.jpg" title="Photographs of the production, La cándida Eréndira">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/eb/99/eb99ab544059d0852824851daf4d94ed.jpg" alt="Photographs of the production, La cándida Eréndira" data-href="/digitalobject/16922" />
+                  
+                </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

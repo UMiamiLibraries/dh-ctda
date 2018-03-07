@@ -1,0 +1,1755 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Adria Santana</li>
+                </ul>
+            </nav>
+            <h2>Adria Santana</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Actor</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>Information available in Spanish; click "Espa&ntilde;ol" in the upper&nbsp;right hand&nbsp;side of the page.&nbsp;<img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI4My4xNzggMjgzLjE3OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjgzLjE3OCAyODMuMTc4OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPHBhdGggZD0iTTI1NC44MTIsMTQwLjcxM2gtMjBjLTQuMTQyLDAtNy41LDMuMzU4LTcuNSw3LjV2OTEuMTg2YzAsNC44NC0zLjkzOSw4Ljc3OC04Ljc3OSw4Ljc3OEg0My43NzYgICBjLTQuODM5LDAtOC43NzUtMy45MzgtOC43NzUtOC43NzhWNjQuNjQ1YzAtNC44NDEsMy45MzYtOC43OCw4Ljc3NS04Ljc4aDk1Ljg1NWM0LjE0MiwwLDcuNS0zLjM1OCw3LjUtNy41di0yMCAgIGMwLTQuMTQyLTMuMzU4LTcuNS03LjUtNy41SDQzLjc3NmMtMjQuMTM4LDAtNDMuNzc1LDE5LjY0LTQzLjc3NSw0My43OHYxNzQuNzU1YzAsMjQuMTQsMTkuNjM4LDQzLjc3OCw0My43NzUsNDMuNzc4aDE3NC43NTYgICBjMjQuMTQsMCw0My43NzktMTkuNjM5LDQzLjc3OS00My43Nzh2LTkxLjE4NkMyNjIuMzEyLDE0NC4wNzEsMjU4Ljk1NCwxNDAuNzEzLDI1NC44MTIsMTQwLjcxM3oiIGZpbGw9IiMwMDAwMDAiLz4KCTxwYXRoIGQ9Ik0yNzUuNjc3LDBoLTc5LjU1M2MtNC4xNDIsMC03LjUsMy4zNTgtNy41LDcuNXYyMGMwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDI3LjMwNCAgIEwxMjAuNjgzLDEzNy43NDNjLTIuOTI5LDIuOTI5LTIuOTI5LDcuNjc3LDAsMTAuNjA3bDE0LjE0MiwxNC4xNDNjMS40MDcsMS40MDcsMy4zMTQsMi4xOTcsNS4zMDQsMi4xOTcgICBjMS45ODksMCwzLjg5Ny0wLjc5LDUuMzAzLTIuMTk3TDI0OC4xNzcsNTkuNzQ4djI3LjMwM2MwLDQuMTQyLDMuMzU4LDcuNSw3LjUsNy41aDIwYzQuMTQyLDAsNy41LTMuMzU4LDcuNS03LjVWNy41ICAgQzI4My4xNzcsMy4zNTgsMjc5LjgxOSwwLDI3NS42NzcsMHoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" alt="" /></p>
+
+                </div>
+            
+
+            
+              <div class="linkeditems">
+                  <h3>Notes: +</h3>
+                  <ul>
+                  <dt>
+<p>&nbsp;</p>
+</dt>
+
+                  </ul>
+              </div>              
+            
+
+            
+
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="../production/2795.html">Parece blanca</a><br />
+                    <span>Cecilia</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4325">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/581.html">Aguijón Theater</a></span><br />
+                    <span>September 13, 2013 - September 29, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2551">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/491.html">Havanafama Teatro Estudio</a></span><br />
+                    <span>February 13, 2011</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/15">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/69">Teatro América</a></span><br />
+                    <span>May 21, 2010 - May 23, 2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4311.html">Medea sueña Corinto</a><br />
+                    <span>Medea</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 2008</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4878.html">Los soles truncos</a><br />
+                    <span>Voz de la casa </span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 14, 2006 - November 5, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/821.html">Morir del cuento</a><br />
+                    <span>La anciana</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>February 3, 2005 - March 13, 2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3323">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/281.html">Sala Teatro Papalote</a></span><br />
+                    <span>January 27, 2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3284">Morir del cuento</a><br />
+                    <span>La anciana</span><br />
+                    <span><a href="../venue/106.html">Teatro Sauto</a></span><br />
+                    <span>January 26, 2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/985">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/289">Teatro Frexes</a></span><br />
+                    <span>2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/325.html">Luminaria</a><br />
+                    <span>Yamilé</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>May 15, 2004 - June 13, 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3302">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3292">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>September 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3301">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/57.html">Teatro Tomás Terry</a></span><br />
+                    <span>February 12, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3305">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/275">Museo de Arte de Zapopán - Foro Juan José Arreola</a></span><br />
+                    <span>November 30, 2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3331.html">El baile (También podría titularse El collar)</a><br />
+                    <span>Nina</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>May 10, 2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4877.html">Los soles truncos</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3140">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/31.html">Koubek Center (Miami Dade College)</a></span><br />
+                    <span>May 6, 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3300">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/37.html">Florida International University Wertheim Performing Art Center</a></span><br />
+                    <span>April 28, 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3322">El baile (También podría titularse El collar)</a><br />
+                    <span>Nina</span><br />
+                    <span><a href="../venue/106.html">Teatro Sauto</a></span><br />
+                    <span>March 28, 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3285.html">El baile</a><br />
+                    <span>Nina</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>February 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3287">El baile</a><br />
+                    <span>Nina</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>December 3, 2000 - December 17, 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/335.html">El baile (También podría titularse El collar)</a><br />
+                    <span>Nina</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>September 23, 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3288">El baile</a><br />
+                    <span>Nina</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>May 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3303">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/267">Teatro La Candelaria</a></span><br />
+                    <span>April 7, 2000 - April 9, 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3280">Parece blanca</a><br />
+                    <span>Cecilia Valdés</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>January 28, 2000 - May 25, 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/336">El baile (También podría titularse El collar)</a><br />
+                    <span>Nina</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>November 11, 1999 - December 19, 1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/558">La casa de Bernarda Alba</a><br />
+                    <span>Bernarda Alba</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>March 18, 1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3297">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3313">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/337">Parece blanca</a><br />
+                    <span>Cecilia Valdés</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>October 29, 1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3266.html">Vagos rumores</a><br />
+                    <span>Carlota, La Madre, Lola</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>October 13, 1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/967.html">Los soles truncos</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>February 14, 1998 - February 28, 1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/958">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/266">Espacios Unión - Auditorium</a></span><br />
+                    <span>February 8, 1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3296">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3312">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>March 30, 1997 - April 11, 1997</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3298">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/57.html">Teatro Tomás Terry</a></span><br />
+                    <span>February 13, 1997</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3318">Parece blanca</a><br />
+                    <span>Cecilia</span><br />
+                    <span><a href="../venue/57.html">Teatro Tomás Terry</a></span><br />
+                    <span>February 8, 1997 - February 23, 1997</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/339.html">Obscure Rumors</a><br />
+                    <span>Carlota, La Madre, Lola</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>October 8, 1996 - November 16, 1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3265">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>October 8, 1996 - November 18, 1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3871">Vagos rumores</a><br />
+                    <span>Carlota, La Madre, Lola</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>October 8, 1996 - November 16, 1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3281">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/894">Las Palmas de Gran Canaria, Gran Canaria</a></span><br />
+                    <span>1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3519">Parece blanca</a><br />
+                    <span>Cecilia</span><br />
+                    <span><a href="../venue/337.html">Camagüey, Camagüey, Cuba</a></span><br />
+                    <span>1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3278">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/235.html">Museo del Mar</a></span><br />
+                    <span>October 20, 1995 - October 21, 1995</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/340.html">Parece blanca</a><br />
+                    <span>Cecilia</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>August 1994 - 1997</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3283">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/831">San José</a></span><br />
+                    <span>March 1993</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3275">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/232.html">Zurcher Puppen Theater</a></span><br />
+                    <span>June 13, 1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3274">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/231.html">Regina Teatern</a></span><br />
+                    <span>May 27, 1991 - May 29, 1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3271">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/229">Sala Horacio Peterson</a></span><br />
+                    <span>November 8, 1990 - November 11, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3273">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>November 2, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3272">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/230">Casa Cultura</a></span><br />
+                    <span>October 28, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3307.html">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/902.html">Ciudad de México, México DF</a></span><br />
+                    <span>June 19, 1990 - June 22, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3270">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/272">La última carcajada de la cumbancha - Foro</a></span><br />
+                    <span>June 8, 1990 - June 17, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3279">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/237.html">Inner City Cultural Center</a></span><br />
+                    <span>May 25, 1990 - May 27, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/345.html">Ni un sí, ni un no</a><br />
+                    <span>Ella</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>April 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/327.html">Aristodemo</a><br />
+                    <span>Aretea</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 3, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3295">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3306">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1497">Casa de la Cultura</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3691.html">Ni un sí, ni un no</a><br />
+                    <span>Ella</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3282">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/242">Cornell University - Barnes Hall</a></span><br />
+                    <span>November 19, 1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3267">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/227">Teatro Universitario Chusig</a></span><br />
+                    <span>October 7, 1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/342.html">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 27, 1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3293">Las penas saben nadar</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/328.html">La malasangre</a><br />
+                    <span>Dolores</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 13, 1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/343.html">Que el diablo te acompañe: vamos a decir comedia en dos actos</a><br />
+                    <span>Elvira - la amante de Juani</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 10, 1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3269">Morir del cuento</a><br />
+                    <span>Delfina</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/228">Teatro Victoria</a></span><br />
+                    <span>May 8, 1985 - May 19, 1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3291">Morir del cuento</a><br />
+                    <span>Delfina</span><br />
+                    <span><a href="../venue/81.html">Teatro Principal de Camagüey</a></span><br />
+                    <span>March 29, 1985 - March 31, 1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3268">Morir del cuento</a><br />
+                    <span>Delfina</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3690.html">Morir del cuento</a><br />
+                    <span>Delfina</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/344.html">Morir del cuento</a><br />
+                    <span>Delfina</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>September 23, 1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3311">Santa Camila de La Habana Vieja</a><br />
+                    <span>Camila</span><br />
+                    <span><a href="../venue/81.html">Teatro Principal de Camagüey</a></span><br />
+                    <span>June 1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/591.html">Santa Camila de La Habana Vieja</a><br />
+                    <span>Camila</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 25, 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3689.html">Contigo pan y cebolla</a><br />
+                    <span>Lalita</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/582.html">Los inventos de un escaparate</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>June 1981</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/448.html">Ni un sí, ni un no</a><br />
+                    <span>La Otra</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 11, 1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3226">Santa Juana de América</a><br />
+                    <span>Biznieto y Abuela joven</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1148">Grupo Experimental de Aficionados</a></span><br />
+                    <span>1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/412.html">Santa Juana de América</a><br />
+                    <span>Biznieto y Abuela joven</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 15, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/570.html">Los diez días que estremecieron el mundo</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 20, 1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/565.html">La dama boba</a><br />
+                    <span>Nise</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 13, 1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2397">Algo muy serio</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1977 - 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/332.html">Los pequeños burgueses</a><br />
+                    <span>Paula - hija de Bassemenov, trabaja con la familia</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 9, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/968.html">El conde Alarcos</a><br />
+                    <span>Elvira</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 8, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/556.html">Si llueve te mojas como los demás</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 7, 1974 - July 13, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/560">Contigo pan y cebolla</a><br />
+                    <span>Lalita</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>April 19, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/333.html">La discreta enamorada</a><br />
+                    <span>Belisa</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>August 21, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4332">Es diferente</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/28.html">Miami-Dade County Auditorium</a></span><br />
+                    <span>August 3, 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4334">Es diferente prueba</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/28.html">Miami-Dade County Auditorium</a></span><br />
+                    <span>August 3, 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/978">Blues para Mr. Charlie</a><br />
+                    <span>Mamá D, Hazel</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3286">El baile</a><br />
+                    <span>Nina</span><br />
+                    <span><a href="../venue/57.html">Teatro Tomás Terry</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+            
+              <div class="linkeditems">
+              <h3>Awards: +</h3>
+              <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Category</th>
+                  <th>Award</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td>2002</td>
+                        <td>Honorary Member</td>
+                        <td>
+                          <a href="../award/82.html">Amigos del Teatro y las Artes Escénicas de Sevilla </a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2001</td>
+                        <td>Contribution to Art</td>
+                        <td>
+                          <a href="../award/81.html">Diploma Nicolás Guillén</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2000</td>
+                        <td>Outstanding perfomance by an actress</td>
+                        <td>
+                          <a href="../award/45.html">HOLA Award</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2001</td>
+                        <td>Best Actress</td>
+                        <td>
+                          <a href="../award/79.html">I Festival de Monólogos de Miami</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1983</td>
+                        <td>Best Actress</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/75">Premio Festival Nacional de Teatro de Camagüey</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1988</td>
+                        <td>Best Actress</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/75">Premio Festival Nacional de Teatro de Camagüey</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1980</td>
+                        <td>Best Supporting Actress</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/74">Premio Hermanos Saíz</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1982</td>
+                        <td>Best Actress</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/74">Premio Hermanos Saíz</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1983</td>
+                        <td>Best Actress</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/74">Premio Hermanos Saíz</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2000</td>
+                        <td>Trajectory</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/80">Premio Mariposa</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1995</td>
+                        <td>Best Actress</td>
+                        <td>
+                          <a href="../award/78.html">Premio May Vázquez</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1995</td>
+                        <td>Best Actress</td>
+                        <td>
+                          <a href="../award/78.html">Premio May Vázquez</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1990</td>
+                        <td>Best Actress</td>
+                        <td>
+                          <a href="../award/77.html">Premio Nacional Francisco Covarrubias</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1993</td>
+                        <td>Best Actress</td>
+                        <td>
+                          <a href="../award/77.html">Premio Nacional Francisco Covarrubias</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1997</td>
+                        <td>Best Actress of the Year</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/12">Premios ACE</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1989</td>
+                        <td>Best Actress</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/76">Premio Segismundo Festival del Monólogo de La Habana</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+                  
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/47/">Gran asistencia en festival del monólogo</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/926/">Estorino en Nueva York</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1041/">Los soles truncos</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1029/">Una hermosa e impresionante metáfora escenica</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+                <br />
+               Author: Lillian Manzor, Dainerys Machado (2017)
+            
+        
+            
+ 
+            
+            <hr />
+            <h3>Audios</h3>
+            <ul class="audios">
+              
+              <li>
+                <figure>
+                  <a id="cta0058000001" class="fancybox">
+                    
+                      Click to play audio
+                    
+                  </a>
+                  <figcaption>
+                    <a href="../digitalobject/16090.html">Interview with Carlos Repilado</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              </ul>
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+                <li>
+                  <h4>Website:</h4>
+                  <span><a href="http://www.cniae.cult.cu/Adria_Santana.htm" target="_blank">http://www.cniae.cult.cu/Adria_Santana.htm</a></span>
+                </li>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>August 29, 1948</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Victoria de las Lunas, Las Tunas, Cuba</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Death date:</h4>
+                  <span>September 30, 2011</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of death:</h4>
+                  <span>La Habana, La Habana, Cuba</span>
+                </li>
+              
+              
+
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="../taggeditems-tag=Actress.html"><li>Actress</li></a>
+                
+                    <a href="../taggeditems-tag=Cuban%20Theater.html"><li>Cuban Theater</li></a>
+                
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16421">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/63/d263c9e2ea28a3dd759b073103f00f73.jpg" title="Article, &quot;Los soles truncos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e6/78/e67830fc974b28f5f49e06bc1bedeea6.jpg" alt="Article, &quot;Los soles truncos&quot;" data-href="/digitalobject/16421" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/b1/09b19ca328e2d8284cbbe849e86dce9e.jpg" title="Program for the production, &quot;Los soles truncos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/59/e5/59e50a12f22209aff7c737a5ce9bef07.jpg" alt="Program for the production, &quot;Los soles truncos&quot;" data-href="/digitalobject/16419" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/11/e5/11e59d28519f0a28a92b23fd5c41317f.jpg" title="Program for the production, &quot;Los soles truncos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f4/74/f4740e03dd42c95e45de044a2f97092b.jpg" alt="Program for the production, &quot;Los soles truncos&quot;" data-href="/digitalobject/16419" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/49/50/4950168a72d9e12a53d322f44cef13b4.jpg" title="Letter from Rosa Ileana Boudet to Doris Gutiérrez about the production, &quot;Los soles truncos&quot;">
+                    
+                    
+                    <img src="../media/cache/0d/d8/0dd8a2b8f09a1e2e1b56d312d7eabe8c.jpg" alt="Letter from Rosa Ileana Boudet to Doris Gutiérrez about the production, &quot;Los soles truncos&quot;" data-href="/digitalobject/16417" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/9c/229cd111c3b24aaf3ce03554ed1f3a21.jpg" title="Photograph of Pedro Balmaseda, Adria Santana, Alberto Sarraín, Juan David Ferrer, Jorge Noa, Rosario Suárez (Charín), Lillian Manzor, Yvone López Arenal, Micheline Calvert, Isabel Moreno">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/09/a5/09a59b6005fa031aa4bdcca0a5c1c292.jpg" alt="Photograph of Pedro Balmaseda, Adria Santana, Alberto Sarraín, Juan David Ferrer, Jorge Noa, Rosario Suárez (Charín), Lillian Manzor, Yvone López Arenal, Micheline Calvert, Isabel Moreno" data-href="/digitalobject/15929" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8c/c3/8cc3f3a037ded77208343fff744ae53f.jpg" title="Adria Santana in the production, &quot;Las penas saben nadar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/cb/8a/cb8ad372493aace6aa154686ea30c9d4.jpg" alt="Adria Santana in the production, &quot;Las penas saben nadar&quot;" data-href="/digitalobject/15927" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4d/e6/4de6ad5b4243f8dbd1683ae13c5b1c5a.jpg" title="Adria Santana in the production, &quot;Las penas saben nadar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ac/2d/ac2d09b24e34b56feb67315a17032fbb.jpg" alt="Adria Santana in the production, &quot;Las penas saben nadar&quot;" data-href="/digitalobject/15928" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/68/5f/685fd95f28185c893cc142bd48833fbe.jpg" title="Adria Santana in the production, &quot;Las penas saben nadar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f8/f1/f8f11c06d1cbbb9645e1a6697068b0e0.jpg" alt="Adria Santana in the production, &quot;Las penas saben nadar&quot;" data-href="/digitalobject/15925" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/da/07/da07014682c15c670b2aad5e18be7a62.jpg" title="Adria Santana, Havana 2004">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6f/7c/6f7cf9de48aae1e1feef06409bf56774.jpg" alt="Adria Santana, Havana 2004" data-href="/digitalobject/12823" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/c7/56c76af291bd4e97bef873b819a6ac0c.jpg" title="Abelardo Estorino, Adria Santana, Reinaldo Montero, and Olga Lastra, Havana 2004">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1d/03/1d03ab2157985a0502b2cba13f1e262b.jpg" alt="Abelardo Estorino, Adria Santana, Reinaldo Montero, and Olga Lastra, Havana 2004" data-href="/digitalobject/12771" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/e6/d7e6195b0164b18b77f2fc420a81f749.jpg" title="Abelardo Estorino, Adria Santana, and Reinaldo Montero, Havana 2004">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/73/15/7315ffdb738f82c41585462fdb843fa7.jpg" alt="Abelardo Estorino, Adria Santana, and Reinaldo Montero, Havana 2004" data-href="/digitalobject/12741" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ce/da/ceda6d911b1613cc080498897fa2ff87.jpg" title="René Buch, Adria Santana, and Abelardo Estorino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1a/51/1a517a655dc60dccd134b6cbdadadacc.jpg" alt="René Buch, Adria Santana, and Abelardo Estorino" data-href="/digitalobject/12828" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2f/7d/2f7d9388f7e2f319fd251892fab1af24.jpg" title="Cast of Repertorio Español with Abelardo Estorino and Adria Santana in the offices of Repertorio">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ed/e2/ede2cd9bbec1a8e9f958536a803d5d67.jpg" alt="Cast of Repertorio Español with Abelardo Estorino and Adria Santana in the offices of Repertorio" data-href="/digitalobject/12825" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/68/31680a40bb6ca079721e46ffe1437e57.jpg" title="American Theatre magazine, Oct. 1999">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bd/10/bd107c97719cf1be2183e6061564eb6d.jpg" alt="American Theatre magazine, Oct. 1999" data-href="/digitalobject/12763" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/00/e1/00e1c182bf2ea2a70a07475b0f4a2199.jpg" title="Abelardo Estorino, Pancho García, Adria Santana, and Ismael Gómez Peralta in Estorino&#39;s house">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5b/27/5b27c6a1eee2b602c2237c92146d46e9.jpg" alt="Abelardo Estorino, Pancho García, Adria Santana, and Ismael Gómez Peralta in Estorino&#39;s house" data-href="/digitalobject/12757" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/45/9e/459edd6dc6d20533015ab3e9f610ab73.jpg" title="Adria Santana and Abelardo Estorino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/71/25/7125c3229bfbb1d26d395b5a45ff51d2.jpg" alt="Adria Santana and Abelardo Estorino" data-href="/digitalobject/12753" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/61/30/61306d21fd24c5826da0857b0f95979b.jpg" title="American Theatre magazine, Oct. 1999">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/51/6b/516bc5fe6e5088974a6849a25de9d0d5.jpg" alt="American Theatre magazine, Oct. 1999" data-href="/digitalobject/12747" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9d/76/9d76e5bb7ce5bf7d3f44caa3e16eda21.jpg" title="René Buch, María Irene Fornés, Adria Santana, and Abelardo Estorino in California">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ae/9c/ae9cfaa142793bf331b4430f8b6e8d93.jpg" alt="René Buch, María Irene Fornés, Adria Santana, and Abelardo Estorino in California" data-href="/digitalobject/12729" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/43/d9/43d9c9404d620753120587121753b58a.jpg" title="Adria Santana and Abelardo Estorino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/26/4c/264c9b6c810a2f270ec56b8e54578be4.jpg" alt="Adria Santana and Abelardo Estorino" data-href="/digitalobject/12717" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b3/62/b36215cc15462ce3556f7a955633bd44.jpg" title="Abelardo Estorino, Adria Santana, Gilberto Zaldivar, and Robert Federico">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/34/0e/340eef71a3a7d2e6637f97084ea2f849.jpg" alt="Abelardo Estorino, Adria Santana, Gilberto Zaldivar, and Robert Federico" data-href="/digitalobject/12708" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/82/43/82433e556652e3a22786f870b7ac759e.jpg" title="Adria Santana and Abelardo Estorino, 1989">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/75/ef/75efe0ea516daf78e0da13d059324cff.jpg" alt="Adria Santana and Abelardo Estorino, 1989" data-href="/digitalobject/12707" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ca/83/ca8349d1baac64bee52af9d6ffb39d52.jpg" title="Flyer for the production, &quot;Las penas saben nadar&quot;">
+                    
+                    
+                    <img src="../media/cache/23/f0/23f0b713455501d49097c97151ef7ff1.jpg" alt="Flyer for the production, &quot;Las penas saben nadar&quot;" data-href="/digitalobject/12671" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/db/41/db412247bf27c965f3fb48da13593cfb.jpg" title="Flyer for the production, &quot;Las penas saben nadar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3e/da/3edaa90d31ef94ffc499896cdc09ed0d.jpg" alt="Flyer for the production, &quot;Las penas saben nadar&quot;" data-href="/digitalobject/12671" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/05/df05246e58bfad19521e22b9afdef6b4.jpg" title="Ana Margarita Martínez-Casado (Poncia) and Adria Santana (Bernarda) in &quot;The House of Bernarda Alba&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/16/06/1606aa50ff37f3fbd3fd9fb33400eb8e.jpg" alt="Ana Margarita Martínez-Casado (Poncia) and Adria Santana (Bernarda) in &quot;The House of Bernarda Alba&quot;" data-href="/digitalobject/15419" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ff/62/ff62730e0f227e2cda1efc24b6896ee4.jpg" title="Adria Santana and Abelardo Estorino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5c/77/5c77902ad3f72a5e628a5e6da1137992.jpg" alt="Adria Santana and Abelardo Estorino" data-href="/digitalobject/12833" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bf/bf/bfbfce60c52eb671eea5d2b393414450.jpg" title="Adria Santana and Abelardo Estorino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ee/e0/eee0a28a52325b1b32080d7a6833c19b.jpg" alt="Adria Santana and Abelardo Estorino" data-href="/digitalobject/12832" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/18/a3/18a3355e9d5d0ab1db88810e566e3b2c.jpg" title="Adria Santana and Abelardo Estorino, A.C.E. Award 1997">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/23/33/23336491f5d98a69bd0dc625f0ca579d.jpg" alt="Adria Santana and Abelardo Estorino, A.C.E. Award 1997" data-href="/digitalobject/12826" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ee/20/ee20fbf918850df32f9e9c1f7399e054.jpg" title="Antón Arrufat, Adria Santana and Abelardo Estorino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/73/ed/73ed84e5cb426407d9d79e2a6128cd41.jpg" alt="Antón Arrufat, Adria Santana and Abelardo Estorino" data-href="/digitalobject/12824" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/91/2a/912ada45f2146d4f3e2ecd373afa8ac3.jpg" title="Adria Santana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bb/36/bb369b42a8e8cc9b8d7b5cc8bbea84b0.jpg" alt="Adria Santana" data-href="/digitalobject/12808" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f5/46/f546a27ef439b220bf174a5ecb7f1869.jpg" title="Adria Santana and Abelardo Estorino">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/42/40/4240d0e9b50c26e14ad34a9cbed7daa9.jpg" alt="Adria Santana and Abelardo Estorino" data-href="/digitalobject/12764" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/91/43/914347d0048ed05f749a70805f8e740b.jpg" title="Adria Santana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/06/c5/06c5d520a94b5445c8dcdf911b27c889.jpg" alt="Adria Santana" data-href="/digitalobject/12755" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/da/7e/da7e08a45bcf07ab9607b4f872d9ec93.jpg" title="Adria Santana, A.C.E. Award 1997">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/66/88/66887f6477713808a351b08464d0b6ab.jpg" alt="Adria Santana, A.C.E. Award 1997" data-href="/digitalobject/12746" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/89/c3/89c3ad455d15a96a81f7740dcf1594e8.jpg" title="Adria Santana, A.C.E. Award 1997">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/85/37/8537217504d336b8d3b8cf311f4187d0.jpg" alt="Adria Santana, A.C.E. Award 1997" data-href="/digitalobject/12732" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/72/e4/72e4e69a822d1ea61d480b8f91c56a0f.jpg" title="Adria Santana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/18/10/1810c103b028664798ee268dd00b74a3.jpg" alt="Adria Santana" data-href="/digitalobject/12715" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e1/df/e1df29d66d4880c5323cb3f49a177074.jpg" title="Adria Santana, Pancho García, and Doris Gutiérrez">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d0/d8/d0d87c1d3bcb7cf9bfaac74fff289a95.jpg" alt="Adria Santana, Pancho García, and Doris Gutiérrez" data-href="/digitalobject/12711" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e6/15/e615348b61441e1490798664eee8e410.jpg" title="Adria Santana, A.C.E. Award 1997">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ab/ef/abef3c970f4ceb1afd2ab719e3b58cc6.jpg" alt="Adria Santana, A.C.E. Award 1997" data-href="/digitalobject/12698" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7c/b3/7cb32635199e73c93e279ae965936158.jpg" title="Penas saben nadar">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0b/ce/0bce78bb17cc4ee11f9d89577ef2dc67.jpg" alt="Penas saben nadar" data-href="/digitalobject/12656" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/68/35/6835d5e79feec0106d0b6d3f466e32cd.jpg" title="Penas saben nadar">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/00/ea/00ea0667fe7462e47963fbe61ad12030.jpg" alt="Penas saben nadar" data-href="/digitalobject/12655" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/23/00/23006bf72e3a83748a2f337a6e34145a.jpg" title="Penas saben nadar">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/33/fe/33fe0a2eb648ba3915cb2d573c0c1aa8.jpg" alt="Penas saben nadar" data-href="/digitalobject/12654" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fc/e8/fce8ae350a7f6bab4839ce1a54f16544.jpg" title="Penas saben nadar">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d6/62/d662fdf58129caa1f63e5db1c0585f87.jpg" alt="Penas saben nadar" data-href="/digitalobject/12651" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/3a/d73a7829e229bf97f02def29dc7b94a1.jpg" title="Penas saben nadar">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f8/31/f831d00cfdaeb83ebab01a4928c2ec92.jpg" alt="Penas saben nadar" data-href="/digitalobject/12650" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/91/82/918212a289d371d24053ed07741d3f70.jpg" title="Penas saben nadar">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3b/5f/3b5f124f4c243deee2319813c44e9e8e.jpg" alt="Penas saben nadar" data-href="/digitalobject/12647" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9f/6b/9f6bdbdc2c58e7ffbf90f4ea8597bcd3.jpg" title="Penas saben nadar">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ee/3c/ee3c53b1a8e03703f58fbf32ed5e1e23.jpg" alt="Penas saben nadar" data-href="/digitalobject/12646" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/26/7a/267a4ce494cd4d6455c11dd4f87a349e.jpg" title="Penas saben nadar">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a6/9f/a69f01f9fd9c363f9d5b564f3178cc43.jpg" alt="Penas saben nadar" data-href="/digitalobject/12641" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/44/29/442969b540a4204729f7ff4ec5fa3669.jpg" title="Program for the production, &quot;Los soles truncos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7d/a1/7da143efd248bdcf7e8fe62efdbe5561.jpg" alt="Program for the production, &quot;Los soles truncos&quot;" data-href="/digitalobject/12637" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f7/0b/f70b826ad1d3760bbd08fba0dcbd8fd3.jpg" title="Program for the production, &quot;Los soles truncos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3a/dc/3adcfda6f40c1d9987e6a5da099320bf.jpg" alt="Program for the production, &quot;Los soles truncos&quot;" data-href="/digitalobject/12637" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/14/67/1467f486ff1e248ec4b96b5b07a94d7d.jpg" title="Parece Blanca">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/62/81/6281b3708e3dbbe268e6c2b9ad74db0e.jpg" alt="Parece Blanca" data-href="/digitalobject/12633" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ae/e3/aee30847260a2a6e8251ceaeaefb7148.jpg" title="Micheline Calvert (Hortensia) and Adria Santana (Emilia) in &quot;Los soles truncos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e9/e6/e9e62c724fb52bcd8d663834983f9d54.jpg" alt="Micheline Calvert (Hortensia) and Adria Santana (Emilia) in &quot;Los soles truncos&quot;" data-href="/digitalobject/12622" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/96/fc/96fc831e617dcbd5ed8c40be334f325c.jpg" title="Adria Santana (Emilia) in &quot;Los soles truncos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c6/fe/c6fec0a57b399a0b5415f17004cca13d.jpg" alt="Adria Santana (Emilia) in &quot;Los soles truncos&quot;" data-href="/digitalobject/12607" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6c/fe/6cfeee1749e0a5395c1f5aa8e61c2c8a.jpg" title="Adria Santana (Emilia) and Micheline Calvert (Hortensia) in &quot;Los soles truncos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/57/c2/57c2e1010b93823d68a8c26b25c281e4.jpg" alt="Adria Santana (Emilia) and Micheline Calvert (Hortensia) in &quot;Los soles truncos&quot;" data-href="/digitalobject/12605" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/91/57/9157077ba090b987fcc1e75162876766.jpg" title="Adria Santana in the production, La dama boba">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5c/ff/5cff6c82a7f92e64d9cc17bf1e1cae56.jpg" alt="Adria Santana in the production, La dama boba" data-href="/digitalobject/12542" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/66/48/6648b2fff83128666d1439cf5f5817c0.jpg" title="Adria Santana in the production, Vivimos en la ciudad">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9c/94/9c948c07ae2634bd92c569e35b4a29a8.jpg" alt="Adria Santana in the production, Vivimos en la ciudad" data-href="/digitalobject/12499" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ca/23/ca23453952992014673d07717a859f36.jpg" title="Adria Santana (Emilia) in &quot;Los soles truncos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bd/78/bd78e3b65d8f5f818bb4d8f95168d2a3.jpg" alt="Adria Santana (Emilia) in &quot;Los soles truncos&quot;" data-href="/digitalobject/12452" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/db/d0/dbd0403bbd05eb46c232bcd4f7a86540.jpg" title="Adria Santana (Novia), in &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/63/79/6379bfce886587e91d2d6910c73c8595.jpg" alt="Adria Santana (Novia), in &quot;Bodas de sangre&quot;" data-href="/digitalobject/12446" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c6/d5/c6d5c2a13cfee4c54ffe5076dd8a9f82.jpg" title="Micheline Calvert (Hortensia), Adria Santana (Emilia) in &quot;Los soles truncos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ee/fe/eefe2ad32fdb633795707d8699275e87.jpg" alt="Micheline Calvert (Hortensia), Adria Santana (Emilia) in &quot;Los soles truncos&quot;" data-href="/digitalobject/12435" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cc/b7/ccb7f87cf2590682287a7f958297a023.jpg" title="Parece Blanca">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/50/70/507066eefd9ed95374b156e2ea94313d.jpg" alt="Parece Blanca" data-href="/digitalobject/12430" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/13/8a/138a233ba780aaf827272854b77beb4c.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b8/21/b8218b48ae927d96610b40f7da9e3dfb.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a7/23/a7236020d39f856f12a07c91029aa01e.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bc/dc/bcdc1baf07a22f6e949a5ab136b4a7d5.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/27/b2/27b2a37f08e2665b1083e30a911f5964.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/08/d8/08d89e0918ce8c28e97a22e82ca2c0ac.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cf/f3/cff38eb4e4ffe269ded8b75a5e2e1fc5.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/83/0c/830cca13aa706fec7859002c5bfbd630.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1d/54/1d54f7b007df9add3fd4036e385b0c0c.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7c/03/7c030f2c7a313df288fdee217d1e5b67.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/de/29/de293fd2d4f497b8ff80834745720ff4.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c2/b5/c2b501a779e14736abd0bd8a45d75bc6.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/30/33/3033e0436af502c9736417e3029155b2.jpg" title="Compañia Teatral Hubert de Blanck de Cuba">
+                    
+                    
+                    <img src="../media/cache/4f/3f/4f3f2efbe3baac49be3bbfe1d6deffc8.jpg" alt="Compañia Teatral Hubert de Blanck de Cuba" data-href="/digitalobject/552" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/79/0e/790e1c19558ce35cce62d16683345a7e.jpg" title="Compañia Teatral Hubert de Blanck de Cuba">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b5/2b/b52bbcb8043178c043c029111a58f2e3.jpg" alt="Compañia Teatral Hubert de Blanck de Cuba" data-href="/digitalobject/552" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

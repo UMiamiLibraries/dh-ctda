@@ -1,0 +1,748 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Alberto Alonso</li>
+                </ul>
+            </nav>
+            <h2>Alberto Alonso</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Director, choreography director, choreographer</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>For biographical information consult his obituary, <a href="http://www.independent.co.uk/news/obituaries/alberto-alonso-national-ballet-of-cuba-cofounder-784369.html">"Alberto Alonso: National Ballet of Cuba Cofounder."</a> <em>The Independent </em>Feb 20, 2008.</p>
+
+                </div>
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3576">Mi Solar </a><br />  
+                    <span>Choreographer</span>
+                    <br /><span>1987</span>
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="../production/1128.html">Yerma</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/27.html">Miami Dade College - Wolfson Campus</a></span><br />
+                    <span>June 8, 1996 - June 9, 1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4534">Mi Solar</a><br />
+                    <span>Choreography Director, Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/494">Teatro Musical de La Habana</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+                <div class="linkeditems">
+                <h3>Primary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1280/">Mi experiencia en el musical</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+              
+            </div>
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban - American</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>May 22, 1917</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>La Habana, La Habana, Cuba</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Death date:</h4>
+                  <span>December 31, 2007</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of death:</h4>
+                  <span>Gainesville, Florida, United States</span>
+                </li>
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/15964.html">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3f/bb/3fbbce34b9879c47dcd9e47d10d683b2.jpg" title="Program for the production, &quot;Mi Solar&quot;">
+                    
+                    
+                    <img src="../media/cache/83/4a/834a4b3bab289cfef32ac7afafcde218.jpg" alt="Program for the production, &quot;Mi Solar&quot;" data-href="/digitalobject/15964" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/e6/56e6597c79a5597f11717e5da8952851.jpg" title="Program for the production, &quot;Mi Solar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9c/cd/9ccda69ed5030d3a9d7df5a7d3513d4b.jpg" alt="Program for the production, &quot;Mi Solar&quot;" data-href="/digitalobject/15964" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ab/41/ab41c6e71e522f9c42770c7f99a1607b.jpg" title="Program for the production, &quot;Mi Solar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2f/03/2f03bcefd511d10ab8498e4432565b6a.jpg" alt="Program for the production, &quot;Mi Solar&quot;" data-href="/digitalobject/15964" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2e/68/2e6895ec108f4599e17aedf387d95ce6.jpg" title="Program for the production, &quot;Mi Solar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d1/f3/d1f38b26c6fc9b0521442ed935a265e0.jpg" alt="Program for the production, &quot;Mi Solar&quot;" data-href="/digitalobject/15964" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/79/c9/79c9af154d9c2e00af3b8d3cc55f6f02.jpg" title="Program for the production, &quot;Mi Solar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3d/3d/3d3d9fd72e635c672b50a73d73a402ef.jpg" alt="Program for the production, &quot;Mi Solar&quot;" data-href="/digitalobject/15964" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3e/4f/3e4fb87fcc2ce50f61c4740eab3aad85.jpg" title="Program for the production, &quot;Mi Solar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e7/b4/e7b48483eab71ab06980e0d707845416.jpg" alt="Program for the production, &quot;Mi Solar&quot;" data-href="/digitalobject/15964" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/73/22/73227cf71893e40f8ce4d595575f7911.jpg" title="Program for the production, &quot;Mi Solar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/89/d3/89d39960a29b060362f78579131f6642.jpg" alt="Program for the production, &quot;Mi Solar&quot;" data-href="/digitalobject/15964" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d0/3b/d03bb7d22186085715bcc67edacb3eb3.jpg" title="Program for the production, &quot;Mi Solar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/49/5b/495b1b0305d5f7ff442195a76aad360b.jpg" alt="Program for the production, &quot;Mi Solar&quot;" data-href="/digitalobject/15964" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/65/25/6525d8456e4a75aeded6cd428fb4c11c.jpg" title="Program for the production, &quot;Mi Solar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/53/90/5390c0ebc963c417ad7aa05dd0129bae.jpg" alt="Program for the production, &quot;Mi Solar&quot;" data-href="/digitalobject/15964" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d9/b9/d9b90991e8215498cb1918e8fb97ba4e.jpg" title="Program for the production, &quot;Mi Solar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/57/bc/57bc1d996ed892e4a9fbd71ef1659e5d.jpg" alt="Program for the production, &quot;Mi Solar&quot;" data-href="/digitalobject/15964" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5b/fc/5bfc70cf113f41acf855638ddcc6c778.jpg" title="Program for the production, &quot;Mi Solar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/15/ee/15ee470cd2dc535edb6b414c2fafaafb.jpg" alt="Program for the production, &quot;Mi Solar&quot;" data-href="/digitalobject/15964" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d5/22/d52293a3fba5ec17fb0ee5aad75f6e29.jpg" title="Program for the production, &quot;Mi Solar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8b/2c/8b2c29db31b86d92929e1d28ff22d20c.jpg" alt="Program for the production, &quot;Mi Solar&quot;" data-href="/digitalobject/15964" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/74/9f/749f77f30b9f734f4218597023c8773b.jpg" title="Program for the production, &quot;Mi Solar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4e/cb/4ecb48f29fe9f8ad68026ebe00df73b4.jpg" alt="Program for the production, &quot;Mi Solar&quot;" data-href="/digitalobject/15964" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/eb/f3/ebf36c089f4938b41e3f2f2252bc9d71.jpg" title="Program for the production, &quot;Mi Solar&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0b/12/0b124889aaabb90f8f487443e10ee8b4.jpg" alt="Program for the production, &quot;Mi Solar&quot;" data-href="/digitalobject/15964" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/08/8f086e476b494803b890f0aa0d025c73.jpg" title=" Ballet Nacional de Cuba in 1983">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/eb/47/eb47163d78ccb0a99ab1dbd3e493b5b4.jpg" alt=" Ballet Nacional de Cuba in 1983" data-href="/digitalobject/14920" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e5/54/e5545f8f66c33f42f3b716eb8c5296c6.jpg" title=" Pedro Simón, Alicia Alonso, Sonia Calero, Alberto Alonso ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a6/ad/a6ad88e83d023783588a8ac91dc85d85.jpg" alt=" Pedro Simón, Alicia Alonso, Sonia Calero, Alberto Alonso " data-href="/digitalobject/14919" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8a/79/8a79babc989d9292fd097445a34f07c4.jpg" title=" Fidel Castro, Alicia Alonso, Antonio Nuñez Jiménez, Alberto Alonso, Jorge Esquivel ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2b/91/2b913302216e86a6fa7dc03cc1aafe14.jpg" alt=" Fidel Castro, Alicia Alonso, Antonio Nuñez Jiménez, Alberto Alonso, Jorge Esquivel " data-href="/digitalobject/14915" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3e/9b/3e9b8665c82ff51f684b6f5bc64175e8.jpg" title=" Alberto Alonso, Alicia Alonso ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4f/d4/4fd4704dbcab4ea0a7864585b0dd3d2c.jpg" alt=" Alberto Alonso, Alicia Alonso " data-href="/digitalobject/14914" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d1/ab/d1ab82dccad4d241dacd94198e2ad6f5.jpg" title="Dulce María Loynaz, Pedro Simón, Alicia Alonso, Alberto Alonso in Alicia Alonso&#39;s house">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8c/6f/8c6fd43a920c752715100d4c45857603.jpg" alt="Dulce María Loynaz, Pedro Simón, Alicia Alonso, Alberto Alonso in Alicia Alonso&#39;s house" data-href="/digitalobject/14912" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7b/f9/7bf92275b792db2006c7da160898626b.jpg" title="Alberto Alonso, Alicia Alonso, Fernando Alonso in La Habana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/94/c6/94c63a3b51857fc0f14d8007c2709db0.jpg" alt="Alberto Alonso, Alicia Alonso, Fernando Alonso in La Habana" data-href="/digitalobject/14911" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/90/d290c0588018f8a57c206ab2281601a9.jpg" title="Hilario González, Alicia Alonso, Alberto Alonso in La Habana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f5/d1/f5d1d47a58652dce31b0b84cc0b92f3a.jpg" alt="Hilario González, Alicia Alonso, Alberto Alonso in La Habana" data-href="/digitalobject/14910" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dd/cf/ddcf913e32bd205d9f72d3e4655e01ae.jpg" title="Arnold Haskell, Alicia Alonso, Alberto Alonso during the filming of Carmen">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/48/64/486428510753f394799775169fd22bf8.jpg" alt="Arnold Haskell, Alicia Alonso, Alberto Alonso during the filming of Carmen" data-href="/digitalobject/14909" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b2/03/b2039f55ad69b64f37446247e7740446.jpg" title="Alicia Alonso, Cinto Vitier, Miguel Barnet, Alberto Alonso in La Habana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/db/4b/db4b7f49bd6ea12813baf505bcf51fd7.jpg" alt="Alicia Alonso, Cinto Vitier, Miguel Barnet, Alberto Alonso in La Habana" data-href="/digitalobject/14908" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ea/06/ea06e9b1d530a5cc5e5bee790a348d06.jpg" title="Hilda Rivero, Oscar Araiz, Alicia Alonso, Alberto Alonso in La Habana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d5/fd/d5fd0161549e9f7bf389317fe127ab36.jpg" alt="Hilda Rivero, Oscar Araiz, Alicia Alonso, Alberto Alonso in La Habana" data-href="/digitalobject/14907" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/46/7d/467dc2cfe2844b6610af84e267ce50dc.jpg" title="Alicia Alonso, Hugo Guffanti, Caridad Martínez, Mercedes Vergara in the ballet, &quot;Carmen&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0e/88/0e882aa46b4ac15dbbd83c9b47dd23f6.jpg" alt="Alicia Alonso, Hugo Guffanti, Caridad Martínez, Mercedes Vergara in the ballet, &quot;Carmen&quot;" data-href="/digitalobject/14906" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/83/1f/831f2fc2e45680d496d136c3b37937fe.jpg" title="Alicia Alonso, Orlando Salgado, Clark Tippet, Loipa Araújo in the ballet, &quot;Carmen&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/74/f4/74f4314d69b16010d96a97ab6bd0fc0a.jpg" alt="Alicia Alonso, Orlando Salgado, Clark Tippet, Loipa Araújo in the ballet, &quot;Carmen&quot;" data-href="/digitalobject/14905" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ab/9c/ab9cb1e9c33d671219ca6c4a6e27aeb7.jpg" title="Alberto Alonso, Alicia Alonso, Orlando Salgado in the ballet, &quot;Carmen&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/95/ee/95eebbf38aa8c717906ae99bcf82bc03.jpg" alt="Alberto Alonso, Alicia Alonso, Orlando Salgado in the ballet, &quot;Carmen&quot;" data-href="/digitalobject/14904" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/d0/1ad0a2cfe321076900502c7eccfe3fe5.jpg" title="Fabric swatches for the ballet, ¡Sí señor! ¡Es mi son!">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a7/b6/a7b6f8dbe2cda9e7f16a4ae8f4d191ac.jpg" alt="Fabric swatches for the ballet, ¡Sí señor! ¡Es mi son!" data-href="/digitalobject/13043" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/10/69/1069f6c94772578be7f9ee74a85296ef.jpg" title="Fabric swatches for the ballet, ¡Sí señor! ¡Es mi son!">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d4/22/d422f711cdbe76a6f358a0bec66d6d09.jpg" alt="Fabric swatches for the ballet, ¡Sí señor! ¡Es mi son!" data-href="/digitalobject/13077" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/60/1a60f0952eb72ca7b26d3f0d33afc18b.jpg" title="Fabric swatches for the ballet, &quot;¡Si señor! ¡Es mi son!&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ff/fb/fffb1acdcf9b8e45ba3d2602858d2971.jpg" alt="Fabric swatches for the ballet, &quot;¡Si señor! ¡Es mi son!&quot;" data-href="/digitalobject/13009" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5a/3a/5a3ab20a03b4f64f60359533c5084522.jpg" title="Fabric swatches for the ballet, ¡Sí señor! ¡Es mi son!">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a2/fa/a2fad06c89b7d42a003db81061910f4d.jpg" alt="Fabric swatches for the ballet, ¡Sí señor! ¡Es mi son!" data-href="/digitalobject/13019" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/74/ea/74ea079f6823bfb49f60e778798bf88e.jpg" title="Fabric swatches for the ballet, ¡Sí señor! ¡Es mi son!">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9d/be/9dbe60656fc2f6a9ba6b3f516e1d5834.jpg" alt="Fabric swatches for the ballet, ¡Sí señor! ¡Es mi son!" data-href="/digitalobject/13044" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/41/9d/419d65b6e60810ce4ac16ae62843283d.jpg" title="Costume breakdown for the ballet, &quot;¡Sí señor! ¡Es mi son!&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ce/2f/ce2fa9aef05093956bac28d945104967.jpg" alt="Costume breakdown for the ballet, &quot;¡Sí señor! ¡Es mi son!&quot;" data-href="/digitalobject/13086" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f8/23/f823274689d437f7108df81950b3edd9.jpg" title="Costume breakdown for the ballet, &quot;¡Sí señor! ¡Es mi son!&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/87/40/874095fe7a8aea12370227517a742395.jpg" alt="Costume breakdown for the ballet, &quot;¡Sí señor! ¡Es mi son!&quot;" data-href="/digitalobject/13086" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/32/1c/321cd47f2cbd88098d4bc5b395353a10.jpg" title="Costume breakdown for the ballet, &quot;¡Sí señor! ¡Es mi son!&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2a/e0/2ae0af8645ebcb55fc2bf198265ffea7.jpg" alt="Costume breakdown for the ballet, &quot;¡Sí señor! ¡Es mi son!&quot;" data-href="/digitalobject/13086" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b6/48/b6485aceff8f345a5d6c775d2afdb838.jpg" title="Costume breakdown for the ballet, &quot;¡Sí señor! ¡Es mi son!&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/41/b8/41b8cc61daa0f685cbe38c3ab2e29f40.jpg" alt="Costume breakdown for the ballet, &quot;¡Sí señor! ¡Es mi son!&quot;" data-href="/digitalobject/13086" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/3e/223e407bc8e120892f4e63fee428d0ff.jpg" title="Costume design for the ballet, &quot;¡Sí señor! ¡Es mi son!&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/07/e5/07e5f6ae182c84dfb35620c66542c210.jpg" alt="Costume design for the ballet, &quot;¡Sí señor! ¡Es mi son!&quot;" data-href="/digitalobject/13014" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b2/35/b23539450b9800e1cdb94622594e06a6.jpg" title="Costume design for the ballet, ¡Sí señor! ¡Es mi son!">
+                    
+                    
+                    <img src="../media/cache/36/0a/360a896e0b5216df17bec77defd27556.jpg" alt="Costume design for the ballet, ¡Sí señor! ¡Es mi son!" data-href="/digitalobject/13062" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8d/41/8d4119f0beb1e514368abc3fd9005774.jpg" title="Costume design for the ballet, &quot;¡Sí señor! ¡Es mi son!&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e3/6b/e36b93b4a543302e5f8dbe1643ea4c97.jpg" alt="Costume design for the ballet, &quot;¡Sí señor! ¡Es mi son!&quot;" data-href="/digitalobject/13001" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2a/9d/2a9dff1f9b5f7905a29d9a0d8856bb20.jpg" title="Costume design for the ballet, ¡Sí señor! ¡Es mi son!">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c6/06/c606fac5f9da0408bd35201ebc81bcdd.jpg" alt="Costume design for the ballet, ¡Sí señor! ¡Es mi son!" data-href="/digitalobject/13018" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

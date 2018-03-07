@@ -1,0 +1,1342 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Manuel Martín Jr.</li>
+                </ul>
+            </nav>
+            <h2>Manuel Martín Jr.</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+                
+                    <img src="http://ctda.library.miami.edu/media/cache/00/7a/007ac432b6d0709d2ee1ff3e470f91f5.jpg" />
+                
+            
+
+            <p><strong>Director, actor, author / playwright, adapter, translator</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p>&nbsp; &nbsp; &nbsp;Manuel Mart&iacute;n, Jr. was a playwright, dramaturg, translator, director, actor, professor, and promoter of theater. He attended La Inmaculada Concepci&oacute;n Grammar School, the Escuela P&uacute;blica No. 1 in Artemisa, and later finished three years in the Escuela Profesional de Comercio.  On the 27th of October, 1956, he left his parents, Manuel and Amada Mart&iacute;n, his two brothers, and his one sister in Cuba to come to the United States.  Mart&iacute;n didn&rsquo;t leave Cuba for political reasons; rather he came to the United States to study the performing arts.  In 1964, he went to New York City to study in the American Academy of Dramatic Arts with Andr&eacute;s Castro.  From 1967 to 1969, he studied under Lee Strasberg in the Actor&rsquo;s Studio.  Later, he attended Hunter College where he graduated <em>Cum Laude</em> with a Bachelor&rsquo;s degree of Arts in Theater and Films. In a trip to Europe, Mart&iacute;n continued his studies of theater with William Berger in the Teatro Goldoni in Rome.</p>
+<p>&nbsp; &nbsp; &nbsp;With the help of Magaly Alabau, a Cuban poet-actress, Mart&iacute;n founded DUO Theatre in 1969. Mart&iacute;n was the Artistic Director of DUO Theatre from 1969 to 1989, and he produced 83 plays during these years.  Along with producing plays, Mart&iacute;n was a playwright himself and he also wrote some short stories and articles.  The predominant themes of his literary works were the themes of Cuban exile, such as nostalgia and the feeling of not belonging, and the theme of sexuality.  His most well-known plays are <em>Swallows</em> (1980), <em>Sanguivin en Union City</em> (1982) and <em>Rita and Bessie</em> (1986).  He also wrote and directed many plays for the theaters of off-off Broadway.&nbsp;Mart&iacute;n Jr. explained: "Comenc&eacute; a escribir teatro con un grupo de actores en mente - el Teatro Duo. Mis primeras obras fueron basadas en hechos hist&oacute;ricos. Cuando nuestro gupo se disolvi&oacute;, realize [sic] que ten&iacute;a que encontrar mi voz propia sobre los problemas que encuentran los cubanos en los Estados Unidos y en Cuba. Un dramaturgo es el reportero de su tiempo y espero que mi trabajo sobre mi tierra asi lo demuestre" (Manuel Mart&iacute;n Jr. Papers, his own spelling).</p>
+<p>&nbsp; &nbsp; &nbsp;In 1971, DUO Theatre combined with Max Ferr&aacute; and his theater company, Adal, to form INTAR (International Arts Relations, Inc.).  After two years, DUO separated from INTAR, however Mart&iacute;n continued working with INTAR, which produced three of his plays, <em>Carmencita</em> (1978), <em>Swallows</em> (1980), and <em>Union City Thanksgiving</em> (1983).  In 1980, Mart&iacute;n was the coordinator of the Playwrights in Residence Laboratory of INTAR.  Additionally, from October, 1981 to May, 1983, Mart&iacute;n participated in the Hispanic Playwrights-in-Residence Laboratory of INTAR under the instruction of Mar&iacute;a Irene Forn&eacute;s.  Apart from DUO Theatre and INTAR, the plays written by Mart&iacute;n were produced in the Festival Latino, the Shakespeare Festival in New York, and in La MaMa Experimental Theater.</p>
+<p>&nbsp; &nbsp; &nbsp;When he wasn&rsquo;t writing or directing plays, Mart&iacute;n was an instructor of theater workshops in New York and in Puerto Rico.  He also translated many literary works, such as <em>Dr. Goodmouth</em>, a public education service program for the dental company Colgate-Palmolive, and <em>Los chicos de la galaxia</em>, a play for children.  Additionally, he taught in many national and international theater conferences in places such as New York, Miami, and Paris.  Mart&iacute;n lived in New York until his death by a heart attack on September 28, 2000.</p>
+<p>&nbsp; &nbsp; &nbsp;His collection can be found in&nbsp;<a href="http://proust.library.miami.edu/findingaids/?p=collections/findingaid&amp;id=110&amp;q=&amp;rootcontentid=6408">Manuel Mart&iacute;n Jr. Papers</a>&nbsp;(Cuban Heritage Collection, University of Miami).</p>
+<dd></dd>
+
+                </div>
+            
+
+            
+              <div class="linkeditems">
+                  <h3>Notes: +</h3>
+                  <ul>
+                  <p>&nbsp;</p>
+<dt></dt>
+
+                  </ul>
+              </div>              
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/35">Rita and Bessie: A Play in One Act with Music</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/36.html">Rasputin </a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/37">Reina de Belleza... y Simpatía: Obra en un Acto</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/38">The Legend of the Golden Coffee Bean: A One Act Play with Music</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/39">Sanguivin en Union City</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/40">Carmencita</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../writtenwork/88.html">Swallows</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/89">Fight! A Play with Music</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/90">NuevaYor- The Other Island (A Musical)</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1993</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/94">Clorofila (Una obra en un acto)</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/95">Lección de la historia en el Sorocabana (Obra en dos actos)</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/96">Julio Caesar/Julio Cesar</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1995</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/97">I Love Ricky (A muscial/book)</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/98">Peter Pan's Maiden Flight</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/99">Platero and I</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/100">Francesco: The Life and Times of the Cencis ( A Play in Two Acts)</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1600">Latinos</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/92">Stories from a Bordello</a><br />  
+                    <span>Adapter</span>
+                    <br /><span>1995</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/91">Cuentos del burdel</a><br />  
+                    <span>Adapter</span>
+                    <br /><span>February 27, 1995</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1878">Union City Thanksgiving</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3133">Chichi: A Monologue</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/93">Los chicos de la galaxia</a><br />  
+                    <span>Translator</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/322">Botanica</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>January 1991 - March 1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/277.html">Rita and Bessie: A Play in One Act with Music</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/236.html">Duo Theater / Teatro Dúo</a></span><br />
+                    <span>June 2, 1988 - July 2, 1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/313.html">Fight! A Play with Music</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/236.html">Duo Theater / Teatro Dúo</a></span><br />
+                    <span>May 9, 1986 - July 1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/312">Swallows</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>March 6, 1980 - April 1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/323">The Beggar&#39;s Soap Opera</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>July 5, 1979 - July 8, 1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/284">Carmencita</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>May 19, 1978 - June 18, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/285">Carmencita</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/236.html">Duo Theater / Teatro Dúo</a></span><br />
+                    <span>February 3, 1978 - February 26, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4029.html">Rasputín</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/877.html">Caracas</a></span><br />
+                    <span>1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4030">Rasputín / Распутин</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/236.html">Duo Theater / Teatro Dúo</a></span><br />
+                    <span>October 1975 - December 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/278.html">Rasputin</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/236.html">Duo Theater / Teatro Dúo</a></span><br />
+                    <span>April 18, 1975 - May 4, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2128">La ramera de la cueva</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/552.html">Theatre at Saint Clements</a></span><br />
+                    <span>May 16, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/316.html">Francesco: Vida y Milagros de los Cenci</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/163">La MaMa Experimental Theatre </a></span><br />
+                    <span>November 21, 1973 - December 2, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/315.html">Francesco: The Life and Times of the Cencis (A Play In Two Acts)</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/163">La MaMa Experimental Theatre </a></span><br />
+                    <span>June 3, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4192.html">The White Whore and the Bit Player</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/552.html">Theatre at Saint Clements</a></span><br />
+                    <span>February 5, 1973 - February 18, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4637">La estrella y la monja</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/552.html">Theatre at Saint Clements</a></span><br />
+                    <span>February 5, 1973 - February 18, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/319.html">La estrella y la monja</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/536.html">INTAR 53 Theatre</a></span><br />
+                    <span>May 6, 1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2079">La palangana</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/833.html">New York, New York</a></span><br />
+                    <span>1970 - 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4076.html">El bebedero</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1354.html">Duo Theater / Teatro Dúo</a></span><br />
+                    <span>January 1, 1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/315.html">Francesco: The Life and Times of the Cencis (A Play In Two Acts)</a><br />
+                    <span>Francesco Cenci*</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/163">La MaMa Experimental Theatre </a></span><br />
+                    <span>June 3, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2129.html">La noche de los asesinos</a><br />
+                    <span>Lalo</span><br />
+                    <span><a href="../venue/315.html">Adal Performing Arts Center</a></span><br />
+                    <span>February 12, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/927.html">Cain&#39;s Mangoes</a><br />
+                    <span>Adam</span><br />
+                    <span><a href="../venue/1354.html">Duo Theater / Teatro Dúo</a></span><br />
+                    <span>July 17, 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4074">La Celestina</a><br />
+                    <span>Calisto</span><br />
+                    <span><a href="../venue/1363.html">Greenwich Mews Theater</a></span><br />
+                    <span>May 1967</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+            
+              <div class="linkeditems">
+              <h3>Awards: +</h3>
+              <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Category</th>
+                  <th>Award</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td>1976</td>
+                        <td>None</td>
+                        <td>
+                          <a href="../award/34.html">America the Beautiful Grant to teach theater in the Ossining Correctional Facility in Sing-Sing</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1981</td>
+                        <td>None</td>
+                        <td>
+                          <a href="../award/33.html">CAPS Fellowship for Playwriting</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1985</td>
+                        <td>Literature</td>
+                        <td>
+                          <a href="../award/30.html">Cintas Fellowship</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1987</td>
+                        <td>None</td>
+                        <td>
+                          <a href="../award/29.html">Fulbright Fellowship for Playwriting</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>2000</td>
+                        <td>None</td>
+                        <td>
+                          <a href="../award/27.html">HOLA&#39;s Outstanding Achievement in Direction</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1986</td>
+                        <td>Playwriting</td>
+                        <td>
+                          <a href="../award/28.html">New York Foundation for the Arts Award</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1987</td>
+                        <td>Playwriting</td>
+                        <td>
+                          <a href="../award/28.html">New York Foundation for the Arts Award</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1991</td>
+                        <td>Playwriting</td>
+                        <td>
+                          <a href="../award/28.html">New York Foundation for the Arts Award</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1976</td>
+                        <td>None</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/12">Premios ACE</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1972</td>
+                        <td>Best Director of the Year</td>
+                        <td>
+                          <a href="../award/35.html">Thalia Award</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1985</td>
+                        <td>None</td>
+                        <td>
+                          <a href="../award/31.html">The John Gassner Award</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                    <tr>
+                        <td>1985</td>
+                        <td>None</td>
+                        <td>
+                          <a href="../award/32.html">The Walter Prichard Eaton Award for Playwriting</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+                  
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+                <div class="linkeditems">
+                <h3>Primary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/7/">Manuel Martín Jr.: Towards a Bibliography of his Plays, Productions, Reviews and Criticism of his Work</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1069/">American Theatre: A Chronicle of Comedy and Drama, 1969-2000</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1055/">Evolución de la dramaturgia cubana fuera de Cuba</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1320/">Street Smarts Round Out An Ivy-League Education</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+                <br />
+               Author: Kristina McIntyre, Lillian Manzor (2008, 2017)
+            
+        
+            
+ 
+            
+            <hr />
+            <h3>Audios</h3>
+            <ul class="audios">
+              
+              <li>
+                <figure>
+                  <a id="cta0029000416" class="fancybox">
+                    
+                      Click to play audio
+                    
+                  </a>
+                  <figcaption>
+                    <a href="../digitalobject/15788.html">Music track for Francesco</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              </ul>
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban - American</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>December 16, 1934</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Artemisa, Artemisa, Cuba</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Death date:</h4>
+                  <span>September 28, 2000</span>
+                </li>
+              
+              
+              
+
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Cuban%20American--Directors"><li>Cuban American--Directors</li></a>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Cuban%20American--Playwrights"><li>Cuban American--Playwrights</li></a>
+                
+                    <a href="../taggeditems-tag=Off-Off%20Broadway%20Theatre.html"><li>Off-Off Broadway Theatre</li></a>
+                
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/16660.html">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/54/05/5405b4138691ee9de3870c0817c0b2fb.jpg" title="Program for the production, Rita and Bessie">
+                    
+                    
+                    <img src="../media/cache/f3/43/f343ce0884538aa3c47ffcd01a7ff630.jpg" alt="Program for the production, Rita and Bessie" data-href="/digitalobject/16660" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/65/316558a39f8f80368b61764133dfd9e4.jpg" title="Program for the production, Rita and Bessie">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/92/72/9272d82934cc017c0714a01e19454b05.jpg" alt="Program for the production, Rita and Bessie" data-href="/digitalobject/16660" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/41/1b/411bd78eec3c6056bc53318f13bbb5c8.jpg" title="Program for the production, Rita and Bessie">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a6/66/a6661f6c4e738cd83365c93add30235e.jpg" alt="Program for the production, Rita and Bessie" data-href="/digitalobject/16660" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6d/ba/6dba231b6a504d724d5994ba9d342b22.jpg" title="Program for the production, Rita and Bessie">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/83/a5/83a59637d1ffbc4f595dee1dfda69169.jpg" alt="Program for the production, Rita and Bessie" data-href="/digitalobject/16660" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/51/6d/516d2d53a094351e841ff221e19e9b87.jpg" title="Program for the production, Rita and Bessie">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4e/dc/4edcb164c20889e803c3028ddf46ad69.jpg" alt="Program for the production, Rita and Bessie" data-href="/digitalobject/16660" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/38/c1/38c19fc945044f970bb1a19158b95eba.jpg" title="Program for the production, Rita and Bessie">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7a/22/7a22b7b45605a85fc7893a7ef6da419f.jpg" alt="Program for the production, Rita and Bessie" data-href="/digitalobject/16660" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fd/cc/fdcc84e307a50642e411cea6dc60ecfe.jpg" title="Program for the production, Rita and Bessie">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6a/27/6a27ddb05528d8b6f8e8339c41b135d9.jpg" alt="Program for the production, Rita and Bessie" data-href="/digitalobject/16660" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/f7/20f7c175a5b56a79e4c70e33fb878e66.jpg" title="Program for the production, Rita and Bessie">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/81/73/81736746b0f90dcbab1177b1d0ba32a4.jpg" alt="Program for the production, Rita and Bessie" data-href="/digitalobject/16660" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/44/82/44826bb8107f31439b70d3d77e65d175.jpg" title="Candy Darling (Whore) and Men in the production, &quot;The White Whore and the Bit Player&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/95/5b/955bbd761f9c86983f3506a4279d1fcc.jpg" alt="Candy Darling (Whore) and Men in the production, &quot;The White Whore and the Bit Player&quot;" data-href="/digitalobject/14878" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ac/91/ac910aeb2fda80a37fa546787295ebbf.jpg" title="Candy Darling (Whore) in the production, &quot;The White Whore and the Bit Player&quot;">
+                    
+                    
+                    <img src="../media/cache/e1/f8/e1f89b31848c45c38a7ae12f77801f3e.jpg" alt="Candy Darling (Whore) in the production, &quot;The White Whore and the Bit Player&quot;" data-href="/digitalobject/14877" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/74/80/7480780302ee6aca578f3a2b9ae9c3eb.jpg" title="Poster for the event celebrating the Latino New York Theater">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/05/64/0564e859c653550fe16b51c16c1fe474.jpg" alt="Poster for the event celebrating the Latino New York Theater" data-href="/digitalobject/14388" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0a/44/0a445dc684d2c2d4812ad0d0bf67fc81.jpg" title="Cain&#39;s Mangoes">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/37/90/3790ed77fd798de73926029abb4bb0d9.jpg" alt="Cain&#39;s Mangoes" data-href="/digitalobject/12269" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b6/14/b61462d60f3d62975acb0025980c5b11.jpg" title="Cain&#39;s Mangoes">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/cc/77/cc7708a4fb17985f83e8b2d3c96a00a6.jpg" alt="Cain&#39;s Mangoes" data-href="/digitalobject/12269" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/52/4e/524e849b6e3f56593a459adecdf442b0.jpg" title="Cain&#39;s Mangoes">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9e/e4/9ee4b15c38b54ee4f3fc697b2999af4e.jpg" alt="Cain&#39;s Mangoes" data-href="/digitalobject/12269" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f8/27/f82795811f7117a68f906e0f1ce9f6d5.jpg" title="Photograph of the production, staged reading of &quot;Sanguivin en Union City&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/22/15/2215e85c07ee579e6454b2564edb656e.jpg" alt="Photograph of the production, staged reading of &quot;Sanguivin en Union City&quot;" data-href="/digitalobject/14591" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e4/d0/e4d0feb974d572c19dea5f924641396b.jpg" title="Graciela Más (La monja) in the production, &quot;La estrella y la monja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/26/89/2689a22a8bade7fa6239f0c213c2547e.jpg" alt="Graciela Más (La monja) in the production, &quot;La estrella y la monja&quot;" data-href="/digitalobject/12983" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/70/e6/70e649cfbaacc7672323b922206f8c42.jpg" title="Magaly Alabau (La estrella) and Graciela Más (La monja) in the production, &quot;La estrella y la monja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/27/b2/27b206fd176369cf6d432bd12ee75d8e.jpg" alt="Magaly Alabau (La estrella) and Graciela Más (La monja) in the production, &quot;La estrella y la monja&quot;" data-href="/digitalobject/12973" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/eb/58/eb583894b7dc1de5620c8bce7fa1d3b7.jpg" title="Magaly Alabau (La estrella) in the production, &quot; La estrella y la monja&quot;">
+                    
+                    
+                    <img src="../media/cache/8e/f8/8ef880217ae75884d84f17b487559284.jpg" alt="Magaly Alabau (La estrella) in the production, &quot; La estrella y la monja&quot;" data-href="/digitalobject/12978" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/b1/71b196bb1f1c96e793a222247bb4707e.jpg" title="Graciela Más (La monja), Magaly Alabau (La estrella) in the production, &quot;La estrella y la monja">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3e/2c/3e2caf117bda6dadff4fcc42e53a3e1d.jpg" alt="Graciela Más (La monja), Magaly Alabau (La estrella) in the production, &quot;La estrella y la monja" data-href="/digitalobject/12980" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ac/3e/ac3e3a95559805c60bf15bd39071b734.jpg" title="Program for the production, &quot;La estrella y la monja&quot;">
+                    
+                    
+                    <img src="../media/cache/0b/6e/0b6e12ab7f45231a6c22acec265f6d48.jpg" alt="Program for the production, &quot;La estrella y la monja&quot;" data-href="/digitalobject/12982" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/95/01/950155203fe55be31a4112f15fe6b47b.jpg" title="Photograph of Manuel Martín, Jr.">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f3/8e/f38e578bd29f2b425697692c2b54a3ae.jpg" alt="Photograph of Manuel Martín, Jr." data-href="/digitalobject/12988" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/21/da/21dae11a42308a728aba8b005e0bed76.jpg" title="Photograph of Manuel Martín, Jr.">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/74/4d/744dc8ff764f99b127f93c2c10c1dde0.jpg" alt="Photograph of Manuel Martín, Jr." data-href="/digitalobject/12981" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/ab/1bab3cae0502fbc4c7a1cb271ef352cc.jpg" title="Cecilia Dighero (with mask), Manuel Yesckas, Gloria Zelaya, Edwin Avila in the production, &quot;Rasputin&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/27/ab/27ab91538751aa26266042b4e74834d7.jpg" alt="Cecilia Dighero (with mask), Manuel Yesckas, Gloria Zelaya, Edwin Avila in the production, &quot;Rasputin&quot;" data-href="/digitalobject/12985" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a4/99/a499dbf542a7767c2c410574530f06c5.jpg" title="Photograph for the production, &quot;Rasputin&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ad/1c/ad1c3916cac6faafd1687934ba0c1a19.jpg" alt="Photograph for the production, &quot;Rasputin&quot;" data-href="/digitalobject/12967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3e/13/3e134205a7b9dac9ed053a306acab814.jpg" title="Photograph of the production, &quot;Rasputin&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/71/63/7163ca6edf6c50afb829336286bce802.jpg" alt="Photograph of the production, &quot;Rasputin&quot;" data-href="/digitalobject/12986" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/f8/b7f89eb0de6f411d0d2858d3affffe61.jpg" title="Hortensia Colorado (Lucrezia Petronia), Manuel Martín Jr. (Francesco), and unknown in, &quot;Francesco: The Life and Times of the Cencis&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b3/05/b305b6f7104b0b43325f4333776c4383.jpg" alt="Hortensia Colorado (Lucrezia Petronia), Manuel Martín Jr. (Francesco), and unknown in, &quot;Francesco: The Life and Times of the Cencis&quot;" data-href="/digitalobject/12994" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2b/3c/2b3cf52b38efa9ffcbf80ba9bd114770.jpg" title="Edwin Avila (Priest), René Troche (Francesco), Ilka Tanya Payan (bride), in the production,  &quot;Francesco: Vida y milagros de los Cenci&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e9/a2/e9a24c03a13241d47cf7bf097a62afd7.jpg" alt="Edwin Avila (Priest), René Troche (Francesco), Ilka Tanya Payan (bride), in the production,  &quot;Francesco: Vida y milagros de los Cenci&quot;" data-href="/digitalobject/12976" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/27/4f/274f785bacfb3bb0087af738b79c82cd.jpg" title="Photograph from the production, &quot;Francesco: The Life and Times of the Cencis&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/94/50/94502a70964b8e0bd47c444875170bf9.jpg" alt="Photograph from the production, &quot;Francesco: The Life and Times of the Cencis&quot;" data-href="/digitalobject/12987" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/12/40/12403e266d91fe88dcac19e42fea67ec.jpg" title="Costume design for Francesco for the production, &quot;Francesco: The Lifes and Times of the Cencis&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/cd/a9/cda9851e8aa68104c01f5384f2330e43.jpg" alt="Costume design for Francesco for the production, &quot;Francesco: The Lifes and Times of the Cencis&quot;" data-href="/digitalobject/12966" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/80/ab/80abf9a0045e61cc81fa76e1ed31dae8.jpg" title="Costume design for Francesco for the production, &quot;Francesco: The Lifes and Times of the Cencis&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/46/b5/46b5ed51e2a2810b288d20a565d8e1d3.jpg" alt="Costume design for Francesco for the production, &quot;Francesco: The Lifes and Times of the Cencis&quot;" data-href="/digitalobject/12966" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1d/df/1ddf3baab21179b26460c1997f5f2972.jpg" title="Costume Design for Pope Clement VIII for the production, &quot;Francesco: The Life and Times of the Cencis&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/70/03/7003633371fd8e10cb6928c3f767c5f3.jpg" alt="Costume Design for Pope Clement VIII for the production, &quot;Francesco: The Life and Times of the Cencis&quot;" data-href="/digitalobject/12975" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d6/94/d6949cdec6b9883d81734d63fb4783eb.jpg" title="Photographs from the production, &quot;The Legend of the Golden Coffee Bean&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8e/e4/8ee49d686d3cc93e15cf8b18f0bf3cfa.jpg" alt="Photographs from the production, &quot;The Legend of the Golden Coffee Bean&quot;" data-href="/digitalobject/12990" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0a/3e/0a3ea72eb106c104214eac6caef2d607.jpg" title="Poster for play, &quot;Fight!&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/81/c3/81c38550163459f920d0e4f45c5b8ac5.jpg" alt="Poster for play, &quot;Fight!&quot;" data-href="/digitalobject/12974" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b4/fc/b4fcd55e22ddb81cefd56f310751f10d.jpg" title="Jorge Luis Ramos (Angel Rodríguez ), in &quot;Fight!&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bd/c1/bdc1e776f470ead62b81fce7bf862c50.jpg" alt="Jorge Luis Ramos (Angel Rodríguez ), in &quot;Fight!&quot;" data-href="/digitalobject/12968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fb/f3/fbf3862fb3d24419df7b3677a7db54d1.jpg" title="Brenda Feliciano (Carmencita), Felipe Gorostiza (Pepe), Brenda Feliciano (Carmencita) y Walter Valentino (Lucas) in &quot;Carmencita&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3b/89/3b899036518b0918e9dbea4e0bb2021d.jpg" alt="Brenda Feliciano (Carmencita), Felipe Gorostiza (Pepe), Brenda Feliciano (Carmencita) y Walter Valentino (Lucas) in &quot;Carmencita&quot;" data-href="/digitalobject/12993" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/99/79/997916e07388451042768229b455f274.jpg" title="Photographs of the production, &quot;Carmencita&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/71/2b/712bc83f3f61a23c0ff730150be59ee1.jpg" alt="Photographs of the production, &quot;Carmencita&quot;" data-href="/digitalobject/12996" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/cf/22cfedd566a82af17b5c3a3006b2ea04.jpg" title="Photograph from the production, &quot;Swallows&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7e/56/7e569682adb23ea26f6158744e5c6020.jpg" alt="Photograph from the production, &quot;Swallows&quot;" data-href="/digitalobject/12989" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/83/c1/83c1d9656ee43f2601c7a222ff352cf9.jpg" title="Photograph from the production, &quot;Swallows&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/04/93/04935f2df1a52d6528a4b750e92166bf.jpg" alt="Photograph from the production, &quot;Swallows&quot;" data-href="/digitalobject/12977" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7d/98/7d9843ea9ed85b430dfba454dd1fcba1.jpg" title="Photograph from the production, &quot;Swallows&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/32/fc/32fcb65d74eaae3185baf78f9fa876d2.jpg" alt="Photograph from the production, &quot;Swallows&quot;" data-href="/digitalobject/12971" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0f/ee/0feebb9255aa87687c5108e9fa029dde.jpg" title="Photograph from the production, &quot;Swallows&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/49/11/491139e5c5611d71aaac85e770666674.jpg" alt="Photograph from the production, &quot;Swallows&quot;" data-href="/digitalobject/12970" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c5/be/c5bed8a7f4a7a240768560eb93a0acd9.jpg" title="Photograph from the production, &quot;Swallows&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8f/a7/8fa7906cf572345549f03c58d871c36b.jpg" alt="Photograph from the production, &quot;Swallows&quot;" data-href="/digitalobject/12992" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b0/60/b0602ff9be17ca186aeaedf056b7df50.jpg" title="Marta Viana, Beatriz Hernandez, and Ilka Tanya Payan, in &quot;Sanguivin en Union City&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/08/0f/080f4a609f4983676f4d165bc16f4491.jpg" alt="Marta Viana, Beatriz Hernandez, and Ilka Tanya Payan, in &quot;Sanguivin en Union City&quot;" data-href="/digitalobject/12991" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/26/712610836cfd754ef496ff9206c9fa80.jpg" title="Jannis Warner (Bessie) and Jill Romero (Rita), in &quot;Rita and Bessie&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8c/b6/8cb6d580d2e0b56438b5b86ec51244b2.jpg" alt="Jannis Warner (Bessie) and Jill Romero (Rita), in &quot;Rita and Bessie&quot;" data-href="/digitalobject/12969" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f7/6e/f76e3e1e6788d02753b6c9d111e2d3f9.jpg" title="Jill Romero (Rita) and Jannis Warner (Bessie), in &quot;Rita and Bessie&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ba/dd/baddc28fc62c6483083f91daa6b0d236.jpg" alt="Jill Romero (Rita) and Jannis Warner (Bessie), in &quot;Rita and Bessie&quot;" data-href="/digitalobject/12972" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/96/7c/967c26d0f1ca78b344045a6b56b12486.jpg" title="Jannis Warner (Bessie), in &quot;Rita and Bessie&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/34/10/34105a96d3c120c2aba59afc409b9ce1.jpg" alt="Jannis Warner (Bessie), in &quot;Rita and Bessie&quot;" data-href="/digitalobject/12995" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/ec/ecec64ad7b41606dce96a922d940d454.jpg" title="Janis Warner (Bessie) and Jill Romero (Rita), in &quot;Rita and Bessie&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/38/9d/389d0b0ebea03d65381ab5f02cb0bfe3.jpg" alt="Janis Warner (Bessie) and Jill Romero (Rita), in &quot;Rita and Bessie&quot;" data-href="/digitalobject/12979" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d4/38/d4384929f738bc1575fbb140f5879e59.jpg" title="View of the stage for play, Sanguivin in Union City">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2c/da/2cdac5c7bab9dfbdffa40016725e1d82.jpg" alt="View of the stage for play, Sanguivin in Union City" data-href="/digitalobject/13000" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/7c/df7c71d621c02aa3904132a11b3dcb72.jpg" title="Photograph from the production, &quot;Sanguivin en Union City&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/50/a0/50a0cbda024498cece6eb5bac0ab4cb3.jpg" alt="Photograph from the production, &quot;Sanguivin en Union City&quot;" data-href="/digitalobject/13050" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/82/9f/829fcfd2aeebe18c99309398bf0149b7.jpg" title="Photograph from the production, &quot;Sanguivin en Union City&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6c/e0/6ce0a26c1a76b17058b841af1dd937f9.jpg" alt="Photograph from the production, &quot;Sanguivin en Union City&quot;" data-href="/digitalobject/13039" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/ec/c7ecf679880fa8fd79453ad79575615d.jpg" title="Janis Warner (Bessie), in &quot;Rita and Bessie&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/df/4e/df4e7774cf9f6298edbf2d2c3ce1da42.jpg" alt="Janis Warner (Bessie), in &quot;Rita and Bessie&quot;" data-href="/digitalobject/13074" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/35/7135fe8a757c13495da2b8b7576fafed.jpg" title="Jill Romero (Rita), in &quot;Rita and Bessie&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/52/02/52021a99cd9036c92d920df34943e0ce.jpg" alt="Jill Romero (Rita), in &quot;Rita and Bessie&quot;" data-href="/digitalobject/13016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2f/e5/2fe54b4d1c878e298abdda454466f2cc.jpg" title="Jill Romero (Rita) and Jannis Warner (Bessie), in &quot;Rita and Bessie&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4d/a3/4da3ab645a60fb80dd6cfb288bf9e44c.jpg" alt="Jill Romero (Rita) and Jannis Warner (Bessie), in &quot;Rita and Bessie&quot;" data-href="/digitalobject/13041" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ba/cc/bacc858a24965c3980c184cb4b34334f.jpg" title="Photograph from the production, &quot;Sanguivin en Union City&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1b/68/1b68415ebb3d2f376fa945eba36cf8ba.jpg" alt="Photograph from the production, &quot;Sanguivin en Union City&quot;" data-href="/digitalobject/13011" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c1/3b/c13b1a641a7e7a26f7a98940e01309cc.jpg" title="Poster for the production, &quot;Swallows&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/85/6b/856b3b7ef904930df22a5b9b3a6c728d.jpg" alt="Poster for the production, &quot;Swallows&quot;" data-href="/digitalobject/13071" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b0/54/b05449bc4fdf813f71d19a749d7f5d8b.jpg" title="Poster for production, &quot;Sanguivin en Union City">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/af/7d/af7d6f29b07c15512bc10ae52cd45ad5.jpg" alt="Poster for production, &quot;Sanguivin en Union City" data-href="/digitalobject/13082" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/39/f6/39f61fef6effa0aace33a08b8319eb55.jpg" title="Costume design for character, Rita Montaner">
+                    
+                    
+                    <img src="../media/cache/0d/15/0d15968345cfa8cffb454645a2d18f1f.jpg" alt="Costume design for character, Rita Montaner" data-href="/digitalobject/13075" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/89/a9/89a938b4cf3829da592ce982b4ede59f.jpg" title="Costume Design for Bessie, &quot;Rita and Bessie&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0a/47/0a4756766d4d015394b7cbf724db3de5.jpg" alt="Costume Design for Bessie, &quot;Rita and Bessie&quot;" data-href="/digitalobject/13055" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

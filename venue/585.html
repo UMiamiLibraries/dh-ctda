@@ -1,0 +1,559 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../venues.html">Venues</a></li>
+              <li>Brendle Recital Hall - Wake Forest University</li>
+            </ul>
+          </nav>
+          <h2>Brendle Recital Hall - Wake Forest University</h2>
+        </header>
+
+        <section class="main">
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          <div class="linkeditems">
+            <h3>Productions: +</h3>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/production/3667">Los fantasmas de Tulemón</a>
+                
+                <br /><span>August 5, 1997 - August 6, 1997</span>
+                
+                
+                <br /><span>Directed by: Mario Ernesto Sánchez</span>
+                
+              </li>
+              
+            </ul>
+          </div>
+        
+        
+             
+        
+          
+      
+                
+
+
+        </section>
+        
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              
+              <li>
+                <h4>City:</h4>
+                <span>Winston-Salem, North Carolina</span>
+              </li>
+              
+              <li>
+                <h4>Country:</h4>
+                <span>United States</span>
+              </li>
+              
+              
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/12955">View details</a>
+            <div id="digitalobjects">
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/d9/ecd99b9b0014ec3667571b320ca7144e.jpg" title="Sketch of a panel for the set of the production, &quot;Los Fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/22/93/2293814bcb455ad30032ff4f8745eae5.jpg" alt="Sketch of a panel for the set of the production, &quot;Los Fantasmas de Tulemón&quot;" data-href="/digitalobject/12955" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5d/70/5d705decb2ac118d1194aa5f99902c82.jpg" title="Sketch of a panel for the set of the production, &quot;Los Fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/cd/29/cd291db62fd1cf92fcf8cd5c03e378a6.jpg" alt="Sketch of a panel for the set of the production, &quot;Los Fantasmas de Tulemón&quot;" data-href="/digitalobject/12943" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b0/20/b020da919d455cc12de11ee110a0c91b.jpg" title="Sketch of a panel for the set of the production, &quot;Los Fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/46/8e/468ed6ee4b41c413540e4a75d0dd2db5.jpg" alt="Sketch of a panel for the set of the production, &quot;Los Fantasmas de Tulemón&quot;" data-href="/digitalobject/12956" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/91/7e/917e66fdcbb13752cc76134d9407f0ed.jpg" title="Sketch of a panel for the set of the production, &quot;Los Fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/d3/fe/d3fe13743c582394353b5f1817bf7fa8.jpg" alt="Sketch of a panel for the set of the production, &quot;Los Fantasmas de Tulemón&quot;" data-href="/digitalobject/12963" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/89/ee/89ee3aafc6ec06324635e8bde153549f.jpg" title="Sketch of a panel for the set of the production, &quot;Los Fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/6e/0e/6e0e2170bd29eb216d2db19575e2ccb8.jpg" alt="Sketch of a panel for the set of the production, &quot;Los Fantasmas de Tulemón&quot;" data-href="/digitalobject/12951" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e9/3e/e93eb81c7a34b522333c89744899af6e.jpg" title="Sketch of a panel for the set of the production, &quot;Los Fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/79/84/798478ccb79735a258003ba79e25d4e3.jpg" alt="Sketch of a panel for the set of the production, &quot;Los Fantasmas de Tulemón&quot;" data-href="/digitalobject/12957" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/12/94/12948c6bc84b3c106c94b2e7b8dd917b.jpg" title="Costume sketch for the character &quot;Monseñor&quot; (Monsignor) for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/e7/1c/e71c41fce8a284a220fb273e5c5b8587.jpg" alt="Costume sketch for the character &quot;Monseñor&quot; (Monsignor) for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12950" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e1/1b/e11bf990fe5103dac9c9dc099ce48fd7.jpg" title="Costume sketch for the character &quot;Mendigo&quot; (beggar) for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/68/1b/681b7da4b0756c80f4a3153be3c13b58.jpg" alt="Costume sketch for the character &quot;Mendigo&quot; (beggar) for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12959" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/12/00/12009d499e3e4643dafddd82e8f55ec2.jpg" title="Costume sketch for the character &quot;Clara&quot; for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/de/6f/de6f670419344d11ef81e98fb27f2be4.jpg" alt="Costume sketch for the character &quot;Clara&quot; for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12949" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a7/6f/a76f411a0d16a4ffcad8fa125d7096c7.jpg" title="Costume sketch for the character &quot;Padre&quot; (father) for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/a4/ca/a4ca5f9b21bd48148a28362a89e7b1a6.jpg" alt="Costume sketch for the character &quot;Padre&quot; (father) for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12944" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5c/12/5c128893ae10579d9b13ac4913ade492.jpg" title="Costume sketch for the character &quot;Poeta&quot; (Poet) for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/1e/24/1e24ad7ba1265de8d3e498dac954c043.jpg" alt="Costume sketch for the character &quot;Poeta&quot; (Poet) for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12962" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e5/a7/e5a7b132666cbfee8fee98e326bfb6fd.jpg" title="Costume sketch for the character &quot;Tulemón&quot; for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/12/ff/12ffac6e1996bd5e29289e69d3996ace.jpg" alt="Costume sketch for the character &quot;Tulemón&quot; for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12965" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/ef/6aef427f018be3cb5140a6d3f88fa943.jpg" title="Costume sketch for the character “Rosa” for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/83/04/8304b97fc2b2b27b78a2d788d37c3768.jpg" alt="Costume sketch for the character “Rosa” for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12954" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/c4/71c4b24766ee0dfcbdfe2058b659e295.jpg" title="Costume sketch for the character &quot;Tulemón&quot; for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/95/0b/950b238993ef6ab8b3e0d9a38d6f9c5a.jpg" alt="Costume sketch for the character &quot;Tulemón&quot; for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12958" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9b/f6/9bf63c1c72b7bb59113cebf09a52b13f.jpg" title="Costume sketch for the character &quot;Jacinto&quot; for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/6d/11/6d1196ba530661c2f2b125961ccb1c00.jpg" alt="Costume sketch for the character &quot;Jacinto&quot; for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12952" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c3/af/c3afe03708f376e2901b4093fdd14575.jpg" title="Costume sketch for the character &quot;Benito&quot; for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/a1/87/a1877f60c5083ac28ee982a17fcb35ea.jpg" alt="Costume sketch for the character &quot;Benito&quot; for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12947" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4c/f1/4cf1b6fb935dacd7ed4ff32c76d30bcf.jpg" title="Costume sketch for the character &quot;Padre&quot; (Priest) for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/5f/b6/5fb695bf9b66127e2eaef290203df906.jpg" alt="Costume sketch for the character &quot;Padre&quot; (Priest) for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12946" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0d/19/0d1991428680d24f7ec7e5ab887010e0.jpg" title="Costume sketch for the character &quot;Fiscal&quot; (Prosecutor) for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/f3/af/f3af1619704ba7d3281a2d8126a2d0d7.jpg" alt="Costume sketch for the character &quot;Fiscal&quot; (Prosecutor) for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12961" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9d/7f/9d7fb3f469c35e677bd61712f46ee37c.jpg" title="Costume sketch for the character &quot;Fiscal&quot; (Prosecutor) for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/c7/7f/c77fcc7b078bca9a723ab0e3ff1dff88.jpg" alt="Costume sketch for the character &quot;Fiscal&quot; (Prosecutor) for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12960" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/97/d4/97d465fff679dfc93d5f80455370e16a.jpg" title="Costume sketch for the character &quot;Hijo&quot; (son) for the production, &quot;Los fantasmas de Tulemón&quot; ">
+                  
+                  
+                  <img src="../media/cache/fd/6d/fd6de4f311bc011eaf1d36567f3e02fd.jpg" alt="Costume sketch for the character &quot;Hijo&quot; (son) for the production, &quot;Los fantasmas de Tulemón&quot; " data-href="/digitalobject/12945" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/80/8680d16ddccdc3d8a75beb27d19ccacf.jpg" title="Costume sketch for the production, &quot;Los Fantasmas de Tulemón&quot; ">
+                  
+                  
+                  <img src="../media/cache/76/71/76713a1e427cd315bf22fde945d61a96.jpg" alt="Costume sketch for the production, &quot;Los Fantasmas de Tulemón&quot; " data-href="/digitalobject/12948" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/67/18/67183cb518fd73d8b287565f3f3b0801.jpg" title="Costume sketch for the character &quot;Muerte&quot; for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/d3/67/d367616699f33fadcae7b27fa6a5fde9.jpg" alt="Costume sketch for the character &quot;Muerte&quot; for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12964" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ee/89/ee89e8119822f022a4d97c3dea75165c.jpg" title="Costume sketch for the character &quot;Madre&quot; (Mother) for the production, &quot;Los fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/af/9a/af9adbd105468174e7a769a4d3fd256d.jpg" alt="Costume sketch for the character &quot;Madre&quot; (Mother) for the production, &quot;Los fantasmas de Tulemón&quot;" data-href="/digitalobject/12953" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4b/53/4b534cab9a42bb52a4321a3881e75aa1.jpg" title="Program for the production, &quot;Los Fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="../media/cache/87/48/8748a8c4211a2406a79f528a38e94e79.jpg" alt="Program for the production, &quot;Los Fantasmas de Tulemón&quot;" data-href="/digitalobject/12941" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/68/2b/682b9d1e998df58de95b560c9eebfb40.jpg" title="Program for the production, &quot;Los Fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/52/08/5208ff94b344b9fa9b31501191b44b11.jpg" alt="Program for the production, &quot;Los Fantasmas de Tulemón&quot;" data-href="/digitalobject/12941" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/67/ab/67ab9457a5c4577b6b56accd0200584d.jpg" title="Program for the production, &quot;Los Fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/4f/d4/4fd42c37fd9a1efde5a861db8766979d.jpg" alt="Program for the production, &quot;Los Fantasmas de Tulemón&quot;" data-href="/digitalobject/12941" />
+                  
+                </a>
+              
+                  
+                  <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/82/5b/825b58335c5362bd972243168e551d19.jpg" title="Program for the production, &quot;Los Fantasmas de Tulemón&quot;">
+                  
+                  
+                  <img src="http://ctda.library.miami.edu/media/cache/4f/a9/4fa98a006cbfa3ecca6939760dd9737b.jpg" alt="Program for the production, &quot;Los Fantasmas de Tulemón&quot;" data-href="/digitalobject/12941" />
+                  
+                </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

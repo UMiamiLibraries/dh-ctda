@@ -1,0 +1,1285 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Mónica Guffanti</li>
+                </ul>
+            </nav>
+            <h2>Mónica Guffanti</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Director, actor, costume designer, set designer, producer, adapter</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <div>
+<p>M&oacute;nica Guffanti is one of the most important actresses of the contemporary Cuban theatre scene. She was originally trained in ballet and arrived in Cuba under a contract with the Alicia Alonso Ballet Company. Contemporary dance served as her bridge into theater, and she was discovered as an actress in the late 1960s. This discovery launched her extremely successful career and converted her into one of the most indispensable actresses of Cuban theater in the late 20th and early 21st centuries. Guffanti has also worked in cinema, television, and is a Professor at the Instituto Superior de Arte. Her work with Teatro Estudio, Grupo Buscon, and Teatro El Publico has allowed her to work throughout Spain, France, Portugal, Poland, Mexico, Brazil, and the United States.</p>
+</div>
+
+                </div>
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2041">Los días felices</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1489">Las criadas</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span>November 6, 2004 - November 30, 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4589.html">Todos los Domingos</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2392">Todos los domingos</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1515">Los ojos de la noche</a><br />
+                    <span>Ella</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>August 5, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4881">Los días felices</a><br />
+                    <span>Winnie</span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span>April 13, 2006 - May 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1489">Las criadas</a><br />
+                    <span>Solange</span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span>November 6, 2004 - November 30, 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4880">Los días felices</a><br />
+                    <span>Winnie</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>March 14, 2003 - March 30, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4879">Los días felices</a><br />
+                    <span>Winnie</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>October 20, 2001 - November 11, 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4882.html">Electra o la caída de las máscaras</a><br />
+                    <span>Electra</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 3, 2000 - November 2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1487">El Rey Lear</a><br />
+                    <span>Gonerila</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>1997</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4103">El público</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/40.html">Teatro Trianón</a></span><br />
+                    <span>1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4101">El público</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>1995</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4090.html">El público</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2408">Un tranvía llamado deseo</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/558">Sala Covarrubias</a></span><br />
+                    <span>February 1, 1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3269">Morir del cuento</a><br />
+                    <span>Narradora: Antonia</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/228">Teatro Victoria</a></span><br />
+                    <span>May 8, 1985 - May 19, 1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3291">Morir del cuento</a><br />
+                    <span>Narradora: Antonia</span><br />
+                    <span><a href="../venue/81.html">Teatro Principal de Camagüey</a></span><br />
+                    <span>March 29, 1985 - March 31, 1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3268">Morir del cuento</a><br />
+                    <span>Narradora: Antonia</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3690.html">Morir del cuento</a><br />
+                    <span>Narradora: Antonia</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/344.html">Morir del cuento</a><br />
+                    <span>Narradora: Antonia</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>September 23, 1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4613">Los asombrosos Benedetti</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/413.html">Cine Teatro Miramar</a></span><br />
+                    <span>March 26, 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/585.html">La duodécima noche</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>January 19, 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/448.html">Ni un sí, ni un no</a><br />
+                    <span>Ella</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 11, 1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/332.html">Los pequeños burgueses</a><br />
+                    <span>Elena Nicolaevna Krivizova - inquilina de los Bessemenov</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 9, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1662.html">Los días felices</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/476.html">Café Teatro Kimbara Cumbara</a></span><br />
+                    <span>January 12, 2007 - January 14, 2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4881">Los días felices</a><br />
+                    <span>Costume designer, Set designer</span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span>April 13, 2006 - May 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4880">Los días felices</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>March 14, 2003 - March 30, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4879">Los días felices</a><br />
+                    <span>Producer</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>October 20, 2001 - November 11, 2001</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+            
+              <div class="linkeditems">
+              <h3>Awards: +</h3>
+              <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Category</th>
+                  <th>Award</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td>2004</td>
+                        <td>Best direction (co-director)</td>
+                        <td>
+                          <a href="../award/73.html">Premios Festival de Pequeño Formato de La Habana</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+                  
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1256/">Artistas de las dos orillas en temporada de Miami</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1037/">Los asombrosos Benedettis, buen teatro!</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1031/">Bodas de sangre: montaje y actuación</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1030/">Bodas de sangre: montaje y actuacióm</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1027/">Exitosa presentación del Grupo de Teatro Estudio</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+                <br />
+               Author: Erin Coldsmith (2007-09-21, 2017)
+            
+        
+            
+ 
+            
+            <hr />
+            <h3>Audios</h3>
+            <ul class="audios">
+              
+              <li>
+                <figure>
+                  <a id="cta0058000001" class="fancybox">
+                    
+                      Click to play audio
+                    
+                  </a>
+                  <figcaption>
+                    <a href="../digitalobject/16090.html">Interview with Carlos Repilado</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              </ul>
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuba / Argentina</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>November 18, 1943</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Buenos Aires, Distrito Federal, Argentina</span>
+                </li>
+              
+              
+              
+              
+
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="../taggeditems-tag=Actress.html"><li>Actress</li></a>
+                
+                    <a href="../taggeditems-tag=Cuban%20Theater.html"><li>Cuban Theater</li></a>
+                
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16445">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d1/a1/d1a1559c3f5da1a5f0eb04b9dfbac9f2.jpg" title="Program for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ac/2c/ac2ce8b0cfcf21979b7cfd49440df801.jpg" alt="Program for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16445" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/36/d2366e77c76b01e390c31af987c326d1.jpg" title="Program for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2e/25/2e250abf15d53aeb8d19090ac4efdb76.jpg" alt="Program for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16445" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0f/b6/0fb62e830b447671938ce9459eda7603.jpg" title="Article, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/56/05/5605e4c4a25fe601da8c8c858dddc9d1.jpg" alt="Article, &quot;Los días felices&quot;" data-href="/digitalobject/16444" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4b/b8/4bb83a81d193a8834234853ef74605d8.jpg" title="Article, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/19/f1/19f104d8ff5c0c658e34f74826234d8b.jpg" alt="Article, &quot;Los días felices&quot;" data-href="/digitalobject/16444" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9f/4e/9f4ebf6904faa42c63ce0465c2957b91.jpg" title="Article, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a7/22/a72278a44526712d9ed8509e7acc0fe4.jpg" alt="Article, &quot;Los días felices&quot;" data-href="/digitalobject/16444" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/04/60/0460c0c0204f2e38f2546d2f662235df.jpg" title="Review of the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="../media/cache/10/3c/103cf0830b1f376d1c657274a312f771.jpg" alt="Review of the production, &quot;Los días felices&quot;" data-href="/digitalobject/16443" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bb/52/bb52e6111df3188449edd33fefd80a0b.jpg" title="Review of the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/94/11/9411c01f0efb607a44311b24adfcc0b2.jpg" alt="Review of the production, &quot;Los días felices&quot;" data-href="/digitalobject/16443" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ca/ad/caade98940a357be8bc46f9cc8d3b1ef.jpg" title="Review of the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/21/ed/21ed2ab7a2c791d50e539b06b7c2d35e.jpg" alt="Review of the production, &quot;Los días felices&quot;" data-href="/digitalobject/16442" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/85/6c/856c6825b36cdd99fb8c32b258290437.jpg" title="Review of the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ef/4b/ef4b97359c38948c2e4e0fb0854ff697.jpg" alt="Review of the production, &quot;Los días felices&quot;" data-href="/digitalobject/16442" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/ec/28ec4424cc19d669279de81c277e22bb.jpg" title="Article, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1a/40/1a40c201aadaff0e95a733007927ba98.jpg" alt="Article, &quot;Los días felices&quot;" data-href="/digitalobject/16441" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/79/2079fa880b098e0b0ee1407e5936ee8c.jpg" title="Article, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/16/34/1634822f81539559e05a6fd093f71417.jpg" alt="Article, &quot;Los días felices&quot;" data-href="/digitalobject/16441" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/ca/20cab8ee43f43a6d113cbf0afd3bc96f.jpg" title="Nara Mansur about the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/49/3f/493f0d1720abb60a19e3640778719129.jpg" alt="Nara Mansur about the production, &quot;Los días felices&quot;" data-href="/digitalobject/16440" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6e/01/6e0157c54206272c81bb27efb2730f93.jpg" title="Poster for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a4/27/a427437624f596a154366938f353230f.jpg" alt="Poster for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16439" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/03/28034a9e278fda36fc359b3114eb8e07.jpg" title="Poster for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ec/3d/ec3d0ef738c60230d90cd1449d22bf4c.jpg" alt="Poster for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16438" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7f/80/7f80228ec370278832bc7ad26b2a18bc.jpg" title="Program for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/33/8e/338ec8eb8faaebb19fd02c228b1a32d8.jpg" alt="Program for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16437" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/59/72/5972ee33686112fd3b373254cb8fe661.jpg" title="Program for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/39/17/391772c0169abe698e78323d5d49e92f.jpg" alt="Program for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16437" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7e/50/7e504d5f5c68f0c8fadbcae6c16dd09e.jpg" title="Press release for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8f/36/8f36999b4c7d383cda7446361096d637.jpg" alt="Press release for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16436" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5e/38/5e38e67344d56b179746c1df29e0b6e2.jpg" title="Press release for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d0/c0/d0c0776eda2a006d0f3749338d133067.jpg" alt="Press release for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16436" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e1/02/e1027b7b984ee53f3906f0680633bc89.jpg" title="Press release for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4d/9a/4d9a00881080af9b15f8d907047d88b7.jpg" alt="Press release for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16436" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8a/95/8a95d0d0829c21189a73e1e60af2e00e.jpg" title="Press release for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7d/cd/7dcd908fd7899063519aaf0e9945418f.jpg" alt="Press release for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16435" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/51/97/51973d0d9f01bf885d3a488c8c2b37f2.jpg" title="Press release for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d3/db/d3db2e285b92f9b97a88bf701cdb77dd.jpg" alt="Press release for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16435" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1d/47/1d47a4080534fe9b0e9b0fab2da34d19.jpg" title="Program for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/91/71/91712754e95f1397fce4a5ba5a36d9f8.jpg" alt="Program for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16434" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/98/6d/986d24de24d50d527c7e0b919e604aec.jpg" title="Program for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ff/dd/ffdd6c11ba91a93411454a83055af845.jpg" alt="Program for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16434" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/24/7e/247e373a1a73fff374d43429c19b284d.jpg" title="Press release for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b2/cb/b2cb9459d490f0165bc3295955c0004c.jpg" alt="Press release for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16433" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6b/18/6b18cdfdbd7c5461de58ae200db74efc.jpg" title="Review of the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2c/f9/2cf9b251ab1676e0dc61473bd837a3d1.jpg" alt="Review of the production, &quot;Los días felices&quot;" data-href="/digitalobject/16432" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4a/c0/4ac0cb8eefdf93e253bd2da9a60f76ca.jpg" title="Review of the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/69/fe/69feaf3065fa6f67d7dd4ec4a07e3b01.jpg" alt="Review of the production, &quot;Los días felices&quot;" data-href="/digitalobject/16432" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/56/2256c711748d1968ab0166f2eba6b87d.jpg" title="Review of the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="../media/cache/7b/20/7b20cd3be6ce02996656f3e52041162e.jpg" alt="Review of the production, &quot;Los días felices&quot;" data-href="/digitalobject/16431" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8a/39/8a3990a2d06b931d44416edc84ada81c.jpg" title="Review of the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ce/e8/cee8e0e7f3f186bb2ee42eb3105b0dd7.jpg" alt="Review of the production, &quot;Los días felices&quot;" data-href="/digitalobject/16431" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0f/cf/0fcfcee03234cdf2bbdafa2c11b43754.jpg" title="Press release for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f0/96/f09655aebacfe9a9ace6704769873523.jpg" alt="Press release for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16430" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2f/26/2f26dd60ca97617bba4b787dfd89ee1f.jpg" title="Press release for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5b/90/5b902c7cdce671936f08d94daf58ca6e.jpg" alt="Press release for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16429" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/67/5667b843523cf59e10e5b423a09396ac.jpg" title="Press release for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d9/be/d9bea4e58ac5f38b9cd77de80ae20ad1.jpg" alt="Press release for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16429" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a3/91/a3916b773842b9d016917b8cbc855cbd.jpg" title="Press release for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="../media/cache/25/22/25226025dd20c8737cf05375ac69fcdf.jpg" alt="Press release for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16428" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/36/8f/368f64904ecd2a13b15d6fdbedc2ed0e.jpg" title="Press release for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6b/88/6b88a89b6cabe18ad6afe9fd84f2a310.jpg" alt="Press release for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16428" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/49/d5/49d5dfe1ab4c6c39b4f6cf2ecc2128a8.jpg" title="Press release for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ab/a6/aba689a4b8ceca159260498ce70d011f.jpg" alt="Press release for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16427" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a7/46/a7461187d6e402d64addf494c22215fa.jpg" title="Press release for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4b/d0/4bd0c5b64c83fbbe4a4c1b4129e92294.jpg" alt="Press release for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16427" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b8/12/b812a691248a0150e8069deafa45f31e.jpg" title="Press release for the production, &quot;Los días felices&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9c/47/9c472bb775ef8e70145602f0015905a5.jpg" alt="Press release for the production, &quot;Los días felices&quot;" data-href="/digitalobject/16426" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6b/fa/6bfa20dae53704ac6791c3e9ed9131dc.jpg" title="Interview with Miguel Sánchez León on the production, &quot;Las criadas&quot;">
+                    
+                    
+                    <img src="../media/cache/a4/71/a471f625955281d526e1ed90e3b04a6c.jpg" alt="Interview with Miguel Sánchez León on the production, &quot;Las criadas&quot;" data-href="/digitalobject/16416" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3f/9b/3f9b1f71a55b60396fe89ccd86e6e782.jpg" title="Interview with Miguel Sánchez León on the production, &quot;Las criadas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/69/ce/69ce2aa5f4daf6bf56b2f510dbe52739.jpg" alt="Interview with Miguel Sánchez León on the production, &quot;Las criadas&quot;" data-href="/digitalobject/16416" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/25/8e/258e7d5c0b3ca1baefea488dd5675594.jpg" title="Interview with Miguel Sánchez León on the production, &quot;Las criadas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ef/7a/ef7a076da77e70019a864af4943d3d96.jpg" alt="Interview with Miguel Sánchez León on the production, &quot;Las criadas&quot;" data-href="/digitalobject/16416" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ba/1f/ba1f3b2d9353b255385560269123dd9d.jpg" title="Best direction to Doris Gutiérrez and Mónica Guffanti in the production, &quot;Las criadas&quot;">
+                    
+                    
+                    <img src="../media/cache/45/6a/456aee929d24586387fbd4b6343a2b88.jpg" alt="Best direction to Doris Gutiérrez and Mónica Guffanti in the production, &quot;Las criadas&quot;" data-href="/digitalobject/16415" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/14/98/1498b9fed90f9d0d6cf4748b6349e740.jpg" title="Program for the production, &quot;Las criadas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ef/5e/ef5e3fef1efe3a7bc626f5ca80894007.jpg" alt="Program for the production, &quot;Las criadas&quot;" data-href="/digitalobject/16414" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/14/98/1498b9fed90f9d0d6cf4748b6349e740.jpg" title="Program for the production, &quot;Las criadas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ef/5e/ef5e3fef1efe3a7bc626f5ca80894007.jpg" alt="Program for the production, &quot;Las criadas&quot;" data-href="/digitalobject/16414" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/58/ae/58ae3bb5ad17b32d8af94a7cbfb82f7f.jpg" title="Award documentation of the production, &quot;Las criadas&quot;">
+                    
+                    
+                    <img src="../media/cache/98/5f/985f3c3da3bc2c7baec5dfd9f4e53cce.jpg" alt="Award documentation of the production, &quot;Las criadas&quot;" data-href="/digitalobject/16413" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/11/df/11df62e4d5c7667832d03c71725d2ea2.jpg" title="Award documentation of the production, &quot;Las criadas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ec/d5/ecd5add3ef4237ce3c1c88406d242286.jpg" alt="Award documentation of the production, &quot;Las criadas&quot;" data-href="/digitalobject/16413" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/07/0e/070e9f7ca29cda94409b5a326c658527.jpg" title="Poster of the production, &quot;Las criadas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e1/ea/e1ea008c7454ad6b07a2afd0b0716f44.jpg" alt="Poster of the production, &quot;Las criadas&quot;" data-href="/digitalobject/16412" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d3/1a/d31aa3f69646bf66ad3937ee945bb3f3.jpg" title="Photograph of Déxter Cápiro and Mónica Guffanti in the production, “La boda”">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f7/7d/f77d462cd4330d49ebaee1fd34273d9a.jpg" alt="Photograph of Déxter Cápiro and Mónica Guffanti in the production, “La boda”" data-href="/digitalobject/16360" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/76/f176fe8830137a9dca9220eeb9cc4b61.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="../media/cache/fc/00/fc00b9851a561a922905a64a1a0ebb6d.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1f/b4/1fb463bc7a22cf2e7d412860fbaf3c3e.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/09/12/09129f127688387ed188633cd89f6501.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7e/65/7e65652423dd5eda9f33325f89d76214.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/de/e5/dee5ed751e9aed3e22cb1176a308f8d1.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/9f/f19fbbc3b2a1b031d663b704351b9b55.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0d/4d/0d4d6baab628aeef495fd15fccd1494d.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b9/e1/b9e18bac74bb307f1e53ddac59ccf2f7.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/37/ae/37aec5d79e0c490715a89198d3eaa78c.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/67/1b67d09edafdc07f7399ade00e1f08e5.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d2/aa/d2aaafe2dc96dbbb60f86f0ae1657ac1.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/96/22961fca8a6087b97c1f60aa341de09b.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/73/67/7367ae61f63bb0d8d20788e9a7f3b8d1.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a8/c0/a8c09819b5d0cc7d73afb91d30817087.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0d/7f/0d7ff285d7aa3bb4f3c19da6adab35ac.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/76/24/7624784421294b8d20eb14609b3fb589.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f2/de/f2de7254efaff84679ab7f9772c74adf.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/1a/b71a18a16e86341ff8be8e027829607d.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3e/21/3e21a8944940ddfbaf37c85493dfd12a.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cf/13/cf1393b964d135b4e27ae5e29e8f24cb.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ab/4d/ab4d8c70040cdd385f75446caa6698c1.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/01/1c/011cf7da4496b54d8e3b228a0ae0b0c1.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8e/34/8e3406b1625c01958b483bc4e8287f92.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6f/d4/6fd4d3f4fdb9a77d98337223c74d9656.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/03/13/031355c5673821a832597e2c36234487.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8c/cc/8ccc3bb4fdff17704b9c80a7b820631c.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/60/52/605288e6bc9f43ec3ab48c39a527710b.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/32/05/320511bcba55b6cc9d76e1715d344aea.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d7/5b/d75b8b74dd2358a327672c73c2c602e0.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/46/b8/46b85054c17eb9e5cdd7967b1327d81a.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/14/2c/142c674f042f909191c355ef16275c20.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/78/c0/78c01ee9c73c70f9c59a171a98296fc7.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9e/6b/9e6ba00e86baaecc10183f3d458db26c.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fd/c8/fdc830b0df70c1ef9aa47684067f19ac.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4a/d5/4ad5fd4818f60e29aa139f0c4497154b.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/da/2d/da2d836eaa2b427ac8dad7e74b8d1426.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5d/1f/5d1fe7bb381087e84bdf84a58418c19a.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/f7/f1f74c0f555c3a80e0b138a5839f0363.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b2/cb/b2cb3214945857dbc07f5ccffc5c1035.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/9b/7a9b9c33e3a921f71704e7447db2acfc.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f0/e1/f0e1b2bdb3c047910c94ed91e378ccf9.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cd/58/cd581af05b926069c448a802b2418d6a.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/15/96/159665b2e45fc279336d56725748f0cb.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f7/14/f7149a1f3dbbd0d023e1291eb1851baa.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6d/61/6d61b5cfbf9581f2501c19cfc4dcad0d.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/55/d2/55d277b6cf4e26b5b6192a756e049a75.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/57/b0/57b0d8b25a82e19db379619f3786058f.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f2/d4/f2d4f368d5ba152ea201e437653a534a.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/84/4e/844ef819bc411bf4a6586396523c073b.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fa/21/fa21571dd06cebbb08dc02b2d3271f9d.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b0/4b/b04b9efc97855757d5300ee113b3df64.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/16/35/16356b1a4b1c27ed44496c23bd0fb326.jpg" title="Review for the production, &quot;El becerro de oro&quot; ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c3/8f/c38f97c28a15bd4bb627993ef99ae6ed.jpg" alt="Review for the production, &quot;El becerro de oro&quot; " data-href="/digitalobject/601" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/1c/d21cefb14f08559e449b0902854f69d2.jpg" title="Program for the production, &quot;Casa de Muñecas&quot;">
+                    
+                    
+                    <img src="../media/cache/83/51/83511716a3000fa3542ac56ad5eb9cf2.jpg" alt="Program for the production, &quot;Casa de Muñecas&quot;" data-href="/digitalobject/9" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0c/fb/0cfbb90a1b02a4d8e81344d405ef4900.jpg" title="Program for the production, &quot;Casa de Muñecas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/22/c3/22c3c19890338bd3b7f910f0d874f9e1.jpg" alt="Program for the production, &quot;Casa de Muñecas&quot;" data-href="/digitalobject/9" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9a/fe/9afe8c509b75ba33f08dba59a68cd9c4.jpg" title="Program for the production, &quot;Casa de Muñecas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3c/a8/3ca8fe95adc3a43ece5c89a2827e1be9.jpg" alt="Program for the production, &quot;Casa de Muñecas&quot;" data-href="/digitalobject/9" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e3/ec/e3ec01dc21c6ff0ea282eb93dcadd83f.jpg" title="Program for the production, &quot;Casa de Muñecas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/69/c5/69c55ccb55f409ebcab19390db4264f1.jpg" alt="Program for the production, &quot;Casa de Muñecas&quot;" data-href="/digitalobject/9" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

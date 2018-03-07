@@ -1,0 +1,629 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>Vagos rumores</li>
+                </ul>
+            </nav>
+            <h2>Vagos rumores</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/84.html">Abelardo Estorino</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+
+            
+              <div class="linkeditems">
+              <h3>Design team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/1331">Juan Piñera</a></td>
+                    <td>Sound/Soundtrack Designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="../creator/5533.html">Carlos Repilado</a></td>
+                    <td>Set designer, Light designer, Costume designer</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+
+            
+          
+          
+            
+              <div class="linkeditems">
+              <h3>Awards: +</h3>
+              <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Category</th>
+                  <th>Award</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td>1993</td>
+                        <td>Best Actress</td>
+                        <td> <a href="../award/77.html">Premio Nacional Francisco Covarrubias</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+          
+          
+            
+          
+
+
+            
+
+
+
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              
+            
+                <a href="../creator/4800.html" >Grupo Teatro Estudio (4800)</a><br />
+              
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck (Cuba)</a></span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>1992</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="../writtenwork/151.html">Vagos rumores (Play script)</a><br />
+                <span>By <h4>Author / Playwright:</h4><a href='../creator/84.html'>Abelardo Estorino</a></span>
+              </li>
+              
+              <li>
+                <a href="../writtenwork/2223.html">Vagos rumores (Translation)</a><br />
+                <span>By <h4>Author / Playwright:</h4><a href='../creator/532.html'>Luiz de Assis Monteiro</a></span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/12604">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/07/d0/07d050b3d8290d7b9e9d7c86cf4ab905.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/aa/4e/aa4e0759fd4896a9df043c3db054376d.jpg" alt="Vagos rumores" data-href="/digitalobject/12604" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3a/b7/3ab772df33d37e96cfc3307c3df9edac.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/23/8e/238e36ec74055c646387eec88b261e16.jpg" alt="Vagos rumores" data-href="/digitalobject/12586" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8e/f5/8ef57c57b4df19f1b2eb163009d61a03.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/80/79/807972ed376c82f82f76fda843575df1.jpg" alt="Vagos rumores" data-href="/digitalobject/12583" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/db/b2/dbb28696e291a5bb156735709994fd79.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e3/84/e3849c5de1d5c91e7c30969b06875979.jpg" alt="Vagos rumores" data-href="/digitalobject/12566" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/11/11/111120da071eb654db35d25e364b9018.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d1/33/d133f80b349e08d113b48c4e70f5be0a.jpg" alt="Vagos rumores" data-href="/digitalobject/12555" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/49/ce/49ce776b4c8ecb24db4d57cee6589539.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/23/f3/23f3a1290f456edb420c75565fa0392d.jpg" alt="Vagos rumores" data-href="/digitalobject/12547" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/72/2e/722ed2e69414025952cd8b34af621285.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/88/38/88387ee3f1714665a8282f0781e4a3cd.jpg" alt="Vagos rumores" data-href="/digitalobject/12544" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/19/bb/19bb271c29fdf8b487380a670ad06503.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d3/26/d3264e6b58058a822174dcf0a32ef12e.jpg" alt="Vagos rumores" data-href="/digitalobject/12539" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/26/f2/26f2a8cb0e3377e3272fbefd5c586c07.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c6/35/c635652d0537ff11820518a284a7b79c.jpg" alt="Vagos rumores" data-href="/digitalobject/12507" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/32/2232e89ad51a1e7a635c834bcee1665c.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e1/d6/e1d60ef1a0ac21492f1a5dc4c19a1885.jpg" alt="Vagos rumores" data-href="/digitalobject/12501" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/aa/1e/aa1eb422f01d4459e7dbbbeaaaaf79fd.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/dd/ca/ddca1c99a101e64032f375f1d967091d.jpg" alt="Vagos rumores" data-href="/digitalobject/12497" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/75/83/758398f5cb93971c553ccf2db5630e34.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/9c/cd/9ccd1435b7826b1a99c7c288c1b1072d.jpg" alt="Vagos rumores" data-href="/digitalobject/12472" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/38/f0/38f0641dbaae15e311ac2e8dd25dd1e7.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b4/05/b405a6c0abd2db5d170d08e524db8362.jpg" alt="Vagos rumores" data-href="/digitalobject/12466" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a5/5f/a55fc2054356be2f8b3cdfcfa415fb4b.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/73/d5/73d565ecb5e5bf7da64d2bf127400db2.jpg" alt="Vagos rumores" data-href="/digitalobject/12451" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/02/07/02078c167eb7ba8c4fe20a4dde330461.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5c/75/5c75571421b155606ed237bcce97f979.jpg" alt="Vagos rumores" data-href="/digitalobject/12445" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f2/5c/f25c8b40fe3ccd0b5c60581664c01c71.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5d/a2/5da2725ee1b6f6509220dfa0f207463a.jpg" alt="Vagos rumores" data-href="/digitalobject/12443" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/69/f0/69f05b46cc3fb4cbc1b1e9c4bebb90b6.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/cf/fb/cffbaee39ee64c135c9dad090166bb88.jpg" alt="Vagos rumores" data-href="/digitalobject/12429" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d4/f2/d4f2dc62df7187876c22c8cb10bc0a9a.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/91/80/918048f46dd4e6c57f5b86c9bcfac9e9.jpg" alt="Vagos rumores" data-href="/digitalobject/12424" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/c2/bdc2ec767967fd9ffbdac85db9be4306.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/55/07/55079a66977b655d275320fec527af47.jpg" alt="Vagos rumores" data-href="/digitalobject/12381" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/92/3e/923eb91e1402680b07c726130cffde6f.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c5/da/c5da46daea8ce13b2ae0d498569eb078.jpg" alt="Vagos rumores" data-href="/digitalobject/12368" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f2/94/f294db61385ea97116ebc0a2032c8c35.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c5/e9/c5e98cb16fae14f9a52d6b133b991f4b.jpg" alt="Vagos rumores" data-href="/digitalobject/12337" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/89/eb/89ebcd4f95bb461248cae4b1de3557e2.jpg" title="Vagos rumores">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a0/d7/a0d79a18704c23a87196bd76219173b6.jpg" alt="Vagos rumores" data-href="/digitalobject/12327" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

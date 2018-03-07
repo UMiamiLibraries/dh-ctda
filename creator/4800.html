@@ -1,0 +1,3122 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Grupo Teatro Estudio</li>
+                </ul>
+            </nav>
+            <h2>Grupo Teatro Estudio</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong></strong></p>
+
+            
+            
+
+            
+              <div class="linkeditems">
+                  <h3>Notes: +</h3>
+                  <ul>
+                  <p><strong>DIRECTOR GENERAL</strong>: Vicente Revuelta</p>
+<p>Tel&eacute;fonos- (537) 832-5373</p>
+<p>It was created in February 1958 by Vicente Revuelta and his sister Raquel when they issued their <a href="http://www.cniae.cult.cu/TeatroEstudio_documento_decreacion.htm" target="_blank">Manifiestos a la opini&oacute;n p&uacute;blica</a>, along with a group of other young Cuban theater artists--Ernestina Linares, Sergio Corrieri, Pedro Alvarez, Rigoberto &Aacute;guila, Antonio Jorge and H&eacute;ctor Garc&iacute;a Mesa. In November of the same year they founded a Performing Arts Academy connected to the company. The Cuban goverment assigned Hubert de Blanck Theater as its permanent headquarters in December of 1963. In June 1965, The National Council of Culture suspended Vicente Revuelta as General Director of the group. This situation was not accepted by the members of the company and all activities recessed until February 1966 when Dagoberto Casa&ntilde;as was appointed General Director. In March 20, 1968 Dagoberto Casa&ntilde;as ceased as General Director of the group and was substituted by Vicente Revuelta. In October 15, 1968 an internal crisis divided the company. Raquel Revuelta was appointed General Director and her brother Vicente founded a new group named Los doce (The Twelve). Only 16 actors remained in Teatro Estudio. They were: Berta Mart&iacute;nez, Silvia Planas, Norma Mart&iacute;nez, Miriam Learra, Ana Vi&ntilde;as, Tet&eacute; Blanco, Florencio Escudero, Eduardo Moure, Ra&uacute;l Eguren, Joaqu&iacute;n Dom&iacute;nguez, Elio Mesa, Luis Ota&ntilde;o, Pedro Reg&uuml;iferos, Carlos Bem&uacute;dez, Marta Farr&eacute; and H&eacute;ctor Quintero.</p>
+
+                  </ul>
+              </div>              
+            
+
+            
+             <div class="linkeditems">
+                <h3>Related creators: +</h3>
+                <ul>
+                    
+                        Member of
+                        <a href="96.html"> Raquel Revuelta</a>, Founder,
+                        February 1958 <br />
+                    
+                        Member of
+                        <a href="183.html"> Vicente Revuelta</a>, Founder,
+                        February 1958 <br />
+                    
+                </ul>
+             </div>
+            
+
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3078">Juventud rebelde</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3079">Las hijas de Luz Vasquez</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3081">La visitante</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1126">Cubana de Acero</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/639">Tartufo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span>February 28, 2003</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/337">Parece blanca</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>October 29, 1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3266.html">Vagos rumores</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>October 13, 1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3008">La legionaria</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/827.html">Madrid</a></span><br />
+                    <span>June 18, 1998 - June 25, 1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/638">La zapatera prodigiosa</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/50.html">Casona de Línea</a></span><br />
+                    <span>1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2390">El mendigo y el perro muerto</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3265">Las penas saben nadar</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>October 8, 1996 - November 18, 1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3871">Vagos rumores</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
+                    <span>October 8, 1996 - November 16, 1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/637">Encuentro en el parque peligroso</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/13">Teatro Mella</a></span><br />
+                    <span>February 24, 1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3769">El no</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>January 4, 1995</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/635.html">Ñaque o de piojo y actores</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/50.html">Casona de Línea</a></span><br />
+                    <span>July 23, 1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/640">Para hacer el retrato de un pájaro</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/50.html">Casona de Línea</a></span><br />
+                    <span>April 23, 1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/634">Rosa de dos aromas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/50.html">Casona de Línea</a></span><br />
+                    <span>March 13, 1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/633">Dolor bajo llave</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/50.html">Casona de Línea</a></span><br />
+                    <span>January 28, 1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/632">Medida por medida</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/50.html">Casona de Línea</a></span><br />
+                    <span>March 12, 1993</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1427">La verbena de la paloma</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1993 - 1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3770">Concierto barroco</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>June 20, 1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/341.html">Vagos rumores</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/641.html">Momo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 11, 1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/628.html">El tío Francisco y las Leandras</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>April 4, 1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4152">La posadera</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/642.html">La Cenicienta</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 27, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/643.html">La esquina peligrosa</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 28, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/345.html">Ni un sí, ni un no</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>April 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/327.html">Aristodemo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 3, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4086">Arístodemo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/825.html">Unknown</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/624.html">Contigo pan y cebolla</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/623.html">El boticario, las chulapas y celos mal reprimidos (La verbena de la paloma)</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>June 1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/342.html">Las penas saben nadar</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 27, 1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/622.html">El día que me quieras</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>January 21, 1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/625.html">El oso</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/626">El ojo que ves no es</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/627.html">La ronda</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/620.html">La carta</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/621.html">La venganza de Don Mendo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/328.html">La malasangre</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 13, 1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/619">Puebla de mujeres</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>January 9, 1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/618.html">El endure en dos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>January 1, 1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/343.html">Que el diablo te acompañe: vamos a decir comedia en dos actos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 10, 1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/645.html">La opinión pública</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>August 1, 1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/615.html">Había una vez</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/617.html">A cada cual lo suyo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/644.html">El rey desnudo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1885.html">La torta y la empanada</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4153">La duodécima noche</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2545.html">La aprendiz de bruja</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>September 25, 1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/611.html">¿Y quién va a tomar café?</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 26, 1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/646.html">Segundo tiempo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/610.html">La zapatera prodigiosa</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>May 10, 1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/609.html">El abuelo se quiere casar</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>April 19, 1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/329.html">La verdadera culpa de Juan Clemente Zenea</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 29, 1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/608.html">Electra Garrigó</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 8, 1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/607">Plácido</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>January 31, 1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/613.html">Los tres pichones</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/614">La magicanción</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2389">En el parque</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4155">Bodas de sangre</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/648">La caperucita roja</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>August 24, 1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/606.html">La escuela de los parientes</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>August 11, 1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/605.html">Mónica</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>June 29, 1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/649.html">Historia de un caballo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>April 24, 1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4154">La fierecilla domada</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/604.html">La ronda</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 7, 1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/602.html">El canto del cisne</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/603.html">Mañanitas de sol</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/600.html">Antes del desayuno</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>February 1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/601">El cuento del zoológico</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>February 1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/599.html">Macbeth</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>January 20, 1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/650">Médico a la fuerza</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2387">El cuento del zoológico</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2388">El canto del cisne</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2802.html">Morir del cuento</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/596">Un canto nunca acabado</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>October 1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/344.html">Morir del cuento</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>September 23, 1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/595">Juego de actores</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>May 15, 1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/447.html">Dos en un cachumbambé</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>April 23, 1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/594">Caminata ciento treinta por treinta</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>January 29, 1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/597">Chivo que rompe tambó</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/598.html">Dame una fría</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2399">La casa de Bernarda Alba</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/590.html">Días y flores</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 25, 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/591.html">Santa Camila de La Habana Vieja</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 25, 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/589.html">Una lata de pintura</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>May 30, 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/588">El señor Patelín</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>April 25, 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/587.html">Los asombrosos cuentos de Benedetti o Cuentos de Benedetti</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 26, 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/593">Entremeses</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>March 14, 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/586">Pasos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>January 31, 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/585.html">La duodécima noche</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>January 19, 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/592.html">Arsénico y encanje</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4032.html">La vieja dama muestra sus medallas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/330.html">Aire frío</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 7, 1981</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/583.html">Vivimos en la ciudad</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 5, 1981</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/582.html">Los inventos de un escaparate</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>June 1981</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/581">Baltazar</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>April 3, 1981</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/580.html">Comedia a la antigua</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>February 14, 1981</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/584.html">La casa de Bernarda Alba</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1981</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/930.html">Don Gil de las Calzas Verdes</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1981</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1416">Guardafrontera</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1981</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4142.html">Bodas de sangre</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1981</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/448.html">Ni un sí, ni un no</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 11, 1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4901">Bodas de sangre</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/382">Teatro Estudio</a></span><br />
+                    <span>October 1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/579.html">La fuga</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>August 9, 1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/578.html">El saco de gamuza</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>June 7, 1980 - 1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/577.html">El travieso Jimmy</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>May 2, 1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/576.html">Doña Rosita la soltera</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>January 1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/574.html">El precio</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 28, 1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/573.html">Bodas de sangre</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 23, 1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/446.html">El feliz cumpleaños de Lala Rumayor</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 14, 1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3051.html">El becerro de oro</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/572.html">Las impuras</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 7, 1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/571.html">La luz de Yara</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>May 5, 1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1536">Santa Juana de América</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1124.html">Kostantin Kisinov</a></span><br />
+                    <span>1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/575">Historia de una muñeca abandonada</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3076">Santa Juana de América</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1125">Moscow</a></span><br />
+                    <span>January 1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/331.html">Casa de muñecas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 17, 1978 - 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/413">Terror y miseria del III Reich</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>November 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/449">Del pobre BB a Bertolt Brecht</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>November 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3080.html">La última carta de la baraja</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3075.html">La dama boba</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1978 - November 12, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/412.html">Santa Juana de América</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 15, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/411">La discreta enamorada</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>April 14, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/410.html">La última carta de la baraja</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>April 4, 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/570.html">Los diez días que estremecieron el mundo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 20, 1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/568">El oso</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>October 1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/567">Sobre el daño que hace el tabaco</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>June 3, 1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/569">Petición de mano</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>June 3, 1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/566.html">El premio flaco</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>April 5, 1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/565.html">La dama boba</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 13, 1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/564.html">Hazañas que cantar</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>January 30, 1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2397">Algo muy serio</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1977 - 1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/563.html">Algo muy serio</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 22, 1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2411.html">Don Gil de las Calzas Verdes</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/562.html">La madre</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>June 20, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/561">Érase una vez un rey</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>May 14, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/332.html">Los pequeños burgueses</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 9, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/559.html">Hagamos la canción</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>February 12, 1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/963">La dolorosa historia del amor secreto de don José Jacinto Milanés</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/50.html">Casona de Línea</a></span><br />
+                    <span>1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/2423.html">Los tres mosqueteros</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/444.html">Galileo Galilei</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 15, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/968.html">El conde Alarcos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 8, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/445.html">Más temprano que tarde</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>September 27, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/443.html">Mientras Santiago ardía</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>August 27, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/556.html">Si llueve te mojas como los demás</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 7, 1974 - July 13, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/557.html">Los caminos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>April 28, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/560">Contigo pan y cebolla</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>April 19, 1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1541">Madre Coraje y sus hijos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/555.html">Viet Nam o Aprendiendo el futuro</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 21, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/554.html">Los tres mosqueteros</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 1, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/553.html">La vieja dama muestra sus medallas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>August 25, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/552.html">Paisaje blanco</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>July 14, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/551.html">Se hace camino al andar</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>June 27, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/550.html">El inspector</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>April 17, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/549.html">Recital de canciones de Miguel Porcell</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 31, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/548.html">La hija de las flores o Todos están locos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>February 17, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/442.html">Cantar de cantares</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>January 28, 1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2394">Madre Coraje</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/441.html">Tiene la palabra el camarada Mauser</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 11, 1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/547.html">Caminando y cantando</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 30, 1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/546.html">El poeta y la muerte</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 4, 1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/545.html">La casa de Bernarda Alba</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>May 18, 1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/544.html">Las tres hermanas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>January 23, 1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2385">La conquista de México</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/543.html">El lindo Don Diego</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 4, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4954.html">Don Gil de las Calzas Verdes</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>September 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/333.html">La discreta enamorada</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>August 21, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/542.html">La vuelta al mundo en 80 días</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 3, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/541.html">Balada del probre Bertolt Brecht</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>April 25, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/540.html">Sainetes andaluces</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>February 27, 1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4624">Mambrú se fue a la guerra</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/745">Teatro Estudio</a></span><br />
+                    <span>1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/539.html">Mambrú se fue a la guerra</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 26, 1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/538.html">Thermidor Mayo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 12, 1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/537.html">Memorias de Fermín</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 21, 1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3044.html">Bernarda</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/536.html">¡Tonadillas!</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>June 20, 1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/535.html">La toma de La Habana por los ingleses</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>June 6, 1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/534.html">El pequeño prodigio</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>April 26, 1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/533.html">Imágenes de Mancondo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>April 25, 1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/532.html">Richard trajo su flauta</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>January 7, 1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/530.html">Tres entre tres</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 9, 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/529.html">En la parada llueve</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 22, 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/525.html">Don Gil de las Calzas Verdes</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 5, 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/528.html">La vida entera</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>September 23, 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/527.html">Cuentos del Decamerón</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>September 20, 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/526.html">La cortinita</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>June 26, 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/524.html">El caballero de Olmedo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>February 1, 1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/531">Canciones y pantomimas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/523.html">El millonario y la maleta</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 19, 1968</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/522.html">La vuelta a la manzana</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>August 29, 1968</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/521.html">Las cuatro estaciones</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 21, 1968</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/520.html">El becerro de oro</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 28, 1967</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/334.html">La ronda</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>September 21, 1967</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/519.html">Happening</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>August 12, 1967</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3046.html">Contigo pan y cebolla</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>May 6, 1967 - May 14, 1967</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/518.html">El sueño americano</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 16, 1967</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4300.html">La noche de los asesinos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 25, 1966 - November 27, 1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/516.html">A la diestra de Dios Padre</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>November 23, 1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/515.html">El farsante más grande del mundo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 8, 1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/513">Una lata de pintura</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>June 1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/512.html">Todos los domingos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>May 24, 1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/514.html">¿Quién pidió auxilio?</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>May 24, 1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/510.html">El alma buena de Se Chuan</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>April 30, 1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/517.html">La noche de los asesinos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2317">¿Quién pidió auxilio?</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3941">En la diestra de Dios Padre</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/509.html">Risotadas ante el patíbulo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 1965</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/508.html">El perro del hortelano</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 25, 1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/349.html">La casa vieja</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/506.html">La repetición</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>June 27, 1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/507.html">Las de enfrente</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>June 27, 1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/504.html">El cuento del zoológico</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>May 24, 1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/505.html">La muerte de Bessie Smith</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>May 24, 1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/503.html">Contigo pan y cebolla</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>February 2, 1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/931">Una lata de pintura</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/499">El baño</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/13">Teatro Mella</a></span><br />
+                    <span>November 11, 1963</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/498">Fuenteovejuna</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>January 9, 1963</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/501">Las aceitunas (Paso)</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>1963</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/502">Una lata de pintura</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/44.html">Extensión teatral (Traveling)</a></span><br />
+                    <span>1963</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/497">Vassa Yelléznova o Una familia burguesa</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>October 26, 1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/496">Pasado a la criolla</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>August 21, 1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/495">Madre Coraje y sus hijos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/904.html">La Habana </a></span><br />
+                    <span>December 12, 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/494">El círculo de tiza caucasiano</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/13">Teatro Mella</a></span><br />
+                    <span>September 15, 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/493">Doña Rosita la soltera</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/42">Sala Ñico López</a></span><br />
+                    <span>August 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/491">Pasos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/42">Sala Ñico López</a></span><br />
+                    <span>July 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/492">El retablo de las maravillas (Entremés)</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/42">Sala Ñico López</a></span><br />
+                    <span>July 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/488">Gloria</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/42">Sala Ñico López</a></span><br />
+                    <span>April 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/489">La botija y la felicidad</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/42">Sala Ñico López</a></span><br />
+                    <span>April 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/490">El tiro por la culata</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/42">Sala Ñico López</a></span><br />
+                    <span>April 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/801">Electra Garrigó</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/126.html">Casa de las Américas</a></span><br />
+                    <span>March 7, 1961 - March 9, 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/487">Recuerdo de dos lunes</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/42">Sala Ñico López</a></span><br />
+                    <span>February 15, 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/482">Mundo de cristal</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/42">Sala Ñico López</a></span><br />
+                    <span>January 11, 1961</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/486">El aniversario</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/559.html">Palacio de Bellas Artes</a></span><br />
+                    <span>December 16, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/485">La muerte de un viajante</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/42">Sala Ñico López</a></span><br />
+                    <span>November 23, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/483">Los fusiles de la madre Carrar</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/42">Sala Ñico López</a></span><br />
+                    <span>October 30, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/484">Petición de mano</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/42">Sala Ñico López</a></span><br />
+                    <span>October 30, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3779">Los habladores (Entremés)</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>August 9, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/479">Corazón ardiente</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/42">Sala Ñico López</a></span><br />
+                    <span>August 4, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/478">La hora de estar ciegos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/42">Sala Ñico López</a></span><br />
+                    <span>July 28, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/476">Tupac Amaru</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/658.html">Marianao, Ciudad de la Habana</a></span><br />
+                    <span>June 4, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/474">El alma buena de Se-Chuán</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/435">Teatro de Bellas Artes</a></span><br />
+                    <span>June 12, 1959</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3064.html">El alma buena de Se-Chuan</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/559.html">Palacio de Bellas Artes</a></span><br />
+                    <span>June 12, 1959</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/473">Viaje de un largo día hacia la noche</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>October 10, 1958</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2395">La obra de arte</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2401">Arsénico y encaje</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2412">Los tres mosqueteros</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+                <div class="linkeditems">
+                <h3>Primary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1027/">Exitosa presentación del Grupo de Teatro Estudio</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/918/">Evocación de Galileo Galilei</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/923/">Una isla llamada Cuba, una isla llamada Federico</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+        
+            
+ 
+            
+            <hr />
+            <h3>Audios</h3>
+            <ul class="audios">
+              
+              <li>
+                <figure>
+                  <a id="cta0058000004" class="fancybox">
+                    
+                      Click to play audio
+                    
+                  </a>
+                  <figcaption>
+                    <a href="../digitalobject/16168.html">Interview with Tony Díaz</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              </ul>
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              
+              
+              
+              
+              
+                <li>
+                  <h4>Office / HQ:</h4>
+                  <span><a href="../venue/259.html">La Habana, La Habana, Cuba</a></span>
+                </li>
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/15884">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5e/d9/5ed9aa282047ef9afe99e18a92024015.jpg" title="Micheline Calvert and Sandra García in the production, Rosa de dos aromas">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/63/82/6382c31ed3513debd7ccd9b37a5f9e7d.jpg" alt="Micheline Calvert and Sandra García in the production, Rosa de dos aromas" data-href="/digitalobject/15884" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/79/05/790520bf3c6561371b4c46dde5889bba.jpg" title="Micheline Calvert in the production, Rosa de dos aromas">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/87/af/87afaf9f75deabd889d9f479b4907bf5.jpg" alt="Micheline Calvert in the production, Rosa de dos aromas" data-href="/digitalobject/15883" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/af/8d/af8d5fef114c4dd8bb0326e8004b3631.jpg" title="Micheline Calvert in the production, La casa de Bernarda Alba">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c2/72/c2725d14ed0dfaa6576f99e366c7959a.jpg" alt="Micheline Calvert in the production, La casa de Bernarda Alba" data-href="/digitalobject/15880" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/36/bd/36bd844449cbaa07718c6a488d73068c.jpg" title="Micheline Calvert in the production, La casa de Bernarda Alba">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/18/c8/18c844a113ea488280b4a8ce2bae7296.jpg" alt="Micheline Calvert in the production, La casa de Bernarda Alba" data-href="/digitalobject/15879" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/35/61/356194320878e84ccf4efea9d7086400.jpg" title="Micheline Calvert in the production, La casa de Bernarda Alba">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/70/df/70df84bf8ae793e3e90f1ed23a57a9c1.jpg" alt="Micheline Calvert in the production, La casa de Bernarda Alba" data-href="/digitalobject/15878" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/45/e9/45e95768fae2cfafe0c18be2cb6f155b.jpg" title="Micheline Calvert in the production, Morir del cuento">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6b/48/6b486dd0d94174c888b0abc3a4ea59d6.jpg" alt="Micheline Calvert in the production, Morir del cuento" data-href="/digitalobject/15877" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/84/68/84689eebf27548feb90f2abf3781a573.jpg" title="Micheline Calvert in the production, Vivimos en la ciudad">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d8/41/d84178e14645abe489369bc0ab4c2f6b.jpg" alt="Micheline Calvert in the production, Vivimos en la ciudad" data-href="/digitalobject/15876" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9e/32/9e323716e78d85a600c8b31281842975.jpg" title="Micheline Calvert in the production, Vivimos en la ciudad">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/36/b7/36b76a24f7ad774ef5fd9fe18da4f3cd.jpg" alt="Micheline Calvert in the production, Vivimos en la ciudad" data-href="/digitalobject/15874" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d1/b5/d1b593ad52202654db9cdaca9773c796.jpg" title="Scene of the production, Los diez días que estremecieron al mundo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/aa/e6/aae6589b4893ecc7cf0c882b289ec618.jpg" alt="Scene of the production, Los diez días que estremecieron al mundo" data-href="/digitalobject/15867" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/76/57/7657c9284cda8a7e379cae678dae8b4d.jpg" title="Micheline Calvert in the production, La dama de piqué">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8e/82/8e8298488417338ef7d33c087acbcda3.jpg" alt="Micheline Calvert in the production, La dama de piqué" data-href="/digitalobject/15866" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7c/a4/7ca4d04b0daa56b472511a4c0dc0f5e8.jpg" title="Micheline Calvert in the production, La obra de arte">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/aa/9e/aa9ef5d82a4d5bdfd22d50c26e99a377.jpg" alt="Micheline Calvert in the production, La obra de arte" data-href="/digitalobject/15865" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d6/67/d6676a6a45d52ab34da2580cb0b75943.jpg" title="Micheline Calvert in the production, El saco de gamuza">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1f/34/1f34755c6b49e96675a335a130bf9d0b.jpg" alt="Micheline Calvert in the production, El saco de gamuza" data-href="/digitalobject/15854" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c4/b0/c4b06085506490fff6e1d04a32263e9e.jpg" title="Micheline Calvert in the production, El saco de gamuza">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/30/f9/30f9cf094600c7fdf83978dfc61baed0.jpg" alt="Micheline Calvert in the production, El saco de gamuza" data-href="/digitalobject/15852" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3b/f7/3bf71fb91561856fdb09297516fb6372.jpg" title="Photographs of the production, El saco de gamuza">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7a/84/7a84832ff76acff0e8d0f5baec541b20.jpg" alt="Photographs of the production, El saco de gamuza" data-href="/digitalobject/15851" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/72/65/726570e29543ecebcad4194d77214aa6.jpg" title="Photograph of the production, La dama boba">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5c/06/5c064a088a8c5858490c791cac1e360f.jpg" alt="Photograph of the production, La dama boba" data-href="/digitalobject/15849" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cd/81/cd8197a9cef1f00e9d0097132fdbd6c5.jpg" title="Photograph of the production, La dama boba">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c8/42/c8429cc8e302f95faf692a9a2038f3b1.jpg" alt="Photograph of the production, La dama boba" data-href="/digitalobject/15848" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cc/66/cc661b0246a7d17bb7aca4d4f477356e.jpg" title="Micheline Calvert and Doris Gutierrez in the production, La dama boba">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b8/a5/b8a5473867c02f5fff048704d0654f5e.jpg" alt="Micheline Calvert and Doris Gutierrez in the production, La dama boba" data-href="/digitalobject/15847" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1f/e3/1fe3ea6a1983472e2c0c5aa7b8209a17.jpg" title="Photographs of the production, La dama boba">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ba/d2/bad234d6171906a3a070c86c7426f419.jpg" alt="Photographs of the production, La dama boba" data-href="/digitalobject/15846" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/66/48/6648b2fff83128666d1439cf5f5817c0.jpg" title="Adria Santana in the production, Vivimos en la ciudad">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9c/94/9c948c07ae2634bd92c569e35b4a29a8.jpg" alt="Adria Santana in the production, Vivimos en la ciudad" data-href="/digitalobject/12499" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/13/8a/138a233ba780aaf827272854b77beb4c.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b8/21/b8218b48ae927d96610b40f7da9e3dfb.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a7/23/a7236020d39f856f12a07c91029aa01e.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bc/dc/bcdc1baf07a22f6e949a5ab136b4a7d5.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/27/b2/27b2a37f08e2665b1083e30a911f5964.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/08/d8/08d89e0918ce8c28e97a22e82ca2c0ac.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cf/f3/cff38eb4e4ffe269ded8b75a5e2e1fc5.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/83/0c/830cca13aa706fec7859002c5bfbd630.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1d/54/1d54f7b007df9add3fd4036e385b0c0c.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7c/03/7c030f2c7a313df288fdee217d1e5b67.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/de/29/de293fd2d4f497b8ff80834745720ff4.jpg" title="Program for the production, &quot;Bodas de sangre&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c2/b5/c2b501a779e14736abd0bd8a45d75bc6.jpg" alt="Program for the production, &quot;Bodas de sangre&quot;" data-href="/digitalobject/12291" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/76/f176fe8830137a9dca9220eeb9cc4b61.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="../media/cache/fc/00/fc00b9851a561a922905a64a1a0ebb6d.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1f/b4/1fb463bc7a22cf2e7d412860fbaf3c3e.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/09/12/09129f127688387ed188633cd89f6501.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7e/65/7e65652423dd5eda9f33325f89d76214.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/de/e5/dee5ed751e9aed3e22cb1176a308f8d1.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/9f/f19fbbc3b2a1b031d663b704351b9b55.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0d/4d/0d4d6baab628aeef495fd15fccd1494d.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b9/e1/b9e18bac74bb307f1e53ddac59ccf2f7.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/37/ae/37aec5d79e0c490715a89198d3eaa78c.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/67/1b67d09edafdc07f7399ade00e1f08e5.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d2/aa/d2aaafe2dc96dbbb60f86f0ae1657ac1.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/96/22961fca8a6087b97c1f60aa341de09b.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/73/67/7367ae61f63bb0d8d20788e9a7f3b8d1.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a8/c0/a8c09819b5d0cc7d73afb91d30817087.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0d/7f/0d7ff285d7aa3bb4f3c19da6adab35ac.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/76/24/7624784421294b8d20eb14609b3fb589.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f2/de/f2de7254efaff84679ab7f9772c74adf.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/1a/b71a18a16e86341ff8be8e027829607d.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3e/21/3e21a8944940ddfbaf37c85493dfd12a.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cf/13/cf1393b964d135b4e27ae5e29e8f24cb.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ab/4d/ab4d8c70040cdd385f75446caa6698c1.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/01/1c/011cf7da4496b54d8e3b228a0ae0b0c1.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8e/34/8e3406b1625c01958b483bc4e8287f92.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6f/d4/6fd4d3f4fdb9a77d98337223c74d9656.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/03/13/031355c5673821a832597e2c36234487.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8c/cc/8ccc3bb4fdff17704b9c80a7b820631c.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/60/52/605288e6bc9f43ec3ab48c39a527710b.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/32/05/320511bcba55b6cc9d76e1715d344aea.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d7/5b/d75b8b74dd2358a327672c73c2c602e0.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/46/b8/46b85054c17eb9e5cdd7967b1327d81a.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/14/2c/142c674f042f909191c355ef16275c20.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/78/c0/78c01ee9c73c70f9c59a171a98296fc7.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9e/6b/9e6ba00e86baaecc10183f3d458db26c.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fd/c8/fdc830b0df70c1ef9aa47684067f19ac.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4a/d5/4ad5fd4818f60e29aa139f0c4497154b.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/da/2d/da2d836eaa2b427ac8dad7e74b8d1426.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5d/1f/5d1fe7bb381087e84bdf84a58418c19a.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/f7/f1f74c0f555c3a80e0b138a5839f0363.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b2/cb/b2cb3214945857dbc07f5ccffc5c1035.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/9b/7a9b9c33e3a921f71704e7447db2acfc.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f0/e1/f0e1b2bdb3c047910c94ed91e378ccf9.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cd/58/cd581af05b926069c448a802b2418d6a.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/15/96/159665b2e45fc279336d56725748f0cb.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f7/14/f7149a1f3dbbd0d023e1291eb1851baa.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6d/61/6d61b5cfbf9581f2501c19cfc4dcad0d.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/55/d2/55d277b6cf4e26b5b6192a756e049a75.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/57/b0/57b0d8b25a82e19db379619f3786058f.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f2/d4/f2d4f368d5ba152ea201e437653a534a.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/84/4e/844ef819bc411bf4a6586396523c073b.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fa/21/fa21571dd06cebbb08dc02b2d3271f9d.jpg" title="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b0/4b/b04b9efc97855757d5300ee113b3df64.jpg" alt="Information leaflet about the history of the &quot;Grupo Teatro Estudio&quot;" data-href="/digitalobject/14202" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/39/87/3987a0ad10c24429bf9fbdfe4591ef59.jpg" title="Award news for the production, &quot;El feliz cumpleaños de Lala Rumayor&quot;, by José E. Montero, and &quot;Las hijas de Luz Vázquez&quot;, by José Rodríguez Lastre">
+                    
+                    
+                    <img src="../media/cache/a1/22/a122e90b1d3f45199bd8f07b1a06f7c8.jpg" alt="Award news for the production, &quot;El feliz cumpleaños de Lala Rumayor&quot;, by José E. Montero, and &quot;Las hijas de Luz Vázquez&quot;, by José Rodríguez Lastre" data-href="/digitalobject/609" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/16/35/16356b1a4b1c27ed44496c23bd0fb326.jpg" title="Review for the production, &quot;El becerro de oro&quot; ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c3/8f/c38f97c28a15bd4bb627993ef99ae6ed.jpg" alt="Review for the production, &quot;El becerro de oro&quot; " data-href="/digitalobject/601" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/65/cd/65cd0e9fc1edc0ea78919e351b3e1c8c.jpg" title="Review for the productions, &quot;Maese Patelin&quot; and &quot;La visitante&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8a/f2/8af202ce8ae9154de93781fe611fc003.jpg" alt="Review for the productions, &quot;Maese Patelin&quot; and &quot;La visitante&quot;" data-href="/digitalobject/600" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0d/cf/0dcf0b1e7f2f3909aebbd5ebc672734d.jpg" title="Review for the production, &quot;Santa Juana de América&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/62/cb/62cb14360b432a759083e03f67e683e5.jpg" alt="Review for the production, &quot;Santa Juana de América&quot;" data-href="/digitalobject/599" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/90/54/90546f5c52d310a33990dd27fca0ab16.jpg" title="Reviews for the productions, &quot;Santa Juana de América,&quot; &quot;La dama boba&quot;, and &quot;Casa de muñecas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ed/7b/ed7b3af3c5e5716847fdccd6fa09db27.jpg" alt="Reviews for the productions, &quot;Santa Juana de América,&quot; &quot;La dama boba&quot;, and &quot;Casa de muñecas&quot;" data-href="/digitalobject/598" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/41/b5/41b596705b39fa33664374a2b26eb1d5.jpg" title="Award news for the productions, &quot;El feliz cumpleaños de Lala Rumayor&quot; and &quot;Las hijas de Luz Vázquez&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4d/45/4d45ecafc4212f234388735a0795ac47.jpg" alt="Award news for the productions, &quot;El feliz cumpleaños de Lala Rumayor&quot; and &quot;Las hijas de Luz Vázquez&quot;" data-href="/digitalobject/597" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/13/b3/13b3446540213ea4fb7063dd90983559.jpg" title="Review for the production, &quot;Santa Juana de América&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/da/cc/daccda75975b9d718b8ded08c65af885.jpg" alt="Review for the production, &quot;Santa Juana de América&quot;" data-href="/digitalobject/596" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/45/8f45c696999c3a12b474f5333100951e.jpg" title="Miriam Learra, Raquel Revuelta, and José Antonio Rodríguez, in &quot;Santa Juana de América&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7e/60/7e603bfcaaa85dca5baf03acf047e959.jpg" alt="Miriam Learra, Raquel Revuelta, and José Antonio Rodríguez, in &quot;Santa Juana de América&quot;" data-href="/digitalobject/40" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e9/a5/e9a51bf2979bb02ec59b376b0e33c853.jpg" title="Program for the production, &quot;Risotadas ante el patíbulo&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/44/f7/44f7537ad8435f06fca4908a6f594be7.jpg" alt="Program for the production, &quot;Risotadas ante el patíbulo&quot;" data-href="/digitalobject/37" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b8/7b/b87b5a585e33e0f6001ca54da087c3ee.jpg" title="Program for the production, &quot;Risotadas ante el patíbulo&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d4/f9/d4f9cab63ede783ce506be074c1aded5.jpg" alt="Program for the production, &quot;Risotadas ante el patíbulo&quot;" data-href="/digitalobject/37" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/72/d9/72d9b0ab71e02e9cac3ff852c65bd20d.jpg" title="Program for the production, &quot;Risotadas ante el patíbulo&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e1/99/e19915ea32a249979dd28095a842f8c5.jpg" alt="Program for the production, &quot;Risotadas ante el patíbulo&quot;" data-href="/digitalobject/37" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/77/d77764e71401f567759867ff2673ee1a.jpg" title="Program for the production, &quot;Risotadas ante el patíbulo&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/aa/57/aa573c0b5d50d68102224d8fc25acc37.jpg" alt="Program for the production, &quot;Risotadas ante el patíbulo&quot;" data-href="/digitalobject/37" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/85/5b/855b3384cf1999d4ff6f0ae9b68441a1.jpg" title="Program for the production, &quot;Risotadas ante el patíbulo&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/53/5e/535e2499294f943e5b8c0030298eff21.jpg" alt="Program for the production, &quot;Risotadas ante el patíbulo&quot;" data-href="/digitalobject/37" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b8/a1/b8a18aaca921803526c5567ace2c89e1.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="../media/cache/fd/e9/fde96450c4c4136a77eb0366fcbd3f42.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/23" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bc/62/bc62a96200ed6ed6a309805b5db0b3b2.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2e/e1/2ee11884f33e5c1df183a9f2ac210fd3.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/23" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/48/ac/48ac1a82072cc2cfba8e5da076998a71.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/61/ff/61ff44f222ab0c5f8d1237cdb0bfa500.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/23" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8a/78/8a78274472502fb6c60e44304f466fcd.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/39/8a/398aa4dd1ed4afbe2e5c6c5f99d032db.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/23" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d5/17/d517392375d46f7537f40fb54f1fc3ca.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0e/dd/0edd29a51e9e4ead8fed44bc0e190c01.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/23" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0d/b7/0db713c53a2032ebec12949e7ddd793c.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/54/62/5462fba9d4cdf0aaf4c7becb02e39283.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/23" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3e/5b/3e5b9a4c7626bfb13d605f7cb3e2a8cb.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4e/25/4e255e0600998b27998c59ec2e76c0ac.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/23" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c2/d8/c2d83e5a59e6d8ec7c74388f00fd350c.jpg" title="Program for the production, &quot;La noche de los asesinos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3e/29/3e29844b531bb40fa53a0fd7563be2e9.jpg" alt="Program for the production, &quot;La noche de los asesinos&quot;" data-href="/digitalobject/23" />
+                    
+                    </a>
+                
+                    
+                    
+                    
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1f/00/1f0093a950643b844909c36a5d763784.jpg" title="Program for the production, &quot;La hora de estar ciegos&quot;">
+                    
+                    
+                    <img src="../media/cache/1a/b8/1ab871f0f7f91cecc883714f79188331.jpg" alt="Program for the production, &quot;La hora de estar ciegos&quot;" data-href="/digitalobject/22" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b6/d4/b6d48ba7cd1499e183b386188e53f585.jpg" title="Program for the production, &quot;La hora de estar ciegos&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5e/b6/5eb6a6984ff4473aa81b27378002b508.jpg" alt="Program for the production, &quot;La hora de estar ciegos&quot;" data-href="/digitalobject/22" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5c/d2/5cd23eea4e351caef5b6d353c4ffc160.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="../media/cache/84/d5/84d5b1fc5df1e7b132b6a0a435271c76.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9d/c0/9dc0f6ddbb731367fbdf0b5b223adeab.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/60/03/6003515cc98415e93b92a2bf3eba4a35.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b5/03/b5034f088b5d5c74fc8ba0fe79748212.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/03/2e/032eff2b55c3158368a0e5f4ae01bbed.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/49/7f/497f9e4aa0ffa00e953ad13b9f884343.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/53/1a/531a0767b1560b219d0f813cfc56054c.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/eb/ecebd8016d2d70d81ca223aa68839c5c.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/27/72/2772025d080f52b0f279d40398816879.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5e/e3/5ee3e5d6a1b905ff2cf47bf38f723812.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/81/ed/81ed859b3c9d6c96f6c3871a04cf428f.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5e/f6/5ef61e02af3da5d514a2be62811836c1.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/04/23/042300a62dcce9bce1fce50d51e42223.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a7/f5/a7f5ca2261d4a45da26ab9b9340e60e3.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/76/b3/76b3bc0bfce82cc005626fee1d74fff5.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/fc/31fcc2b9f0ba9c5fdc41fbbd17221d9e.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c3/32/c3320f3ef13949aecf8cf1851a5e19ca.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6b/6c/6b6c8c8af4addf8e64e5ec6a570a57ca.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/15/ba/15ba153d3fdce5f6b297075b713b3093.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/42/ae/42aece805d2cd00807beebcfb80ed05b.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a9/18/a918029a668060dbb905b06a352667d7.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4f/63/4f638f0592006b9cdf05aeb817cc3790.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5a/54/5a549767b5f3493646671d10731622e2.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/18/0d/180d50e4e13781e04898c1bb04ec79bc.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/65/3c/653c19b8ad2b5a5df3bd90f078b78105.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0f/73/0f7361ad57c84f4eebfcee9be17d4bbc.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d4/93/d493f8c037a2b80c33c1e35bac37e0af.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2a/39/2a3956099e82fab108b2dd363e4a7e8b.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e1/2f/e12ff347b7c9b793c163ef62d2f9e1db.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f0/46/f0461fd4e1184fc68f6daaf0b0e41b11.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ae/cb/aecb98ea1ffad2f4cabf086297273ff3.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/33/55/3355983fb17df15f36b070fc4721806c.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/58/54/5854894d466b03a906c67b497ed346cf.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0a/c4/0ac46161ac668593e207a213736286bc.jpg" title="Program for the production, &quot;La duodécima noche&quot;">
+                    
+                    
+                    <img src="../media/cache/d8/cd/d8cda03f92a455d4e32a02529392ec20.jpg" alt="Program for the production, &quot;La duodécima noche&quot;" data-href="/digitalobject/19" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d9/e5/d9e544207a779d994969446c2fcf5bee.jpg" title="Program for the production, &quot;La duodécima noche&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8f/87/8f8723fc531392fb7d0e82cc918073f4.jpg" alt="Program for the production, &quot;La duodécima noche&quot;" data-href="/digitalobject/19" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/46/1a461cd609d5fea3be33f0b618833e2f.jpg" title="Program for the production, &quot;La duodécima noche&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/eb/ce/ebce707b91af496b094d9be88e0edde0.jpg" alt="Program for the production, &quot;La duodécima noche&quot;" data-href="/digitalobject/19" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/94/50/9450db162549d05501e96025030270c9.jpg" title="Program for the production, &quot;La duodécima noche&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/77/8d/778dbb420166058ca167d70f769fb083.jpg" alt="Program for the production, &quot;La duodécima noche&quot;" data-href="/digitalobject/19" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/70/b9/70b96fcfd3a571eda22a47b3e78c45ba.jpg" title="Program for the production, &quot;La duodécima noche&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1b/ae/1bae6d3472618500f0383bf76e61ca1c.jpg" alt="Program for the production, &quot;La duodécima noche&quot;" data-href="/digitalobject/19" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/99/85/9985618b2ad510775a686ee4e1a27d5a.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="../media/cache/50/25/50254ab1a8ed97c201f708c171241829.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/17" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ea/f1/eaf1b8d1f1f5473527d1141e9b27a431.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/45/52/4552b031e8b21737ad5ebb4cc10a7e43.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/17" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/84/12/84129cb715b6c43c303022612f71c248.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fc/a6/fca6d4758a3324c3c4fcbfb334f8a699.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/17" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c9/90/c9902190252588e397ff235363ba8d95.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/85/86/85861b4de951d7c5881d3640bb6e16b4.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/17" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/85/d7/85d7eecf9d5a8fc1f3b877b36f6535c4.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e0/4a/e04acefc8f369a728c468067ea15e131.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/17" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/48/10/48100f35b10f53386275acc248585c7f.jpg" title="Program for the production, &quot;Electra Garrigó&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/97/6b/976bd7bd166f4b1348791bd9f8d561db.jpg" alt="Program for the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/17" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d6/60/d6602925b87a9a63830dda4e1236c58f.jpg" title="Program for the production, &quot;El becerro de oro&quot;">
+                    
+                    
+                    <img src="../media/cache/6b/0f/6b0f43cde3167d925bd394fdc0cfd70f.jpg" alt="Program for the production, &quot;El becerro de oro&quot;" data-href="/digitalobject/15" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e2/1f/e21fad55276c93230bdfb2400368d698.jpg" title="Program for the production, &quot;El becerro de oro&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/21/e3/21e34c5294687c768691277006e32380.jpg" alt="Program for the production, &quot;El becerro de oro&quot;" data-href="/digitalobject/15" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fa/68/fa680aa25bf6bec37a5a2ec483207b49.jpg" title="Program for the production, &quot;El becerro de oro&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ad/a7/ada7678e53422f5d7db58e785ceab780.jpg" alt="Program for the production, &quot;El becerro de oro&quot;" data-href="/digitalobject/15" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6f/43/6f43cec0c6677bbd6a2076aefe847f97.jpg" title="Program for the production, &quot;El becerro de oro&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3f/99/3f99c36a7266e1ae42c9c17903184f29.jpg" alt="Program for the production, &quot;El becerro de oro&quot;" data-href="/digitalobject/15" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/88/1b/881bcd29241f883f4c3401effc871699.jpg" title="Program for the production, &quot;El becerro de oro&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/91/e1/91e18e5129ebd9d06417e208929b36d3.jpg" alt="Program for the production, &quot;El becerro de oro&quot;" data-href="/digitalobject/15" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/24/a6/24a66499a2c66a6fe28480f347a7ff31.jpg" title="Program for the production, &quot;El baño&quot;">
+                    
+                    
+                    <img src="../media/cache/f7/1e/f71e11172d7ea1251f495718d5091cf3.jpg" alt="Program for the production, &quot;El baño&quot;" data-href="/digitalobject/11" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c8/29/c829c169b1811f3f67b27ca058173bed.jpg" title="Program for the production, &quot;El baño&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/05/af/05af2198dbe068bc18d960dadb513642.jpg" alt="Program for the production, &quot;El baño&quot;" data-href="/digitalobject/11" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/58/80/5880f29fe064fba8d8b321e69e8bc17f.jpg" title="Program for the production, &quot;El baño&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/52/a2/52a2fb39d4f8ee759b0fec0c446fa790.jpg" alt="Program for the production, &quot;El baño&quot;" data-href="/digitalobject/11" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/07/26/0726955dc2cf940762379c68d1f405e8.jpg" title="Program for the production, &quot;El baño&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5b/8f/5b8f0518bf5f2872e28ca91d499a11a1.jpg" alt="Program for the production, &quot;El baño&quot;" data-href="/digitalobject/11" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/1c/d21cefb14f08559e449b0902854f69d2.jpg" title="Program for the production, &quot;Casa de Muñecas&quot;">
+                    
+                    
+                    <img src="../media/cache/83/51/83511716a3000fa3542ac56ad5eb9cf2.jpg" alt="Program for the production, &quot;Casa de Muñecas&quot;" data-href="/digitalobject/9" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0c/fb/0cfbb90a1b02a4d8e81344d405ef4900.jpg" title="Program for the production, &quot;Casa de Muñecas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/22/c3/22c3c19890338bd3b7f910f0d874f9e1.jpg" alt="Program for the production, &quot;Casa de Muñecas&quot;" data-href="/digitalobject/9" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9a/fe/9afe8c509b75ba33f08dba59a68cd9c4.jpg" title="Program for the production, &quot;Casa de Muñecas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3c/a8/3ca8fe95adc3a43ece5c89a2827e1be9.jpg" alt="Program for the production, &quot;Casa de Muñecas&quot;" data-href="/digitalobject/9" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e3/ec/e3ec01dc21c6ff0ea282eb93dcadd83f.jpg" title="Program for the production, &quot;Casa de Muñecas&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/69/c5/69c55ccb55f409ebcab19390db4264f1.jpg" alt="Program for the production, &quot;Casa de Muñecas&quot;" data-href="/digitalobject/9" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6f/8a/6f8a8922766232affdbd97fbeb7e315a.jpg" title="Program for the production, &quot;Bernarda&quot;">
+                    
+                    
+                    <img src="../media/cache/f2/5e/f25ecde22595eb5eaca1c6e872fad1fa.jpg" alt="Program for the production, &quot;Bernarda&quot;" data-href="/digitalobject/8" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/91/ee/91ee4c47a1670062204ba89ba22149e7.jpg" title="Program for the production, &quot;Bernarda&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/37/2a/372a234e294f63588d259a90070d7656.jpg" alt="Program for the production, &quot;Bernarda&quot;" data-href="/digitalobject/8" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4a/cb/4acbe314f20b01986943490aebc121ec.jpg" title="Program for the production, &quot;Bernarda&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/34/17/3417972805899bc24f1dfb73f0bbe81c.jpg" alt="Program for the production, &quot;Bernarda&quot;" data-href="/digitalobject/8" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/49/0e/490e2f35f719319c29fab0211ea1bb77.jpg" title="Program for the production, &quot;Bernarda&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/39/ff/39ff2c5c83966d01ec9eabdd0e7769d9.jpg" alt="Program for the production, &quot;Bernarda&quot;" data-href="/digitalobject/8" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

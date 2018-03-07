@@ -1,0 +1,625 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>Las mariposas son libres</li>
+                </ul>
+            </nav>
+            <h2>Las mariposas son libres</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/1523.html">María Julia Casanova</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Cast: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Role(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/6965">Chamaco García</a></td>
+                        <td>Rafael Austin</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/7195">Rosita Ginorio</a></td>
+                        <td>Florencia Baker</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/1938">Alina Interián</a></td>
+                        <td>Liza Tanner</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/17.html">Mario Ernesto Sánchez</a></td>
+                        <td>Daniel Baker</td>
+                    </tr>
+                
+              </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Design team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/8251">Olga Caballín</a></td>
+                    <td>Props designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="../creator/1523.html">María Julia Casanova</a></td>
+                    <td>Stage designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/7195">Rosita Ginorio</a></td>
+                    <td>Costume designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/1450">Omar Torres</a></td>
+                    <td>Graphic Designer</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+
+            
+              <div class="linkeditems">
+              <h3>Production team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/7193">Enrique Beltrán</a></td>
+                    <td>Producer</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+          
+
+
+            
+
+
+
+            
+                <br>
+               Author: Marissa Orenstein (SPA 501, UM, 2008) (2008-11-08)
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/318.html">El Carrusel Theater (United States)</a></span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>September 14, 1974</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/writtenwork/3261">Las mariposas son libres (Translation)</a><br />
+                <span>By <h4>Adapter:</h4><a href='../creator/17.html'>Mario Ernesto Sánchez</a>, <h4>Translator:</h4><a href='../creator/17.html'>Mario Ernesto Sánchez</a></span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/13603.html">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/af/15/af153e234a260aab1c9b1bdf2fd34d17.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="../media/cache/38/df/38dfb9685bc1fa674ed4ed7a352fe589.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/08/70/0870f05d43d07ddec780a830c92a0301.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ce/96/ce96ef4c3c5d0b2e348a90fd7d542ac3.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/63/86630a0dda4a1a809abf3abb96ddcb95.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/2e/93/2e931624b16d4fb79aa7d90256793df9.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/92/81/92818ccb730ce608cb6c9f858cec9426.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/98/25/9825708e172434627fc4f139ed85d39e.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/db/ec/dbecc2e2b91ff41380ec2a7fdafb4fd4.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/6f/06/6f06477e8ea10858864d619f9ce250d6.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/48/8f48d6c79f0865818c4924cd3d62887d.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/98/41/984163a41f0c19b2c3d64ba11247517c.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3a/bd/3abde668b9df51db60ea74719fa2764f.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/85/00/85001255a506cf07ae5578f9a81874f1.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/53/95/5395e514a19d8e64414eba2ace659da9.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f9/af/f9af7a1dd2401869177d74bfbd890206.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/70/50/7050a67e877a56578b51d5919e7b9093.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/93/a1/93a18ce09832fa17474f0ca25cc7582d.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/17/ef/17ef9b58f085eb7145392cb017df2794.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b7/d1/b7d1b9dce2dde56821ee35b1e8a7237e.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/94/c4/94c418e4d623c0e4e9481469956eb613.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/58/11/5811eff01d1f9dc4193cbdfdfcea53c0.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/02/2f/022f1bdac8276d21044b0b5ab40b9837.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d0/4d/d04d38ec9da70e951429f56627b510ad.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5c/72/5c7296a733d85f3a475868ead1822f58.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/36/f7/36f7c3b3dc6018c65a73bb03dea0e6bb.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/af/d2af7e3f09e5cbd247cc938966f7e032.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f6/b1/f6b1aba81ec813b2c5e5b815d4a0d411.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/89/ec8923148fcb277b4327c2fa3da0b197.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/9a/6d/9a6d3f2a54de05949354ff8080ca0bcf.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1c/5d/1c5d5dd7d86fe7a2456d7143234dda21.jpg" title="Program for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/45/fe/45fea38da66e5903e248729974b183eb.jpg" alt="Program for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13603" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f3/b9/f3b9cd1864b6e91978085ab4076a37a5.jpg" title="Poster for the production, &quot;Las mariposas son libres&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/70/42/7042e4ba7ca31822202130dfa57d44d9.jpg" alt="Poster for the production, &quot;Las mariposas son libres&quot;" data-href="/digitalobject/13898" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

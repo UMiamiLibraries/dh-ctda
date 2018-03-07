@@ -1,0 +1,1221 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Martha del Río</li>
+                </ul>
+            </nav>
+            <h2>Martha del Río</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+                
+                    <img src="http://ctda.library.miami.edu/media/cache/27/b8/27b8927e33476240901d5851c22cde6e.jpg" />
+                
+            
+
+            <p><strong>Actor</strong></p>
+
+            
+            
+
+            
+
+            
+
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4580">Marea de Otoño</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1090">Sala Talía</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4684">Antigona</a><br />
+                    <span>Antigona</span><br />
+                    <span><a href="../venue/1505.html">ICRT</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4685">Numancia</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1505.html">ICRT</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4686">Tartufo</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1505.html">ICRT</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4698">Otelo</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1505.html">ICRT</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4687">El premio flaco</a><br />
+                    <span>Iluminada</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/72">Teatro Fausto</a></span><br />
+                    <span>August 1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4682">El premio flaco</a><br />
+                    <span>Iluminada</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4683">La casa de Bernarda Alba</a><br />
+                    <span>Adela</span><br />
+                    <span><a href="../venue/1505.html">ICRT</a></span><br />
+                    <span>1968</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4690">Don Juan</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1505.html">ICRT</a></span><br />
+                    <span>1965</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4689">La discreta enamorada</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1505.html">ICRT</a></span><br />
+                    <span>1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4679">Romeo y Julieta</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/264">Teatro Auditorium Amadeo Roldán</a></span><br />
+                    <span>September 7, 1960 - September 11, 1960</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4691">El sí de las niñas</a><br />
+                    <span>Doña Francisca</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1465">Anfiteatro del Puerto</a></span><br />
+                    <span>August 26, 1959 - August 29, 1959</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4692">Wu Li Chang</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/1505.html">ICRT</a></span><br />
+                    <span>July 17, 1959</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4571">Escápate Isabel</a><br />
+                    <span>Actor / actress</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 19, 1958 - 1958</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4570">El cuarto lleno de rosas</a><br />
+                    <span>Jane Hewitt</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1956</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+                <div class="linkeditems">
+                <h3>Primary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1090/">El público es la razón de mi vida </a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1094/">Tres veces dos</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1092/">Relevantes actuaciones</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1091/">De esto y de lo otro</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1100/">De la Farandula</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1099/">El Sí de las Niñas</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1093/">Celebrando un triunfo</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1098/">El cuarto lleno de rosas</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1097/">'El cuarto lleno de rosas': una comedia sentimental de ambiente hogareño con risas y lágrimas</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1096/">'El cuarto lleno de rosas': acabada realización escénica</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1095/">'El cuarto lleno de rosas', un triunfo resonante de la Sala Hubert de Blanck </a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/1232/">El sí de las niñas</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban</span>
+                </li>
+              
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>La Habana, La Habana, Cuba</span>
+                </li>
+              
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/16022">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2e/c8/2ec80b209d267dcb3e50e4903ee4a9d1.jpg" title="Martha del Río and Julio Capote in the TV production, &quot;El abanico de Lady Windermere&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/54/bb/54bb5a95d148e2b1f0fb367c7b481ba9.jpg" alt="Martha del Río and Julio Capote in the TV production, &quot;El abanico de Lady Windermere&quot;" data-href="/digitalobject/16022" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c8/74/c874d1dbe0e79bee501f72de44d55971.jpg" title="Martha del Río in the TV production, &quot;Julian Guerrero&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/36/39/36397e44cd91aaf23c7efafcb63be372.jpg" alt="Martha del Río in the TV production, &quot;Julian Guerrero&quot;" data-href="/digitalobject/16021" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/34/5f/345f837d4f8df662ef10410fcf2db4ca.jpg" title="Newspaper clipping for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a4/fe/a4fe3b8c5617a2f2d4add8ef1eae4214.jpg" alt="Newspaper clipping for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16019" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0a/47/0a4733b8ca54b9c81337522cc30e5ea0.jpg" title="Newspaper clipping for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c2/0d/c20d19559492e45746801dd404a85857.jpg" alt="Newspaper clipping for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16019" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c4/88/c4887d027f35d202368e2963fdc762bb.jpg" title="Newspaper clipping for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/af/64/af646b0935bf2796b2ee4225e701ffbe.jpg" alt="Newspaper clipping for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16018" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/33/f3/33f3ea61c1e14e67e3364e60fb81e2b3.jpg" title="Newspaper clipping for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/43/26/4326e6ebb73343ea3d758de0a7bc35f5.jpg" alt="Newspaper clipping for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16018" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/59/e5/59e57b5ff71028be7fcd16d05feb4d9f.jpg" title="Newspaper clipping for the production, &quot;Romeo y Julieta&quot; and &quot;Arenas de pasión&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/85/ac/85ac6d159b93e82ba706933220f2a7c9.jpg" alt="Newspaper clipping for the production, &quot;Romeo y Julieta&quot; and &quot;Arenas de pasión&quot;" data-href="/digitalobject/16017" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/25/f2/25f203d4d0018fa0979161c56c237eb3.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/11/74/11749c4a3c2a3a6baf3168388da77e8e.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/96/60/9660ad8d77bc155df295802f1a15db61.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e4/98/e4987d6eca365509e01c0f7e610aec46.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4b/56/4b56f968244004a152d2b4e35bd6da2d.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b0/89/b089fb5a7ff344c2a8ff8c55fb3ba378.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/39/1f/391fbb930e6149f32dc7f8134f87f1f7.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9d/d6/9dd6f196c88340db47aa06639cf2fa7e.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4a/77/4a77a89a796f6688a8575456618e862a.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/95/b0/95b0368ab2656556e02540489db41028.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/eb/ec/ebec6c211e65c867359c33fc6c265448.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/18/6b/186b15a01dcd4533b164ab187903a77d.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f2/0e/f20e34a432193563f19efac21caa8196.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/96/2b/962b9986ef55d8acecef75328954e4e5.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5b/3d/5b3d24d5aba9e892e800d2e0a717ae63.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/79/90/79901db3fb98dd388bb2ab0d9c03cef6.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b8/37/b837975cf1e36e5eb006288729346bf7.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/cd/96/cd967d8f28abb6d24a16e38a6ce3e06e.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b8/64/b864ce1af8d6715661ee345cd9738623.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/66/df/66dfe396ba03b73c9e77a1d1ee759035.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/d0/1ad0c2228ab045bbf07a9cbb704e092a.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/40/90/409083cf4b35d48e3010affea4a15531.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2c/14/2c1461139205391e8427decc5bd1e1d7.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e4/9c/e49c7873e1645af0aceadf9824b26f9c.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/69/ad/69ade9cc63aaec056280499790344ba2.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/46/7e/467ef69aa7d6712fcb37facff69772c7.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c0/36/c036c36e6c6f13890e9494f4221a4ac7.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/38/97/3897b6c6258ca8e65e12cd77a9b28201.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/38/95/389516b9a61907275cfbbc9930714bd5.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1c/b3/1cb36aeaf5065f4eb0d11c28d93840a4.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/65/d765e28856f056fc924ebe31282e22bf.jpg" title="Program for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8c/cf/8ccf355b497421c7f48426ff204be633.jpg" alt="Program for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16016" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/0b/1a0b4515bfe863bda887c58139a46536.jpg" title="Newspaper clipping for the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/46/a9/46a987db47eaaf7aba0447007cd8d462.jpg" alt="Newspaper clipping for the production, &quot;El premio flaco&quot;" data-href="/digitalobject/16015" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/25/ba/25badcb20d3f856c436d8ae74077bcb1.jpg" title="Martha del Río in the production, &quot;Marea de otoño&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2d/e1/2de15bf6b5e59e6084a56660a58e4446.jpg" alt="Martha del Río in the production, &quot;Marea de otoño&quot;" data-href="/digitalobject/16014" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fb/0d/fb0d2802eabbd545716186a6dcfa696e.jpg" title="Martha del Río in the production, &quot;Marea de otoño&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/26/68/2668506dbaeb07079bf68af10f1b43b4.jpg" alt="Martha del Río in the production, &quot;Marea de otoño&quot;" data-href="/digitalobject/16013" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/54/71549c9f375fabab08367d01d55da8b4.jpg" title="Martha del Río in the production, &quot;Marea de otoño&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/30/75/3075b8e430374a4c7fd5a66db384b284.jpg" alt="Martha del Río in the production, &quot;Marea de otoño&quot;" data-href="/digitalobject/16012" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/12/a2/12a28da22f3466bc11b3ea919ab56361.jpg" title="Martha del Río in the production, &quot;Marea de otoño&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/27/d1/27d10f4e48d84af1398174108e1268dd.jpg" alt="Martha del Río in the production, &quot;Marea de otoño&quot;" data-href="/digitalobject/16011" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a8/28/a828c1a5e3d3186f36cd56a650308ad5.jpg" title="Martha del Río in the production, &quot;Marea de otoño&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ff/d4/ffd46593ccd3dbdd4f80c354a19080aa.jpg" alt="Martha del Río in the production, &quot;Marea de otoño&quot;" data-href="/digitalobject/16010" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/74/9e/749eb1c3ed39336024d91fd81d8b5060.jpg" title="Martha del Río in the production, &quot;Marea de otoño&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d6/ca/d6caf82b765a36594663858f6fadaf92.jpg" alt="Martha del Río in the production, &quot;Marea de otoño&quot;" data-href="/digitalobject/16009" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5a/dc/5adc2da162db0114864dcf75bc7ec395.jpg" title="Martha del Río in the production, &quot;Marea de otoño&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/45/07/4507f7216eaf9837ff613ea4d2f1faca.jpg" alt="Martha del Río in the production, &quot;Marea de otoño&quot;" data-href="/digitalobject/16008" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/1a/bd1a0583b9a970c09d662d476dc2a920.jpg" title="Carlos Barba, Rose Felipe and Martha del Río  in the TV production, &quot;Tartufo&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/30/fa/30fa8c75c2cbe46922a64129a2e4b30b.jpg" alt="Carlos Barba, Rose Felipe and Martha del Río  in the TV production, &quot;Tartufo&quot;" data-href="/digitalobject/16007" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/97/59/9759c9be0901026b688642c45de2c6b8.jpg" title="Martha del Río and Helmo Hernández in the TV production, &quot;Tartufo&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0e/97/0e9758b50dc0aee7e96d920ed6a84024.jpg" alt="Martha del Río and Helmo Hernández in the TV production, &quot;Tartufo&quot;" data-href="/digitalobject/16006" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/9c/1a9c01965119f7cc4c7e71d9edea83f6.jpg" title="Martha del Río and Rolando Barral in a TV production">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5d/4f/5d4f07acddae5a6fb554106e2364ab8e.jpg" alt="Martha del Río and Rolando Barral in a TV production" data-href="/digitalobject/16005" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ef/88/ef88125e47752bb892a7b11cd53889cf.jpg" title="Martha del Río and Osvaldo Alvarez in the TV production, &quot;Misa de medianoche&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9e/f2/9ef2c4950cda4af5b7df98f41f3102bc.jpg" alt="Martha del Río and Osvaldo Alvarez in the TV production, &quot;Misa de medianoche&quot;" data-href="/digitalobject/16004" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9e/0f/9e0fd341f495f2f5c8b12894de5ff5d1.jpg" title="Photograph of the TV production, &quot;Voy abajo&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/84/b8/84b8d5b0ddd133cf71c982657e477808.jpg" alt="Photograph of the TV production, &quot;Voy abajo&quot;" data-href="/digitalobject/16002" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/5d/6a5d9370b390f8080567f309b79c194f.jpg" title="Photograph of the TV production, &quot;Casos y cosas de casa&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/74/80/748093c37452f756af636cb2e016f03b.jpg" alt="Photograph of the TV production, &quot;Casos y cosas de casa&quot;" data-href="/digitalobject/16000" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6b/39/6b392900da23ed54572f1d676cdab685.jpg" title="Photograph of the TV production, &quot;Antigona&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/35/cc/35cc35597ed156ef623351edcb86a4e9.jpg" alt="Photograph of the TV production, &quot;Antigona&quot;" data-href="/digitalobject/15999" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/87/e4/87e49ae68fe4739b72580b03a87a2e7f.jpg" title="Photograph of the TV production, &quot;La casa de Bernarda Alba&quot;">
+                    
+                    
+                    <img src="../media/cache/9b/4c/9b4c6a608942391b44cac95f8cf03ee8.jpg" alt="Photograph of the TV production, &quot;La casa de Bernarda Alba&quot;" data-href="/digitalobject/15998" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7c/85/7c856a472f7cb7ca784c8430ecaa0d45.jpg" title="Photograph of Nena Acevedo and Martha del Río in the TV production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/74/ba/74bad37dbcc5225788c3d784aa2a7710.jpg" alt="Photograph of Nena Acevedo and Martha del Río in the TV production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15997" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/61/6b/616b7feb6064974bab2ff3136ce9d3d5.jpg" title="Photograph of the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a3/b7/a3b7e7ebe2bb0825ba9be5c4bbcb7a0a.jpg" alt="Photograph of the production, &quot;El premio flaco&quot;" data-href="/digitalobject/15993" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/92/de/92dec530906ab556e4466bc782f4af53.jpg" title="Martha del Río in the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f8/03/f8034470a7cadc06a953976ae940084f.jpg" alt="Martha del Río in the production, &quot;El premio flaco&quot;" data-href="/digitalobject/15992" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/46/1a465121a503bbb4c5eaa7f74643f2ae.jpg" title="Martha del Río and Nestor Jiménez in the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/85/de/85de1b07667699dafbfd0e83e05eca9c.jpg" alt="Martha del Río and Nestor Jiménez in the production, &quot;El premio flaco&quot;" data-href="/digitalobject/15991" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fb/73/fb73466abbe682d0ca79918f993b3079.jpg" title="Martha del Río and Argelio Sosa in the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4e/a5/4ea5aec438f56a5852b540a98a8650e6.jpg" alt="Martha del Río and Argelio Sosa in the production, &quot;El premio flaco&quot;" data-href="/digitalobject/15990" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/02/0c/020cf8e707d849daba3999ff16385285.jpg" title="Martha del Río and Argelio Sosa in the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ed/e8/ede8efd9cdec562c3f3ddab413c7ea13.jpg" alt="Martha del Río and Argelio Sosa in the production, &quot;El premio flaco&quot;" data-href="/digitalobject/15989" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d1/c8/d1c8fc92a9178d8ea14984c75929f182.jpg" title="Martha del Río and Argelio Sosa in the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a8/d2/a8d2050237a8b5efc79e57449a78de98.jpg" alt="Martha del Río and Argelio Sosa in the production, &quot;El premio flaco&quot;" data-href="/digitalobject/15988" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/51/c7/51c708931153e1786bdf99bd0aad5997.jpg" title="Martha del Río in the production, &quot;El premio flaco&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4b/09/4b09b206ff10896f49ed98481f9c707e.jpg" alt="Martha del Río in the production, &quot;El premio flaco&quot;" data-href="/digitalobject/15987" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5b/b0/5bb0691a3e466dba3c5c2ae531a2b895.jpg" title="Photograph of the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/75/28/75289b339f32e0f92f183acaa1f7c22f.jpg" alt="Photograph of the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15986" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/13/2d/132d11e5d31bee36e3f276c0d31226f5.jpg" title="Photograph of the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f8/8b/f88be563e1197b4b4c2dae854b9aad84.jpg" alt="Photograph of the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15985" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/06/b6/06b6f3f798fc4e2ab269ffc4dc607f4b.jpg" title="Photograph of the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/70/cf/70cf00cb94f8a57cc0125342fe22e828.jpg" alt="Photograph of the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15984" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/74/59/74598376ad34f320a89f315726779999.jpg" title="Photograph of the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/27/9c/279cf849c297078616c61f5cc2812275.jpg" alt="Photograph of the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15983" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3a/7e/3a7e3224453c8638b74397126f599674.jpg" title="Photograph of the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9c/64/9c64a68cd1a172ac23776687c409b70a.jpg" alt="Photograph of the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15982" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d3/7c/d37c50267a48011e70ef834edd1ee5a5.jpg" title="Photograph of the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/43/23/43237a01f3ddf0d51f0bd60b83d7b15d.jpg" alt="Photograph of the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15981" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/80/bf/80bfb5a630289119ef6d97708b950b2a.jpg" title="Photograph of the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e9/f6/e9f688d013cd54275a6e5919e22f9f54.jpg" alt="Photograph of the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15980" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/de/0d/de0dfd48f43af881562e5d882201aa59.jpg" title="Photograph of the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/da/97/da977575e2a1fa09fe08f3e7b7ee1f0d.jpg" alt="Photograph of the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15979" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/92/bd92da26ab6becde686bb3fc09cba3d1.jpg" title="Martha del Río and Enrique Santiesteban in the TV production, &quot;Otelo&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e6/ad/e6ad167ac2be5b2fe661f06a83605cd9.jpg" alt="Martha del Río and Enrique Santiesteban in the TV production, &quot;Otelo&quot;" data-href="/digitalobject/15978" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/46/5b/465bd0201302da4b438bb026edc31e65.jpg" title="Martha del Río and Evelio Taillacq in the production, &quot;El Rojo y el Negro&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/36/28/3628ee5a27b1c1d097240f4c8c004b6a.jpg" alt="Martha del Río and Evelio Taillacq in the production, &quot;El Rojo y el Negro&quot;" data-href="/digitalobject/15977" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e4/a8/e4a818d2afe3f55a6df09545cec603c9.jpg" title="Martha del Río and Enrique Santiesteban in the TV production, &quot;Otelo&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a7/01/a7013109a4b4488b2446427665d3ae8e.jpg" alt="Martha del Río and Enrique Santiesteban in the TV production, &quot;Otelo&quot;" data-href="/digitalobject/15976" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6b/8c/6b8c17a39d0da0d1f5f832d83954e3b0.jpg" title="Martha del Río and Julio Martínez in the production, &quot;Romeo y Jullieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8d/be/8dbec1fa9b541af58ac33d351e381a0f.jpg" alt="Martha del Río and Julio Martínez in the production, &quot;Romeo y Jullieta&quot;" data-href="/digitalobject/15949" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4c/24/4c243f590bd47254253495238f8e3bd8.jpg" title="Photograph of the production, &quot;Escápate, Isabel&quot; ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/cf/7f/cf7fc54e7d06416ad41cf64d542f788e.jpg" alt="Photograph of the production, &quot;Escápate, Isabel&quot; " data-href="/digitalobject/15948" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/b1/c7b1d181c7c7ced0aed67d8a1d68c644.jpg" title="Photograph of the production, &quot;Escápate, Isabel&quot; ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/14/cc/14cc3edcf941243a5572310deced41b1.jpg" alt="Photograph of the production, &quot;Escápate, Isabel&quot; " data-href="/digitalobject/15947" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0b/8d/0b8d73790e2e11334afe76b6ab7d99fc.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/01/06/010668dc94893c3cd13d5c72ef5b7b01.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/92/8a/928a039d9f6af5c36d7a2090b4421d78.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c6/c6/c6c6e20904365851fe9300c6b65abe61.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ea/ee/eaee255b2cf93ce41eed73e9fa3aebec.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7c/3d/7c3d78589d7e767af02087bde12aa416.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d8/b3/d8b3ffddd03c6b4f2f4640615a4579fd.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a2/07/a207c495a5690954a1137ff1964009d0.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/63/98/63985fdbeaf7d563d8d84eb0b3c557dc.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e1/7a/e17afb49e9b0777818bc54fc9813356a.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fc/4b/fc4b133cfc5ca381cff62318159388bc.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ab/bf/abbfd3be07d1c703d26e8278b2bd708b.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b2/cc/b2cc3c9732a60c267741a95fa2f30e97.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/24/d6/24d62203927f2073fe963ff26bbab1e6.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/70/bd70cd55d6bf0f500d9df06e594a6f87.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/cc/2e/cc2e59f865b2ede7da9779aa93d1aaad.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0d/71/0d7192197ae589cd73e49b4f08e3703e.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f1/0a/f10ac9c05b964ddee613085f0b9fb626.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7c/e0/7ce045cafe67ac7d45c114fb1b46ec2b.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3e/78/3e78e432aba8b3cae5b15a7639d756f4.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f8/05/f805dadf2c33836714f9b062893891f3.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/20/8d/208d693efceeed1016d99875c71aed09.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1f/6f/1f6fb963e4217c05e3099e0cd93f35f4.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6c/47/6c47401d774288cb4fa14288316c6aa2.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/a4/9ca45266a7b3b99f665cafed5f771538.jpg" title="Martha del Río and Jorge Félix in the production, &quot;Romeo y Jullieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/12/ea/12eaf31b2923d069bd03ec85b178dccc.jpg" alt="Martha del Río and Jorge Félix in the production, &quot;Romeo y Jullieta&quot;" data-href="/digitalobject/15945" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/72/3a/723a3db300203af45db18cce7ac83521.jpg" title="Program for the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9a/0a/9a0a87db1a62431ff9fbca4fe52459a0.jpg" alt="Program for the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15944" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/68/05/6805939359fc43b40278f84f470d7251.jpg" title="Program for the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d1/98/d198ec9a2415da419938014bd4fa6fc5.jpg" alt="Program for the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15944" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a5/91/a5911ba2db8470b53251c48bc06f9a68.jpg" title="Program for the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c4/bd/c4bd0bc136023b758cc1388834911553.jpg" alt="Program for the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15944" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8e/b6/8eb6c6e5c0fee1dfa6e46eef7db3e2b3.jpg" title="Program for the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8f/b4/8fb4d7c24a8b64d9d370edbee7dcba43.jpg" alt="Program for the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15944" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/64/4d/644d5d0dc05b6a3a7c4b91ccb148067f.jpg" title="Program for the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/76/1d/761d9e2101e4b93cc56176ecd9e73056.jpg" alt="Program for the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15943" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b6/60/b660fa3b5ec301c0c7eb6813bf542160.jpg" title="Program for the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6e/6a/6e6a9bd3af91493ab560c734d628c28a.jpg" alt="Program for the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15943" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f7/85/f785c95340e572804809c372f321eac1.jpg" title="Program for the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d5/8e/d58ed2d99c1f339509cddf7bdf6bf054.jpg" alt="Program for the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15943" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b0/f6/b0f674cc567d7a2f61bdb2dd6598f91e.jpg" title="Program for the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b1/52/b1526a1453ca894280df442aae32ef89.jpg" alt="Program for the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15943" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/54/aa/54aabecdd6767fb0687f41d6094869a6.jpg" title="Newspaper clipping for the production, &quot;Romeo y Julieta&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/dc/a0/dca02f0c51fd2e06f35317d8797f33bd.jpg" alt="Newspaper clipping for the production, &quot;Romeo y Julieta&quot;" data-href="/digitalobject/15942" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/50/36/50366e486c92db511592564b043593eb.jpg" title="Photograph of Martha del Río and Teresa María Rojas">
+                    
+                    
+                    <img src="../media/cache/4e/46/4e46818cd11d00578144707695bb060c.jpg" alt="Photograph of Martha del Río and Teresa María Rojas" data-href="/digitalobject/16180" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/ac/cd/accd6b9171b3ddfb75ec074c067b3d21.jpg" title="Photograph of Martha del Río and Teresa María Rojas">
+                    
+                    
+                    <img src="../media/cache/90/60/9060a61d42ca3ce84cf614b4c378b0a6.jpg" alt="Photograph of Martha del Río and Teresa María Rojas" data-href="/digitalobject/16179" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>
