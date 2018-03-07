@@ -1,0 +1,850 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Alicia Alonso</li>
+                </ul>
+            </nav>
+            <h2>Alicia Alonso</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Director, artistic/general director, actor, choreographer</strong></p>
+
+            
+            
+                <div id="readmorecontent">
+                <p><a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=R3malLvqhHk#!">Video</a> of the inauguration of Ballet Alicia Alonso in 1948.</p>
+
+                </div>
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3268">El lago de los cisnes</a><br />  
+                    <span>Choreographer</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4910">Nuestra manera de ver</a><br />
+                    <span>Artistic/General Director</span><br />
+                    <span><a href="../venue/270.html">Gran Teatro de La Habana</a></span><br />
+                    <span>July 4, 1990 - July 8, 1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1571">Criollos</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1572">Déjame amar al pájaro del amor</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4203">El lago de los cisnes</a><br />
+                    <span>Dancer</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1963</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4224">El lago de los cisnes</a><br />
+                    <span>Dancer</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/264">Teatro Auditorium Amadeo Roldán</a></span><br />
+                    <span>February 25, 1955</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4203">El lago de los cisnes</a><br />
+                    <span>Choreographer</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1963</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+            
+              <div class="linkeditems">
+              <h3>Awards: +</h3>
+              <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Category</th>
+                  <th>Award</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td>1998</td>
+                        <td>None</td>
+                        <td>
+                          <a href="http://ctda.library.miami.edu/award/61">Premio Nacional de Danza</a>
+                        </td>
+                        <td>Winner</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+                  
+        
+
+            
+        
+            
+        
+            
+ 
+            
+            <hr />
+            <h3>Audios</h3>
+            <ul class="audios">
+              
+              <li>
+                <figure>
+                  <a id="cta0058000008" class="fancybox">
+                    
+                      Click to play audio
+                    
+                  </a>
+                  <figcaption>
+                    <a href="../digitalobject/16172.html">Interview with Salvador Fernández</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0058000007" class="fancybox">
+                    
+                      Click to play audio
+                    
+                  </a>
+                  <figcaption>
+                    <a href="../digitalobject/16171.html">Interview with Ricardo Reymena</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              <li>
+                <figure>
+                  <a id="cta0058000005" class="fancybox">
+                    
+                      Click to play audio
+                    
+                  </a>
+                  <figcaption>
+                    <a href="../digitalobject/16169.html">Interview with Julio Castaño</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              </ul>
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban</span>
+                </li>
+              
+              
+              
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="../digitalobject/14936.html">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/11/f2/11f2c2925fc5c84a722e693829215a73.jpg" title="Alicia Alonso and Maya Plisetskaya">
+                    
+                    
+                    <img src="../media/cache/b2/5a/b25a4531d08002a5e1c4104601fda5b7.jpg" alt="Alicia Alonso and Maya Plisetskaya" data-href="/digitalobject/14936" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/5d/205d4e7d14fc4dc19d89462336405398.jpg" title="Alicia Alonso (Giselle) in the ballet, &quot;Giselle&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4f/21/4f216f5a2088c26547b29be6945f2530.jpg" alt="Alicia Alonso (Giselle) in the ballet, &quot;Giselle&quot;" data-href="/digitalobject/14933" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/77/78/777834ee7a8d6648503cc307de964d6b.jpg" title="Alicia Alonso (Giselle) in the ballet, &quot;Giselle&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/aa/66/aa66fc1e9624d8fb00fbeddaba34b6b7.jpg" alt="Alicia Alonso (Giselle) in the ballet, &quot;Giselle&quot;" data-href="/digitalobject/14932" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ff/fc/fffc9ebb4a47c91b37279a9c4c12d727.jpg" title="Alicia Alonso (Giselle) in the ballet, &quot;Giselle&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/6f/56/6f565c9f989c71cb2cd65318267dfe48.jpg" alt="Alicia Alonso (Giselle) in the ballet, &quot;Giselle&quot;" data-href="/digitalobject/14931" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/46/14/4614465ed7948bb0761e897cb4b97229.jpg" title="Alicia Alonso (Giselle) in the ballet, &quot;Giselle&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5b/e8/5be8f309a8c335d309018cf8f60665e8.jpg" alt="Alicia Alonso (Giselle) in the ballet, &quot;Giselle&quot;" data-href="/digitalobject/14930" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b1/8d/b18de965cfaf9950f7554a4ce2c061af.jpg" title="Alicia Alonso and Royes Fernández in the ballet, &quot;El lago de los cisnes&quot;">
+                    
+                    
+                    <img src="../media/cache/f1/7d/f17dd61007b0935abc8c7b124e4e899f.jpg" alt="Alicia Alonso and Royes Fernández in the ballet, &quot;El lago de los cisnes&quot;" data-href="/digitalobject/14929" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0b/74/0b74c3f25adb2c72f63580048c1a4d28.jpg" title="Alicia Alonso and Royes Fernández in the ballet, &quot;El lago de los cisnes&quot;">
+                    
+                    
+                    <img src="../media/cache/80/63/80636d583b31bf9f467911e5f771fd02.jpg" alt="Alicia Alonso and Royes Fernández in the ballet, &quot;El lago de los cisnes&quot;" data-href="/digitalobject/14928" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8a/83/8a836c5919590e5164f679a3255e06f9.jpg" title="Alicia Alonso and Royes Fernández in rehearsal for the ballet, &quot;El lago de los cisnes&quot;">
+                    
+                    
+                    <img src="../media/cache/49/8e/498e31c67b529c6e498955aaf9420ee2.jpg" alt="Alicia Alonso and Royes Fernández in rehearsal for the ballet, &quot;El lago de los cisnes&quot;" data-href="/digitalobject/14927" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e2/05/e20561d15929a9e3781b052f90b7768d.jpg" title="Ramona de Sáa, Alicia Alonso, Fernando Alonso in a Ballet de Cuba&#39;s rehearsal ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a8/4f/a84f03c15f187c9c277ebd530895aa8b.jpg" alt="Ramona de Sáa, Alicia Alonso, Fernando Alonso in a Ballet de Cuba&#39;s rehearsal " data-href="/digitalobject/14926" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/10/e6/10e615e8d4826b1c12f40de40bc4a76a.jpg" title="Igor Youskevitch and Alicia Alonso during rehearsal for the ballet, &quot;Romeo and Juliet&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a7/bd/a7bda6c9796619d197fe8548b7cc8594.jpg" alt="Igor Youskevitch and Alicia Alonso during rehearsal for the ballet, &quot;Romeo and Juliet&quot;" data-href="/digitalobject/14925" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/08/8f086e476b494803b890f0aa0d025c73.jpg" title=" Ballet Nacional de Cuba in 1983">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/eb/47/eb47163d78ccb0a99ab1dbd3e493b5b4.jpg" alt=" Ballet Nacional de Cuba in 1983" data-href="/digitalobject/14920" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e5/54/e5545f8f66c33f42f3b716eb8c5296c6.jpg" title=" Pedro Simón, Alicia Alonso, Sonia Calero, Alberto Alonso ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a6/ad/a6ad88e83d023783588a8ac91dc85d85.jpg" alt=" Pedro Simón, Alicia Alonso, Sonia Calero, Alberto Alonso " data-href="/digitalobject/14919" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9d/ea/9deaa4864d7733bd35a8ccb08d8fb220.jpg" title="Mercedes Vergara, Sonia Calero, Alicia Alonso, Caridad Martínez in the Ballet &quot;Giselle&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/44/67/446740864fa4ccd0778629bc30efa5e4.jpg" alt="Mercedes Vergara, Sonia Calero, Alicia Alonso, Caridad Martínez in the Ballet &quot;Giselle&quot;" data-href="/digitalobject/14918" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/65/a2/65a26c0c36adc3d5b9823f483430b2d5.jpg" title="Alicia Alonso, Mirta Plá, Sonia Calero in a dance class at the Academia Alicia Alonso">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/16/a1/16a1065f2183fc414c6a5dc30e4f9e20.jpg" alt="Alicia Alonso, Mirta Plá, Sonia Calero in a dance class at the Academia Alicia Alonso" data-href="/digitalobject/14917" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/34/eb/34ebb8d6bfddd38b736633192528fa52.jpg" title="Sonia Calero, Alicia Alonso, Jorge Esquivel in the Ballet &quot;Giselle&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d5/5a/d55a0d7cfa257859209a19016e5fc60e.jpg" alt="Sonia Calero, Alicia Alonso, Jorge Esquivel in the Ballet &quot;Giselle&quot;" data-href="/digitalobject/14916" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8a/79/8a79babc989d9292fd097445a34f07c4.jpg" title=" Fidel Castro, Alicia Alonso, Antonio Nuñez Jiménez, Alberto Alonso, Jorge Esquivel ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2b/91/2b913302216e86a6fa7dc03cc1aafe14.jpg" alt=" Fidel Castro, Alicia Alonso, Antonio Nuñez Jiménez, Alberto Alonso, Jorge Esquivel " data-href="/digitalobject/14915" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3e/9b/3e9b8665c82ff51f684b6f5bc64175e8.jpg" title=" Alberto Alonso, Alicia Alonso ">
+                    
+                    
+                    <img src="../media/cache/4f/d4/4fd4704dbcab4ea0a7864585b0dd3d2c.jpg" alt=" Alberto Alonso, Alicia Alonso " data-href="/digitalobject/14914" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d1/ab/d1ab82dccad4d241dacd94198e2ad6f5.jpg" title="Dulce María Loynaz, Pedro Simón, Alicia Alonso, Alberto Alonso in Alicia Alonso&#39;s house">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8c/6f/8c6fd43a920c752715100d4c45857603.jpg" alt="Dulce María Loynaz, Pedro Simón, Alicia Alonso, Alberto Alonso in Alicia Alonso&#39;s house" data-href="/digitalobject/14912" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7b/f9/7bf92275b792db2006c7da160898626b.jpg" title="Alberto Alonso, Alicia Alonso, Fernando Alonso in La Habana">
+                    
+                    
+                    <img src="../media/cache/94/c6/94c63a3b51857fc0f14d8007c2709db0.jpg" alt="Alberto Alonso, Alicia Alonso, Fernando Alonso in La Habana" data-href="/digitalobject/14911" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/90/d290c0588018f8a57c206ab2281601a9.jpg" title="Hilario González, Alicia Alonso, Alberto Alonso in La Habana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f5/d1/f5d1d47a58652dce31b0b84cc0b92f3a.jpg" alt="Hilario González, Alicia Alonso, Alberto Alonso in La Habana" data-href="/digitalobject/14910" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dd/cf/ddcf913e32bd205d9f72d3e4655e01ae.jpg" title="Arnold Haskell, Alicia Alonso, Alberto Alonso during the filming of Carmen">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/48/64/486428510753f394799775169fd22bf8.jpg" alt="Arnold Haskell, Alicia Alonso, Alberto Alonso during the filming of Carmen" data-href="/digitalobject/14909" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b2/03/b2039f55ad69b64f37446247e7740446.jpg" title="Alicia Alonso, Cinto Vitier, Miguel Barnet, Alberto Alonso in La Habana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/db/4b/db4b7f49bd6ea12813baf505bcf51fd7.jpg" alt="Alicia Alonso, Cinto Vitier, Miguel Barnet, Alberto Alonso in La Habana" data-href="/digitalobject/14908" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ea/06/ea06e9b1d530a5cc5e5bee790a348d06.jpg" title="Hilda Rivero, Oscar Araiz, Alicia Alonso, Alberto Alonso in La Habana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d5/fd/d5fd0161549e9f7bf389317fe127ab36.jpg" alt="Hilda Rivero, Oscar Araiz, Alicia Alonso, Alberto Alonso in La Habana" data-href="/digitalobject/14907" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/46/7d/467dc2cfe2844b6610af84e267ce50dc.jpg" title="Alicia Alonso, Hugo Guffanti, Caridad Martínez, Mercedes Vergara in the ballet, &quot;Carmen&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0e/88/0e882aa46b4ac15dbbd83c9b47dd23f6.jpg" alt="Alicia Alonso, Hugo Guffanti, Caridad Martínez, Mercedes Vergara in the ballet, &quot;Carmen&quot;" data-href="/digitalobject/14906" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/83/1f/831f2fc2e45680d496d136c3b37937fe.jpg" title="Alicia Alonso, Orlando Salgado, Clark Tippet, Loipa Araújo in the ballet, &quot;Carmen&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/74/f4/74f4314d69b16010d96a97ab6bd0fc0a.jpg" alt="Alicia Alonso, Orlando Salgado, Clark Tippet, Loipa Araújo in the ballet, &quot;Carmen&quot;" data-href="/digitalobject/14905" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ab/9c/ab9cb1e9c33d671219ca6c4a6e27aeb7.jpg" title="Alberto Alonso, Alicia Alonso, Orlando Salgado in the ballet, &quot;Carmen&quot;">
+                    
+                    
+                    <img src="../media/cache/95/ee/95eebbf38aa8c717906ae99bcf82bc03.jpg" alt="Alberto Alonso, Alicia Alonso, Orlando Salgado in the ballet, &quot;Carmen&quot;" data-href="/digitalobject/14904" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/43/d5/43d5bd77e4cadea93d5dedd3795ede19.jpg" title="Alicia Alonso and Clara Carranco in the ballet, &quot;Giselle&quot;">
+                    
+                    
+                    <img src="../media/cache/a1/5e/a15ee657e5318d76b6787413b919a2f4.jpg" alt="Alicia Alonso and Clara Carranco in the ballet, &quot;Giselle&quot;" data-href="/digitalobject/14903" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0f/d9/0fd9d51e91a4f7e341ff41e94e1828af.jpg" title="Alicia Alonso and Clara Carranco in the ballet, &quot;Giselle&quot;">
+                    
+                    
+                    <img src="../media/cache/39/40/3940bf74ecf48d98f37a455739238c6e.jpg" alt="Alicia Alonso and Clara Carranco in the ballet, &quot;Giselle&quot;" data-href="/digitalobject/14902" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/36/82/36827861174c2db2b810e70323df58ef.jpg" title="Alicia Alonso and Clara Carranco in the ballet, &quot;Giselle&quot;">
+                    
+                    
+                    <img src="../media/cache/7a/dc/7adc713f59edbb08f6416e28d03453e8.jpg" alt="Alicia Alonso and Clara Carranco in the ballet, &quot;Giselle&quot;" data-href="/digitalobject/14901" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6e/b0/6eb0e2af8f68e4816aea576623427a67.jpg" title="Alicia Alonso and Orlando Salgado in the ballet, &quot;Carmen&quot;">
+                    
+                    
+                    <img src="../media/cache/7e/ee/7eeecf7e6cf38cb309ef113ae17e2fe8.jpg" alt="Alicia Alonso and Orlando Salgado in the ballet, &quot;Carmen&quot;" data-href="/digitalobject/14900" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/57/5d/575d4c930f7e7ca24da01dee87fede16.jpg" title="Alicia Alonso, Orlando Salgado, Rosario Suárez (Charín) in the ballet, &quot;Carmen&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/65/98/6598ce749798767438eb6cbf7312720f.jpg" alt="Alicia Alonso, Orlando Salgado, Rosario Suárez (Charín) in the ballet, &quot;Carmen&quot;" data-href="/digitalobject/14899" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4e/46/4e46e8dc4dd3dfec669daba47848b7d2.jpg" title="Alicia Alonso, Caridad Martínez, Morayma Martínez in a dance class at the Escuela Elemental de Ballet Alejo Carpentier">
+                    
+                    
+                    <img src="../media/cache/53/f4/53f451e697d8ea6e63f5f83ef39b11b1.jpg" alt="Alicia Alonso, Caridad Martínez, Morayma Martínez in a dance class at the Escuela Elemental de Ballet Alejo Carpentier" data-href="/digitalobject/14898" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b2/8f/b28f15e27b8453189a3a37bc250fd148.jpg" title="Alicia Alonso (Giselle) in the ballet, &quot;Giselle&quot;">
+                    
+                    
+                    <img src="../media/cache/93/66/93664963b23136154abfa7b96b8f5f47.jpg" alt="Alicia Alonso (Giselle) in the ballet, &quot;Giselle&quot;" data-href="/digitalobject/14652" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/38/283893f30ea6f70d41a7e22c8caf0f49.jpg" title="Alicia Alonso (Odile) and unknown in, &quot;El lago de los cisnes&quot;">
+                    
+                    
+                    <img src="../media/cache/d1/ba/d1ba05018b1a21fea2ed72840d3e2db8.jpg" alt="Alicia Alonso (Odile) and unknown in, &quot;El lago de los cisnes&quot;" data-href="/digitalobject/14649" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/78/16/78169a5225c75048eaf48d0d11dbc8c9.jpg" title="Alicia Alonso (Odile) in, &quot;El lago de los cisnes&quot;">
+                    
+                    
+                    <img src="../media/cache/1d/8b/1d8b0a6cfab18be65fe0b6e1919e01ce.jpg" alt="Alicia Alonso (Odile) in, &quot;El lago de los cisnes&quot;" data-href="/digitalobject/14648" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/af/d6/afd6a3ff04d6d332445f911ebf54829d.jpg" title="Photograph of the ballet, &quot;El lago de los cisnes&quot;">
+                    
+                    
+                    <img src="../media/cache/84/74/84747cfe99224b636f8005dd835068bb.jpg" alt="Photograph of the ballet, &quot;El lago de los cisnes&quot;" data-href="/digitalobject/14924" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3e/7c/3e7c3bad072779aa59840194ae689e56.jpg" title="Adolfo Roval and unknown in, &quot;El lago de los cisnes&quot;">
+                    
+                    
+                    <img src="../media/cache/f3/a6/f3a6cea08b0b59f86ee8784b64d1ac31.jpg" alt="Adolfo Roval and unknown in, &quot;El lago de los cisnes&quot;" data-href="/digitalobject/14922" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f5/f6/f5f62f88f2a117c6f31d2ab3945559cf.jpg" title="Program for the production, &quot;El lago de los cisnes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/69/0c/690cd75da0d3a6cd3cc52f19cd4a683e.jpg" alt="Program for the production, &quot;El lago de los cisnes&quot;" data-href="/digitalobject/15248" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/65/40/6540f712c1a4426e547fd6889a956351.jpg" title="Program for the production, &quot;El lago de los cisnes&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c2/6f/c26f1bd4d812fafa233f836600c234dc.jpg" alt="Program for the production, &quot;El lago de los cisnes&quot;" data-href="/digitalobject/15248" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f5/70/f570b85b52caf0dcdafb353076ace459.jpg" title="Alicia Alonso and Hugh Laing, John Kriza, Igor Youskevitch on top ">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e3/65/e365eafd77bd45339e437e7db8237853.jpg" alt="Alicia Alonso and Hugh Laing, John Kriza, Igor Youskevitch on top " data-href="/digitalobject/14937" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/41/e1/41e1f6f5619253188ce77e71f8d38d6b.jpg" title="Alicia Alonso and Maya Plisetskaya">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/00/27/00276da4e36b43c175fb97615fab6877.jpg" alt="Alicia Alonso and Maya Plisetskaya" data-href="/digitalobject/14935" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7f/59/7f59c9be505b55b2f9753b0d84177cc6.jpg" title="Program for the production &quot;Nuestra manera de ver&quot;">
+                    
+                    
+                    <img src="../media/cache/53/aa/53aab8ee7cbf655a795de5ad3e5d92bc.jpg" alt="Program for the production &quot;Nuestra manera de ver&quot;" data-href="/digitalobject/16674" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/36/2236e028ee59e5b5db367067cbf70dbb.jpg" title="Program for the production &quot;Nuestra manera de ver&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/52/2f/522f1728916e1645f23f117718b2c042.jpg" alt="Program for the production &quot;Nuestra manera de ver&quot;" data-href="/digitalobject/16674" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/52/af/52af51c4c8706a79849a1230f75bed31.jpg" title="Program for the production &quot;Nuestra manera de ver&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/41/8e/418ee844b0577073c4c9d5bafc9de7e1.jpg" alt="Program for the production &quot;Nuestra manera de ver&quot;" data-href="/digitalobject/16674" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5a/a6/5aa6780f3894786276c0339e76fdc618.jpg" title="Program for the production &quot;Nuestra manera de ver&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/16/e0/16e0ae735c154381873c750f4b2ee104.jpg" alt="Program for the production &quot;Nuestra manera de ver&quot;" data-href="/digitalobject/16674" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

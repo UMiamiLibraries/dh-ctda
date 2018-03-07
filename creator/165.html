@@ -1,0 +1,725 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Susana Alonso</li>
+                </ul>
+            </nav>
+            <h2>Susana Alonso</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Director, actor, costume designer, set designer, adapter</strong></p>
+
+            
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2011">Un poco de aire frío</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2024">La legionaria</a><br />  
+                    <span>Adapter</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="../production/2796.html">Yo no soy el rey Lear</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3011">La legionaria</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1113">University of Cincinatti</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4379">La legionaria</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span>October 27, 2013 - October 28, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4892.html">La Legionaria</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>September 19, 2009 - September 27, 2009</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/4891.html">La Legionaria</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>September 29, 2006 - October 1, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3004.html">La legionaria</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/37.html">Florida International University Wertheim Performing Art Center</a></span><br />
+                    <span>April 30, 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2419">Legionaria</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>March 16, 1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3009">La legionaria</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1112">Teatro Villamarta</a></span><br />
+                    <span>March 16, 1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3008">La legionaria</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/827.html">Madrid</a></span><br />
+                    <span>June 18, 1998 - June 25, 1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/461.html">La Legionaria</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3634.html">La legionaria</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2422">Yo no soy el rey Lear</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2803">El primo de La Habana</a><br />
+                    <span>Voz en off</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3007.html">Un poco de aire frío</a><br />
+                    <span>Luz Marina</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span></span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/455.html">Un poco de aire frío</a><br />
+                    <span>Luz Marina</span><br />
+                    <span><a href="../venue/37.html">Florida International University Wertheim Performing Art Center</a></span><br />
+                    <span>April 28, 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3545">Mariana Pineda</a><br />
+                    <span>Mariana, una mujer que va atada a la cola de un caballo</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3548">Mariana Pineda</a><br />
+                    <span>Mariana, una mujer que va atada a la cola de un caballo</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3539">Mariana Pineda</a><br />
+                    <span>Mariana, una mujer que va atada a la cola de un caballo</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3543">Mariana Pineda</a><br />
+                    <span>Mariana, una mujer que va atada a la cola de un caballo</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3547">Mariana Pineda</a><br />
+                    <span>Mariana, una mujer que va atada a la cola de un caballo</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1419">Mariana Pineda</a><br />
+                    <span>Mariana, una mujer que va atada a la cola de un caballo</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/947">La dolorosa historia del amor secreto de Don Jacinto Milanés</a><br />
+                    <span>Su hermana Carlota</span><br />
+                    <span><a href="../venue/106.html">Teatro Sauto</a></span><br />
+                    <span>1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/306">Flores de papel</a><br />
+                    <span>Eva</span><br />
+                    <span><a href="../venue/46.html">Sala Tespis</a></span><br />
+                    <span>1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4379">La legionaria</a><br />
+                    <span>Set designer</span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span>October 27, 2013 - October 28, 2013</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/661.html">Representando a Karin</a><br />
+                    <span>Costume designer</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>September 4, 2001</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/47/">Gran asistencia en festival del monólogo</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              
+              
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/549">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2a/45/2a45a05cd9e3a7106416d2d41182ce8f.jpg" title="La legionaria">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5e/49/5e49fd7e1f46d4a4648a806b3478aa94.jpg" alt="La legionaria" data-href="/digitalobject/549" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9e/4b/9e4b34ad5089a57626458d8a88e3f7a0.jpg" title="La legionaria">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f3/8d/f38dee2526c37675a15e396c3cbba7d3.jpg" alt="La legionaria" data-href="/digitalobject/549" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b3/3f/b33ff9ef1b2b9f343386c6a30961f9cf.jpg" title="El primo de La Habana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/82/cf/82cf8655b13f9fa45877056c20b396f9.jpg" alt="El primo de La Habana" data-href="/digitalobject/545" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f5/29/f52903c5d0824f0ee4e35b93421ca3ba.jpg" title="El primo de La Habana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/46/0c/460c354c89726d2fac9db6ca36392947.jpg" alt="El primo de La Habana" data-href="/digitalobject/545" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/88/e4/88e4e3a903ec468dbbb9782fe546592c.jpg" title="El primo de La Habana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/28/fe/28fed542f96645d84b632673be580cf0.jpg" alt="El primo de La Habana" data-href="/digitalobject/545" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/59/4d/594db5c9a05e31d022429e6dc2ccd8f1.jpg" title="El primo de La Habana">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3a/9c/3a9c739836f2c6a6e942f42b8b6711aa.jpg" alt="El primo de La Habana" data-href="/digitalobject/545" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/59/5d/595d1ae558f4a1919ee866025a3f47df.jpg" title="Press review for the production, &quot;Un poco de aire frío&quot;">
+                    
+                    
+                    <img src="../media/cache/a3/c0/a3c0b881233d11efce37f93b061da222.jpg" alt="Press review for the production, &quot;Un poco de aire frío&quot;" data-href="/digitalobject/535" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/46/36/4636816015489c9dff6749aefe0de2f0.jpg" title="Luz Marina: ante el espejo">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e0/eb/e0eb89e5813edb98aa027ec3723bb9f1.jpg" alt="Luz Marina: ante el espejo" data-href="/digitalobject/527" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/09/bf/09bf337bbe9d5ddde415b8c0631277f6.jpg" title="Program for the production, &quot;Un poco de aire frío&quot;">
+                    
+                    
+                    <img src="../media/cache/a9/b8/a9b8ede33e07eb40c976175755503614.jpg" alt="Program for the production, &quot;Un poco de aire frío&quot;" data-href="/digitalobject/525" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="../media/cache/be/43/be43de18caaf48b50652d7e1ca7868e9.jpg" title="Program for the production, &quot;Un poco de aire frío&quot;">
+                    
+                    
+                    <img src="../media/cache/50/72/5072963631df927f9d052b77c36fc640.jpg" alt="Program for the production, &quot;Un poco de aire frío&quot;" data-href="/digitalobject/525" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d5/44/d5443df86124e9cbe5db5386591d25a2.jpg" title="Bordar en solitario">
+                    
+                    
+                    <img src="../media/cache/5a/7d/5a7dc1180536ef4e6fdcd9ab7af012fa.jpg" alt="Bordar en solitario" data-href="/digitalobject/516" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ba/70/ba703d037c0a1b37a8d867de19ac8e4d.jpg" title="Soledad compartida">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/65/89/6589795c1d1228b178363d9c5e2b877f.jpg" alt="Soledad compartida" data-href="/digitalobject/496" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c6/01/c6019a3809ee675ac6dc3f0e822a3da9.jpg" title="Diario de Jerez">
+                    
+                    
+                    <img src="../media/cache/7a/c0/7ac02b7225fd8573789488d140021963.jpg" alt="Diario de Jerez" data-href="/digitalobject/492" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1c/bc/1cbcf37c0365906917a83271fec27a96.jpg" title="Program for the production, &quot;Divinas palabras&quot;">
+                    
+                    
+                    <img src="../media/cache/a9/83/a983321bb5df59d2e0562cc292d81e19.jpg" alt="Program for the production, &quot;Divinas palabras&quot;" data-href="/digitalobject/10" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bc/14/bc1463ce4d091c6627b44e4d70fd4f0f.jpg" title="Program for the production, &quot;Divinas palabras&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/77/11/771179816a800971ecb42ad3c23bc66b.jpg" alt="Program for the production, &quot;Divinas palabras&quot;" data-href="/digitalobject/10" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/da/7e/da7ecc899050d8eea14c40368aad7c6f.jpg" title="Program for the production, &quot;Divinas palabras&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/2a/b9/2ab9a188d7613a57fa8013ab482099e6.jpg" alt="Program for the production, &quot;Divinas palabras&quot;" data-href="/digitalobject/10" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ff/d8/ffd81828238e66d8d93f720a86e40d0f.jpg" title="Program for the production, &quot;Divinas palabras&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/0f/70/0f70f820646f3f04a565b3510c69ce87.jpg" alt="Program for the production, &quot;Divinas palabras&quot;" data-href="/digitalobject/10" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c0/f6/c0f6b6bd6191324a5a51132d5ff7ee5e.jpg" title="Program for the production, &quot;Divinas palabras&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/09/1a/091a2445c764b332a89e507f30ffcd9a.jpg" alt="Program for the production, &quot;Divinas palabras&quot;" data-href="/digitalobject/10" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dc/c4/dcc45e160139ecececba5249e8e6ba95.jpg" title="Program for the production, &quot;Divinas palabras&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3d/2a/3d2a14e20dd16bd8e3ba5d3c6ce63597.jpg" alt="Program for the production, &quot;Divinas palabras&quot;" data-href="/digitalobject/10" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/88/11/88112f984d2d5731d4ab206633ddd077.jpg" title="Program for the production, &quot;Divinas palabras&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9a/ca/9acaee3802f18fe68140028a6ba7adf8.jpg" alt="Program for the production, &quot;Divinas palabras&quot;" data-href="/digitalobject/10" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

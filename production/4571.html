@@ -1,0 +1,574 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>Escápate Isabel</li>
+                </ul>
+            </nav>
+            <h2>Escápate Isabel</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/1072.html">Cuqui Ponce de León</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Cast: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Role(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/5317.html">Nena Acevedo</a></td>
+                        <td>Actor / actress</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/9514">Carlos  Aguirre</a></td>
+                        <td>Actor / actress</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/9353.html">Martha del Río</a></td>
+                        <td>Actor / actress</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/9513">Rosita Lacasa</a></td>
+                        <td>Actor / actress</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/9515">Alicia Maria Olivera</a></td>
+                        <td>Actor / actress</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/6995">Carlos Orihuela</a></td>
+                        <td>Actor / actress</td>
+                    </tr>
+                
+              </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Design team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="../creator/1523.html">María Julia Casanova</a></td>
+                    <td>Design (General)</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+          
+
+
+            
+
+
+
+            
+                <br>
+               Author: Lilianne Lugo (Fall 2015)
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck (Cuba)</a></span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>July 19, 1958 - 1958</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/writtenwork/3605">Escápate Isabel (Play script)</a><br />
+                <span>By </span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/15948">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/4c/24/4c243f590bd47254253495238f8e3bd8.jpg" title="Photograph of the production, &quot;Escápate, Isabel&quot; ">
+                
+                
+                <img src="../media/cache/cf/7f/cf7fc54e7d06416ad41cf64d542f788e.jpg" alt="Photograph of the production, &quot;Escápate, Isabel&quot; " data-href="/digitalobject/15948" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/c7/b1/c7b1d181c7c7ced0aed67d8a1d68c644.jpg" title="Photograph of the production, &quot;Escápate, Isabel&quot; ">
+                
+                
+                <img src="../media/cache/14/cc/14cc3edcf941243a5572310deced41b1.jpg" alt="Photograph of the production, &quot;Escápate, Isabel&quot; " data-href="/digitalobject/15947" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/0b/8d/0b8d73790e2e11334afe76b6ab7d99fc.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                
+                
+                <img src="../media/cache/01/06/010668dc94893c3cd13d5c72ef5b7b01.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/92/8a/928a039d9f6af5c36d7a2090b4421d78.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                
+                
+                <img src="../media/cache/c6/c6/c6c6e20904365851fe9300c6b65abe61.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/ea/ee/eaee255b2cf93ce41eed73e9fa3aebec.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                
+                
+                <img src="../media/cache/7c/3d/7c3d78589d7e767af02087bde12aa416.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/d8/b3/d8b3ffddd03c6b4f2f4640615a4579fd.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                
+                
+                <img src="../media/cache/a2/07/a207c495a5690954a1137ff1964009d0.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/63/98/63985fdbeaf7d563d8d84eb0b3c557dc.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                
+                
+                <img src="../media/cache/e1/7a/e17afb49e9b0777818bc54fc9813356a.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/fc/4b/fc4b133cfc5ca381cff62318159388bc.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                
+                
+                <img src="../media/cache/ab/bf/abbfd3be07d1c703d26e8278b2bd708b.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/b2/cc/b2cc3c9732a60c267741a95fa2f30e97.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                
+                
+                <img src="../media/cache/24/d6/24d62203927f2073fe963ff26bbab1e6.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/bd/70/bd70cd55d6bf0f500d9df06e594a6f87.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                
+                
+                <img src="../media/cache/cc/2e/cc2e59f865b2ede7da9779aa93d1aaad.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/0d/71/0d7192197ae589cd73e49b4f08e3703e.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                
+                
+                <img src="../media/cache/f1/0a/f10ac9c05b964ddee613085f0b9fb626.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/7c/e0/7ce045cafe67ac7d45c114fb1b46ec2b.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                
+                
+                <img src="../media/cache/3e/78/3e78e432aba8b3cae5b15a7639d756f4.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/f8/05/f805dadf2c33836714f9b062893891f3.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                
+                
+                <img src="../media/cache/20/8d/208d693efceeed1016d99875c71aed09.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="../media/cache/1f/6f/1f6fb963e4217c05e3099e0cd93f35f4.jpg" title="Program for the production, &quot;Escápate, Isabel&quot;">
+                
+                
+                <img src="../media/cache/6c/47/6c47401d774288cb4fa14288316c6aa2.jpg" alt="Program for the production, &quot;Escápate, Isabel&quot;" data-href="/digitalobject/15946" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

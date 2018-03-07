@@ -1,0 +1,1945 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Compañía Teatral Rita Montaner</li>
+                </ul>
+            </nav>
+            <h2>Compañía Teatral Rita Montaner</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+                
+                    <img src="http://ctda.library.miami.edu/media/cache/07/b8/07b821f2828b445daae221a9d9c4e4aa.jpg" />
+                
+            
+
+            <p><strong></strong></p>
+
+            
+            
+
+            
+              <div class="linkeditems">
+                  <h3>Notes: +</h3>
+                  <ul>
+                  <p>Tel&eacute;fonos- (537)832-0630</p>
+<p>Fax- (537) 55-3823</p>
+<p>Creada en marzo de 1962, ha trabajado ininterrumpidamente desde 1968 en su sede, la Sala el S&oacute;tano, en Ciudad de La Habana. El repertorio de esta compa&ntilde;&iacute;a es diverso: han abordado en sus propuestas la dramaturgia universal y, muy especialmente, la iberoamericana y cubana. Concentran su labor en la representaci&oacute;n del teatro de autor, dirigiendo sus espect&aacute;culos hacia un p&uacute;blico caracterizado por la heterogeneidad.<br />Su director general, Gerardo Fulleda Le&oacute;n, prestigioso dramaturgo de la escena nacional actual, sustenta las puestas en escena del colectivo en principios de creaci&oacute;n que responden a diversos fundamentos de la tradici&oacute;n teatral, partiendo de concepciones y premisas de car&aacute;cter realista, que se actualizan virtualmente en trabajos teatrales signados por el reflejo de lo cotidiano y su trascendencia, desde orientaciones y enfoques creativos distintos.<br />Durante sus m&aacute;s de cuatro d&eacute;cadas de ininterrumpido quehacer teatral, la Compa&ntilde;&iacute;a ha participado en festivales nacionales e internacionales, en los cuales ha logrado alcanzar premios y reconocimientos que han enaltecido el quehacer y la historia del colectivo. <strong>&nbsp;</strong></p>
+<dl><dt><strong>Entre los premios recibidos podemos mencionar:</strong></dt>
+</dl>
+<p>&nbsp;</p>
+<dl><dt> </dt>
+<dt>1968, Orden 100 a&ntilde;os de lucha</dt>
+<dt>1969, Orden X Aniversario</dt>
+<dt>1972, Orden 26 de Julio</dt>
+<dt>1975, Distinci&oacute;n Primer Congreso del PCC y Centro Moncadista</dt>
+<dt>1980, Bandera H&eacute;roes del Moncada (Grupo de teatro destacado de la provincia)</dt>
+<dt>1982, Premio Especial por su XX Aniversario</dt>
+<dd>II Festival de Teatro de La Habana</dd>
+<dd>Distinci&oacute;n Diploma de la UNEAC</dd>
+<dt>1983, Reconocimiento por el buen trabajo realizado en pro del desarrollo de la cultura en Villa Clara</dt>
+<dd>otorgado por la Direcci&oacute;n Sectorial Provincial</dd>
+</dl>
+<p><strong>Directores Generales</strong>: Cuqui Ponce de Le&oacute;n, Esteban Torres, Israel Fern&aacute;ndez, &Aacute;ngel Casta&ntilde;eda, Ignacio Guti&eacute;rrez, Eugenio Hern&aacute;ndez Mart&iacute;n, Jos&eacute; Su&aacute;rez, Mar&iacute;a Elena Ortega, Nicol&aacute;s Dorr, Gerardo Fulleda Le&oacute;n</p>
+<p><strong>Directores art&iacute;sticos</strong>: H&eacute;ctor &Aacute;lvarez, Fernando Berm&uacute;dez, Augusto Boal (<em>Brasil</em>), Alicia Bustamante, Xiomara Calder&oacute;n, Jorge Cao, Doris Castellanos, Atahualpa del Cioppo (<em>Uruguay</em>), Jos&eacute; Mar&iacute;a Coll, Adri&aacute;n C&uacute;neo (<em>Argentina</em>), Rafael Daboin (<em>Venezuela</em>), Tony D&iacute;az, Nelson Dorr, Nicol&aacute;s Dorr, Adela Escart&iacute;n (<em>Espa&ntilde;a</em>), Rolando Ferrer, Gerardo Fulleda Le&oacute;n, Ricardo Garal, Rafael Gonz&aacute;lez Rodr&iacute;guez, Leg. H. Gorsinsky (<em>Polonia</em>), Jes&uacute;s Gregorio, Ignacio Guti&eacute;rrez, &Aacute;ngel Heredia, Eugenio Hern&aacute;ndez Espinosa, Alejandro Iglesias, Oto Katusha (<em>Checoslovaqu&iacute;a</em>), Ra&uacute;l Lima, Sara Laroca (<em>Uruguay</em>), Sanda Manu (<em>Rumania</em>), &Aacute;ngel M&aacute;s, Juan Carlos Maur&eacute;n, Jos&eacute; Mili&aacute;n, Miguel Montesco, Rogerio Paulo, R&oacute;mulo Pianacci, Cuqui Ponce de Le&oacute;n, Fernando Qui&ntilde;ones Posada, Evgueni Radomilenski (<em>URSS</em>), Trinidad Rolando, Alfonso Silvestre, Iv&aacute;n Tenorio, Pepe V&aacute;squez Vega, Roberto Vega-Llort, Paul Verdier, Nelson Villagra (<em>Chile</em>)</p>
+<p><strong>Dise&ntilde;adores que han colaborado con la compa&ntilde;&iacute;a:</strong> Luis Acevedo, Edesio Alejandro, F&eacute;lix &Aacute;vila, Manolo Barreiro, T&oacute;mas Brene, Roberto Cabrera, Xiomara Calder&oacute;n, Gina Caro, Yulky Cary, Efr&eacute;n del Castillo, Jos&eacute; Mar&iacute;a Coll, Armando Corbo, Grecia Cuevas, Tony D&iacute;az, Nelson Dorr, Nicol&aacute;s Dorr, Miriam Due&ntilde;as, Eugenio Elizarde, Diana Fern&aacute;ndez, Zoa Fern&aacute;ndez, Gerardo Fulleda Le&oacute;n, Andr&eacute;s Garc&iacute;a Ben&iacute;tez, Ariel Gil, Manolo G&oacute;mez, Marco A. G&oacute;mez, Rafael Gonz&aacute;lez Rodriguez, &Aacute;ngel Heredia, Eugenio Hern&aacute;ndez Espinosa, Adelaida Herrera, Gabriel Hierrezuelo, L&aacute;zaro Hondares, Alejandro Iglesias, Derub&iacute;n J&aacute;come, Enrique Jaime, Nieves Lafferte, H&eacute;ctor Lechuga, Ra&uacute;l Lima, A. F. Losev, Carlos Manuel, Calixto Manzanares, Teresa Mart&iacute;nez, Juan Carlos Maur&eacute;n, Guillermo Mediavilla, Jos&eacute; Mili&aacute;n, Juan Mirabal, Maria Elena Molinet, Miguel Montesco, Rolando Moreno, Aleksander Ok&uacute;n, Leonardo P&eacute;rez Lama, Jos&eacute; Francisco P&eacute;rez, R&oacute;mulo Pianacci, Juan Pi&ntilde;era, Osmel Poveda, Rankin, Carlos Repilado, Sara Mar&iacute;a Reyes, Trinidad Rolando, Shenda Roman, Jes&uacute;s Ru&iacute;z, Tant, Adri&aacute;n Torres, Alina Torres, Roberto Vega-Llort, Paul Verdier, Rub&eacute;n Vig&oacute;n, Nelson Villagra, Luis Yn</p>
+<p><strong>Asesores que han colaborado con la Compa&ntilde;&iacute;a:</strong> Edesio Alejandro, H&eacute;ctor Angulo, Hayd&eacute;e Arteaga, Manolo Barreiro, Carlos Beltr&aacute;n, Jorge Berroa, Manuel Boada, Jos&eacute; R. Brene, Roberto Cabrera, Jorge Cao, Eugenio Casanova, Felipe Espinet, Rigoberto Espinosa, Digna Fabr&eacute;, Olga Flora F&aacute;bregas, Roberto Ferguson, Rolando Ferrer, Gerardo Fulleda Le&oacute;n, Mireya Gallinatto, Ricardo Garal, Jorge Garciaporr&uacute;a, Harold Gramatges, Ignacio Guti&eacute;rrez, Luis Hern&aacute;ndez, Rom&aacute;n Hern&aacute;ndez, Jorge Ibarra, Sara Larocca, Gerardo Lastra, Juan M&aacute;rquez, Juan Carlos Maur&eacute;n, Leopoldina Nu&ntilde;ez, Paca Ornellas, Mar&iacute;a Elena Ortega, Guillermo Paret, Gloria Parrado, Juan Pi&ntilde;era, Guillermo Prieto Roque, Evgueni Radomilensky, Mario Razzeti, Zenaida Romeu, Marta S&aacute;nchez, Uranis Urbino</p>
+<p><strong>Principales t&eacute;cnicos y administrativos que han colaborado en la Compa&ntilde;&iacute;a:</strong> Romelio Aguilar (<em>Jefe de Escena</em>), Mario Fern&aacute;ndez Collazo (<em>Luminot&eacute;cnico</em>), Sarah Cuesta Armengol (<em>Ha hecho todos los servicios t&eacute;cnicos en el Grupo: utiler&iacute;a, tramoya, vestuarista. "La China," como cari&ntilde;osamente la llaman sus compa&ntilde;eros, cuenta con 80 a&ntilde;os en el 2002, y a&uacute;n trabaja en el teatro</em>), Julio D&iacute;az (<em>Maquillista</em>), Roberta Figuera (<em>Jefe de Escena</em>), Eddy Fundora (<em>Tramoya</em>), Rossel Vera Heriberto (<em>Luminot&eacute;cnico</em>), Roberto Hurtado (<em>Maquillista</em>), Narciso Meireles Daza (<em>Productor</em>), Juan Mirabal (<em>Jefe de Escena</em>), Gerardo Rivero (<em>Maquillista</em>), Georgina Rodr&iacute;guez (<em>Vestuarista</em>), Roberto Vega-Llort (<em>Asistente de dirreci&oacute;n</em>), Sonia Vila (<em>Secretaria</em>), Lilia Segui (<em>Acomodadora y Recepcionista</em>)</p>
+
+                  </ul>
+              </div>              
+            
+
+            
+             <div class="linkeditems">
+                <h3>Related creators: +</h3>
+                <ul>
+                    
+                        Member of
+                        <a href="1072.html"> Cuqui Ponce de León</a>, General Director,
+                        1962 <br />
+                    
+                        Member of
+                        <a href="63.html"> Gerardo Fulleda León</a>, General Director,
+                        1988 2013<br />
+                    
+                        Member of
+                        <a href="125.html"> Nicolás Dorr</a>, General Director,
+                         <br />
+                    
+                        Member of
+                        <a href="1021.html"> María Elena Ortega</a>, General Director,
+                         <br />
+                    
+                </ul>
+             </div>
+            
+
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4603">En privado con la reina</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>July 3, 2015 - July 19, 2015</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4768">Tula, tórtola y becerro</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>2014</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4726">El crimen secreto de Ginger Nut</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>2011</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4939">Canto del pozo ciego</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>July 2010 - August 15, 2010</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/2305">Sputnik</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
+                    <span>April 27, 2007 - April 29, 2007</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1517">Retratos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/66.html">Teatro Nacional de Guiñol de Cuba</a></span><br />
+                    <span>April 24, 2006</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1225">La comedia de las equivocaciones</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>November 19, 2005 - November 21, 2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/984">Los mangos de Caín</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>May 12, 2005 - May 28, 2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1846">Escándalo en la trapa</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>2005</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1848">El concierto</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>January 17, 2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/707">La ratonera</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>2004</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/737">El diario de Anna Frank</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>2002</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/3006.html">Remolino en las aguas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/39.html">Light Box, Miami Light Project</a></span><br />
+                    <span>May 5, 2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1827">Los mangos de Caín</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1828.html">Falsa alarma</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1829">El diario de Anna Frank</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1830">El señor Galíndez</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1831">Busca buscando</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>2001</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1826">Los cuernos de Don Friolera</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>2000</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/699">Muerte en el bosque</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>October 1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1824">Testamento</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1825">Réquiem por Yarini</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1999</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1678">Jesús</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>July 1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1823">Tormenta de nieve</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1998</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1673">Los bandos de Verona</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>March 27, 1997</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1650">Soliloquio en Rojo Empecinado</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1997</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1658">Fiesta brava, o, Mirando al tendido</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1997</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1659">La gloria eres tú</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1997</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1675">Los  bandos de Verona</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1997</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1324">Provinciana</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1647.html">Amadeus</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1660">Masigüere</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1674">Remolino en las aguas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1822">Flash Flash</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1996</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1821">Emociones</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1995</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1644">Noches de satín regio</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>September 1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1320">Volvió una noche</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1322">La venganza de Medea</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1651">La cumbancha</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1656">Encuentro nocturno de extremo peligro</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1657.html">Dos semanas con la reina</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1814">Pervertimentos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1815">Réquiem por la luna</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1994</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1323">La piedra de Eliot</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>September 1993</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1649">La hija de Nacho</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1993</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1812">Blue Moon in Havana</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1993</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1813">La celestina</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1993</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1809">Sibila, mi amor</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1317">La cueva</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1318">Para comerte mejor</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1648">Dos perdidos en una noche sucia</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1680">El lobo, el bosque y el hombre nuevo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1811">La catedral del helado</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1992</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/800">Electra Garrigó</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1991</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1316.html">Falsa alarma</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1774">Al que le tocó le tocó</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1990</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1643">Juana de Belciel</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>October 20, 1989 - 1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1321">¡Arriba, corazón!</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1775">Al que le tocó le tocó</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1804">Nunca he visto caer la nieve</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1807">Transparencia</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1808.html">Habla bajo, si no yo grito</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1989</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1805">Entre ustedes y yo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>March 1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1646.html">La mandrágora</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1806">Burgueses</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1988</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1791">Mucho de todo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>March 27, 1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1671">Clase de hierro</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>March 24, 1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1790">La ira y el éxtasis</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1792">El dedo en el merengue</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1793">La brujería científica de Tata Perfecto</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1794">En el cine</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1799">El próximo verano que pasó</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1800.html">La admiradora anónima</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1801">Más sabe uno por viejo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1802">Vida de perro</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1803">Enredos en el parque</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1987</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1786">La querida de enramada</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>August 30, 1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1550">Baño de mar</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1784">La proposición</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1787">Las pericas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1788">Yo tengo un brillante</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1789">Ejercicio para un actor</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1832">Un largo lagarto verde</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1833">Luz y fuerza</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1783.html">Bajo la luna gitana</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1840">Lola, o, El caso de los libros que nadie solicita y Eran las tres de la tarde</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1985</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1637">Ha llegado un inspector</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1780">A tigre, zorra y bulldog</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1781">Arlequín, servidor de dos patrones</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1782">El amor de Don Perlimplín con Belisa en su jardín</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1244">A tigre, zorra y bulldog</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1636">Esta noche se improvisa la comedia</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1638">La querida de enramada</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1639">La primera vez</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1645">La proposición</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1634.html">Kunene (Al otro lado de la casa)</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>October 10, 1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1248">Esta noche se improvisa la comedia</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1779">El peine y el espejo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1982</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1251">Aquí en el barrio</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1981</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1259">Cyrano de Bergerac</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1981</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1635">Adriana en dos tiempos</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1981</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1277">S.O.S. (Una situación terriblemente delicada)</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1776">Cómo, cuándo y dónde halló la fortuna el andarín Carvajal</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1777">Melodía varsoviana</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1778.html">Zoológico de cristal</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1549">Cantar por Tilín García</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1631">La casa del marinero</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1672">Juguemos el mundo a mirar</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1836">Guarda tu luz, Oh, Patria</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1837">El golpe bibijagua</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1979</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1839">Historia de amor en Irkutsk</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1978</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1616">Vida, fulgor y muerte de Joaquin Murieta</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1630">Rosalba y los llaveros</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1772">Doña Rosita, la soltera</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1773">Tembladera</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1838">Cuentos con olor de arboleda y mar</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1977</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1632">Cyrano de Bergerac</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1633.html">El burgués gentilhombre</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1641">Basta Arturo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1642.html">Los profanadores</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1976</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1766">El aniversario</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1767">El canto del cisne</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1768">La boda</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1769">El son entero</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1770">Mirandolina (La pícara hostelera)</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1975</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1760">La ratonera</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1761">El perrito travieso</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/385.html">Parque Lenin</a></span><br />
+                    <span>1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1762">El conejito Blas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/385.html">Parque Lenin</a></span><br />
+                    <span>1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1763">Blas, la zorra y el lobo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/385.html">Parque Lenin</a></span><br />
+                    <span>1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1764">Los animalitos del bosque</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/66.html">Teatro Nacional de Guiñol de Cuba</a></span><br />
+                    <span>1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1765.html">Quiero decirte que...</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/385.html">Parque Lenin</a></span><br />
+                    <span>1974</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1750">Inocentes, no</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/502">Patio de escuela (Sierra Maestra)</a></span><br />
+                    <span>1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1751">Los chapuzones</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1752">Petición de mano</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1753">Sobre el daño que hace el tabaco</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1754">Trágico a la fuerza</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1755">El oso</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1756">Músico, poeta y loco</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/503">Sala Teatro Guanabo</a></span><br />
+                    <span>1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1757">El hombre de la gallina</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/503">Sala Teatro Guanabo</a></span><br />
+                    <span>1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1758">La dama duende</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1759">S.O.S. (Una situación terriblemente delicada)</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1741">Rondas infantiles</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/500.html">Batey de Las Mercedes (Sierra Maestra)</a></span><br />
+                    <span>1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1742.html">Abdala</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/500.html">Batey de Las Mercedes (Sierra Maestra)</a></span><br />
+                    <span>1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1743">Los cheverones</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1744">El hombre de la gallina</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1745">Guayaquil</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/501">Biblioteca Nacional José Martí</a></span><br />
+                    <span>1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1378">De sentir y decir</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1379">Las preciosas ridículas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1739">El cruce sobre el Niágara</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1740">Las travesuras de Don Dionisio</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1835.html">Tiempos de Don Regino</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1971</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1376">Llévame a la pelota</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1732">Cuentos populares</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1734">Coro hablado</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1735">La cerca</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1736">El mancebo que casó con mujer brava</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1737">Anfitrión</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1738">La traición del padre Martín</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1970</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1331">El metro</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1365">La gata sobre los rieles</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1366">Orfeo desciende</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1367">Mutatis mutandi</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1375">Te juro Juana que tengo ganas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1380">Encuentro con Chejov</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1615">El son entero</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1711">El hombre en el piel de víbora</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1727">La curva</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1728">La taza de café</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/496.html">Unidad Militar</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1729">Mamuchi y Papuchi</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/496.html">Unidad Militar</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1730">El corte</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/496.html">Unidad Militar</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1731">El fin del comienzo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/499.html">Talleres de 5ta y D</a></span><br />
+                    <span>1969</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1362">La cuadratura del círculo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1968</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1363">El viento en las ramas del sasafrás</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1968</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1707.html">Lila, la mariposa</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1968</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1708">Cuento para la hora de acostarse</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/495">Escuela de Nueva Gerona</a></span><br />
+                    <span>1968</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1709">Historia de Panchito González</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/495">Escuela de Nueva Gerona</a></span><br />
+                    <span>1968</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1710.html">Habitación 406</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/496.html">Unidad Militar</a></span><br />
+                    <span>1968</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1706">Hotel de libre cambio</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>June 1967</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1704">Escándalo en Puerto Santo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>1967</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1705">Historia de un anillo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>1967</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1335">La moral de la Señora Dulska</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>February 1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1356">El vals de toreador</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1357">Variaciones para muertos en percusión</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1702">El baile</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1703">Un gallo para Ikú</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3940">La pérgola de las flores</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1552.html">Anfiteatro Topes de Collantes</a></span><br />
+                    <span>1966</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1697">Heredarás el viento</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>April 1965</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1334">Esquina peligrosa</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>February 1965</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1695">Los cuchillos de 23</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>February 1965</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1698">Los seis días</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1965</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1701">Soledad para cuatro</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>1965</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1691.html">Arsénico y encaje</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>December 1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1332">Las yaguas</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/494">Teatro Musical de La Habana</a></span><br />
+                    <span>1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1333">La pérgola de las flores</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/494">Teatro Musical de La Habana</a></span><br />
+                    <span>1964</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1689.html">Recuerdo a mamá</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1963</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1690.html">Carnaval adentro, carnaval afuera</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>1963</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1687">Ese lunar</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>June 7, 1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/1325.html">Propiedad particular</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>March 27, 1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1640">El conventillo</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/170.html">Sala Las Máscaras</a></span><br />
+                    <span>1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1688">Sempronio</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1962</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1551">La mandrágora</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1876">El burgués gentilhombre</a><br />
+                    <span>Theater company</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>20th century</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+              
+                <div class="linkeditems">
+                <h3>Secondary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="../publications/1338/index.html">Jorge Luis Cacheiro: no imagino trabajar sin artistas de mi país</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/1340/index.html">Em 50 anos, peça de dramaturgo americano é encenada em Cuba</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/1339/index.html">Cuba abre seu teatro aos EUA e a imigrantes</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/1337/index.html">Havana Play Bridges Cuban Gap with Cuban-Americans</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/1336/index.html">Saltando el foso teatral</a>  
+                  </li>
+                  
+                  <li>
+                    <a href="../publications/1233/index.html">Trickle of Arts Exchanges Builds on Cubans' Bonds</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+            </div>
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+              
+              
+              
+              
+              
+                <li>
+                  <h4>Office / HQ:</h4>
+                  <span><a href="../venue/259.html">La Habana, La Habana, Cuba</a></span>
+                </li>
+              
+
+            </ul>
+            
+             <h4>Tag(s):</h4>
+            <ul>
+                
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Companies--Cuba"><li>Companies--Cuba</li></a>
+                
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/15911">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/97/08/9708e00ea89706e5f7fbdfd88d920df7.jpg" title="Photograph of Margarita Placeres (Celeste Mendoza) in the production &quot;En privado con la reina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ea/02/ea02039934eb807737956985c62b55e1.jpg" alt="Photograph of Margarita Placeres (Celeste Mendoza) in the production &quot;En privado con la reina&quot;" data-href="/digitalobject/15911" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4e/51/4e5131477c9a757e3ea61c093d86d097.jpg" title="Program for the production, &quot;Los profanadores&quot;">
+                    
+                    
+                    <img src="../media/cache/f1/09/f1091a24603512c3e0d8d84a7c71acbc.jpg" alt="Program for the production, &quot;Los profanadores&quot;" data-href="/digitalobject/31" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/38/4b/384b5685923bbe759064ff6270152107.jpg" title="Program for the production, &quot;Los profanadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ae/f9/aef96ef30bb6db2a32bc1a1dc9910e19.jpg" alt="Program for the production, &quot;Los profanadores&quot;" data-href="/digitalobject/31" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4b/69/4b696e0b855b31e8bf0e754a2291122d.jpg" title="Program for the production, &quot;Los profanadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/29/31/2931486dcef6aea8b3ba2271f417fd4f.jpg" alt="Program for the production, &quot;Los profanadores&quot;" data-href="/digitalobject/31" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/60/8f60998cae4eb75441a65e0bbd8f2c53.jpg" title="Program for the production, &quot;Los profanadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/7a/45/7a454a9288617df2604eb6bdc9272ff3.jpg" alt="Program for the production, &quot;Los profanadores&quot;" data-href="/digitalobject/31" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/41/35/4135fb28df783a290bde115636e9fd9a.jpg" title="Program for the production, &quot;Los profanadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c0/73/c073c171e3e0ad734ce9d339d43e5adc.jpg" alt="Program for the production, &quot;Los profanadores&quot;" data-href="/digitalobject/31" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bc/d0/bcd0a9c5e167bfe85b5ea67cbc85be01.jpg" title="Program for the production, &quot;Los profanadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/29/34/29345e6cec15dd1d1b37e05f73ba36ab.jpg" alt="Program for the production, &quot;Los profanadores&quot;" data-href="/digitalobject/31" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/95/5695d52b476fd72c7ef5dce4a5b8e313.jpg" title="Program for the production, &quot;Los profanadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/80/65/806570dde96206e999f4fa32d2c017c5.jpg" alt="Program for the production, &quot;Los profanadores&quot;" data-href="/digitalobject/31" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e6/93/e693afc255ef083bc423fb706867087b.jpg" title="Program for the production, &quot;Los profanadores&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bf/c6/bfc696e425e3bdd471f480bd97ffb988.jpg" alt="Program for the production, &quot;Los profanadores&quot;" data-href="/digitalobject/31" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

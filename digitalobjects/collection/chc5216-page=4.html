@@ -1,0 +1,510 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../../static/apple-touch-icon.png" />
+    <script src="../../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en ">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../../about/index.html">About</a></li>
+                    <li><a href="../../people/index.html">People</a></li>
+                    <li><a href="../../participate/index.html">Participate</a></li>
+                    <li><a href="../../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../../creators.html">Creators</a></li>
+                <li><a href="../../productions.html">Productions</a></li>
+                <li><a href="../../writtenworks.html">Written Works</a></li>
+                <li><a href="../../venues.html">Venues</a></li>
+                <li><a href="../../awards.html">Awards</a></li>
+                <li><a href="../../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../../digitalobjects.html">All objects</a></li>
+                    <li><a href="../images.html">Images</a></li>
+                    <li><a href="../videos.html">Videos</a></li>
+                    <li><a href="../audios.html">Audios</a></li>
+                    <li><a href="../types.html">By Type</a></li>
+                    <li><a href="../collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+    <header>
+        <nav class="breadcrumbs">
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                
+                  
+                    <li><a href="../../digitalobjects.html">Digital Objects</a></li>
+                    <li><a href="../collections.html">By Collection</a></li>
+                    <li>Teresa María Rojas Papers (chc5216)</li>
+                  
+                
+            </ul>
+        </nav>
+        <h2>
+              
+                Teresa María Rojas Papers
+              
+            
+        </h2>
+    </header>
+ 
+    
+    <ul id="digitalobjectslist">
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/13699"><img src="../../media/cache/55/a1/55a1cb0b2dda4e683a744dff6ca9d299.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/13699">Glenda Díaz Rigau and Susana Sosa in a drama class at the Miami Dade College</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/13739"><img src="../../media/cache/36/2a/362afd834146cc50fd023239016ac3c1.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/13739">Glenda Díaz Rigau (Coro) and José Amaya (Prometeo), in a rehearsal for the production &quot;Prometeo&quot;</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/13796"><img src="../../media/cache/bb/85/bb85848ac49488dbc953c433aa6eb95d.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/13796">Glenda Díaz Rigau (El Coro), in &quot;Prometeo&quot;</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/13818"><img src="../../media/cache/ca/46/ca4663c3f2c70db88751b9420ba355b3.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/13818">Glenda Díaz-Rigau (Isadora, La Hija), Paul D&#39;Alba (Sandalio) and Teresa María Rojas (Judy, La Madre), in &quot;La encantadora familia Bliss&quot;</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/13673"><img src="../../media/cache/98/a6/98a65dbe136f811f52737462e737a8fe.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/13673">Glenda Díaz Rigau (Juana), in &quot;La alondra&quot;</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/13686"><img src="../../media/cache/37/56/3756f78190a2029fe3bc9b915c89bf6d.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/13686">Glenda Díaz Rigau (Juana), training for the production &quot;La alondra&quot;</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/13617"><img src="../../media/cache/72/5b/725b535a948099a529dd32a8f7d76c94.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/13617">Glenda Díaz-Rigau (Lis, la mujer del cochecito), in &quot;Fando y Lis&quot;</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/13738"><img src="../../media/cache/08/d9/08d90dee9889da000b04a1c15272064a.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/13738">Glenda Díaz Rigau, Lucía Lorenzo and Francisco Fernández (El Coro), in &quot;Prometeo&quot;</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/13620"><img src="../../media/cache/27/60/2760c3e04898acf39fed47d58221d0c3.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/13620">Gloria Kare, in Children&#39;s Theater</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/13619"><img src="../../media/cache/1e/6c/1e6cacd1d84f243fcca9827b4e5f90ea.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/13619">Gloria Kare, in &quot;La cucarachita Martina&quot; (Children&#39;s Theater)</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/13735"><img src="../../media/cache/75/bd/75bd25f315ccb0ed3ae6895cbc9552ac.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/13735">Gloria Kare, in &quot;La cucarachita Martina&quot; (Children&#39;s Theater)</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/13637"><img src="../../media/cache/51/a1/51a1065d93cad1d2ac8e5faae3ad8ca1.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/13637">Gustavo Cardona (El Verdugo), Manuel Acosta (Capitán Beaudricourt), Rafael Mejido (El padre) and Glenda Díaz Rigau (Juana), in &quot;La alondra&quot;</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+    </ul>
+    
+    
+      
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ <div class="pagination">
+   
+      <span class="page">
+      <a href="chc5216-page=3.html">&lt; Prev</a>
+      </span>
+   
+
+   
+   
+      
+         <span class="page"><a href="http://ctda.library.miami.edu/digitalobjects/collection/chc5216?page=1"
+               >1</a></span>
+      
+   
+      
+         <span class="page"><a href="chc5216-page=2.html"
+               >2</a></span>
+      
+   
+      
+         <span class="page"><a href="chc5216-page=3.html"
+               >3</a></span>
+      
+   
+      
+         <span class="current">4</span>
+      
+   
+      
+         <span class="page"><a href="http://ctda.library.miami.edu/digitalobjects/collection/chc5216?page=5"
+               >5</a></span>
+      
+   
+      
+         <span class="page"><a href="http://ctda.library.miami.edu/digitalobjects/collection/chc5216?page=6"
+               >6</a></span>
+      
+   
+      
+         <span class="page"><a href="http://ctda.library.miami.edu/digitalobjects/collection/chc5216?page=7"
+               >7</a></span>
+      
+   
+   
+      <span class="ellipsis">...</span>
+      <span class="page"><a href="chc5216-page=last.html">25</a></span>
+   
+   
+      <span class="page"><a href="http://ctda.library.miami.edu/digitalobjects/collection/chc5216?page=5">Next &gt;</a></span>
+   
+</div>
+
+    
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../../static/js/jquery.isotope.min.js"></script>
+        <script src="../../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

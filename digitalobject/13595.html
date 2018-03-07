@@ -1,0 +1,1013 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en ">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../digitalobjects.html">Digital Objects</a></li>
+              <li>Guestbook, 1974</li>
+            </ul>
+          </nav>
+          <h2>Guestbook, 1974</h2>
+        </header>
+
+        <section class="objectdisplay main">
+                
+                
+                <img id="largepreview" data-index="0" src="http://ctda.library.miami.edu/media/cache/8a/96/8a9620ff00a6403cc0004b6bf47965e5.jpg" alt='' style="display:block;float:none;" /><br />
+                
+                
+                
+                
+
+                
+
+                
+                <h3>Notes:</h3>
+                <p>Signed by theater personalities including Velia Mart&iacute;nez,  Teresa Mar&iacute;a Rojas and Ana Margarita Men&eacute;ndez Casado among others.&nbsp;</p>
+
+                
+
+                <h3>Object details:</h3>
+                <dl class="objectdata">
+                
+
+                
+                
+                
+                
+                
+                  <dt>Physical object date:</dt>
+                  <dd>1974</dd>
+                  
+                
+                
+                
+                  <dt>Physical object city:</dt>
+                  <dd>Miami, Florida, United States</dd>
+                
+              
+                
+                  <dt>Physical object type:</dt>
+                  <dd>Guestbooks</dd>
+                
+
+                
+                  <dt>Digital object format:</dt>
+                  <dd>Image</dd>
+                
+
+                  <dt>Object ID:</dt>
+                  <dd>chc5151000076</dd>
+                  
+                  <dt>Collection:</dt>
+                  <dd>María Julia Casanova Papers</dd>
+                  
+                  
+                  
+                
+                  <dt>License:</dt>
+                  <dd><a href="../copyright/index.html">University of Miami copyright policy</a></dd>
+                
+                  
+                
+                  
+                  
+                  
+                  
+                </dl>
+
+                
+                <h3>Related items:</h3>
+                
+                
+                <h4>Creators:</h4>
+                <ul>
+                  
+                  <li>
+                    <a href="../creator/1523.html">María Julia Casanova</a>
+                  </li>
+                  
+                </ul>
+                
+
+                
+
+                
+
+                
+
+                
+                
+            
+        </section>
+        
+        <aside class="thumbnails">
+            
+                <div class="data">
+                  <ul>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/5d/13/5d130fd2172e1e79d73e98c7e810bc4b.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/8a/96/8a9620ff00a6403cc0004b6bf47965e5.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/11/0c/110ce02fed23de08453ce2e996111d07.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/63/2c/632c7af31fe10854fad104eac7f387ff.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/1d/d6/1dd6e109f3336ea31ae7016638c01acd.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/63/04/63045dd1e91b90c523d53fcbabb4c839.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/7a/8c/7a8cbd5332033d770147e09b54376b3e.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/95/b1/95b184a677f09636714553935208815b.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/f6/79/f6797ebee228dc9c27e14ce58bf8072f.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/b3/20/b3200dae905d62d243a50e0379f1e444.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/53/da/53da10e2ea28115d56bb38c9256a630f.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/95/68/956861de9acfe9d3e857eb644639140c.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/b7/94/b7940e2d7ca23ad6618b5195cab7ad3f.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/34/3e/343ee1a5eb69a10141358a3ff0e6ea81.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/e8/55/e8558105061b924d557f5630c1c6b65e.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/37/36/37366b3a1026c1eaa522b9b521a10bfe.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/61/1f/611f88768c984dd2d64c8df0531b61d7.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/11/c8/11c86e07ca6ae7bf512af8fbc78c738e.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ee/78/ee783b48ca7a52963117fcc01f1b704c.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/ab/58/ab588366c05d444737c2c4ad7fdb3916.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/10/21/1021c62820e309a6708641ff4b599530.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/03/44/0344dca351541f6c86550e5d40574353.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/60/2b/602b367f8316abe03a26a5febab5fa17.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/6a/68/6a68430e92322db351554a109e060f2b.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/01/33/013344abaf91dad33d3bed20c30a69a6.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/fc/1a/fc1a5a8ddc77e0b02496d39b8060eada.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/64/57/6457fa4abc81f243f42989cbdd5ab00d.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/64/0e/640e55e73976e07e249ad07e7d22b02b.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/e0/32/e0327f6566e1ab562a31ec9bc20db1e1.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/21/11/211176047a2060c42de8b90bced2a67d.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/07/bd/07bd2de2a5778841b8e89d6e64ce0cac.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/bd/79/bd79a76405f8ad3eda04a3c8a5889027.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/59/26/59261815880a1fa2b60a3292d512cf08.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/0c/69/0c697fdd3d81946375b4e005b55f58ad.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/34/b0/34b0f2951c420cbb35f9c82b5ff7e88c.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/ee/92/ee9224b102965c6f1c668a8d113ae3d3.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/b5/59/b559791abc7d02f615d532334798923a.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/2a/c4/2ac40cbced9694c978acb00a448e1137.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/af/02/af02c7e37d804133ea66343bb1f840ba.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/49/11/4911718f10233a7f341bd56fbe99b0d7.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/5d/ad/5dadb89c43e1f5bd418200e81647c71c.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/92/21/9221357af98c422622308dc1f02efac8.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ea/ef/eaef720216f04f2743f47d03d2bf84d8.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/f1/43/f143e5c3c4bd050514a7475512a64493.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/23/c9/23c9e9d5ec405c3e6e6d7a58f23047d0.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/8e/95/8e955606f0ed0f83abf502f58878cee3.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/42/c9/42c905c85e3647e242577b8e617e7ffe.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/f6/da/f6da5e33a80c0baa34238775aefa0ec4.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/0b/c0/0bc04f95344a938af92dcdfbffdf9369.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/45/c2/45c2fd5064231d0b1109091a4c45c11f.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/c8/65/c8658c9479efe9874a2fcabbe590bea8.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/b0/c4/b0c48d8372e4e729c3e24736f1abcd88.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/77/84/7784cf3ffa7ce6bff8f5c0d4b1982543.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/16/d3/16d369862bc83be2fff22a6e74f8a8d7.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/25/a1/25a1dbf3ffe3046078d82bbc1cac479b.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/0f/cb/0fcb68f2ba67e0e356ddde90a019ad40.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/2b/f1/2bf167c3a084dc63e1d57b2c03f09c64.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/1a/9e/1a9e2681dfc6a8cf6cc7f9889c350d35.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/c7/5f/c75fd18923f5951f441e89e891fac670.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/2f/4a/2f4a5a76ec570f19cee4c6cf259bb1fd.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/fc/18/fc18a9e6d2271e30d78f25b807220072.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/a6/a4/a6a45f3776c6ac84df0cb3f915800aa0.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/1e/bd/1ebd673199c444c7e401b04e6dda350c.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/37/47/37474dddd44252f432c23dc5caa6dc24.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/e6/d6/e6d6dd2b4b7c98e264f0161bb9a2ac87.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/5c/44/5c44411adf5dbc9ba5d152259f108134.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/14/83/1483889534f6aab877de917a64d78897.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/65/8e/658e3010f51cf94ac9e175616fdea7d3.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/08/b1/08b12feeeeae33191aff17267b8ca6d6.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/d1/bd/d1bdac43fae39229cf56d3b9f32e9f10.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/70/e3/70e313cd1dd98d52bddc2195d11dff95.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/df/6a/df6a75f3732c72344555fde00f97f8e2.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ce/26/ce26cf3f02762eeb585fe606f03fccf7.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/a1/8c/a18c772e0640f6bd20e8fb269b8d3b66.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/1a/04/1a0485f1fe6d990a1e804ec116e09dbe.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/ee/09/ee09fbc810d2e9e1740b502eecf792c7.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/cf/c3/cfc37169a54ed93e7c83bd1119f158c7.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/4d/a8/4da88266f2aa1dd25f34b2f6d7ccf43e.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/d6/59/d659ae319d260bbd880476b1f74d300b.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/96/38/9638873ecbf50596b8d24b638db0f925.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/37/9b/379b838cdd1bc88af24e20a2dc625084.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/2e/88/2e88d63475cd079a532a5c03fd7175bb.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/d9/a9/d9a945c21a6f5428169f6c38efecedc2.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/6d/52/6d52f70cccae7295e349c5ab4ff7f634.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/3e/e4/3ee48f896c51b648b5ea725c77357451.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/9e/d7/9ed7b928f4385db1e2c9f0456802acb2.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/8d/c4/8dc44579c322d2b59d2655993d2f6ea5.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/21/84/218420b3fc94ef1d5d3d53df38f16ae2.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/56/7f/567fa9a1c6c7c0431affe86f22fd0771.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/7e/f9/7ef9117ef38cc0a0083c4934cd92616d.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/9f/09/9f092831c8faef555788a223b5f7d3c4.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/63/1b/631b8ab7a4f26deef1c4269aebca8d52.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/fc/c6/fcc6d3b99d01404a13a08c0c301fd429.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/45/cd/45cdcad6065a0ff84a4e97ac192339ff.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/04/11/0411dbf259b0a05a9e3025ff63af4fa0.jpg" width="100" height="100" alt='' title="Guestbook, 1974" />
+                        
+                        
+                        <span>/media/cache/8e/4f/8e4fc5bc0313f90f4d6d3e875219484e.jpg</span>
+                        
+                    </li>
+                
+                </ul>
+              </div>
+            
+            
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+        $(window).load(function() {
+            
+            $('.thumbnails ul li').click(function() {
+                var current = $(this);
+                var index = $('.thumbnails ul li').index(current);
+                $('#largepreview').attr('src', current.children('span').text());
+                $('#largepreview').attr('data-index', index);
+            });
+            
+            $('#largepreview').click(function() {
+              $.fancybox([
+                
+                
+                "/media/cache/19/6f/196f3647766033df1e700da3006a67b3.jpg",
+                
+                
+                
+                "/media/cache/52/6b/526b983a88b7589b175b1c3680780cb9.jpg",
+                
+                
+                
+                "/media/cache/43/f8/43f83619cdf3b49d471ae0d1715cb4b8.jpg",
+                
+                
+                
+                "/media/cache/cc/16/cc1607f1393dd5d658efd16f95016c4e.jpg",
+                
+                
+                
+                "/media/cache/8c/8e/8c8e421610c511c8f608e796bb3ed2a5.jpg",
+                
+                
+                
+                "/media/cache/e6/3b/e63bfaa7cf1de246e1ee51d489b14832.jpg",
+                
+                
+                
+                "/media/cache/e3/4d/e34daee1a77643795379607daaf0c906.jpg",
+                
+                
+                
+                "/media/cache/e6/29/e6297006508f2cf67fab46f75b19f146.jpg",
+                
+                
+                
+                "/media/cache/e3/00/e3000af9e70947aae581035039c81af7.jpg",
+                
+                
+                
+                "/media/cache/3c/df/3cdf31278b7872b2ca2fb2c0696240a0.jpg",
+                
+                
+                
+                "/media/cache/1f/b3/1fb3b620f905acf565a076493d881fce.jpg",
+                
+                
+                
+                "/media/cache/f1/fc/f1fc5cbd2591c75f59a493183260b230.jpg",
+                
+                
+                
+                "/media/cache/41/32/41328580dc6b40e45df8363e58d61275.jpg",
+                
+                
+                
+                "/media/cache/40/bd/40bdede3df2a9f970a0646f8b7c0ecd9.jpg",
+                
+                
+                
+                "/media/cache/ff/a9/ffa9ab6c47f89933ff63b124bd4f48f9.jpg",
+                
+                
+                
+                "/media/cache/39/4d/394d72ac8f9f60ecdfe33f8030519e39.jpg",
+                
+                
+                
+                "/media/cache/56/c6/56c625766fc7f949a71dea3014a55481.jpg",
+                
+                
+                
+                "/media/cache/d4/48/d44820978d99917496a4f000eb487713.jpg",
+                
+                
+                
+                "/media/cache/b6/88/b688cd31815c8e6e4c5afc07d8fbfb5d.jpg",
+                
+                
+                
+                "/media/cache/32/35/323522c1b6ce2da790f87817eb10e569.jpg",
+                
+                
+                
+                "/media/cache/86/5c/865c996f72f712604c0c0d19c2149cbd.jpg",
+                
+                
+                
+                "/media/cache/ad/cb/adcb22e53d0f3453cfff2a4e27277081.jpg",
+                
+                
+                
+                "/media/cache/27/33/273315dc1a683d8208ebd06c07b4918c.jpg",
+                
+                
+                
+                "/media/cache/0f/c5/0fc5e82c95ca9bbbed0eb7510fdb2933.jpg",
+                
+                
+                
+                "/media/cache/e2/f2/e2f24a6640e91729e696343baaea0368.jpg",
+                
+                
+                
+                "/media/cache/48/50/4850f7cf3029860f794aa2369afa698f.jpg",
+                
+                
+                
+                "/media/cache/e4/20/e420d5a66cb39f3256a74abcdfdaedb4.jpg",
+                
+                
+                
+                "/media/cache/c9/62/c9627dbddeff9c7e946e32640144d86c.jpg",
+                
+                
+                
+                "/media/cache/a7/7b/a77bf00b63b575f9bb6c2707738665d6.jpg",
+                
+                
+                
+                "/media/cache/01/80/0180c1c92b21069cb210f23e86d8a9b3.jpg",
+                
+                
+                
+                "/media/cache/3c/82/3c82ad279a184414af557b8eceb2251b.jpg",
+                
+                
+                
+                "/media/cache/fb/f4/fbf4a49706a1a8d316b704f540c0d0c5.jpg",
+                
+                
+                
+                "/media/cache/d6/a9/d6a97055854e5198f3c08827477c8460.jpg",
+                
+                
+                
+                "/media/cache/86/33/8633ad282be2038cab19b9cf76cc5ac8.jpg",
+                
+                
+                
+                "/media/cache/8c/03/8c03e761b3f730777664ddbe02883b90.jpg",
+                
+                
+                
+                "/media/cache/aa/fa/aafa5b41fd186eb4d05e1b65099b5bd7.jpg",
+                
+                
+                
+                "/media/cache/d6/50/d650e8ce888f1ac6e8f7572b66a61ea0.jpg",
+                
+                
+                
+                "/media/cache/23/32/23325f3be60d8b20104a96cda77341d4.jpg",
+                
+                
+                
+                "/media/cache/57/ff/57ffc325bc21637c2b7b01f21f5f02ea.jpg",
+                
+                
+                
+                "/media/cache/e8/8d/e88d7c08595ec6733b3ee7199de36ad3.jpg",
+                
+                
+                
+                "/media/cache/db/23/db236cd5f03bf0f0aea3157521124bc9.jpg",
+                
+                
+                
+                "/media/cache/63/df/63df845bbaf8a38dfed5195f1a07c872.jpg",
+                
+                
+                
+                "/media/cache/7e/81/7e81e3a70067eebb34449ff7da8f7e97.jpg",
+                
+                
+                
+                "/media/cache/ad/d1/add19a788b973b09260a267fb035fd15.jpg",
+                
+                
+                
+                "/media/cache/5e/f8/5ef8ab01038f969af7813fc230012c4e.jpg",
+                
+                
+                
+                "/media/cache/6a/83/6a83c9fd1d6df1662e8601597d5ef245.jpg",
+                
+                
+                
+                "/media/cache/24/47/24478d3e52f36fe072ca7682569513ff.jpg",
+                
+                
+                
+                "/media/cache/77/3e/773efe8f8ccae501be174cadd6d5d8c7.jpg",
+                
+                
+              ], {
+                'type': 'image',
+                'loop': false,
+                'index': $('#largepreview').attr('data-index')
+              });
+            });
+            
+        });
+    </script>
+
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

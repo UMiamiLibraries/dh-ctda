@@ -1,0 +1,891 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Bertolt Brecht</li>
+                </ul>
+            </nav>
+            <h2>Bertolt Brecht</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Author / playwright, librettist</strong></p>
+
+            
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/2525">Mann ist Mann</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>September 25, 1926</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/374">Die Gewehre der Frau Carrar</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/389">Mutter Courage und ihre Kinder</a><br />  
+                    <span>Author / Playwright</span>
+                    <br /><span>1939</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/456">The Life of Galileo/Leben des Galilei</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/459">Die Mutter</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/467">Bertolt Brecht's poems and songs/Bertolt Brecht's Gedichte und Liede</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/486">The Good Person of Sezuan/Der Gute Mensch von Sezuan</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/505">Fear and Misery of the Third Reich/Furcht und Elend des Drittes Reichs</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/540">The Caucasian Chalk Circle /Der Kaukasische Kreidekreis</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1698">Der Jasager; Der Neinsager</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1699">Die Ausnahme und die Regel</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1860">Der gute Mensch von Sezuan</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1863">Die Mutter</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1900">Leben des Galilei</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1902">Der Bettler oder Der tote Hund</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3112">Aufstieg und Fall der Stadt Mahagonny</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3207">Die Dreigroschenoper </a><br />  
+                    <span>Librettist</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3723">La boda de los pequeños burgueses</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+        
+
+                    
+        
+
+            
+            <div class="linkeditems">
+              <h3>Bibliography: +</h3>
+              
+                <div class="linkeditems">
+                <h3>Primary: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/publications/501/">Teatro y política. Benjamin lector de Brecht</a>  
+                  </li>
+                  
+                </ul>
+                </div>
+              
+              
+            </div>
+            
+        
+            
+        
+            
+ 
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>German</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>1898</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Augsburg, Bayern, Germany</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Death date:</h4>
+                  <span>1956</span>
+                </li>
+              
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/32">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/72/36/7236b4f241c682792c467305440d399f.jpg" title="Program for the productions, &quot;Los santos&quot; and &quot;Los fusiles&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/16/af/16af9d8860f13d0c62e02806b8f4a856.jpg" alt="Program for the productions, &quot;Los santos&quot; and &quot;Los fusiles&quot;" data-href="/digitalobject/32" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a7/ae/a7aeebaf366ab3f2cc8f483922597aeb.jpg" title="Program for the productions, &quot;Los santos&quot; and &quot;Los fusiles&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/20/43/20430a66b29f234a406710163eb02175.jpg" alt="Program for the productions, &quot;Los santos&quot; and &quot;Los fusiles&quot;" data-href="/digitalobject/32" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ff/1c/ff1c13874c6cae3d434b103a9bb75ef9.jpg" title="Program for the productions, &quot;Los santos&quot; and &quot;Los fusiles&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/09/3a/093aa188dcb817b025d95afee704d794.jpg" alt="Program for the productions, &quot;Los santos&quot; and &quot;Los fusiles&quot;" data-href="/digitalobject/32" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7e/bb/7ebbbb38f915f715c3d4274ce744b83d.jpg" title="Program for the productions, &quot;Los santos&quot; and &quot;Los fusiles&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9d/c7/9dc7956a9ee386beac726ba04c07a191.jpg" alt="Program for the productions, &quot;Los santos&quot; and &quot;Los fusiles&quot;" data-href="/digitalobject/32" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/83/56/8356393e363803e2166c3119742f59ba.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="../media/cache/4d/94/4d949ef736ac308a35aa31ace80179be.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/67/db/67db188e897b09a09cd1d3380a3327dd.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a1/e2/a1e2ce48ae4c9ea75b1c5d78f59ac188.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cc/de/ccde550ed4bc1fa0c205cb1cbe4f015a.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1e/ef/1eefc4f883c74f3c6c353af77cf5e24a.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d9/1c/d91c6cc8c77da5be3b7b04abf21bd2d6.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9b/cc/9bcc456835d36107bddac25fb3e8d39f.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ab/79/ab79daf03742420d3f8309da63cf560d.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/80/d9/80d9708ca2dbc8fe5f9c6864e39a67cf.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/32/69/326974c8e572c02e4efc71879662b6ab.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/64/e3/64e3bc4855e79247d422889c0af7b299.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/17/a7/17a7da50b55c03e2c42ed043b166f25e.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/73/75/737502a84a7b695a076d3f20b829b484.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/03/4e/034e35da70c4542086db89b296363ab3.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/88/f9/88f917cc54dc6f58e29ea6338b08e3e1.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/d2/8fd2dd77dc4abcbe0e67b836e033d42e.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d6/09/d609a93114d3e23de5cdbdc7ecf8836f.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/db/17/db173582452abfa74061855c1ff69324.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/89/1f/891f8635762bd426d4ae2c4e6b478bc0.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2c/d7/2cd798d1aea8b92c66f5aaf4e98ca169.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/37/e4/37e4ab4dadccc35b816b2003350f1b6d.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/27/6a27a2e9ddd40be35306fca63a87a48c.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1d/34/1d34d30aae954dad7009ef2bef4e9ef8.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/9e/099eee87b3aafbd71d8be321d2064f1f.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/43/c9/43c9134c7dd4f8cf35d6b363fa4942c7.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cf/6d/cf6d790ba3dfb04cee70d63be202ab27.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/97/3f/973f82e4fb6f159c06427071e8fe500f.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/4e/8f4ed23712142e7bfc9817c2d137d7e5.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e7/14/e7146dffeae8cd8dab356510be92984f.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/92/b1/92b19f2596eac05337bf40abd403c849.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4a/1c/4a1cbc0ba148151e2c08f963eb376b9d.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/1f/df1fc233ef1e9f023b20c8d0fd2e53e3.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/38/c4/38c40104c1871339562451682178052b.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1e/25/1e25b0b3e3d749852ec756c8fa20ac99.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/32/98/3298a93e192dd6790a3cd16d3598008e.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c1/46/c14662bee5e36ff4058bf056152e404d.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c1/e9/c1e986badc0e618142494fc28a99be7b.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6f/7b/6f7b0bf79527fce82fb3d2b0beeda222.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/98/5d/985d9e544fcc78296b96611e183ae641.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/62/ef/62efd6d0ece9c016fe146fb41541c2a2.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e9/ad/e9ad20fe844cc10e0ac28b23f3d5afaa.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6a/79/6a79c87e8cc1cd817fb58b5ca9ff0e0a.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e0/28/e0285e4c6e7de618defd46d73d8da37d.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/35/6a/356af4353331dc3b5582086e04a2bd41.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/85/38/853845c05f03e3cdef0cfcba934159c0.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bf/0f/bf0fec3c20392eddacc559cc792cad3f.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/58/96/5896b286bfd554c289e553627b426a35.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e7/2b/e72b6594b5f7f9733f516425b6bedba7.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9f/5d/9f5d99a5ca1b20aa441cc5214558ebbd.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/01/60/016072eea70637b61ce70bc542bfc06a.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/53/6a/536afc6b799f490189179177469f1ca1.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/04/a2/04a21395340d0c808a8b8403248bc1d6.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c9/30/c9303a7d1f45cc6f97c8890fd0563ac0.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a0/5d/a05dba760b69d675561ba8140be6b1a0.jpg" title="Program for the production, &quot;Los días de la Comuna&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/fd/90/fd90a26cc00a1d39c2581c8115eac297.jpg" alt="Program for the production, &quot;Los días de la Comuna&quot;" data-href="/digitalobject/28" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5c/d2/5cd23eea4e351caef5b6d353c4ffc160.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="../media/cache/84/d5/84d5b1fc5df1e7b132b6a0a435271c76.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9d/c0/9dc0f6ddbb731367fbdf0b5b223adeab.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/60/03/6003515cc98415e93b92a2bf3eba4a35.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b5/03/b5034f088b5d5c74fc8ba0fe79748212.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/03/2e/032eff2b55c3158368a0e5f4ae01bbed.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/49/7f/497f9e4aa0ffa00e953ad13b9f884343.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/53/1a/531a0767b1560b219d0f813cfc56054c.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/eb/ecebd8016d2d70d81ca223aa68839c5c.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/27/72/2772025d080f52b0f279d40398816879.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5e/e3/5ee3e5d6a1b905ff2cf47bf38f723812.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/81/ed/81ed859b3c9d6c96f6c3871a04cf428f.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5e/f6/5ef61e02af3da5d514a2be62811836c1.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/04/23/042300a62dcce9bce1fce50d51e42223.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a7/f5/a7f5ca2261d4a45da26ab9b9340e60e3.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/76/b3/76b3bc0bfce82cc005626fee1d74fff5.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/31/fc/31fcc2b9f0ba9c5fdc41fbbd17221d9e.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c3/32/c3320f3ef13949aecf8cf1851a5e19ca.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6b/6c/6b6c8c8af4addf8e64e5ec6a570a57ca.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/15/ba/15ba153d3fdce5f6b297075b713b3093.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/42/ae/42aece805d2cd00807beebcfb80ed05b.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a9/18/a918029a668060dbb905b06a352667d7.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4f/63/4f638f0592006b9cdf05aeb817cc3790.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/5a/54/5a549767b5f3493646671d10731622e2.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/18/0d/180d50e4e13781e04898c1bb04ec79bc.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/65/3c/653c19b8ad2b5a5df3bd90f078b78105.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0f/73/0f7361ad57c84f4eebfcee9be17d4bbc.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d4/93/d493f8c037a2b80c33c1e35bac37e0af.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2a/39/2a3956099e82fab108b2dd363e4a7e8b.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e1/2f/e12ff347b7c9b793c163ef62d2f9e1db.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f0/46/f0461fd4e1184fc68f6daaf0b0e41b11.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ae/cb/aecb98ea1ffad2f4cabf086297273ff3.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/33/55/3355983fb17df15f36b070fc4721806c.jpg" title="Program for the production, &quot;El alma buena de Se-Chuan&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/58/54/5854894d466b03a906c67b497ed346cf.jpg" alt="Program for the production, &quot;El alma buena de Se-Chuan&quot;" data-href="/digitalobject/21" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,625 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>La casa vieja</li>
+                </ul>
+            </nav>
+            <h2>La casa vieja</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/97.html">Herberto Dumé</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Cast: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Role(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2357">Manuel Casal</a></td>
+                        <td>Diego</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2358">Eloisa Castellanos</a></td>
+                        <td>Laura</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/132.html">José Corrales</a></td>
+                        <td>Esteban</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/97.html">Herberto Dumé</a></td>
+                        <td>Higinio</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2362">Clara Hernández</a></td>
+                        <td>Dalia</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2359">Armantina Rodríguez</a></td>
+                        <td>Onelia</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2361">Patricia Rodríguez</a></td>
+                        <td>Flora</td>
+                    </tr>
+                
+              </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Design team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/2358">Eloisa Castellanos</a></td>
+                    <td>Costume designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="../creator/97.html">Herberto Dumé</a></td>
+                    <td>Sound/Soundtrack Designer, Set designer, Light designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/1882">Rolando Zaragoza</a></td>
+                    <td>Makeup designer</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+          
+
+
+            
+
+
+
+            
+                <br>
+               Author: Dinorah Pérez Rementería (2004-12-16)
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              
+            
+                <a href="http://ctda.library.miami.edu/creator/4925" >Dumé Spanish Theatre (4925)</a><br />
+              
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/271.html">437 West 46 St. - Basement (United States)</a></span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>January 12, 1973 - February 18, 1973</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="http://ctda.library.miami.edu/writtenwork/141">La casa vieja (Play script)</a><br />
+                <span>By <h4>Author / Playwright:</h4><a href='../creator/84.html'>Abelardo Estorino</a></span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/12871">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8a/9f/8a9fa15bfce46c22be55d9937dd20b8c.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/7a/93/7a93f9c484db6815a82ad1a89d60b0b2.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ff/d1/ffd1d73e764d6adb4e08d3d02ce5375d.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/06/a3/06a38cdd922f35cdc972a57261c557ff.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/57/b75755274e899285fb0018a05a4810b6.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/82/f8/82f8addc87df925744d2e1dd37fb2b5b.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fb/cf/fbcf54f7d22ac9f1a3378378447985f4.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/47/98/4798e3f41b1a0e5f11633461de00e7f2.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4b/ac/4bac1a79d3d9938f39c9417603a05813.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c7/c4/c7c4b9607e46a23ec40b2097905c8d24.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/c4/86c463caf255b85840f5d1909641bab6.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c3/1f/c31f6735db7487cc2d247d06564b5294.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f2/f5/f2f528e6d982311d350abb7458ed97f1.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/81/53/8153e30225cbc1c59b0b327fce566888.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/1d/c71deb570f114d1f306e6f78058cf7cc.jpg" title="Program for the production, &quot;La casa vieja&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c8/20/c82001dcd32d24014861980c3c0b27a7.jpg" alt="Program for the production, &quot;La casa vieja&quot;" data-href="/digitalobject/12871" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f9/b7/f9b7515579653555c78d8f83cec46eb7.jpg" title="Manuscript displaying names of characters and a scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a6/6b/a66b0c46d028113f1f514e770b6e6d9a.jpg" alt="Manuscript displaying names of characters and a scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12872" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/de/9cdebdca06fa203a8667bfb2712c2eb5.jpg" title="Manuscript displaying names of characters and a scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/11/50/1150dd06042c364ccf9775a57417dc48.jpg" alt="Manuscript displaying names of characters and a scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12872" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/18/df/18df8c29a4c663efe932eed2ed2b48e4.jpg" title="Newspaper clipping titled, &quot;La casa vieja&quot; (The old house)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5d/b5/5db5c7490aea77f2dbf55690260f8dfd.jpg" alt="Newspaper clipping titled, &quot;La casa vieja&quot; (The old house)" data-href="/digitalobject/12867" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c7/94/c79440eb3a1db58c193fdae72eb4ed7c.jpg" title="Scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/fe/fd/fefd6fb45e30dd65541d11128be79102.jpg" alt="Scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12891" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c2/ca/c2ca562f455df09559cd1ea51b076d37.jpg" title="Scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/fa/d8/fad87d3ee03efafb2a7b2043e5c6d6b8.jpg" alt="Scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12880" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/22/c6/22c6180ef3ce94c96dd3dd3a831bd3a6.jpg" title="Scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/0a/84/0a8460bfce872cd1a237da10978cf635.jpg" alt="Scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12873" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6c/17/6c177e2da09ee866627dd77a6a489f11.jpg" title="Scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/14/3d/143de2dd61b449b7b9cd0f0a77c8b570.jpg" alt="Scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12874" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/50/20/5020a6834e5d3d0cce3f1b17bafbed08.jpg" title="Scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ac/80/ac804069fb6d657b031830a0fa7ee568.jpg" alt="Scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12897" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0b/09/0b0908adb477e3e6a060c069e1c3b47e.jpg" title="Scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b5/34/b534777323a77ef381499964a5d2b1e9.jpg" alt="Scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12888" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/44/d3/44d3f36c89f2794ff4843d593220f8d0.jpg" title="Scene from the play, &quot;La casa vieja&quot; (The Old House)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/56/0f/560f9641d89696627944f20ddf335348.jpg" alt="Scene from the play, &quot;La casa vieja&quot; (The Old House)" data-href="/digitalobject/12866" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

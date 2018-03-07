@@ -55,19 +55,19 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
     <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
-    <link rel="shortcut icon" href="/static/favicon.ico" />
-    <link rel="apple-touch-icon" href="/static/apple-touch-icon.png" />
-    <script src="/static/js/libs/modernizr-2.0.6.min.js"></script>
-    <link href="/static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
-    <link href="/static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src="/static/js/jquery.shorten.js"></script>
-    <script type="text/javascript" src="/static/js/readmore.js"></script>    
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
     <script type="text/javascript">
         $(function(){
         if(document.getElementById("eventTags"))
@@ -119,7 +119,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 <body class="en detail">
     <div id="wrapper">
       <div id="langselect">
-            <form action="/i18n/setlang/" method="post">
+            <form action="../index.html" method="post">
                 <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
                 <select name="language">
                     <option value="en">English</option>
@@ -129,25 +129,25 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
             </form>
             <ul>
               
-              <li><a href="/accounts/login/">Login</a></li>
+              <li><a href="../accounts/login/index.html">Login</a></li>
               
               <li><a href="#" id="setlang-en">English</a></li>
               <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
             </ul>
         </div>
         <header>
-            <a href="/"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
-            <form id="globalsearch" method="get" action="/search">
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
                 <label for="q">Search</label>
                 <input type="search" id="q" name="q" placeholder="Search..." />
                 <input type="submit" value="Go" />
             </form>
             <nav id="pagenav">
                 <ul>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/people">People</a></li>
-                    <li><a href="/participate">Participate</a></li>
-                    <li><a href="/publication">Publications</a></li>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
                 </ul>
             </nav>
         </header>
@@ -155,21 +155,21 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         <nav id="archivenav">
             <h3>The Archive</h3>
             <ul>
-                <li><a href="/creators">Creators</a></li>
-                <li><a href="/productions">Productions</a></li>
-                <li><a href="/writtenworks">Written Works</a></li>
-                <li><a href="/venues">Venues</a></li>
-                <li><a href="/awards">Awards</a></li>
-                <li><a href="/festivals">Festivals</a></li>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
                 <li class="dropdown">
-                  <a href="/digitalobjects">Digital Objects</a>
+                  <a href="../digitalobjects.html">Digital Objects</a>
                   <ul>
-                    <li><a href="/digitalobjects">All objects</a></li>
-                    <li><a href="/digitalobjects/images">Images</a></li>
-                    <li><a href="/digitalobjects/videos">Videos</a></li>
-                    <li><a href="/digitalobjects/audios">Audios</a></li>
-                    <li><a href="/digitalobjects/types">By Type</a></li>
-                    <li><a href="/digitalobjects/collections">Collections</a></li>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
                   </ul>
                 </li>
             </ul>
@@ -181,8 +181,8 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
         <header>
             <nav class="breadcrumbs">
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/creators">Creators</a></li>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
                     <li>Raúl Martín</li>
                 </ul>
             </nav>
@@ -214,7 +214,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                 <ul>
                     
                         Related to
-                        <a href="/creator/4787"> Teatro de la Luna</a>, Artistic Director,
+                        <a href="4787.html"> Teatro de la Luna</a>, Artistic Director,
                         1997 <br />
                     
                 </ul>
@@ -228,31 +228,31 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                     
                   
                   <li>
-                    <a href="/writtenwork/3696">Mujeres de la luna</a><br />  
+                    <a href="http://ctda.library.miami.edu/writtenwork/3696">Mujeres de la luna</a><br />  
                     <span>Arranger</span>
                     
                   </li>
                   
                   <li>
-                    <a href="/writtenwork/568">La visita de la vieja dama</a><br />  
+                    <a href="http://ctda.library.miami.edu/writtenwork/568">La visita de la vieja dama</a><br />  
                     <span>Author / Playwright</span>
                     
                   </li>
                   
                   <li>
-                    <a href="/writtenwork/569">Orestíada</a><br />  
+                    <a href="http://ctda.library.miami.edu/writtenwork/569">Orestíada</a><br />  
                     <span>Author / Playwright</span>
                     
                   </li>
                   
                   <li>
-                    <a href="/writtenwork/571">Sempronio</a><br />  
+                    <a href="http://ctda.library.miami.edu/writtenwork/571">Sempronio</a><br />  
                     <span>Author / Playwright</span>
                     
                   </li>
                   
                   <li>
-                    <a href="/writtenwork/718">No quiero ser payaso</a><br />  
+                    <a href="http://ctda.library.miami.edu/writtenwork/718">No quiero ser payaso</a><br />  
                     <span>Author / Playwright</span>
                     
                   </li>
@@ -267,891 +267,891 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                 <ul>
                   
                   <li>
-                    <a href="/production/4313">Al otro lado del mar</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4313">Al otro lado del mar</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1289">Akuara Teatro - Sala Avellaneda</a></span><br />
+                    <span><a href="../venue/1289.html">Akuara Teatro - Sala Avellaneda</a></span><br />
                     <span></span>
                   </li>
                   
                   <li>
-                    <a href="/production/4945">Electra Garrigó</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4945">Electra Garrigó</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/938">Holguín, Holguín</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/938">Holguín, Holguín</a></span><br />
                     <span></span>
                   </li>
                   
                   <li>
-                    <a href="/production/4668">Mujeres de la luna</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4668">Mujeres de la luna</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/56">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
                     <span>October 30, 2015 - November 1, 2015</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4777">Yo quiero ser una Spring Breaker</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4777">Yo quiero ser una Spring Breaker</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/45">Unknown1</a></span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
                     <span>January 1, 2015</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4920">Delirio habanero</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4920">Delirio habanero</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/81">Teatro Principal de Camagüey</a></span><br />
+                    <span><a href="../venue/81.html">Teatro Principal de Camagüey</a></span><br />
                     <span>October 4, 2014 - October 5, 2014</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4734">Matrimonio blanco</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4734">Matrimonio blanco</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/51">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
                     <span>September 2013</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4145">Matrimonio blanco</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4145">Matrimonio blanco</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1370">Sala Villena de la UNEAC</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/1370">Sala Villena de la UNEAC</a></span><br />
                     <span>March 13, 2013</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4005">La dama del mar</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4005">La dama del mar</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/51">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
                     <span>November 24, 2012 - November 25, 2012</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3908">Los siervos</a><br />
+                    <a href="../production/3908.html">Los siervos</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/441">University of Miami Jerry Herman Ring Theater</a></span><br />
+                    <span><a href="../venue/441.html">University of Miami Jerry Herman Ring Theater</a></span><br />
                     <span>August 31, 2012 - September 2, 2012</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4308">El dragón de oro</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4308">El dragón de oro</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/13">Teatro Mella</a></span><br />
+                    <span><a href="../venue/13.html">Teatro Mella</a></span><br />
                     <span>November 6, 2011 - November 29, 2011</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3747">Delirio Habanero</a><br />
+                    <a href="../production/3747.html">Delirio Habanero</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/28">Miami-Dade County Auditorium</a></span><br />
+                    <span><a href="../venue/28.html">Miami-Dade County Auditorium</a></span><br />
                     <span>October 20, 2011 - October 21, 2011</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4306">El dragón de oro</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4306">El dragón de oro</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1410">Theater an der Ruhr</a></span><br />
+                    <span><a href="../venue/1410.html">Theater an der Ruhr</a></span><br />
                     <span>June 2011</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4305">El dragón de oro</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4305">El dragón de oro</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/51">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
                     <span>May 17, 2011 - May 29, 2011</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3561">Delirio habanero</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3561">Delirio habanero</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1006">Unknown venue - Camagüey</a></span><br />
+                    <span><a href="../venue/1006.html">Unknown venue - Camagüey</a></span><br />
                     <span>October 2006</span>
                   </li>
                   
                   <li>
-                    <a href="/production/1442">Delirio habanero</a><br />
+                    <a href="http://ctda.library.miami.edu/production/1442">Delirio habanero</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/51">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
                     <span>June 2, 2006</span>
                   </li>
                   
                   <li>
-                    <a href="/production/404">El banquete infinito</a><br />
+                    <a href="http://ctda.library.miami.edu/production/404">El banquete infinito</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/66">Teatro Nacional de Guiñol de Cuba</a></span><br />
+                    <span><a href="../venue/66.html">Teatro Nacional de Guiñol de Cuba</a></span><br />
                     <span>July 11, 2005</span>
                   </li>
                   
                   <li>
-                    <a href="/production/304">Lorca con un vestido verde</a><br />
+                    <a href="http://ctda.library.miami.edu/production/304">Lorca con un vestido verde</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/6">Fundación Ludwig</a></span><br />
+                    <span><a href="../venue/6.html">Fundación Ludwig</a></span><br />
                     <span>February 20, 2004</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3165">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3165">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/51">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
                     <span>December 28, 2003</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3243">Los siervos</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3243">Los siervos</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>November 27, 2003</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3263">El álbum</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3263">El álbum</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/57">Teatro Tomás Terry</a></span><br />
+                    <span><a href="../venue/57.html">Teatro Tomás Terry</a></span><br />
                     <span>February 11, 2003</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3261">El álbum</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3261">El álbum</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/45">Unknown1</a></span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
                     <span>2003</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3228">Electra Garrigó</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3228">Electra Garrigó</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/81">Teatro Principal de Camagüey</a></span><br />
+                    <span><a href="../venue/81.html">Teatro Principal de Camagüey</a></span><br />
                     <span>October 4, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3170">El álbum</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3170">El álbum</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/45">Unknown1</a></span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
                     <span>September 8, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3260">El álbum</a><br />
+                    <a href="../production/3260.html">El álbum</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>July 26, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3257">Electra Garrigó</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3257">Electra Garrigó</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>July 24, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3162">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3162">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>July 18, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3166">Los siervos</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3166">Los siervos</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>June 8, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3877">El enano en la botella</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3877">El enano en la botella</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>May 18, 2002 - May 19, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3164">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3164">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>March 16, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3163">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3163">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>March 15, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/792">El enano en la botella</a><br />
+                    <a href="http://ctda.library.miami.edu/production/792">El enano en la botella</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/556">Tower Theater</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/556">Tower Theater</a></span><br />
                     <span>2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3766">Seis personajes en busca de un autor</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3766">Seis personajes en busca de un autor</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>November 24, 2001</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3205">Electra Garrigó</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3205">Electra Garrigó</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>September 21, 2001</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3169">El enano en la botella</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3169">El enano en la botella</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>July 27, 2001 - August 5, 2001</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3168">El enano en la botella</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3168">El enano en la botella</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/12">Gramercy Arts Theater</a></span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
                     <span>May 22, 2001</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3220">El álbum</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3220">El álbum</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/12">Gramercy Arts Theater</a></span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
                     <span>May 22, 2001</span>
                   </li>
                   
                   <li>
-                    <a href="/production/453">El enano en la botella</a><br />
+                    <a href="http://ctda.library.miami.edu/production/453">El enano en la botella</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/31">Koubek Center (Miami Dade College)</a></span><br />
+                    <span><a href="../venue/31.html">Koubek Center (Miami Dade College)</a></span><br />
                     <span>May 3, 2001</span>
                   </li>
                   
                   <li>
-                    <a href="/production/456">El álbum</a><br />
+                    <a href="../production/456.html">El álbum</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/31">Koubek Center (Miami Dade College)</a></span><br />
+                    <span><a href="../venue/31.html">Koubek Center (Miami Dade College)</a></span><br />
                     <span>May 3, 2001</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3203">Los siervos</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3203">Los siervos</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/81">Teatro Principal de Camagüey</a></span><br />
+                    <span><a href="../venue/81.html">Teatro Principal de Camagüey</a></span><br />
                     <span>September 29, 2000 - October 7, 2000</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3244">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3244">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/103">Teatro Confamiliares</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/103">Teatro Confamiliares</a></span><br />
                     <span>September 11, 2000</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4943">Los siervos</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4943">Los siervos</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>June 17, 2000</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3214">Electra Garrigó</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3214">Electra Garrigó</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>February 11, 2000</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3242">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3242">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>September 24, 1999</span>
                   </li>
                   
                   <li>
-                    <a href="/production/656">Los siervos</a><br />
+                    <a href="http://ctda.library.miami.edu/production/656">Los siervos</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>September 17, 1999</span>
                   </li>
                   
                   <li>
-                    <a href="/production/1394">Blanche</a><br />
+                    <a href="http://ctda.library.miami.edu/production/1394">Blanche</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1291">Unknown Venue - La Habana</a></span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
                     <span>1999</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3167">Los siervos</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3167">Los siervos</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/938">Holguín, Holguín</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/938">Holguín, Holguín</a></span><br />
                     <span>1999</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3731">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3731">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/838">Santiago de Chile</a></span><br />
+                    <span><a href="../venue/838.html">Santiago de Chile</a></span><br />
                     <span>1999</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3241">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3241">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/101">Teatro Municipalidad de Victoria</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/101">Teatro Municipalidad de Victoria</a></span><br />
                     <span>September 14, 1998</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3240">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3240">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>April 4, 1998</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3239">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3239">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/100">Teatro Diego Rivera</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/100">Teatro Diego Rivera</a></span><br />
                     <span>July 19, 1997</span>
                   </li>
                   
                   <li>
-                    <a href="/production/993">No quiero ser payaso</a><br />
+                    <a href="http://ctda.library.miami.edu/production/993">No quiero ser payaso</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/59">Teatro Guiñol de Cienfuegos</a></span><br />
+                    <span><a href="../venue/59.html">Teatro Guiñol de Cienfuegos</a></span><br />
                     <span>February 16, 1997</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3767">Electra Garrigó</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3767">Electra Garrigó</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>1997</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3212">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3212">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/81">Teatro Principal de Camagüey</a></span><br />
+                    <span><a href="../venue/81.html">Teatro Principal de Camagüey</a></span><br />
                     <span>September 28, 1996</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3210">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3210">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>September 30, 1995</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3248">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3248">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/66">Teatro Nacional de Guiñol de Cuba</a></span><br />
+                    <span><a href="../venue/66.html">Teatro Nacional de Guiñol de Cuba</a></span><br />
                     <span>December 15, 1994</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3209">La boda</a><br />
+                    <a href="../production/3209.html">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/40">Teatro Trianón</a></span><br />
+                    <span><a href="../venue/40.html">Teatro Trianón</a></span><br />
                     <span>December 12, 1994</span>
                   </li>
                   
                   <li>
-                    <a href="/production/760">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/760">La boda</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/66">Teatro Nacional de Guiñol de Cuba</a></span><br />
+                    <span><a href="../venue/66.html">Teatro Nacional de Guiñol de Cuba</a></span><br />
                     <span>May 25, 1994</span>
                   </li>
                   
                   <li>
-                    <a href="/production/658">Sempronio</a><br />
+                    <a href="http://ctda.library.miami.edu/production/658">Sempronio</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/1291">Unknown Venue - La Habana</a></span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
                     <span>1990</span>
                   </li>
                   
                   <li>
-                    <a href="/production/657">La visita de la vieja dama</a><br />
+                    <a href="http://ctda.library.miami.edu/production/657">La visita de la vieja dama</a><br />
                     <span>Director</span><br />
-                    <span><a href="/venue/45">Unknown1</a></span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
                     <span>1987</span>
                   </li>
                   
                   <li>
-                    <a href="/production/304">Lorca con un vestido verde</a><br />
+                    <a href="http://ctda.library.miami.edu/production/304">Lorca con un vestido verde</a><br />
                     <span>El vestido verde</span><br />
-                    <span><a href="/venue/6">Fundación Ludwig</a></span><br />
+                    <span><a href="../venue/6.html">Fundación Ludwig</a></span><br />
                     <span>February 20, 2004</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4103">El público</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4103">El público</a><br />
                     <span>Actor / actress</span><br />
-                    <span><a href="/venue/40">Teatro Trianón</a></span><br />
+                    <span><a href="../venue/40.html">Teatro Trianón</a></span><br />
                     <span>1996</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4101">El público</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4101">El público</a><br />
                     <span>Actor / actress</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>1995</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4090">El público</a><br />
+                    <a href="../production/4090.html">El público</a><br />
                     <span>Actor / actress</span><br />
-                    <span><a href="/venue/11">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
                     <span>1994</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4668">Mujeres de la luna</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4668">Mujeres de la luna</a><br />
                     <span>Design (General)</span><br />
-                    <span><a href="/venue/56">Centro Cultural Bertolt Brecht</a></span><br />
+                    <span><a href="../venue/56.html">Centro Cultural Bertolt Brecht</a></span><br />
                     <span>October 30, 2015 - November 1, 2015</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4920">Delirio habanero</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4920">Delirio habanero</a><br />
                     <span>Light designer, Costume designer</span><br />
-                    <span><a href="/venue/81">Teatro Principal de Camagüey</a></span><br />
+                    <span><a href="../venue/81.html">Teatro Principal de Camagüey</a></span><br />
                     <span>October 4, 2014 - October 5, 2014</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4734">Matrimonio blanco</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4734">Matrimonio blanco</a><br />
                     <span>Design (General)</span><br />
-                    <span><a href="/venue/51">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
                     <span>September 2013</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4005">La dama del mar</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4005">La dama del mar</a><br />
                     <span>Light designer, Costume designer, Set designer</span><br />
-                    <span><a href="/venue/51">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
                     <span>November 24, 2012 - November 25, 2012</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3908">Los siervos</a><br />
+                    <a href="../production/3908.html">Los siervos</a><br />
                     <span>Light designer, Costume designer, Set designer, Sound/Soundtrack Designer</span><br />
-                    <span><a href="/venue/441">University of Miami Jerry Herman Ring Theater</a></span><br />
+                    <span><a href="../venue/441.html">University of Miami Jerry Herman Ring Theater</a></span><br />
                     <span>August 31, 2012 - September 2, 2012</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4308">El dragón de oro</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4308">El dragón de oro</a><br />
                     <span>Light designer, Costume designer</span><br />
-                    <span><a href="/venue/13">Teatro Mella</a></span><br />
+                    <span><a href="../venue/13.html">Teatro Mella</a></span><br />
                     <span>November 6, 2011 - November 29, 2011</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4306">El dragón de oro</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4306">El dragón de oro</a><br />
                     <span>Light designer, Costume designer</span><br />
-                    <span><a href="/venue/1410">Theater an der Ruhr</a></span><br />
+                    <span><a href="../venue/1410.html">Theater an der Ruhr</a></span><br />
                     <span>June 2011</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4305">El dragón de oro</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4305">El dragón de oro</a><br />
                     <span>Light designer, Costume designer</span><br />
-                    <span><a href="/venue/51">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
                     <span>May 17, 2011 - May 29, 2011</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3619">Noches de satín regio</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3619">Noches de satín regio</a><br />
                     <span>Sound/Soundtrack Designer</span><br />
-                    <span><a href="/venue/7">Sala Teatro El Sótano</a></span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
                     <span>December 9, 2006 - December 30, 2006</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3561">Delirio habanero</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3561">Delirio habanero</a><br />
                     <span>Light designer, Costume designer</span><br />
-                    <span><a href="/venue/1006">Unknown venue - Camagüey</a></span><br />
+                    <span><a href="../venue/1006.html">Unknown venue - Camagüey</a></span><br />
                     <span>October 2006</span>
                   </li>
                   
                   <li>
-                    <a href="/production/1442">Delirio habanero</a><br />
+                    <a href="http://ctda.library.miami.edu/production/1442">Delirio habanero</a><br />
                     <span>Light designer, Costume designer</span><br />
-                    <span><a href="/venue/51">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
                     <span>June 2, 2006</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3254">El enano en la botella</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3254">El enano en la botella</a><br />
                     <span>Costume designer, Set designer</span><br />
-                    <span><a href="/venue/64">Sala Teatro del Museo Nacional de Bellas Artes</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/64">Sala Teatro del Museo Nacional de Bellas Artes</a></span><br />
                     <span>June 25, 2004</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3253">El enano en la botella</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3253">El enano en la botella</a><br />
                     <span>Costume designer, Set designer</span><br />
-                    <span><a href="/venue/998">Lisboa</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/998">Lisboa</a></span><br />
                     <span>June 6, 2004 - June 8, 2004</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3165">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3165">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/51">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
                     <span>December 28, 2003</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3243">Los siervos</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3243">Los siervos</a><br />
                     <span>Sound/Soundtrack Designer, Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>November 27, 2003</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3255">El enano en la botella</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3255">El enano en la botella</a><br />
                     <span>Costume designer, Set designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>September 18, 2003 - September 28, 2003</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3347">La virgen triste</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3347">La virgen triste</a><br />
                     <span>Costume designer</span><br />
-                    <span><a href="/venue/32">Teatro Avante</a></span><br />
+                    <span><a href="../venue/32.html">Teatro Avante</a></span><br />
                     <span>June 19, 2003 - June 20, 2003</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3263">El álbum</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3263">El álbum</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/57">Teatro Tomás Terry</a></span><br />
+                    <span><a href="../venue/57.html">Teatro Tomás Terry</a></span><br />
                     <span>February 11, 2003</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3252">El enano en la botella</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3252">El enano en la botella</a><br />
                     <span>Costume designer, Set designer</span><br />
-                    <span><a href="/venue/57">Teatro Tomás Terry</a></span><br />
+                    <span><a href="../venue/57.html">Teatro Tomás Terry</a></span><br />
                     <span>February 9, 2003</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3261">El álbum</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3261">El álbum</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/45">Unknown1</a></span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
                     <span>2003</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3228">Electra Garrigó</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3228">Electra Garrigó</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/81">Teatro Principal de Camagüey</a></span><br />
+                    <span><a href="../venue/81.html">Teatro Principal de Camagüey</a></span><br />
                     <span>October 4, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3170">El álbum</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3170">El álbum</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/45">Unknown1</a></span><br />
+                    <span><a href="../venue/45.html">Unknown1</a></span><br />
                     <span>September 8, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3262">Seis personajes en busca de un autor</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3262">Seis personajes en busca de un autor</a><br />
                     <span>Sound/Soundtrack Designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>August 8, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3260">El álbum</a><br />
+                    <a href="../production/3260.html">El álbum</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>July 26, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3257">Electra Garrigó</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3257">Electra Garrigó</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>July 24, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3162">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3162">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>July 18, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3166">Los siervos</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3166">Los siervos</a><br />
                     <span>Sound/Soundtrack Designer, Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>June 8, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3877">El enano en la botella</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3877">El enano en la botella</a><br />
                     <span>Costume designer, Set designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>May 18, 2002 - May 19, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3164">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3164">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>March 16, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3163">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3163">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>March 15, 2002</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3766">Seis personajes en busca de un autor</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3766">Seis personajes en busca de un autor</a><br />
                     <span>Sound/Soundtrack Designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>November 24, 2001</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3205">Electra Garrigó</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3205">Electra Garrigó</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>September 21, 2001</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3169">El enano en la botella</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3169">El enano en la botella</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>July 27, 2001 - August 5, 2001</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3168">El enano en la botella</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3168">El enano en la botella</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/12">Gramercy Arts Theater</a></span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
                     <span>May 22, 2001</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3220">El álbum</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3220">El álbum</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/12">Gramercy Arts Theater</a></span><br />
+                    <span><a href="../venue/12.html">Gramercy Arts Theater</a></span><br />
                     <span>May 22, 2001</span>
                   </li>
                   
                   <li>
-                    <a href="/production/453">El enano en la botella</a><br />
+                    <a href="http://ctda.library.miami.edu/production/453">El enano en la botella</a><br />
                     <span>Costume designer, Set designer</span><br />
-                    <span><a href="/venue/31">Koubek Center (Miami Dade College)</a></span><br />
+                    <span><a href="../venue/31.html">Koubek Center (Miami Dade College)</a></span><br />
                     <span>May 3, 2001</span>
                   </li>
                   
                   <li>
-                    <a href="/production/456">El álbum</a><br />
+                    <a href="../production/456.html">El álbum</a><br />
                     <span>Costume designer, Set designer</span><br />
-                    <span><a href="/venue/31">Koubek Center (Miami Dade College)</a></span><br />
+                    <span><a href="../venue/31.html">Koubek Center (Miami Dade College)</a></span><br />
                     <span>May 3, 2001</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3203">Los siervos</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3203">Los siervos</a><br />
                     <span>Sound/Soundtrack Designer, Set designer, Costume designer</span><br />
-                    <span><a href="/venue/81">Teatro Principal de Camagüey</a></span><br />
+                    <span><a href="../venue/81.html">Teatro Principal de Camagüey</a></span><br />
                     <span>September 29, 2000 - October 7, 2000</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3244">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3244">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/103">Teatro Confamiliares</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/103">Teatro Confamiliares</a></span><br />
                     <span>September 11, 2000</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4943">Los siervos</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4943">Los siervos</a><br />
                     <span>Sound/Soundtrack Designer, Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>June 17, 2000</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3214">Electra Garrigó</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3214">Electra Garrigó</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>February 11, 2000</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3242">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3242">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>September 24, 1999</span>
                   </li>
                   
                   <li>
-                    <a href="/production/656">Los siervos</a><br />
+                    <a href="http://ctda.library.miami.edu/production/656">Los siervos</a><br />
                     <span>Sound/Soundtrack Designer, Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>September 17, 1999</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3167">Los siervos</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3167">Los siervos</a><br />
                     <span>Sound/Soundtrack Designer, Set designer, Costume designer</span><br />
-                    <span><a href="/venue/938">Holguín, Holguín</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/938">Holguín, Holguín</a></span><br />
                     <span>1999</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3241">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3241">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/101">Teatro Municipalidad de Victoria</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/101">Teatro Municipalidad de Victoria</a></span><br />
                     <span>September 14, 1998</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3240">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3240">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>April 4, 1998</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3239">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3239">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/100">Teatro Diego Rivera</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/100">Teatro Diego Rivera</a></span><br />
                     <span>July 19, 1997</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3259">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3259">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/66">Teatro Nacional de Guiñol de Cuba</a></span><br />
+                    <span><a href="../venue/66.html">Teatro Nacional de Guiñol de Cuba</a></span><br />
                     <span>July 14, 1997</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3767">Electra Garrigó</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3767">Electra Garrigó</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>1997</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3258">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3258">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/99">Teatro Cajigal</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/99">Teatro Cajigal</a></span><br />
                     <span>October 25, 1996</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3212">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3212">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/81">Teatro Principal de Camagüey</a></span><br />
+                    <span><a href="../venue/81.html">Teatro Principal de Camagüey</a></span><br />
                     <span>September 28, 1996</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3575">Noches de satín regio</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3575">Noches de satín regio</a><br />
                     <span>Sound/Soundtrack Designer</span><br />
-                    <span><a href="/venue/516">Teater Uno</a></span><br />
+                    <span><a href="../venue/516.html">Teater Uno</a></span><br />
                     <span>August 27, 1996</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3632">Noches de satín regio</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3632">Noches de satín regio</a><br />
                     <span>Sound/Soundtrack Designer</span><br />
-                    <span><a href="/venue/7">Sala Teatro El Sótano</a></span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
                     <span>May 1996</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3211">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3211">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/98">Teatro Van Troi</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/98">Teatro Van Troi</a></span><br />
                     <span>March 22, 1996</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3574">Noches de satín regio</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3574">Noches de satín regio</a><br />
                     <span>Sound/Soundtrack Designer</span><br />
-                    <span><a href="/venue/900">Göteborg</a></span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/900">Göteborg</a></span><br />
                     <span>1996</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3210">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3210">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/1026">Teatro Nacional de Cuba</a></span><br />
+                    <span><a href="../venue/1026.html">Teatro Nacional de Cuba</a></span><br />
                     <span>September 30, 1995</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3248">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/3248">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/66">Teatro Nacional de Guiñol de Cuba</a></span><br />
+                    <span><a href="../venue/66.html">Teatro Nacional de Guiñol de Cuba</a></span><br />
                     <span>December 15, 1994</span>
                   </li>
                   
                   <li>
-                    <a href="/production/3209">La boda</a><br />
+                    <a href="../production/3209.html">La boda</a><br />
                     <span>Set designer, Costume designer</span><br />
-                    <span><a href="/venue/40">Teatro Trianón</a></span><br />
+                    <span><a href="../venue/40.html">Teatro Trianón</a></span><br />
                     <span>December 12, 1994</span>
                   </li>
                   
                   <li>
-                    <a href="/production/1644">Noches de satín regio</a><br />
+                    <a href="http://ctda.library.miami.edu/production/1644">Noches de satín regio</a><br />
                     <span>Sound/Soundtrack Designer</span><br />
-                    <span><a href="/venue/7">Sala Teatro El Sótano</a></span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
                     <span>September 1994</span>
                   </li>
                   
                   <li>
-                    <a href="/production/760">La boda</a><br />
+                    <a href="http://ctda.library.miami.edu/production/760">La boda</a><br />
                     <span>Costume designer, Set designer</span><br />
-                    <span><a href="/venue/66">Teatro Nacional de Guiñol de Cuba</a></span><br />
+                    <span><a href="../venue/66.html">Teatro Nacional de Guiñol de Cuba</a></span><br />
                     <span>May 25, 1994</span>
                   </li>
                   
                   <li>
-                    <a href="/production/1017">La virgen triste</a><br />
+                    <a href="http://ctda.library.miami.edu/production/1017">La virgen triste</a><br />
                     <span>Costume designer</span><br />
-                    <span><a href="/venue/1291">Unknown Venue - La Habana</a></span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
                     <span>1990's</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4308">El dragón de oro</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4308">El dragón de oro</a><br />
                     <span>Costume crew</span><br />
-                    <span><a href="/venue/13">Teatro Mella</a></span><br />
+                    <span><a href="../venue/13.html">Teatro Mella</a></span><br />
                     <span>November 6, 2011 - November 29, 2011</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4306">El dragón de oro</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4306">El dragón de oro</a><br />
                     <span>Costume crew</span><br />
-                    <span><a href="/venue/1410">Theater an der Ruhr</a></span><br />
+                    <span><a href="../venue/1410.html">Theater an der Ruhr</a></span><br />
                     <span>June 2011</span>
                   </li>
                   
                   <li>
-                    <a href="/production/4305">El dragón de oro</a><br />
+                    <a href="http://ctda.library.miami.edu/production/4305">El dragón de oro</a><br />
                     <span>Costume crew</span><br />
-                    <span><a href="/venue/51">Sala Teatro Adolfo Llauradó</a></span><br />
+                    <span><a href="../venue/51.html">Sala Teatro Adolfo Llauradó</a></span><br />
                     <span>May 17, 2011 - May 29, 2011</span>
                   </li>
                   
@@ -1179,7 +1179,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                         <td>2013</td>
                         <td>Puesta en Escena</td>
                         <td>
-                          <a href="/award/7">Premio Caricato</a>
+                          <a href="../award/7.html">Premio Caricato</a>
                         </td>
                         <td>Nominee</td>
                     </tr>
@@ -1201,7 +1201,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                     
                   
                   <li>
-                    <a href="/publications/1219/">Intercambio teatral en Cuba</a>  
+                    <a href="../publications/1219/index.html">Intercambio teatral en Cuba</a>  
                   </li>
                   
                 </ul>
@@ -1225,12 +1225,12 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                   <a id="cta0009000043" class="fancybox">
                     
                     
-                      <img src="/media/cache/c6/ce/c6ce6b96a13fc8238ed0f1f778703c59.jpg" alt="Link to video of Delirio habanero (wide)" />
+                      <img src="http://ctda.library.miami.edu/media/cache/c6/ce/c6ce6b96a13fc8238ed0f1f778703c59.jpg" alt="Link to video of Delirio habanero (wide)" />
                     
                     
                   </a>
                   <figcaption>
-                    <a href="/digitalobject/4175">Delirio habanero (wide)</a>
+                    <a href="../digitalobject/4175.html">Delirio habanero (wide)</a>
                   </figcaption>
                 </figure>
               </li><br />
@@ -1240,12 +1240,12 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                   <a id="cta0009000038" class="fancybox">
                     
                     
-                      <img src="/media/cache/8b/0d/8b0d1ed9a0105d501bedd5b983d8d986.jpg" alt="Link to video of Delirio habanero (edited)" />
+                      <img src="http://ctda.library.miami.edu/media/cache/8b/0d/8b0d1ed9a0105d501bedd5b983d8d986.jpg" alt="Link to video of Delirio habanero (edited)" />
                     
                     
                   </a>
                   <figcaption>
-                    <a href="/digitalobject/645">Delirio habanero (edited)</a>
+                    <a href="../digitalobject/645.html">Delirio habanero (edited)</a>
                   </figcaption>
                 </figure>
               </li><br />
@@ -1255,12 +1255,12 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                   <a id="cta0009000035" class="fancybox">
                     
                     
-                      <img src="/media/cache/89/f0/89f0376b31cebfa1310bff79a70b3af8.jpg" alt="Link to video of Teatro de la Luna Panel Discussion" />
+                      <img src="http://ctda.library.miami.edu/media/cache/89/f0/89f0376b31cebfa1310bff79a70b3af8.jpg" alt="Link to video of Teatro de la Luna Panel Discussion" />
                     
                     
                   </a>
                   <figcaption>
-                    <a href="/digitalobject/642">Teatro de la Luna Panel Discussion</a>
+                    <a href="../digitalobject/642.html">Teatro de la Luna Panel Discussion</a>
                   </figcaption>
                 </figure>
               </li><br />
@@ -1270,12 +1270,12 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                   <a id="cta0003000015" class="fancybox">
                     
                     
-                      <img src="/media/cache/73/59/7359ba611ced42bfc27640ae874414f4.jpg" alt="Link to video of No quiero ser payaso" />
+                      <img src="http://ctda.library.miami.edu/media/cache/73/59/7359ba611ced42bfc27640ae874414f4.jpg" alt="Link to video of No quiero ser payaso" />
                     
                     
                   </a>
                   <figcaption>
-                    <a href="/digitalobject/63">No quiero ser payaso</a>
+                    <a href="../digitalobject/63.html">No quiero ser payaso</a>
                   </figcaption>
                 </figure>
               </li><br />
@@ -1285,12 +1285,12 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                   <a id="cta0003000012" class="fancybox">
                     
                     
-                      <img src="/media/cache/c2/3a/c23a25bf045f3b436e4431aada19e27d.jpg" alt="Link to video of Electra Garrigó" />
+                      <img src="http://ctda.library.miami.edu/media/cache/c2/3a/c23a25bf045f3b436e4431aada19e27d.jpg" alt="Link to video of Electra Garrigó" />
                     
                     
                   </a>
                   <figcaption>
-                    <a href="/digitalobject/60">Electra Garrigó</a>
+                    <a href="../digitalobject/60.html">Electra Garrigó</a>
                   </figcaption>
                 </figure>
               </li><br />
@@ -1300,12 +1300,12 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                   <a id="cta0003000011" class="fancybox">
                     
                     
-                      <img src="/media/cache/05/d7/05d79cc10a9ab2be998dff97deafc924.jpg" alt="Link to video of Los siervos" />
+                      <img src="http://ctda.library.miami.edu/media/cache/05/d7/05d79cc10a9ab2be998dff97deafc924.jpg" alt="Link to video of Los siervos" />
                     
                     
                   </a>
                   <figcaption>
-                    <a href="/digitalobject/59">Los siervos</a>
+                    <a href="../digitalobject/59.html">Los siervos</a>
                   </figcaption>
                 </figure>
               </li><br />
@@ -1315,12 +1315,12 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                   <a id="cta0003000010" class="fancybox">
                     
                     
-                      <img src="/media/cache/f8/a0/f8a0e50f8dc53644661d35aacfa5e36e.jpg" alt="Link to video of La boda" />
+                      <img src="http://ctda.library.miami.edu/media/cache/f8/a0/f8a0e50f8dc53644661d35aacfa5e36e.jpg" alt="Link to video of La boda" />
                     
                     
                   </a>
                   <figcaption>
-                    <a href="/digitalobject/58">La boda</a>
+                    <a href="../digitalobject/58.html">La boda</a>
                   </figcaption>
                 </figure>
               </li><br />
@@ -1330,12 +1330,12 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
                   <a id="cta0003000001" class="fancybox">
                     
                     
-                      <img src="/media/cache/5f/16/5f16b74c955b1c770f5e2660d6fe597e.jpg" alt="Link to video of La boda" />
+                      <img src="http://ctda.library.miami.edu/media/cache/5f/16/5f16b74c955b1c770f5e2660d6fe597e.jpg" alt="Link to video of La boda" />
                     
                     
                   </a>
                   <figcaption>
-                    <a href="/digitalobject/47">La boda</a>
+                    <a href="../digitalobject/47.html">La boda</a>
                   </figcaption>
                 </figure>
               </li><br />
@@ -1383,7 +1383,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
              <h4>Tag(s):</h4>
             <ul>
                 
-                    <a href="/taggeditems?tag=Cuban"><li>Cuban</li></a>
+                    <a href="http://ctda.library.miami.edu/taggeditems?tag=Cuban"><li>Cuban</li></a>
                 
             </ul>
             
@@ -1393,686 +1393,686 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
           <div class="objects">
             <a id="next">Next</a>
             <a id="prev">Prev</a>
-            <a id="caption" href="/digitalobject/12789">View details</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/12789">View details</a>
             <div id="digitalobjects">
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/3d/d6/3dd6fd121c5afa5e176c38923bdf017f.jpg" title="Photograph of Raúl Martín, Abelardo Estorino and unknown">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3d/d6/3dd6fd121c5afa5e176c38923bdf017f.jpg" title="Photograph of Raúl Martín, Abelardo Estorino and unknown">
                     
                     
-                    <img src="/media/cache/61/e0/61e0c57a41d94bc228f5a1cff33d7f27.jpg" alt="Photograph of Raúl Martín, Abelardo Estorino and unknown" data-href="/digitalobject/12789" />
+                    <img src="http://ctda.library.miami.edu/media/cache/61/e0/61e0c57a41d94bc228f5a1cff33d7f27.jpg" alt="Photograph of Raúl Martín, Abelardo Estorino and unknown" data-href="/digitalobject/12789" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/76/8c/768c2ddf5989393b7937483e031eaa9e.jpg" title="Photograph of the production, &quot;La dama del mar&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/76/8c/768c2ddf5989393b7937483e031eaa9e.jpg" title="Photograph of the production, &quot;La dama del mar&quot;">
                     
                     
-                    <img src="/media/cache/61/c0/61c0c758cadb7407436face5013fa9f5.jpg" alt="Photograph of the production, &quot;La dama del mar&quot;" data-href="/digitalobject/15430" />
+                    <img src="http://ctda.library.miami.edu/media/cache/61/c0/61c0c758cadb7407436face5013fa9f5.jpg" alt="Photograph of the production, &quot;La dama del mar&quot;" data-href="/digitalobject/15430" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/bd/35/bd35d909a4ed0052bb9196580ed12508.jpg" title="Photograph of the production, &quot;La dama del mar&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bd/35/bd35d909a4ed0052bb9196580ed12508.jpg" title="Photograph of the production, &quot;La dama del mar&quot;">
                     
                     
-                    <img src="/media/cache/78/1c/781c595a4d31666cace77dd50e32938e.jpg" alt="Photograph of the production, &quot;La dama del mar&quot;" data-href="/digitalobject/15429" />
+                    <img src="http://ctda.library.miami.edu/media/cache/78/1c/781c595a4d31666cace77dd50e32938e.jpg" alt="Photograph of the production, &quot;La dama del mar&quot;" data-href="/digitalobject/15429" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/f1/5f/f15ff271866e3785a54a3601b01c1aba.jpg" title="Photograph of the production, &quot;La dama del mar&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f1/5f/f15ff271866e3785a54a3601b01c1aba.jpg" title="Photograph of the production, &quot;La dama del mar&quot;">
                     
                     
-                    <img src="/media/cache/09/23/0923adf6426efb2e706f7263a5463aa9.jpg" alt="Photograph of the production, &quot;La dama del mar&quot;" data-href="/digitalobject/15428" />
+                    <img src="http://ctda.library.miami.edu/media/cache/09/23/0923adf6426efb2e706f7263a5463aa9.jpg" alt="Photograph of the production, &quot;La dama del mar&quot;" data-href="/digitalobject/15428" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/7a/fe/7afe57f286372876fe51e1a0629c3fd6.jpg" title="Photograph of the production, &quot;La dama del mar&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/fe/7afe57f286372876fe51e1a0629c3fd6.jpg" title="Photograph of the production, &quot;La dama del mar&quot;">
                     
                     
-                    <img src="/media/cache/95/0f/950f39456b096be336255e2ed9b51599.jpg" alt="Photograph of the production, &quot;La dama del mar&quot;" data-href="/digitalobject/15427" />
+                    <img src="../media/cache/95/0f/950f39456b096be336255e2ed9b51599.jpg" alt="Photograph of the production, &quot;La dama del mar&quot;" data-href="/digitalobject/15427" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/a3/f9/a3f9a9849c41fbfa1c6e13d287b107b0.jpg" title="Photograph of the production, &quot;La dama del mar&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a3/f9/a3f9a9849c41fbfa1c6e13d287b107b0.jpg" title="Photograph of the production, &quot;La dama del mar&quot;">
                     
                     
-                    <img src="/media/cache/53/8b/538bfa7f86acf5f8e1491cff12611ac4.jpg" alt="Photograph of the production, &quot;La dama del mar&quot;" data-href="/digitalobject/15426" />
+                    <img src="../media/cache/53/8b/538bfa7f86acf5f8e1491cff12611ac4.jpg" alt="Photograph of the production, &quot;La dama del mar&quot;" data-href="/digitalobject/15426" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/75/2b/752b50e88f15bee8c1cfbd535bb730c4.jpg" title="Flyer for the production, &quot;Delirio Habanero&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/75/2b/752b50e88f15bee8c1cfbd535bb730c4.jpg" title="Flyer for the production, &quot;Delirio Habanero&quot;">
                     
                     
-                    <img src="/media/cache/d0/a5/d0a505aee52def963df491cb4825feb8.jpg" alt="Flyer for the production, &quot;Delirio Habanero&quot;" data-href="/digitalobject/14520" />
+                    <img src="../media/cache/d0/a5/d0a505aee52def963df491cb4825feb8.jpg" alt="Flyer for the production, &quot;Delirio Habanero&quot;" data-href="/digitalobject/14520" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/c8/88/c888aa888084978343b28bf51c462587.jpg" title="Postcard for the production, &quot;La dama del mar&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c8/88/c888aa888084978343b28bf51c462587.jpg" title="Postcard for the production, &quot;La dama del mar&quot;">
                     
                     
-                    <img src="/media/cache/21/09/2109a1ae6a592056f2686a6f72bff532.jpg" alt="Postcard for the production, &quot;La dama del mar&quot;" data-href="/digitalobject/14350" />
+                    <img src="http://ctda.library.miami.edu/media/cache/21/09/2109a1ae6a592056f2686a6f72bff532.jpg" alt="Postcard for the production, &quot;La dama del mar&quot;" data-href="/digitalobject/14350" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/f7/11/f711f12ef809e2f37ecc61f5049ea1e2.jpg" title="Photograph of Déxter Cápiro, Xiomara Palacios and Héctor Noas in the production, “La boda”">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f7/11/f711f12ef809e2f37ecc61f5049ea1e2.jpg" title="Photograph of Déxter Cápiro, Xiomara Palacios and Héctor Noas in the production, “La boda”">
                     
                     
-                    <img src="/media/cache/a7/d9/a7d9d7b46cbd6121dfd33d6b1117b893.jpg" alt="Photograph of Déxter Cápiro, Xiomara Palacios and Héctor Noas in the production, “La boda”" data-href="/digitalobject/16406" />
+                    <img src="http://ctda.library.miami.edu/media/cache/a7/d9/a7d9d7b46cbd6121dfd33d6b1117b893.jpg" alt="Photograph of Déxter Cápiro, Xiomara Palacios and Héctor Noas in the production, “La boda”" data-href="/digitalobject/16406" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/36/74/36748e46f9a19408b787df6e9526642e.jpg" title="Photograph of Déxter Cápiro, Xiomara Palacios and Héctor Noas in the production, “La boda”">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/36/74/36748e46f9a19408b787df6e9526642e.jpg" title="Photograph of Déxter Cápiro, Xiomara Palacios and Héctor Noas in the production, “La boda”">
                     
                     
-                    <img src="/media/cache/0c/ae/0caec0462675de235dec056d322d7368.jpg" alt="Photograph of Déxter Cápiro, Xiomara Palacios and Héctor Noas in the production, “La boda”" data-href="/digitalobject/16405" />
+                    <img src="http://ctda.library.miami.edu/media/cache/0c/ae/0caec0462675de235dec056d322d7368.jpg" alt="Photograph of Déxter Cápiro, Xiomara Palacios and Héctor Noas in the production, “La boda”" data-href="/digitalobject/16405" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/7e/27/7e27827fa0ac6101918a7f30ade0d323.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7e/27/7e27827fa0ac6101918a7f30ade0d323.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot;">
                     
                     
-                    <img src="/media/cache/1b/71/1b71f836ce6563a1f057f06a48dd738f.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot;" data-href="/digitalobject/16404" />
+                    <img src="../media/cache/1b/71/1b71f836ce6563a1f057f06a48dd738f.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot;" data-href="/digitalobject/16404" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/75/16/7516b75d33b171f3ab60b6b03e0a279d.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/75/16/7516b75d33b171f3ab60b6b03e0a279d.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot;">
                     
                     
-                    <img src="/media/cache/af/13/af13ee9d22f6810c4e99dd2ee9ca4a3f.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot;" data-href="/digitalobject/16403" />
+                    <img src="../media/cache/af/13/af13ee9d22f6810c4e99dd2ee9ca4a3f.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot;" data-href="/digitalobject/16403" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/fe/0a/fe0a8a16d276cf44533dde6ba2270426.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fe/0a/fe0a8a16d276cf44533dde6ba2270426.jpg" title="Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot;">
                     
                     
-                    <img src="/media/cache/f7/8a/f78a7419e48b5ff7499f6fc0d874759d.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot;" data-href="/digitalobject/16402" />
+                    <img src="../media/cache/f7/8a/f78a7419e48b5ff7499f6fc0d874759d.jpg" alt="Photograph of Déxter Cápiro in the production, &quot;Fábula del insomnio&quot;" data-href="/digitalobject/16402" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/b9/0c/b90c6cf7ad2dc5b9b3f050d98f94462c.jpg" title="Photograph of Déxter Cápiro in the production, “El público”">
+                    <a class="fancy" rel="gallery" href="../media/cache/b9/0c/b90c6cf7ad2dc5b9b3f050d98f94462c.jpg" title="Photograph of Déxter Cápiro in the production, “El público”">
                     
                     
-                    <img src="/media/cache/72/3e/723ea24434c49e8e156b1c2fa974d149.jpg" alt="Photograph of Déxter Cápiro in the production, “El público”" data-href="/digitalobject/16380" />
+                    <img src="../media/cache/72/3e/723ea24434c49e8e156b1c2fa974d149.jpg" alt="Photograph of Déxter Cápiro in the production, “El público”" data-href="/digitalobject/16380" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/ab/bb/abbb8fbed2e9ee25a50ded77076be2d0.jpg" title="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ab/bb/abbb8fbed2e9ee25a50ded77076be2d0.jpg" title="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;">
                     
                     
-                    <img src="/media/cache/b3/6e/b36ed0d56a079198b06472a5bc69d8e5.jpg" alt="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16371" />
+                    <img src="http://ctda.library.miami.edu/media/cache/b3/6e/b36ed0d56a079198b06472a5bc69d8e5.jpg" alt="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16371" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/2d/dc/2ddc0107e80ad5620e2f4e733625f345.jpg" title="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2d/dc/2ddc0107e80ad5620e2f4e733625f345.jpg" title="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;">
                     
                     
-                    <img src="/media/cache/e7/31/e731fac171f3b1f407141a3dec53e568.jpg" alt="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16370" />
+                    <img src="http://ctda.library.miami.edu/media/cache/e7/31/e731fac171f3b1f407141a3dec53e568.jpg" alt="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16370" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/16/62/166207065e1f30b5ef7a4c360ccd360d.jpg" title="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;">
+                    <a class="fancy" rel="gallery" href="../media/cache/16/62/166207065e1f30b5ef7a4c360ccd360d.jpg" title="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;">
                     
                     
-                    <img src="/media/cache/6e/fe/6efe1b83a9bac2d12be68c7b4e69072f.jpg" alt="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16369" />
+                    <img src="../media/cache/6e/fe/6efe1b83a9bac2d12be68c7b4e69072f.jpg" alt="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16369" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/42/3e/423ef8b41eb03a075a68ae58d19e92aa.jpg" title="Photograph of Déxter Cápiro (Nicleto) and Roberto Gacio (Sedicom) in the production, “Los siervos”">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/42/3e/423ef8b41eb03a075a68ae58d19e92aa.jpg" title="Photograph of Déxter Cápiro (Nicleto) and Roberto Gacio (Sedicom) in the production, “Los siervos”">
                     
                     
-                    <img src="/media/cache/76/38/76389b18f70c3a6518a65cf944108a05.jpg" alt="Photograph of Déxter Cápiro (Nicleto) and Roberto Gacio (Sedicom) in the production, “Los siervos”" data-href="/digitalobject/16368" />
+                    <img src="http://ctda.library.miami.edu/media/cache/76/38/76389b18f70c3a6518a65cf944108a05.jpg" alt="Photograph of Déxter Cápiro (Nicleto) and Roberto Gacio (Sedicom) in the production, “Los siervos”" data-href="/digitalobject/16368" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/4c/66/4c66352a93108a54811f079055b99f91.jpg" title="Photograph of Déxter Cápiro (Nicleto) and Grettel Trujillo (Zenón) the production, “Los siervos”">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4c/66/4c66352a93108a54811f079055b99f91.jpg" title="Photograph of Déxter Cápiro (Nicleto) and Grettel Trujillo (Zenón) the production, “Los siervos”">
                     
                     
-                    <img src="/media/cache/2a/b5/2ab5aa4fcdbd709117121c27fda52eab.jpg" alt="Photograph of Déxter Cápiro (Nicleto) and Grettel Trujillo (Zenón) the production, “Los siervos”" data-href="/digitalobject/16367" />
+                    <img src="http://ctda.library.miami.edu/media/cache/2a/b5/2ab5aa4fcdbd709117121c27fda52eab.jpg" alt="Photograph of Déxter Cápiro (Nicleto) and Grettel Trujillo (Zenón) the production, “Los siervos”" data-href="/digitalobject/16367" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/40/ea/40eac4097c32c0db9a8f5db1b31cff09.jpg" title="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/40/ea/40eac4097c32c0db9a8f5db1b31cff09.jpg" title="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;">
                     
                     
-                    <img src="/media/cache/1a/83/1a83c2d1a264f12375a4c24a33df0822.jpg" alt="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16366" />
+                    <img src="http://ctda.library.miami.edu/media/cache/1a/83/1a83c2d1a264f12375a4c24a33df0822.jpg" alt="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16366" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/b4/74/b474a9c8c56764f23682a339856f118c.jpg" title="Photograph of Mario Guerra (Dimanisio) and Roberto Gacio (Sedicom) in the production, &quot;Los siervos&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b4/74/b474a9c8c56764f23682a339856f118c.jpg" title="Photograph of Mario Guerra (Dimanisio) and Roberto Gacio (Sedicom) in the production, &quot;Los siervos&quot;">
                     
                     
-                    <img src="/media/cache/fd/31/fd310aecb9b961e7101f2f04cd745653.jpg" alt="Photograph of Mario Guerra (Dimanisio) and Roberto Gacio (Sedicom) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16365" />
+                    <img src="http://ctda.library.miami.edu/media/cache/fd/31/fd310aecb9b961e7101f2f04cd745653.jpg" alt="Photograph of Mario Guerra (Dimanisio) and Roberto Gacio (Sedicom) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16365" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/1a/26/1a26bdd2e17f3042afa2f8d493ecd28d.jpg" title="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/26/1a26bdd2e17f3042afa2f8d493ecd28d.jpg" title="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;">
                     
                     
-                    <img src="/media/cache/b0/5f/b05f43262e659ac7744e444dd00d5945.jpg" alt="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16364" />
+                    <img src="../media/cache/b0/5f/b05f43262e659ac7744e444dd00d5945.jpg" alt="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16364" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/d1/93/d193929ea81139f356619f882a8e7c98.jpg" title="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d1/93/d193929ea81139f356619f882a8e7c98.jpg" title="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;">
                     
                     
-                    <img src="/media/cache/67/d5/67d5ee4ad1e416ccb9636e86733225a7.jpg" alt="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16363" />
+                    <img src="http://ctda.library.miami.edu/media/cache/67/d5/67d5ee4ad1e416ccb9636e86733225a7.jpg" alt="Photograph of Déxter Cápiro (Nicleto), Amarilys Núñez (Pilano), Mario Guerra (Dimanisio) and Grettel Trujillo (Zenón) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16363" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/fd/b8/fdb874a99c36fddb8daeb47ddde157e7.jpg" title="Photograph of Déxter Cápiro (Nicleto) and Mario Guerra (Silié) in the production, &quot;Los siervos&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fd/b8/fdb874a99c36fddb8daeb47ddde157e7.jpg" title="Photograph of Déxter Cápiro (Nicleto) and Mario Guerra (Silié) in the production, &quot;Los siervos&quot;">
                     
                     
-                    <img src="/media/cache/d4/33/d43337617bb9076d00930a93ee5ba0cc.jpg" alt="Photograph of Déxter Cápiro (Nicleto) and Mario Guerra (Silié) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16362" />
+                    <img src="http://ctda.library.miami.edu/media/cache/d4/33/d43337617bb9076d00930a93ee5ba0cc.jpg" alt="Photograph of Déxter Cápiro (Nicleto) and Mario Guerra (Silié) in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16362" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/bc/bc/bcbc5a7e43a6ff456b5fe08624f776e2.jpg" title="Photograph of Déxter Cápiro in the production, “La boda”">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bc/bc/bcbc5a7e43a6ff456b5fe08624f776e2.jpg" title="Photograph of Déxter Cápiro in the production, “La boda”">
                     
                     
-                    <img src="/media/cache/da/ea/daeaf8d730d449e5ddf277b4ca55467d.jpg" alt="Photograph of Déxter Cápiro in the production, “La boda”" data-href="/digitalobject/16361" />
+                    <img src="http://ctda.library.miami.edu/media/cache/da/ea/daeaf8d730d449e5ddf277b4ca55467d.jpg" alt="Photograph of Déxter Cápiro in the production, “La boda”" data-href="/digitalobject/16361" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/d3/1a/d31aa3f69646bf66ad3937ee945bb3f3.jpg" title="Photograph of Déxter Cápiro and Mónica Guffanti in the production, “La boda”">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d3/1a/d31aa3f69646bf66ad3937ee945bb3f3.jpg" title="Photograph of Déxter Cápiro and Mónica Guffanti in the production, “La boda”">
                     
                     
-                    <img src="/media/cache/f7/7d/f77d462cd4330d49ebaee1fd34273d9a.jpg" alt="Photograph of Déxter Cápiro and Mónica Guffanti in the production, “La boda”" data-href="/digitalobject/16360" />
+                    <img src="http://ctda.library.miami.edu/media/cache/f7/7d/f77d462cd4330d49ebaee1fd34273d9a.jpg" alt="Photograph of Déxter Cápiro and Mónica Guffanti in the production, “La boda”" data-href="/digitalobject/16360" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/17/7b/177bae78c50b3429917ffd7eec978cff.jpg" title="Photograph of Déxter Cápiro and Mario Guerra in the production, &quot;La boda&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/17/7b/177bae78c50b3429917ffd7eec978cff.jpg" title="Photograph of Déxter Cápiro and Mario Guerra in the production, &quot;La boda&quot;">
                     
                     
-                    <img src="/media/cache/34/4e/344ef1b5b2df8f22542c0b3573987727.jpg" alt="Photograph of Déxter Cápiro and Mario Guerra in the production, &quot;La boda&quot;" data-href="/digitalobject/16359" />
+                    <img src="http://ctda.library.miami.edu/media/cache/34/4e/344ef1b5b2df8f22542c0b3573987727.jpg" alt="Photograph of Déxter Cápiro and Mario Guerra in the production, &quot;La boda&quot;" data-href="/digitalobject/16359" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/a0/7f/a07f57eabd05aa1ef71756080480f81c.jpg" title="Photograph of Déxter Cápiro and Alina Rodríguez in the production, &quot;La boda&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a0/7f/a07f57eabd05aa1ef71756080480f81c.jpg" title="Photograph of Déxter Cápiro and Alina Rodríguez in the production, &quot;La boda&quot;">
                     
                     
-                    <img src="/media/cache/b4/9b/b49b2ae3d97e39d447ed1110a2ae5c86.jpg" alt="Photograph of Déxter Cápiro and Alina Rodríguez in the production, &quot;La boda&quot;" data-href="/digitalobject/16358" />
+                    <img src="../media/cache/b4/9b/b49b2ae3d97e39d447ed1110a2ae5c86.jpg" alt="Photograph of Déxter Cápiro and Alina Rodríguez in the production, &quot;La boda&quot;" data-href="/digitalobject/16358" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/dd/68/dd680a93a1a307d622756ea6c61872ca.jpg" title="Photograph of Déxter Cápiro and Mario Guerra in the production, &quot;La boda&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dd/68/dd680a93a1a307d622756ea6c61872ca.jpg" title="Photograph of Déxter Cápiro and Mario Guerra in the production, &quot;La boda&quot;">
                     
                     
-                    <img src="/media/cache/17/b7/17b7ee30ee33efdd156ead636b878446.jpg" alt="Photograph of Déxter Cápiro and Mario Guerra in the production, &quot;La boda&quot;" data-href="/digitalobject/16357" />
+                    <img src="http://ctda.library.miami.edu/media/cache/17/b7/17b7ee30ee33efdd156ead636b878446.jpg" alt="Photograph of Déxter Cápiro and Mario Guerra in the production, &quot;La boda&quot;" data-href="/digitalobject/16357" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/fa/72/fa7229d6c483e343b8b3625bb7a24e21.jpg" title="Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fa/72/fa7229d6c483e343b8b3625bb7a24e21.jpg" title="Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot;">
                     
                     
-                    <img src="/media/cache/f9/6f/f96fce028596e2ea6645e0a40ea671a0.jpg" alt="Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot;" data-href="/digitalobject/16356" />
+                    <img src="../media/cache/f9/6f/f96fce028596e2ea6645e0a40ea671a0.jpg" alt="Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot;" data-href="/digitalobject/16356" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/df/00/df001c376076c66e16e284f7aace0171.jpg" title="Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/00/df001c376076c66e16e284f7aace0171.jpg" title="Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot;">
                     
                     
-                    <img src="/media/cache/8d/f3/8df3c839e14b8cf49bd61e1ad8b5941c.jpg" alt="Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot;" data-href="/digitalobject/16355" />
+                    <img src="../media/cache/8d/f3/8df3c839e14b8cf49bd61e1ad8b5941c.jpg" alt="Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot;" data-href="/digitalobject/16355" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/dd/be/ddbe16a0ff988d98f423421f13052714.jpg" title="Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dd/be/ddbe16a0ff988d98f423421f13052714.jpg" title="Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot;">
                     
                     
-                    <img src="/media/cache/fe/fc/fefc8acfb3e00bb26000de37e196476d.jpg" alt="Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot;" data-href="/digitalobject/16354" />
+                    <img src="../media/cache/fe/fc/fefc8acfb3e00bb26000de37e196476d.jpg" alt="Photograph of Déxter Cápiro, Alina Rodríguez, Mario Guerra and Laura de la Uz in the production, &quot;La boda&quot;" data-href="/digitalobject/16354" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/eb/9b/eb9b7561b5f941d0657b9933e84ccc8d.jpg" title="Award to Déxter Cápiro in the production, &quot;La boda&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/eb/9b/eb9b7561b5f941d0657b9933e84ccc8d.jpg" title="Award to Déxter Cápiro in the production, &quot;La boda&quot;">
                     
                     
-                    <img src="/media/cache/ac/8d/ac8d20ed6e7b2b9a634327e1ec709c96.jpg" alt="Award to Déxter Cápiro in the production, &quot;La boda&quot;" data-href="/digitalobject/16353" />
+                    <img src="../media/cache/ac/8d/ac8d20ed6e7b2b9a634327e1ec709c96.jpg" alt="Award to Déxter Cápiro in the production, &quot;La boda&quot;" data-href="/digitalobject/16353" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/26/cb/26cbc14f9294768f0a7e03bddfa7bac5.jpg" title="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/26/cb/26cbc14f9294768f0a7e03bddfa7bac5.jpg" title="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;">
                     
                     
-                    <img src="/media/cache/d4/0e/d40e70b83f8e47a22b18a6c65fe42dc9.jpg" alt="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16349" />
+                    <img src="../media/cache/d4/0e/d40e70b83f8e47a22b18a6c65fe42dc9.jpg" alt="Performance award, Déxter Cápiro in the production, &quot;Los siervos&quot;" data-href="/digitalobject/16349" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/dd/b3/ddb3ff3dd782beaadeba46037c131cdc.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dd/b3/ddb3ff3dd782beaadeba46037c131cdc.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/cd/d8/cdd8752e4c834966a3c36951e2ddc882.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16348" />
+                    <img src="http://ctda.library.miami.edu/media/cache/cd/d8/cdd8752e4c834966a3c36951e2ddc882.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16348" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/69/6f/696f4221d023e15c8c4ef3f240dfd951.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/69/6f/696f4221d023e15c8c4ef3f240dfd951.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
                     
                     
-                    <img src="/media/cache/03/ad/03adfd949ed4521fd59c0231cb031542.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16347" />
+                    <img src="http://ctda.library.miami.edu/media/cache/03/ad/03adfd949ed4521fd59c0231cb031542.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16347" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/d2/ff/d2ff4554bdac36b50d33c7ff859c064b.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) and Amarilys Núñez (Clitemnestra) in the production, &quot;Electra Garrigó&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/ff/d2ff4554bdac36b50d33c7ff859c064b.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) and Amarilys Núñez (Clitemnestra) in the production, &quot;Electra Garrigó&quot;">
                     
                     
-                    <img src="/media/cache/6b/fe/6bfe6f778aa527479357c85156c67628.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) and Amarilys Núñez (Clitemnestra) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16346" />
+                    <img src="http://ctda.library.miami.edu/media/cache/6b/fe/6bfe6f778aa527479357c85156c67628.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) and Amarilys Núñez (Clitemnestra) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16346" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/2b/96/2b9610b2490caf0bc1b08a3728d34afa.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) and Gilda Bello (Electra) in the production, &quot;Electra Garrigó&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2b/96/2b9610b2490caf0bc1b08a3728d34afa.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) and Gilda Bello (Electra) in the production, &quot;Electra Garrigó&quot;">
                     
                     
-                    <img src="/media/cache/1a/97/1a97dca38f171461d42dcfe1e308fb96.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) and Gilda Bello (Electra) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16345" />
+                    <img src="http://ctda.library.miami.edu/media/cache/1a/97/1a97dca38f171461d42dcfe1e308fb96.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) and Gilda Bello (Electra) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16345" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/85/94/859436ac64f4b453e42c7718c8dd3c99.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) and Amarilys Núñez (Clitemnestra) in the production, &quot;Electra Garrigó&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/85/94/859436ac64f4b453e42c7718c8dd3c99.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) and Amarilys Núñez (Clitemnestra) in the production, &quot;Electra Garrigó&quot;">
                     
                     
-                    <img src="/media/cache/6f/1a/6f1aabc5e7940b14d7002d0307978cd3.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) and Amarilys Núñez (Clitemnestra) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16344" />
+                    <img src="http://ctda.library.miami.edu/media/cache/6f/1a/6f1aabc5e7940b14d7002d0307978cd3.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) and Amarilys Núñez (Clitemnestra) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16344" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/9c/a1/9ca18d17dfe61f4a4c8e6348494ca83f.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó), Amarilys Núñez (Clitemnestra) and Mario Guerra (Egisto) in the production, &quot;Electra Garrigó&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9c/a1/9ca18d17dfe61f4a4c8e6348494ca83f.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó), Amarilys Núñez (Clitemnestra) and Mario Guerra (Egisto) in the production, &quot;Electra Garrigó&quot;">
                     
                     
-                    <img src="/media/cache/57/a5/57a5df3b44d36965b984506947a968f4.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó), Amarilys Núñez (Clitemnestra) and Mario Guerra (Egisto) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16343" />
+                    <img src="http://ctda.library.miami.edu/media/cache/57/a5/57a5df3b44d36965b984506947a968f4.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó), Amarilys Núñez (Clitemnestra) and Mario Guerra (Egisto) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16343" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/df/02/df02f542c7bdebb4304f3c9ec7c8cf0a.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó), Roberto Gacio (Agamenón), Amarilys Núñez (Clitemnestra), Mario Guerra (Egisto) and Gilda Bello (Electra Garrigó) in the production, &quot;Electra Garrigó&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/02/df02f542c7bdebb4304f3c9ec7c8cf0a.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó), Roberto Gacio (Agamenón), Amarilys Núñez (Clitemnestra), Mario Guerra (Egisto) and Gilda Bello (Electra Garrigó) in the production, &quot;Electra Garrigó&quot;">
                     
                     
-                    <img src="/media/cache/ad/e4/ade464a7466a93cfae3b10ca5e7c25b7.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó), Roberto Gacio (Agamenón), Amarilys Núñez (Clitemnestra), Mario Guerra (Egisto) and Gilda Bello (Electra Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16342" />
+                    <img src="http://ctda.library.miami.edu/media/cache/ad/e4/ade464a7466a93cfae3b10ca5e7c25b7.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó), Roberto Gacio (Agamenón), Amarilys Núñez (Clitemnestra), Mario Guerra (Egisto) and Gilda Bello (Electra Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16342" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/9d/da/9ddae63ba6b96d96d8c9c2b8e46aedf9.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9d/da/9ddae63ba6b96d96d8c9c2b8e46aedf9.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
                     
                     
-                    <img src="/media/cache/54/50/5450157b6d595d841d3b617f554978c2.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16341" />
+                    <img src="http://ctda.library.miami.edu/media/cache/54/50/5450157b6d595d841d3b617f554978c2.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16341" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/e2/a1/e2a1867295eba6547db0a06e1278fcd1.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e2/a1/e2a1867295eba6547db0a06e1278fcd1.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
                     
                     
-                    <img src="/media/cache/e4/75/e475dd9889bd1af5f7df91692d37f903.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16340" />
+                    <img src="http://ctda.library.miami.edu/media/cache/e4/75/e475dd9889bd1af5f7df91692d37f903.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16340" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/65/6c/656c9bae1a10daab2058b55610d3c6d1.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/65/6c/656c9bae1a10daab2058b55610d3c6d1.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
                     
                     
-                    <img src="/media/cache/21/63/216302012f50c07db12ffc97a8566195.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16339" />
+                    <img src="http://ctda.library.miami.edu/media/cache/21/63/216302012f50c07db12ffc97a8566195.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16339" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/cc/a8/cca87170d153a8303123a309ef7e4e30.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cc/a8/cca87170d153a8303123a309ef7e4e30.jpg" title="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;">
                     
                     
-                    <img src="/media/cache/00/a1/00a1f6fdf8f921948b5ea93ef5dd0e48.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16338" />
+                    <img src="http://ctda.library.miami.edu/media/cache/00/a1/00a1f6fdf8f921948b5ea93ef5dd0e48.jpg" alt="Photograph of Déxter Cápiro (Orestes Garrigó) in the production, &quot;Electra Garrigó&quot;" data-href="/digitalobject/16338" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/a1/69/a16931781c13c9395a0a8c95739ea7b8.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a1/69/a16931781c13c9395a0a8c95739ea7b8.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/79/9e/799ec3e537f464bf5fe184a166a13094.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16333" />
+                    <img src="../media/cache/79/9e/799ec3e537f464bf5fe184a166a13094.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16333" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/0e/bf/0ebff3ea4749ed5317326e590e47e89f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0e/bf/0ebff3ea4749ed5317326e590e47e89f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/e0/17/e017d4de0cbe6afc1eb5f5bac79d9363.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16332" />
+                    <img src="../media/cache/e0/17/e017d4de0cbe6afc1eb5f5bac79d9363.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16332" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/89/de/89deb30b71d95ec29f3c697b4fa70186.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/89/de/89deb30b71d95ec29f3c697b4fa70186.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/9a/1d/9a1d197267027ccb8795c6500eb6818e.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16331" />
+                    <img src="../media/cache/9a/1d/9a1d197267027ccb8795c6500eb6818e.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16331" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/28/94/2894ac0c4ade0c3945012b53e0a6ce2a.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/94/2894ac0c4ade0c3945012b53e0a6ce2a.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/5b/1a/5b1a28a9101387d887401c0d819ba1ca.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16329" />
+                    <img src="http://ctda.library.miami.edu/media/cache/5b/1a/5b1a28a9101387d887401c0d819ba1ca.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16329" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/a5/90/a5904e0f80b1bfc8f8e1b204deca68ef.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a5/90/a5904e0f80b1bfc8f8e1b204deca68ef.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/cd/c0/cdc0e206348d54c2853ea9d7c7c95030.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16328" />
+                    <img src="http://ctda.library.miami.edu/media/cache/cd/c0/cdc0e206348d54c2853ea9d7c7c95030.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16328" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/69/e4/69e4925f87ff453cc011428cc3bfac4c.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/69/e4/69e4925f87ff453cc011428cc3bfac4c.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/c0/d5/c0d56569def30aa0be27a8bfc9689518.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16327" />
+                    <img src="http://ctda.library.miami.edu/media/cache/c0/d5/c0d56569def30aa0be27a8bfc9689518.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16327" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/05/e2/05e21932ea8081e346e41380f5ab6714.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/05/e2/05e21932ea8081e346e41380f5ab6714.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/98/a8/98a8ad9af0e2c429810efeadac027273.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16326" />
+                    <img src="http://ctda.library.miami.edu/media/cache/98/a8/98a8ad9af0e2c429810efeadac027273.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16326" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/6d/7d/6d7ddec78f30a9629d124ae9d7fc3e37.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6d/7d/6d7ddec78f30a9629d124ae9d7fc3e37.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/7e/46/7e46c6244de9695a9af66154d107a858.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16325" />
+                    <img src="http://ctda.library.miami.edu/media/cache/7e/46/7e46c6244de9695a9af66154d107a858.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16325" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/df/02/df02b14f99ecc71f1e6192b52d82ff57.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/02/df02b14f99ecc71f1e6192b52d82ff57.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/b9/88/b988c4bffa038da064fccb4bb7b9d8e2.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16324" />
+                    <img src="http://ctda.library.miami.edu/media/cache/b9/88/b988c4bffa038da064fccb4bb7b9d8e2.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16324" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/86/5b/865b7aa707d97e78075e94c9160df13f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/5b/865b7aa707d97e78075e94c9160df13f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/c5/f4/c5f4b6fb2dceb1977af07154f08fb166.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16323" />
+                    <img src="../media/cache/c5/f4/c5f4b6fb2dceb1977af07154f08fb166.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16323" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/05/e4/05e496531d9a8cef82908d56f155234f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/05/e4/05e496531d9a8cef82908d56f155234f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/60/c6/60c6cbda580e8dd4bc5cab3209299b35.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16322" />
+                    <img src="http://ctda.library.miami.edu/media/cache/60/c6/60c6cbda580e8dd4bc5cab3209299b35.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16322" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/55/78/5578d91a44790de8a7cf5027e67c12b0.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/55/78/5578d91a44790de8a7cf5027e67c12b0.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/d9/99/d99959dcfaab5e8582d1d6f1763c9e30.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16321" />
+                    <img src="http://ctda.library.miami.edu/media/cache/d9/99/d99959dcfaab5e8582d1d6f1763c9e30.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16321" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/3f/47/3f47d0b74ad9ad60923d3d749b45b622.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3f/47/3f47d0b74ad9ad60923d3d749b45b622.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/86/63/8663ee8ecb49a31a594104cf9cff4023.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16319" />
+                    <img src="http://ctda.library.miami.edu/media/cache/86/63/8663ee8ecb49a31a594104cf9cff4023.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16319" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/d7/4b/d74ba3886efb647f035328ca9f482dfa.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d7/4b/d74ba3886efb647f035328ca9f482dfa.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/f2/23/f223255e2e5780844f9b80f37c05eb3d.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16318" />
+                    <img src="http://ctda.library.miami.edu/media/cache/f2/23/f223255e2e5780844f9b80f37c05eb3d.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16318" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/08/3d/083de5a06016098f797673371ed7b469.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/08/3d/083de5a06016098f797673371ed7b469.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/66/4a/664aa1ce43557b17e3ecddfacf58f82a.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16317" />
+                    <img src="../media/cache/66/4a/664aa1ce43557b17e3ecddfacf58f82a.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16317" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/b7/73/b7739e7884ee463ab1947248e91ea8e7.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/73/b7739e7884ee463ab1947248e91ea8e7.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/2b/85/2b85b873967b61a12b30ec9f3ca29a74.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16316" />
+                    <img src="http://ctda.library.miami.edu/media/cache/2b/85/2b85b873967b61a12b30ec9f3ca29a74.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16316" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/7a/26/7a266e90693e2ac4d21ee037a133ba30.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/26/7a266e90693e2ac4d21ee037a133ba30.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/d2/53/d253f04493e5443bb77d4c03804ee767.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16315" />
+                    <img src="../media/cache/d2/53/d253f04493e5443bb77d4c03804ee767.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16315" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/ec/e6/ece60d65bfda1136ceabdcef30c859d0.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/e6/ece60d65bfda1136ceabdcef30c859d0.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/cf/30/cf30e48909fbd3d638a759558d83aad5.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16314" />
+                    <img src="http://ctda.library.miami.edu/media/cache/cf/30/cf30e48909fbd3d638a759558d83aad5.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16314" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/5f/22/5f22cfec322cc3d8f7c1ddfece6e25bd.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5f/22/5f22cfec322cc3d8f7c1ddfece6e25bd.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/5a/5c/5a5c7f320828f5eedb2636e337953924.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16313" />
+                    <img src="http://ctda.library.miami.edu/media/cache/5a/5c/5a5c7f320828f5eedb2636e337953924.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16313" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/e0/a7/e0a7ab944176b67c9288bd4f87194463.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e0/a7/e0a7ab944176b67c9288bd4f87194463.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/de/8a/de8ae28221ddd267ffe8d6b857374335.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16312" />
+                    <img src="http://ctda.library.miami.edu/media/cache/de/8a/de8ae28221ddd267ffe8d6b857374335.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16312" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/7c/65/7c6582b1001ba38e22df7236c33105e9.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7c/65/7c6582b1001ba38e22df7236c33105e9.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/0f/9a/0f9a74d90c60c7b9c4826c476df9eb70.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16311" />
+                    <img src="http://ctda.library.miami.edu/media/cache/0f/9a/0f9a74d90c60c7b9c4826c476df9eb70.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16311" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/e2/69/e269d595037a40f841d95e1a554beeb0.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e2/69/e269d595037a40f841d95e1a554beeb0.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/b9/0b/b90b69158d123ed9f8f02b8f2d4f0280.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16310" />
+                    <img src="http://ctda.library.miami.edu/media/cache/b9/0b/b90b69158d123ed9f8f02b8f2d4f0280.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16310" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/08/48/084815b89bbf08c37c5a91d250e17c15.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/08/48/084815b89bbf08c37c5a91d250e17c15.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/f8/34/f834ec3d6501d94b94b308ca7773500c.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16309" />
+                    <img src="../media/cache/f8/34/f834ec3d6501d94b94b308ca7773500c.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16309" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/60/71/6071ccdf7d1ed98ee229a85ea2c4f0ed.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/60/71/6071ccdf7d1ed98ee229a85ea2c4f0ed.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/c8/7e/c87ec471dfb32b879951a200ffb1a156.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16308" />
+                    <img src="http://ctda.library.miami.edu/media/cache/c8/7e/c87ec471dfb32b879951a200ffb1a156.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16308" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/94/b1/94b1bca9bb57d4cc770adac817ead119.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/94/b1/94b1bca9bb57d4cc770adac817ead119.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/00/ad/00ad4fc3acfe209332d1719bdd5cbe42.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16307" />
+                    <img src="http://ctda.library.miami.edu/media/cache/00/ad/00ad4fc3acfe209332d1719bdd5cbe42.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16307" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/6c/c9/6cc9e4a3512f4dc1474bcfd6782d2b6f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6c/c9/6cc9e4a3512f4dc1474bcfd6782d2b6f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/18/22/18224da3b35168a2a563facc5ea2aa6c.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16306" />
+                    <img src="http://ctda.library.miami.edu/media/cache/18/22/18224da3b35168a2a563facc5ea2aa6c.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16306" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/be/08/be08ae39b231a42c3694c792f85df6b4.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/be/08/be08ae39b231a42c3694c792f85df6b4.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/a0/ed/a0ed0e40f198f82ac9b6d07cb571f160.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16297" />
+                    <img src="http://ctda.library.miami.edu/media/cache/a0/ed/a0ed0e40f198f82ac9b6d07cb571f160.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16297" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/f0/48/f0480e96c3bf9abea7b95f76020ba520.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f0/48/f0480e96c3bf9abea7b95f76020ba520.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/ad/ad/adad2ca88dca2a24471752b8d4b48150.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16305" />
+                    <img src="http://ctda.library.miami.edu/media/cache/ad/ad/adad2ca88dca2a24471752b8d4b48150.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16305" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/8f/c1/8fc1bde1c53ae90d26299b4afc3b5e35.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8f/c1/8fc1bde1c53ae90d26299b4afc3b5e35.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/f4/ba/f4ba029f503aec95ea7f670a680767dd.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16304" />
+                    <img src="http://ctda.library.miami.edu/media/cache/f4/ba/f4ba029f503aec95ea7f670a680767dd.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16304" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/56/19/56192c6d20c8be6516f3a53ad89f33e4.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/19/56192c6d20c8be6516f3a53ad89f33e4.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/b2/d9/b2d9afdb0021aac99db979d1cca562de.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16303" />
+                    <img src="http://ctda.library.miami.edu/media/cache/b2/d9/b2d9afdb0021aac99db979d1cca562de.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16303" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/16/9b/169b8b7b720e64ec318b683aa3448204.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/16/9b/169b8b7b720e64ec318b683aa3448204.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/e9/d8/e9d8f657a3e4e5522119c7b849159813.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16302" />
+                    <img src="../media/cache/e9/d8/e9d8f657a3e4e5522119c7b849159813.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16302" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/ce/63/ce6328b09713cb5bef405b7f4c9047f1.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ce/63/ce6328b09713cb5bef405b7f4c9047f1.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/7c/ef/7cef987c6c05be79b0d86c8af152ee8c.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16301" />
+                    <img src="http://ctda.library.miami.edu/media/cache/7c/ef/7cef987c6c05be79b0d86c8af152ee8c.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16301" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/8d/8f/8d8f87d3781e68915526b2dbe83351aa.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8d/8f/8d8f87d3781e68915526b2dbe83351aa.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/ba/12/ba127a307482543358ef6c0277de522f.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16300" />
+                    <img src="http://ctda.library.miami.edu/media/cache/ba/12/ba127a307482543358ef6c0277de522f.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16300" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/28/46/28467357adb55d5991c59919a84cd10f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/46/28467357adb55d5991c59919a84cd10f.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/a0/c3/a0c3efcd2e8b61aceeacad158388fa7b.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16299" />
+                    <img src="http://ctda.library.miami.edu/media/cache/a0/c3/a0c3efcd2e8b61aceeacad158388fa7b.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16299" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/99/6e/996e4973525dfbc775acbdc30c1006ec.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/99/6e/996e4973525dfbc775acbdc30c1006ec.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/ef/73/ef736195c54e292ab3dfb38f8e791044.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16298" />
+                    <img src="http://ctda.library.miami.edu/media/cache/ef/73/ef736195c54e292ab3dfb38f8e791044.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16298" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/fe/ec/feec13246237774a9604d9cd21b1f6d3.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fe/ec/feec13246237774a9604d9cd21b1f6d3.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/78/33/7833eade9726b489ad93d9eefbedf0a6.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16330" />
+                    <img src="http://ctda.library.miami.edu/media/cache/78/33/7833eade9726b489ad93d9eefbedf0a6.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16330" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/3e/c7/3ec72c2e1577574dd29a10c947993b47.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3e/c7/3ec72c2e1577574dd29a10c947993b47.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/0e/5a/0e5aaeb4112ae611bd6cfc1f97699566.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16296" />
+                    <img src="http://ctda.library.miami.edu/media/cache/0e/5a/0e5aaeb4112ae611bd6cfc1f97699566.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16296" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/e4/0c/e40c9dd4e3f40fd68c5f4fb9a0f35c41.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e4/0c/e40c9dd4e3f40fd68c5f4fb9a0f35c41.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/d4/78/d478edc8416ae653a132f756fd14d02f.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16295" />
+                    <img src="http://ctda.library.miami.edu/media/cache/d4/78/d478edc8416ae653a132f756fd14d02f.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16295" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/3a/77/3a7744aa0787bb090dec5ff6e561e3ab.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3a/77/3a7744aa0787bb090dec5ff6e561e3ab.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/59/12/59128abd6799f2a46c90c4b6cf2491a4.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16294" />
+                    <img src="http://ctda.library.miami.edu/media/cache/59/12/59128abd6799f2a46c90c4b6cf2491a4.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16294" />
                     
                     </a>
                 
                     
-                    <a class="fancy" rel="gallery" href="/media/cache/09/f3/09f341398e726cd9217351e62d21d61d.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/09/f3/09f341398e726cd9217351e62d21d61d.jpg" title="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;">
                     
                     
-                    <img src="/media/cache/44/7d/447d6f2dd159d4453df2fc00125555ff.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16293" />
+                    <img src="http://ctda.library.miami.edu/media/cache/44/7d/447d6f2dd159d4453df2fc00125555ff.jpg" alt="Photograph of Déxter Cápiro (La señora) in the production, &quot;El álbum&quot;" data-href="/digitalobject/16293" />
                     
                     </a>
                 
@@ -2121,14 +2121,14 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
             </nav>
         </footer>
 
-        <link rel="stylesheet" href="/static/css/sunny/jquery-ui-1.8.16.css" />
-        <script src="/static/js/jquery.isotope.min.js"></script>
-        <script src="/static/js/jquery.cycle.lite.min.js"></script>
-        <script src="/static/js/jquery.fancybox.pack.js"></script>
-        <link rel="stylesheet" href="/static/css/fancybox/jquery.fancybox.css" />
-        <script src="/static/js/mediaelement-and-player.min.js"></script>
-        <link rel="stylesheet" href="/static/css/mediaelement/mediaelementplayer.css" />
-        <script src="/static/js/script.js"></script>
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
         <script>
             $('li.dropdown').hover(function(e) {
                 e.preventDefault();

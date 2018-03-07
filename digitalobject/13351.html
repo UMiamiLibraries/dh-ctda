@@ -1,0 +1,1047 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en ">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../digitalobjects.html">Digital Objects</a></li>
+              <li>International posters, 1968</li>
+            </ul>
+          </nav>
+          <h2>International posters, 1968</h2>
+        </header>
+
+        <section class="objectdisplay main">
+                
+                
+                <img id="largepreview" data-index="0" src="http://ctda.library.miami.edu/media/cache/22/e3/22e3f340b849a4ca505cf3b3dfecffa0.jpg" alt='' style="display:block;float:none;" /><br />
+                
+                
+                
+                
+
+                
+
+                
+                <h3>Notes:</h3>
+                <p>Production title: A&ntilde;orada Cuba Coverage (temporal): 1968 Coverage (spatial): Miami (Florida)</p>
+
+                
+
+                <h3>Object details:</h3>
+                <dl class="objectdata">
+                
+
+                
+                
+                
+                
+                
+                
+                
+              
+                
+                  <dt>Physical object type:</dt>
+                  <dd>Periodicals</dd>
+                
+
+                
+                  <dt>Digital object format:</dt>
+                  <dd>Image</dd>
+                
+
+                  <dt>Object ID:</dt>
+                  <dd>chc5160000003</dd>
+                  
+                  <dt>Collection:</dt>
+                  <dd>Theater Ephemera Collection</dd>
+                  
+                  
+                  
+                
+                  <dt>License:</dt>
+                  <dd><a href="../copyright/index.html">University of Miami copyright policy</a></dd>
+                
+                  
+                
+                  
+                  
+                  
+                  
+                </dl>
+
+                
+                
+
+                
+
+                
+
+                
+
+                
+                
+            
+        </section>
+        
+        <aside class="thumbnails">
+            
+                <div class="data">
+                  <ul>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/5e/2e/5e2e72e619a3d5b1cb5eb40e1dcd965a.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/22/e3/22e3f340b849a4ca505cf3b3dfecffa0.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/59/d1/59d107535de3fbfc924d13bac7f2c03b.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/61/59/61591d16d9fa9369b8b8541598ee9696.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/c5/48/c5485b138e8240c40f54113e67adf2fc.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/bf/24/bf24bb15d0196649731dedc8bcb12870.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/d4/24/d42446c4c698f4b5cd2a3fb750742a20.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/83/66/836681e082e3b874f38507a757309139.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ac/3c/ac3c0b05a0ab7128128727e11ae992a7.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/29/99/2999d46ad522c3a55e0ae4d9627c166e.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/81/59/8159fa87c3fe85e13d681b816b56d770.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/be/9f/be9f183c0ad7fba9b3805bfb6645eef4.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/e3/26/e326653485c5b7332592d34b52eff63e.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/e8/a7/e8a79e9bc4d2df9bff44f0d37d9923cc.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/7b/13/7b13e9ed4a93fb4d6080548f3c894446.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/c4/07/c4072ef070cc60273553d3880acbebb8.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/1a/d0/1ad04cd26adc09d941607d70b7aa6166.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/2c/ad/2cad4a09b7bc109b44a5c5d6b6087e77.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/76/b6/76b64cb2b31ca45938adc9b37f7e281c.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/ff/05/ff052ada5916274877c0af90ba6aff1f.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/88/f3/88f3a523a84189aac81488356fcec374.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/ab/88/ab887ec3733b4e451f055de8fa123922.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/b0/72/b07298c3609dc08e8973bacff239762c.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/44/8f/448f8b46ab082bb133a9cf5aef39e5d4.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/02/83/028362ba9e2658d2fdd8208aaee377b2.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/67/e3/67e3e4b5d06a90d8c7d22afdb3ee8920.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/e5/7b/e57b02b8cd98f05cfa8f43eb9b6da4b5.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/4e/36/4e3626002671b0362f1a832052f70272.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/da/20/da200751013d335b0248b1b1f2a41847.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/24/91/24914500e4f8c952efa21b3bffc93d55.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/63/90/63906ff015071b4c061892491d99170c.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/cc/66/cc66d08ca2879e67a709bc57ace028c6.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ad/6b/ad6be38eab467e11667842a6b2eaa5ef.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/16/83/1683b11a966d49be58bb63208219fe42.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/71/b3/71b3f3a88eeb11d89d63f2e7fa6707cf.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/8e/9b/8e9b9e368cdc0fef2e85d08ea42ee8c2.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/c3/91/c391c13ffb5314ec32f9d07e299887b7.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/6b/7f/6b7f3b0e5b01315546cf8f499ef45b1f.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/8a/f9/8af93d95fbdec1f023677d008ab4a68c.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/4c/fc/4cfc07ad3b0034b3fb5dea4c04bdc586.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/79/49/79493f1ae86526c3d49f7c0923a9dc28.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/10/94/1094e200b82695511e5ba27add6062c5.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/73/9d/739d4442426305cc8bf7570379ae6bb2.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/ce/84/ce849d71c131ef43a4e6232975703611.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/44/8a/448a2706b8e959f9efb9e90f84b7f6e0.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/cd/a8/cda832a2d9520d3a92fe4b9fedd07cc7.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/6c/5d/6c5d154473c124dfce3b950a114df863.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/0b/50/0b507034fae82652fd8c6b6361135305.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/89/6c/896ce61759c32f3ddfcd8a0f85ab2292.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/06/bd/06bd349aacc65a29a2e330d00234b923.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/5c/3d/5c3ddf30a205f7ecade70777023b34cb.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/2b/0e/2b0e7054ed46641eafeb5f3361f6b8e5.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/d2/7b/d27bd3c1c7850d90ae0b3153e2fd67b3.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/6b/a1/6ba1d7bedaee6d85627ce1b6ea7573ce.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/3f/a9/3fa9e00f086ff11d02dc24f1c2a31e58.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/53/67/5367948cf05e58a0be0c6310f5242f40.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/89/55/8955b52773bf513de1c938b10f1b8d51.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/27/00/27006ef6f09ac8e068e0bc1e7b261cec.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/1c/76/1c7685c4e607440f53560bfb43726d5f.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/66/35/66354d999c6c89e8f7cf0b73adc8969a.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/eb/b8/ebb87a30147ea09cd67278ce126b8cd4.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/30/0c/300c1d88ec0fa3ab6dbf0e4c6512cc11.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/10/4f/104fb35430f55ab3784ad4e60c84f85d.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/fb/82/fb827c5c7d8001ce9f94131dbd1e8823.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/78/d5/78d5c0ad914eab3100020e996731d212.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/79/f3/79f335d79546ddce446e53c556f17dc8.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/58/28/582821e00aceb147165bb1075cb371c8.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/20/6a/206a9efd3b34e773f536a630325f7134.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/2f/86/2f867868aebc772b28ef1d3441a29376.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/be/1c/be1cd824f0455d59c002040231c1445d.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/96/99/969937503bea63982aac963594731abb.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/69/ca/69ca612f4dddfae342e4298185da13fb.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/c4/fe/c4fe5cecbf5d88f488128336787b56ee.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/ff/b7/ffb7cb9987ffd37f34281812b8f13566.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/5a/f0/5af0430e12aa18efb6e8be3f29089a84.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/0a/d7/0ad7cac334d8b847c8a2d0237c1f7e69.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/54/dc/54dce1c1c5a835e779c27bf721464c8f.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/7a/ca/7acada8731188a970feed05f6eb9f443.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/c8/d0/c8d076c510ba8bf49cce99d5bf4ca919.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/83/30/8330d8560f6b570e416cb612adeeb184.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/19/f2/19f261394b4cb04d4119729c931e4db6.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/c1/30/c130d9983a7b717eac6a4bb5640391bb.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/f4/a3/f4a3b46274c45710ba9c9257b05cb3b0.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/6d/48/6d48555d9e98d7688a259fcf4a0be613.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/0d/d4/0dd43c555b9cfdb5871081794e0210e3.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/a9/c6/a9c6ff1a167798094cdbd8ae7b740717.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/74/62/7462690c006deef1852ff1913d0fca69.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/70/fd/70fd10803c11173299d85827a1466e2b.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/c8/07/c8070160ff8f54f05694b0402c00c62e.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/31/eb/31ebcf686bf8c8efa800a41054aface7.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/f1/c8/f1c816fd829748605f7fc3ad83a3a4a1.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/4e/51/4e517ee051759862ee2040e3eea3b328.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/b1/2f/b12fb442eb96f72c8339d4b9cece58ec.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/58/06/580648d93ae61a5a2163a6cac6787f86.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/cd/df/cddf90c0114b81324a98c807522c0a45.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/ee/67/ee670111abe79a353549abec6c34a45f.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/c8/a4/c8a4635a9a4958a8b8ad6ba8aeebbe0d.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/4b/4a/4b4af01696370118c99f77d27192e96e.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/07/76/07763fa4eeb116394d0fcdd8f1fec10a.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/a3/bc/a3bce51becaa757e0698e6bf65ae7a3c.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/0c/0a/0c0a41054c07eaab86481966b8f361e2.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/b6/c8/b6c836f34ac92bc5db587e6c5256b4e2.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/9d/75/9d75bb30a4fceb0428d5b1f2dc7f0177.jpg" width="100" height="100" alt='' title="International posters, 1968" />
+                        
+                        
+                        <span>/media/cache/4e/d1/4ed14e36c9d1c543bf372b29026eedd5.jpg</span>
+                        
+                    </li>
+                
+                </ul>
+              </div>
+            
+            
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+        $(window).load(function() {
+            
+            $('.thumbnails ul li').click(function() {
+                var current = $(this);
+                var index = $('.thumbnails ul li').index(current);
+                $('#largepreview').attr('src', current.children('span').text());
+                $('#largepreview').attr('data-index', index);
+            });
+            
+            $('#largepreview').click(function() {
+              $.fancybox([
+                
+                
+                "/media/cache/b3/b4/b3b46c2d1b002abe1c7393e6199c25ee.jpg",
+                
+                
+                
+                "/media/cache/ec/55/ec5554b18ba3114bb0b9b847167cba2d.jpg",
+                
+                
+                
+                "/media/cache/25/0e/250e7a2dceee36672dd33e74538329a2.jpg",
+                
+                
+                
+                "/media/cache/5b/37/5b372980017297ee6429ae029ead6192.jpg",
+                
+                
+                
+                "/media/cache/48/4c/484cedc81cb120a094dd67d67b6cdf83.jpg",
+                
+                
+                
+                "/media/cache/b1/86/b1865aa32888040ba9af39db3d7cd63c.jpg",
+                
+                
+                
+                "/media/cache/db/d1/dbd1c421661fae890a9bcee4df3eafc8.jpg",
+                
+                
+                
+                "/media/cache/ce/a8/cea8809702e0a08ae624caf5776ce248.jpg",
+                
+                
+                
+                "/media/cache/e3/5f/e35fbc1e5ea55237464e2bbf78e2da99.jpg",
+                
+                
+                
+                "/media/cache/39/46/39463cb102d89a986e98eea5ac451637.jpg",
+                
+                
+                
+                "/media/cache/8e/55/8e55134d89490dc2d74040d30fa8dc52.jpg",
+                
+                
+                
+                "/media/cache/b5/45/b54501e22864d059e6b5aced6221e365.jpg",
+                
+                
+                
+                "/media/cache/65/3e/653eb680fc51e5dfe35e7ac3ed4ac592.jpg",
+                
+                
+                
+                "/media/cache/20/52/2052af9f3a42ff8b16e5021533a9e93d.jpg",
+                
+                
+                
+                "/media/cache/84/ef/84ef19cecbc7772d36a6b109e84b20c6.jpg",
+                
+                
+                
+                "/media/cache/3d/15/3d15e697537e635c57a4a32ec51ce5cb.jpg",
+                
+                
+                
+                "/media/cache/c1/0e/c10ef3d37159fcc1b78d5281b63daae4.jpg",
+                
+                
+                
+                "/media/cache/af/ae/afae315297fa2e9be73d5b4065fb32df.jpg",
+                
+                
+                
+                "/media/cache/e9/c2/e9c2fa735ef6a67d7a169d52087eeb25.jpg",
+                
+                
+                
+                "/media/cache/8c/13/8c13fe3fb6ecd684a135f91fbd8cf7a6.jpg",
+                
+                
+                
+                "/media/cache/fd/f9/fdf9282c5d086a272c79e8ba1b15eec3.jpg",
+                
+                
+                
+                "/media/cache/37/83/378318dcdab6775b73d3b8ce9ccf50b9.jpg",
+                
+                
+                
+                "/media/cache/f3/f2/f3f2968b54b0dd302e4e4e90f40ff640.jpg",
+                
+                
+                
+                "/media/cache/c2/a1/c2a130eae2229b651cbeeda4f9607e4b.jpg",
+                
+                
+                
+                "/media/cache/57/f6/57f6c1301197d6f0757ee8d077bab95b.jpg",
+                
+                
+                
+                "/media/cache/39/2c/392cc88c8abc938043581b801f51a99c.jpg",
+                
+                
+                
+                "/media/cache/6c/99/6c998b231ecf44b73ea40a8a410fd518.jpg",
+                
+                
+                
+                "/media/cache/53/e1/53e1062214c23ed4cf1564852dfe365f.jpg",
+                
+                
+                
+                "/media/cache/1e/c7/1ec7c4ab8c454b75fe74381ba118e636.jpg",
+                
+                
+                
+                "/media/cache/3c/58/3c58dc07eefe7be01c91c3bfcb670114.jpg",
+                
+                
+                
+                "/media/cache/38/70/3870fa53a072fe6c3175792ea6a9ff25.jpg",
+                
+                
+                
+                "/media/cache/e5/d4/e5d4cd67b4bdebe90765cefc07ab11da.jpg",
+                
+                
+                
+                "/media/cache/7a/a9/7aa98e5ed227a661d0a6cc76f84758e7.jpg",
+                
+                
+                
+                "/media/cache/26/e9/26e968b69085b04975c74a73bb539937.jpg",
+                
+                
+                
+                "/media/cache/9b/ba/9bba9d61c8920b9aa71aaea25613f79a.jpg",
+                
+                
+                
+                "/media/cache/7e/65/7e654b264cb959c2e93585a5b5d1673a.jpg",
+                
+                
+                
+                "/media/cache/c7/49/c74911a6db525c8931627e50d90cd858.jpg",
+                
+                
+                
+                "/media/cache/0f/02/0f02916f002991015d3769ddd95bb112.jpg",
+                
+                
+                
+                "/media/cache/cd/0b/cd0b32c5cd3ba7150abbdc610fde93c9.jpg",
+                
+                
+                
+                "/media/cache/40/e1/40e1f5076d9e5687bc914c046ce468d8.jpg",
+                
+                
+                
+                "/media/cache/a6/8e/a68e35d935be537f4c018d0f7bf08796.jpg",
+                
+                
+                
+                "/media/cache/a4/34/a434b7d4d70a610efa0645d6e6c21f49.jpg",
+                
+                
+                
+                "/media/cache/d0/38/d03867a502df61e2d37e8e13cd57ed42.jpg",
+                
+                
+                
+                "/media/cache/02/ba/02bac6aaf6727523e00197e12a223b68.jpg",
+                
+                
+                
+                "/media/cache/56/b4/56b48fff64b257fa35f5e89fd5403736.jpg",
+                
+                
+                
+                "/media/cache/3e/c1/3ec18b2cb607edf5039e9abe778b5312.jpg",
+                
+                
+                
+                "/media/cache/c4/cf/c4cfdb479edc1aaf105b06f25aebedc2.jpg",
+                
+                
+                
+                "/media/cache/2d/08/2d08b518f858b8606210e2e1d360897a.jpg",
+                
+                
+                
+                "/media/cache/3a/8d/3a8df90202cd3a170bce4c0f5d60d112.jpg",
+                
+                
+                
+                "/media/cache/64/9c/649cd7ebe39a5170ebc52ba64bf16386.jpg",
+                
+                
+                
+                "/media/cache/c6/ac/c6accf79aba1de0b908917523cfbc45d.jpg",
+                
+                
+                
+                "/media/cache/6e/72/6e7222ef2cd3416ab33ed30786738a93.jpg",
+                
+                
+              ], {
+                'type': 'image',
+                'loop': false,
+                'index': $('#largepreview').attr('data-index')
+              });
+            });
+            
+        });
+    </script>
+
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

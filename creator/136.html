@@ -1,0 +1,781 @@
+
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../creators.html">Creators</a></li>
+                    <li>Jesús Gregorio</li>
+                </ul>
+            </nav>
+            <h2>Jesús Gregorio</h2>
+                        
+        </header>
+        
+        <section class="main">
+            
+
+            <p><strong>Director, author / playwright</strong></p>
+
+            
+            
+
+            
+
+            
+
+            
+            <div class="linkeditems">
+              <h3>Written texts: +</h3>
+                <ul>
+                    
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/3676">Isabel está dormida</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/307">El apartamento</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1473">Cómo, cuándo y dónde halló la fortuna el andarín Carvajal</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/writtenwork/1948">El poeta y la muerte</a><br />  
+                    <span>Author / Playwright</span>
+                    
+                  </li>
+                  
+                </ul>
+            </div>
+            
+            
+            
+            <div class="linkeditems">
+              <h3>Productions: +</h3>
+                <ul>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4759">Vida y muerte Severina</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/494">Teatro Musical de La Habana</a></span><br />
+                    <span>1986</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4968">La verdadera historia de Pedro Navaja </a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/494">Teatro Musical de La Habana</a></span><br />
+                    <span>1984</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/4529">La verdadera historia de Pedro Navaja </a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/494">Teatro Musical de La Habana</a></span><br />
+                    <span>1983</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1776">Cómo, cuándo y dónde halló la fortuna el andarín Carvajal</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/7.html">Sala Teatro El Sótano</a></span><br />
+                    <span>1980</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/1257">Lorca por Lorca</a><br />
+                    <span>Director</span><br />
+                    <span><a href="http://ctda.library.miami.edu/venue/382">Teatro Estudio</a></span><br />
+                    <span>1973</span>
+                  </li>
+                  
+                  <li>
+                    <a href="../production/546.html">El poeta y la muerte</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/11.html">Sala Teatro Hubert de Blanck</a></span><br />
+                    <span>July 4, 1972</span>
+                  </li>
+                  
+                  <li>
+                    <a href="http://ctda.library.miami.edu/production/3938">Los aparatos</a><br />
+                    <span>Director</span><br />
+                    <span><a href="../venue/1291.html">Unknown Venue - La Habana</a></span><br />
+                    <span>1965</span>
+                  </li>
+                  
+                </ul>
+            </div>
+        
+        
+
+                    
+        
+
+            
+        
+            
+        
+            
+ 
+            
+            <hr />
+            <h3>Audios</h3>
+            <ul class="audios">
+              
+              <li>
+                <figure>
+                  <a id="cta0058000006" class="fancybox">
+                    
+                      Click to play audio
+                    
+                  </a>
+                  <figcaption>
+                    <a href="../digitalobject/16170.html">Interview with Miriam Dueñas</a>
+                  </figcaption>
+                </figure>
+              </li><br />
+              
+              </ul>
+            
+            
+        </section>
+
+        <aside>
+          <div class="data">
+            <ul>
+              
+              
+                <li>
+                  <h4>Nationality:</h4>
+                  <span>Cuban</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Birth date:</h4>
+                  <span>1939</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of birth:</h4>
+                  <span>Artemisa, Artemisa, Cuba</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Death date:</h4>
+                  <span>1988</span>
+                </li>
+              
+              
+                <li>
+                  <h4>Place of death:</h4>
+                  <span>La Habana, La Habana, Cuba</span>
+                </li>
+              
+              
+
+            </ul>
+            
+
+          </div>
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/15968">View details</a>
+            <div id="digitalobjects">
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2c/7a/2c7ae9e5e0bcdae1c8c2d8358693d5ab.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/4b/8d/4b8d004690b781af6efe2a947e07473b.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/78/95/789517c917d7fddba35d486266c62adc.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/a3/29/a329867541f0fdc36914fb051b2afd08.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c8/3f/c83fdec3c14a303c6bff7d7aa870dfa4.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ad/79/ad797a44c328f810e104d71ededc509c.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ec/54/ec54d7294d1918acda5ab9cae5248c6f.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/39/58/395833e4fa9d44649922fe9f37812f1b.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4d/45/4d4549efddb5766d7a11572b9901e5c0.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/02/31/0231dad532494f340584b02308b45cc4.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7a/e9/7ae9d400e5dc90ccb614863c7798931d.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c5/52/c55215b49724b6aa362dc746beac0c92.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ba/59/ba597f24e157a85551d3f410bb0d1dcf.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/db/14/db1490a1ded810040429e49f6665b665.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/14/5614d1b9e61f91aa463426008542d03d.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/84/7a/847a53a68e59151e466797b35ba76a9b.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/77/d7/77d7329b09c4c82b0912dd7f1cdec83f.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/56/f3/56f32e573927f7356f9c8f87014ba089.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fd/f1/fdf1003e71d26dde68b4fee3653b33eb.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/13/ce/13ce3feb47522d2cc3134c07d61c9d2c.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/40/75/407542753e727f2f8b903d045d3ca618.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/64/8e/648e8bd20126b493db9de8d57373c906.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f3/46/f3466d7f42f930a2b79796a9c469787a.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/9b/ca/9bca6debb8dcb75c85d7f4eaa09b9966.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/29/53/2953a9b4be05c0d8b7f7c3ef791f6f99.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/74/7a/747a1b5371c2d66ae1da57fc8c605a9e.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0e/2e/0e2ea468fd1f821bb15d4f270be15c69.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/64/fd/64fdf4d8e9fb4996da5f40a9e444ff76.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a0/cb/a0cb2c6a465f8698a397bd73449af848.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/bb/b0/bbb0d09ff6a6f1d4f393cabbe736bc27.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e6/ff/e6ffbf19dcaaed9f16cb1d397cdd9291.jpg" title="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/00/c4/00c4ab8cde4bbaa0ccb281e5275287a6.jpg" alt="Program for the production, &quot;La verdadera historia de Pedro Navaja&quot;" data-href="/digitalobject/15968" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1a/c4/1ac45f433802d013dd529631fc6c91cd.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e4/07/e4079bd7eadf8e51689f15f6625373d8.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0b/44/0b44c45ba6e518dc36198fc8c24579af.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c5/73/c57387fd55154a6a6f29a51fbffa8838.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b3/18/b3185c8f798244d34ff2a084b1fc4279.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e9/01/e9012224ea03414495e34c48dcb5c801.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/48/0c/480c5dfaa8631dfb2f93e9a89eef9b40.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/3b/85/3b859ef640a7d49f484a920dfbd5ba8c.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4f/99/4f9921cef523765132f734cdcb38fc4c.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/f3/a1/f3a11aa45014f1b0e3b2f332e89a94d7.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d1/06/d1065590d6442c102a1e8789a6db9481.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c9/da/c9da7a125f0a48ef0c76ef2f337272f8.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/64/3e/643e47a982d48c0683e7888a1e107c27.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ee/47/ee47cb14bda88d0c84d5f07faa231ac5.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/06/96/06961a5346f1c87a9c8bd52bccdbae5a.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/44/e4/44e4a55deb20d6aaae9862cb5ad5caf7.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/fd/24/fd24ed0679fb6f395b65aa5f0b7e5d90.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ea/73/ea73df14bb62220f4af7c748188c8064.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0e/b7/0eb72a78c9c0b02b2037dfe34e331a30.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d4/16/d416ab3ef518571134509442d22c2ec7.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/03/dc/03dcb54283ad66f161f0ceae814529a0.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/1f/3d/1f3dbe3dad003a977098ead72b8c36fe.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f6/57/f657b0b45be04f97a44bd9b6bcfdd24c.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/16/58/165812e1d96c8afe27ac59c5a7a89f05.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2a/3a/2a3ad1b91e619c5ef441da7d875c86b7.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/b8/55/b85547a82aeb2cd9c60c9d9ddfaeb882.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e6/12/e61221dccf069a835b76f9f92748b553.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/dd/83/dd83772ed9b03945f3dea23586498fc8.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/36/3e/363e1f3e22c66410c1a095ccdf117e99.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/8a/08/8a08e8ca9260a797e2db4db483dae9fb.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dc/b3/dcb36f3cd7849934a24e34d440d020d3.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/ea/25/ea258a748ba0a6e4fb8250492f85d45e.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b1/21/b121fc072b70c7f2bf79262fdb55892e.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/d6/42/d6423924e6bb4dd97c38b3e9739331ae.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/9d/1b9d62cc094110953dde9034dfc54a8c.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/21/ed/21edb3559871ed9e9054a95c82eb05cc.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/15967" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/72/86723c9e783d79d7dced6abbd0971956.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="../media/cache/e5/81/e581a6353bf02d7e766a3ed471d8e0c6.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/41" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5b/25/5b2506931f1ee8914d10483f069a5a56.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c9/91/c991297d637e7679cb7f0f9642f9247a.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/41" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0f/23/0f2331939b6c44f893a5fa5cd2c96f75.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/c1/20/c120a9138244b3d3ea0e709b48494201.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/41" />
+                    
+                    </a>
+                
+                    
+                    <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c3/3a/c33aa05756e3aa0678a2434642e2911a.jpg" title="Program for the production, &quot;Vida y muerte Severina&quot;">
+                    
+                    
+                    <img src="http://ctda.library.miami.edu/media/cache/e2/89/e289d7c1d58b7142f9a6a83e3161fc8f.jpg" alt="Program for the production, &quot;Vida y muerte Severina&quot;" data-href="/digitalobject/41" />
+                    
+                    </a>
+                
+            </div>
+          </div>
+          
+      </aside>
+  
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+  //        $(".moretext").shorten();
+        
+        $('.fancy').fancybox({loop: false});
+      });
+      
+    </script>
+     <script>
+	$('#readmorecontent').readmore({
+	  moreLink: '<a href="#">Read more</a>',
+      lessLink: '<a href="#">Read less</a>',
+	  maxHeight: 30,
+	  afterToggle: function(trigger, element, expanded) {
+		if(! expanded) { // The "Close" link was clicked
+		  $('html, body').animate( { scrollTop: element.offset().top }, {duration: 100 } );
+		}
+	  }
+	});
+    </script>
+    
+  
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

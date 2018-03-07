@@ -1,0 +1,503 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../../static/apple-touch-icon.png" />
+    <script src="../../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en ">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../../about/index.html">About</a></li>
+                    <li><a href="../../people/index.html">People</a></li>
+                    <li><a href="../../participate/index.html">Participate</a></li>
+                    <li><a href="../../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../../creators.html">Creators</a></li>
+                <li><a href="../../productions.html">Productions</a></li>
+                <li><a href="../../writtenworks.html">Written Works</a></li>
+                <li><a href="../../venues.html">Venues</a></li>
+                <li><a href="../../awards.html">Awards</a></li>
+                <li><a href="../../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../../digitalobjects.html">All objects</a></li>
+                    <li><a href="../images.html">Images</a></li>
+                    <li><a href="../videos.html">Videos</a></li>
+                    <li><a href="../audios.html">Audios</a></li>
+                    <li><a href="../types.html">By Type</a></li>
+                    <li><a href="../collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+    <header>
+        <nav class="breadcrumbs">
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                
+                  
+                    <li><a href="../../digitalobjects.html">Digital Objects</a></li>
+                    <li><a href="../collections.html">By Collection</a></li>
+                    <li>CTDA Productions (cta0009)</li>
+                  
+                
+            </ul>
+        </nav>
+        <h2>
+              
+                CTDA Productions
+              
+            
+        </h2>
+    </header>
+ 
+       
+    <div class="linkeditems">
+        <h3>Notes: +</h3>
+        <ul>
+        <p>This collection consists of video recordings filmed by the Cuban Theater Digital Archive.</p>
+
+        </ul>
+    </div>
+    
+    <ul id="digitalobjectslist">
+        
+            <li>
+              
+              
+                
+                <figure>
+                  <a href="../../digitalobject/14092.html"><img src="../../media/cache/69/6a/696a2a27cdbc36f714ba59a2bc4fdb7c.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/video.png" alt="Video available" title="Video available" /><a href="../../digitalobject/14092.html">Elektra: La danza de los muertos (Wide)</a></figcaption>
+                </figure>
+                
+              
+              
+            </li>
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/4199"><img src="http://ctda.library.miami.edu/media/cache/29/98/2998b28fe1556582d80f81ddf3360801.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/4199">El Mejunje - logo</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/4198"><img src="http://ctda.library.miami.edu/media/cache/d0/fa/d0fa7308c5b3c1b694a562a1ea98b9b7.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/4198">El Mejunje - Susana Trueba</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+            <li>
+              
+              
+                
+                <figure>
+                  <a href="../../digitalobject/12846.html"><img src="../../media/cache/29/9d/299d2f727f6b39a230b1f1e6c17f518a.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/video.png" alt="Video available" title="Video available" /><a href="../../digitalobject/12846.html">El Super</a></figcaption>
+                </figure>
+                
+              
+              
+            </li>
+        
+            <li>
+              
+              
+                
+                <figure>
+                  <a href="../../digitalobject/12845.html"><img src="../../media/cache/ed/86/ed86019711110b07d081c287269593d3.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/video.png" alt="Video available" title="Video available" /><a href="../../digitalobject/12845.html">Exilio</a></figcaption>
+                </figure>
+                
+              
+              
+            </li>
+        
+            <li>
+              
+              
+                
+                <figure>
+                  <a href="../../digitalobject/12863.html"><img src="../../media/cache/e1/a6/e1a64a3d03b7acc88ea15a8bdb857378.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/video.png" alt="Video available" title="Video available" /><a href="../../digitalobject/12863.html">¿Feminista, yo?</a></figcaption>
+                </figure>
+                
+              
+              
+            </li>
+        
+            <li>
+              
+                
+                <figure>
+                  <a href="http://ctda.library.miami.edu/digitalobject/4178"><img src="http://ctda.library.miami.edu/media/cache/df/b1/dfb1e2d32b8e02d549c7173eec8caf66.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/images.png" alt="Images available" title="Images available" /><a href="http://ctda.library.miami.edu/digitalobject/4178">gina romand</a></figcaption>
+                </figure>
+                
+              
+              
+              
+            </li>
+        
+            <li>
+              
+              
+                
+                <figure>
+                  <a href="../../digitalobject/14074.html"><img src="../../media/cache/18/a0/18a004de69cd04bc4c39652f8c1eadc9.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/video.png" alt="Video available" title="Video available" /><a href="../../digitalobject/14074.html">If You&#39;re Going to Pull a Knife, USAlo - Rehearsal Session 1</a></figcaption>
+                </figure>
+                
+              
+              
+            </li>
+        
+            <li>
+              
+              
+                
+                <figure>
+                  <a href="../../digitalobject/14075.html"><img src="../../media/cache/2c/c5/2cc53dab7ffc7fe3050fc86170dbc649.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/video.png" alt="Video available" title="Video available" /><a href="../../digitalobject/14075.html">If You&#39;re Going to Pull a Knife, USAlo - Rehearsal Session 2</a></figcaption>
+                </figure>
+                
+              
+              
+            </li>
+        
+            <li>
+              
+              
+                
+                <figure>
+                  <a href="../../digitalobject/14076.html"><img src="../../media/cache/88/f9/88f9921e36c09aa36689319211976a38.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/video.png" alt="Video available" title="Video available" /><a href="../../digitalobject/14076.html">If You&#39;re Going to Pull a Knife, USAlo - Rehearsal Session 3</a></figcaption>
+                </figure>
+                
+              
+              
+            </li>
+        
+            <li>
+              
+              
+                
+                <figure>
+                  <a href="../../digitalobject/632.html"><img src="../../media/cache/53/a8/53a8c3654169300a6d7ea6b49eb6d825.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/video.png" alt="Video available" title="Video available" /><a href="../../digitalobject/632.html">If You&#39;re Going to Pull a Knife, USAlo - Rehearsal with Elizabeth Doud</a></figcaption>
+                </figure>
+                
+              
+              
+            </li>
+        
+            <li>
+              
+              
+                
+                <figure>
+                  <a href="../../digitalobject/4202.html"><img src="../../media/cache/98/8b/988bbab2c21d0218f79e3a7e0b9a0ecc.jpg" alt="" /></a>
+                  <figcaption><img src="../../static/images/video.png" alt="Video available" title="Video available" /><a href="../../digitalobject/4202.html">Interview with José Triana</a></figcaption>
+                </figure>
+                
+              
+              
+            </li>
+        
+    </ul>
+    
+    
+      
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ <div class="pagination">
+   
+      <span class="page">
+      <a href="http://ctda.library.miami.edu/digitalobjects/collection/cta0009?page=1">&lt; Prev</a>
+      </span>
+   
+
+   
+   
+      
+         <span class="page"><a href="http://ctda.library.miami.edu/digitalobjects/collection/cta0009?page=1"
+               >1</a></span>
+      
+   
+      
+         <span class="current">2</span>
+      
+   
+      
+         <span class="page"><a href="cta0009-page=3.html"
+               >3</a></span>
+      
+   
+      
+         <span class="page"><a href="cta0009-page=4.html"
+               >4</a></span>
+      
+   
+   
+      <span class="ellipsis">...</span>
+      <span class="page"><a href="cta0009-page=last.html">5</a></span>
+   
+   
+      <span class="page"><a href="cta0009-page=3.html">Next &gt;</a></span>
+   
+</div>
+
+    
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../../static/js/jquery.isotope.min.js"></script>
+        <script src="../../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

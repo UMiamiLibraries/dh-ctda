@@ -1,0 +1,775 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en ">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+          <nav class="breadcrumbs">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="../digitalobjects.html">Digital Objects</a></li>
+              <li>Tevé Latino (March, 1972)</li>
+            </ul>
+          </nav>
+          <h2>Tevé Latino (March, 1972)</h2>
+        </header>
+
+        <section class="objectdisplay main">
+                
+                
+                <img id="largepreview" data-index="0" src="http://ctda.library.miami.edu/media/cache/2e/39/2e39d55a33398a3c80e5e550deed161b.jpg" alt='' style="display:block;float:none;" /><br />
+                
+                
+                
+                
+
+                
+
+                
+                <h3>Notes:</h3>
+                Object date: 1972-03<br />
+Coverage (temporal): 1970-1980<p>Coverage (spatial): Miami (Florida)</p>
+
+                
+
+                <h3>Object details:</h3>
+                <dl class="objectdata">
+                
+
+                
+                
+                
+                
+                
+                
+                
+              
+                
+                  <dt>Physical object type:</dt>
+                  <dd>Periodicals</dd>
+                
+
+                
+                  <dt>Digital object format:</dt>
+                  <dd>Image</dd>
+                
+
+                  <dt>Object ID:</dt>
+                  <dd>chc5160000280</dd>
+                  
+                  <dt>Collection:</dt>
+                  <dd>Theater Ephemera Collection</dd>
+                  
+                  
+                  
+                
+                  <dt>License:</dt>
+                  <dd><a href="../copyright/index.html">University of Miami copyright policy</a></dd>
+                
+                  
+                
+                  
+                  
+                  
+                  
+                </dl>
+
+                
+                
+
+                
+
+                
+
+                
+
+                
+                
+            
+        </section>
+        
+        <aside class="thumbnails">
+            
+                <div class="data">
+                  <ul>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/a0/2d/a02d884fbd687b8852cb297194f95470.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/2e/39/2e39d55a33398a3c80e5e550deed161b.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/64/02/64024471ff2e8edf85129ac6b4a518e1.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/7f/b6/7fb68a721f077fb1d2981a6e6e86f9d6.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/cf/37/cf373344d3dc39fdb09496946576fcaa.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/08/9b/089b02ba1870d00c3e52c9a111907b77.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/fc/be/fcbe092fe502dfaeba7b9ad74880b823.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/b4/0e/b40ea3a8777d61966b67dfa961515a58.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/e2/f8/e2f83adacca1e85afc3fe9df4b93ce76.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/c6/79/c67914bbd0c206b051eee5cb9b5a5e49.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/87/c2/87c2fd99ad1bbf5b343e9b56856bbcad.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/73/1c/731cbea88a32adfae0428d65df27c6c2.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/19/a5/19a5b05ee18aa6351ff8ebebca67484c.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/e4/e3/e4e305ac3bd4771a90c6f64f675122d7.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/7f/2e/7f2e9130e905ae12d48939a1d574ded2.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/6e/0a/6e0a624407cbc312798a4c07ce4347a7.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/c6/65/c6659806a7f012f6bf28776c56ab43ad.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/3d/aa/3daa13a94c0820b7a968348db53203c7.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/f7/61/f7613caf6dd8f3175da72a2bf53713b8.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/58/ce/58ce53cd976be20e1ab10f9999ea18ad.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/af/63/af63ad8fd39ff37fd7f3c819d6a747b9.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/59/af/59af92e5b6c669a0592ed32259ed55a1.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/66/15/6615e239f8e34697adf7bc474e2f9d83.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/e5/ac/e5acdc200c00aa8ff20fd29d9d409e5f.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/92/c0/92c0a7727cee474f2725a2330b55b71d.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/ba/5b/ba5b60175fe0616cd33ec7a05fb3626d.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/13/f7/13f72d486f2f1d15d49023cd6593a16d.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/ed/65/ed65bb64427fd321310604f840ae454f.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/09/7a/097aa5eb75a484de4cba22183f3de092.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/25/7d/257d5454faad97206b781220e62abad3.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/c5/73/c5735f838ab08704a6798b7bfacfd1ba.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/9e/bf/9ebf73395870beb4aacfaab73ac8db10.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/08/2e/082e57ca4c1aa0d88df10b369cdedd53.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/7a/bf/7abfd06d31061e2cbc52ca9d2670ee2c.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/56/24/5624b77e4d4a698f6ebfdfd13f82e177.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/d6/1c/d61cc473f991b38691626a243c9e3987.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/0d/0a/0d0a4dffba5eb43523ee2aaa1f480687.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/a8/0e/a80eaed4192a49a5bfd6f2976cd3aa7c.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/83/c3/83c3e550cbbc3aaae800b3c8c2b43d67.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/a8/d5/a8d55b0bffff77532128b597dba18f44.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/8e/91/8e913ee6ba59b3e3753400955f3568ea.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/c1/92/c1922de494d1e608fa5cf4f8e0156944.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/63/5b/635be1a7c4b2817c7f0cd85db58f9cf5.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/08/f8/08f8262c092840dee36d0ec6103d761e.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/77/25/77253de3330b7bd6c4306b1d4f85cb1e.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/2d/14/2d1481d352a28d0de919842fd967ce61.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/50/b1/50b1546695e9b5bede306ec1392d71fa.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/b8/ee/b8ee65998630420ae240701652fdf936.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/35/58/35583a50a8aa6642dfe34eb770436985.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/18/6d/186d47f5cb929f8268dcb5b4defb9945.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/ab/ab/ababf33818cf2065c9d06a2635f4fe4c.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/65/0d/650d05f6f27e3f8222e960eefa1c7eff.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/df/ba/dfba2b84877abe0a20a0fc6bb9c4f3c1.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/35/af/35af7a7951d8597ff103f9129499b4a2.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/3d/89/3d895d36f77566d4451182e09a1d3180.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/80/4a/804afb7a896147c1cd3215f2703a88d2.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/94/7b/947bdf6fec4113c0cd9bc4d598f21198.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/02/4e/024ee281f099e345e5852fc7a0fe54a2.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/86/0e/860e0b842153d995d9715649d37a9ebe.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/84/17/84173dd27368e116f58552be947009b2.jpg</span>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        <img style="cursor:pointer;" src="http://ctda.library.miami.edu/media/cache/eb/0d/eb0dd6e6ade926d357b71d380e21737b.jpg" width="100" height="100" alt='' title="Tevé Latino (March, 1972)" />
+                        
+                        
+                        <span>/media/cache/79/ec/79ec05692b9f2e89f0ec379056075723.jpg</span>
+                        
+                    </li>
+                
+                </ul>
+              </div>
+            
+            
+        </aside>
+
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+        $(window).load(function() {
+            
+            $('.thumbnails ul li').click(function() {
+                var current = $(this);
+                var index = $('.thumbnails ul li').index(current);
+                $('#largepreview').attr('src', current.children('span').text());
+                $('#largepreview').attr('data-index', index);
+            });
+            
+            $('#largepreview').click(function() {
+              $.fancybox([
+                
+                
+                "/media/cache/67/5a/675afe45df571b7386c7d91b2175d894.jpg",
+                
+                
+                
+                "/media/cache/df/b5/dfb5cf521c0a51ece8bf57b7bb9ef225.jpg",
+                
+                
+                
+                "/media/cache/fc/54/fc54cfa6d94d542c96979d2475afc7b0.jpg",
+                
+                
+                
+                "/media/cache/ab/29/ab298dd0abf8a0b1b77237added9913a.jpg",
+                
+                
+                
+                "/media/cache/47/94/47946a97edd37eda4139c748347f4821.jpg",
+                
+                
+                
+                "/media/cache/11/22/1122d27b52622460d73f7f90403b5283.jpg",
+                
+                
+                
+                "/media/cache/ab/4d/ab4d458c2ba084a6b422ea41636fb66b.jpg",
+                
+                
+                
+                "/media/cache/4c/58/4c58ca05ee5380a58a5e72829cca5aa9.jpg",
+                
+                
+                
+                "/media/cache/e0/c6/e0c6cec9ad6f9b015d6cf2131c6416c1.jpg",
+                
+                
+                
+                "/media/cache/d6/7c/d67c48481c12a86b28632879a98cdc9d.jpg",
+                
+                
+                
+                "/media/cache/b1/91/b19104bd1dbf757e1ed8ef4c6590b889.jpg",
+                
+                
+                
+                "/media/cache/a0/4f/a04f6201a81eaf72b5ff875070e34aa6.jpg",
+                
+                
+                
+                "/media/cache/db/e4/dbe4d8d7faaa5fb24a9f39aae3898e24.jpg",
+                
+                
+                
+                "/media/cache/6d/9a/6d9ab941946315fc840e680d764278a0.jpg",
+                
+                
+                
+                "/media/cache/fd/4c/fd4cb6ba62f23a583c246a80a84f41e4.jpg",
+                
+                
+                
+                "/media/cache/b2/2f/b22f0861692fe4c1e5c295536875bbec.jpg",
+                
+                
+                
+                "/media/cache/57/c1/57c1bd9aef2d15468640fa3842ff2dab.jpg",
+                
+                
+                
+                "/media/cache/88/cb/88cbb0e4e264a866f6b479feab74923c.jpg",
+                
+                
+                
+                "/media/cache/ae/0c/ae0c5cda1bb6375087982e412a3c3c40.jpg",
+                
+                
+                
+                "/media/cache/3f/c3/3fc3f4b13f15092a04cc189d21b1457d.jpg",
+                
+                
+                
+                "/media/cache/fd/81/fd8149a9ab97b80c39a568d516f46bf7.jpg",
+                
+                
+                
+                "/media/cache/07/f5/07f54a2301e424ec81a226fe881e8701.jpg",
+                
+                
+                
+                "/media/cache/a9/19/a919b6f617656243972adb7d63e569ce.jpg",
+                
+                
+                
+                "/media/cache/67/19/67190133a5e176ae91a67c432b5c4a6c.jpg",
+                
+                
+                
+                "/media/cache/ad/13/ad133d27c394ddd642f9cc2a08905c45.jpg",
+                
+                
+                
+                "/media/cache/10/1b/101bebf7f4b122de3e77d5d30086251a.jpg",
+                
+                
+                
+                "/media/cache/93/6c/936c90d71d912c5637a782a46ddadcdd.jpg",
+                
+                
+                
+                "/media/cache/91/db/91dbf73034e0ff0018b4d8873a883b1e.jpg",
+                
+                
+                
+                "/media/cache/4e/52/4e528158b9e7b7d2130aa296f1a37ea5.jpg",
+                
+                
+                
+                "/media/cache/e6/87/e687b1d486d5c958b0f9584f882cbf99.jpg",
+                
+                
+                
+                "/media/cache/d0/e0/d0e0fe02143562efdb466ff607636dda.jpg",
+                
+                
+              ], {
+                'type': 'image',
+                'loop': false,
+                'index': $('#largepreview').attr('data-index')
+              });
+            });
+            
+        });
+    </script>
+
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>

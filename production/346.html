@@ -1,0 +1,1332 @@
+<!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+ <!--
+Copyright (C) 2012  University of Miami
+ 
+This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+ 
+ 
+
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cuban Theater Digital Archive</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="Cuban Theater Digital Archive at the University of Miami Libraries">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/cupertino/jquery-ui.css" type="text/css" media="screen">
+    <link rel="shortcut icon" href="../static/favicon.ico" />
+    <link rel="apple-touch-icon" href="../static/apple-touch-icon.png" />
+    <script src="../static/js/libs/modernizr-2.0.6.min.js"></script>
+    <link href="../static/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/libs/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../static/js/jquery.shorten.js"></script>
+    <script type="text/javascript" src="../static/js/readmore.js"></script>    
+    <script type="text/javascript">
+        $(function(){
+        if(document.getElementById("eventTags"))
+        {
+            var tag_field = document.getElementById("eventTags");
+            var tag_field_val = getUrlVars();
+            tag_field.value = decodeURIComponent(tag_field_val['tag']);
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+            var addEvent = function(text) {
+                $('#events_container').append(sampleTags+ '<br>');
+            };
+            $('#eventTags').tagit({
+                availableTags: tag_field_val,
+                afterTagRemoved: function(evt, ui) {
+                if($('#eventTags').val())
+                        window.location.href = "/taggeditems?tag=" + $('#eventTags').val();     
+                else
+                        window.location.href = "/";
+                }
+            });
+        }
+        });
+        function getUrlVars()
+        {
+                var vars = [], hash, tagList = "";
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                        hash = hashes[i].split('=');
+                        tagList += hash[1] + ",";
+                        if($.inArray(hash[0], vars)>-1)
+                        {
+                                vars[hash[0]]+=","+hash[1];
+                        }
+                        else
+                        {
+                                vars.push(hash[0]);
+                                vars[hash[0]] = hash[1];
+                        }
+
+                }
+                return vars;
+        }
+    </script>
+</head>
+<body class="en detail">
+    <div id="wrapper">
+      <div id="langselect">
+            <form action="../index.html" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='2Ue2DkAL6jWobmvaWQbLOLb09qOgcJvx' />
+                <select name="language">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <input type="submit" value="Go" />
+            </form>
+            <ul>
+              
+              <li><a href="../accounts/login/index.html">Login</a></li>
+              
+              <li><a href="#" id="setlang-en">English</a></li>
+              <li><a href="#" id="setlang-es">Espa&ntilde;ol</a></li>
+            </ul>
+        </div>
+        <header>
+            <a href="../index.html"><h1 id="logo">Cuban Theater Digital Archive</h1></a>
+            <form id="globalsearch" method="get" action="../search/index.html">
+                <label for="q">Search</label>
+                <input type="search" id="q" name="q" placeholder="Search..." />
+                <input type="submit" value="Go" />
+            </form>
+            <nav id="pagenav">
+                <ul>
+                    <li><a href="../about/index.html">About</a></li>
+                    <li><a href="../people/index.html">People</a></li>
+                    <li><a href="../participate/index.html">Participate</a></li>
+                    <li><a href="../publication/index.html">Publications</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <nav id="archivenav">
+            <h3>The Archive</h3>
+            <ul>
+                <li><a href="../creators.html">Creators</a></li>
+                <li><a href="../productions.html">Productions</a></li>
+                <li><a href="../writtenworks.html">Written Works</a></li>
+                <li><a href="../venues.html">Venues</a></li>
+                <li><a href="../awards.html">Awards</a></li>
+                <li><a href="../festivals.html">Festivals</a></li>
+                <li class="dropdown">
+                  <a href="../digitalobjects.html">Digital Objects</a>
+                  <ul>
+                    <li><a href="../digitalobjects.html">All objects</a></li>
+                    <li><a href="../digitalobjects/images.html">Images</a></li>
+                    <li><a href="../digitalobjects/videos.html">Videos</a></li>
+                    <li><a href="../digitalobjects/audios.html">Audios</a></li>
+                    <li><a href="../digitalobjects/types.html">By Type</a></li>
+                    <li><a href="../digitalobjects/collections.html">Collections</a></li>
+                  </ul>
+                </li>
+            </ul>
+            <p><br /><br /><br /><br /></p>
+        </nav>
+        
+        <article id="maincontent">
+            
+        <header>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../productions.html">Productions</a></li>
+                    <li>Las vacas gordas</li>
+                </ul>
+            </nav>
+            <h2>Las vacas gordas</h2>
+        </header>
+
+        <section class="main">
+            
+
+            
+
+            
+        
+            
+
+
+            
+            <div class="linkeditems">
+            <h3>Directing team: +</h3>
+            <div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:50%">Name</th>
+                  <th>Function(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/97.html">Herberto Dumé</a></td>
+                        <td>Director</td>
+                    </tr>
+                
+                </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Cast: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Role(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                        <td><a href="../creator/2494.html">Ricardo Abreut</a></td>
+                        <td>Bailarín</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2442">Marlene Acosta</a></td>
+                        <td>Modista</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2427">José Antonio Acuña</a></td>
+                        <td>Revendedor</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2438">Gladys Anreus</a></td>
+                        <td>Blanca</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2436">Yolanda Arenas</a></td>
+                        <td>Amanda; Rosa María</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2437">Carlos Bermúdez</a></td>
+                        <td>Germán</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2440">Magali Boix</a></td>
+                        <td>Hortensia</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2489">María Ofelia Carreño</a></td>
+                        <td>Bailarina</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2488">Martha Daumare</a></td>
+                        <td>Bailarina</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2486">Zenaida Elizalde</a></td>
+                        <td>Bailarina</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2425">Noel García</a></td>
+                        <td>3er. Vendedor de periódicos</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2430">Carlos Gili</a></td>
+                        <td>Rodolfo</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2498">Lino Guinferrer</a></td>
+                        <td>Bailarín</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2416">Miguel Angel Hernández</a></td>
+                        <td>Domingo</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2495">José Miguel Horta</a></td>
+                        <td>Bailarín</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/1332">Alejandro Iglesias</a></td>
+                        <td>Guillermito</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/2433.html">Daniel Jordán</a></td>
+                        <td>Pérez; Jiribilla</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2431">Mario Limonta</a></td>
+                        <td>Lázaro</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2424">Carlos Marco</a></td>
+                        <td>2o. Vendedor de periódicos; 2o. Tramoyista</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2491">Ada Martí</a></td>
+                        <td>Bailarina</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/1701">Isaura Mendoza</a></td>
+                        <td>Inés</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2487">Olga Mendoza</a></td>
+                        <td>Bailarina</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2428">Fausto Montero</a></td>
+                        <td>Guajiro; Romualdo</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2493">Ricardo Núñez</a></td>
+                        <td>Bailarín</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2439">Belén Otero</a></td>
+                        <td>Elsie</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2432">Pedro Martín Planas</a></td>
+                        <td>García</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2429">Rosa María Quintana</a></td>
+                        <td>Muchacho; Milagros</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2434">Enrique Ramírez</a></td>
+                        <td>Nené</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2423">Ramón Ramos</a></td>
+                        <td>1er. Vendedor de periódicos; 1er. Tramoyista</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2490">Caridad Rodríguez</a></td>
+                        <td>Bailarina</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="../creator/2441.html">Magdalena Sorás</a></td>
+                        <td>Herminia</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2496">Jaime Toledo</a></td>
+                        <td>Bailarín</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2435">Olga Tribunero</a></td>
+                        <td>Chelo; Miss. Skinner</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/1878">Pilín Vallejo</a></td>
+                        <td>Andrea</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2492">Elda Delfina Vidal</a></td>
+                        <td>Bailarina</td>
+                    </tr>
+                
+                    <tr>
+                        <td><a href="http://ctda.library.miami.edu/creator/2497">Manuel Yáñez</a></td>
+                        <td>Bailarín</td>
+                    </tr>
+                
+              </tbody></table>
+              </div>
+              </div>
+            
+
+            
+              <div class="linkeditems">
+              <h3>Design team: +</h3>
+              <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:50%">Name</th>
+                    <th>Function(s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/6440">Enriqueta Almanza</a></td>
+                    <td>Sound/Soundtrack Designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="../creator/5542.html">Salvador Fernández</a></td>
+                    <td>Set designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="../creator/222.html">Guido González del Valle</a></td>
+                    <td>Choreographer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="../creator/5369.html">Héctor Lechuga</a></td>
+                    <td>Light designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="../creator/6438.html">María Elena Molinet</a></td>
+                    <td>Costume designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/479">Giraldo Piloto</a></td>
+                    <td>Sound/Soundtrack Designer</td>
+                  </tr>
+                  
+                  <tr>
+                    <td><a href="http://ctda.library.miami.edu/creator/480">Alberto Vera</a></td>
+                    <td>Sound/Soundtrack Designer</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+              </div>
+              </div>
+            
+
+            
+
+            
+
+            
+
+            
+          
+          
+            
+          
+            
+          
+
+
+            
+
+
+
+            
+                <br>
+               Author: Mitch Carr (SPA 501, UM, 2008); Dinorah Pérez Rementería (2004-07-19)
+                      
+
+          
+          
+      
+          
+
+        </section>
+
+        <aside>
+          <div class="data">
+            
+            
+            
+            <ul>
+                  <li>
+                    <h4>Theater company:</h4>
+              
+            
+                <a href="../creator/4802.html" >Grupo Guernica (4802)</a><br />
+              
+              </li>
+            </ul>            
+            
+            
+            <ul>
+                
+                <li>
+                    <h4>Venue:</h4>
+                    <span><a href="../venue/270.html">Gran Teatro de La Habana (Cuba)</a></span>
+                    
+                    <span>Sala García Lorca</span>
+                    
+                </li>
+                
+                
+                <li>
+                    <h4>Production dates:</h4>
+                    <span>1962</span>
+                </li>
+                
+            </ul>
+            
+            
+
+            <h4>Source work(s):</h4>
+            <ul>
+              
+              <li>
+                <a href="../writtenwork/152.html">Las vacas gordas (Play script)</a><br />
+                <span>By <h4>Author / Playwright:</h4><a href='../creator/84.html'>Abelardo Estorino</a></span>
+              </li>
+              
+            </ul>
+            
+
+          </div>
+
+          
+          <div class="objects">
+            <a id="next">Next</a>
+            <a id="prev">Prev</a>
+            <a id="caption" href="http://ctda.library.miami.edu/digitalobject/12630">View details</a>
+            <div id="digitalobjects">
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/33/203357805f7c9dea4a15a7da2875519a.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/5c/84/5c8403d8e9ad78fba0def7183847c4d6.jpg" alt="Las vacas gordas" data-href="/digitalobject/12630" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/84/d0/84d06e451641923aef3f233de5a06da9.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c3/ee/c3ee670bbea93c5ea1b678860cee9742.jpg" alt="Las vacas gordas" data-href="/digitalobject/12621" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/20/95/20951e3da64760702db7aba631f63e29.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/4c/d6/4cd62ba77fd212fbf84e8a53b65602a5.jpg" alt="Las vacas gordas" data-href="/digitalobject/12618" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/0c/79/0c79bab0bacb4ed5aa43a5830c8f475d.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f6/b6/f6b6316fadcffdd5c0cff00bd61820e4.jpg" alt="Las vacas gordas" data-href="/digitalobject/12614" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/11/81/1181bb1f975a813ad717252c8699dbab.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/2a/c4/2ac46b70d5dbf33d8bbcc384e807b093.jpg" alt="Las vacas gordas" data-href="/digitalobject/12611" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f6/09/f60909ed69e4a0657f7b363a54acebaa.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e3/d8/e3d810a849ea3632e037f8538456c244.jpg" alt="Las vacas gordas" data-href="/digitalobject/12596" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/62/c1/62c111849442915b9335e7ad8ceb23c8.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/bb/25/bb254b5b70d67803b2fc5e3942b2a8f4.jpg" alt="Las vacas gordas" data-href="/digitalobject/12594" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6b/ed/6bed8159e57577b0f6d6fa7558403fa0.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e8/00/e800022f4d4809ac2049bd4f4f3cc7f7.jpg" alt="Las vacas gordas" data-href="/digitalobject/12593" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b1/e5/b1e5aca5105f1a97edf95f20d2c630ec.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/33/c9/33c972a8c46e097a8aa1580656c9aaf7.jpg" alt="Las vacas gordas" data-href="/digitalobject/12591" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/75/56753ef4a399c7923e6dfbc86abeb002.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/c6/14/c614415417f462aa913ca70ebdb8eded.jpg" alt="Las vacas gordas" data-href="/digitalobject/12565" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/5b/a1/5ba15e4d7dc02aaf7e2560bb8b1d9467.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/37/0e/370e3206b08b802634d2cd471466c712.jpg" alt="Las vacas gordas" data-href="/digitalobject/12561" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/76/30/76307b554f4840841497e12308c7bc16.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/3d/8c/3d8c956f153c15b2ed23367efd9f04c6.jpg" alt="Las vacas gordas" data-href="/digitalobject/12559" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/36/fb/36fb2f49de20783432c0b72ed3d682a9.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/0b/b6/0bb6604471bd8467f8a9f01130e70c42.jpg" alt="Las vacas gordas" data-href="/digitalobject/12553" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3a/17/3a17e19aade51494065ab8ec85c0a947.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d5/3c/d53c03f2a737019af46f94e372fec449.jpg" alt="Las vacas gordas" data-href="/digitalobject/12545" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/65/10/651093a94a8e5f302f7323c2f6cf4060.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a8/02/a802fc739ac3a5ba6ff46b287984c35b.jpg" alt="Las vacas gordas" data-href="/digitalobject/12541" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/11/2e/112e98827e92047362e1fdedb195fbf0.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/1c/4a/1c4ae2edc8760718472a06c31477fb04.jpg" alt="Las vacas gordas" data-href="/digitalobject/12537" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/68/0a/680aa699968c34170cde4f6c4dacf9f6.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/bb/cd/bbcd906434b4b6f73b353d72b5e1b890.jpg" alt="Las vacas gordas" data-href="/digitalobject/12536" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e3/d9/e3d9245e31fd00c582cc7aea7273bb39.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/39/e4/39e4822df5cf643706bce294069574b3.jpg" alt="Las vacas gordas" data-href="/digitalobject/12533" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ae/51/ae51fd22ff21f3d209d2f9ab288e0a74.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e2/60/e260819bcb8d99afbde41f4a8d57e3a7.jpg" alt="Las vacas gordas" data-href="/digitalobject/12526" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a8/68/a86857a8cf434e799e89b52993f879f2.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/0d/5e/0d5ede1d78e38e14c96c0ce911842d79.jpg" alt="Las vacas gordas" data-href="/digitalobject/12523" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7d/01/7d011505786005accd6aa7ae62f16892.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/fd/83/fd8329a11df20d478a0bbd74496188b3.jpg" alt="Las vacas gordas" data-href="/digitalobject/12516" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d0/ac/d0ac0e3b12ba98ce1dac7503ff7dc475.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/3b/fb/3bfbdabf871cf0eeaa3a41c6f03d26fe.jpg" alt="Las vacas gordas" data-href="/digitalobject/12503" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cf/12/cf12c78a0acab4eb1a364d8c698c6cec.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/69/ca/69ca30031db73fecb11070f6e3c31273.jpg" alt="Las vacas gordas" data-href="/digitalobject/12502" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/4f/5d/4f5da7290e83cfd5ae0b11d89fab4ba8.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/02/79/0279b40733aa8d9316ccf5bcb4b6e440.jpg" alt="Las vacas gordas" data-href="/digitalobject/12489" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/56/ff/56ff4c996dff88e7005339bc143b1bfc.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e6/7c/e67c9824c038f9b34e50a6d366c1140e.jpg" alt="Las vacas gordas" data-href="/digitalobject/12479" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/51/31/51318ab01b5328101c9fe08722d2e17a.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a9/51/a951ddba840d57a5309862a2b85edb97.jpg" alt="Las vacas gordas" data-href="/digitalobject/12476" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/69/b0/69b046c60c48f494611e6af600a98008.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/22/f6/22f660f096907d66114a06faadce98b6.jpg" alt="Las vacas gordas" data-href="/digitalobject/12475" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/75/18/75185b0aea19bcc059aab22e02ca783b.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/98/f7/98f706a4802784d26e47bd932fc9322c.jpg" alt="Las vacas gordas" data-href="/digitalobject/12471" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/71/0d/710dcb6c1abe28fca9f5b578c086df98.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/36/d5/36d552bbbf73a04e5937bc8155162ca1.jpg" alt="Las vacas gordas" data-href="/digitalobject/12469" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b7/70/b770d7787086fe73ab5eecc3c96b8d35.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/bb/df/bbdfbc9feef4835db66a5d7ea00a6fa5.jpg" alt="Las vacas gordas" data-href="/digitalobject/12464" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7c/04/7c0470afb134b26720611721cd6e9c9d.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/40/bc/40bc2397c0b1638060728cc468e691ac.jpg" alt="Las vacas gordas" data-href="/digitalobject/12460" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/dc/ce/dccece5f86a3b76b5af7a2073e5ac0be.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/82/0c/820c711a731d478ea2e815806377acfe.jpg" alt="Las vacas gordas" data-href="/digitalobject/12458" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9f/60/9f601753ae5b1846d22fb42c3e4ff6f7.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/39/ba/39ba538acc105ddeee6466f9db5e4d17.jpg" alt="Las vacas gordas" data-href="/digitalobject/12456" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/86/4f/864f30d7029a34bdd3f789897411c1e3.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b2/2d/b22d8e6bd15b1572c615752857b2be31.jpg" alt="Las vacas gordas" data-href="/digitalobject/12455" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b8/28/b82842cd394f7a8e8a2356fd7a70d7d2.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/30/82/30821c35f4915c87c22d5e9a56f26942.jpg" alt="Las vacas gordas" data-href="/digitalobject/12450" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/83/3c/833cf7559e13a637a8dc111c470e4a4b.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a7/22/a72230bd77727ebe2b4298eea78db896.jpg" alt="Las vacas gordas" data-href="/digitalobject/12449" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/04/da/04dad80bbf2484bbd1eadaf779bfab20.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/42/7f/427f9c5d288d1a5683624e71ee2fc11c.jpg" alt="Las vacas gordas" data-href="/digitalobject/12444" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/47/e0/47e09c72255bea035de34f610ae80fd8.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/1a/b2/1ab2c54dea21c8f7438fade5174351a8.jpg" alt="Las vacas gordas" data-href="/digitalobject/12441" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/d2/92/d292db0d7c7388340e6dbc9d24bb944d.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/dc/c6/dcc6c6cb281471825fbc3ae77b673431.jpg" alt="Las vacas gordas" data-href="/digitalobject/12437" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c4/59/c4595043326b86458c635ecba9dcd4b1.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/0f/c6/0fc69c77377adff8b09564ff95a8d67b.jpg" alt="Las vacas gordas" data-href="/digitalobject/12431" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/8e/02/8e02b05d39956d5b0b1850a427868753.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/a4/8c/a48cb7c55696d0064138536d9c012adf.jpg" alt="Las vacas gordas" data-href="/digitalobject/12427" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/90/c6/90c63969a0d55515df58c076549a7470.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b5/cf/b5cf137221e9e37f18ca3cb14fceddc0.jpg" alt="Las vacas gordas" data-href="/digitalobject/12425" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/63/fb/63fb586ff78444801a9635df7eeab420.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/63/86/6386a6bdb911346f4acf0b4c5e1f7afe.jpg" alt="Las vacas gordas" data-href="/digitalobject/12420" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a8/c6/a8c6127353ccf2dabae6d46c132c3480.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/99/af/99af049448d33d22e540885766905733.jpg" alt="Las vacas gordas" data-href="/digitalobject/12417" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/05/1f/051fc59a77eba0fee6241889f2951ed0.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/2b/d3/2bd3ad85d99e650238104dba79b4ab75.jpg" alt="Las vacas gordas" data-href="/digitalobject/12416" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/df/af/dfafedc0b9d70dd526cf69b65b23581e.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/18/b1/18b1265a5b84fb25b1dff1d5bcc513e6.jpg" alt="Las vacas gordas" data-href="/digitalobject/12413" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/05/ae/05aebc8159b17a1bc6ec614d22ef36d8.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/50/5d/505dff8a25a74780c944b6e3a40bc413.jpg" alt="Las vacas gordas" data-href="/digitalobject/12409" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/27/f5/27f5c991e664ad8792d8cbf679b76738.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/41/a4/41a48d2882ed1715fb641fb43805fe38.jpg" alt="Las vacas gordas" data-href="/digitalobject/12401" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/cc/ec/cceca4380dea478a2ae154810730dbcf.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/cc/19/cc19ff858836d89495cb9843a5a48433.jpg" alt="Las vacas gordas" data-href="/digitalobject/12397" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/3b/a0/3ba04af1bb533179767e577cdb673c6d.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/64/d5/64d571282bdd0c8e9f8b1cdaff534577.jpg" alt="Las vacas gordas" data-href="/digitalobject/12386" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1f/f5/1ff5f17d8af6760187b6b294c31a2c3f.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/d9/4c/d94c97bb184e37668cfa9aeb1b140d27.jpg" alt="Las vacas gordas" data-href="/digitalobject/12384" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/bf/67/bf678d8737735202e663cf9ed3d5e913.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/fb/e5/fbe50a68f0554945887b513612868676.jpg" alt="Las vacas gordas" data-href="/digitalobject/12377" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e9/fb/e9fb58b2e42a546743958828b6765d3f.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/84/8a/848a06f1725e0781fb416cd8eb17d16d.jpg" alt="Las vacas gordas" data-href="/digitalobject/12370" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6e/3c/6e3c3af98ffa51ae0dac339841f6a821.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f7/a3/f7a3990f95cbcc97b710847b4bce684c.jpg" alt="Las vacas gordas" data-href="/digitalobject/12365" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/11/ba/11bac2b9f6e015560c0fe1fcee398b39.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/e1/f8/e1f87a9cd53d29422d65f3de190501a8.jpg" alt="Las vacas gordas" data-href="/digitalobject/12361" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/e5/d3/e5d34a113c05a5dc5eea2b31a9a7a328.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/79/49/79497372f2c72cf0a7fcfb1b52ad56f8.jpg" alt="Las vacas gordas" data-href="/digitalobject/12357" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/99/e7/99e7e4436cb9d3420f96277c34b99771.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/68/28/682817d5ccbeff0be72160dde802e8b0.jpg" alt="Las vacas gordas" data-href="/digitalobject/12343" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/1b/93/1b93df039ddcc0f3d46e7df368f9ac75.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/56/d2/56d25d236e9e8057cbf65d292ca66127.jpg" alt="Las vacas gordas" data-href="/digitalobject/12334" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/66/b4/66b455cd56dae1c08230a8d6a16ed5e7.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/0e/8d/0e8d557fcd1b65f1c3a363e701c3698e.jpg" alt="Las vacas gordas" data-href="/digitalobject/12326" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/50/16/5016b79ed2dfb3ee7754d49570de164c.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/78/f4/78f4d063a739dffbab1b1393e11d9190.jpg" alt="Las vacas gordas" data-href="/digitalobject/12325" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9e/97/9e97aeda35371fd26ef042446a26b4dd.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/74/1a/741ad7485953b2fe52e74cdc4b6237c7.jpg" alt="Las vacas gordas" data-href="/digitalobject/12323" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/21/fa/21fab3f25e97278076c1dde2e5220030.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f0/40/f0401299f64e591b32ae650847956d32.jpg" alt="Las vacas gordas" data-href="/digitalobject/12322" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/74/ea/74eaf22736316479c740378f42372912.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/1d/69/1d69362e0086deb29e94818cd6f50396.jpg" alt="Las vacas gordas" data-href="/digitalobject/12320" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ca/ff/caffcbf8103f40ad990b1bae7e7c0eea.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b8/d5/b8d589622e9f1f444d8e8de64f1eb95e.jpg" alt="Las vacas gordas" data-href="/digitalobject/12311" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/17/45/1745b1951e55d5b9aed7e1c5a93c3903.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/ad/80/ad8011c54143905a913824443430a565.jpg" alt="Las vacas gordas" data-href="/digitalobject/12310" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/de/d4/ded4c691d847bf245415ff2b304e88ae.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/dd/23/dd23756e477f9bb7f5e39f2e90060bcb.jpg" alt="Las vacas gordas" data-href="/digitalobject/12306" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/2f/c0/2fc0b7560ff3a8f99c4aba0597b656df.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/cd/b7/cdb79d2012fb83bc3f625a3acdd7de88.jpg" alt="Las vacas gordas" data-href="/digitalobject/12299" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/18/b2/18b298b1f2b253f76422a18d5be546b1.jpg" title="Las vacas gordas">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/47/53/4753a3a085c25cc81e080dbbe4505b35.jpg" alt="Las vacas gordas" data-href="/digitalobject/12298" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/f5/10/f51065b78c4bfc3caf9679a946237edb.jpg" title="Program for the production, &quot;Las vacas gordas&quot;">
+                
+                
+                <img src="../media/cache/26/12/26127e607dd32b66123cbaf788f749fc.jpg" alt="Program for the production, &quot;Las vacas gordas&quot;" data-href="/digitalobject/27" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c9/74/c974efe4f9bff752163e2587fe32d211.jpg" title="Program for the production, &quot;Las vacas gordas&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/23/46/2346a5f2573818937ca1f25c23862f0a.jpg" alt="Program for the production, &quot;Las vacas gordas&quot;" data-href="/digitalobject/27" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/ce/e8/cee8fec108a3f06f883df1ec25ed1496.jpg" title="Program for the production, &quot;Las vacas gordas&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/aa/bd/aabd480ddf337a69ff7ce5efce8db68d.jpg" alt="Program for the production, &quot;Las vacas gordas&quot;" data-href="/digitalobject/27" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/75/d7/75d781b0ffd1be5f669ae44ce5e8a6b0.jpg" title="Program for the production, &quot;Las vacas gordas&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/2f/73/2f73e712162009713e7f797e8e983139.jpg" alt="Program for the production, &quot;Las vacas gordas&quot;" data-href="/digitalobject/27" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/7b/13/7b1367c62d672b16b3dd0f1d65ffc16a.jpg" title="Program for the production, &quot;Las vacas gordas&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/50/c6/50c6baa1a29ceb083d0e56aff7da4ae8.jpg" alt="Program for the production, &quot;Las vacas gordas&quot;" data-href="/digitalobject/27" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/15/b0/15b0b9d28b49e4788b4123bcb589c3f7.jpg" title="Program for the production, &quot;Las vacas gordas&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/05/97/0597d4c0829c605e268b7cb57e9aa451.jpg" alt="Program for the production, &quot;Las vacas gordas&quot;" data-href="/digitalobject/27" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/45/da/45da55f75a483ba19af302bd142e4af0.jpg" title="Program for the production, &quot;Las vacas gordas&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/86/c6/86c61beee25e3740ed4ba637d8dd61b6.jpg" alt="Program for the production, &quot;Las vacas gordas&quot;" data-href="/digitalobject/27" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/a1/57/a1573f73ccd3d1f851b2767caf30f421.jpg" title="Program for the production, &quot;Las vacas gordas&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/9b/07/9b074a68b95c29bd4e9c04d04fcb41f8.jpg" alt="Program for the production, &quot;Las vacas gordas&quot;" data-href="/digitalobject/27" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b9/a7/b9a76a613449fbfc1135a6c75ca24ae2.jpg" title="Program for the production, &quot;Las vacas gordas&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/44/ad/44ad9a32b37f363153d2c406c666f269.jpg" alt="Program for the production, &quot;Las vacas gordas&quot;" data-href="/digitalobject/27" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/9e/57/9e57e8bedc42981ac2f654dbc55742e0.jpg" title="Program for the production, &quot;Las vacas gordas&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/9f/7b/9f7b09533eba4ef11ed8f246e8176b92.jpg" alt="Program for the production, &quot;Las vacas gordas&quot;" data-href="/digitalobject/27" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/15/5f/155fdd6aec8828067e5b3e00ca9a6893.jpg" title="Program for the production, &quot;Las vacas gordas&quot;">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/b5/b6/b5b69dcb399bb603e64c0c7000ffa835.jpg" alt="Program for the production, &quot;Las vacas gordas&quot;" data-href="/digitalobject/27" />
+                
+              </a>
+              
+                
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/6f/73/6f73086a260a791f711702d8ec1d265c.jpg" title="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/90/cc/90ccaefc8fd47aefd6205eb2537535e2.jpg" alt="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)" data-href="/digitalobject/12899" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/32/c6/32c6999cf6173966c697aa7abc598c87.jpg" title="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/54/40/54408a13da94ac1998cfabc5fc617d35.jpg" alt="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)" data-href="/digitalobject/12865" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/b0/8d/b08d8f7907f3e569b1b2cfaa7840a67e.jpg" title="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/85/87/8587e7ca21a48e669b3dc5f321358ee0.jpg" alt="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)" data-href="/digitalobject/12898" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/c6/b2/c6b2e661b1668020894f0a42da3d7c78.jpg" title="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/92/49/9249eb2d86e8359360ad36db26f331e4.jpg" alt="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)" data-href="/digitalobject/12864" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/28/2e/282e04857eea06984335bf2782547147.jpg" title="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/f5/e1/f5e1fc6814ea112e894f0878d3f55c67.jpg" alt="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)" data-href="/digitalobject/12900" />
+                
+              </a>
+              
+                
+                <a class="fancy" rel="gallery" href="http://ctda.library.miami.edu/media/cache/64/7a/647a303d147e4e439d920e1c3076f699.jpg" title="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)">
+                
+                
+                <img src="http://ctda.library.miami.edu/media/cache/12/fa/12fa7fcf5c38116c3c41913c98250725.jpg" alt="Scene from the play, &quot;Las vacas gordas&quot; (The fat cows)" data-href="/digitalobject/12884" />
+                
+              </a>
+              
+            </div>
+          </div>
+          
+        </aside>
+    
+        </article>
+
+        <p><br /><br /><br /><br /></p>
+        <div id="disqus_thread" class="disqus_cmts" style="width:48%;float:left;"></div>
+        <div align="center" class="disqus_cmts" style="width:48%;float:right">
+                <a class="twitter-timeline" href="https://twitter.com/CubanTheater" data-widget-id="334817199598469120">Tweets by @CubanTheater</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'ctdadev'; // required: replace with your forum shortname
+                var disqus_url = window.location.href;
+                var disqus_title = "";
+		var disqus_identifier = window.location.href;
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="http://www.miami.edu" target="_blank">University of Miami</a></li>
+                    <li><a href="http://www.as.miami.edu" target="_blank">UM College of Arts &amp; Sciences</a></li>
+                    <li><a href="http://www.library.miami.edu" target="_blank">UM Libraries</a></li>
+                    <li><a href="http://www.library.miami.edu/services/digitalprograms" target="_blank">UM Digital Scholarship</a></li>
+                    <li><a href="http://www.library.miami.edu/chc" target="_blank">Cuban Heritage Collection</a></li>
+                    <li>Copyright &copy;2011</li>
+                </ul>
+            </nav>
+        </footer>
+
+        <link rel="stylesheet" href="../static/css/sunny/jquery-ui-1.8.16.css" />
+        <script src="../static/js/jquery.isotope.min.js"></script>
+        <script src="../static/js/jquery.cycle.lite.min.js"></script>
+        <script src="../static/js/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" href="../static/css/fancybox/jquery.fancybox.css" />
+        <script src="../static/js/mediaelement-and-player.min.js"></script>
+        <link rel="stylesheet" href="../static/css/mediaelement/mediaelementplayer.css" />
+        <script src="../static/js/script.js"></script>
+        <script>
+            $('li.dropdown').hover(function(e) {
+                e.preventDefault();
+                $(this).children('ul').slideToggle('slow');
+                
+            });
+        </script>
+        
+    <script>
+      $(document).ready(function() {
+        
+        $('.fancy').fancybox({loop: false});
+      });
+    </script>
+    
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-28401240-1']);
+          _gaq.push(['_setDomainName', 'cubantheater.org']);
+          _gaq.push(['_setAllowLinker', true]);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <script>$(document).ready(function(){var showChar=100;var ellipsestext="...";var moretext="more";var lesstext="less";$('.more').each(function(){var content=$(this).html();if(content.length>showChar){var c=content.substr(0,showChar);var h=content.substr(showChar-1,content.length-showChar);var html=c+'<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>'+h+'</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';$(this).html(html);}});$(".morelink").click(function(){if($(this).hasClass("less")){$(this).removeClass("less");$(this).html(moretext);}else{$(this).addClass("less");$(this).html(lesstext);}
+        $(this).parent().prev().toggle();$(this).prev().toggle();return false;});});
+        </script>
+    </div>
+</body>
+</html>
